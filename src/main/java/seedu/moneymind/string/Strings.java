@@ -2,6 +2,11 @@ package seedu.moneymind.string;
 
 public class Strings {
 
+    public static final String TYPING_NEW_EXPENSE_MESSAGE = "Your new expense would be:";
+    public static final String TYPING_NEW_BUDGET_MESSAGE = "Your new budget would be:";
+    public static final String NEW_EXPENSE_MESSAGE = "Ok, the new expense is now changed to: ";
+    public static final String NEW_BUDGET_MESSAGE = "Ok, the new budget is now changed to: ";
+    public static final String NEW_CATEGORY_ADDED_MESSAGE = "New category added: ";
     public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
     public static final String NON_EXISTENT_EVENT = "Event does not exist";
@@ -68,8 +73,8 @@ public class Strings {
             "You can view all the events in a category by specifying the category name\n" +
             "Format: view <category name>\n" + "Example: view food\n" +
             "(category name is optional and if you do not enter a category name, all the categories will be shown)\n";
-    public static final String EDIT_INSTRUCTION = "6. edit - edit the expense for an event\n" +
-            "Format: edit c/<category name> e/<event index>\n" +
+    public static final String EDIT_INSTRUCTION = "6. edit - edit the expense for an event or budget for a category\n" +
+            "Format: edit c/<category name> [(optional) e/<event index>]\n" +
             "Example: edit c/food e/1\n";
     public static final String DELETE_INSTRUCTION = "7. delete - delete an event or a category\n" +
             "Format: delete c/<category name> [(optional) e/<event index>]\n" +
@@ -113,7 +118,7 @@ public class Strings {
     public static final String CATEGORY_FORMAT = "Please following the correct format: " +
             "category <name> [(optional) b/<budget number>]";
     public static final String EDIT_FORMAT = "Please following the correct format: " +
-            "edit c/<category name> e/<event index>";
+            "edit c/<category name> [(optional) e/<event index>]";
     public static final String EMPTY_DESCRIPTION_FOR_EVENT = "OOPS!!! The description of an event cannot be empty.";
     public static final String EMPTY_DESCRIPTION_FOR_CATEGORY =
             "OOPS!!! The description of a category cannot be empty.";

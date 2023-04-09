@@ -7,6 +7,8 @@ import seedu.moneymind.string.Strings;
 
 import java.util.HashMap;
 
+import static seedu.moneymind.string.Strings.NEW_CATEGORY_ADDED_MESSAGE;
+
 /**
  * Represents the command to add a new category.
  */
@@ -43,7 +45,7 @@ public class CategoryCommand implements Command {
         }
         CategoryList.categories.add(category);
         categoryMap.put(name, CategoryList.categories.size() - 1);
-        System.out.println("New category added: " + name);
+        System.out.println(NEW_CATEGORY_ADDED_MESSAGE + name);
     }
 
     @Override

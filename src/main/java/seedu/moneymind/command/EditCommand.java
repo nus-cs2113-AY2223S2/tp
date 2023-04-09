@@ -17,11 +17,16 @@ import static seedu.moneymind.string.Strings.INTEGER_DETECTING_REGEX;
 import static seedu.moneymind.string.Strings.NON_EXISTENT_EVENT;
 import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.EMPTY_STRING;
+import static seedu.moneymind.string.Strings.TYPING_NEW_EXPENSE_MESSAGE;
+import static seedu.moneymind.string.Strings.TYPING_NEW_BUDGET_MESSAGE;
+import static seedu.moneymind.string.Strings.NEW_EXPENSE_MESSAGE;
+import static seedu.moneymind.string.Strings.NEW_BUDGET_MESSAGE;
 
 /**
  * Edits the budget of a category or expense of an event.
  */
 public class EditCommand implements Command {
+
     private boolean isEvent;
     private String categoryName;
     private int eventIndex;
@@ -71,7 +76,7 @@ public class EditCommand implements Command {
             String eventName = category.getEvents().get(eventIndex).getDescription();
             System.out.println("The current event expense for " + eventName + " is: " +
                     category.getEvents().get(eventIndex).getExpense());
-            System.out.println("Your new expense would be:");
+            System.out.println(TYPING_NEW_EXPENSE_MESSAGE);
         }
     }
 
@@ -89,7 +94,7 @@ public class EditCommand implements Command {
         if (isReady) {
             System.out.println("The current budget for " + categoryName + " is: " +
                     category.getBudget());
-            System.out.println("Your new budget would be:");
+            System.out.println(TYPING_NEW_BUDGET_MESSAGE);
         }
     }
 
@@ -154,11 +159,11 @@ public class EditCommand implements Command {
         }
         if (!userInput.equals(BACK)) {
             if (isEvent) {
-                System.out.println("Ok, the new expense is now changed to: " + userInput);
+                System.out.println(NEW_EXPENSE_MESSAGE + userInput);
                 CategoryList.categories.get(categoryIndex).getEvents().
                         get(eventIndex).setExpense(Integer.parseInt(userInput));
             } else {
-                System.out.println("Ok, the new budget is now changed to: " + userInput);
+                System.out.println(NEW_BUDGET_MESSAGE + userInput);
                 CategoryList.categories.get(categoryIndex).setBudget(Integer.parseInt(userInput));
             }
         }
