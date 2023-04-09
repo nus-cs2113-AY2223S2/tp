@@ -534,18 +534,9 @@ delete monday Home_Leg_Day
 ===>Planner Mode<===
 ```
 
-# Within your fitness planner
+## Viewing plans ```plans```
 
-<div class="alert alert-info">
-
-**Click **[here](UG_features/planner.md)** to learn more about using our planner feature.
-
-</div>
-
-
-## Viewing plans: ```plans```
-
-Displays all workout plans which have been created by the user.
+Displays all workout plans created by the user from Monday to Sunday. (Also usable within planner)
 
 ```
 YOUR WORKOUT PLAN:
@@ -574,7 +565,83 @@ SUNDAY
 ________________________________________
 ```
 
-Example Command: ```plans```
+Format: ```plans```
+
+# Within your fitness planner
+
+<div class="alert alert-info">
+
+## About
+
+Our planner feature is designed to help you plan your weekly workout schedule in order to achieve your workout goals.
+
+## Commands
+
+
+
+### Adding a plan ```add [day] [plan_name] [arg 1] [arg 2] [arg 3] ```
+
+Creates a new workout plan using existing filters specified by the user, for a specific day of the week.
+
+Format: ```add monday home_legs_day easy static legs```
+```
+===>Planner Mode<===
+add monday home_legs_day easy static legs
+[home_legs_day] added to MONDAY
+
+===>Planner Mode<===
+```
+
+### Deleting a plan ```delete```
+
+Deletes an existing workout plan on a specified day of the week.
+
+Format: ```delete monday home_legs_day```
+```
+===>Planner Mode<===
+delete monday home_legs_day
+[home_legs_day] deleted from MONDAY
+
+===>Planner Mode<===
+```
+
+### Exiting the planner ```exit```
+
+Exits the workout planner and returns to main program.
+
+Format: ```exit```
+```
+===>Planner Mode<===
+exit
+Exited planner editor!
+________________________________________
+```
+### Viewing help ```help ```
+
+Shows a list of commands that the user can input while in the workout planner feature
+
+Format: ```help```
+```
+===>Planner Mode<===
+help
+These are some commands available: 
+[add]
+	Create a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x
+	FILTER stands for a specific requirement you want to include in your exercise
+[delete]
+	delete a plan on a day of the week: delete monday plan_name
+[plans]
+	Show all plans
+[filters]
+	View all available filters
+[exit]
+	Exit workout plan editor
+
+===>Planner Mode<===
+```
+
+</div>
+
 
 
 ## Generating a list of planned exercises: ```quick [plan_name] [number]```
