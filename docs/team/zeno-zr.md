@@ -19,12 +19,12 @@ DinerDirector is a desktop productivity application used by restaurant managers 
   * What it does: It finds the dish to be deleted via the index given by the user of where the dish is located in the list of dishes.
 
 * **New feature**: Added the ability to find dishes containing a keyword in the list of dishes currently stored.
-  * What it does: It allows the user to find dishes that contains a particular keyword.
+  * What it does: It allows the user to find dishes that contains a particular keyword, whether if it's the whole keyword or as a substring.
 
 #### Project management and Contributions to the UG:
-- Managed the `v2.0` release alongside [@darrenangwx](https://github.com/darrenangwx)
-- Added documentation for `add_dish`, `view_dish`, `delete_dish` and `find_dish`. [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70)
-- Added documentation & UML diagram for command component. [#62](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/62), [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70)
-- Added documentation for Dish features and Sequence diagram for Add dish command. [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70)
-- PRs reviewed (with non-trival comments): [#43](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/43), [#69](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/69#partial-pull-merging) and more
-- Reported bugs and suggestions for other teams (examples: [#4](https://github.com/Zeno-Zr/ped/issues/4), [#54](https://github.com/nus-cs2113-AY2223S2/tp/pull/54/files/98137b40bb81ba070f8cb2fbea7db1cadde0bc89#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b) and more)
+- Managed the `v2.0` release alongside [@darrenangwx](https://github.com/darrenangwx).
+- Added documentation for `add_dish`, `view_dish`, `delete_dish` and `find_dish`. (examples: [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70) and more).
+- Added documentation & UML diagram for command component. (examples: [#62](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/62), [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70) and more).
+- Added documentation for Dish features and Sequence diagram for Add dish command. (examples: [#70](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/70) and more).
+- PRs reviewed with non-trival comments: (examples: [#43](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/43), [#69](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/69#partial-pull-merging) and more).
+- Reported bugs and suggestions for other teams (examples: [#4](https://github.com/Zeno-Zr/ped/issues/4), [#54](https://github.com/nus-cs2113-AY2223S2/tp/pull/54/files/98137b40bb81ba070f8cb2fbea7db1cadde0bc89#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b) and more).
