@@ -1,0 +1,44 @@
+@startuml
+!include Style.puml
+
+title PocketPal Sequence Overview
+
+actor User
+participant ":PocketPal" as PocketPal
+participant ":Frontend" as Frontend
+participant ":Backend" as Backend
+
+User -> PocketPal : Application Launch
+PocketPal -> Backend**
+activate Backend
+ref over Backend
+    Backend Startup Process
+end
+return
+
+PocketPal -> Frontend** : backend
+activate Frontend
+return
+
+PocketPal -> PocketPal++ : setupLogging()
+return
+
+PocketPal -> Frontend : start()
+note right Backend
+    Communication between
+    Frontend and Backend
+end note
+ref over PocketPal, Frontend
+    Frontend Process
+end ref
+
+PocketPal <-- Frontend
+
+PocketPal -> PocketPal++ : exitLogging()
+return
+
+destroy Frontend
+destroy Backend
+User <-- PocketPal : Application Shutdown
+
+@enduml

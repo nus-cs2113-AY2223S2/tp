@@ -1,0 +1,58 @@
+@startuml
+!include ../Style.puml
+
+mainframe sd Frontend Process
+title Frontend Sequence Overview
+
+actor User
+participant ":Frontend" as Frontend
+participant ":UI" as UI
+participant ":Parser" as Parser
+participant ":Command" as Command
+
+-> Frontend : start()
+
+Frontend -> UI : printWelcome()
+return
+
+group loop [!isExit]
+    Frontend -> UI : printAwaitUserInput()
+        note over User : UI is updated
+    return
+    User -> Frontend : user input
+    Frontend -> Parser : parseUserInput()
+    Frontend -> Command : execute()
+    ref over Command, Backend
+        Backend Request Process
+    end ref
+        note right of Frontend : Refer to the individual commands for specific implementation
+        note over User : UI is updated
+    Frontend <-- Command
+    Frontend -> Command : getIsExit()
+    return
+    note right of Frontend : isExit is updated
+
+    group opt [Exception occurs]
+        alt Fail to parse user input
+            Frontend <-- Parser
+        else Backend request fail
+            Frontend <-- Command
+        end
+        Frontend -> UI : printException()
+        note over User : UI is updated
+        return
+        note over Frontend, UI
+            restart loop
+        end note
+    end
+    destroy Command
+end
+
+Frontend -> UI : printExit()
+return
+
+destroy UI
+destroy Parser
+<-- Frontend
+
+@enduml
