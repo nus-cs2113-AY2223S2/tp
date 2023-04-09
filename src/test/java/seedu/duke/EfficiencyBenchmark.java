@@ -30,7 +30,7 @@ public class EfficiencyBenchmark {
     Inventory inventory = Storage.readCSV(BENCHMARK_FILEPATH);
     @Test
     @Order(1)
-    public void loadInventoryTest(){
+    public void loadInventoryTest() {
         Inventory loadInventory;
         long start = System.currentTimeMillis();
         loadInventory = Storage.readCSV(BENCHMARK_FILEPATH);
@@ -38,12 +38,12 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to load: " + timeTaken + "ms");
-        assertTrue(timeTaken<=timeToBeat);
+        assertTrue(timeTaken <= timeToBeat);
         assertEquals(DATASET_SIZE,loadInventory.getItemInventory().size());
     }
     @Test
     @Order(2)
-    public void searchInventoryTest(){
+    public void searchInventoryTest() {
         long start = System.currentTimeMillis();
         SearchCommand searchCommand = new SearchCommand(inventory, "samsung", Types.SearchType.KEYWORD);
         ArrayList<Item> results = searchCommand.searchKeyword();
@@ -51,8 +51,8 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to find " + results.size() + " items: " + timeTaken + "ms");
-        assertTrue(timeTaken<=timeToBeat);
-        assertTrue(results.size()>0);
+        assertTrue(timeTaken <= timeToBeat);
+        assertTrue(results.size() > 0);
         start = System.currentTimeMillis();
         searchCommand = new SearchCommand(inventory, "123", Types.SearchType.UPC);
         Item result = searchCommand.searchUPC();
@@ -65,7 +65,7 @@ public class EfficiencyBenchmark {
 
     @Test
     @Order(3)
-    public void filterInventoryTest(){
+    public void filterInventoryTest() {
         long start = System.currentTimeMillis();
         FilterCommand filterCommand = new FilterCommand(inventory, "uncategorized", "f/category");
         ArrayList<Item> results = filterCommand.getFilteredItems();
@@ -81,8 +81,8 @@ public class EfficiencyBenchmark {
         end = System.currentTimeMillis();
         timeTaken = end - start;
         System.out.println("Time taken to filter " + results.size() + " items: " + timeTaken + "ms");
-        assertTrue(timeTaken<=timeToBeat);
-        assertTrue(results.size()>0);
+        assertTrue(timeTaken <= timeToBeat);
+        assertTrue(results.size() > 0);
     }
 
     @Test
@@ -106,6 +106,6 @@ public class EfficiencyBenchmark {
         totalTime += timeTaken;
         System.out.println("Time taken for all CRUD commands: " + timeTaken + "ms");
         System.out.println("Time taken for tests: " + totalTime + "ms");
-        assertTrue(timeTaken<=timeToBeat);
+        assertTrue(timeTaken <= timeToBeat);
     }
 }
