@@ -10,16 +10,16 @@ public class Messages {
     public static final String MESSAGE_GENERIC_COMMANDS = "help - View list of commands\n" +
             "exit - exits the program\n";
     public static final String MESSAGE_MEETING_COMMANDS = "add_meeting n/<name> t/<time>\n" +
-            "delete_meeting <index>\n" +
+            "delete_meeting <meeting index>\n" +
             "view_meetings\n" +
             "find_meeting <keyword>\n";
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
-            "delete_deadline <integer>\n" +
+            "delete_deadline <deadline index>\n" +
             "view_deadlines\n" +
             "find_deadline <keyword>\n";
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
             "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
-            "delete_dish <integer>\n" +
+            "delete_dish <dish index>\n" +
             "view_dish\n" +
             "find_dish <keyword>\n";
 
@@ -49,7 +49,7 @@ public class Messages {
      * Errors for programs to print.
      */
     public static final String ERROR_COMMAND_INVALID = "Please give a valid command! " +
-            "Type \"help\" for list of valid commands";
+            "Type \"help\" for list of valid commands\n";
     public static final String ERROR_HELP_EXCESS_PARAM = "help command should not have excess parameter!";
     public static final String ERROR_EXIT_EXCESS_PARAM = "exit command should not have excess parameter!";
     public static final String ERROR_DEADLINE_INVALID_INDEX = "Invalid deadline index number!\n" +
