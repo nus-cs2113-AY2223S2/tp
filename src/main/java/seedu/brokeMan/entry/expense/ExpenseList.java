@@ -25,7 +25,9 @@ public class ExpenseList extends EntryList {
     }
 
     /**
-     * lists out expenses in the list
+     * Lists expenses saved
+     *
+     * @param date Optional of String that contains information about the date
      */
 
     public static void listExpense(Optional<String> date) {
@@ -41,6 +43,9 @@ public class ExpenseList extends EntryList {
         Ui.showToUserWithLineBreak("");
     }
 
+    /**
+     * Lists expenses saved
+     */
     public static void listExpense() {
         Ui.showToUser("Here are the expenses you have made.");
         listEntry(expenseList);
@@ -81,12 +86,18 @@ public class ExpenseList extends EntryList {
      * Edits the time of expense specified by the index in the list
      *
      * @param expenseIndex index of the expense in the list
-     * @param newEntry     new time that will replace the current amount
+     * @param newEntry     new time that will replace the current time
      */
     public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
         editEntryTime(expenseIndex, newEntry, expenseList);
     }
 
+    /**
+     * Edits the category of expense specified by the index in the list
+     *
+     * @param expenseIndex index of the expense in the list
+     * @param newEntry     new category of the expense
+     */
     public static void editExpense(int expenseIndex, Category newEntry) {
         editEntryCategory(expenseIndex, newEntry, expenseList);
     }
@@ -109,11 +120,22 @@ public class ExpenseList extends EntryList {
         Ui.showToUserWithLineBreak("");
     }
 
-
+    /**
+     * Finds list of all expenses that is under category specified
+     *
+     * @param category Category of the expense
+     */
     public static void findExpenseByCategory(Category category) {
         findEntriesByCategory(category, expenseList);
     }
 
+    /**
+     * Returns list of all expenses made in the month specified
+     *
+     * @param year Year of the expense made
+     * @param month Month of the expense made
+     * @return List of entries that contain expenses made in the specified month
+     */
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
     }
