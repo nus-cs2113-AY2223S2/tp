@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":AddModuleCommand" : command.execute()
+-> ":AddModuleCommand" : command.execute()
 activate ":AddModuleCommand"
 ":AddModuleCommand" -> ":Storage" : addModuleToModuleList(moduleToAdd)
 activate ":Storage"
@@ -73,7 +72,7 @@ end
 activate "<<class>>\n:UI"
 ":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":Duke" <-- ":AddModuleCommand"
+<-- ":AddModuleCommand"
 deactivate ":AddModuleCommand"
 
 
