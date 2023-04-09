@@ -25,7 +25,7 @@ loop curr uuid of decksUUIDArr != null
 RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
 return affectedDeck
 RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
-
+return
 end loop
 end
 
