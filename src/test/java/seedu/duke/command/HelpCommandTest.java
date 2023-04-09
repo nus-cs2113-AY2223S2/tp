@@ -30,6 +30,7 @@ public class HelpCommandTest {
     private final PrintStream originalOut = System.out;
     //@@author dfa
 
+    //@@author darrenlsx
     @Test
     void userInput_help_correctVariableTypeSuccess() {
         String userInput = "/help";
@@ -56,7 +57,9 @@ public class HelpCommandTest {
     public void restoreStream() {
         System.setOut(originalOut);
     }
+    //@@author dfa
 
+    //@@ author darrenlsx
     @Test
     void execute_help_success() {
         HelpCommand helpCommand = new HelpCommand();
@@ -100,5 +103,4 @@ public class HelpCommandTest {
                 + LINE.stripTrailing()), outContent.toString().stripTrailing());
         outContent.reset();
     }
-    //@@author dfa
 }

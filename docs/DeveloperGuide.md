@@ -10,8 +10,17 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
     1. [Architecture](#architecture)
-    2. [Help Command](#help-command)
-    3. [Delete Command](#delete-command)
+    2. [Storage](#storage)
+    3. [Parser](#parser)
+    4. [UserInterface](#userinterface--ui-) 
+    5. [Help Command](#help-command)
+    6. [List Current Command](#list-current-command)
+    7. [List Current PU Command](#list-current-pu-command)
+    8. [List PU Command](#list-pu-command)
+    9. [List PU Modules Command](#list-pu-modules-command)
+   10. [Delete Module Command](#delete-module-command)
+   11. [Delete Deadline Command](#delete-deadline-command)
+   12. [Reference Block for Sorting Modules](#reference-block-for-sortmodulesaccording-to-printing-length-function)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
     2. [Value Proposition](#value-proposition)
@@ -32,9 +41,9 @@ original source as well}
 
 
 
-## Design & implementation
+# Design & implementation
 
-# Architecture
+## Architecture
 
 ![Architecture.png](diagrams%2FArchitecture.png)
 
@@ -134,15 +143,6 @@ The following class diagrams illustrates the relationship between the Parser cla
 - (TODO: finish up the rest of the command cases)
 ![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
-### Help Command
-
-The help command provides a list of commands and the commands' respective input format for the user.  
-> Syntax: /help
-
-The following sequence diagram shows the relationship between the classes involved when the delete command is called.
-
-![HelpCommandSequenceDiagram.png](diagrams%2FHelpCommandSequenceDiagram.png)
-
 ### UserInterface (UI)
 
 UI class main purpose is to be in charge of the majority of the print functions present in the program.
@@ -158,7 +158,14 @@ solely for the purpose of holding print functions, but has some logical componen
 Future Improvements: UI to handle ALL of the printing functions present in the program.
 
 
+### Help Command
 
+The help command provides a list of commands and the commands' respective input format for the user.
+> Syntax: /help
+
+The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+
+![HelpCommandSequenceDiagram.png](diagrams%2FCommands%2FHelpCommandSequenceDiagram.png)
 
 
 ### List Current Command
@@ -170,7 +177,7 @@ Lists out all of current modules that user has added.
 
 Sequence Diagram of List Current Command.
 
-![ListCurrentCommandSequenceDiagram.png](diagrams%2FListCurrentCommandSequenceDiagram.png)
+![ListCurrentCommandSequenceDiagram.png](diagrams%2FCommands%2FListCurrentCommandSequenceDiagram.png)
 
 
 **Explanation**
@@ -191,7 +198,7 @@ Prints out modules selected by user specific to a Partner University.
 
 **Sequence Diagram of List Current Pu Command**
 
-![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
+![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FCommands%2FListCurrentPuCommandSequenceDiagram.png)
 
 **Explanation**
 
@@ -207,7 +214,7 @@ Prints out modules selected by user specific to a Partner University.
 
 Reference Diagram for Print Module Details:
 
-![ListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png](diagrams%2FListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png)
+![ListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png](diagrams%2FCommands%2FListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png)
 
 
 ### List Pu Command
@@ -219,7 +226,7 @@ Lists out all of Partner Universities.
 Sequence Diagram of List Pu Command.
 
 
-![ListPuCommandSequenceDiagram.png](diagrams%2FListPuCommandSequenceDiagram.png)
+![ListPuCommandSequenceDiagram.png](diagrams%2FCommands%2FListPuCommandSequenceDiagram.png)
 
 **Explanation**
 
@@ -240,7 +247,7 @@ Prints out list of modules available at a given Partner University
 
 Sequence Diagram of List Pu Modules Command.
 
-![ListPuModulesCommandSequenceDiagram.png](diagrams%2FListPuModulesCommandSequenceDiagram.png)
+![ListPuModulesCommandSequenceDiagram.png](diagrams%2FCommands%2FListPuModulesCommandSequenceDiagram.png)
 
 **Explanation**
 
@@ -254,7 +261,7 @@ Sequence Diagram of List Pu Modules Command.
 
 ### Add Module Command
 
-Adds the Module the user has wants to save to the saved modules database.
+Adds the Module the user has wants to save to the saved module's database.
 
 > Syntax: /add [_uniAbbreviation/index_]
 
@@ -282,7 +289,7 @@ The UI class currently holds an instance of all available PUs and their modules.
 This can and will be further refactored into other class to adhere to Single Responsibility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
 
-### Delete Command
+### Delete Module Command
 
 The delete command removes a module from the user's saved list of modules that is specified by the user.
 > Syntax: /remove [_uniAbbreviation_]/[_index_]
@@ -291,10 +298,41 @@ The following sequence diagram shows the relationship between the classes involv
 
 ![DeleteModuleCommandSequenceDiagram.png](diagrams%2FCommands%2FDeleteModuleCommandSequenceDiagram.png)
 
+**Explanation**
+
+1. DeleteModuleCommand calls deleteModule(indexToRemove, modules, storage, uniID) of Storage class.
+2. indexToDelete and counterUpToIndexToDelete variables of type Int are initialised.
+3. In the circumstance where indexToRemove is -1, deleteModule function will return false.
+4. It will then loop through the list of modules and counterUpToIndexToDelete will keep incrementing until it is equal
+to the indexToDeletePuSpecificListToZeroBased.
+5. indexToDelete is then set to the current Module iteration index, and it will remove the module from the list of 
+modules.
+6. The list is the sorted according to the string length of each module in the list of modules to be printed out in a
+readable format.
+7. The list is saved in the modules txt file by overwriting it via writeModListToFile(module) function.
+8. deleteModule function then returns true and DeleteModuleCommand calls UI class to print the successful deletion of
+module message in the User Console.
+
+
+### Delete Deadline Command
+The delete deadline command removes a deadline from the user's list of deadlines that is specified by the user.
+> Syntax: /deadline/remove [_index_]
+
+The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+
+![DeleteDeadlineCommandSequenceDiagram.png](diagrams%2FCommands%2FDeleteDeadlineCommandSequenceDiagram.png)
+
+**Explanation**
+1. DeleteDeadlineCommand calls deleteDeadline(indexToRemove, deadline, deadlineStorage) of Storage class.
+2. It then removes the deadline respective to the index via .remove(index) function.
+3. The list is saved in the deadlines txt file by overwriting it via writeDeadlinesToFile(deadline) function.
+4. deleteDeadline function then returns true and DeleteDeadlineCommand calls UI class to print the successful deletion 
+of deadline message in the User Console.
+
 
 #### Reference Block for SortModulesAccording to Printing Length Function
 
-![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FSortModulesAccordingToPrintingLengthFunction.png)
+![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FMiscellaneous%2FSortModulesAccordingToPrintingLengthFunction.png)
 
 **Explanation** 
 1. Storage calls Module's getPrintingLength() function.
@@ -309,12 +347,12 @@ The main objective of this sorting function is to increase readability of print 
 
 Previously, when printing out multiple lines, the lines that are printed out are messy and hard to read.
 
-![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
+![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
 
 The sorting functions aids in helping it more readable, when the list of mappings are made to be in one line and sorted
 according to the length of string before the "maps to ---->" key words.
 
-![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FExampleOfPrintFunctionsMoreReadable.jpg)
+![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsMoreReadable.jpg)
 
 
 ### Budget Commands

@@ -74,7 +74,7 @@ public class DeadlineStorage implements DatabaseInterface {
      * @param indexToDelete    Index of that deadline that is given in user input.
      * @param deadlines        The ArrayList of deadlines.
      * @param deadlineDatabase Database of the user's list of deadlines.
-     * @return True if successfully deleted the module, false if unsuccessful.
+     * @return True if successfully deleted the deadline, false if unsuccessful.
      */
     public static boolean deleteDeadline(int indexToDelete, ArrayList<Deadline> deadlines,
                                          DeadlineStorage deadlineDatabase) {
