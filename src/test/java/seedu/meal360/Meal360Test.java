@@ -913,7 +913,7 @@ class Meal360Test {
         }
     }
 
-    //@@author
+    //@@author gurmankalkat
     @Test
     public void testClearWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
@@ -962,7 +962,7 @@ class Meal360Test {
                         "salad x1"), outContent.toString().trim());
     }
 
-    //@@author
+    //@@author junenita
     @Test
     public void testListRecipe() {
         RecipeList recipeListToPrint;
@@ -1533,7 +1533,7 @@ class Meal360Test {
         assertDoesNotThrow(database::loadRecipesDatabase);
     }
 
-
+    //@@author AbijithRam
     @Test
     public void testCombineWords() {
         String[] input1 = {"One", "Two", "Three"};

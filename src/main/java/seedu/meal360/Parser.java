@@ -357,6 +357,7 @@ public class Parser {
         return recipeToEdit;
     }
 
+    //@@author gurmankalkat
     /**
      * This method deletes a single, range, or all recipes.
      *
@@ -449,6 +450,7 @@ public class Parser {
         }
     }
 
+    //@@author junenita
     /**
      * Extract inputs from users whether it is adding recipes to a tag or removing recipe from a tag.
      * Then, proceed to add or remove the recipes from the tag, and returns a string whether
@@ -495,6 +497,7 @@ public class Parser {
         return returnMessage;
     }
 
+    //@@author junenita
     /**
      * Extract the tag label and recipes. Then, proceed to add the recipes to the tag,
      * and returns the tag label that users modified
@@ -534,6 +537,7 @@ public class Parser {
         return tag;
     }
 
+    //@@author junenita
     /**
      * Extract the tag label and recipes. Then, proceed to remove the recipes from the tag,
      * and returns the tag label that users modified
@@ -592,6 +596,7 @@ public class Parser {
         return tag;
     }
 
+    //@@author junenita
     /**
      * Extract the filters from users' input. Then, proceed to extract the recipes by the filters.
      *
@@ -632,6 +637,7 @@ public class Parser {
         return recipeListToPrint;
     }
 
+    //@@author jaredoong
     /**
      * Extract the recipe index that the users wishes to view. Then, proceed to extract the recipe and returns
      * the recipe.
@@ -668,6 +674,7 @@ public class Parser {
         return requestedRecipe;
     }
 
+    //@@author AbijithRam
     /**
      * This method is designed to find the index of a recipe from
      * the recipe list of the user and return the recipe.
@@ -688,6 +695,7 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
+    //@@author junenita
     /**
      * Returns a Recipe object that contain a recipe's name and ingredients.
      *
@@ -703,6 +711,7 @@ public class Parser {
         return recipes.randomRecipe();
     }
 
+    //@@author jaredoong
     /**
      * Checks whether the user wants to edit single, multiple, or clear all the recipes in the weekly plan.
      * Then, return a WeeklyPlan object that contains the recipes that the user wants to add or delete.
@@ -741,6 +750,7 @@ public class Parser {
         return updatedWeeklyPlan;
     }
 
+    //@@author jaredoong
     /**
      * Parses the user input to extract the single recipe that the user wants to add or delete from the weekly
      * plan.
@@ -789,6 +799,7 @@ public class Parser {
         }
     }
 
+    //@@author jaredoong
     /**
      * Parses the user input to extract the multiple recipes that the user wants to add or delete from the
      * weekly plan.
@@ -866,6 +877,7 @@ public class Parser {
         return recipesToEdit;
     }
 
+    //@@author jaredoong
     private StringBuilder getRecipeNames(String[] command, ArrayList<String> recipeNames,
             StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
         recipeName.append(command[nameStartIndex].toLowerCase().trim());
@@ -877,7 +889,7 @@ public class Parser {
         return recipeName;
     }
 
-    // @@author
+    //@@author notbingsu
     // parser to read dd/mm/yyyy format as local date catching invalid date format
     public LocalDate parseDate(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -890,6 +902,7 @@ public class Parser {
         }
     }
 
+    //@@author jaredoong
     /**
      * Parses the user input to extract the ingredient name, quantity, and expiry date that the user wants to
      * add to the ingredient list. Returns the Ingredient object that contains parsed data.
@@ -949,6 +962,7 @@ public class Parser {
         return new Ingredient(ingredientName, ingredientCount, expiryDate);
     }
 
+    //@@author jaredoong
     /**
      * Parses the user input to extract the ingredient name and quantity that the user wants to delete from
      * the ingredient list. Returns the Ingredient object that contains parsed data.
@@ -1006,6 +1020,7 @@ public class Parser {
         return new Ingredient(ingredientName, ingredientCount, "01/01/2020");
     }
 
+    //@@author jaredoong
     /**
      * Parses the user input to extract the recipe which the user wants to mark as done. Returns the recipe
      * name to be deleted from the weekly plan.
