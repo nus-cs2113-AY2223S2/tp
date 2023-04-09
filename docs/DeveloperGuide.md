@@ -1,8 +1,8 @@
 # Developer Guide
 - [Developer Guide](#developer-guide)
   - [Acknowledgements](#acknowledgements)
-  - [Setup \& Prerequisites](#setup--prerequisites)
-  - [Design \& implementation](#design--implementation)
+  - [Setup and Prerequisites](#setup-and-prerequisites)
+  - [Design and implementation](#design-and-implementation)
     - [Architecture](#architecture)
     - [UI Component](#ui-component)
     - [Parser Component](#parser-component)
@@ -43,7 +43,7 @@
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
 original source as well}
 
-## Setup & Prerequisites
+## Setup and Prerequisites
 1. Ensure you have `Java 11` installed.
 2. Ensure your local repository is synced with the main repository at 
 [AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp).
@@ -53,7 +53,7 @@ original source as well}
 6. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`.
 7. Type `java -jar tp.main.jar` and press Enter to start the program.
 
-## Design & implementation
+## Design and implementation
 
 ### Architecture
 
