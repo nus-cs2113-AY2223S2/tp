@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+ -> ":CompanyListDecoder": read()
+     activate ":CompanyListDecoder"
+                ":CompanyListDecoder" -> "f:File":
+                activate "f:File"
+                    "f:File" --> ":CompanyListDecoder"
+                ":CompanyListDecoder" -> "s:Scanner"
+
+@enduml
