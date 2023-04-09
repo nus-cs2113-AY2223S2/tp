@@ -12,9 +12,10 @@ import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 
-public class DeleteDeckCommand extends Command{
+public class DeleteDeckCommand extends Command {
     private String deckName;
     private DeckUUID deckUUID;
     private TagUUID tagUUID;
@@ -23,10 +24,13 @@ public class DeleteDeckCommand extends Command{
         this.deckName = deckName;
     }
 
-    private void removeDeckFromCards(CardList cardList ,DeckList deckList, UserInterface userInterface)
+    private void removeDeckFromCards(CardList cardList, DeckList deckList, UserInterface userInterface)
             throws InkaException {
         Deck deck = deckList.findDeckFromName(deckName);
-        if(deck==null) {
+
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deck == null) {
             throw new DeckNotFoundException();
         }
         deckUUID = deck.getDeckUUID();
@@ -37,10 +41,10 @@ public class DeleteDeckCommand extends Command{
         }
     }
 
-    private void removeDeckFromTags(TagList tagList ,DeckList deckList, UserInterface userInterface)
+    private void removeDeckFromTags(TagList tagList, DeckList deckList, UserInterface userInterface)
             throws InkaException {
         Deck deck = deckList.findDeckFromName(deckName);
-        if(deck==null) {
+        if (deck == null) {
             throw new DeckNotFoundException();
         }
         deckUUID = deck.getDeckUUID();
@@ -50,6 +54,7 @@ public class DeleteDeckCommand extends Command{
             userInterface.printRemoveDeckFromTag(affectedTag.getUUID(), deckUUID);
         }
     }
+
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {

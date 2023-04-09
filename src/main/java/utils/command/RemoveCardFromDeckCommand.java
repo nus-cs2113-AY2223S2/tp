@@ -12,6 +12,7 @@ import utils.UserInterface;
 import utils.exceptions.CardNotInDeck;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
 
@@ -33,7 +34,10 @@ public class RemoveCardFromDeckCommand extends Command {
     public void removeCardFromDeck(DeckList deckList, String deckName, CardUUID cardUUID)
             throws InkaException {
         Deck deck = deckList.findDeckFromName(deckName);
-        if (deck == null) {
+
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deck == null) {
             throw new DeckNotFoundException();
         }
         //This is only for isolated cards, not for the cards that are tagged
@@ -42,7 +46,7 @@ public class RemoveCardFromDeckCommand extends Command {
         boolean wasCardInDeck = deckCardList.removeIf(card -> card.equals(cardUUID));
         if (wasCardInDeck == false) {
             throw new CardNotInDeck();
-        } else if(!deck.cardIsInMap(cardUUID)) { // if the card does not exist under any tag
+        } else if (!deck.cardIsInMap(cardUUID)) { // if the card does not exist under any tag
             deckCardSet.remove(cardUUID);
             deck.setCardsSet(deckCardSet);
         }
