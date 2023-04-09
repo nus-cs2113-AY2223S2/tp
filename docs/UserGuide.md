@@ -47,14 +47,14 @@ MyLedger is a desktop app for managing finances, designed for university student
 
 Adds an expenditure to the record
 
-Format: `EXPENDITURE_CATEGORY d/DATE a/AMOUNT s/DESCRIPTION`
+Format: `EXPENDITURE_CATEGORY d/DATE a/AMOUNT p/DESCRIPTION`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `EXPENDITURE_CATEGORY`        | The type of transaction. There are 7 types, `Academic`, `Accomodation`, `Entertainment` , `Food` , `Transport` , `Tuition` and `Other`                                 |        |
 | `AMOUNT`      | The amount of the transaction. It is a positive whole number ranging from 1 to 10000000 (Ten Million). | 
 | `DATE`        | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02             |                                                                                               
-| `DESCRIPTION` | More information regarding the transaction.                  | 
+| `DESCRIPTION` | More information regarding the transaction. Special symbols and length are not restricted.                 | 
 
 **Important Information:**
 
@@ -64,8 +64,8 @@ Format: `EXPENDITURE_CATEGORY d/DATE a/AMOUNT s/DESCRIPTION`
 
 **Examples:**
 
-- `academic d/2023-02-02 a/25.10 s/NUS` <br> 
-- `other d/2000-01-31 a/26 s/Eating lunch`
+- `academic d/2023-02-02 a/25.10 p/NUS` <br> 
+- `other d/2000-01-31 a/26 p/Eating lunch`
 
 **Expected Output:**
 
@@ -74,7 +74,7 @@ Adding an Academic Expenditure
 Input:
 
 ```
-academic d/2023-02-02 a/25.10 s/NUS
+academic d/2023-02-02 a/25.10 p/NUS
 ```
 
 Output:
@@ -88,7 +88,7 @@ Adding a Other Expenditure
 Input:
 
 ```
-other d/2000-01-31 a/26 s/Eating lunch
+other d/2000-01-31 a/26 p/Eating lunch
 ```
 
 Output:
@@ -101,27 +101,28 @@ Added other expenditure: [Other] || Date: 31 Jan 2000 || Value: 26.0 || Descript
 
 Adds a lending or borrowing transaction to the record
 
-Format: `TYPE d/DATE n/NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
-| Parameter     | Description                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| `CATEGORY`        | The category of record of `lend` or `borrow`. It should either be `lend` or `borrow`.                                 |        |
-| `DATE`      | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02. | 
-| `NAME`       | The name of the other party involved in the transaction       |
-| `AMOUNT`        | The amount of the transaction. It can a positive whole number ranging from 1 to 10000000 (Ten Million).           |                                                                                               
-| `DEADLINE`      | The date when the transaction is dued. It must be in yyyy-MM-dd format, e.g. 2023-02-02.| 
-| `DESCRIPTION` | More information regarding the transaction.                  | 
+| Parameter     | Description                                                                                             |
+|---------------|---------------------------------------------------------------------------------------------------------|
+| `CATEGORY`        | The category of record of `lend` or `borrow`. It should either be `lend` or `borrow`.                   |        |
+| `DATE`      | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02.          | 
+| `NAME`       | The name of the other party involved in the transaction. Input name should not have a slash.            |
+| `AMOUNT`        | The amount of the transaction. It can a positive whole number ranging from 1 to 10000000 (Ten Million). |                                                                                               
+| `DEADLINE`      | The date when the transaction is dued. It must be in yyyy-MM-dd format, e.g. 2023-02-02.                | 
+| `DESCRIPTION` | More information regarding the transaction. Special symbols and length are not restricted.              | 
 
 
 **Important Information:**
 
 - All parameters must be present in this command.
 - All parameters must not be empty.
-- The input date format must be in yyyy-MM-DD format
+- The input date format must be in yyyy-MM-DD format.
+- Our application does not support input names with a slash '/'.
 
 **Examples:**
 
-- `lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2113`
+- `lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113`
 
 **Expected Output:**
 
@@ -130,7 +131,7 @@ Adding a lend transaction
 Input:
 
 ```
-lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2113 
+lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113 
 ```
 Output:
 
@@ -142,14 +143,14 @@ Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2023 ||
 
 Edits an existing expenditure transaction in the record. After a successful edit, the updated list is shown. 
 
-**Format:** `edit INDEX d/DATE a/AMOUNT s/DESCRIPTION`
+**Format:** `edit INDEX d/DATE a/AMOUNT p/DESCRIPTION`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `INDEX`       | A list entry value for the transaction. It is a positive whole number ranging from 1 to 1000000 and must be within the range of the number of items in the expenditure list.       |
 | `DATE`        | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02                                   |
 | `AMOUNT`    | The amount of the transaction. It is a positive whole number ranging from 1 to 10000000 (Ten Million).                 |
-| `DESCRIPTION`      | More information regarding the transaction. | 
+| `DESCRIPTION`      | More information regarding the transaction. Special symbols and length are not restricted.| 
 
 
 **Important Information:**
@@ -159,14 +160,14 @@ Edits an existing expenditure transaction in the record. After a successful edit
 
 **Examples:**
 
-- `edit 2 d/2023-02-15 a/20.00 s/Eat Food`
+- `edit 2 d/2023-02-15 a/20.00 p/Eat Food`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 2 d/2023-02-15 a/20.00 s/Eat Food
+edit 2 d/2023-02-15 a/20.00 p/Eat Food
 
 Edited! Here is the updated list:
 
@@ -175,33 +176,34 @@ Edited! Here is the updated list:
 
 Edits an existing lend or borrow in the record. After a successful edit, the updated list is shown. 
 
-**Format:** `edit INDEX d/DATE n/NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+**Format:** `edit INDEX d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `INDEX`       | A list entry value for the transaction. It is a positive whole number ranging from 1 to 1000000.       |
-| `DATE`        | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02                                   |
-| `NAME`       | The name of the other party involved in the transaction       |
-| `AMOUNT`    | The amount of the transaction. It is a positive whole number ranging from 1 to 10000000 (Ten Million).                 |
-| `DEADLINE`      | The date when the transaction is dued. It must be in yyyy-MM-dd format, e.g. 2023-02-02.| 
-| `DESCRIPTION` | More information regarding the transaction.                | 
+| `DATE`        | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02          |
+| `NAME`       | The name of the other party involved in the transaction. Input name should not have a slash.                                              |
+| `AMOUNT`    | The amount of the transaction. It is a positive whole number ranging from 1 to 10000000 (Ten Million). |
+| `DEADLINE`      | The date when the transaction is dued. It must be in yyyy-MM-dd format, e.g. 2023-02-02.               | 
+| `DESCRIPTION` | More information regarding the transaction. Special symbols and length are not restricted.             | 
 
 
 **Important Information:**
 
 - The fields provided are the same as adding an expenditure in [4.2](#42-adding-a-lendborrow-record)
 - Cannot change a `lend` record to a `borrow` record or vice versa.
+- Our application does not support input names with a slash '/'.
 
 **Examples:**
 
-- `edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2040`
+- `edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 s/CS2040
+edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040
 
 Edited! Here is the updated list:
 
@@ -295,7 +297,19 @@ Sets a budget amount that one would like to keep within.
 
 Compares the set budget via the [`set`](#47-setting-a-budget) command against the total sum of expenditures in the expenditures.
 
-**Format:** `check`
+**Format:** `check FILTER`
+
+| Parameter                | Description                                                                             |
+|--------------------------|-----------------------------------------------------------------------------------------|
+| `FILTER`<br/> [optional] | A filter that allows the user to compare budget with a certain category or time period. |
+
+
+| Filter types      | Description                                                                                                                                                         |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Year              | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |
+| Month             | `m/YEAR-MONTH` filters the check to only compare budget with expenditures made in that specific month of the year.                                                  |
+| Day               | `d/YEAR-MONTH-DAY` filters the check to only compare budget with expenditures made on that specific day in that specific month and year.                            |
+| Expenditure type  | `t/EXPENDITURE_TYPE` filters the check to only compare budget with expenditures made under that expenditure type. This does not include categories lent and borrow. |
 
 **Important Information:**
 
@@ -412,23 +426,23 @@ Displays list of the other currency available in MyLedger and their value agains
 
 * Help: `help`
 
-* Add academic expenditure: `academic d/DATE a/AMOUNT s/DESCRIPTION`
+* Add academic expenditure: `academic d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add accommodation expenditure: `accommodation d/DATE a/AMOUNT s/DESCRIPTION`
+* Add accommodation expenditure: `accommodation d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add borrow expenditure: `borrow d/DATE n/BORROWER_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+* Add borrow expenditure: `borrow d/DATE n/BORROWER_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
-* Add entertainment expenditure: `entertainment d/DATE a/AMOUNT s/DESCRIPTION`
+* Add entertainment expenditure: `entertainment d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add food expenditure: `food d/DATE a/AMOUNT s/DESCRIPTION`
+* Add food expenditure: `food d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add lend expenditure: `academic d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+* Add lend expenditure: `academic d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
-* Add other expenditure: `other d/DATE a/AMOUNT s/DESCRIPTION`
+* Add other expenditure: `other d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add transport expenditure: `transport d/DATE a/AMOUNT s/DESCRIPTION`
+* Add transport expenditure: `transport d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add tuition expenditure: `tuition d/DATE a/AMOUNT s/DESCRIPTION`
+* Add tuition expenditure: `tuition d/DATE a/AMOUNT p/DESCRIPTION`
 
 * Check expenditure: `check`
 
@@ -436,9 +450,9 @@ Displays list of the other currency available in MyLedger and their value agains
 
 * Duplicate expenditure `duplicate INDEX`
 
-* Edit expenditure: `edit d/DATE a/AMOUNT s/DESCRIPTION`
+* Edit expenditure: `edit d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Edit borrow or lend expenditure: `edit d/DATE n/BORROWER_OR_LENT_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION`
+* Edit borrow or lend expenditure: `edit d/DATE n/BORROWER_OR_LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 * Find by keyword in expenditure descriptions: `find KEYWORD`
 
