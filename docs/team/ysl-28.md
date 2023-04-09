@@ -31,7 +31,7 @@ Contributions to the UG:
 
 Contributions to the DG:
 * Added implementation details for the `list` and `alert` commands
-* Added sequence diagrams and UML diagrams for the `list` and `alert` commands
+* Added sequence diagrams and UML diagrams for `ListCommand`, `AlertParser`, `AddAlertCommand` and `RemoveAlertCommand`
 
 
 Contributions to team-based tasks:
