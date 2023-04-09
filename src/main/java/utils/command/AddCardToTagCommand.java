@@ -37,7 +37,7 @@ public class AddCardToTagCommand extends Command {
      * @param cardToAdd The card to add to tag
      * @param ui        The userInterface to print the success of the tag creation
      */
-    private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui)
+    private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui, DeckList deckList)
             throws CardInTagException, TagNotFoundException {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTag(tagSelector);
@@ -53,9 +53,7 @@ public class AddCardToTagCommand extends Command {
 
         CardUUID cardUUID = cardToAdd.getUuid();
         tagToAdd.addCard(cardUUID);
-
-        //add the tag uuid to the card
-
+        tagToAdd.addCardIntoDeckHashSet(deckList, cardUUID);
         TagUUID tagUUID = tagToAdd.getUUID();
 
         cardToAdd.addTag(tagUUID);
@@ -67,7 +65,7 @@ public class AddCardToTagCommand extends Command {
         Card cardToAdd = cardList.findCard(cardSelector);
         assert cardToAdd != null;
 
-        addCardToTag(tagList, cardToAdd, ui);
+        addCardToTag(tagList, cardToAdd, ui, deckList);
 
         Tag tagToBeAdded = tagList.findTag(tagSelector);
         ui.printAddTagToCardSuccess(cardToAdd.getUuid(), tagToBeAdded.getUUID());

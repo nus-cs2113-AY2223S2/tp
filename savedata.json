@@ -100,13 +100,15 @@
       },
       "cardsSet": [
         {
-          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+          "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
         }
       ],
-      "cardUUIDIntegerHashMap": {
-        "924119c1-a807-4df2-b311-080be9ee8522": 1
-      },
-      "cards": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [
+        {
+          "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
+        }
+      ],
       "tags": [
         {
           "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
@@ -223,11 +225,7 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
+      "decks": []
     },
     {
       "uuid": {
@@ -239,11 +237,7 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
+      "decks": []
     }
   ],
   "cards": [
@@ -362,6 +356,19 @@
         }
       ],
       "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
+      },
+      "question": "new question",
+      "answer": "new answer",
+      "tags": [],
+      "decks": [
+        {
+          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
+        }
+      ]
     }
   ]
 }

@@ -183,8 +183,7 @@ public class OptionsBuilder {
             options.addOption(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index (optional)");
             break;
         case Parser.DECK_KEYWORD:
-            options.addOption(FLAG_CARD, FLAG_LONG_CARD, true, "deck name to list cards from (optional)");
-            options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "deck name to list tags from (optional)");
+            options.addOption(FLAG_DECK, FLAG_LONG_DECK, true, "deck name to list cards and tags from (optional)");
             break;
         default:
             return null;
@@ -194,7 +193,7 @@ public class OptionsBuilder {
 
     private static Options buildRunOptions() {
         Options options = new Options();
-        options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK,true, "deck to review");
+        options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK,true, "name of the deck to review");
         return options;
     }
 

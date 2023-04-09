@@ -113,8 +113,15 @@ public class Deck {
         cardsSet.add(cardUUID);
     }
 
-    public void removeCardFromSet(CardUUID cardUUID) {
-        cardsSet.remove(cardUUID);
+    public void removeCardFromMap(CardUUID cardUUID) {
+        if(cardUUIDIntegerHashMap.get(cardUUID)==1) {
+            cardUUIDIntegerHashMap.remove(cardUUID);
+            if(!this.cardIsInList(cardUUID)) {
+                cardsSet.remove(cardUUID);
+            }
+        } else {
+            cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)-1);
+        }
     }
     public void addTag(TagUUID tagUUID) {
         this.tags.add(tagUUID);
@@ -128,7 +135,7 @@ public class Deck {
         }
     }
 
-    public void addCardstoMap(TagUUID tagUUID, TagList tagList) {
+    public void addCardsToMap(TagUUID tagUUID, TagList tagList) {
         Tag tagToCheck = tagList.findTagFromUUID(tagUUID);
         ArrayList<CardUUID> cardUUIDArrayList = tagToCheck.getCardsUUID();
         for(CardUUID cardUUID: cardUUIDArrayList) {
@@ -140,18 +147,20 @@ public class Deck {
         }
     }
 
+    public void addCardToMap(CardUUID cardUUID) {
+        if(!this.cardUUIDIntegerHashMap.containsKey(cardUUID)) {
+            this.cardUUIDIntegerHashMap.put(cardUUID, 1);
+        } else {
+            this.cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)+1);
+        }
+
+    }
+
     public void removeTaggedCardsMap(TagUUID tagUUID, TagList tagList) {
         Tag tagToCheck = tagList.findTagFromUUID(tagUUID);
         ArrayList<CardUUID> cardUUIDArrayList = tagToCheck.getCardsUUID();
         for(CardUUID cardUUID: cardUUIDArrayList) {
-            if(cardUUIDIntegerHashMap.get(cardUUID)==1) {
-                cardUUIDIntegerHashMap.remove(cardUUID);
-                if(!this.cardIsInList(cardUUID)) {
-                    cardsSet.remove(cardUUID);
-                }
-            } else {
-                cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)-1);
-            }
+            this.removeCardFromMap(cardUUID);
         }
     }
     public void setCards(ArrayList<CardUUID> cards) {

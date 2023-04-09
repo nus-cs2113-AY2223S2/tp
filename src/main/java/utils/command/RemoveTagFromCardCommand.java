@@ -1,11 +1,14 @@
 
 package utils.command;
 
+import java.util.ArrayList;
 import model.Card;
 import model.CardList;
 import model.CardSelector;
 import model.CardUUID;
+import model.Deck;
 import model.DeckList;
+import model.DeckUUID;
 import model.Tag;
 import model.TagList;
 import model.TagSelector;
@@ -35,13 +38,20 @@ public class RemoveTagFromCardCommand extends Command {
      * @param cardAffected The user-specified card that might contain the tag
      * @param tagToDelete  The target tag that is to be deleted from the Card
      */
-    private void removeTagFromCard(Card cardAffected, Tag tagToDelete)
-            throws TagNotInCardException {
+    private void removeTagFromCard(Card cardAffected, Tag tagToDelete, DeckList deckList)
+            throws InkaException {
 
         if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
             throw new TagNotInCardException();
         }
 
+        if(!tagToDelete.isDeckEmpty()) {
+            ArrayList<DeckUUID> deckUUIDArrayList = tagToDelete.getDecks();
+            for(DeckUUID deckUUID: deckUUIDArrayList) {
+                Deck deck = deckList.findDeckFromUUID(deckUUID);
+                deck.removeCardFromMap(cardAffected.getUuid());
+            }
+        }
         CardUUID cardUUID = cardAffected.getUuid();
         tagToDelete.removeCard(cardUUID);
 
@@ -56,7 +66,7 @@ public class RemoveTagFromCardCommand extends Command {
         assert cardAffected != null;
 
         Tag tagToDelete = tagList.findTag(tagSelector);
-        removeTagFromCard(cardAffected, tagToDelete);
+        removeTagFromCard(cardAffected, tagToDelete, deckList);
 
         ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getUUID());
     }

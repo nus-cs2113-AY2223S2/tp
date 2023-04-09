@@ -162,7 +162,6 @@ public class LogicTest {
         try {
             parseAndExecute("deck delete -d testDeck -c " + cardUUID, RemoveCardFromDeckCommand.class);
         } catch (CardInSetNotInList ex) {
-            // TODO: This shows "The card is not in the deck" which might be misleading
         }
 
         // Card should remain in Deck
@@ -193,6 +192,118 @@ public class LogicTest {
 
         // Card should remain in Deck
         assert deckList.get(0).getCardsSet().size() == 1;
+    }
+
+    /**
+     * If two tags sharing the same card are added to the deck, deleting one deck must not delete the card from the
+     * deck's HashSet
+     *
+     * @throws InkaException
+     */
+    @Test
+    public void logic_deleteSharedCard() throws InkaException{
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+        CardUUID cardUUID = cardList.get(0).getUuid();
+
+        // Create tag
+        parseAndExecute("card tag -t testTag1 -i 1", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag2 -i 1", AddCardToTagCommand.class);
+
+
+        // Add Tags to the testDeck
+        parseAndExecute("tag deck -t testTag1 -d testDeck", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag2 -d testDeck", AddTagToDeckCommand.class);
+        // Check if only one instance is stored in the HashSet
+        assert deckList.get(0).getCardsSet().size() == 1;
+
+
+        // remove testTag1
+        parseAndExecute("deck delete -d testDeck -t testTag1", RemoveTagFromDeckCommand.class);
+
+        // Card should remain in Deck
+        assert deckList.get(0).getCardsSet().size() == 1;
+    }
+
+    @Test
+    public void logic_unTagCardWhileTagInDeck() throws InkaException{
+        // create a card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+        CardUUID cardUUID = cardList.get(0).getUuid();
+
+        // Add card to the tag
+        parseAndExecute("card tag -t testTag1 -i 1", AddCardToTagCommand.class);
+
+        // Add tag to the deck
+        parseAndExecute("tag deck -t testTag1 -d testDeck", AddTagToDeckCommand.class);
+        assert deckList.get(0).getCardsSet().size()==1;
+
+        // Remove the card from the tag
+        parseAndExecute("card untag -t testTag1 -i 1", RemoveTagFromCardCommand.class);
+        assert tagList.get(0).getCardsUUID().size()==0;
+        assert deckList.get(0).getCardsSet().size()==0;
+
+    }
+
+    //TODO: Failing
+    @Test
+    public void logic_TagCardWhileTagInDeck() throws InkaException {
+        // create a card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+        parseAndExecute("card add -q test2 -a test2", AddCardCommand.class);
+        CardUUID cardUUID = cardList.get(0).getUuid();
+        CardUUID cardUUID1 = cardList.get(1).getUuid();
+
+        // Add card to the tag
+        parseAndExecute("card tag -t testTag1 -i 1", AddCardToTagCommand.class);
+
+        // Add Tag to the deck
+        parseAndExecute("tag deck -t testTag1 -d testDeck", AddTagToDeckCommand.class);
+        assert deckList.get(0).getCardsSet().size()==1;
+
+        // Add another card to the tag
+        parseAndExecute("card tag -t testTag1 -i 2", AddCardToTagCommand.class);
+
+        // Check if the HashSet has 2 cards now
+        assert deckList.get(0).getCardsSet().size()==2;
+    }
+
+    @Test
+    public void logic_deleteMultipleTags() throws InkaException {
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+        parseAndExecute("card add -q test2 -a test2", AddCardCommand.class);
+        parseAndExecute("card add -q test3 -a test3", AddCardCommand.class);
+        CardUUID cardUUID1 = cardList.get(0).getUuid();
+        CardUUID cardUUID2 = cardList.get(1).getUuid();
+        CardUUID cardUUID3 = cardList.get(2).getUuid();
+        assert cardList.size()==3;
+
+        parseAndExecute("card tag -t testTag1 -i 1", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag1 -i 2", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag2 -i 2", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag2 -i 3", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag3 -i 3", AddCardToTagCommand.class);
+        parseAndExecute("card tag -t testTag3 -i 1", AddCardToTagCommand.class);
+        assert tagList.get(0).getCardsUUID().size()==2;
+        assert tagList.get(1).getCardsUUID().size()==2;
+        assert tagList.get(2).getCardsUUID().size()==2;
+        assert tagList.size()==3;
+
+        parseAndExecute("tag deck -t testTag1 -d testDeck1", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag2 -d testDeck1", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag2 -d testDeck2", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag3 -d testDeck2", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag1 -d testDeck3", AddTagToDeckCommand.class);
+        parseAndExecute("tag deck -t testTag3 -d testDeck3", AddTagToDeckCommand.class);
+        assert deckList.get(0).getTagsUUID().size()==2;
+        assert deckList.get(1).getTagsUUID().size()==2;
+        assert deckList.get(2).getTagsUUID().size()==2;
+        assert deckList.get(0).getCardsSet().size()==3;
+        assert deckList.get(1).getCardsSet().size()==3;
+        assert deckList.get(2).getCardsSet().size()==3;
+        assert deckList.size()==3;
+
+        //parseAndExecute("deck delete -d testDeck1 -c " + cardUUID1, RemoveCardFromDeckCommand.class);
     }
 
     @Test
