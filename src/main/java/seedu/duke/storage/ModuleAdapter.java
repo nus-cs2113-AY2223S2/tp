@@ -214,7 +214,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 }
             }
             reader.endObject();
-            if (semester > 2) {
+            if ((semester > 2) && (weeks.isEmpty())) {
                 LocalDate start = LocalDate.parse(startDate);
                 LocalDate end = start;
                 if (endDate.equals("")) {
