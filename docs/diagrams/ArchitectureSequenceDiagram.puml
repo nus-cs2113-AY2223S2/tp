@@ -13,10 +13,22 @@ activate ui
 ui -> parser : execute("deleteExpense 1")
 activate parser
 
-parser -> command : DeleteExpenseCommand(index 1)
+parser -> parser : parserCommand(description: String)
+activate parser
+
+parser -> parser : prepareDeleteExpenseCommand(description: String)
+activate parser
+
+parser --> parser
+deactivate parser
+
+parser --> parser
+deactivate parser
+
+parser -> command : DeleteExpenseCommand(index: int)
 activate command
 
-command -> entryList : ExpenseList.deleteExpense(1)
+command -> entryList : ExpenseList.deleteExpense(index: int)
 activate entryList
 
 entryList --> command
@@ -37,7 +49,7 @@ activate ui
 ui -> parser : execute("exit")
 activate parser
 
-parser -> command : ExitCommand
+parser -> command : ExitCommand)()
 activate command
 
 command -> storage : SaveExpense.writeFile(expenseList)
