@@ -54,6 +54,22 @@ Please be advised that we cannot guarantee complete functionality of Meal Compan
 
 ## Design
 
+### Architecture
+
+![Architecture.png](images\Architecture.png)
+
+The **Architecture Diagram** given above explains the high-level design of the program.
+Given below is a quick overview of main components.
+
+#### Main Components
+
+* `MealCompanion`:
+* `UI`:
+* `Logic`:
+* `Model`:
+* `Storage`:
+* `Command`:
+
 ### Command Parsing
 
 The system of `Routable` classes is built to allow for a composable setup of commands and subcommands.
@@ -303,7 +319,6 @@ Our product targets students who would like to save money on buying or ordering 
 
 ## Glossary
 
-* *glossary item* - Definition
 * **Mainstream OS:** Windows, Linux, Unix, OS-X
 
 ###### [Back to table of contents](#table-of-contents)

@@ -1,0 +1,42 @@
+@startuml
+
+!include style.puml
+
+Rectangle {
+    agent UI #green
+    package Logic #blue [
+    Router
+    Parser
+    ]
+    agent Storage #orange
+    package Model [
+    Ingredient
+    Recipe
+    ]
+    agent MealCompanion #grey
+    agent Command #pink
+}
+
+actor user
+user .down.> MealCompanion
+
+Command .[#pink].> Storage
+Command .left[#pink].> Model
+Command .right[#pink].> UI
+MealCompanion -[#grey]-> UI
+MealCompanion -[#grey]-> Logic
+MealCompanion -[#grey]-> Storage
+MealCompanion -[#grey]-> Command
+MealCompanion -[#grey]-> Model
+Storage .up[#orange].> UI
+Storage .left[#orange].> Model
+
+folder folder [
+ingredients.txt
+
+
+]
+
+Storage .[#orange].> folder
+
+@enduml
