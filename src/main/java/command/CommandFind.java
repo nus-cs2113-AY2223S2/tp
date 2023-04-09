@@ -28,7 +28,6 @@ public class CommandFind extends Command {
      * If the input string is not a complete word, the method will also return the associated sense
      *
      * @return printing the expenses with input string
-     *
      */
     @Override
     public CommandRes execute() {
@@ -52,11 +51,11 @@ public class CommandFind extends Command {
     private boolean checkWithInput(String toFind) {
         String toFindLower = toFind.toLowerCase();
 
-        for (Expense e: expenseList) {
+        for (Expense e : expenseList) {
             if (e.getDescription().toLowerCase().contains(toFindLower) ||
-                e.getCurrencyType().toLowerCase().contains(toFindLower) ||
-                e.getExpenseAmount().toString().toLowerCase().contains(toFindLower) ||
-                e.getExpenseTime().toLowerCase().contains(toFindLower)) {
+                    e.getCurrencyType().toLowerCase().contains(toFindLower) ||
+                    e.getExpenseAmount().toString().toLowerCase().contains(toFindLower) ||
+                    e.getExpenseTime().toLowerCase().contains(toFindLower)) {
                 return false;
             }
         }
@@ -66,7 +65,7 @@ public class CommandFind extends Command {
     private void displayAllRelevantExpenses(String toFind) {
         int index = 1;
         String toFindLower = toFind.toLowerCase();
-        for (Expense e: expenseList) {
+        for (Expense e : expenseList) {
             if (e.getDescription().toLowerCase().contains(toFindLower) ||
                     e.getCurrencyType().toLowerCase().contains(toFindLower) ||
                     e.getExpenseAmount().toString().toLowerCase().contains(toFindLower) ||

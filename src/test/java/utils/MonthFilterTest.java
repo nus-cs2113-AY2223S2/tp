@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MonthFilterTest {
-    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
     void convertMonthName_successful() {
@@ -36,7 +36,7 @@ class MonthFilterTest {
     @Test
     void getMonthFromExpenseTime_successful() {
         MonthFilter monthFilter = new MonthFilter(new ArrayList<>(), "June");
-        assertEquals(monthFilter.getMonthFromExpenseTime("05/06/2021"), "06");
+        assertEquals(monthFilter.getMonthFromExpenseTime("05-06-2021"), "06");
     }
 
     @Test
