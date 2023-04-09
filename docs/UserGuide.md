@@ -120,7 +120,7 @@ Format: `remove f/upc [UPC]` or `remove f/index [index]`
 
 **REQUIRED** parameters:
 
-* The `[UPC]` must be a **non-negative numerical value**
+* The `[UPC]` must be a **non-negative numerical value**.
 * The `[index]` can only be a **non-negative whole number**.
 
 !> **index** follows 0-indexing. (i.e. the first item in the list is at index 0.)
@@ -213,7 +213,7 @@ Search for item(s) in the inventory list by keywords or UPC.
 | `searchupc [UPC]`   | `[UPC]` can only be a **non-negative numerical** value. |
 
 !> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
-and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
+and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`.
 
 #### Example of usage:
 
@@ -259,7 +259,7 @@ Filters items from the inventory list by price OR category.
 
 
 **REQUIRED** parameters:
-* For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
+* For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range.
 * For `filter f/category`, the `[category keywords]` parameter must be an **alphanumerical value**.
 
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
@@ -595,25 +595,25 @@ __________________________________________________________________________
 ```
 
 Add Alert Format:  
-`alert add upc/[UPC] min/[quantity] ` to set an alert when quantity falls below a minimum  
-`alert add upc/[UPC] max/[quantity]` to set an alert when quantity exceeds a maximum  
+`alert add upc/[UPC] min/[quantity] ` to set an alert when quantity falls below a minimum.  
+`alert add upc/[UPC] max/[quantity]` to set an alert when quantity exceeds a maximum.  
 
 **REQUIRED** parameters:
 
-* The `[UPC]` must be a **non-negative numerical value**
+* The `[UPC]` must be a **non-negative numerical value**.
 * For **MIN alert**: The `[quantity]` must be a **non-negative whole number** and is **less than** current item's 
-quantity
+quantity.
 * For **MAX alert**: The `[quantity]` must be a **non-negative whole number** and is **greater than** current item's
-quantity
+quantity.
 
 Remove Alert Format:
 
-`alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item  
-`alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item  
+`alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item.   
+`alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item.  
 
 **REQUIRED** parameters:
 
-* The `[UPC]` must be a **non-negative numerical value**
+* The `[UPC]` must be a **non-negative numerical value**.
 
 #### Examples of usage
 `alert add upc/1234 min/55`  
