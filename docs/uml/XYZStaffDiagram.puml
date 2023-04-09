@@ -1,0 +1,38 @@
+@startuml
+!include Style.puml
+
+title XYZ Staff Command Sequence Diagram
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
+endbox
+box "XYZStaffCommand"
+participant ":XYZStaffCommand" as XYZStaffCommand COMMAND_COLOR
+endbox
+box "StaffManager"
+participant ":StaffManager" as StaffManager MANAGER_COLOR
+endbox
+box "TextUi"
+participant ":TextUi" as TextUi UI_COLOR
+endbox
+activate DinerDirector
+
+DinerDirector -> XYZStaffCommand: execute(ui)
+activate XYZStaffCommand
+
+XYZStaffCommand -> StaffManager: XYZStaffs(variable, ui)
+activate StaffManager
+
+StaffManager -> TextUi: printMessage(message)
+activate TextUi
+
+return
+destroy TextUi
+
+return
+
+
+return
+destroy XYZStaffCommand
+
+
+@enduml

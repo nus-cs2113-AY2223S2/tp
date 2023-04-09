@@ -1,0 +1,38 @@
+@startuml
+!include Style.puml
+
+title XYZ Deadline Command Sequence Diagram
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
+endbox
+box "XYZDeadlineCommand"
+participant ":XYZDeadlineCommand" as XYZDeadlineCommand COMMAND_COLOR
+endbox
+box "DeadlineManager"
+participant ":DeadlineManager" as DeadlineManager MANAGER_COLOR
+endbox
+box "TextUi"
+participant ":TextUi" as TextUi UI_COLOR
+endbox
+activate DinerDirector
+
+DinerDirector -> XYZDeadlineCommand: execute(ui)
+activate XYZDeadlineCommand
+
+XYZDeadlineCommand -> DeadlineManager: XYZDeadlines(variable, ui)
+activate DeadlineManager
+
+DeadlineManager -> TextUi: printMessage(message)
+activate TextUi
+
+return
+destroy TextUi
+
+return
+
+
+return
+destroy XYZDeadlineCommand
+
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+!include Style.puml
+
+title Add Meeting Sequence Diagram
+box "AddMeetingCommand"
+participant ":AddMeetingCommand" as AddMeetingCommand COMMAND_COLOR
+endbox
+
+box "Meeting"
+participant ":Meeting" as Meeting ENTITY_COLOR
+endbox
+
+box "MeetingManager"
+participant ":MeetingManager" as MeetingManager MANAGER_COLOR
+endbox
+
+
+->AddMeetingCommand:execute(ui)
+Activate AddMeetingCommand
+
+create Meeting
+AddMeetingCommand->Meeting++:m=new Meeting(time,issue)
+Meeting-->AddMeetingCommand
+
+AddMeetingCommand->MeetingManager:addMeeting(m,ui)
+Activate MeetingManager
+MeetingManager-->AddMeetingCommand
+
+<--AddMeetingCommand
+@enduml
