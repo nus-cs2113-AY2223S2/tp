@@ -342,7 +342,7 @@ public class UI {
                 + "/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
                 + "                                    Replace the [FILTER] with either of the format below\n"
                 + "                                    [FILTER] Format 1:/mc [num of Partner University MCs]\n"
-                + "                                    [FILTER] Format 2:/name [Partner University description]\n"
+                + "                                    [FILTER] Format 2:/name [Partner University module name]\n"
                 + "/LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
                 + "/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list\n"
