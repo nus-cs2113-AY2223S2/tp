@@ -73,7 +73,7 @@ public class HistoryCommandTest {
         editParser.run();
         historyCommand = new HistoryCommand(inventory, "1");
         results = historyCommand.getHistoryResults();
-        assertEquals("uncategorized", results.get(0).getCategory());
+        assertEquals("Uncategorized", results.get(0).getCategory());
         assertEquals("fruits", results.get(1).getCategory());
         addParser = new AddParser("n/orange upc/2 qty/5 p/5 c/fruits", inventory);
         addParser.run();
