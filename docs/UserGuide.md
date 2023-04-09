@@ -296,7 +296,19 @@ Sets a budget amount that one would like to keep within.
 
 Compares the set budget via the [`set`](#47-setting-a-budget) command against the total sum of expenditures in the expenditures.
 
-**Format:** `check`
+**Format:** `check FILTER`
+
+| Parameter                | Description                                                                             |
+|--------------------------|-----------------------------------------------------------------------------------------|
+| `FILTER`<br/> [optional] | A filter that allows the user to compare budget with a certain category or time period. |
+
+
+| Filter types      | Description                                                                                                                                                         |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Year              | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |
+| Month             | `m/YEAR-MONTH` filters the check to only compare budget with expenditures made in that specific month of the year.                                                  |
+| Day               | `d/YEAR-MONTH-DAY` filters the check to only compare budget with expenditures made on that specific day in that specific month and year.                            |
+| Expenditure type  | `t/EXPENDITURE_TYPE` filters the check to only compare budget with expenditures made under that expenditure type. This does not include categories lent and borrow. |
 
 **Important Information:**
 

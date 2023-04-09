@@ -752,7 +752,7 @@ Error occurs due to wrong format for parameter.
 
 3. Checking the expenditure classified under a certain expenditure type and comparing with set budget
 - `check [expenditure type]` compares all the unmarked expenditures classified under that expenditure type with the set
-budget so that the user can compare spending with budget.
+budget so that the user can compare spending with budget. This command does not include borrow and lend expenditures.
 
 Test case 1:
 ```
