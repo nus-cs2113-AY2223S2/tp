@@ -108,7 +108,7 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 ![ListStep3.png](UML%2FList%2FListStep3.png)
 
-**Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` aas a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
+**Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` as a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
 
 
 
