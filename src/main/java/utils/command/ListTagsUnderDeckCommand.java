@@ -23,9 +23,7 @@ public class ListTagsUnderDeckCommand extends Command {
     private TagList findTagsUnderDeck(TagList tagList, DeckList deckList) throws InkaException {
         Deck foundDeck = deckList.findDeckFromName(deckName);
 
-        if (deckName.length() > 50) {
-            throw new LongDeckNameException();
-        } else if (foundDeck == null) {
+        if (foundDeck == null) {
             throw new DeckNotFoundException();
         }
         ArrayList<TagUUID> tagUUIDS = foundDeck.getTagsUUID();
