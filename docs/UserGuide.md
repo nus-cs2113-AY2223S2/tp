@@ -25,6 +25,7 @@
     * [4.14. Sorting the expenditure list](#414-sorting-the-expenditure-list)
     * [4.15. View the expenditure list by expenditure category or type](#415-view-the-expenditure-list-by-expenditure-category-or-type)
     * [4.16. View the expenditure list by date](#416-view-the-expenditure-list-by-date)
+    * [4.16. Currency rates](#417-currency-rates)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -386,14 +387,14 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
-| `DATE`       | The date when the transaction took place on to be queried. It must be in yyyy-MM-dd format, e.g. 2023-02-02      |
+| `DATE`       | The date when the transaction took place on to be queried. It must be in YYYY-MM-DD format, e.g. 2023-02-02      |
 | `CURRENCY`   | The desired [currency](#417-currency-rates) for the expenditure value to be in. Default: SGD.                    |
 
 **Important Information:**
 
 - The parameter must not be empty
 - The use of viewdate must follow with a valid date or the command would not be valid.
-- The date must be input in yyyy-MM-dd format.
+- The date must be input in YYYY-MM-DD format.
 
 ### 4.17. Currency rates
 

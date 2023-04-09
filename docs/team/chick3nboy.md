@@ -35,5 +35,6 @@ MyLedger is a desktop app for managing finances, designed for university student
 
 #### Team-based Tasks
 1. Attended and contributed to weekly discussions
-2. PR reviewed with non-trivial review comments [#134](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/134)
+2. PR reviewed with non-trivial review comments [#18](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/18) , 
+[#41](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/41) , [#134](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/134)
 3. Non-trivial bug fixes: [#28](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/28/commits)
