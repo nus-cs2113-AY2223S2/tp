@@ -4,7 +4,7 @@
 
 Sniff is a `Command Line Interface (CLI) Appointment Tracker` designed specifically for veterinary clinics in Singapore.
 Its main functions are to track various appointments of types: Surgery, Vaccination, & 
-Consultation via uid, date, and appointment type to help clinics better manage their working staff.
+Consultation via uid, date, and appointment type to help vet clinics better manage their working staff.
 <br>
 
 
