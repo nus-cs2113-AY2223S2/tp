@@ -59,7 +59,7 @@ public class HelpCommandTest {
     }
     //@@author dfa
 
-    //@@ author darrenlsx
+    //@@author darrenlsx
     @Test
     void execute_help_success() {
         HelpCommand helpCommand = new HelpCommand();

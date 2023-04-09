@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Duke"
+":Duke" -> ":ListDeadlineCommand" : command.execute()
+
+activate ":ListDeadlineCommand"
+
+":ListDeadlineCommand" -> "<<class>>\nui:UI" : printDeadlinesList(deadlines)
+activate "<<class>>\nui:UI"
+
+loop for deadline in deadlines
+
+    "<<class>>\nui:UI" -> "<<class>>deadlines: ArrayList<Deadline>"
+     activate "<<class>>deadlines: ArrayList<Deadline>"
+     create "deadline: Deadline"
+     "<<class>>deadlines: ArrayList<Deadline>" -> "deadline: Deadline"
+     activate "deadline: Deadline"
+     "<<class>>deadlines: ArrayList<Deadline>" <-- "deadline: Deadline"
+     "<<class>>\nui:UI" <-- "<<class>>deadlines: ArrayList<Deadline>"
+     deactivate "<<class>>deadlines: ArrayList<Deadline>"
+
+     "<<class>>\nui:UI" -> "deadline: Deadline": "getTask()"
+     "<<class>>\nui:UI" <-- "deadline: Deadline": "task"
+
+     "<<class>>\nui:UI" -> "deadline: Deadline": "getDueDate()"
+     "<<class>>\nui:UI" <-- "deadline: Deadline": "dueDate"
+     deactivate "deadline: Deadline"
+
+     "<<class>>\nui:UI" -> PrintStream : Print Deadline
+     "<<class>>\nui:UI" <-- PrintStream
+
+end
+
+
+"<<class>>\nui:UI" --> ":ListDeadlineCommand" : return control
+deactivate "<<class>>\nui:UI"
+":Duke" <-- ":ListDeadlineCommand"
+@enduml

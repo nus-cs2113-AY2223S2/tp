@@ -363,7 +363,7 @@ public class Parser {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
         String deadlineToAdd = userInputWords.get(1) + " " + userInputWords.get(2);
-        String[] stringSplit = deadlineToAdd.split(" /by");
+        String[] stringSplit = deadlineToAdd.split(" /(?i)by");
         if (stringSplit.length != 2 || stringSplit[0].isBlank()) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
