@@ -77,12 +77,16 @@ public class Ui {
     static void list(ArrayList<Task> tasks) {
         int taskCount = Task.getTaskCount();
         borderLine();
-        System.out.println("\t Here are the tasks in your list:");
-        for (int i = 0; i < taskCount; i++) {
-            System.out.println("\t " + (i + 1) + "." + tasks.get(i));
-            if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
-                printList(tasks, i);
+        if(!tasks.isEmpty()) {
+            System.out.println("\t Here are the tasks in your list:");
+            for (int i = 0; i < taskCount; i++) {
+                System.out.println("\t " + (i + 1) + "." + tasks.get(i));
+                if (!tasks.get(i).getAdditionalNotes().isEmpty()) {
+                    printList(tasks, i);
+                }
             }
+        } else {
+            System.out.println("\t There are no tasks in the list currently!");
         }
         borderLine();
     }
@@ -313,7 +317,7 @@ public class Ui {
      * @param tasks tasks store in the file
      */
     static void displayUpcomingDeadline(ArrayList<Task> tasks) {
-        System.out.println("\t Here are the upcoming deadline:  ");
+        System.out.println("\t Here are the upcoming deadlines:  ");
         int count = 0;
         for (Task t : tasks) {
             if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
@@ -342,7 +346,7 @@ public class Ui {
      * @param tasks tasks store in the file
      */
     static void displayUpcomingEvent(ArrayList<Task> tasks) {
-        System.out.println("\t Here are the upcoming event:  ");
+        System.out.println("\t Here are the upcoming events:  ");
         int count = 0;
         for (Task t : tasks) {
             if (t instanceof Event && !(t instanceof RecurringEvent)) {
@@ -708,6 +712,9 @@ public class Ui {
         System.out.println("\t - priority_list: " +
                 "I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - upcoming_class: I'll list out the next upcoming class.");
+        System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
+        System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
+        System.out.println("\t                                   Default: Low priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
         System.out.println("\t - medium_priority: I'll list out all the tasks you have that are medium in priority.");
         System.out.println("\t - high_priority: I'll list out all the tasks you have that are high in priority.");
@@ -726,9 +733,6 @@ public class Ui {
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - The index of the item will also be displayed.");
-        System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
-        System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
-        System.out.println("\t                                   Default: Low priority.");
         System.out.println("\t - motivation: I'll print a random motivational quack for you!");
         System.out.println("\t - bye: I will shut down my program.\n");
         System.out.println("\t Here are the following ways to input tasks/classes:");
@@ -921,9 +925,9 @@ public class Ui {
             ArrayList<String> toBePrinted = tasks.get(index - 1).getAdditionalNotes();
             borderLine();
             if (!toBePrinted.isEmpty()) {
+                System.out.println("\t Here are the notes for that task quack!");
+                System.out.println(tasks.get(index - 1).toString());
                 for (int i = 0; i < toBePrinted.size(); i++) {
-                    System.out.println("\t Here are the notes for that task quack!");
-                    System.out.println(tasks.get(index - 1).toString());
                     System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
                 }
             } else {
