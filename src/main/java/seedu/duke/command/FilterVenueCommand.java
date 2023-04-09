@@ -1,2 +1,29 @@
-package seedu.duke.command;public class FilterVenueCommand {
+package seedu.duke.command;
+
+import seedu.duke.venue.Venue;
+import seedu.duke.venue.VenueList;
+
+public class FilterVenueCommand extends Command {
+
+    protected int venueSize;
+
+    public FilterVenueCommand(String commandType, int venueSize) {
+        super(commandType);
+        this.venueSize = venueSize;
+    }
+
+    @Override
+    public void execute(VenueList venueList) {
+        int numberOfSuitableVenues = 0;
+        for (int i = 0; i < venueList.getVenueListSize(); i += 1) {
+            Venue currVenue = venueList.getVenue(i);
+            if (currVenue.getVenueCapacity() >= venueSize) {
+                System.out.println(currVenue.toString());
+                numberOfSuitableVenues += 1;
+            }
+        }
+       if (numberOfSuitableVenues == 0) {
+           System.out.println("No suitable venues found.");
+       }
+    }
 }
