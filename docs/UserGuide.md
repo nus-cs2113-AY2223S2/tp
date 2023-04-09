@@ -50,14 +50,14 @@ ___
 
 * Please follow the below-mentioned format.
 
-Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
+Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
-* Examples: `chicken=100 oil and sauce=200 vegetables=300`
-  `meat=200 salt and spices=400`
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
   *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
     manager knows that you have entered 1 ingredient. No need to type `done`.
+
+
 
 <br>
 

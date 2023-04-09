@@ -186,6 +186,7 @@ The `WeeklyPlan` component:
 - stores the number of times the user plans to prepare each recipe as `Integer`
 - allows users to add single or multiple recipes from the weekly plan
 - allows users to delete single, multiple, or all recipes from the weekly plan
+- allows users to see all ingredients for the week
 
 How the `WeeklyPlan` component works:
 
@@ -196,7 +197,8 @@ How the `WeeklyPlan` component works:
 3. `Parser` component then returns a `WeeklyPlan` object to indicate the recipe(s) to be added or
    deleted from the weekly plan.
 4. `WeeklyPlan` component then uses either `addPlans` or `deletePlans` method to add or delete
-   the recipe(s) from the weekly plan.
+   the recipe(s) from the weekly plan, `clearPlan` to clear the entire plan for the week, and `checkValidity` to 
+   check the validness of the weekly plan (i.e. make sure all recipes are valid).
 
 The sequence diagram below shows how the `WeeklyPlan` component works when the user
 inputs `weekly /add burger 1`:
