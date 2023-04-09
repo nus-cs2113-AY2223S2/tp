@@ -221,18 +221,27 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
 #### Adding staff to the list:
 
-It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
-the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
-`StaffManager` to add the `Staff` object to the list of `Staff` 
+Step 1: It first checks whether the parameter needed to add `Staff` is already given in the correct format. 
+
+Step 2: If it passes the format checking, the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `AddStaffCommand` redirect the task to `StaffManager` to add the `Staff` object to the list of `Staff` 
 
 #### Deleting staff on the list:
 
-It first finds the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
-If it is found, it will delete the correct corresponding `Staff`. 
+Step 1: It first finds the corresponding `Staff` object to be deleted using its index in the list in `StaffManager`. 
+
+Step 2: If it is a valid index, it will return `DeleteStaffCommand` to be executed by `DinerDirector`.
+
+Step 3: `DeleteStaffCommand` redirect the task to `StaffManager` to delete the `Staff` object at that index. 
 
 #### Viewing the list of staffs:
 
-It prints all of `Staff` objects in `StaffManager`'s staffs. 
+Step 1: It first checks whether there exists excessive parameter or not. 
+
+Step 2: If the command is valid, it will return `ViewStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `ViewStaffCommand` redirect the task to `StaffManager` to print all the `Staff` objects. 
 
 ### Dish Feature
 
