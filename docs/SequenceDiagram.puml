@@ -1,40 +1,53 @@
 
 @startuml
-title MagusStock Sequence Diagram
+title MagusStock Overall Sequence Diagram
 
 actor User
 participant ":MagusStock"
-participant ":Ui"
-participant ":SessionManager"
-participant ":Inventory"
+participant "<<class>>\nUi"
+participant "<<class>>\nSessionManager"
 participant ":ParserHandler"
+participant ":Inventory"
 User -> ":MagusStock": run()
 activate ":MagusStock"
-":MagusStock" -> ":Ui": greetUser()
-activate ":Ui"
-":Ui" --> ":MagusStock":
-deactivate ":Ui"
-":MagusStock" -> ":SessionManager": getSession()
-activate ":SessionManager"
-":SessionManager" --> ":MagusStock":
-deactivate ":SessionManager"
-":MagusStock" -> ":SessionManager": getSessionAlerts()
-activate ":SessionManager"
-":SessionManager" --> ":MagusStock":
-deactivate ":SessionManager"
+":MagusStock" -> "<<class>>\nUi": greetUser()
+activate "<<class>>\nUi"
+"<<class>>\nUi" --> ":MagusStock":
+deactivate "<<class>>\nUi"
+":MagusStock" -> "<<class>>\nSessionManager": getSession()
+activate "<<class>>\nSessionManager"
+"<<class>>\nSessionManager" --> ":MagusStock":
+deactivate "<<class>>\nSessionManager"
+":MagusStock" -> "<<class>>\nSessionManager": getSessionAlerts()
+activate "<<class>>\nSessionManager"
+"<<class>>\nSessionManager" --> ":MagusStock":
+deactivate "<<class>>\nSessionManager"
 ":MagusStock" -> ":Inventory": setAlertList()
 activate ":Inventory"
 ":Inventory" --> ":MagusStock":
 deactivate ":Inventory"
-":MagusStock" -> ":ParserHandler": <<create>>
+":MagusStock" -> ":ParserHandler"**:
 activate ":ParserHandler"
 ":ParserHandler" --> ":MagusStock":
 deactivate ":ParserHandler"
 ":MagusStock" -> ":MagusStock": run()
+activate ":MagusStock"
+loop user send input "bye" or "exit"
 ":MagusStock" -> ":ParserHandler": run()
 activate ":ParserHandler"
+":ParserHandler" -> ":Inventory":
+activate ":Inventory"
+ref over ":ParserHandler", ":Inventory": Parse user input and execute command
+":Inventory" --> ":ParserHandler":
+destroy ":Inventory"
+deactivate ":Inventory"
 ":ParserHandler" --> ":MagusStock":
 deactivate ":ParserHandler"
+destroy ":ParserHandler"
+":MagusStock" --> ":MagusStock":
+deactivate ":MagusStock"
+end
+destroy ":MagusStock"
 
 
 @enduml
