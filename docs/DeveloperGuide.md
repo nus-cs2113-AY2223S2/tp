@@ -363,11 +363,7 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
+1. Program should run on any mainstream OS that runs Java 11.
 
 ## Instructions for manual testing
 
