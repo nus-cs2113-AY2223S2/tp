@@ -2,7 +2,7 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+Reused iP to serve as base code from [jeraldgau/ip](https://github.com/jeraldgau/ip)
 
 ## Architecture
 
@@ -238,6 +238,10 @@ Duck will be able to allow students who can type fast to quickly record down the
 |v2.0|student with multiple classes|record recurring classes at fixed times throughout the week|view my weekly class schedule without needing to record them down again each week|
 |v2.0|student|create recurring tasks that will reset their 'Done' status when appropriate|not have to manually unmark these tasks|
 |v2.0|student|easily access my schedule|plan my daily life|
+|v2.0|user|automatically remove my expired tasks|not deal with the hassle of having to manually remove expired tasks|
+|v2.0|user|add notes to my tasks|record down additional details|
+|v2.0|user|edit my tasks|change previously recorded information|
+|v2.0|student|delete my classes|remove classes that are no longer necessary|
 
 ## Non-Functional Requirements
 
