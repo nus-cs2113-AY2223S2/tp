@@ -1,6 +1,11 @@
 package seedu.txtdata;
 
-import seedu.exceptions.*;
+import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.InvalidCharacterInAmount;
+import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.InvalidDeadlineException;
+import seedu.exceptions.LargeValueException;
+import seedu.exceptions.TxtFileException;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.AccommodationExpenditure;

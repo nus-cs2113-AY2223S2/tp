@@ -5,7 +5,12 @@ import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.WrongPrecisionException;
-import seedu.expenditure.*;
+import seedu.expenditure.Expenditure;
+import seedu.expenditure.AccommodationExpenditure;
+import seedu.expenditure.TuitionExpenditure;
+import seedu.expenditure.BorrowExpenditure;
+import seedu.expenditure.LendExpenditure;
+import seedu.expenditure.ExpenditureList;
 import seedu.parser.ParseIndividualValue;
 import seedu.exceptions.EmptyStringException;
 
