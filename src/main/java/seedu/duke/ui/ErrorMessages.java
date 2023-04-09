@@ -60,12 +60,16 @@ public enum ErrorMessages {
              " You can gloat about your achievements later!"),
     ERROR_ONGOING_EXERCISE_CLEAR_ACHIEVEMENT_COMMAND("Finish your workout session!" +
             " You can tamper with the clear achievement command later."),
-    ERROR_NEGATIVE_SITUP_NUMBER("How can you do negative situps? Please key in a valid situp rep score!" +
+    ERROR_IPPT_SITUP_NUMBER("Please key in a valid situp rep score!" +
             "(a positive integer between 0 and 60)"),
-    ERROR_NEGATIVE_PUSHUP_NUMBER("How can you do negative pushups? Please key in a valid pushup rep score!" +
+    ERROR_IPPT_PUSHUP_NUMBER("Please key in a valid pushup rep score!" +
             "(a positive integer between 0 and 60)"),
     ERROR_IPPT_INVALID_FORMAT("Invalid IPPT input (e.g. no negative integers, " +
-            "inputs within reasonable range, no non-numerical characters)");
+            "inputs within reasonable range, no non-numerical characters)"),
+    ERROR_IPPT_ARGUMENTS_INPUT("Please ensure you enter the " +
+            "correct number of arguments and order : AGE RUNTIME PUSHUPS SITUPS"),
+    ERROR_IPPT_EXTRA_ARGUMENTS("Too many arguments entered. Please ensure you enter the " +
+            "correct number of arguments and order : AGE RUNTIME PUSHUPS SITUPS");
 
 
     public final String message;

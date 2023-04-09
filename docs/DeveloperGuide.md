@@ -385,6 +385,14 @@ Expected: The IPPT exercise session will not be added. Error details will be sho
 Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
 8. Test case: ```ippt ! @ # $ ```
 Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+9. Test case: ```ippt 16```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+10. Test case: ```ippt 16 12:00```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+11. Test case: ```ippt 16 12:00 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+12. Test case: ```ippt 16 12:00 10 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
 
 ### ```achievements``` and ```clear_achievements``` commands
 1.Calling the ```achievements``` command will list out all the details of all the available achievements.

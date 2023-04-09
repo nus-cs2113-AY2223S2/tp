@@ -75,8 +75,8 @@ public class IPPTCalc {
      **/
     public int calculatePushup () throws DukeError {
         int pushScore;
-        if (pushupReps < 0) {
-            throw new DukeError(ErrorMessages.ERROR_NEGATIVE_PUSHUP_NUMBER.toString());
+        if (pushupReps < 0 || pushupReps > 60) {
+            throw new DukeError(ErrorMessages.ERROR_IPPT_PUSHUP_NUMBER.toString());
         }
         if (pushupReps <= 60 && pushupReps > 0) {
             pushScore = scores.pushupScores.get(ageGroup - 1).get(pushupReps - 1);
@@ -93,8 +93,8 @@ public class IPPTCalc {
      **/
     public int calculateSitup () throws DukeError {
         int sitScore;
-        if (situpReps < 0) {
-            throw new DukeError(ErrorMessages.ERROR_NEGATIVE_SITUP_NUMBER.toString());
+        if (situpReps < 0 || situpReps > 70) {
+            throw new DukeError(ErrorMessages.ERROR_IPPT_SITUP_NUMBER.toString());
         }
         if (situpReps <= 60 && situpReps > 0) {
             sitScore = scores.situpScores.get(ageGroup - 1).get(situpReps - 1);

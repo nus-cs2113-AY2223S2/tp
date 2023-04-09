@@ -23,12 +23,15 @@ public class IPPTCmd {
      **/
     // pass in input : IPPT [age] [runtime] [pushup score] [situp score]
     public IPPTCmd (String[] userCommands) throws DukeError {
-        String userInputAge = userCommands[0];
-        String userInputRunTime = userCommands[1];
-        String userInputPushUps = userCommands[2];
-        String userInputSitups = userCommands[3];
+        String userInputAge = userCommands[1];
+        String userInputRunTime = userCommands[2];
+        String userInputPushUps = userCommands[3];
+        String userInputSitups = userCommands[4];
         if (userInputRunTime.length() > 5) {
             throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_TIMING.toString());
+        }
+        if(userCommands.length >= 6){
+            throw new DukeError((ErrorMessages.ERROR_IPPT_EXTRA_ARGUMENTS.toString()));
         }
         try {
             int ageGroup = Integer.parseInt(userInputAge);

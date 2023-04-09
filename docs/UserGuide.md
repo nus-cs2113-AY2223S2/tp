@@ -252,10 +252,10 @@ Adds an IPPT exercise session and also takes in the input of the user's timing/r
 It returns the total points obtained by the user from the set of exercises.
 The user can view his history(via ```history``` command) to see the breakdown of the points too.
 
-* ```AGE``` should be a positive integer ranging from 16-60 years old.
-* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
-* ```PUSHUPS``` Integer number of pushups in 1 minute
-* ```SITUPS``` Integer number of situps in 1 minute
+* ```AGE``` should be a positive integer ranging from 16 to 60 years old.(We do not have scoring data for ages beyond 60 and under 16 years old)
+* ```Runtime``` in format of ```mm:ss``` where mm is minute (positive integer) and ss is seconds (positive integer)
+* ```PUSHUPS``` Positive Integer of pushup repetitions in 1 minute (0 to 60(the max possible points that can be obtained)
+* ```SITUPS```  Positive Integer of situps repetitions in 1 minute (0 to 60(the max possible points that can be obtained))
 
 For example, person is 23 years old, with his 2.4km run time of 10 minutes and 10 seconds.
 He has also completed 30 pushups and 30 situps, thus the input would be:
