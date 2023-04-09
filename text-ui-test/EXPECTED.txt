@@ -17,10 +17,10 @@ These are some commands available:
 	View all available filters
 ippt AGE RUNTIME PUSHUPS SITUPS
 	Starts an IPPT exercise session with input repetitions for the 3 sets of exercises,
-      where AGE is a valid positive integer from 16-60;
-      RUNTIME is in the format of 'mm:ss' where mm is minute (positive integer) and ss is seconds (positive integer);
-      PUSHUPS is a valid positive integer from 0 to 60;
-      and SITUPS is a valid positive integer from 0 to 60;
+	where AGE is a valid positive integer from 16-60;
+	RUNTIME is in the format of 'mm:ss' where mm is minute (positive integer) and ss is seconds (positive integer);
+	PUSHUPS is a valid positive integer from 0 to 60;
+	and SITUPS is a valid positive integer from 0 to 60;
 [start]
 	Start a workout session
 [history]
