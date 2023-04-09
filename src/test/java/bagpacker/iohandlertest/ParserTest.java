@@ -13,7 +13,6 @@ import bagpacker.commands.PackAllCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackAllCommand;
 import bagpacker.commands.UnpackCommand;
-import bagpacker.exception.EmptyInputException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * ParserTest to test Parser Class
@@ -49,7 +47,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createAddObjTest_Successful() {
+    public void createAddObjTest_successful() {
         PackingList dummyPackingList = new PackingList();
         String userInput = "  add 500 /of this item  ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
@@ -60,7 +58,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createAddObjTest_NoItemName() {
+    public void createAddObjTest_noItemName() {
         PackingList dummyPackingList = new PackingList();
         String userInput = "  add 500 /of   ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
@@ -70,7 +68,7 @@ public class ParserTest {
         delList.execute(dummyPackingList);
     }
     @Test
-    public void createAddObjTest_RepeatItem() {
+    public void createAddObjTest_repeatItem() {
         PackingList dummyPackingList = new PackingList();
         String userInput = "  add 500 /of something ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
@@ -92,7 +90,8 @@ public class ParserTest {
         PackingList dummyPackingList = new PackingList();
         Parser.parse().execute(dummyPackingList);
         assert(outputStreamCaptor.toString().trim().contains("Empty input received")
-                & outputStreamCaptor.toString().trim().contains("try to input a command, to view all commands input 'help'"));
+                & outputStreamCaptor.toString().trim().contains("try to input a command, " +
+                "to view all commands input 'help'"));
         tearDown();
     }
 
@@ -127,7 +126,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createUnpackObjTest_Successful() {
+    public void createUnpackObjTest_successful() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  pack 2 /of 1";
         String userInput3 = "  Unpack 1 /of 1";
@@ -149,7 +148,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createUnpackObjTest_InvalidItemQuantity() {
+    public void createUnpackObjTest_invalidItemQuantity() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  pack 2 /of 1";
         String userInput3 = "  Unpack 10 /of 1";
@@ -194,7 +193,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createUnpackAllObjTest_Successful() {
+    public void createUnpackAllObjTest_successful() {
         String userInput1 = "  add 2468 /of this item  ";
         String userInput2 = "  unpackall /of 1  ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -208,7 +207,7 @@ public class ParserTest {
         delList.execute(dummyPackingList);
     }
     @Test
-    public void createUnpackAllObjTest_InvalidIndex() {
+    public void createUnpackAllObjTest_invalidIndex() {
         String userInput1 = "  add 2468 /of this item  ";
         String userInput2 = "  unpackall /of 1000  ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -275,7 +274,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createFindObjTest_Successful() {
+    public void createFindObjTest_successful() {
         String userInput1 = "  add 123 /of this item  ";
         String userInput2 = "  find item  ";
         PackingList dummyPackingList = new PackingList();
@@ -289,7 +288,7 @@ public class ParserTest {
         delList.execute(dummyPackingList);
     }
     @Test
-    public void createFindObjTest_EmptyKeyword() {
+    public void createFindObjTest_emptyKeyword() {
         String userInput1 = "  add 123 /of this item  ";
         String userInput2 = "  find   ";
         PackingList dummyPackingList = new PackingList();

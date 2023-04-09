@@ -9,20 +9,20 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 #### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
 1. commands 
    - Command
-   - AddCommand
-   - ByeCommand
-   - DeleteCommand
-   - DeleteListCommand
+   - [AddCommand](#add-command)
+   - [ByeCommand](#bye-command)
+   - [DeleteCommand](#delete-command)
+   - [DeleteListCommand](#deletelist-command)
    - EditQuantityCommand
    - FindCommand
-   - HelpCommand
+   - [HelpCommand](#help-command)
    - IncorrectCommand
-   - ListCommand
-   - ListUnpackedCommand
+   - [ListCommand](#list-command)
+   - [ListUnpackedCommand](#list-unpacked-command)
    - PackAllCommand
-   - PackCommand
+   - [PackCommand](#pack-command)
    - UnpackAllCommand
-   - UnpackCommand
+   - [UnpackCommand](#unpack-command)
 2. exception
    - EmptyInputException
    - InvalidIndexException
