@@ -37,10 +37,10 @@ Given below are my contributions to the project.
 
 #### Contributions to the DG:
 * Created `Table of Contents`.
-* Created documentation for `Target user profile`.
-* Created documentation for `Value Proposition`.
-* Created documentation for `v2.0` of `User Stories`.
-* Created documentation for `Glossary`.
+* Created `Target user profile`.
+* Created `Value Proposition`.
+* Created `v2.0` of `User Stories`.
+* Created `Glossary`.
 * Added `Record` and `RecordList` UML class diagrams.
 * Added `DeleteIncomeCommand` sequence diagram.
 * Added `Target` and `TargetStorage` UML class diagrams.
