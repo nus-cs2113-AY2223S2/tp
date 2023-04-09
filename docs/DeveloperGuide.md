@@ -287,6 +287,15 @@ Step 2. The `isInvalidTodo` static boolean method will check for the validity of
 
 Step 3. The `storeNotes` public method will then store the note item input by users into the notes list.
 
+<details>
+<summary>Sequence Diagram for Store</summary>
+<div markdown="1">
+
+![img_4.png](img_4.png)
+
+</div>
+</details>
+
 ### List class:
 The `List` class takes in inputs from users and list either all the notes stored in notes list or a specific note
 based on the index that users have input to BadMaths.
@@ -380,7 +389,7 @@ and displays to the user the total current number of notes stored in the list.
 `printNotes(ArrayList<Note> notes)`: prints out all the notes currently stored in the list by the user.
 
 `printSpecificNote(int index, ArrayList<Note> notes)`: prints out a specific note in the list based on 
-its index provided by user.
+an index provided by user.
 
 `printFindNotes(ArrayList<Note> notes)`: prints out all the notes in the list
 that matches the keyword provided by the user.
@@ -392,20 +401,11 @@ priority of a note item has been changed based on the user's preference.
 review counts for each note item in a list format.
 
 `printNotesByPriority(ArrayList<Note> notes)`: prints out all the notes sorted based on the
-priority (high, medium, low) of the note items in a list format.
+priority (HIGH, MEDIUM, LOW) of the note items in a list format.
 
 ### NotePriority class:
 The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIGH)
 of the notes stored in the Notes List by users.
-
-<details>
-<summary>Sequence Diagram for Store</summary>
-<div markdown="1">
-
-![img_4.png](img_4.png)
-
-</div>
-</details>
 
 ### Help
 The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.
