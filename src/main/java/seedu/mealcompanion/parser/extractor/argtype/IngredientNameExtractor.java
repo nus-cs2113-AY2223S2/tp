@@ -7,6 +7,9 @@ import seedu.mealcompanion.parser.extractor.ArgumentExtractor;
 import seedu.mealcompanion.recipe.IngredientDatabase;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 
+/**
+ * Represents an `ArgumentExtractor` which extracts a validated ingredient name.
+ */
 public class IngredientNameExtractor extends ArgumentExtractor {
     private IngredientMetadata extracted;
 

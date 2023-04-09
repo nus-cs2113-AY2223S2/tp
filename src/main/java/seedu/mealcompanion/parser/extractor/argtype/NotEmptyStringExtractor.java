@@ -4,6 +4,9 @@ import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.exception.InvalidArgumentException;
 import seedu.mealcompanion.parser.extractor.ArgumentExtractor;
 
+/**
+ * Represents an `ArgumentExtractor` which extracts a non-empty String
+ */
 public class NotEmptyStringExtractor extends ArgumentExtractor {
     private String extracted;
 

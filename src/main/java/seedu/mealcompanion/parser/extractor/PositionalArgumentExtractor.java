@@ -5,6 +5,10 @@ import seedu.mealcompanion.exception.InvalidArgumentException;
 import seedu.mealcompanion.exception.InvalidCommandException;
 import seedu.mealcompanion.parser.CommandArguments;
 
+/**
+ * Represents a helper class which adapts an `ArgumentExtractor`
+ * to run on the positional argument
+ */
 public class PositionalArgumentExtractor extends Extractor {
     ArgumentExtractor argumentExtractor;
 

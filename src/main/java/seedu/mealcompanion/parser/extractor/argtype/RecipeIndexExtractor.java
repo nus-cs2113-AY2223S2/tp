@@ -5,6 +5,9 @@ import seedu.mealcompanion.exception.InvalidArgumentException;
 import seedu.mealcompanion.parser.extractor.ArgumentExtractor;
 import seedu.mealcompanion.recipe.Recipe;
 
+/**
+ * Represents an `RecipeIndexExtractor` which extracts a validated recipe number.
+ */
 public class RecipeIndexExtractor extends ArgumentExtractor {
     private Recipe extracted;
 

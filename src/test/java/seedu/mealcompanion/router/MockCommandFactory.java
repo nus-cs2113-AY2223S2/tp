@@ -17,6 +17,11 @@ class MockCommandFactory extends ExecutableCommandFactory {
     }
 
     @Override
+    public String getCommandFormat() {
+        return null;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (!(other instanceof String)) {
             return false;

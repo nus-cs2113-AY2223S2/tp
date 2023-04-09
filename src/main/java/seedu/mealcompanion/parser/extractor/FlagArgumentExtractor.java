@@ -5,6 +5,10 @@ import seedu.mealcompanion.exception.InvalidArgumentException;
 import seedu.mealcompanion.exception.InvalidCommandException;
 import seedu.mealcompanion.parser.CommandArguments;
 
+/**
+ * Represents a helper class which adapts an `ArgumentExtractor`
+ * to run on a single flag argument
+ */
 public class FlagArgumentExtractor extends Extractor {
     String flag;
     ArgumentExtractor argumentExtractor;

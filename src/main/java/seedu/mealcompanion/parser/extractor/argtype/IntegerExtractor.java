@@ -4,6 +4,9 @@ import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.exception.InvalidArgumentException;
 import seedu.mealcompanion.parser.extractor.ArgumentExtractor;
 
+/**
+ * Represents an `ArgumentExtractor` which extracts an integer.
+ */
 public class IntegerExtractor extends ArgumentExtractor {
     private int extracted;
 
