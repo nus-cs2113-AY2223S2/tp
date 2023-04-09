@@ -28,25 +28,15 @@ ___
 
 ## Features
 
-* [Add recipes](#adding-recipes--add)
-* [Edit recipes](#editing-recipes--edit)
-* [Delete Recipes](#deleting-recipes--delete)
 * [View recipes](#viewing-recipes--view)
 * [List relevant recipes](#listing-recipes--list)
 * [Tag/Categorise recipes](#taggingcategorising-recipes--tag)
-* [Add single recipe to weekly plan](#add-single-recipe-to-weekly-plan--weekly-add)
-* [Add multiple recipe to weekly plan](#add-multiple-recipes-to-weekly-plan--weekly-multiadd)
-* [Remove single recipe from weekly plan](#delete-single-recipe-from-weekly-plan--weekly-delete)
-* [Remove multiple recipe from weekly plan](#delete-multiple-recipes-from-weekly-plan--weekly-multidelete)
-* [Clear weekly plan](#clear-weekly-plan--weekly-clear)
-* [Mark recipe in weekly plan as done](#mark-recipe-in-weekly-plan-as-done--weekly-done)
-* [View weekly plan ingredients](#view-weekly-plan-ingredients--weeklyingredients)
-* [View user ingredients](#view-user-ingredients--viewingredients)
-* [View weekly plan](#view-weekly-plan--weeklyplan)
+* [Add single recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
+* [Add multiple recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
+* [Remove single recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
+* [Remove multiple recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
+* [View weekly plan](#view-this-weeks-plan--weeklyplan)
 * [Random a recipe](#random-a-recipe--random)
-* [Exit program](#exit-the-program--bye)
-* [Add user ingredient](#add-user-ingredient--addi)
-* [Delete user ingredient](#delete-user-ingredient--deli)
 
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
@@ -55,11 +45,12 @@ ___
 Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
-* After the ingredients are key-in in, please type `done` in the next line to finish the process.
-  *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
-    manager knows that you have entered 1 ingredient. No need to type `done`.
-
-
+* Type done when finished inputting all ingredients for the recipe.
+* Example:
+```
+chicken=100 and oil and sauce=200 and vegetables=300 
+done
+```
 
 <br>
 
@@ -135,7 +126,6 @@ Format: `view INDEX`
 Example of usage:
 
 `view 1`
-`view 8`
 
 <br>
 
@@ -198,7 +188,7 @@ Example of usage:
 
 <br>
 
-### Add single recipe to weekly plan: `weekly /add`
+### Adding single recipe this week's plan: `weekly /add`
 
 Adds an existing recipe to this week's plan.
 
@@ -217,7 +207,7 @@ Example of usage:
 
 <br>
 
-### Add multiple recipes to weekly plan: `weekly /multiadd`
+### Adding multiple recipes to this week's plan: `weekly /multiadd`
 
 Adds multiple existing recipe to this week's plan.
 
@@ -239,7 +229,7 @@ Example of usage:
 
 <br>
 
-### Delete single recipe from weekly plan: `weekly /delete`
+### Deleting from this week's plan: `weekly /delete`
 
 Deletes an existing recipe from this week's plan.
 
@@ -258,7 +248,7 @@ Example of usage:
 
 <br>
 
-### Delete multiple recipes from weekly plan: `weekly /multidelete`
+### Deleting multiple recipes from this week's plan: `weekly /multidelete`
 
 Deletes multiple existing recipe from this week's plan.
 
@@ -283,7 +273,7 @@ Example of usage:
 
 <br>
 
-### Clear weekly plan: `weekly /clear`
+### Clearing this week's plan: `weekly /clear`
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
@@ -291,7 +281,7 @@ Format: `weekly /clear`
 
 <br>
 
-### Mark recipe in weekly plan as done: `weekly /done`
+### Mark recipe in this week's plan as done: `weekly /done`
 
 Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
 ingredients will be removed from the weekly plan and the list of ingredients.
@@ -309,7 +299,7 @@ Example of usage:
 
 <br>
 
-### View weekly plan: `weeklyplan`
+### View this week's plan: `weeklyplan`
 
 View this week's plan.
 
@@ -317,7 +307,7 @@ Format: `weeklyplan`
 
 <br>
 
-### View weekly plan ingredients: `weeklyingredients`
+### View this week's ingredients: `weeklyingredients`
 
 View this week's ingredients.
 
@@ -336,8 +326,7 @@ Format: `random`
 
 ### Exit the program: `bye`
 
-* Exits the program.
-* If any ingredients are added by the user, they get saved in JSON files for usage the next time.
+Exits the program.
 
 Format: `bye`
 
@@ -386,10 +375,10 @@ Format : `view_ingredients`
 
 ## Command Summary
 
-| Action                             | Format & Examples                                                                                           | 
+| Action                             | Format, Examples                                                                                            | 
 |------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Add recipe                         | `add /r [RECIPE_NAME]`<br/>e.g `add /r Chicken Rice`                                                        |
-| Edit recipe                        | `edit /r [RECIPE_NAME]`<br/>e.g `edit /r Chicken Rice`                                                      |
+| Add recipe                         | `add /r [RECIPE_NAME]`<br/>e.g `add /r chicken rice`                                                        |
+| Edit recipe                        | `edit /r [RECIPE_NAME]`<br/>e.g `edit /r chicken rice`                                                      |
 | List recipe                        | `list [/t] [KEYWORD]`<br/>e.g `list pizza`                                                                  |
 | View recipe                        | `view INDEX`<br/>e.g `view 1`                                                                               |
 | Add tag/Categorise to recipes      | `tag LABEL << RECIPE_NAME`<br/>e.g `tag western << pizza`                                                   |
@@ -404,6 +393,6 @@ Format : `view_ingredients`
 | View weekly plan                   | `weeklyplan`                                                                                                |
 | View weekly ingredients            | `weeklyingredients`                                                                                         |
 | View user ingredients              | `view_ingredients`                                                                                          |
-| Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Chicken Rice /c 100 /d 04/09/2023`                      |
-| Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Chicken Rice /c 50`                                          |
+| Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
+| Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |
 | Exit the program                   | `bye`                                                                                                       |
