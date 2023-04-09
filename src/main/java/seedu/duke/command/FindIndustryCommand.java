@@ -17,5 +17,7 @@ public class FindIndustryCommand extends Command{
      * @param companyList which contains a list of all the companies
      */
     @Override
-    public void execute(CompanyList companyList) { companyList.findIndustry(targetIndustry); }
+    public void execute(CompanyList companyList) {
+        companyList.findIndustry(targetIndustry);
+    }
 }

@@ -17,8 +17,9 @@ import seedu.duke.command.UpdateEventNameCommand;
 
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.exception.RepeatedFieldsException;
-import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
+import seedu.duke.exception.EmptyFieldException;
+import seedu.duke.ui.Ui;
 
 import java.math.BigInteger;
 
@@ -29,15 +30,17 @@ public interface Parser {
      *
      * @param input the information that requires parsing
      * @return command type that would represent what to execute
-     * @throws WrongFormatException         if error occurs when the input is in the wrong format
-     * @throws NumberFormatException        if error occurred due to user not providing a number where expected
-     * @throws NullPointerException         if error occurred due to null pointers
-     * @throws IndexOutOfBoundsException    if error occurred due to an index being out of bounds
+     * @throws WrongFormatException if error occurs when the input is in the wrong format
+     * @throws NumberFormatException if error occurred due to user not providing a number where expected
+     * @throws NullPointerException if error occurred due to null pointers
+     * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
      * @throws IntegerSizeExceededException if error occurs due to number size exceeded supposed value
      * @throws RepeatedFieldsException if error occurs due to user input having repeated fields
+     * @throws EmptyFieldException if error occurs due to user input having empty fields
      */
     static Command parse(String input) throws WrongFormatException, NumberFormatException,
-            NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException, RepeatedFieldsException {
+            NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException,
+            RepeatedFieldsException, EmptyFieldException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -78,33 +81,41 @@ public interface Parser {
             }
             //Empty company name is not allowed.
             if (companyName.equals("")) {
-                ui.emptyInputErrorMessage("company name");
-                throw new WrongFormatException();
+                throw new EmptyFieldException("company name field");
             }
             //Empty industry is not allowed.
-            if (industry.equals(" ")) {
-                ui.emptyInputErrorMessage("industry");
-                throw new WrongFormatException();
+            if (industry.equals("")) {
+                throw new EmptyFieldException("industry field");
             } else if (!isIndustryValid(industry)){
                 ui.invalidInputFormatErrorMessage("industry",
                         "Industry cannot be a word without alphabet.");
-                throw new WrongFormatException();
+                ui.showLine();
+                break;
             }
             //Only valid Singaporean number is allowed.
+            contactNumberString = contactNumberString.replaceAll(" ", "");
+            BigInteger currContactNum = new BigInteger(contactNumberString);
+            checkInputLimit(currContactNum);
             int contactNumber = Integer.parseInt(contactNumberString);
             if (contactNumberString.length() > 8 || !isContactNumberValid(contactNumber)) {
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
-                throw new WrongFormatException();
+                ui.showLine();
+                break;
             }
             //Only valid email address is allowed.
-            if (!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")) {
+            if (contactEmail.startsWith("@") || !contactEmail.contains("@")
+                    || contactEmail.contains(" ") || contactEmail.endsWith("@")) {
                 ui.invalidInputFormatErrorMessage("email address");
-                throw new WrongFormatException();
+                ui.showLine();
+                break;
             }
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
+            if (inputWords.length == 1) {
+                throw new EmptyFieldException("index");
+            }
             if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
@@ -129,16 +140,24 @@ public interface Parser {
             PurgeCommand purgeCommand = new PurgeCommand(command);
             return purgeCommand;
         case "choose":
-            if (inputWords.length != 3) {
+            if (inputWords.length > 3) {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("venue")) {
+                if (inputWords.length == 2) {
+                    throw new EmptyFieldException("index");
+                }
+                BigInteger currVenueNum = new BigInteger(inputWords[2]);
+                checkInputLimit(currVenueNum);
                 int venueNum = Integer.parseInt(inputWords[2]);
                 ChooseVenueCommand chooseVenueCommand = new ChooseVenueCommand(command + " venue", venueNum);
                 return chooseVenueCommand;
             }
             throw new WrongFormatException();
         case "confirm":
+            if (inputWords.length == 1) {
+                throw new EmptyFieldException("index");
+            }
             if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
@@ -148,6 +167,9 @@ public interface Parser {
             ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
             return confirmCommand;
         case "unconfirm":
+            if (inputWords.length == 1) {
+                throw new EmptyFieldException("index");
+            }
             if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
@@ -161,16 +183,14 @@ public interface Parser {
                 String targetIndustry = input.replace("find", "").trim();
                 targetIndustry = targetIndustry.replace("industry", "").trim();
                 if (targetIndustry.equals("")) {
-                    ui.emptyInputErrorMessage("target industry type");
-                    throw new WrongFormatException();
+                    throw new EmptyFieldException("industry field");
                 }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
             } else if(inputWords[1].equals("companies")){
                 String targetCompany = input.replace("find", "").trim();
                 targetCompany = targetCompany.replace("companies", "").trim();
                 if (targetCompany.equals("")) {
-                    ui.emptyInputErrorMessage("target company name");
-                    throw new WrongFormatException();
+                    throw new EmptyFieldException("company field");
                 }
                 return new FindCompanyCommand("find company", targetCompany);
             } else {
@@ -182,6 +202,9 @@ public interface Parser {
             }
             String commandType = command + " " + inputWords[1] + " " + inputWords[2];
             String eventName = input.substring(17).trim();
+            if (eventName.equals("")) {
+                throw new EmptyFieldException("event name");
+            }
             UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, eventName);
             return updateEventNameCommand;
         case "help":
