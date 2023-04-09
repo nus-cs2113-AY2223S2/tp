@@ -3,28 +3,28 @@
 'https://plantuml.com/component-diagram
 
 
-abstract class Command {
+abstract class Command COMMAND_COLOR {
     +{abstract} execute(TextUi ui): void
     +{abstract} isExit(): boolean
 }
 
 package deadline/meeting/menu/staff {
-class AddXYZCommand {
+class AddXYZCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }
 
-class ViewXYZCommand {
+class ViewXYZCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }
 
-class DeleteXYZCommand {
+class DeleteXYZCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }
 
-class FindXYZCommand {
+class FindXYZCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }

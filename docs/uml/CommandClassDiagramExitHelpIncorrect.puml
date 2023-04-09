@@ -2,24 +2,24 @@
 !include Style.puml
 'https://plantuml.com/component-diagram
 
-abstract class Command {
+abstract class Command COMMAND_COLOR {
     +{abstract} execute(TextUi ui): void
     +{abstract} isExit(): boolean
 }
 
-class HelpCommand {
+class HelpCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }
 
-class ExitCommand {
+class ExitCommand COMMAND_COLOR {
     - boolean IsExit
     + execute(TextUi ui): void
     + setExit(boolean exit): void
     + isExit(): boolean
 }
 
-class IncorrectCommand {
+class IncorrectCommand COMMAND_COLOR {
     + execute(TextUi ui): void
     + isExit(): boolean
 }

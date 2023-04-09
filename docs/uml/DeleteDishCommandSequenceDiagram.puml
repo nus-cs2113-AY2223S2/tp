@@ -10,7 +10,6 @@ box "DishManager"
 participant ":DishManager" as DishManager
 endbox
 
-
 -> DeleteDishCommand: execute(index)
 activate DeleteDishCommand
 DeleteDishCommand -> DishManager ++ : deleteDish(index)
