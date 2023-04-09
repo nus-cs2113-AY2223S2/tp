@@ -359,7 +359,7 @@ However, the lesson will still be added to your timetable, similar to NUSMods.
 
 **NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
 the corresponding flag inputs are -lec 01 and -lec 1 respectively. Additionally, class number is case-sensitive.
-E.g. class number e01 is not the same as class number e01**
+E.g. class number e01 is not the same as class number E01**
 
 
 #### Behaviour of Command:
@@ -419,7 +419,7 @@ Lessons deleted: SECTIONAL TEACHING - 1
 
 **NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
 the corresponding flag inputs are -lec 01 and -lec 1 respectively. Additionally, class number is case-sensitive.
-E.g. class number e01 is not the same as class number e01**
+E.g. class number e01 is not the same as class number E01**
 
 ### `showmod` - Show information of a module
 
@@ -518,7 +518,7 @@ If you would like to view timing information on a specific lesson type of a modu
 Format: showmod MODULE_CODE -FLAG
 Example: showmod CS1010 -st
 NOTE: Different modules have different lesson types.
-It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.
+It is recommended to run `showmod MODULE_CODE` to see the lesson types available for that module.
 
 There are -FLAGS for the various lessons options per module:
 -lec			LECTURE
