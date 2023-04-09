@@ -557,18 +557,44 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 
 ### Target user profile
 
-{Describe the target user profile}
+Mechanical Engineering students of National University of Singapore looking to go to Korea for the 
+Student Exchange Programme. This product is for those students who prefer CLI (Command-Line Interface) 
+over surfing the web for information on the student exchange program.
+
 
 ### Value proposition
 
 {Describe the value proposition: what problem does it solve?}
 
+The Student Exchange Programme can be overwhelming due to the number of Partner Universities available, 
+each offering different module combinations, 
+as well as the need to provide various administrative documents and adhere to deadlines.
+
+This is made worse as the 
+student exchange programme is often the first time students of National University of Singapore (NUS) leave 
+Singapore for an extended period of time independently.
+
+
+This product aims to better prepare NUS Mechanical Engineering students to embark on the Student Exchange Programme to 
+Korea in the following areas.
+1. Module Mapping of NUS Modules to Korean Partner University's Modules. 
+2. Budgeting of funds.
+3. Reminders of key deadlines related to the Student Exchange Programme's process.
+
+
+
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ... | I want to ... | So that I can ...                                           |
+|---------|----------|---------------|-------------------------------------------------------------|
+| v1.0    |mech eng student who is going for SEP|access the list of pre-mapped modules| make better choices on which modules to map                 |
+| v1.0    |    mech eng student who is going for SEP      |     add the modules that I want to map into a list           |                                                             |
+| v1.0    |    mech eng student who is going for SEP      |    look up for the PU’s information           |      better planning of SEP                                                       |
+| v1.0    |   mech eng student who is going for SEP      |      delete module mapping plans to change my schedule         |                            as I receive feedbacks from my academic advisor along the way                                 |
+| v1.0    |    mech eng student who is going for SEP      |               |                                                             |
+|         |          |               |                                                             |
+|         |          |               |                                                             |
+| v2.0    |user|find a to-do item by name| locate a to-do without having to go through the entire list |
 
 ## Non-Functional Requirements
 
