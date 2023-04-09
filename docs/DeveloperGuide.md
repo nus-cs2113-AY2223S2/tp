@@ -374,17 +374,19 @@ the details of the last and most current instant of the item.
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
 ![AlertParser.png](UML%2FAlert%2FAlertParser.png)
-
-
+![AddAlertCommand.png](UML%2FAlert%2FAddAlertCommand.png)
+![AddAlertCommand.png](UML%2FAlert%2FRemoveAlertCommand.png)
 
 **Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
 
 ![AlertStep1.png](UML%2FAlert%2FAlertStep1.png)
 
 
-**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if 
-This leads the `AlertParser` to call either the `parseAddAlert` or `parseRemoveAlert`, depending on whether the `input` begins with the word `add` or `remove`.
-If the `input` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
+**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if the `rawInput`
+begins with the word `add` or `remove`.
+This leads the `AlertParser` to call either the `parseAddAlert` if `rawInput` begins with the word `add`,
+or `parseRemoveAlert` if `rawInput` begins with the word `remove`.
+If the `rawInput` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
 
 **Step 3**. 
 If the input begins with `add`, the `AlertParser` creates a new `AddAlertCommand` object 

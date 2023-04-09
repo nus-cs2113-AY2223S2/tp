@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title AlertParser Sequence Diagram
 
 actor User
 participant ":AlertParser"

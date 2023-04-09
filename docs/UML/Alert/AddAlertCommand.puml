@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title AddAlertCommand Sequence Diagram
 
 participant ":AlertParser"
 participant ":AddAlertCommand"

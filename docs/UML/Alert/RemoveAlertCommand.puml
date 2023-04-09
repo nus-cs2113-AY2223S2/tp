@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title RemoveAlertCommand Sequence Diagram
 
 participant ":AlertParser"
 participant ":RemoveAlertCommand"
