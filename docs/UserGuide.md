@@ -77,7 +77,7 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 Format: `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
-* The `amount` should be a double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
+* The `amount` should be a double up to **2 decimal places** (dp). If amount has more than 2dp, it will round off to nearest 2dp.
   * The largest amount that can be entered is `9999999999.99`.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
@@ -114,7 +114,7 @@ Example output:
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new income to the list of incomes.
 
-* The `amount` should be a double up to **2dp**. Digits beyond 2dp will be ignored.
+* The `amount` should be a double up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.
     * The largest amount that can be entered is `9999999999.99`.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
@@ -215,7 +215,7 @@ Format: `editExpense i/ <index> t/ <type> n/ <newEntry>`
 The index refers to the index number shown in the displayed expense list.
 The index must be a positive integer 1, 2, 3, …​
 * The `type` can be: amount, info, time, or category.
-  * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to 2dp.): edits the expense
+  * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.): edits the expense
     * The largest amount that can be entered is `9999999999.99`.
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
@@ -253,7 +253,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   The index refers to the index number shown in the displayed income list.
   The index must be a positive integer 1, 2, 3, ...
 * The `type` can be: amount, info, time, or category.
-  * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to 2dp.): edits the income
+  * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.): edits the income
     * The largest amount that can be entered is `9999999999.99`.
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. 
@@ -467,7 +467,7 @@ Example output:
 
 ### Set budget: `setBudget`
 Format:  `setBudget <amount> [t/ time]`
-* The `amount` should be double up to **2dp**. If amount has more than 2dp, it will round off to 2dp.
+* The `amount` should be double up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.
   * The largest amount that can be entered is `9999999999.99`. 
 * The `time` should follow `YYYY/MM` format.
 * The time parameter is **optional**. 
