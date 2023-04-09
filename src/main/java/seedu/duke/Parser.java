@@ -373,7 +373,7 @@ public class Parser {
 
     //@@author
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
-        userInput = userInput.replaceFirst("/budget", "").trim();
+        userInput = removeFirstCommandWord(userInput);
         if (userInput.trim().equalsIgnoreCase("/view")) {
             return new ViewBudgetCommand(budgetPlanner);
         }
@@ -391,6 +391,17 @@ public class Parser {
         checkBudgetKeyword(budgetCommand);
         checkBudgetValidAmount(stringAmount);
         return budgetCommandType(budgetPlanner, budgetCommand, stringAmount);
+    }
+
+    private String removeFirstCommandWord(String userInput) throws InvalidCommandException {
+        if (userInput.startsWith("/BUDGET")) {
+            userInput = userInput.replaceFirst("/BUDGET", "").trim();
+        } else if (userInput.startsWith("/budget")) {
+            userInput = userInput.replaceFirst("/budget", "").trim();
+        } else {
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        return userInput;
     }
 
     private void checkBudgetKeyword(String budgetCommand) throws InvalidCommandException {
