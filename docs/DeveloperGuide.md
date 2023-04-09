@@ -74,6 +74,15 @@ It is the starting point of our program and takes in user inputs.
 Duke executes commands based on an object of class "Command" after Parser processes user inputs and
 returns a Command object back to Duke.
 
+Sequence Diagram for Duke:
+
+![DukeHighLevel.png](diagrams%2FDukeHighLevel.png)
+
+Reference Diagram for Duke initialisation:
+
+![DukeInitialisation.png](diagrams%2FDukeInitialisation.png)
+
+
 **2. Parser**
 
 Parser class serves to process raw user input and map it to one of the various commands.

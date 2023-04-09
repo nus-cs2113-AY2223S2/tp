@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
-
+actor User
+User -> ":Duke" : start program
 activate ":Duke"
 create ":Scanner"
 ":Duke" -> ":Scanner" : Scanner(System.in)
@@ -29,6 +29,8 @@ activate ":Command"
 ":Duke" <-- ":Command" : isContinue = !isExit:boolean
 deactivate ":Command"
 end
+":Duke" --> User
+deactivate ":Duke"
 
 '":Duke" -> ":Parser"
 'activate ":Parser"
