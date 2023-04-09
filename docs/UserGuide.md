@@ -272,14 +272,14 @@ Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
-Note that date format should be in YYYY-MM-DD and phone number should only contain number. Date of birth should be before this present time as well. 
+Note that date format should be in YYYY-MM-DD and phone number should only contain number. Date of birth should be before this present time as well.
 
-Example: 
+Example:
 ```
 add_staff n/John Doe w/Sunday d/2003-01-01 p/82802123
 ```
 
-Outcome: 
+Outcome:
 ```
 John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 added!
 ```
@@ -287,16 +287,11 @@ John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 ad
 #### View a staff:
 View the staffs list.
 
-Format: `view_staff` 
+Format: `view_staff`
 
-Outcome: 
+Outcome:
 ```
-1. john, working in thursday. Date of birth: 234, phoneNumber: 1234
-2. jane, working in thursday. Date of birth: 12356, phoneNumber: 1007
-3. name, working in thus. Date of birth: 1007, phoneNumber: 1235
-4. titi, working in 12. Date of birth: 12, phoneNumber: 12
-5. kristian, working in test. Date of birth: 12, phoneNumber: 12
-6. John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123
+1. John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123
 ```
 
 #### Delete a staff:
@@ -304,29 +299,29 @@ Delete a staff from the staffs list.
 
 Format: `delete_staff <staff index>`
 
-Example: 
+Example:
 ```
 delete_staff 1
 ```
 
-Outcome: 
+Outcome:
 ```
-1 john, working in thursday. Date of birth: 234, phoneNumber: 1234 removed
+1. John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 removed
 ```
 
 #### Find a staff
-Find a staff from staffs list  
+Find a staff from staffs list
 
 Format: `find_staff <keyword>`
-Example: 
+Example:
 ```
-find_staff titi
+find_staff john
 ```
 
-Outcome: 
+Outcome:
 ```
 Here's the matching staff:
-titi, working in 12. Date of birth: 12, phoneNumber: 12
+John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123
 ```
 ### Exit
 Exits the program.
