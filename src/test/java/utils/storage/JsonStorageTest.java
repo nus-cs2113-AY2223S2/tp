@@ -37,10 +37,10 @@ public class JsonStorageTest {
     private static final String card1A = "ffffffghgg";
     private static final String fileCard1DeckUuid = "c83e08ad-e5b7-4812-9dd1-4b44504386ad";
     private static final int fileCard1DeckSize = 1;
-    private static final int fileCard1TagSize = 1;
+    private static final int fileCard1TagSize = 6;
     private static final String fileCard1TagUuid = "03658854-e5d4-468f-8c41-74917e5d4515";
 
-    private static final int fileDeckSize = 2;
+    private static final int fileDeckSize = 1;
 
     private static final String card2Uuid = "619c689d-395a-4bb8-ab00-6ae9972bb929";
     private static final String card2Q = "question2";
@@ -82,9 +82,9 @@ public class JsonStorageTest {
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
         int cardListSize = cardList.size();
-        int validFileCardListSize = 2;
+        int validFileCardListSize = 6;
         int expectedSize = validFileCardListSize;
-        assertEquals(cardListSize, expectedSize);
+        assertEquals(expectedSize, cardListSize);
 
     }
 
