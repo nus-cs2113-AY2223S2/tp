@@ -127,6 +127,8 @@ public class TaskList {
     static void setPriority(ArrayList<Task> tasks, String[] words) {
         if (!words[2].equals("1") && !words[2].equals("2") && !words[2].equals("3")) {
             Ui.priorityErrorMessage();
+        } else if (!Parser.isNumeric(words[1])) {
+            Ui.unknownCommandMessage();
         } else {
             int taskNumber = Integer.parseInt(words[1]);
             int taskCount = Task.getTaskCount();

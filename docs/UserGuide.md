@@ -37,6 +37,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
             * Add Event: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
             * Add RecurringEvent: /re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>
             * Add Class: <description> /class <class_name> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>
+    * [Motivational quotes :](#printing-a-motivational-quote--motivation) `motivation`
     * [Terminate the program :](#exiting-the-program--bye) `bye`
 
 
@@ -53,12 +54,12 @@ Displays all available commands and their input format on the terminal.
 
 
 ```
-（`･v･´ ）: Here are the commands you can give me: 
+Here are the commands you can give me: 
 COMMAND_FORMAT : COMMAND_FUNCTIONALITY EXPLANATION
 .
 .
 .
-（`･v･´ ）: How else may I assist you today, human?
+How else may I assist you today, human?
 ```
 
 
@@ -614,7 +615,7 @@ Alright, I have added this task:
 You now have 1 class in your schedule.
 ```
 
-## **Printing a motivaional quote : `motivation`**
+## **Printing a motivational quote : `motivation`**
 
 Prints a random motivational quote.
 
