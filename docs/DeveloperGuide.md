@@ -320,12 +320,12 @@ The storage is updated with the new TaskList without the deleted task.
 
 The below diagram shows the sequence diagram for the DeleteTask functionality.
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommand-ModifyCommand__Delete_Tasks_.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommand-ModifyCommand__Delete_Tasks_.png?raw=true)
 
 
 The below diagram shows the activity diagram for DeleteCommand for tasks 
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommandActivityDiagram.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommandActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -383,6 +383,7 @@ The storage is updated with the new TaskList with the task marked with a cross n
 The sequence diagram for marking of tasks is similar to that of the unmark task command. The only difference is that the
 Ui message formats. The activity diagram for marking of tasks is shown below.
 
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/MarkCommandActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
