@@ -97,9 +97,11 @@ section of the DG to explain how the classes of our program interacts with each 
 
 ### Contributions beyond the project team
 
-Helped solved bugs in the methods of IncomeLists, and ExpenseLists when I help to integrate the
+- Helped solved bugs in the methods of IncomeLists, and ExpenseLists when I help to integrate the
 classes together for a working program. This happened at the early stage of our project when only the classes and methods for
 Expense and Income are implemented, without any main, Ui, Parser, or Command classes. I implemented the rest of the classes and
 made sure the features of expense and income are working as intended and that the program runs together with all the other classes.
+
+- Helped my group members linked their github accounts and portfolio in [AboutUs.md](../AboutUs.md), as well as updating the [Readme.md](../Readme.md).
 
 [back to contents](#table-of-contents)
