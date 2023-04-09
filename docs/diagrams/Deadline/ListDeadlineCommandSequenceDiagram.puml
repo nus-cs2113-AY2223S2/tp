@@ -1,9 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-activate ":Duke"
-":Duke" -> ":ListDeadlineCommand" : command.execute()
-
 activate ":ListDeadlineCommand"
 
 ":ListDeadlineCommand" -> "<<class>>\nui:UI" : printDeadlinesList(deadlines)
@@ -27,13 +24,12 @@ loop for deadline in deadlines
      "<<class>>\nui:UI" <-- "deadline: Deadline": "dueDate"
      deactivate "deadline: Deadline"
 
-     "<<class>>\nui:UI" -> PrintStream : Print Deadline
-     "<<class>>\nui:UI" <-- PrintStream
+     "<<class>>\nui:UI" -> "User Console" : Print Deadline
+     "<<class>>\nui:UI" <-- "User Console"
 
 end
 
-
 "<<class>>\nui:UI" --> ":ListDeadlineCommand" : return control
 deactivate "<<class>>\nui:UI"
-":Duke" <-- ":ListDeadlineCommand"
+deactivate ":ListDeadlineCommand"
 @enduml

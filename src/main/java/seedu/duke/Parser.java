@@ -31,7 +31,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class Parser {
     private static UI ui = UI.getUiOneInstance();
     private static Parser instance = null;
@@ -303,7 +302,7 @@ public class Parser {
      * @param allModules           ArrayList of Module that contains all the modules for all PUs.
      * @param universities         ArrayList of University that contains all the PUs University object.
      * @return Returns AddModuleCommand(moduleToAdd, storage) to Duke to handle the addition of module into
-     *         user selected modules in storage.
+     * user selected modules in storage.
      * @throws InvalidCommandException Thrown when AbbreviationAndIndex does not split into two Strings.
      * @throws InvalidPuException      Thrown when Abbreviation given cannot be matched with any PUs.
      * @throws InvalidModuleException  Thrown when no Module can be found at the inputted Index.

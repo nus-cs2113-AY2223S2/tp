@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":AddDeadlineCommand" : command.execute()
+
 activate ":AddDeadlineCommand"
 ":AddDeadlineCommand" -> ":DeadlineStorage" : addDeadlineToDeadlines(deadlineToAdd)
 activate ":DeadlineStorage"
@@ -61,5 +60,6 @@ deactivate PrintStream
 deactivate "<<class>>\n:UI"
 ":Duke" <-- ":AddDeadlineCommand"
 
-
+deactivate ":DeadlineStorage"
+deactivate ":AddDeadlineCommand"
 @enduml

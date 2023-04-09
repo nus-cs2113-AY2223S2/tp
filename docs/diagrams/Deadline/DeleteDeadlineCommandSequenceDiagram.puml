@@ -20,9 +20,11 @@ activate "<<class>>\ndeadlineStorage:DeadlineStorage"
 
 ":DeleteDeadlineCommand" -> "<<class>>\nui:UI" : printDeleteDeadlineMessage()
 activate "<<class>>\nui:UI"
+":DeleteDeadlineCommand" <-- "<<class>>\nui:UI"
+deactivate "<<class>>\nui:UI"
 
-"<<class>>\nui:UI" -> PrintStream : Print Delete Deadline Message
-"<<class>>\nui:UI" <-- PrintStream
+deactivate "<<class>>\ndeadlineStorage:DeadlineStorage"
+deactivate ":DeleteDeadlineCommand"
 @enduml
 
 
