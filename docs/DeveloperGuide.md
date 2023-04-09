@@ -6,29 +6,59 @@ various features for note-taking.
 
 ## Table of Contents
 
-1. [Acknowledgements](#acknowledgements) 
-2. [Design & implementation](#design--implementation)
-   - [Solving Quadratic Equations](#solving-quadratic-equations) 
-   - [Notes](#notes)
-   - [Help](#help)
-   - [Graph](#graph)
-   - [Matrix](#matrix)
-2. [Product Scope](#product-scope)
-   - [Target user profile](#target-user-profile)
-   - [Value proposition](#value-proposition)
-3. [User Stories](#user-stories)
-4. [Non-Functional Requirements](#non-functional-requirements)
-5. [Glossary](#glossary)
-6. [Instructions for manual testing](#instructions-for-manual-testing)
+<!-- TOC -->
+* [Developer Guide](#developer-guide)
+  * [Table of Contents](#table-of-contents)
+  * [Acknowledgements](#acknowledgements)
+  * [Design & implementation](#design--implementation)
+    * [Handling Of User Input](#handling-of-user-input)
+    * [Solving Quadratic Equations](#solving-quadratic-equations)
+    * [Notes](#notes)
+    * [Storage](#storage)
+    * [Store class:](#store-class-)
+    * [List class:](#list-class-)
+    * [Delete class:](#delete-class-)
+    * [CommandHistory class:](#commandhistory-class-)
+    * [Command class:](#command-class-)
+    * [Ui class:](#ui-class-)
+    * [NotePriority class:](#notepriority-class-)
+    * [Help](#help)
+    * [Graph](#graph)
+    * [Matrix](#matrix)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+<!-- TOC -->
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Design & implementation
 
+Architecture Diagram:
+
+
+
+### Handling Of User Input
+
+![img_1.png](img_1.png)
+
+The BadMaths class first reads the User's input and separates it into 2 parts, `command` and `toDo`. It does this by calling
+the Parser class via `getCommand()` and `getToDo()`. BadMaths then checks whether `command` is valid using `commandChecker()`.
+If it is not valid, the Ui class would be called upon to notify the User as such. If it is valid, `command` and `toDo` would be
+passed into the Command class and the method `executeCommand()` would run the corresponding code.
+
 ### Solving Quadratic Equations
 The Quadratic equation solver allows user to find the value of `x` in a simple quadratic equation.
 The function is started when `solveQuadratic()` is called in the Command class.
+
+Class Diagram:
+
+![img.png](img.png)
+
 Below is an  example of how it would be called.
 ```
 Quadratic. 2x^2 + 3x + 1

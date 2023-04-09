@@ -19,6 +19,11 @@ public class Parser {
         this.userInput = userInput;
     }
 
+    /**
+     * Separates the first word of user input which is the command
+     * Throws an exception if there is format error in the input
+     * @return command
+     */
     public String getCommand() {
         try {
             String trimmedInput = userInput.trim();
@@ -35,6 +40,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Separates all the words other than the first from user input which would be toDo
+     * If there is only 1 word (ie no toDo), then "Invalid toDo" would be returned
+     * Throws an exception if there is format error
+     * @return toDo
+     */
     public String getToDo() {
         try {
             String[] parts = userInput.split(" ", 2); // List 5
