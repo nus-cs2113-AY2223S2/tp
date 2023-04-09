@@ -2,7 +2,9 @@
 
 ## Introduction
 
-{Give a product intro}
+Inka is a CLI-based software that allows users to add Cards containing questions and answers, attach tags into each Card
+and put groups of cards into a deck. Inka aims to help students revise for their exam by providing a flashcard-like
+experience.
 
 ## Quick Start
 
@@ -16,7 +18,9 @@
 Enjoy your revision!
 
 ### Use Case
-Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding **individual cards** and/or multiple cards with the **same tag**.
+
+Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding *
+*individual cards** and/or multiple cards with the **same tag**.
 
 For example, suppose you had the following cards:
 
@@ -28,6 +32,7 @@ For example, suppose you had the following cards:
 | **Card 4** | What does OOP stand for?     | Object-Oriented Programming | _cs2113-wk8_             |
 
 You might organize your cards in the following fashion:
+
 - Adding the `cs2113-wk1` and `cs2113-wk8` tags to group together cards of similar topics
 - Adding the `freq-wrong` tag to cards that you wish to review more frequently
 
@@ -39,6 +44,31 @@ This allows you to create the following decks easily:
 | Frequently-Wrong | -                 | _freq-wrong_             | Cards 2, 3        |
 | Acronyms         | Card 3            | _cs2113-wk8_             | Cards 1, 3, 4     |
 
+## Usage of the flags
+
+Inka's command makes substantial use of flags to indicate certain parameters that users enter. Listed below are the
+format specified :
+
+- Required arguments are indicated by `-f ARG` format
+- Optional arguments are indicated by `[-f ARG]`
+- Mutually exclusive required arguments are `{-a ARG | -b ARG}`
+- Mutually exclusive optional arguments are `[-a ARG | -b ARG]`
+
+There will be many instances where users are allowed to choose how they want to identify a `Card`, `Tag` or a `Deck`.
+
+Here are the list of flags that users can enter :
+
+- `-c CARD_UUID` to identify a `Card` with its UUID
+- `-i CARD_INDEX` to identify a `Card` with card index.
+- `-t TAG_NAME` to identify a `Tag` with its tag name.
+- `-x TAG_INDEX` to identify a `Tag` with its tag index.
+- `-d DECK_NAME` to identify a `Deck` with its deck name.
+
+For instance, in `card untag` command, since users are allowed to specify the `Card` with either its uuid or index,
+specify the
+`Tag` with either its tag name or index, the format of syntax in the documentation below will be written as :
+
+`card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
 
 ## Features
 
@@ -84,50 +114,66 @@ List tags
 
 ### Adding a card:
 
-`card add -q {question} -a {answer}`
+`card add -q QUESTION -a ANSWER`
 
 Adds a new Card with its question and answer.
-The flags can be listed in ***any*** order and must be followed by strings.
+
+***Lists of flags (in any order)*** :
+
+- [REQUIRED] `-q` followed by a String representing the question
+- [REQUIRED] `-a` followed by a String representing the answer
+
+While there is no restriction on how long the String that the user can enter,
+String with length greater than 50 characters will be truncated in the display of `card list` command. The full version
+can be viewed using the `card view` command below.
 
 Example of usage:
 
 `card add -q how do i use this command? -a by referring to this user guide`
 
+Sample Output :
+
+```
+That's a good question for revision later!
+You now have 4 questions in the bank.
+```
+
 ### Listing all cards :
 
 `card list`
 
-List all existing cards. The UUID enclosed in the `[]` is the cardUUID. The `Tags` and `Decks` show the tagUUIDs and
-deckUUIDs
-that the cards are currently under.
+List all existing cards in Inka.
+
+***Lists of flags (in any order)*** :
+
+- ***NONE***
 
 Sample output :
 
 ```
 Here is a list of your cards :
-1.[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
 
- Tags: 
- - 03658854-e5d4-468f-8c41-74917e5d4515
- - c8259fee-125d-4700-829c-0da79eba1e91
+	1.	[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+	Qn:	What is the formula of force?
+	Ans:    F = ma
 
- Decks: 
- - c83e08ad-e5b7-4812-9dd1-4b44504386ad
+	2.	[619c689d-395a-4bb8-ab00-6ae9972bb929]
+	Qn:	How efficient is binary search?
+	Ans:    O(log n)
 
- Qn:  What is the formula of force?
- Ans:  F = ma
+	3.	[29bea83e-d864-48c4-bb9a-7fa817114fe1]
+	Qn:	how do i use this command?
+	Ans:	by referring to this user guide
 
-2.[619c689d-395a-4bb8-ab00-6ae9972bb929]
-
- Tags: None
-
- Decks: None
-
- Qn:  How efficient is binary search?
- Ans:  O(log n)
-
-
+	4.	[19d859b1-cede-467e-b384-7d6e690cdae6]
+	Qn:	Lorem ipsum dolor sit amet, consectetur adipiscing
+	Ans:	ans
+	Note:	Actual question or answer is too long, string truncated
 ```
+
+In `1.    [1ddd9a67-f56c-4914-99c0-2f90c580f0e9]` above, the `1` refers the card index and the
+`1ddd9a67-f56c-4914-99c0-2f90c580f0e9` refers the UUID of the card. User can choose whether to refer to the card by UUID
+or card index.
 
 ### Deleting a card :
 

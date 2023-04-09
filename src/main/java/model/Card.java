@@ -108,12 +108,12 @@ public class Card {
         boolean isAnsTooLong = this.answer.length() > 50;
 
         String warningStr =
-                (isQnTooLong || isAnsTooLong) ? "\n\tNote : Actual question or answer is too long, string truncated"
+                (isQnTooLong || isAnsTooLong) ? "\n\tNote:\tActual question or answer is too long, string truncated"
                         : "";
         String questionStr = isQnTooLong ? this.question.substring(0, 50) : this.question;
         String answerStr = isAnsTooLong ? this.answer.substring(0, 50) : this.answer;
 
-        return "\t[" + this.uuid + "]" +
-                "\n\tQn:  " + questionStr + "\n\tAns:  " + answerStr + warningStr + "\n";
+        return "\t\t[" + this.uuid + "]" +
+                "\n\tQn:\t\t" + questionStr + "\n\tAns:\t" + answerStr + warningStr + "\n";
     }
 }
