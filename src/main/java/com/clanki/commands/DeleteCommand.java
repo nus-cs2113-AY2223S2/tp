@@ -7,72 +7,48 @@ import com.clanki.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * A command that removes an element from the ArrayList of
- * flashcards.
+ * A command that removes an element from the ArrayList of flashcards.
  */
 public class DeleteCommand extends Command {
-
-    private static final String FLASHCARD_TO_DELETE = "Which one do you want to delete?";
-    ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
+    ArrayList<Flashcard> matchingFlashcards;
     String query;
 
     public DeleteCommand(String query) {
+        this.matchingFlashcards = new ArrayList<>();
         this.query = query;
-    }
-
-    /**
-     * Search through flashcards containing the query and adds them to the matchingFlashcards list.
-     *
-     * @param flashcards the list of flashcards to look through
-     * @param query      the search query for finding matching flashcards
-     */
-    public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
-        for (int i = 0; i < flashcards.size(); i++) {
-            Flashcard currentFlashcard = flashcards.get(i);
-            if (currentFlashcard.getQuestion().contains(query)
-                    || currentFlashcard.getAnswer().contains(query)) {
-                matchingFlashcards.add(currentFlashcard);
-            }
-        }
-    }
-
-    /**
-     * Prints out the question and answer for each flashcard
-     *
-     * @param flashcard each individual flashcard in the ArrayList
-     */
-    public void printFlashCard(Flashcard flashcard) {
-        System.out.println("Q: " + flashcard.getQuestion());
-        System.out.println("A: " + flashcard.getAnswer());
-    }
-
-    /**
-     * Goes through the ArrayList of flashcards and prints out each one of them
-     *
-     * @param flashcards the ArrayList of flashcards
-     */
-    public void printFlashCardList(ArrayList<Flashcard> flashcards) {
-        for (int i = 0; i < flashcards.size(); i++) {
-            System.out.println("[" + (i + 1) + "]");
-            printFlashCard(flashcards.get(i));
-        }
     }
 
     @Override
     public void execute(FlashcardList flashcardList, Ui display) {
-        ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
-        findFlashcard(flashcards, query);
-        if (matchingFlashcards.size() != 0) {
-            System.out.println(
-                    "Found " + matchingFlashcards.size() + " cards with query \"" + query + "\":");
-            printFlashCardList(matchingFlashcards);
-            System.out.println(FLASHCARD_TO_DELETE);
+        matchingFlashcards = flashcardList.queryFlashcards(query);
 
-            int index = Integer.parseInt(display.getUserCommand());
-            flashcardList.deleteFlashcard(flashcards.indexOf(matchingFlashcards.get(index - 1)));
-            display.printSuccessfulDelete(index);
-        } else {
-            System.out.println("Sorry! No flashcards matching \"" + query + "\" was found. Please try again.");
+        if (matchingFlashcards.size() == 0) {
+            System.out.printf("Sorry! No flashcards matching \"%s\" was found. Please try again.\n",
+                    query);
+            return;
         }
+
+        System.out.printf("Found %d card(s) with query \"%s\":\n", matchingFlashcards.size(),
+                query);
+        display.printFlashCards(matchingFlashcards);
+        System.out.println("Which one do you want to delete?");
+
+        int index = -1;
+        while (index == -1) {
+            try {
+                index = Integer.parseInt(display.getUserCommand());
+                if (index < 1 || index > matchingFlashcards.size()) {
+                    index = -1;
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.println("Please enter a valid index value.");
+            }
+        }
+
+        ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
+        int actualIndex = flashcards.indexOf(matchingFlashcards.get(index - 1));
+        flashcardList.deleteFlashcard(actualIndex);
+        display.printSuccessfulDelete(index);
     }
 }

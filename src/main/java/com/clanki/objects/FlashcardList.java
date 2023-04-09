@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class FlashcardList {
     private final ArrayList<Flashcard> flashcards;
 
-
     public FlashcardList() {
         this.flashcards = new ArrayList<>();
     }
@@ -25,12 +24,29 @@ public class FlashcardList {
         flashcards.add(newFlashcard);
     }
 
-    public void deleteFlashcard(int index) {
-        flashcards.remove(index);
-    }
-
     public ArrayList<Flashcard> getFlashCards() {
         return flashcards;
+    }
+
+    /**
+     * Query for flashcards in the current deck that matches the query inside
+     * questions and answers (case-insensitive).
+     */
+    public ArrayList<Flashcard> queryFlashcards(String query) {
+        ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
+        String queryLowerCase = query.toLowerCase();
+        for (int i = 0; i < flashcards.size(); i++) {
+            Flashcard currentFlashcard = flashcards.get(i);
+            if (currentFlashcard.getQuestion().toLowerCase().contains(queryLowerCase)
+                    || currentFlashcard.getAnswer().toLowerCase().contains(queryLowerCase)) {
+                matchingFlashcards.add(currentFlashcard);
+            }
+        }
+        return matchingFlashcards;
+    }
+
+    public void deleteFlashcard(int index) {
+        flashcards.remove(index);
     }
 
     public void deleteAllFlashcards() {

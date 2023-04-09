@@ -15,8 +15,8 @@ import java.util.List;
 
 /**
  * This class manages the storing of FlashcardList and the recovering of stored
- * data each time the application first start up.
- * Many portions of the code in this class are modified from the link below: (addressbook-level2)
+ * data each time the application first start up. Many portions of the code in
+ * this class are modified from the link below: (addressbook-level2)
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java
  */
 public class StorageFile {
@@ -25,7 +25,6 @@ public class StorageFile {
      */
     public static final String DEFAULT_STORAGE_FILEPATH = "flashcardList.txt";
     public static final String FILE_END_STRING = ".txt";
-
 
     public final Path path;
 
@@ -47,8 +46,8 @@ public class StorageFile {
     }
 
     /**
-     * Returns true if the given path is acceptable as a storage file.
-     * The file path is considered acceptable if it ends with '.txt'
+     * Returns true if the given path is acceptable as a storage file. The file path
+     * is considered acceptable if it ends with '.txt'
      */
     private static boolean isValidPath(Path filePath) {
         return filePath.toString().endsWith(FILE_END_STRING);
@@ -57,11 +56,13 @@ public class StorageFile {
     /**
      * Saves the {@code addressBook} data to the storage file.
      *
-     * @throws StorageOperationException if there were errors converting and/or storing data to file.
+     * @throws StorageOperationException if there were errors converting and/or
+     *                                   storing data to file.
      */
     public void save(FlashcardList flashcardList) throws StorageOperationException {
         try {
-            List<String> encodedFlashcardList = FlashcardListEncoder.encodeFlashcardList(flashcardList);
+            List<String> encodedFlashcardList = FlashcardListEncoder
+                    .encodeFlashcardList(flashcardList);
             Files.write(path, encodedFlashcardList);
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
@@ -69,13 +70,14 @@ public class StorageFile {
     }
 
     /**
-     * Loads the {@code AddressBook} data from this storage file, and then returns it.
-     * Returns an empty {@code AddressBook} if the file does not exist, or is not a regular file.
+     * Loads the {@code AddressBook} data from this storage file, and then returns
+     * it. Returns an empty {@code AddressBook} if the file does not exist, or is
+     * not a regular file.
      *
-     * @throws StorageOperationException if there were errors reading and/or converting data from file.
+     * @throws StorageOperationException if there were errors reading and/or
+     *                                   converting data from file.
      */
     public ArrayList<Flashcard> load() throws StorageOperationException {
-
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new ArrayList<>();
         }
@@ -87,6 +89,4 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         }
     }
-
-
 }
