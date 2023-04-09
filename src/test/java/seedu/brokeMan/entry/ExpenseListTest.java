@@ -35,5 +35,10 @@ public class ExpenseListTest {
         assertEquals(expectedExpenseList, ExpenseList.expenseList);
     }
 
+    @Test
+    public void testFindExpenseByCategory_validCategory_success() {
+        ExpenseList.findExpenseByCategory(Category.FOOD);
+    }
+
 }
 

@@ -43,4 +43,9 @@ public class IncomeListTest {
         LinkedList<Income> expectedIncomeList = new LinkedList<>();
         assertEquals(expectedIncomeList, IncomeList.incomeList);
     }
+
+    @Test
+    public void testFindIncomeByCategory_validCategory_success() {
+        IncomeList.findIncomeByCategory(Category.SALARY);
+    }
 }
