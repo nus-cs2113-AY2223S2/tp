@@ -14,7 +14,11 @@ import static chching.parser.Expenses.parseDate;
  * Models a class that act as list of expenses. Inherited from RecordList Class
  */
 public class ExpenseList extends RecordList {
-
+    
+    public static final String CATEGORY_FIELD = "c";
+    public static final String DESCRIPTION_FIELD = "de";
+    public static final String DATE_FIELD = "da";
+    public static final String VALUE_FIELD = "v";
     protected ArrayList<Expense> expenseList;
 
     /**
@@ -52,23 +56,21 @@ public class ExpenseList extends RecordList {
      */
     public void editExpense(int index, String field, String value) throws ChChingException {
 
-        // change from 1-based indexing to 0-based indexing
         int indexZeroBased = index - 1;
         Expense expense = expenseList.get(indexZeroBased);
 
-        // edit the according field
         switch (field) {
-        case "c":
+        case CATEGORY_FIELD:
             expense.setCategory(value);
             break;
-        case "de":
+        case DESCRIPTION_FIELD:
             expense.setDescription(value);
             break;
-        case "da":
+        case DATE_FIELD:
             LocalDate date = parseDate(value);
             expense.setDate(date);
             break;
-        case "v":
+        case VALUE_FIELD:
             boolean isTwoDecimalsOrLess = DecimalsChecker.isPositiveTwoDecimals(value);
             if(!isTwoDecimalsOrLess) {
                 throw new ChChingException("Expense value must be a valid positive double that is 2 d.p. or less");

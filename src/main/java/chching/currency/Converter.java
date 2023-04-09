@@ -42,8 +42,6 @@ public class Converter {
         }
         return result;
     }
-
-    // for testing
     public void printConversionRate() {
         for (String currency : currencyMap.keySet()) {
             System.out.println(currency + " " + currencyMap.get(currency));

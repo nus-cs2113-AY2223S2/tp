@@ -248,7 +248,7 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
    1. Download the jar file and copy into an empty folder.
-   2. Open a command prompt in the folder and run the command `java -jar tp.jar`. ChChing should start up.
+   2. Open a command prompt in the folder and run the command `java -jar [CS2113-T12-1][ChChing].jar`. ChChing should start up.
 2. Shutting down
    1. Type `exit` into the command prompt and press enter. ChChing should shut down and update the save file accordingly.
 

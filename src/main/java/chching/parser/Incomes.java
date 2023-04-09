@@ -37,7 +37,6 @@ public class Incomes {
      * @param argumentsByField Input from users
      */
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
-        // check if all the fields are present
         boolean isDescriptionPresent = argumentsByField.containsKey(DESCRIPTION_FIELD);
         boolean isDatePresent = argumentsByField.containsKey(DATE_FIELD);
         boolean isValuePresent = argumentsByField.containsKey(VALUE_FIELD);
