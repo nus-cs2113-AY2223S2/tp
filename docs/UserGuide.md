@@ -11,15 +11,15 @@
     * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense-logout)
     * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
   * [Features](#features)
-    * [Get helpful instruction: `help`](#get-helpful-instruction--help)
-    * [Adding an expense: `add`](#adding-an-expense--add)
-    * [Listing all expenses: `list`](#listing-all-expenses--list)
-    * [Deleting an expense entry: `delete`](#deleting-an-expense-entry--delete)
-    * [Calculating total expenses: `total`](#calculating-total-expenses--total)
-    * [Sorting all current expenses: `sort`](#sorting-all-current-expenses--sort)
-    * [Obtaining expenses: `category`](#obtaining-expenses--category)
-    * [Finding expenses: `find`](#finding-expenses--find)
-    * [Generating overview: `overview`](#generating-overview--overview)
+    * [Get helpful instruction: `help`](#get-helpful-instruction-help)
+    * [Adding an expense: `add`](#adding-an-expense-add)
+    * [Listing all expenses: `list`](#listing-all-expenses-list)
+    * [Deleting an expense entry: `delete`](#deleting-an-expense-entry-delete)
+    * [Calculating total expenses: `total`](#calculating-total-expenses-total)
+    * [Sorting all current expenses: `sort`](#sorting-all-current-expenses-sort)
+    * [Obtaining expenses: `category`](#obtaining-expenses-category)
+    * [Finding expenses: `find`](#finding-expenses-find)
+    * [Generating overview: `overview`](#generating-overview-overview)
     * [Exiting the program (inside the account): `exit`](#exiting-the-program-inside-the-account-exit)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
@@ -99,6 +99,7 @@ ________________________________________________________________________________
 ```
 
 * This will be displayed if your username is taken already (not case-sensitive):
+<br>
 ```
 The username is taken, please use another username.
 _____________________________________________________________________________________
@@ -106,10 +107,11 @@ ________________________________________________________________________________
 > Haven't got your account yet? Type "signup" to create your account. 
 > Type "exit" to instantly terminate the program.
 _____________________________________________________________________________________
-
 ```
+
 * For all those cases, the user will need to change to `login` or `exit`, or continue to signup until they could create 
 a satisfied account. When the username is satisfied, this will be displayed:
+<br>
 ```
 User <your_username> has been created
 Signup successfully
