@@ -40,7 +40,7 @@ of loans and return dates.
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or a newer version installed.
+1. Ensure that you have Java 11 installed.
 2. Download the latest version of `DukeOfBooks` from [here](https://github.com/AY2223S2-CS2113-F10-4/tp/releases).
 
 ## Access Management
@@ -311,6 +311,18 @@ Examples:
 **Q**: How do I transfer my data to another computer? 
 
 **A**: Data is stored in the text files found in the `./tp/database` directory. To transfer the data to another computer, just transfer the files over to the new target computer, and keep the files in the same directory.
+
+**Q**: I cannot exit the application 
+
+**A**: You must first logout of the application before you can exit the application. The application
+has been designed this way to ensure maximum security for you!
+
+**Q**: Not all data is saved when I exit the application
+
+**A**: The application is designed to be hosted and run on a server without it being closed. Thus,
+there will be records that could be loss when exiting. Saving all data in this system through a
+text file is not feasible due to the inability to enforce the relation between objects when the
+system is loaded again.
 
 ## Command Summary
 
