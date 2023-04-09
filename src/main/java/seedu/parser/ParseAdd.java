@@ -13,6 +13,7 @@ import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.NotPositiveValueException;
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.WrongPrecisionException;
 import java.time.LocalDate;
@@ -80,6 +81,8 @@ public class ParseAdd {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         } catch (WrongPrecisionException e) {
             return new InvalidCommand(ERROR_INVALID_AMOUNT_PRECISION.toString());
+        } catch (DateLimitException l) {
+            return new InvalidCommand(l.getMessage());
         }
     }
 
@@ -101,9 +104,11 @@ public class ParseAdd {
     }
 
     public LocalDate fetchDate() throws EmptyStringException, StringIndexOutOfBoundsException,
-            DateTimeParseException {
+            DateTimeParseException, DateLimitException {
         // Converts string to date to fit Command class
         String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
-        return LocalDate.parse(dateVal);
+        LocalDate date = LocalDate.parse(dateVal);
+        ExceptionChecker.checkDateLimit(date);
+        return date;
     }
 }

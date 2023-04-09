@@ -23,6 +23,7 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
@@ -58,11 +59,13 @@ public class MainInputParser {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         } catch (InvalidDateException e) {
             return new InvalidCommand(e.getMessage());
+        } catch (DateLimitException l) {
+            return new InvalidCommand(l.getMessage());
         }
     }
 
     public static Command filterCategories(String command, String[] splitValues) throws IndexOutOfBoundsException,
-            DateTimeParseException, WrongInputException, NotPositiveValueException, InvalidDateException {
+            DateTimeParseException, WrongInputException, NotPositiveValueException, InvalidDateException, DateLimitException {
         switch (command) {
 
         // Commands that insert new inputs
