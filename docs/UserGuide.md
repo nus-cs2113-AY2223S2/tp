@@ -47,6 +47,7 @@ Format: `help`
 Meeting is a feature for the restaurant manager to manage meetings with 
 boss or workers. MeetingManager supports add_meeting, view_meetings,
 delete_meeting and find_meeting. 
+
 #### Add Meetings:
 Add a meeting to the meeting list. The name of the meeting is written after
 'n/', followed by the time of the meeting written after 't/'. Note that add_meeting
