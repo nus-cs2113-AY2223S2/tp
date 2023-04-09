@@ -1,9 +1,9 @@
 package seedu.mealcompanion.command.misc;
 
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.recipe.RecipePossibleCommand;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.IngredientDatabase;
@@ -45,7 +45,7 @@ class RecipePossibleCommandTest {
         IngredientList hamSandwichIngredients = new IngredientList();
         hamSandwichIngredients.add(new Ingredient("bread", 2));
         hamSandwichIngredients.add(new Ingredient("ham", 1));
-        Recipe hamSandwich = new Recipe("ham sandwich", false,200, 30, 10,
+        Recipe hamSandwich = new Recipe("ham sandwich", false, 200, 30, 10,
                 hamSandwichIngredients, new InstructionList());
         mealCompanionSession.getRecipes().add(hamSandwich);
 
@@ -54,7 +54,7 @@ class RecipePossibleCommandTest {
         IngredientList eggSandwichIngredients = new IngredientList();
         eggSandwichIngredients.add(new Ingredient("bread", 2));
         eggSandwichIngredients.add(new Ingredient("egg", 1));
-        Recipe eggSandwich = new Recipe("egg sandwich", false,200, 30, 10,
+        Recipe eggSandwich = new Recipe("egg sandwich", false, 200, 30, 10,
                 eggSandwichIngredients, new InstructionList());
         mealCompanionSession.getRecipes().add(eggSandwich);
     }
@@ -96,7 +96,7 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100));
-        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
                 waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 90));
@@ -109,7 +109,7 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100));
-        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
                 waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("apple", 9));

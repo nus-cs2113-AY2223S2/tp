@@ -1,9 +1,9 @@
 package seedu.mealcompanion.command.misc;
 
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ingredients.ClearCommand;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

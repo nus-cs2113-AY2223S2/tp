@@ -1,18 +1,19 @@
-package seedu.mealcompanion.command.factory.misc;
+package seedu.mealcompanion.command.factory.recipe;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
-import seedu.mealcompanion.command.recipe.RecipeAlmostCommand;
+import seedu.mealcompanion.command.recipe.RecipeRandomCommand;
 import seedu.mealcompanion.parser.CommandArguments;
 
-//@@author jingyaaa
-/**
- * Represents a factory for the "recipe almost" command.
- */
+//@@author ngyida
 
-public class RecipeAlmostCommandFactory extends ExecutableCommandFactory {
+/**
+ * Represents a factory for the "recipe random" command.
+ */
+public class RecipeRandomCommandFactory extends ExecutableCommandFactory {
+    @Override
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
-        return new RecipeAlmostCommand();
+        return new RecipeRandomCommand();
     }
 }

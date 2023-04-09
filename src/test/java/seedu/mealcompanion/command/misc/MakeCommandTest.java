@@ -1,9 +1,10 @@
 package seedu.mealcompanion.command.misc;
 
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.recipe.MakeCommand;
+import seedu.mealcompanion.exception.CommandRunException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,17 +13,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MakeCommandTest {
 
     @Test
-    public void makeCupOfWater() throws MealCompanionException {
+    public void makeCupOfWater() throws MealCompanionException, CommandRunException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
         Ingredient ingredient = new Ingredient("water", 2000);
         mealCompanionSession.getIngredients().add(ingredient);
         assertEquals(2000, mealCompanionSession.getIngredients().get(0).getQuantity());
-        new MakeCommand("2").execute(mealCompanionSession);
+        new MakeCommand(mealCompanionSession.getRecipes().getRecipe(1)).execute(mealCompanionSession);
         assertEquals(1700, mealCompanionSession.getIngredients().get(0).getQuantity());
     }
 
     @Test
-    public void makeBeefBurger() throws MealCompanionException {
+    public void makeBeefBurger() throws MealCompanionException, CommandRunException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
         Ingredient ingredient1 = new Ingredient("ground beef", 500);
         Ingredient ingredient2 = new Ingredient("salt", 2000);
@@ -45,7 +46,7 @@ public class MakeCommandTest {
         assertEquals(2000, mealCompanionSession.getIngredients().get(4).getQuantity());
         assertEquals(20, mealCompanionSession.getIngredients().get(5).getQuantity());
 
-        new MakeCommand("1").execute(mealCompanionSession);
+        new MakeCommand(mealCompanionSession.getRecipes().getRecipe(0)).execute(mealCompanionSession);
 
         assertEquals(50, mealCompanionSession.getIngredients().get(0).getQuantity());
         assertEquals(1998, mealCompanionSession.getIngredients().get(1).getQuantity());

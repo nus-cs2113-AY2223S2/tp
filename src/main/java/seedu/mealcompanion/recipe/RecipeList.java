@@ -2,7 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
 import java.io.InputStream;
@@ -25,6 +25,7 @@ public class RecipeList {
 
     /**
      * Constructor for RecipeList class with recipes initialized from saved file.
+     *
      * @param file file containing recipes
      */
     public RecipeList(String file) {
@@ -33,7 +34,7 @@ public class RecipeList {
         InputStream in = this.getClass().getResourceAsStream(file);
         try (Reader reader = new InputStreamReader(in)) {
             // This is needed for GSON to return the expected instance of List<SerializableRecipe>
-            TypeToken<?> typeToken= TypeToken.getParameterized(List.class, SerializableRecipe.class);
+            TypeToken<?> typeToken = TypeToken.getParameterized(List.class, SerializableRecipe.class);
             Type recipeListType = typeToken.getType();
             List<SerializableRecipe> recipeList = gson.fromJson(reader, recipeListType);
             for (SerializableRecipe recipe : recipeList) {
@@ -48,6 +49,7 @@ public class RecipeList {
 
     /**
      * Get ArrayList of Recipes
+     *
      * @return ArrayList of Recipes
      */
     public ArrayList<Recipe> getRecipes() {
@@ -56,6 +58,7 @@ public class RecipeList {
 
     /**
      * Add a recipe into RecipeList.
+     *
      * @param recipe the recipe to be added
      */
     public void add(Recipe recipe) {
@@ -64,16 +67,19 @@ public class RecipeList {
 
     /**
      * Get a recipe from RecipeList using an index.
+     *
      * @param index the index of the recipe to be retrieved
      * @return the recipe specified by the index
      */
     public Recipe getRecipe(int index) {
         return recipes.get(index);
     }
-    
+
     //@@author jingyaaa
+
     /**
      * Fetch a recipe by its specified name.
+     *
      * @param recipeName string containing recipe name to look for
      * @return recipe found
      */
@@ -87,8 +93,10 @@ public class RecipeList {
     }
 
     //@@author ngyida
+
     /**
      * Find the index (0-based) of a recipe by its specified name.
+     *
      * @param name the name of the recipe to look for
      * @return index of recipe if recipe is found, else return -1
      * @throws MealCompanionException if recipe name does not exist in the recipe list
@@ -106,6 +114,7 @@ public class RecipeList {
 
     /**
      * Get the number of recipes in RecipeList.
+     *
      * @return the number of recipes
      */
     public int size() {
@@ -114,6 +123,7 @@ public class RecipeList {
 
     /**
      * Check if RecipeList contains any recipe.
+     *
      * @return True if RecipeList does not contain any recipe. Else, false.
      */
     public boolean isEmpty() {

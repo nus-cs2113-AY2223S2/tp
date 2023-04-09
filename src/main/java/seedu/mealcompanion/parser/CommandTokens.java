@@ -5,9 +5,13 @@ package seedu.mealcompanion.parser;
  * Allows for more performant (compared to substring) matching of individual tokens in a DFS manner.
  */
 public class CommandTokens {
-    /** An array of tokens in the command */
+    /**
+     * An array of tokens in the command
+     */
     private final String[] tokens;
-    /** An index pointing to the <code>tokens</code> array representing the current token to match */
+    /**
+     * An index pointing to the <code>tokens</code> array representing the current token to match
+     */
     private int position;
 
     public CommandTokens(String command) {
@@ -17,6 +21,7 @@ public class CommandTokens {
 
     /**
      * Returns the total number of tokens.
+     *
      * @return number of tokens.
      */
     public int numTokens() {
@@ -26,6 +31,7 @@ public class CommandTokens {
     /**
      * Returns the current token to match.
      * Returns <code>null</code> if all tokens have been advanced beyond.
+     *
      * @return current token.
      */
     public String peek() {

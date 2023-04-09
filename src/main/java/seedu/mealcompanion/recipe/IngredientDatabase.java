@@ -2,7 +2,7 @@ package seedu.mealcompanion.recipe;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.InvalidIngredientNameException;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -27,7 +27,7 @@ public class IngredientDatabase {
             List<IngredientMetadata> ingredientMetadataList = gson.fromJson(reader, ingredientMetadataListType);
 
             for (IngredientMetadata ingredient : ingredientMetadataList) {
-                assert !knownIngredients.containsKey(ingredient.getName()): "duplicate ingredient";
+                assert !knownIngredients.containsKey(ingredient.getName()) : "duplicate ingredient";
                 knownIngredients.put(ingredient.getName().toLowerCase(), ingredient);
             }
 
@@ -55,9 +55,9 @@ public class IngredientDatabase {
         return knownIngredients;
     }
 
-    public IngredientMetadata getKnownIngredient(String name) throws MealCompanionException {
+    public IngredientMetadata getKnownIngredient(String name) throws InvalidIngredientNameException {
         if (!this.knownIngredients.containsKey(name.toLowerCase())) {
-            throw new MealCompanionException("Unknown ingredient named: " + name);
+            throw new InvalidIngredientNameException(name);
         }
         return knownIngredients.get(name);
     }

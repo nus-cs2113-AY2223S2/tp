@@ -7,24 +7,26 @@ import seedu.mealcompanion.command.factory.allergen.AllergenListCommandFactory;
 import seedu.mealcompanion.command.factory.allergen.AllergenRemoveCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsListCommandFactory;
 import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandFactory;
-import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
+import seedu.mealcompanion.command.factory.ingredients.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ClearCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloAnswerCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloPSLECommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeFavouriteCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeUnfavouriteCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
-import seedu.mealcompanion.command.factory.misc.MakeCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeNeedCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeFindCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipeAlmostCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.MakeCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeAllCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeAlmostCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeDetailCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeFavouriteCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeFindCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeNeedCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipePossibleCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeRandomCommandFactory;
+import seedu.mealcompanion.command.factory.recipe.RecipeUnfavouriteCommandFactory;
+import seedu.mealcompanion.command.factory.ingredients.RemoveCommandFactory;
+import seedu.mealcompanion.exception.CommandRunException;
+import seedu.mealcompanion.exception.InvalidCommandException;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.CommandTokens;
@@ -33,11 +35,9 @@ import seedu.mealcompanion.recipe.RecipeList;
 import seedu.mealcompanion.router.CommandRouterNode;
 import seedu.mealcompanion.storage.IngredientStorage;
 import seedu.mealcompanion.ui.MealCompanionUI;
-import java.util.List;
+
 import java.util.ArrayList;
-
-
-
+import java.util.List;
 import java.util.Scanner;
 
 public class MealCompanionSession {
@@ -85,8 +85,6 @@ public class MealCompanionSession {
     private final List<IngredientMetadata> allergens;
 
 
-
-
     public MealCompanionSession() {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
@@ -104,7 +102,6 @@ public class MealCompanionSession {
     public List<IngredientMetadata> getAllergens() {
         return this.allergens;
     }
-
 
 
     /**
@@ -163,8 +160,14 @@ public class MealCompanionSession {
                 continue;
             }
 
-            ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
-            cmd.execute(this);
+            try {
+                ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
+                cmd.execute(this);
+            } catch (InvalidCommandException e) {
+                System.out.println(e.getMessage());
+            } catch (CommandRunException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

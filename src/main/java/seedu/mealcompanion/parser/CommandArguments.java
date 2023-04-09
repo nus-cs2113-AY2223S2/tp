@@ -14,6 +14,7 @@ public class CommandArguments {
     /**
      * Parses command arguments from a <code>CommandTokens</code> object.
      * This assumes that the command portion of the tokens have already been consumed via <code>advance()</code>.
+     *
      * @param remainingTokens the remaining tokens to be parsed as arguments.
      */
     public CommandArguments(CommandTokens remainingTokens) {
@@ -23,7 +24,7 @@ public class CommandArguments {
         StringBuilder buffer = new StringBuilder();
         String currentFlagLabel = null;
 
-        while(remainingTokens.peek() != null) {
+        while (remainingTokens.peek() != null) {
             String currentToken = remainingTokens.peek();
             remainingTokens.advance();
             String possibleFlagLabel = getFlagLabel(currentToken);
@@ -68,6 +69,7 @@ public class CommandArguments {
 
     /**
      * Returns the positional argument.
+     *
      * @return the positional argument of the parsed command.
      */
     public String getPositionalArgument() {
@@ -76,6 +78,7 @@ public class CommandArguments {
 
     /**
      * Returns the flag argument corresponding to the flag provided.
+     *
      * @param flag the name of the flag to return the corresponding value for.
      * @return the flag argument value of the passed flag.
      */

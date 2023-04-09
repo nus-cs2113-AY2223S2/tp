@@ -1,6 +1,6 @@
 package seedu.mealcompanion.ingredient;
 
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 
 import java.util.ArrayList;
 
@@ -21,8 +21,10 @@ public class IngredientList {
     }
 
     //@@author jingyaaa
+
     /**
      * Fetch an ingredient by its specified name.
+     *
      * @param ingredientName string containing ingredient name to look for
      * @return ingredient found
      */
@@ -52,6 +54,7 @@ public class IngredientList {
         }
         return -1;
     }
+
     public void remove(int i) {
         ingredients.remove(i);
     }
@@ -69,8 +72,10 @@ public class IngredientList {
     }
 
     //@@author ngyida
+
     /**
      * Get a formatted string of ingredients with based-1 indexes.
+     *
      * @return string of ingredients
      */
     @Override
@@ -79,7 +84,7 @@ public class IngredientList {
         for (int i = 0; i < ingredients.size(); i++) {
             Ingredient ingredient = ingredients.get(i);
             String ingredientDetails = ingredient.toString();
-            ingredientListDetails.append((i+1) + ". " + ingredientDetails + System.lineSeparator());
+            ingredientListDetails.append((i + 1) + ". " + ingredientDetails + System.lineSeparator());
         }
         return String.valueOf(ingredientListDetails);
     }

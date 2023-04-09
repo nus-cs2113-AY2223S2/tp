@@ -6,6 +6,7 @@ public class Instruction {
 
     /**
      * Construct the instruction using the specified string.
+     *
      * @param instruction the string to set the instruction to
      */
     public Instruction(String instruction) {
@@ -14,6 +15,7 @@ public class Instruction {
 
     /**
      * Get the string representing the instruction.
+     *
      * @return the string of the instruction
      */
     public String getInstruction() {
@@ -22,6 +24,7 @@ public class Instruction {
 
     /**
      * Set the instruction.
+     *
      * @param instruction the string to set the instruction to
      */
     public void setInstruction(String instruction) {

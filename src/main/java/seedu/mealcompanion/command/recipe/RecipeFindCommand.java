@@ -6,6 +6,7 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author jingyaaa
+
 /**
  * Represents the "recipe find" command
  */
@@ -20,6 +21,7 @@ public class RecipeFindCommand extends ExecutableCommand {
 
     /**
      * Check if recipe name in a recipe list contains the search term
+     *
      * @param mealCompanionSession the MealCompanionSession containing the recipe list
      * @return true if there are recipe names that contain search term, else false
      */

@@ -1,18 +1,19 @@
 package seedu.mealcompanion.command.recipe;
 
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.recipe.Recipe;
 
 //@@author Jjzeng123
 public class RecipeFavouriteCommand extends RecipeCommand {
-    String argument;
-    public RecipeFavouriteCommand(String argument)  {
-        this.argument = argument;
+    Recipe recipe;
+
+    public RecipeFavouriteCommand(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     /**
      * Check if a string is a number
+     *
      * @param argument the string to check for
      * @return true if string is number, false otherwise
      */
@@ -22,30 +23,8 @@ public class RecipeFavouriteCommand extends RecipeCommand {
 
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
-        try {
-            if (this.argument == null) {
-                throw new MealCompanionException("Missing argument!");
-            }
-
-            int index;
-
-            if (!isNum(this.argument)) {
-                index = mealCompanionSession.getRecipes().findIndex(this.argument);
-            } else {
-                index = Integer.parseInt(this.argument) - 1; // 1-based user index decremented for 0-based index
-            }
-
-            if (index < 0 || index >= mealCompanionSession.getRecipes().size()) {
-                throw new MealCompanionException("Recipe index out of range!");
-            }
-            assert index >= 0 && index < mealCompanionSession.getRecipes().size();
-
-            Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
-            recipe.setFavourite();
-            mealCompanionSession.getUi().printMessage("Success! Added this recipe to favourites: ");
-            mealCompanionSession.getUi().printMessage((index + 1) + ". " + recipe.getName());
-        } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
-        }
+        recipe.setFavourite();
+        mealCompanionSession.getUi().printMessage("Success! Added this recipe to favourites: ");
+        mealCompanionSession.getUi().printMessage(recipe.getName());
     }
 }

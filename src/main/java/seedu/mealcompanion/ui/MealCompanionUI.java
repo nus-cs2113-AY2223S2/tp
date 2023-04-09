@@ -18,6 +18,7 @@ public class MealCompanionUI {
 
     /**
      * Returns a string representing the next command the user enters.
+     *
      * @return the next command string.
      */
     public String getNextCommandString() {
@@ -38,6 +39,7 @@ public class MealCompanionUI {
 
     /**
      * Prints the provided message.
+     *
      * @param message the message to print.
      */
     public void printMessage(String message) {

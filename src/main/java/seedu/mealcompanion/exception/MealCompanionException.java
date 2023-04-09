@@ -1,4 +1,4 @@
-package seedu.mealcompanion;
+package seedu.mealcompanion.exception;
 
 /**
  * Class to throw exceptions specific to MealCompanion

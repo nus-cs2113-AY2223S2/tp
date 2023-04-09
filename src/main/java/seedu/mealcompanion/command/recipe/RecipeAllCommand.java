@@ -5,6 +5,7 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author ngyida
+
 /**
  * Represents the "recipe all" command.
  */

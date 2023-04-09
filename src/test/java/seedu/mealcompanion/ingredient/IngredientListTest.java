@@ -1,7 +1,7 @@
 package seedu.mealcompanion.ingredient;
 
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,8 +15,8 @@ public class IngredientListTest {
         ingredients.add(ingredient1);
         ingredients.add(ingredient2);
 
-        assertEquals(0,ingredients.findIndex("apple"));
-        assertEquals(1,ingredients.findIndex("egg"));
+        assertEquals(0, ingredients.findIndex("apple"));
+        assertEquals(1, ingredients.findIndex("egg"));
         assertEquals(-1, ingredients.findIndex("bread"));
     }
 }

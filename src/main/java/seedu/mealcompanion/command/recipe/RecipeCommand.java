@@ -34,7 +34,8 @@ public abstract class RecipeCommand extends ExecutableCommand {
 
     /**
      * Check if a recipe contains any allergen.
-     * @param recipe the recipe to check for allergen
+     *
+     * @param recipe    the recipe to check for allergen
      * @param allergens the allergens to be checked against
      * @return false if recipe has no allergen. Else, true.
      */
@@ -51,7 +52,7 @@ public abstract class RecipeCommand extends ExecutableCommand {
     /**
      * Check if a recipe can be made using a list of ingredients given and exclude recipes that contain any allergens.
      *
-     * @param recipe the recipe to be made
+     * @param recipe            the recipe to be made
      * @param fridgeIngredients the list of ingredients used to make the recipe
      * @return true if the recipe can be made using the list of ingredients without any allergens, false otherwise
      */
