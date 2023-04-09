@@ -31,20 +31,20 @@ Given below are my contributions to the project.
 
 #### Contributions to the UG:
 * Created `Table of Contents`.
-* Created `Quick Start` portion of the UG.
-* Created the `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`,`clear target`, `balance`, `exit`  in the Feature portion of the UG.
-* Created `Command Summary` in the Feature portion of the UG.
+* Created `Quick Start` portion.
+* Created `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`,`clear target`, `balance`, `exit` features in the Feature portion.
+* Created `Command Summary` in the Feature portion.
 
 #### Contributions to the DG:
-* Added `Table of Contents`.
+* Created `Table of Contents`.
+* Created documentation for `Target user profile`.
+* Created documentation for `Value Proposition`.
+* Created documentation for `v2.0` of `User Stories`.
+* Created documentation for `Glossary`.
 * Added `Record` and `RecordList` UML class diagrams.
 * Added `DeleteIncomeCommand` sequence diagram.
 * Added `Target` and `TargetStorage` UML class diagrams.
 * Added `SetTargetCommand` sequence diagram.
-* Added documentation for `Target user profile`.
-* Added documentation for `Value Proposition`.
-* Added documentation for `v2.0` of `User Stories`.
-* Added documentation for `Glossary`.
 * Added Non-Functional Requirements section.
 
 #### Contributions to team-based tasks:
