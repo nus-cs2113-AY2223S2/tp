@@ -72,6 +72,6 @@ public class AddCardToTagCommand extends Command {
         addCardToTag(tagList, cardToAdd, ui);
 
         Tag tagToBeAdded = tagList.findTag(tagSelector);
-        ui.printAddTagToCardSuccess(cardToAdd.getUuid(), tagToBeAdded.getUUID());
+        ui.printAddTagToCardSuccess(cardToAdd.getUuid(), tagToBeAdded.getTagName());
     }
 }

@@ -67,6 +67,6 @@ public class AddTagToDeckCommand extends Command {
         addTagToDeck(deckList, tagList, ui);
 
         Tag tagToBeAdded = tagList.findTag(tagSelector);
-        ui.printAddTagToDeckSuccess(tagToBeAdded.getUUID(), deckUUID);
+        ui.printAddTagToDeckSuccess(tagToBeAdded.getTagName(), deckUUID);
     }
 }

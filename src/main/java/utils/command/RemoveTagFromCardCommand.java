@@ -67,7 +67,7 @@ public class RemoveTagFromCardCommand extends Command {
         Tag tagToDelete = tagList.findTag(tagSelector);
         removeTagFromCard(cardAffected, tagToDelete);
 
-        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getUUID());
+        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getTagName());
     }
 }
 

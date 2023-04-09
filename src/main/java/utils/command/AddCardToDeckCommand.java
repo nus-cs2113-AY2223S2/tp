@@ -56,6 +56,6 @@ public class AddCardToDeckCommand extends Command {
         assert cardToAdd != null;
 
         addCardToDeck(deckList, cardToAdd, ui);
-        ui.printAddCardToDeckSuccess(cardToAdd.getUuid(), deckUUID);
+        ui.printAddCardToDeckSuccess(cardToAdd.getUuid(), deckName);
     }
 }

@@ -36,7 +36,7 @@ public class DeleteTagCommand extends Command {
             for (CardUUID cardUUID : tagToDelete.getCardsUUID()) {
                 Card affectedCard = cardList.findCardFromUUID(cardUUID);
                 affectedCard.removeTag(tagToDelete.getUUID());
-                ui.printRemoveTagFromCard(affectedCard.getUuid(), tagToDelete.getUUID());
+                ui.printRemoveTagFromCard(affectedCard.getUuid(), tagToDelete.getTagName());
             }
         }
     }
@@ -68,6 +68,6 @@ public class DeleteTagCommand extends Command {
         removeTagsFromDecks(deckList, tagToDelete);
 
         tagList.delete(tagSelector);
-        ui.printRemoveTagFromTagList(tagToDelete.getUUID());
+        ui.printRemoveTagFromTagList(tagToDelete.getTagName());
     }
 }

@@ -151,24 +151,24 @@ public class UserInterface {
         }
     }
 
-    public void printAddTagToCardSuccess(CardUUID cardUUID, TagUUID tagUUID) {
-        System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
+    public void printAddTagToCardSuccess(CardUUID cardUUID, String tagName) {
+        System.out.println("Successfully added tag " + tagName + " to card " + cardUUID);
     }
 
-    public void printAddCardToDeckSuccess(CardUUID cardUUID, DeckUUID deckUUID) {
-        System.out.println("Successfully added card " + cardUUID + " to deck " + deckUUID);
+    public void printAddCardToDeckSuccess(CardUUID cardUUID, String deckName) {
+        System.out.println("Successfully added card " + cardUUID + " to deck " + deckName);
     }
 
     public void printRemoveCardFromDeckSuccess(CardUUID cardUUID, String deckName) {
         System.out.println("Successfully removed card " + cardUUID + " from deck " + deckName);
     }
 
-    public void printRemoveTagFromDeckSuccess(TagUUID tagUUID, String deckName) {
-        System.out.println("Successfully removed tag " + tagUUID + " from deck " + deckName);
+    public void printRemoveTagFromDeckSuccess(String tagName, String deckName) {
+        System.out.println("Successfully removed tag " + tagName + " from deck " + deckName);
     }
 
-    public void printAddTagToDeckSuccess(TagUUID tagUUID, DeckUUID deckUUID) {
-        System.out.println("Successfully added tag " + tagUUID + " to deck " + deckUUID);
+    public void printAddTagToDeckSuccess(String tagName, DeckUUID deckUUID) {
+        System.out.println("Successfully added tag " + tagName + " to deck " + deckUUID);
     }
 
     public void printTagCreationSuccess(String tagName) {
@@ -179,24 +179,24 @@ public class UserInterface {
         System.out.println("Deck does not exist.. creating a new one");
     }
 
-    public void printRemoveTagFromCard(CardUUID cardUUID, TagUUID tagUUID) {
-        System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
+    public void printRemoveTagFromCard(CardUUID cardUUID, String tagName) {
+        System.out.println("Successfully removed tag " + tagName + " from card " + cardUUID);
     }
 
-    public void printRemoveDeckFromCard(CardUUID cardUUID, DeckUUID deckUUID) {
-        System.out.println("Successfully removed deck " + deckUUID + " from card " + cardUUID);
+    public void printRemoveDeckFromCard(CardUUID cardUUID, String deckName) {
+        System.out.println("Successfully removed deck " + deckName + " from card " + cardUUID);
     }
 
-    public void printRemoveDeckFromTag(TagUUID tagUUID, DeckUUID deckUUID) {
-        System.out.println("Successfully removed deck " + deckUUID + " from tag " + tagUUID);
+    public void printRemoveDeckFromTag(String tagName, String deckName) {
+        System.out.println("Successfully removed deck " + deckName + " from tag " + tagName);
     }
 
-    public void printRemoveTagFromTagList(TagUUID tagUUID) {
-        System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");
+    public void printRemoveTagFromTagList(String tagName) {
+        System.out.println("Successfully removed tag " + tagName + " from the tag list.");
     }
 
-    public void printRemoveDeckFromDeckList(DeckUUID deckUUID) {
-        System.out.println("Successfully removed deck " + deckUUID + " from the deck list.");
+    public void printRemoveDeckFromDeckList(String deckName) {
+        System.out.println("Successfully removed deck " + deckName + " from the deck list.");
     }
 
     public void printEditTagNameSuccess(String oldTagName, Tag tag) {

@@ -37,7 +37,7 @@ public class DeleteDeckCommand extends Command {
         for (CardUUID cardUUID : deck.getCardsUUID()) {
             Card affectedCard = cardList.findCardFromUUID(cardUUID);
             affectedCard.removeDecks(deckUUID);
-            userInterface.printRemoveDeckFromCard(affectedCard.getUuid(), deckUUID);
+            userInterface.printRemoveDeckFromCard(affectedCard.getUuid(), deckName);
         }
     }
 
@@ -51,7 +51,7 @@ public class DeleteDeckCommand extends Command {
         for (TagUUID tgUUID : deck.getTagsUUID()) {
             Tag affectedTag = tagList.findTagFromUUID(tgUUID);
             affectedTag.removeDecks(deckUUID);
-            userInterface.printRemoveDeckFromTag(affectedTag.getUUID(), deckUUID);
+            userInterface.printRemoveDeckFromTag(affectedTag.getTagName(), deckName);
         }
     }
 
@@ -61,6 +61,6 @@ public class DeleteDeckCommand extends Command {
         removeDeckFromCards(cardList, deckList, ui);
         removeDeckFromTags(tagList, deckList, ui);
         deckList.delete(deckName);
-        ui.printRemoveDeckFromDeckList(deckUUID);
+        ui.printRemoveDeckFromDeckList(deckName);
     }
 }

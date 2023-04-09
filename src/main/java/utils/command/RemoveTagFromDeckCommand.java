@@ -68,6 +68,6 @@ public class RemoveTagFromDeckCommand extends Command {
         assert tagToBeAdded != null;
 
         removeTagFromDeck(deckList, tagList, deckName, tagSelector);
-        ui.printRemoveTagFromDeckSuccess(tagToBeAdded.getUUID(), deckName);
+        ui.printRemoveTagFromDeckSuccess(tagToBeAdded.getTagName(), deckName);
     }
 }
