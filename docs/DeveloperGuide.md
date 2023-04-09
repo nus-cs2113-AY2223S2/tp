@@ -2,24 +2,24 @@
 
 <!-- TOC -->
 * [Developer Guide](#developer-guide)
-  * [Acknowledgements](#acknowledgements)
-  * [Design & implementation](#design--implementation)
-  * [Design](#design)
-  * [Implementation](#implementation)
-    * ['Add' Feature](#-add-feature)
-    * ['Delete' Feature](#-delete-feature)
-    * [Monthly Overview](#monthly-overview)
-    * [Yearly Overview](#yearly-overview)
-    * ['Sort' Feature](#-sort-feature)
-    * ['Total' Feature](#-total-feature)
-    * ['Storage' Feature](#-storage-feature)
-  * [Product scope](#product-scope)
-    * [Target user profile](#target-user-profile)
-    * [Value proposition](#value-proposition)
-  * [User Stories](#user-stories)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
-  * [Instructions for Manual Testing](#instructions-for-manual-testing)
+    * [Acknowledgements](#acknowledgements)
+    * [Design & implementation](#design--implementation)
+    * [Design](#design)
+    * [Implementation](#implementation)
+        * ['Add' Feature](#add-feature)
+        * ['Delete' Feature](#delete-feature)
+        * [Monthly Overview](#monthly-overview)
+        * [Yearly Overview](#yearly-overview)
+        * ['Sort' Feature](#sort-feature)
+        * ['Total' Feature](#total-feature)
+        * ['Storage' Feature](#storage-feature)
+    * [Product scope](#product-scope)
+        * [Target user profile](#target-user-profile)
+        * [Value proposition](#value-proposition)
+    * [User Stories](#user-stories)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+    * [Instructions for Manual Testing](#instructions-for-manual-testing)
 <!-- TOC -->
 
 ## Acknowledgements
@@ -266,20 +266,21 @@ Step 3. `CommandDelete#execute()` removes the expense at index specified by the 
 ### Monthly Overview
 
 This mechanism is facilitated by `CommandOverview`, which extends `Command`. It makes use of output from `Parser`
-to extract `month` and `year` from user input. It then calls on `MonthlyOverview` if both `month` and 'year'
-are not null, which makes use of `MonthFilter` to filter out expenses in that specific month and returns sum by
-category sorted in descending order before printing out the final overview in the intended format.
+to extract `month` and `year` from user input. It then calls on `MonthlyOverview` if both `month` and `year`
+are not null. `MonthFilter` is constructed in `MonthlyOverview` to filter out expenses in that specific month.
+It returns sum by category sorted in descending order to `MonthlyOverview`, which then prints out the final overview 
+in the intended format.
 
 Given below is the partial sequence diagram to explain how the 'monthly overview' mechanism behaves once being called.
 ![](diagrams/MonthlyOverview.png)
 
 ### Yearly Overview
 
-Similar to `monthly overview`, this mechanism is facilitated by `CommandOverview`, which extends `Command`.
-It makes use of output from `Parser` to extract `month` and `year` from user input. It then calls on `YearlyOverview`
-if a year is specified but month is null, which makes use of `yearFilter` to filter out expenses in that specific year
-and returns sum by month according to natural month order before printing out the final overview in the intended
-format.
+Similar to `MonthlyOverview`, this mechanism is facilitated by `CommandOverview`, which extends `Command`.
+It makes use of outputs from `Parser` to extract `month` and `year` from user input. It then calls on `YearlyOverview`
+if a year is specified but month is null. `YearFilter` is constructed in `YearlyOverview` 
+to filter out expenses in the required year. It returns sum by month according to natural month order to 
+`YearlyOverview`, which then prints out the final overview in the intended format.
 
 Given below is the partial sequence diagram to explain how the 'yearly overview' mechanism behaves once being called.
 ![](diagrams/YearlyOverview.png)
