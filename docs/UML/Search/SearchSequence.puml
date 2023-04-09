@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title SearchParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 participant ":SearchParser"
 User -> ":SearchParser" **
@@ -32,7 +34,6 @@ else
             end ref
             ":SearchParser" --> User
         end
-        ":SearchParser" -> ":SearchCommand" ** :
         ":SearchParser" -> ":SearchCommand" ++ : run()
         ref over ":SearchCommand"
             ":SearchCommand" runs

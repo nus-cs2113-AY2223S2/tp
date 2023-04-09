@@ -18,6 +18,8 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 - [Adding an item: `add`](#adding-an-item-add-)
 - [Editing an item: `edit`](#editing-an-item-edit-)
@@ -32,7 +34,7 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 - [Dashboard: `db`](#dashboard-db-)
 - [Category: `cat`](#category-cat-)
 - [Alert for item(s): `alert`](#alert-for-an-item-alert-)
-- [Autosave of Inventory: `autosave`](#change-autosave-mode-autosave-)
+- [Autosave of Inventory: `autosave`](#change-auto-save-mode-autosave-)
 - [Exiting the program: `exit`](#exiting-the-program-exit-)
 
 ---
