@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+activate ":Duke"
+create ":Scanner"
+":Duke" -> ":Scanner" : Scanner(System.in)
+activate ":Scanner"
+":Duke" <-- ":Scanner" : in:Scanner
+deactivate ":Scanner"
+ref over ":Duke"
+initialisation
+end
+loop isContinue == true
+":Duke" -> ":Scanner" : nextline()
+activate ":Scanner"
+":Duke" <-- ":Scanner" : userInput:String
+deactivate ":Scanner"
+":Duke" -> ":Parser" : parseUserCommand(userInput, universities, modules, allModules, moduleStorage, deadlineStorage, budgetPlanner, deadlines)
+activate ":Parser"
+":Duke" <-- ":Parser" : command: Command
+deactivate ":Parser"
+":Duke" -> ":Command" : execute()
+activate ":Command"
+":Duke" <-- ":Command"
+deactivate ":Command"
+":Duke" -> ":Command" : getIsExit()
+activate ":Command"
+":Duke" <-- ":Command" : isContinue = !isExit:boolean
+deactivate ":Command"
+end
+
+'":Duke" -> ":Parser"
+'activate ":Parser"
+
+@enduml
