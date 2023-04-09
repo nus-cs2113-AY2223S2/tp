@@ -375,10 +375,10 @@ The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIG
 of the notes stored in the Notes List by users.
 
 <details>
-<summary>Sequence Diagram for Notes</summary>
+<summary>Sequence Diagram for Store</summary>
 <div markdown="1">
 
-![img_2.png](SequenceDiagrams/img_2.png)
+![img_2.png](img_2.png)![img_2.png](SequenceDiagrams/img_2.png)
 
 </div>
 </details>
