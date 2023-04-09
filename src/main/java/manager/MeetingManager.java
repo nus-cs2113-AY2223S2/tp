@@ -82,18 +82,18 @@ public class MeetingManager {
      * @param ui manages user output.
      */
     public static void findMeeting(String keyword, TextUi ui){
-        ArrayList<Meeting> meetingFound=new ArrayList<>();
+        ArrayList<Meeting> meetingsFound=new ArrayList<>();
         for(Meeting m:meetings){
             if( m.getIssue().contains(keyword)){
-                meetingFound.add(m);
+                meetingsFound.add(m);
             }
         }
-        if(meetingFound.isEmpty()){
+        if(meetingsFound.isEmpty()){
             ui.printMessage(Messages.MESSAGE_MEETING_NOT_FOUND);
         } else{
             ui.printMessage(Messages.MESSAGE_MEETING_FOUND);
             int index=1;
-            for(Meeting n:meetingFound){
+            for(Meeting n:meetingsFound){
                 ui.printMessage(index+". "+n.getIssue()+" at "+n.getTime());
                 index++;
             }
