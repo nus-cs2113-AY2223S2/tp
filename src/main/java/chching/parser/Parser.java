@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -52,9 +51,6 @@ public class Parser {
 
     static {
         LogManager.getLogManager().reset();
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.SEVERE);
-        logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
             new File("data/ParserLog.log").createNewFile();
@@ -75,7 +71,7 @@ public class Parser {
      */
     public static Command parse(String line, Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
-        String instruction = lineParts.get(0);
+        String instruction = lineParts.get(0).trim();
         String instructionLowerCase = instruction.toLowerCase();
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);

@@ -1,7 +1,7 @@
 # Developer Guide
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ## Acknowledgements
 

@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -25,9 +24,6 @@ public class LiveCurrencyApi {
 
     static {
         LogManager.getLogManager().reset();
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.SEVERE);
-        logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
             new File("data/LiveCurrencyAPILog.log").createNewFile();
