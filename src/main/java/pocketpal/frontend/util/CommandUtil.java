@@ -6,20 +6,9 @@ import pocketpal.frontend.exceptions.InvalidHelpCommandException;
 
 public class CommandUtil {
     public static HelpInput convertStringToCommand(String commandString) throws InvalidHelpCommandException {
-        switch (commandString) {
-        case "Add":
-            return HelpInput.ADD;
-        case "Delete":
-            return HelpInput.DELETE;
-        case "Edit":
-            return HelpInput.EDIT;
-        case "View":
-            return HelpInput.VIEW;
-        case "Bye":
-            return HelpInput.BYE;
-        case "Help":
-            return HelpInput.HELP;
-        default:
+        try{
+            return HelpInput.valueOf(commandString.toUpperCase());
+        } catch (IllegalArgumentException e) {
             throw new InvalidHelpCommandException(MessageConstants.MESSAGE_INVALID_HELP_COMMAND);
         }
     }
