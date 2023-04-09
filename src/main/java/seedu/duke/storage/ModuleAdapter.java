@@ -10,7 +10,6 @@ import com.google.gson.stream.JsonWriter;
 import seedu.duke.SemData;
 
 import java.io.IOException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
