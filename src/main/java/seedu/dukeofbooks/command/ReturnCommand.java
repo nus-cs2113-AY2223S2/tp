@@ -13,6 +13,7 @@ public final class ReturnCommand extends LoanCommand {
     private static final String FAIL_MSG = "Item is not borrowed!";
     private static final String ERROR_MSG_F = "Cannot return item: %s";
     private static final String NOT_FOUND_MSG = "Item not found!";
+    public static final String INVALID_SYNTAX = "Expected: return -title TITLE";
     Person person;
     BorrowableItem item;
     

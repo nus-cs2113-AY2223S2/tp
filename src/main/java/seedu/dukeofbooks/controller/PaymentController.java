@@ -2,34 +2,40 @@ package seedu.dukeofbooks.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import seedu.dukeofbooks.data.exception.PaymentUnsuccessfulException;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
+import seedu.dukeofbooks.ui.TextUi;
 
 public class PaymentController {
     public static void makePayment(BorrowableItem toReturn, double amount) throws PaymentUnsuccessfulException {
-        try (Scanner in = new Scanner(System.in)) {
-            do {
-                System.out.printf("Payment method:\n"
+        Scanner in = new Scanner(System.in);
+        do {
+            try {
+                TextUi.showToUser("Payment method:\n"
                         + "1.PayNow\n"
                         + "2.Debit/Credit card\n"
                         + "3.NETS\n"
                         + "4.Cash\n"
-                        + "5.Cancel Payment\n");
+                        + "5.Cancel Payment");
                 int choice = in.nextInt();
                 if (choice < 1 || choice > 5) {
-                    System.out.println("Invalid Choice!");
+                    TextUi.showToUser("Invalid Choice!");
                 } else if (choice > 0 && choice < 4) {
                     break;
                 } else if (choice == 5) {
                     throw new PaymentUnsuccessfulException("Payment Unsuccessful...");
                 }
-            } while (true);
-        }
+            } catch (InputMismatchException e) {
+                in.next();
+                continue;
+            }
+        } while (true);
         String tid = generateTID(toReturn);
-        System.out.println("Payment Successful! Transaction ID: " + tid);
+        TextUi.showToUser("Payment Successful! Transaction ID: " + tid);
     }
 
     public static String generateTID(BorrowableItem toReturn) {
