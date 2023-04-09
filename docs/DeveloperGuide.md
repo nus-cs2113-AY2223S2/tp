@@ -118,7 +118,11 @@ The `Budget` component,
 
 Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
 
-### Exception class
+### Command classes
+
+The execution behaviors of possible commands are in the `seedu.brokeMan.command` package.
+
+### Exception classes
 
 Possible exceptions in multiple components are defined in the `seedu.brokeMan.exception` package.
 
