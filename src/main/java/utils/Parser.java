@@ -218,29 +218,14 @@ public class Parser {
                 }
             }
 
-            System.out.println(staffName);
-            System.out.println(staffWorkingDay);
-            System.out.println(staffPhoneNumber);
-            System.out.println(staffDateOfBirth);
-
-            if (staffName.equals("")) {
-                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_NAME);
-            }
-
-            if (staffWorkingDay.equals("")) {
-                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_WORKING_DAY);
-            }
-
-            if (staffPhoneNumber.equals("")) {
-                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
-            }
-
-            if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
-                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
+            if (staffName.equals("") || staffWorkingDay.equals("") || staffPhoneNumber.equals("")
+            || staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10
+            ) {
+                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PARAMETERS);
             }
 
             if (staffPhoneNumber.length() > 15) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER)
             }
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
