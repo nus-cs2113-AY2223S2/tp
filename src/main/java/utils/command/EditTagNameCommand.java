@@ -6,6 +6,7 @@ import model.Tag;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 
@@ -19,8 +20,13 @@ public class EditTagNameCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
+
+        if (oldTagName.length() > 50 || newTagName.length() > 50) {
+            throw new LongTagNameException();
+        }
+
         Tag tag = tagList.findTagFromName(oldTagName);
         if (tag == null) {
             throw new TagNotFoundException();

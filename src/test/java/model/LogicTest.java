@@ -16,6 +16,7 @@ import utils.command.DeleteDeckCommand;
 import utils.command.DeleteTagCommand;
 import utils.command.EditDeckNameCommand;
 import utils.command.EditTagNameCommand;
+import utils.command.ListCardsUnderTagCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -285,6 +286,71 @@ public class LogicTest {
             parseAndExecute(
                     "card tag -t jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjskdhgjdsghjkghdhgsdjkghjkhgdsjghjhgjkzshgjshzgjszhguisghsdghsizghzsjghgsezgsgsg -i 1",
                     AddCardToTagCommand.class);
+        } catch (LongTagNameException e) {
+            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_editTagLongName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+
+        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "tag edit -o ahfahfgafgasehyfgeduhsgfuyhghfusdghfhgfsdhsjhgfhsgfhjsgfsjhfghsfsgfsfs -n "
+                            + "fgeshjfgsydfgsduyysfgydfgsyufgsyufgsyufgsdyufgsyufgsyuhfgsyufsgfsgyfsgfys",
+                    EditTagNameCommand.class);
+        } catch (LongTagNameException e) {
+            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_deleteTagLongName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+
+        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "tag delete -t "
+                            +
+                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgjgiogz",
+                    DeleteTagCommand.class);
+        } catch (LongTagNameException e) {
+            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_listCardsUnderTagLongName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+
+        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "tag list -t "
+                            +
+                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgjgiogz",
+                    ListCardsUnderTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
         }
