@@ -31,7 +31,7 @@ public class EditExpenseCommand extends Command {
 
     public EditExpenseCommand(HashMap<String, String> argumentsByField) throws ChChingException {
         this.argumentsByField = argumentsByField;
-    
+
         index = Expenses.getIndex(argumentsByField);
         hasCategory = argumentsByField.containsKey(CATEGORY_FIELD);
         hasDescription = argumentsByField.containsKey(DESCRIPTION_FIELD);
@@ -45,7 +45,7 @@ public class EditExpenseCommand extends Command {
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
-     * @param ui        User interface.
+     * @param ui            User interface.
      * @param storage       Storage of data.
      * @param converter     Convert value.
      * @param targetStorage store target.
@@ -54,22 +54,22 @@ public class EditExpenseCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
                         Converter converter, TargetStorage targetStorage) throws ChChingException {
-        // check if the index is valid
+
         if (index <= 0) {
             throw new ChChingException("Negative/Zero index");
         } else if (index > expenses.size()) {
             throw new ChChingException("The index is too big");
         }
         assert index > 0 : "Index must be a positive integer";
-        
+
         if (!hasCategory && !hasDescription && !hasDate && !hasValue) {
             throw new ChChingException("No fields to edit");
         }
-        // change from 1-based indexing to 0-based indexing
+
         int indexZeroBased = index - 1;
         Expense expense = expenses.get(indexZeroBased);
-        
-        // edit the fields accordingly
+
+
         if (hasCategory) {
             String value = argumentsByField.get(CATEGORY_FIELD);
             expenses.editExpense(index, CATEGORY_FIELD, value);
@@ -86,7 +86,7 @@ public class EditExpenseCommand extends Command {
             String value = argumentsByField.get(VALUE_FIELD);
             expenses.editExpense(index, VALUE_FIELD, value);
         }
-        
+
         boolean isExpense = true;
         ui.showEdited(index, expense, isExpense);
     }

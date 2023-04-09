@@ -25,23 +25,23 @@ public class EditIncomeCommand extends Command {
     private boolean hasDescription;
     private boolean hasDate;
     private boolean hasValue;
-    
+
     public EditIncomeCommand(HashMap<String, String> argumentsByField) throws ChChingException {
         this.argumentsByField = argumentsByField;
-        
+
         index = Incomes.getIndex(argumentsByField);
         hasDescription = argumentsByField.containsKey(DESCRIPTION_FIELD);
         hasDate = argumentsByField.containsKey(DATE_FIELD);
         hasValue = argumentsByField.containsKey(VALUE_FIELD);
     }
-    
+
     /**
      * Executes edit of incomes.
      * Based on the fields the user wants to edit, the corresponding fields will be edited.
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
-     * @param ui        User interface.
+     * @param ui            User interface.
      * @param storage       Storage of data.
      * @param converter     Convert value.
      * @param targetStorage store target.
@@ -50,22 +50,22 @@ public class EditIncomeCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
                         Converter converter, TargetStorage targetStorage) throws ChChingException {
-        // check if the index is valid
+
         if (index <= 0) {
             throw new ChChingException("Negative/Zero index");
         } else if (index > incomes.size()) {
             throw new ChChingException("The index is too big");
         }
         assert index > 0 : "Index must be a positive integer";
-        
+
         if (!hasDescription && !hasDate && !hasValue) {
             throw new ChChingException("No fields to edit");
         }
-        // change from 1-based indexing to 0-based indexing
+
         int indexZeroBased = index - 1;
         Income income = incomes.get(indexZeroBased);
-        
-        // edit the fields accordingly
+
+
         if (hasDescription) {
             String value = argumentsByField.get(DESCRIPTION_FIELD);
             incomes.editIncome(index, DESCRIPTION_FIELD, value);
@@ -78,7 +78,7 @@ public class EditIncomeCommand extends Command {
             String value = argumentsByField.get(VALUE_FIELD);
             incomes.editIncome(index, VALUE_FIELD, value);
         }
-        
+
         boolean isExpense = false;
         ui.showEdited(index, income, isExpense);
     }
