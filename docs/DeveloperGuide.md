@@ -195,7 +195,7 @@ How the `WeeklyPlan` component works:
 3. `Parser` component then returns a `WeeklyPlan` object to indicate the recipe(s) to be added or
    deleted from the weekly plan.
 4. `WeeklyPlan` component then uses either `addPlans` or `deletePlans` method to add or delete
-   the recipe(s) from the weekly plan, `clearPlan` to clear the entire plan for the week, and `checkValidity` to 
+   the recipe(s) from the weekly plan, `clearPlan` to clear the entire plan for the week, and `checkValidity` to
    check the validness of the weekly plan (i.e. make sure all recipes are valid).
 
 The sequence diagram below shows how the `WeeklyPlan` component works when the user
@@ -331,6 +331,27 @@ It is implemented through the following step:
 The sequence diagram below shows how this feature works:
 
 ![](./UML/Implementation/ListFunction/ListFunction.png)
+
+### List Available Recipes Feature
+
+- list all recipes that have sufficient ingredients
+
+It is implemented through the following steps:
+
+1. When the user enters and input `available`, an instance of `RecipeList` availableRecipes is created
+2. This instance of recipe calls the `availableRecipes()` method in `RecipeList` on the current recipeList which
+   returns a `RecipeList` object containing all available `Recipes`
+3. `availableRecipes()` method iterates through `recipeList` and calls the `isAvailable()` method on each `Recipe`,
+   appending the available recipes to `availableRecipes`
+4. `isAvailable()` method
+    - iterates through the `ingredients` Hashmap of each `Recipe`
+    - compares the quantity required for each recipe to the amount of the same `Ingredient` in the `ingredientList`,
+    - returns `true` if the quantity in the `ingredientList` is more than or equal to the quantity required
+5. The `listAvailableRecipes()` method is then called in `Ui` to print `availableRecipes`
+
+The sequence diagram below shows how this feature works:
+
+![](./UML/Implementation/ListAvailableFunction/availableSequenceDiagram.drawio.png)
 
 ### Delete Recipes Feature
 
