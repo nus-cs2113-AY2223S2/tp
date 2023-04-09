@@ -95,6 +95,8 @@ The following activity diagram summarises what happens when a user executes edit
 <br> ![edit income activity diagram](images/EditIncomeCommand_activity_diagram.png)
 <br> Note: edit expense command produces the same activity diagram.
 
+<div style="page-break-after: always;"></div>
+
 **Design Considerations**
 <br>The following are the design alternatives we considered for edit income/expense command:
 
@@ -371,6 +373,8 @@ Given below are instructions to test the app manually.
    1. Prerequisites: If the target has not been set by the user, it will be set to 0 by default. should there be no currency set, only SGD will be shown, else it will additionally show the set currency.
    2. Test case: `balance`
       <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding income/expense
 
