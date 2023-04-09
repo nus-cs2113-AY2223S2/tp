@@ -36,7 +36,7 @@ public class AddTagToDeckCommand extends Command {
         Tag tagToAdd = tagList.findTag(tagSelector);
         Optional<String> tagName = tagSelector.getTagName();
 
-        if (tagName.get().length() > 50) {
+        if (tagName.isPresent() && tagName.get().length() > 50) {
             throw new LongTagNameException();
         } else if (tagToAdd == null) {
             // exception here

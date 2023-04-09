@@ -55,7 +55,7 @@ public class DeleteTagCommand extends Command {
 
         Optional<String> tagName = tagSelector.getTagName();
 
-        if (tagName.get().length() > 50) {
+        if (tagName.isPresent() && tagName.get().length() > 50) {
             throw new LongTagNameException();
         }
 

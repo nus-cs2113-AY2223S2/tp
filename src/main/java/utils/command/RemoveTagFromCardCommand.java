@@ -43,7 +43,7 @@ public class RemoveTagFromCardCommand extends Command {
 
         Optional<String> tagName = tagSelector.getTagName();
 
-        if (tagName.get().length() > 50) {
+        if (tagName.isPresent() && tagName.get().length() > 50) {
             throw new LongTagNameException();
         } else if (tagToDelete == null) {
             throw new TagNotFoundException();

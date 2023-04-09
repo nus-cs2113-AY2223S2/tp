@@ -101,18 +101,6 @@
         }
       ],
       "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "96dfa96a-a751-47ff-b6e3-bafdc25b202a"
-      },
-      "tagName": "ghsdgjuzshgujzshgzihgsujighszjhgzusjhghuksghhgfzfujghfuzidhgfzghfdihgbfuihgfzughfzujighfzuighfighufhgfuighfzuighfzughfzuighuglhfzghfzughzguifhguz",
-      "cards": [
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        }
-      ],
-      "decks": []
     }
   ],
   "cards": [
@@ -140,9 +128,6 @@
         },
         {
           "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
-        },
-        {
-          "uuid": "96dfa96a-a751-47ff-b6e3-bafdc25b202a"
         }
       ],
       "decks": [

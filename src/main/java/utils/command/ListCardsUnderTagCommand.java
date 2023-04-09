@@ -51,7 +51,7 @@ public class ListCardsUnderTagCommand extends Command {
         Tag foundTag = tagList.findTag(tagSelector);
         Optional<String> tagName = tagSelector.getTagName();
 
-        if (tagName.get().length() > 50) {
+        if (tagName.isPresent() && tagName.get().length() > 50) {
             throw new LongTagNameException();
         } else if (foundTag == null) {
             throw new TagNotFoundException();

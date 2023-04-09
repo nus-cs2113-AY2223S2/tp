@@ -216,7 +216,7 @@ Otherwise, Inka will just tag the card.
 
 - `-c` the UUID of the card to be tagged
 - `-i` the index of the card to be tagged
-- `-t` the name of the tag ***(no whitespaces allowed)***
+- `-t` the name of the tag ***(no whitespaces allowed), must not*** exceed 50 characters
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
@@ -244,7 +244,7 @@ tag index can be found in the later section from `tag list`.
 
 - `-c` the UUID of the card to be untagged
 - `-i` the index of the card to be untagged
-- `-t` the name of the tag to be removed ***(no whitespaces allowed)***
+- `-t` the name of the tag to be removed ***(no whitespaces allowed)***, ***must not*** exceed 50 characters
 - `-x` the index of the tag to be removed
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
@@ -273,7 +273,7 @@ Otherwise, Inka will just put the card in the deck
 
 - `-c` the UUID of the card to be tagged
 - `-i` the index of the card to be tagged
-- `-d` the name of the deck ***(no whitespaces allowed)***
+- `-d` the name of the deck ***(no whitespaces allowed)***, ***must not*** exceed 50 characters
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
@@ -340,8 +340,8 @@ in `tag list` and `card view`
 
 ***Lists of flags (in any order)*** :
 
-- `-o` the old name of the tag.
-- `-n` the new name of the tag
+- `-o` the old name of the tag,  ***(no whitespaces allowed)***, ***must not*** exceed 50 characters
+- `-n` the new name of the tag,  ***(no whitespaces allowed)***, ***must not*** exceed 50 characters
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
@@ -356,52 +356,103 @@ Sample output :
 Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
 ```
 
-### Deleting a tag : `tag delete -t {tagName}`
+### Deleting a tag :
 
-Delete an existing tag by name, and remove the tag from all the cards which are previously under it.
+`tag delete {-t TAG_NAME | -x TAG_INDEX}`
 
-The flag `t` must ***not*** contain any whitespaces.
-and it cannot be empty.
+Delete an existing tag by name or by index and delete this tag under all cards that it was previously attached to.
 
-Example of usage :
-`tag delete -t CS2113T`
+***Lists of flags (in any order)*** :
 
-Sample output :
+- `-t` the name of the tag to be deleted,  ***(no whitespaces allowed)***, ***must not*** exceed 50 characters
+- `-x` the index of the tag to be deleted
+
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
+***Example of usage :***
+
+`tag delete -t physics`
+
+`tag delete -x 1`
+
+***Sample output :***
 
 ```
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 ```
 
-### List all tags : `tag list`
+### List all tags : `tag list [-t TAG_NAME | -x TAG_INDEX]`
 
-List all current tags in the `tagList`
+List all current tags in Inka ***(with no flags)***. Users can also list all the cards that fall under this tag by
+specifying the
+tag either through its tag name or tag index
 
-Example of usage :
+***Lists of flags (in any order)*** :
+
+- [OPTIONAL] `-t` the name of the tag to be deleted,  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+- [OPTIONAL] `-x` the index of the tag to be deleted
+
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
+***Example of usage :***
+
 `tag list`
 
-Sample output :
+`tag list -t physics`
+
+`tag list -x 1`
+
+***Sample output :***
 
 ```
 Here is your current list of tags:
-1.Tag name : CS2113, tag uuid : 15df3d00-d0ad-48e0-bd28-1f640b74789f
-2.Tag name : CS2040C, tag uuid : 5d14dd29-e7e4-4b17-945a-ebf8598d4152
+1.Tag name : physics, tag uuid : c8259fee-125d-4700-829c-0da79eba1e91
+2.Tag name : chem, tag uuid : f0721ed3-f357-4a6d-9d35-cd436ec5d280
+3.Tag name : math, tag uuid : 1631221a-1b21-4481-8113-76b0b6ce6499
+4.Tag name : bio, tag uuid : 6e5dc558-43e4-4039-bb0f-8eca965052f0
 ```
-
-### List cards under tag : `tag list -t <tagName>`
-
-List all cards under a specific tag indentified by its name.
-
-Example of usage :
-`tag list -t <tagName>`
-
-Sample output :
 
 ```
 Here is a list of your cards :
-1.Qn: fdf
-Ans: ffffffffff
-UUID:  3b86b31c-6289-4716-a5c6-5afd43b9bbd3
+
+1.	[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+Qn:	What is the formula of force?
+Ans:	F = ma
+
+2.	[619c689d-395a-4bb8-ab00-6ae9972bb929]
+Qn:	How efficient is binary search?
+Ans:	O(log n)
+```
+
+### Put all cards under a tag into a deck
+
+```tag deck -d DECK_NAME {-t TAG_NAME | -x TAG_INDEX}```
+
+This feature conveniently allows users to insert all the cards that fall under the specified tag (either by tag name or
+tag index) into a specified deck.
+
+***Lists of flags (in any order)*** :
+
+- `-t` the name of the tag to be inserted into the deck,  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+- `-x` the index of the tag to be inserted into the deck
+- `-d` the name of the deck to insert into, ***(no whitespaces allowed)***, ***must not*** exceed 50
+
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
+***Example of usage :***
+
+`tag deck -d midterm -t physics`
+
+`tag deck -d midterm -x 1`
+
+***Sample output:***
+
+```
+Deck does not exist.. creating a new one
+Successfully added tag c8259fee-125d-4700-829c-0da79eba1e91 to deck aef23e46-5327-4ca9-80f2-84e9e8e7dacd
 ```
 
 ---
