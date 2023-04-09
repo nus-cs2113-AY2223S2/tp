@@ -612,7 +612,7 @@ Example output:
 |  Example: setBudget 500
 |  Example: setBudget 500 t/ 2023/03
 |
-|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
@@ -638,7 +638,7 @@ Example output:
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: 
+|  Enter command:
 ```
 
 [back to Contents](#table-of-contents)

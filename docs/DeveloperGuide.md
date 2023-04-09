@@ -10,8 +10,15 @@
    - [Storage component](#storage-component)
    - [Common class](#common-class)
 3. [Implementation](#implementation)
-4. [Appendix: Requirements](#appendix--requirements)
-5. [Appendix: Instructions for manual testing](#appendix--instructions-for-manual-testing)
+   - [Entry](#entry)
+   - [EntryList](#entrylist)
+   - [ExpenseList, IncomeList](#expenselist-incomelist)
+   - [Budget](#budget)
+   - [SaveExpense, SaveIncome, SaveBudget](#saveexpense-saveincome-savebudget)
+   - [Wishlist (To be implemented)](#wishlist-to-be-implemented)
+   - [Spending Advisor (To be implemented)](#spending-advisor-to-be-implemented)
+4. [Appendix: Requirements](#appendix-requirements)
+5. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 ---
 
@@ -22,6 +29,8 @@ original source as well}
 
 - [addressbook-level2](https://github.com/se-edu/addressbook-level2)
 - [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+
+[back to contents](#table-of-contents)
 
 ---
 
@@ -57,6 +66,8 @@ the commands `deleteExpense 1` and `exit`.
 
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
+[back to contents](#table-of-contents)
+
 ---
 
 ### Ui component
@@ -68,6 +79,8 @@ The Ui consists of methods to format the output to be displayed to the user.
 Here is the UML diagram of Ui class:
 {to be added}
 
+[back to contents](#table-of-contents)
+
 ### Parser component
 
 The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
@@ -75,14 +88,27 @@ The **API** of this component is specified in [`Parser.java`](https://github.com
 How the `Parser` component works:
 1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
 2. The `Parser` class uses `UserInput` class to split the user input.
-2. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
-3. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
-4. The result of the command execution is returned back from `Parser`.
+3. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
+4. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
+5. The result of the command execution is returned back from `Parser`.
 
 How the parsing works:
 
 - When called upon to parse a user command, the `Parser` class creates an `prepareXYZCommand` (XYZ is a placeholder for the specific command name e.g., `prepareViewBudgetCommand`) which uses the other classes shown above to parse the user command and create a XYZCommand object (e.g., `ViewBudgetCommand`) which the `Parser` returns back as a `Command` object.
 - All `prepareXYZCommand` methods (e.g., `prepareViewBudgetCommand`, `prepareSetBudgetCommand`, …) can be treated similarly where possible e.g, during testing.
+
+[back to contents](#table-of-contents)
+
+---
+
+### Command component
+
+[back to contents](#table-of-contents)
+
+---
+
+### Storage component
+
 
 ### Save component
 
@@ -90,8 +116,12 @@ The **API** of this component is specified in [`SaveBudget.java`](https://github
 
 The `Save` component,
 
-- can save entrylist data and budget data in the hard disk as txt files, and read them back into corresponding objects.
+- can save entryList data and budget data in the hard disk as .txt files, and read them back into corresponding objects.
 - depends on some classes in the EntryList component and Budget component(because the Save component’s job is to save/retrieve objects that belong to the EntryList and Budget)
+
+[back to contents](#table-of-contents)
+
+---
 
 ### EntryList component
 
@@ -106,6 +136,10 @@ Here is the (partial) UML diagram of the `EntryList` component:
 
 ![EntryListClassDiagram](images/EntryListClassDiagram.png)
 
+[back to contents](#table-of-contents)
+
+---
+
 ### Budget component
 
 The **API** of this component is specified in [`Budget.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/budget/Budget.java)
@@ -118,13 +152,23 @@ The `Budget` component,
 
 Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
 
+[back to contents](#table-of-contents)
+
+---
+
 ### Command classes
 
 The execution behaviors of possible commands are in the `seedu.brokeMan.command` package.
 
+[back to contents](#table-of-contents)
+
+---
+
 ### Exception classes
 
 Possible exceptions in multiple components are defined in the `seedu.brokeMan.exception` package.
+
+[back to contents](#table-of-contents)
 
 ---
 
@@ -160,6 +204,10 @@ isSameMonth()
 
 * Takes in Integer year and Month and returns if the entry is made in the date specified by parameters.
 
+[back to contents](#table-of-contents)
+
+---
+
 ### EntryList
 
 The EntryList class represents a collection of Entry instances. It is an abstract class that serves as a superclass for
@@ -185,6 +233,9 @@ getTotalAmount(), sortEntriesByAmount(), sortEntriesByDate(), findEntriesByCateg
 * Underlying methods of subclasses of EntryList, which are used to implement features that extends beyond the CRUD features.
 * They all take in a list of entries, which are IncomeLists or ExpenseLists, then returns appropriate data back to the subclass.
 
+[back to contents](#table-of-contents)
+
+---
    
 ### ExpenseList, IncomeList
 
@@ -202,6 +253,10 @@ listExpense() / listIncome()
 * If it has no passed parameters, it returns all entries in the list
 * If a LocalDate is passed, it returns all entries made in the month specified by LocalDate instance.
 
+[back to contents](#table-of-contents)
+
+---
+
 ### Budget
 
 The Budget class represents the user’s monthly budget. The class utilize class-level hashmaps to represent the monthly
@@ -211,9 +266,13 @@ It makes use of a static HashMap<Integer, HashMap<Month, Double>> to keep track 
 access budget using keys that are not entered in the HashMap, it will return a warning mentioning that the inquired
 budget has not been set yet.
 
-### SaveExpense, SaveIncome, Save Budget
+[back to contents](#table-of-contents)
 
-The SaveExpense, SaveIncome, Save Budget class deal with saving in the user inputted data locally.
+---
+
+### SaveExpense, SaveIncome, SaveBudget
+
+The SaveExpense, SaveIncome, SaveBudget classes deal with saving in the user inputted data locally.
 So that it can all be later accessed.
 They all save once the exit command is set.
 So assuming there are no bugs it should save.
@@ -241,6 +300,9 @@ public static HashMap<Integer, HashMap<Month, Double>> readFile()
 * Reads in and the year then as a key then the monthly declared budget of the given months.
 * Returns this as the initialized budget on start.
 
+[back to contents](#table-of-contents)
+
+---
 
 ### Wishlist (To be implemented)
    
@@ -249,12 +311,17 @@ The Wishlist class represents a good or a product the user wants to purchase in 
 They can be implemented through a structure that is similar to Entry and EntryList. Each wishlisted product will be a separate class that stores the information of the good, such as name, price, and the date of wishlist created. 
    
 The wishlist entry can then be arranged to a list, where users can easily navigate and compare between different wishlisted products. They can also give priority value to each wishlisted product, which can be used to sort them.
-   
+
+[back to contents](#table-of-contents)
+
+---
 
 ### Spending Advisor (To be implemented)
    
-The spending advisor will be integrated to the product by assisting users to make best consumption choices. The advisor will help users compare prices from different food outlets and shops. As the target user for this program is students, the program will first implement food stalls and shops in NUS, which is where the developers for this program are enrolled. In subsequent iterations of the program, the advisor will expand into other regions and recommend users of the best-value purchases. 
-   
+The spending advisor will be integrated to the product by assisting users to make best consumption choices. The advisor will help users compare prices from different food outlets and shops. As the target user for this program is students, the program will first implement food stalls and shops in NUS, which is where the developers for this program are enrolled. In subsequent iterations of the program, the advisor will expand into other regions and recommend users of the best-value purchases.
+
+[back to contents](#table-of-contents)
+
 ---
 
 
@@ -278,6 +345,10 @@ The spending advisor will be integrated to the product by assisting users to mak
   about their financial status. The project will allow division of budget into multiple subcategories of expenses. In
   essence, the program sets students up for a better financial future.
 
+[back to contents](#table-of-contents)
+
+---
+
 ### User Stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -293,7 +364,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | v2.0    | user     | save all my income and expenses entered   | so that I can refer to it next time I return     |
 | `* *`    | v3.0    | user     | add goods on wishlist                     | so that I can save my incomes to purchase them   |
 | `* `     | v3.0    | user     | compare different spending options in the area | so that I can make the best-value purchases |
-   
+
+[back to contents](#table-of-contents)
+
+---
+
 ### Use cases
 
 (For all use cases below, the System is the `BrokeMan` and the Actor is the `user`, 
@@ -321,6 +396,10 @@ unless specified otherwise)
 
 {More to be added}
 
+[back to contents](#table-of-contents)
+
+---
+
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -328,13 +407,21 @@ unless specified otherwise)
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 {More to be added}
 
+[back to contents](#table-of-contents)
+
+---
+
 ## Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - Command Line Interface (CLI)
+
+[back to contents](#table-of-contents)
 
 ---
 
 ## Appendix: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+[back to contents](#table-of-contents)
