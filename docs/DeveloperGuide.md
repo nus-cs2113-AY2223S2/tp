@@ -147,6 +147,10 @@ The `Budget` component,
 - stores the monthly budget data in a hashmap
 - does not depend on any of the other three components (as the `Budget` represents data entities of the domain, they should make sense on their own without depending on other components).
 
+Here is a UML diagram of the `Budget` component:
+
+![BudgetClassDiagram](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/images/BudgetClassUML.png)
+
 ### Common class
 
 Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
