@@ -1,5 +1,6 @@
 package seedu.sniff;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import exception.SniffException;
@@ -32,6 +33,18 @@ public class ParserTest {
     }
 
     @Test
+    public void consultationTest_invalidTime_expectException() {
+        String task = "consultation at/Dog an/Rover on/John cn/12345678 v/Rabies cd/2023-04-15 ct/10:30am";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
+    }
+
+    @Test
+    public void consultationTest_invalidDate_expectException() {
+        String task = "consultation at/Dog an/Rover on/John cn/12345678 cd/20-04-15 ct/10:30";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
+    }
+
+    @Test
     public void vaccinationTest() {
         String vaccinationCommand = "vaccination at/cat an/lulu on/jon cn/91919191 v/covid vd/2023-12-12 vt/19:00";
         Command vaccinationParsedCommand = null;
@@ -42,6 +55,18 @@ public class ParserTest {
         }
         assertTrue(vaccinationParsedCommand instanceof VaccinationCommand,
                 "vaccinationParsedCommand is not an instance of VaccinationCommand");
+    }
+
+    @Test
+    public void vaccinationTest_invalidContactNumber_expectException() {
+        String task = "vaccination at/Dog an/Rover on/John cn/999 v/Rabies vd/20-04-15 vt/10:30";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
+    }
+
+    @Test
+    public void vaccinationTest_invalidAnimalName_expectException() {
+        String task = "vaccination at/123 an/Rover on/John cn/12345678 v/Rabies vd/20-04-15 vt/10:30";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
     }
 
     @Test
@@ -56,6 +81,18 @@ public class ParserTest {
         }
         assertTrue(surgeryParsedCommand instanceof SurgeryCommand,
                 "surgeryParsedCommand is not an instance of SurgeryCommand");
+    }
+
+    @Test
+    public void surgeryTest_invalidDateTime_expectException() {
+        String task = "surgery at/cat an/lulu on/jon cn/91919191 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/L";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
+    }
+
+    @Test
+    public void surgeryTest_invalidDate_expectException() {
+        String task = "surgery at/cat an/lulu on/jon cn/91919191 sd/20-12-12 st/19:00 ed/20-12-12 et/20:00 p/H";
+        assertThrows(SniffException.class, () -> Parser.parse(task));
     }
 
     @Test

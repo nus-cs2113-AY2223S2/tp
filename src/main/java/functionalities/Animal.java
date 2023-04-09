@@ -2,6 +2,10 @@ package functionalities;
 
 import exception.SniffException;
 
+/**
+ * The Animal class represents the animal that is involved in the appointment that contains its type and
+ * name descriptions. This class is mainly used to gather information for the appointments.
+ */
 public class Animal {
     protected String type;
     protected String name;

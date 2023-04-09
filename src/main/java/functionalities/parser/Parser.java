@@ -64,17 +64,26 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Parses the user's consultation command into its respective inputs and creates a new ConsultationCommand object.
+     * The consultation command is expected to have the following format:
+     * consultation at/[animal type] an/[animal name] on/[owner name] cn/[contact number] cd/[date] ct/[time]
+     *
+     * @param task the Snifftask class that handles the adding of the consultation appointment.
+     * @throws SniffException if the consultation command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseConsultationCommand(String task) throws SniffException {
         try {
-            String animalType = splitInputBy(task, "at/");
-            String animalName = splitInputBy(task, "an/");
-            String ownerName = splitInputBy(task, "on/");
-            String contactNumber = splitInputBy(task, "cn/");
+            String animalType = splitConsultationInput(task, "at/");
+            String animalName = splitConsultationInput(task, "an/");
+            String ownerName = splitConsultationInput(task, "on/");
+            String contactNumber = splitConsultationInput(task, "cn/");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String date = splitInputBy(task, "cd/");
+            String date = splitConsultationInput(task, "cd/");
             LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
-            String time = splitInputBy(task, "ct/");
+            String time = splitConsultationInput(task, "ct/");
             LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
             command = new ConsultationCommand(animalType, animalName, ownerName, contactNumber, parsedDate, parsedTime);
         } catch (DateTimeParseException e) {
@@ -84,29 +93,54 @@ public class Parser {
         }
     }
 
-    private static String splitInputBy(String input, String splitter) throws SniffException {
+    /**
+     * Splits the given consultation input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full consultation command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the consultation command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
+    private static String splitConsultationInput(String input, String splitter) throws SniffException {
+        if (input.contains("v/") || input.contains("vd/") || input.contains("vt/") || input.contains("sd/") ||
+                input.contains("st/") || input.contains("ed/") || input.contains("et/") || input.contains("p/")) {
+            throw new SniffException(" The consultation command is of the wrong format!");
+        }
         try {
-            String[] firstSplit = input.split(splitter);
-            String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vt/" +
-                    "|v/|sd/|st/|ed/|et/|p/)", -1);
+            String[] firstSplit = input.split(splitter, 2);
+            if (firstSplit[1].contains(splitter)) {
+                throw new SniffException(" The consultation command cannot contain repeated descriptions!");
+            }
+            String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/)", -1);
             return secondSplit[0].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The " + splitter + " description is invalid!");
         }
     }
 
+    /**
+     * Parses the user's vaccination command into its respective inputs and creates a new VaccinationCommand object.
+     * The vaccination command is expected to have the following format:
+     * vaccination at/[animal type] an/[animal name] on/[owner name] cn/[contact number] v/[vaccine] vd/[date]
+     * vt/[time]
+     *
+     * @param task the Snifftask class that handles the adding of the vaccination appointment.
+     * @throws SniffException if the vaccination command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseVaccinationCommand(String task) throws SniffException {
         try {
-            String animalType = splitInputBy(task, "at/");
-            String animalName = splitInputBy(task, "an/");
-            String ownerName = splitInputBy(task, "on/");
-            String contactNumber = splitInputBy(task, "cn/");
-            String vaccine = splitInputBy(task, "v/");
+            String animalType = splitVaccinationInput(task, "at/");
+            String animalName = splitVaccinationInput(task, "an/");
+            String ownerName = splitVaccinationInput(task, "on/");
+            String contactNumber = splitVaccinationInput(task, "cn/");
+            String vaccine = splitVaccinationInput(task, "v/");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String date = splitInputBy(task, "vd/");
+            String date = splitVaccinationInput(task, "vd/");
             LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
-            String time = splitInputBy(task, "vt/");
+            String time = splitVaccinationInput(task, "vt/");
             LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
             command = new VaccinationCommand(animalType, animalName, ownerName, contactNumber,
                     vaccine, parsedDate, parsedTime);
@@ -117,22 +151,58 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given vaccination input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full vaccination command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the vaccination command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
+    private static String splitVaccinationInput(String input, String splitter) throws SniffException {
+        if (input.contains("cd/") || input.contains("ct/") || input.contains("sd/") || input.contains("st/") ||
+                input.contains("ed/") || input.contains("et/") || input.contains("p/")) {
+            throw new SniffException(" The vaccination command is of the wrong format!");
+        }
+        try {
+            String[] firstSplit = input.split(splitter, 2);
+            if (firstSplit[1].contains(splitter)) {
+                throw new SniffException(" The vaccination command cannot contain repeated descriptions!");
+            }
+            String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|vd/|vt/|v/)", -1);
+            return secondSplit[0].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new SniffException(" The " + splitter + " description is invalid!");
+        }
+    }
+
+    /**
+     * Parses the user's surgery command into its respective inputs and creates a new SurgeryCommand object.
+     * The surgery command is expected to have the following format:
+     * surgery at/[animal type] an/[animal name] on/[owner name] cn/[contact number] sd/[start date]
+     * st/[start time] ed/[end date] et/[end time] p/[priority level]
+     *
+     * @param task the Snifftask class that handles the adding of the surgery appointment.
+     * @throws SniffException if the surgery command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseSurgeryCommand(String task) throws SniffException {
         try {
-            String animalType = splitInputBy(task, "at/");
-            String animalName = splitInputBy(task, "an/");
-            String ownerName = splitInputBy(task, "on/");
-            String contactNumber = splitInputBy(task, "cn/");
-            String priority = splitInputBy(task, "p/");
+            String animalType = splitSurgeryInput(task, "at/");
+            String animalName = splitSurgeryInput(task, "an/");
+            String ownerName = splitSurgeryInput(task, "on/");
+            String contactNumber = splitSurgeryInput(task, "cn/");
+            String priority = splitSurgeryInput(task, "p/");
             DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String startDate = splitInputBy(task, "sd/");
+            String startDate = splitSurgeryInput(task, "sd/");
             LocalDate parsedStartDate = LocalDate.parse(startDate, dateFormatter);
-            String startTime = splitInputBy(task, "st/");
+            String startTime = splitSurgeryInput(task, "st/");
             LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
-            String endDate = splitInputBy(task, "ed/");
+            String endDate = splitSurgeryInput(task, "ed/");
             LocalDate parsedEndDate = LocalDate.parse(endDate, dateFormatter);
-            String endTime = splitInputBy(task, "et/");
+            String endTime = splitSurgeryInput(task, "et/");
             LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
             if (parsedStartDate.isAfter(parsedEndDate)) {
                 throw new SniffException(" The start date must be before the end date!");
@@ -147,6 +217,32 @@ public class Parser {
             throw new SniffException("The date/time description is invalid.");
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("The vaccination description is invalid!");
+        }
+    }
+
+    /**
+     * Splits the given surgery input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full surgery command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the surgery command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
+    private static String splitSurgeryInput(String input, String splitter) throws SniffException {
+        if (input.contains("cd/") || input.contains("ct/") || input.contains("vd/") || input.contains("vt/") ||
+                input.contains("v/")) {
+            throw new SniffException(" The surgery command is of the wrong format!");
+        }
+        try {
+            String[] firstSplit = input.split(splitter, 2);
+            if (firstSplit[1].contains(splitter)) {
+                throw new SniffException(" The surgery command cannot contain repeated descriptions!");
+            }
+            String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|sd/|st/|ed/|et/|p/)", -1);
+            return secondSplit[0].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new SniffException(" The " + splitter + " description is invalid!");
         }
     }
 
@@ -227,7 +323,7 @@ public class Parser {
         }
     }
 
-    private static void parseEditCommand(String task) throws SniffException{
+    private static void parseEditCommand(String task) throws SniffException {
         int uidIndex = task.indexOf("uID/");
         String type = task.substring(uidIndex + 4, uidIndex + 5);
         String uid = task.substring(uidIndex + 4, uidIndex + 14);
@@ -306,6 +402,29 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if there are repeated descriptions, or if the descriptions are invalid format.
+     */
+    private static String splitInputBy(String input, String splitter) throws SniffException {
+        try {
+            String[] firstSplit = input.split(splitter, 2);
+            if (firstSplit[1].contains(splitter)) {
+                throw new SniffException(" The command cannot contain repeated descriptions!");
+            }
+            String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vn/|v/|" +
+                    "sd/|st/|ed/|et/|p/)", -1);
+            return secondSplit[0].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new SniffException(" The " + splitter + " description is invalid!");
+        }
+    }
+
+
     private static void parseArchiveCommand() {
         command = new ArchiveCommand();
     }
@@ -314,6 +433,9 @@ public class Parser {
         command = new ExitCommand();
     }
 
+    /**
+     * Parses the help command and creates a new HelpCommand object to show the help message to the user.
+     */
     private static void parseHelpCommand() {
         command = new HelpCommand();
     }
