@@ -1,4 +1,4 @@
-# Khoo You Run - project Portfolio Page
+# Khoo You Run - Project Portfolio Page
 
 ## Project BadMaths
 

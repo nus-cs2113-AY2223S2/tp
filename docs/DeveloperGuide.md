@@ -15,13 +15,13 @@ various features for note-taking.
     * [Solving Quadratic Equations](#solving-quadratic-equations)
     * [Notes](#notes)
     * [Storage](#storage)
-    * [Store class](#store-class-)
-    * [List class](#list-class-)
-    * [Delete class](#delete-class-)
-    * [CommandHistory class](#commandhistory-class-)
-    * [Command class](#command-class-)
-    * [Ui class](#ui-class-)
-    * [NotePriority class](#notepriority-class-)
+    * [Store class:](#store-class-)
+    * [List class:](#list-class-)
+    * [Delete class:](#delete-class-)
+    * [CommandHistory class:](#commandhistory-class-)
+    * [Command class:](#command-class-)
+    * [Ui class:](#ui-class-)
+    * [NotePriority class:](#notepriority-class-)
     * [Help](#help)
     * [Graph](#graph)
     * [Matrix](#matrix)
@@ -82,7 +82,7 @@ Class Diagram:
 
 Below is an  example of how it would be called.
 ```
-Quadratic. 2x^2 + 3x + 1
+Quadratic 2x^2 + 3x + 1
 ```
 Step 1. Parser class would split the user input into 2 parts, command and toDo. Command would be `Quadratic`,
 thus `executeCommand` in the Command class would trigger `quadraticSolver`. `toDo` would be `2x^2 + 3x + 1`.
@@ -647,4 +647,4 @@ walked is out of scope.
 - Open command prompt by typing `cmd` in the Windows search bar.
 - Navigate to the folder via `cd "folder path"`. (eg. `cd C:\Users\your_name\Desktop\BadMaths`).
 - Type `java -jar BadMaths.jar` to run BadMaths.
-- Follow the `User Guide` to begin testing.
+- Follow the [User Guide](https://github.com/AY2223S2-CS2113-F10-2/tp/blob/master/docs/UserGuide.md) to begin testing.
