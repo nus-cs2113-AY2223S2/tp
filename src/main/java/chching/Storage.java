@@ -32,7 +32,14 @@ public class Storage {
      * Program Logging
      */
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
-
+    public static final String TYPE_PROPERTY = "type";
+    public static final String CATEGORY_PROPERTY = "category";
+    public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String DATE_PROPERTY = "date";
+    public static final String AMOUNT_PROPERTY = "amount";
+    public static final String EXPENSE_SYMBOL = "E";
+    public static final String INCOME_SYMBOL = "I";
+    
     static {
         LogManager.getLogManager().reset();
         ConsoleHandler consoleHandler = new ConsoleHandler();
@@ -67,23 +74,19 @@ public class Storage {
         ArrayList<Income> incomes = new ArrayList<>();
 
         try {
-            // Create a GSON object
             Gson gson = new Gson();
 
-            // Read the JSON file into a string
             String json = Files.readString(file.toPath());
 
-            // Parse the JSON string into a JsonArray
             JsonArray entries = gson.fromJson(json, JsonArray.class);
 
-            // Loop through the entries and add each income to the list
             for (JsonElement entry : entries) {
                 JsonObject jsonObj = entry.getAsJsonObject();
-                String type = jsonObj.get("type").getAsString();
-                if (type.equals("I")) {
-                    String description = jsonObj.get("description").getAsString();
-                    LocalDate date = LocalDate.parse(jsonObj.get("date").getAsString());
-                    double amount = jsonObj.get("amount").getAsDouble();
+                String type = jsonObj.get(TYPE_PROPERTY).getAsString();
+                if (type.equals(INCOME_SYMBOL)) {
+                    String description = jsonObj.get(DESCRIPTION_PROPERTY).getAsString();
+                    LocalDate date = LocalDate.parse(jsonObj.get(DATE_PROPERTY).getAsString());
+                    double amount = jsonObj.get(AMOUNT_PROPERTY).getAsDouble();
                     Income income = new Income(description, date, amount);
                     incomes.add(income);
                 }
@@ -101,24 +104,20 @@ public class Storage {
         ArrayList<Expense> expenses = new ArrayList<>();
 
         try {
-            // Create a GSON object
             Gson gson = new Gson();
 
-            // Read the JSON file into a string
             String json = Files.readString(file.toPath());
 
-            // Parse the JSON string into a JsonArray
             JsonArray entries = gson.fromJson(json, JsonArray.class);
 
-            // Loop through the entries and add each income to the list
             for (JsonElement entry : entries) {
                 JsonObject jsonObj = entry.getAsJsonObject();
-                String type = jsonObj.get("type").getAsString();
-                if (type.equals("E")) {
-                    String description = jsonObj.get("description").getAsString();
-                    String category = jsonObj.get("category").getAsString();
-                    LocalDate date = LocalDate.parse(jsonObj.get("date").getAsString());
-                    double amount = jsonObj.get("amount").getAsDouble();
+                String type = jsonObj.get(TYPE_PROPERTY).getAsString();
+                if (type.equals(EXPENSE_SYMBOL)) {
+                    String description = jsonObj.get(DESCRIPTION_PROPERTY).getAsString();
+                    String category = jsonObj.get(CATEGORY_PROPERTY).getAsString();
+                    LocalDate date = LocalDate.parse(jsonObj.get(DATE_PROPERTY).getAsString());
+                    double amount = jsonObj.get(AMOUNT_PROPERTY).getAsDouble();
                     Expense expense = new Expense(category, description, date, amount);
                     expenses.add(expense);
                 }
@@ -138,10 +137,10 @@ public class Storage {
             Record income = incomes.get(i);
 
             JsonObject incomeObj = new JsonObject();
-            incomeObj.addProperty("type", "I");
-            incomeObj.addProperty("description", income.getDescription());
-            incomeObj.addProperty("date", income.getDate().toString());
-            incomeObj.addProperty("amount", income.getValue());
+            incomeObj.addProperty(TYPE_PROPERTY, INCOME_SYMBOL);
+            incomeObj.addProperty(DESCRIPTION_PROPERTY, income.getDescription());
+            incomeObj.addProperty(DATE_PROPERTY, income.getDate().toString());
+            incomeObj.addProperty(AMOUNT_PROPERTY, income.getValue());
 
             jsonArray.add(incomeObj);
         }
@@ -150,11 +149,11 @@ public class Storage {
             Record expense = expenses.get(i);
 
             JsonObject expenseObj = new JsonObject();
-            expenseObj.addProperty("type", "E");
-            expenseObj.addProperty("category", expense.getCategory());
-            expenseObj.addProperty("description", expense.getDescription());
-            expenseObj.addProperty("date", expense.getDate().toString());
-            expenseObj.addProperty("amount", expense.getValue());
+            expenseObj.addProperty(TYPE_PROPERTY, EXPENSE_SYMBOL);
+            expenseObj.addProperty(CATEGORY_PROPERTY, expense.getCategory());
+            expenseObj.addProperty(DESCRIPTION_PROPERTY, expense.getDescription());
+            expenseObj.addProperty(DATE_PROPERTY, expense.getDate().toString());
+            expenseObj.addProperty(AMOUNT_PROPERTY, expense.getValue());
 
             jsonArray.add(expenseObj);
         }
