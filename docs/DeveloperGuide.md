@@ -377,7 +377,7 @@ It is implemented through the following steps:
    to `recipeList.addRecipe()`
    to store the new recipe data.
 
-![](./UML/Implementation/Add Recipe/AddRecipe.png)
+![](UML/Implementation/addRecipe/AddRecipe.png)
 
 
 ### Edit Recipes Feature
@@ -401,7 +401,7 @@ It is implemented through the following steps:
    to `recipeList.editRecipe()`
    to update the new recipe data.
 
-![](./UML/Implementation/Edit Recipe/EditRecipe.png)
+![](UML/Implementation/editRecipe/EditRecipe.png)
 
 
 ### Random a Recipe Feature
