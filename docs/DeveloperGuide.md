@@ -225,8 +225,19 @@ Below is a class diagram for the implementation
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+|v1.0|user|have a help command that will display all possible commands and their appropriate input format|understand how to use Duck easily and conveniently|
+|v1.0|student|be able to add tasks and events|remind myself constantly|
+|v1.0|user|have a command to close the program|exit the program when I want to|
+|v1.0|user|have a find filter|find the tasks in the list that contain a specified input keyword|
+|v1.0|user|add a priority tag to each task such that they will be easily identified|be aware of urgent tasks to completed|
+|v1.0|user|clear function with double check confirmation|delete all tasks from the list, with a confirmation message before clearing|
+|v1.0|user|have priority variables for tasks|add priority levels to individual tasks|
+|v1.0|student|be able to add school classes|keep track of my classes|
+|v2.0|student|receive notifications about deadlines|not miss out on any tasks|
+|v2.0|student with different classes|view my next class with its specified time||
+|v2.0|student with multiple classes|record recurring classes at fixed times throughout the week|view my weekly class schedule without needing to record them down again each week|
+|v2.0|student|create recurring tasks that will reset their 'Done' status when appropriate|not have to manually unmark these tasks|
+|v2.0|student|easily access my schedule|plan my daily life|
 
 ## Non-Functional Requirements
 
