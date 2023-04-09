@@ -10,6 +10,7 @@
     * [load samples](#load-samples)
     * [add](#add)
     * [choose venue](#choose-venue)
+    * [update event name](#update-event-name)
     * [confirm](#confirm) 
     | [unconfirm](#unconfirm)
     * [list companies](#list-companies)
@@ -123,7 +124,23 @@ ____________________________________________________________
 Sample data has been loaded into the list!
 ____________________________________________________________
 ```
-<br>
+* If some of the sample companies has already been added into the list
+* Expected output:
+```
+____________________________________________________________
+Company already exists in the list!
+____________________________________________________________
+____________________________________________________________
+Company already exists in the list!
+____________________________________________________________
+____________________________________________________________
+Company already exists in the list!
+____________________________________________________________
+____________________________________________________________
+Sample data has been loaded into the list!
+____________________________________________________________
+```
+
 
 ### Add
 Add the company to the list of companies, and updates the company list text file.
@@ -131,10 +148,11 @@ Add the company to the list of companies, and updates the company list text file
 * Format: `add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL]`
 
     * All fields should not be empty.
-    * `[INDUSTRY]` should contain more than one alphabet.
-    * `[CONTACT_NUMBER]` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
-    * `[EMAIL]` should be valid email address containing but not ending with "@" symbol. No space is allowed.
-    * User can add only one company at a time.
+    * `[COMPANY_NAME]` can be both letters and numbers.
+    * `[INDUSTRY]` should contain at least one alphabet.
+    * `[CONTACT_NUMBER]` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9. Spaces between numbers would be automatically removed.
+    * `[EMAIL]` should be valid email address containing but not does not start/end with "@" symbol. No space is allowed.
+    * User can add only one company at a time and not repeat any of the fields.
 
 * Example of usage: `add n/tesla i/tech c/34567890 e/tesla@gmail.com`
 
@@ -158,9 +176,12 @@ ____________________________________________________________
 
 
 ### Choose Venue
-Updates the venue of the event from a list of venues, and updates the event details file
+Updates the venue of the event from a list of venues, and updates the event details file. 
+
+To see the list of venues, refer to [list venues](#list-venues)
 
 * Format: `choose venue [INDEX]`
+    * `[INDEX]` must be in the range of the list of venues.
 
 * Example of usage:
 
@@ -180,7 +201,24 @@ ____________________________________________________________
 LT1 is your venue!
 ____________________________________________________________
 ```
-<br>
+
+### Update Event Name
+Updates the event name of the event and updates the event details file.
+
+* Format: `update event name [EVENT_NAME]`
+    * `[EVENT_NAME]` must not be empty.
+
+* Example of usage:
+
+    * `update event name CDE fair` would update the event name to CDE fair.
+
+* Expected outcome:
+
+```
+____________________________________________________________
+CDE fair is your event name!
+____________________________________________________________
+```
 
 ### Confirm
 Mark the status of a specific company's attendance as confirmed, and 
@@ -194,10 +232,19 @@ updates a status icon to [Confirmed] that represents it being marked confirmed.
 
 ```
 ____________________________________________________________
-Company has been successfully confirmed!
+This company has been successfully confirmed!
 ____________________________________________________________
 
 ```
+* If the company has already been marked as confirmed
+* Expected outcome:
+```
+____________________________________________________________
+This company is already confirmed!
+____________________________________________________________
+
+```
+
 <br>
 
 
@@ -213,10 +260,19 @@ updates a status icon to [Unconfirmed] that represents it being marked unconfirm
 
 ```
 ____________________________________________________________
-Company has been successfully unconfirmed!
+This company has been successfully unconfirmed!
 ____________________________________________________________
 
 ```
+* If the company has already been marked as unconfirmed
+* Expected outcome:
+```
+____________________________________________________________
+This company is already unconfirmed!
+____________________________________________________________
+
+```
+
 <br>
 
 ### List Companies
@@ -311,6 +367,14 @@ ____________________________________________________________
 Company information successfully deleted!
 ____________________________________________________________
 ```
+* If the company list is empty
+* Expected outcome:
+```
+____________________________________________________________
+Nothing inside company list
+____________________________________________________________
+
+```
 <br>
 
 ### Purge
@@ -326,6 +390,14 @@ Delete the company list data, and updates the company list text file
 ____________________________________________________________
 Data has been deleted successfully!
 ____________________________________________________________
+```
+* If the company list is empty
+* Expected outcome:
+```
+____________________________________________________________
+Nothing inside company list
+____________________________________________________________
+
 ```
 <br>
 
@@ -362,6 +434,7 @@ ____________________________________________________________
 Find the companies within an industry based on the keyword provided by the user.
 
 * Format: `find industry [KEYWORD]`
+  * `[KEYWORD]` must be the exact industry that the company is in.
 
 * Example of usage: `find industry tech`
 
