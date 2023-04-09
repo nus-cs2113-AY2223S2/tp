@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class BadMaths {
+    + commandChecker()
+    + main()
+}
+
+class Parser {
+    # userInput: String
+    + getCommand(): String
+    + getToDo(): String
+}
+
+class Ui {
+    + printIncorrectFormatEntered()
+    + printWelcomeMessage()
+}
+
+class Command {
+    # command: String
+    # toDo: String
+    + setCommand()
+    + setToDo()
+    + executeCommand()
+}
+
+Parser <-- BadMaths
+Command "1" <-- BadMaths
+Ui "1" <-- BadMaths
+
+
+@enduml

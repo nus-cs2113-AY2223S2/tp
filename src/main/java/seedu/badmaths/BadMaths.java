@@ -19,6 +19,12 @@ public class BadMaths {
             "Graph", "Bye", "List", "Store", "Matrix", "Help", "FindInfo", "FindPrior", "FindMark", "FindUnmark", "Low",
             "Medium", "High", "Delete", "Mark", "Unmark", "Clear", "Rank", "Quadratic", "History"
     ));
+
+    /**
+     * Checks whether command is one of the valid commands
+     * Throws exception if not
+     * @param command which is the user inputted command
+     */
     public static void commandChecker(String command) {
         try {
             if (!VALID_COMMANDS.contains(command)) {
