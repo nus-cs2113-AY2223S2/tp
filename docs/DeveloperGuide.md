@@ -364,36 +364,9 @@ ingredients required and steps to make the dish
 1. Download the `.jar` file and place it in an empty folder.
 2. Open the folder location in a command-line interface. (E.g. Terminal for Windows)
 3. Type in `java -jar .\<JAR_FILE_NAME>.jar` where `JAR_FILE_NAME` is the name of the `.jar` file downloaded.
-4. A successful launch should show a `data` folder being created and a welcome message as such:
+4. A successful launch should show a `data` folder being created and a welcome message as such: 
+> ![Welcome Message](./Pictures/welcomeMessage.png)
     
-    ```
-   Directory for file saving created.
-    
-    __________________________________________________________
-    
-    Saved recipes loaded!
-    
-    HELLO there! I am
-     _____         _         _____  __  ___  ___                _         _______ ________  ____
-    |_   _|       | |       |  _  |/ _| |  \/  |               ( )       / /_   _|  _  |  \/  \ \
-      | | __ _ ___| |_ ___  | | | | |_  | .  . | ___  _ __ ___ |/ ___   | |  | | | | | | .  . || |
-      | |/ _` / __| __/ _ \ | | | |  _| | |\/| |/ _ \| '_ ` _ \  / __|  | |  | | | | | | |\/| || |
-      | | (_| \__ \ ||  __/ \ \_/ / |   | |  | | (_) | | | | | | \__ \  | |  | | \ \_/ / |  | || |
-      \_/\__,_|___/\__\___|  \___/|_|   \_|  |_/\___/|_| |_| |_| |___/  | |  \_/  \___/\_|  |_/| |
-                                                                         \_\                  /_/
-    
-    Your personal recipes assistant!
-    What can I do for you today?
-    
-    You can start by adding recipes to a recipe list that I can generate, simply follow the format below:
-    
-    Add recipe : "add n/<insert recipe name> i/<insert ingredients with ", " separation> t/<insert cuisine> s/<insert number of steps>"
-    
-    If you wish to view the full list of commands, simply type "help"!
-    
-    __________________________________________________________
-    ```
-
 ### Appendix E.1 - Adding a recipe
 Adding a person by using the `add` command and the recipe to be added.
 1. Test case:
