@@ -83,8 +83,7 @@ public class EditCommand extends Command {
         }
         MonthlyExpenditures.addToMonthlyExpenditure(editedStatement);
 
-        String output = "Done, edited entry " + (index + 1)
-                + " from the financial report";
+        String output = "Done, edited entry " + (index + 1) + " from the financial report";
 
         assert previousStatementCount == savedData.getStatementCount() : "statement count mismatch";
 
