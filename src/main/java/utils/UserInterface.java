@@ -7,10 +7,8 @@ import model.CardList;
 import model.CardUUID;
 import model.Deck;
 import model.DeckList;
-import model.DeckUUID;
 import model.Tag;
 import model.TagList;
-import model.TagUUID;
 import utils.enums.StringArt;
 import utils.exceptions.InkaException;
 
@@ -167,8 +165,8 @@ public class UserInterface {
         System.out.println("Successfully removed tag " + tagName + " from deck " + deckName);
     }
 
-    public void printAddTagToDeckSuccess(String tagName, DeckUUID deckUUID) {
-        System.out.println("Successfully added tag " + tagName + " to deck " + deckUUID);
+    public void printAddTagToDeckSuccess(String tagName, String deckName) {
+        System.out.println("Successfully added tag " + tagName + " to deck " + deckName);
     }
 
     public void printTagCreationSuccess(String tagName) {

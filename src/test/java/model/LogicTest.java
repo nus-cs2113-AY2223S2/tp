@@ -210,7 +210,7 @@ public class LogicTest {
         // Create tag
         parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
 
-        final String TAG_IN_CARD_STR = "Card is already a part of the Tag";
+        String tagInCardStr = "Card is already a part of the Tag";
 
         // Create tag with long name
         try {
@@ -218,7 +218,7 @@ public class LogicTest {
                     "card tag -t testTag -i 1",
                     AddCardToTagCommand.class);
         } catch (CardInTagException e) {
-            assertEquals(e.getUiMessage(), TAG_IN_CARD_STR);
+            assertEquals(e.getUiMessage(), tagInCardStr);
         }
     }
 
@@ -227,7 +227,7 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String MISSING_CARD_STR = "Card cannot be found";
+        String missingCardStr = "Card cannot be found";
 
         //tag non-existent card
         try {
@@ -235,7 +235,7 @@ public class LogicTest {
                     "card tag -t testTag -i 100",
                     AddCardToTagCommand.class);
         } catch (CardNotFoundException e) {
-            assertEquals(e.getUiMessage(), MISSING_CARD_STR);
+            assertEquals(e.getUiMessage(), missingCardStr);
         }
     }
 
@@ -244,7 +244,7 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String MISSING_CARD_STR = "Card cannot be found";
+        String missingCardStr = "Card cannot be found";
 
         //Untag a non-existent card
         try {
@@ -252,7 +252,7 @@ public class LogicTest {
                     "card untag -t testTag -i 100",
                     RemoveTagFromCardCommand.class);
         } catch (CardNotFoundException e) {
-            assertEquals(e.getUiMessage(), MISSING_CARD_STR);
+            assertEquals(e.getUiMessage(), missingCardStr);
         }
     }
 
@@ -261,7 +261,7 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+        String longTagNameStr = "Tag name specified is too long.";
 
         // Create tag with long name
         try {
@@ -271,7 +271,7 @@ public class LogicTest {
                             "jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjs -i 1",
                     RemoveTagFromCardCommand.class);
         } catch (LongTagNameException e) {
-            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longTagNameStr);
         }
     }
 
@@ -280,7 +280,7 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+        String longTagNameStr = "Tag name specified is too long.";
 
         // Create tag with long name
         try {
@@ -288,7 +288,7 @@ public class LogicTest {
                     "card tag -t jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsd -i 1",
                     AddCardToTagCommand.class);
         } catch (LongTagNameException e) {
-            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longTagNameStr);
         }
     }
 
@@ -300,7 +300,7 @@ public class LogicTest {
         // Create tag
         parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
 
-        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+        String longTagNameStr = "Tag name specified is too long.";
 
         // Create tag with long name
         try {
@@ -309,7 +309,7 @@ public class LogicTest {
                             + "fgeshjfgsydfgsduyysfgydfgsyufgsyufgsyufgsdyufgsyufgsyuhfgsyufsgfsgyfsgfys",
                     EditTagNameCommand.class);
         } catch (LongTagNameException e) {
-            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longTagNameStr);
         }
     }
 
@@ -321,7 +321,7 @@ public class LogicTest {
         // Create tag
         parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
 
-        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+        String longTagNameStr = "Tag name specified is too long.";
 
         // Create tag with long name
         try {
@@ -331,7 +331,7 @@ public class LogicTest {
                             "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgj",
                     DeleteTagCommand.class);
         } catch (LongTagNameException e) {
-            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longTagNameStr);
         }
     }
 
@@ -343,7 +343,7 @@ public class LogicTest {
         // Create tag
         parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
 
-        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+        String longTagNameStr = "Tag name specified is too long.";
 
         // Create tag with long name
         try {
@@ -353,7 +353,7 @@ public class LogicTest {
                             "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgj",
                     ListCardsUnderTagCommand.class);
         } catch (LongTagNameException e) {
-            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longTagNameStr);
         }
     }
 
@@ -362,7 +362,7 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String LONG_DECK_NAME_EXCEPTION_STR = "Deck name specified is too long.";
+        String longDeckNameStr = "Deck name specified is too long.";
 
         // Create tag with long name
         try {
@@ -370,7 +370,7 @@ public class LogicTest {
             parseAndExecute("card deck -d testDecksetsetsettsetststsststtstststststststststtstststshrhhs -i 1",
                     AddCardToDeckCommand.class);
         } catch (LongDeckNameException e) {
-            assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longDeckNameStr);
         }
     }
 
@@ -379,14 +379,14 @@ public class LogicTest {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
-        final String LONG_DECK_NAME_EXCEPTION_STR = "Deck name specified is too long.";
+        String longDeckNameStr = "Deck name specified is too long.";
 
         try {
             //delete deck with long name
             parseAndExecute("deck delete -d gjshguhsuigshuighzsduighzuighyzuighzughzughzughzughzughzugzhgugzug",
                     DeleteDeckCommand.class);
         } catch (LongDeckNameException e) {
-            assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longDeckNameStr);
         }
     }
 
@@ -398,7 +398,7 @@ public class LogicTest {
         // Create tag
         parseAndExecute("card deck -d deckTest -i 1", AddCardToDeckCommand.class);
 
-        final String LONG_DECK_NAME_EXCEPTION_STR = "Deck name specified is too long.";
+        String longDeckNameStr = "Deck name specified is too long.";
 
         // Edit deck with long name
         try {
@@ -407,7 +407,7 @@ public class LogicTest {
                             + "fgeshjfgsydfgsduyysfgydfgsyufgsyufgsyufgsdyufgsyufgsyuhfgsyufsgfsgyfsgfys",
                     EditDeckNameCommand.class);
         } catch (LongDeckNameException e) {
-            assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
+            assertEquals(e.getUiMessage(), longDeckNameStr);
         }
     }
 
