@@ -13,7 +13,7 @@ public class ViewDeadlineCommand extends commands.Command {
      */
     @Override
     public void execute(TextUi ui) {
-        DeadlineManager.printDeadlines(ui);
+        DeadlineManager.viewDeadlines(ui);
     }
 
     @Override
