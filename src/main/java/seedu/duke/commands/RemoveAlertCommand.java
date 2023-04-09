@@ -45,7 +45,6 @@ public class RemoveAlertCommand extends Command {
      * Removes an alert from its corresponding hash map.
      */
     private void removeAlert() {
-
         if (minmax.equals(MIN_KEYWORD) && hasUpcInAlerts(alertList.getMinAlertUpcs())) {
             alertList.getMinAlertUpcs().remove(upc);
             Ui.printSuccessRemoveAlertCommand();

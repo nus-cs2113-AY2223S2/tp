@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title HistoryParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 User -> ":HistoryParser"**
 
@@ -26,7 +28,7 @@ ref over ":HistoryCommand"
     sort history
 end ref
 return null or results
-participant "Ui" << Class >>
+participant "Ui" <<class>>
 alt results is not null
 else
 ":HistoryCommand" -> "Ui": printHistory

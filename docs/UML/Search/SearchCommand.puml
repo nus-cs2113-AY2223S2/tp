@@ -1,12 +1,15 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title SearchCommand Sequence Diagram
+
+skinparam style strictuml
 participant ":SearchParser"
 
 group sd [SearchCommand running]
     ":SearchParser" -> ":SearchCommand": run()
     activate ":SearchCommand"
     participant ":SearchCommand"
-    participant Ui << Class >>
+    participant Ui <<class>>
     alt searchType == Types.SearchType.KEYWORD
         ":SearchCommand" -> ":SearchCommand": searchKeyword()
         activate ":SearchCommand" #cyan

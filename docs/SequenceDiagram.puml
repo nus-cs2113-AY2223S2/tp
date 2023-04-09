@@ -2,6 +2,7 @@
 @startuml
 title MagusStock Overall Sequence Diagram
 
+skinparam style strictuml
 actor User
 participant ":MagusStock"
 participant "<<class>>\nUi"

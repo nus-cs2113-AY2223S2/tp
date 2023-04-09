@@ -1,33 +1,25 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title RemoveParser Sequence Diagram
 
 actor User
-User -> RemoveParser: run()
-activate RemoveParser
-alt rawInput contains 'f/item'
-    RemoveParser -> RemoveParser: parseRemoveByUpc(commands, inventory)
-    activate RemoveParser #cyan
-    RemoveParser -> RemoveCommand: run()
-    activate RemoveCommand
-        ref over RemoveCommand
-         check confirmation and execute accordingly
+skinparam style strictuml
+User -> ":RemoveParser": run()
+activate ":RemoveParser"
+alt rawInput contains 'f/upc' or 'f/index
+
+    ":RemoveParser" -> ":RemoveParser": parseRemoveByUpc() or parseRemoveByIndex()
+    activate ":RemoveParser" #cyan
+    ":RemoveParser" -> ":RemoveCommand"**
+        ref over ":RemoveCommand", ":RemoveParser"
+        remove item in RemoveCommand
         end ref
-    return
-    return
-else rawInput contains 'f'index'
-    RemoveParser -> RemoveParser: parseRemoveByIndex(commands, inventory)
-    activate RemoveParser #cyan
-    RemoveParser -> RemoveCommand: run()
-    activate RemoveCommand
-        ref over RemoveCommand
-         check confirmation and execute accordingly
-        end ref
-    return
-    return
+    return null
 else rawInput is null/empty
-    RemoveParser -> RemoveParser: null
+    ":RemoveParser" -> ":RemoveParser": null
 end
-destroy RemoveCommand
+
+destroy ":RemoveCommand"
 return
-destroy RemoveParser
+destroy ":RemoveParser"
 @enduml
