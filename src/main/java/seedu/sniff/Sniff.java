@@ -47,13 +47,13 @@ public class Sniff {
 
     private static String getPath() {
         String home = System.getProperty("user.home");
-        java.nio.file.Path path = java.nio.file.Paths.get(home, "SniffAppointment.txt");
+        java.nio.file.Path path = java.nio.file.Paths.get(home, "SniffAppointments.txt");
         return path.toString();
     }
 
     private static String getArchivePath() {
         String home = System.getProperty("user.home");
-        java.nio.file.Path filepath = java.nio.file.Paths.get(home, "SniffTest.txt");
+        java.nio.file.Path filepath = java.nio.file.Paths.get(home, "SniffArchive.txt");
         return filepath.toString();
     }
 
