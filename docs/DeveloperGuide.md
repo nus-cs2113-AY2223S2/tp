@@ -51,7 +51,7 @@ Ensure you have the following installed:
 ## Design 
 ### Architecture
 
-<img src="uml/images/DinerDirectorArchitectureDiagram.png" height="300" height="200">
+<img src="uml/images/DinerDirectorArchitectureDiagram.png" style="max-height: 550px">
 
 The **Architecture Diagram** given above explains the high-level design of DinerDirector. 
 Given below is a quick overview of main components and how they interact with each other. 
@@ -203,19 +203,20 @@ If any of the list is empty, a separate message notifying the user that the list
 The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` objects in the list of staffs. 
 `Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are hot it works for each functionality: 
 
-1. add_staff  
+#### Adding staff to the list:
 
-    It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
-    the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
-    `StaffManager` to add the `Staff` object to the list of `Staff` 
-2. delete_staff 
+It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
+the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
+`StaffManager` to add the `Staff` object to the list of `Staff` 
 
-    It first finds the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
-    If it is found, it will delete the correct corresponding `Staff`. 
+#### Deleting staff on the list:
 
-3. view_staff
+It first finds the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
+If it is found, it will delete the correct corresponding `Staff`. 
 
-    It prints all of `Staff` objects in `StaffManager`'s staffs. 
+#### Viewing the list of staffs:
+
+It prints all of `Staff` objects in `StaffManager`'s staffs. 
 
 ### Dish Feature
 
