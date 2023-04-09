@@ -161,6 +161,10 @@ public class Schedule {
         return isRecurring;
     }
 
+    /**
+     * Get a String describing time information.
+     * @return String containing time information, [start time] to [end time] [recur and time interval]
+     */
     public String getTime() {
         String recur = " not recurring";
         if (isRecurring) {
@@ -205,6 +209,10 @@ public class Schedule {
         this.hasEndInfo = false;
     }
 
+    /**
+     * Calculate time interval in days.
+     * @return time interval in days.
+     */
     public int getActualInterval() {
         String[] details = this.timeInterval.split(" ");
 
@@ -222,7 +230,9 @@ public class Schedule {
         return actualDays;
     }
 
-    // fuinction mayhbe useful in arlarm?
+    /**
+     * Add recurring events to event list.
+     */
     public ArrayList<Schedule> getNextNTimes(int n) {
         ArrayList<Schedule> list = new ArrayList<>();
         int actualDays = getActualInterval();

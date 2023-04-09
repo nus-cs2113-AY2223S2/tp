@@ -63,6 +63,11 @@ public class Parser {
         ui = new Ui();
     }
 
+    /**
+     * Parse user input and change event list according to input command.
+     * @param userInput String the user inputs.
+     * @param eventList EventList containing all ongoing events.
+     */
     public static void parseCommand(String userInput, EventList eventList) {
         try {
             userInput = userInput.trim();

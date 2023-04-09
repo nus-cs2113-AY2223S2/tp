@@ -169,8 +169,7 @@ public class EventList {
      * @param startDay Start day of the Event. Format "YYYY/MM/DD".
      * @param endTime End time of the Event. Foramt "HH:MM".
      * @param endDay End day of the Event. Format "YYYY/MM/DD".
-     * @throws NPExceptions when start time is after end time or 
-     * new event has time conflict with events already exist.
+     * @throws NPExceptions when start time is after end time or new event has time conflict with events already exist.
      */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
@@ -209,17 +208,6 @@ public class EventList {
     }
 
     /**
-     * Add an event.
-     * @param description Event description, describes what the Event is.
-     * @param startTime Start time of the Event. Format "HH:MM".
-     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
-     * @param endTime End time of the Event. Foramt "HH:MM".
-     * @param endDay End day of the Event. Format "YYYY/MM/DD".
-     * @throws NPExceptions when start time is after end time or 
-     * new event has time conflict with events already exist.
-     */
-
-    /**
      * Add an Event.
      * @param description Event description, describes what the event is.
      * @param startTime Start time of the Event. Format "HH:MM".
@@ -227,8 +215,7 @@ public class EventList {
      * @param endTime End time of the Event. Foramt "HH:MM".
      * @param endDay End day of the Event. Format "YYYY/MM/DD".
      * @param recurTime Recur time of the Event. 
-     * @throws NPExceptions when start time is after end time or 
-     * new event has time conflict with events already exist.
+     * @throws NPExceptions when start time is after end time or new event has time conflict with events already exist.
      */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
             String recurTime) throws NPExceptions {
@@ -290,7 +277,7 @@ public class EventList {
     /**
      * Change time field of an event.
      * @param description Description of the event to be changed. 
-     * This method will find the event from the event list according to description.
+     *     This method will find the event from the event list according to description.
      * @param startTime New start time of the event. Format "HH:MM".
      * @param startDay New start day of the event. Format "YYYY/MM/DD".
      * @param endTime New end time of the event. Format "HH:MM".
@@ -309,7 +296,7 @@ public class EventList {
     /**
      * Change time field of an event.
      * @param description Description of the event to be changed. 
-     * This method will find the event from the event list according to description.
+     *     This method will find the event from the event list according to description.
      * @param startTime New start time of the event. Format "HH:MM".
      * @param startDay New start day of the event. Format "YYYY/MM/DD".
      * @throws NPExceptions if Event does not exist.
