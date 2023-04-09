@@ -13,7 +13,6 @@ This helps with planning future exercises.
   - [Viewing Help](viewing-help)
 - [Features](#features)
   - [Workout Recorder](#workout-recorder)
-      - [Start a new day: /wday](#start-a-new-day--wday)
       - [Start a workout: /wstart](#start-a-workout--wstart)
       - [Add exercises to current workout: /wadd](#add-exercises-to-current-workout--wadd)
       - [List workout dates: /wlist](#list-workout-dates--wlist)
@@ -21,12 +20,12 @@ This helps with planning future exercises.
       - [Delete workout record: /wdelete](#delete-a-workout--wdelete)
       - [Count sets and reps for a week: /wcount](#count-sets-and-reps-over-a-week--wcount)
   - [Calories Recorder](calories-recorder)
-    - [Start a new day: /cday](#start-a-calories--wstart)
     - [Add calories consumed: /cadd](#add-calories-consumed--cadd)
     - [List all the datesof Calories consumed: /clist](#list-calories-clist)
     - [View calorie consumption: /cview](#view-calorie-consumption--cview)
     - [Delete calories record: /cdelete](#delete-a-workout--delete)
-  - [List of valid commands : /help](#list-of-valid-commands--help)
+  - [List of valid workout commands : /whelp](#list-valid-commands--help)
+  - [List of valid calorie commands : /chelp](#list-of-valid-commands--help)
   - [Exit the app: /exit](#exit-the-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -68,13 +67,13 @@ Expected output:
 ```
 Here are the list of commands that you can use for workout record:
 =======================================
-- [Start a new day: /wday])
 - [Start a workout: /wstart])
 - [Add exercise: /wadd]
 - [Display all the days: /wlist]
 - [Display workouts information for a specific day: /wview]
 - [Display total amount of reps and set for one week /wcount]
 - [Delete workouts: /wdelete]
+- [End current workout: /wend]
 - [Exit app: /exit]
 =======================================
 ```
@@ -92,7 +91,6 @@ Expected output:
 ```
 Here are the list of commands that you can use for calories record:
 =======================================
-- [Start a new day: /cday])
 - [Add food and calories: /cadd]
 - [Display total calories consumption: /clist]
 - [Display calories consumed on a specific date : /cview]
@@ -104,152 +102,147 @@ Here are the list of commands that you can use for calories record:
 
 ## Features
 
-### Start a workout: `/wday`
-Starts the workout for a specific date
-
-Format: `/wday DD/MM/YY`
-
-* The `DATE` needs to be in the exact format.
-
-Example of usage:
-
-`/wstart 11/03/23`
-
-`/wstart 21/04/23`
-
-Expected output:
-```
-Great! You have added a new workout for 11/02/23
-```
-
 ### Start a workout: `/wstart`
 Starts the workout for a specific date
 
 Format: `/wstart WORKOUT_NAME`
 
-* The `DATE` needs to be in the exact format.
-
 Example of usage: 
 
-`/wstart Chest day`
+`/wstart chest day`
 
 `/wstart leg day`
 
 Expected output:
 ```
-/wstart Chest day
-Great! You have added a new workout for Chest day.
+chest day started on 09/04/23.
 ```
 
 ### Add exercises to current workout: `/wadd`
 Adds exercise to the current workout.
 
-Format: `/wadd <exercise_name> /weight <weight_used> /rps <reps_per_set>`
+Format: `/wadd EXERCISE_NAME WEIGHT_USED_WEIGHT_UNIT RPS`
 
-* `/wadd` only works after a workout is started with `/start`.
+* `/wadd` only works after a workout is started with `/wstart`.
+* `WEIGHT_USED_WEIGHT_UNIT` example: 100kg or 100lb (the unit needs to be connected with the weight used)
+* `RPS` it means reps per set of an exercise it can be inputted in this format: 7 6 9
 
 Example of usage:
 
-`/wadd bench press /weight 100 /rps 5 5 5 5`
+`/wadd chest press 100kg 7 6 5`
 
-`/wadd leg press /weight 160 /rps 5 5 5 5`
+`/wadd leg press 150kg 7 6 5`
 
 Expected output:
 ```
-Added bench press 100 5 5 5 5
+chest press 100kg 7 6 5 has been added.
 ```
 
-### List workout dates: `/list`
+### List workout dates: `/wlist`
 Display the list of dates of workouts done.
 
-Format: `/list`
+Format: `/wlist`
 
 Example of usage:
 
-`/list`
+`/wlist`
 
 Expected output:
 ```
-Here are the list of dates of your workouts: 
-1. 25/03/23
-2. 26/03/23
+Here is the list of dates of your workouts:
+1. 08/04/23 21/02/21 chest day
+2. 08/04/23 chest day
+3. 09/04/23 chest day
+=======================================
 ```
 ### View a workout: `/wview`
-Display the list of exercises done for a workout on a specified date.
+Display the list of exercises done of a workout date.
 
-Format: `/wview <DD/MM/YY>`
+Format: `/wview INDEX`
 
+* `INDEX` is the number that is displayed when using the `/wlist` function
 Example of usage:
 
-`/wview 21/03/23`
+`/wview 3`
 
 Expected output:
 ```
-Here are the list of exercises in your workout:
-1. bench press 100kg 9 8 7 6 5
-2. squats 120kg 8 6 5 4
+Here are the list of exercises for chest day on 09/04/23.
+1. chest press 100kg 7 6 5
+=======================================
 ```
-### Delete a workout: `/delete`
+### Delete a workout: `/wdelete`
 Delete a workout on a specified date.
 
-Format: `/delete <DD/MM/YY>`
+Format: `/delete INDEX`
+
+* `INDEX` is the number that is displayed when using the `/wlist` function
 
 Example of usage:
 
-`/delete 21/03/23`
+`/delete 3`
 
 Expected output:
 ```
-Workout deleted.
+Deleted chest day on 09/04/23.
 ```
-### Count sets and reps over a week: `/count`
+### Count sets and reps over a week: `/wcount`
 Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
 
-Format: `/count <DD/MM/YY>`
+Format: `/wcount <DD/MM/YY>`
 
 Example of usage:
 
-`/count 21/03/23`
+`/wcount 09/04/23`
 
 Expected output:
 ```
-Exercises and number of sets and reps for the week of Tue Mar 21 00:00:00 SGT 2023
-----------------------------------
-Bench Press - 4 sets - 48 reps
-Squats - 5 sets - 60 reps
-----------------------------------
+Information of exercises for the week of 09/04/23
+Name: leg press, sets: 3, rps:22
+=======================================
 ```
 ### Add calories consumed: `/cadd`
 Add record of calories consumed.
 
-Format: `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIE_COUNT>`
+Format: `/cadd DD/MM/YY FOOD_NAME CALORIE_COUNT`
 
-* `<CALORIE_COUNT>` can be omitted if food has not been added previously.
+* `CALORIE_COUNT` can be omitted if food has not been added previously.
 
 Example of usage:
-`/cadd 25/03/23 chicken 100`
-`/cadd 25/03/23 chicken`
+`/cadd 11/02/23 chicken 100`
 
 Expected output:
 ```
-Consumed additional 100kcal.
-Total calories consumed: 100kcal
-Consumed additional 100kcal.
-Total calories consumed: 200kcal
+Added chicken(100 kcal) to 11/02/23.
+```
+### View calorie consumption: `/clist`
+Display the list of dates and total calorie consumption.
+
+Format: `/clist`
+
+Example of usage:
+`/clist`
+
+Expected output:
+```
+Here is your list of daily calorie consumption: 
+1. 11/02/23: 100kcal
+=======================================
 ```
 ### View calorie consumption: `/cview`
 View the total calorie consumption in a specified date.
 
-Format: `/view <DD/MM/YY>`
+Format: `/cview DD/MM/YY`
 
 Example of usage:
 `/cview`
 
 Expected output:
 ```
-Calories consumed on 25/03/23: 200kcal.
+Here are the foods consumed on 11/02/23:
+1. chicken - 100kcal
+=======================================
 ```
-### List valid commands: `/help`
 ### Exit the App: `/exit`
 Exit the program.
 
@@ -268,18 +261,21 @@ Thank you, hope you had a great workout!!!
 
 **Q**: Does the app save my workouts when I exit it?
 
-**A**: As of v2.0, the app does not save your data. However, you can look forward to this feature in the next update!
+**A**: As of v2.1, the app does save your data.
 
 ## Command Summary
 
-* The list of Commands `/help`
-* Start a workout `/start <DD/MM/YY>`
-* Add exercise `/wadd <EXERCISE_NAME> /weight <WEIGHT_USED> /rps <REPS_PER_SET>`
-* End current Workout `/end`
-* List workout dates: `/list`
-* View a workout: `/wview <DD/MM/YY>`
-* Delete a workout `/delete <DD/MM/YY>`
-* Count sets and reps over a week: `/count <DD/MM/YY>`
-* Add calories consumed: `/cadd <DD/MM/YY> <FOOD_NAME> <CALORIE_COUNT>`
-* View calorie consumption: `/cview <DD/MM/YY>`
+* The list of workout Commands `/whelp`
+* The list of calorie Commands `/chelp`
+* Start a workout `/wstart WORKOUT_NAME`
+* Add exercise `/wadd EXERCISE_NAME WEIGHT_USED_WEIGHT_UNIT RPS`
+* List workout dates: `/wlist`
+* View a workout: `/wview DD/MM/YY`
+* Delete a workout `/wdelete DD/MM/YY`
+* Count sets and reps over a week: `/wcount DD/MM/YY`
+* End current Workout `/wend`
+* Add calories consumed: `/cadd DD/MM/YY FOOD_NAME CALORIES`
+* List calorie consumption dates: `/clist`
+* View calorie consumption: `/cview DD/MM/YY`
+* Delete calorie consumption date: `/cdelete DD/MM/YY`
 * Exit app `/exit`

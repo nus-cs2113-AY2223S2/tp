@@ -24,26 +24,25 @@ public class Ui {
             "|  |     |  |     |  |      /  /----.\n" +
             "|__|     |__|     |__|     /________|";
     private static final Scanner in = new Scanner(System.in);
+    //@@ author RIchardtok
     private static final String HELP_MESSAGE_WORKOUT =
             "Here are the list of commands that you can use for workout record:"
                     +System.lineSeparator() + LINE + System.lineSeparator()
-                    + "- [Start a new day: /wday])" + System.lineSeparator()
                     + "- [Start a workout: /wstart])" + System.lineSeparator()
                     + "- [Add exercise: /wadd]" + System.lineSeparator()
                     + "- [Display all the days: /wlist]" + System.lineSeparator()
                     + "- [Display workouts information for a specific day: /wview]" + System.lineSeparator()
                     + "- [Display total amount of reps and set for one week /wcount]" + System.lineSeparator()
                     + "- [Delete workouts: /wdelete]" + System.lineSeparator()
+                    + "- [End current workout: /wend]" + System.lineSeparator() + LINE
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
     private static final String HELP_MESSAGE_CALORIES =
             "Here are the list of commands that you can use for calories record:"
                     +System.lineSeparator() + LINE + System.lineSeparator()
-                    + "- [Start a new day: /cday])" + System.lineSeparator()
                     + "- [Add food and calories: /cadd]" + System.lineSeparator()
-                    + "- [Display total calories consumption: /wlist]" + System.lineSeparator()
+                    + "- [Display total calories consumption: /clist]" + System.lineSeparator()
                     + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
-                    + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
-                    + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
+                    + "- [Delete calories record for one food: /cdelete]" + System.lineSeparator();
     private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
