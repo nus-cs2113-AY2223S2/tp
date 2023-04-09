@@ -1,0 +1,302 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include Style.puml
+hide circle
+skinparam classAttributeIconSize 0
+
+class Illness {
+-illnessName: String
+-severityLevel: int
+-isChronic: boolean
+-symptoms: ArrayList<Symptom>
++Illness(illnessName: String, severityLevel: int, isChronic: boolean, symptoms: ArrayList<Symptom>)
++getIllnessName(): String
++getSeverityLevel(): int
++isChronic(): boolean
++getSymptoms(): ArrayList<Symptom>
+}
+
+Illness *--- "1..59" Symptom : contains >
+
+class IllnessMatch {
+-illness: Illness
+-similarityPercentage: double
++IllnessMatch(illness: Illness, similarityPercentage: double)
++getIllness(): Illness
++getSimilarityPercentage(): double
+}
+
+IllnessMatch *--- "1" Illness : has >
+
+class Diagnosis {
+-POSSIBILITY_THRESHOLD: double
+-ALL_ILLNESSES: ArrayList<Illness>
+-diagnosisLogger: Logger
+-getMatchingSymptoms(patientSymptoms: ArrayList<Symptom>, illnessSymptoms: ArrayList<Symptom>): ArrayList<Symptom>
++getPossibleIllnesses(patientSymptoms: ArrayList<Symptom>): ArrayList<IllnessMatch>
+}
+
+Diagnosis *--- "39" Illness : lists all >
+
+enum Symptom {
+DIFFICULTY_BREATHING,
+HISTORY_OF_ASTHMA,
+HYPERVENTILATION,
+HISTORY_OF_ALLERGIES,
+RUNNY_NOSE,
+FATIGUE,
+SNIFFING,
+THROAT_IRRITATION,
+DRY_COUGH,
+COUGH_WITH_PHLEGM,
+BLEEDING_WHEN_COUGHING,
+CHEST_PAIN,
+HEAD_ACHE,
+HIGH_HEART_RATE,
+TOOTH_ACHE,
+BLACK_TEETH,
+RED_SKIN,
+ITCHY_SKIN,
+SWELLING_SKIN,
+DRY_SCALING_SKIN,
+HARD_LUMPY_STOOL,
+WET_STOOL,
+DIARRHOEA,
+STOMACH_ACHE,
+NAUSEA,
+VOMITING,
+BLOODIED_STOOLS,
+WEIGHT_LOSS,
+FREQUENT_URINATION,
+SLOW_REGENERATION,
+FEVER,
+SUSCEPTIBILITY_TO_ILLNESS,
+CHILLS,
+BLOCKED_NOSE,
+SWOLLEN_LYMPH_NODES,
+SWOLLEN_JOINTS,
+MUSCLE_ACHE,
+BACK_ACHE,
+JOINT_PAIN,
+HISTORY_OF_OSTEOPOROSIS,
+BLURRED_VISION,
+SENSITIVITY_TO_LIGHT_AND_SOUND,
+SPRAIN,
+SLEEPLESSNESS,
+FRACTURE,
+BREATHLESSNESS,
+GENERAL_SWELLING,
+GENERAL_PAIN,
+PALENESS_OF_SKIN,
+THIRST,
+WOUND_OR_CUT,
+BLEEDING,
+PUSS,
+HISTORY_OF_ADHD,
+HISTORY_OF_DEPRESSION,
+LOSS_OF_TASTE_OR_SMELL,
+ITCHY_EYE,
+RED_EYES,
+SNEEZING
+}
+
+'class Asthma {
+'+Asthma()
+'}
+'class GeneralAllergicReaction {
+'+GeneralAllergicReaction()
+'}
+'class Bronchitis {
+'+Bronchitis()
+'}
+'class GeneralBacterialInfection {
+'+GeneralBacterialInfection(),
+'}
+'class Pneumonia {
+'+Pneumonia()
+'}
+'class SoreThroat {
+'+SoreThroat()
+'}
+'class Tuberculosis {
+'+Tuberculosis()
+'}
+'class CoronaryHeartDisease {
+'+CoronaryHeartDisease()
+'}
+'class Hypertension {
+'+Hypertension()
+'}
+'class GeneralToothAche {
+'+GeneralToothAche()
+'}
+'class ToothDecay {
+'+ToothDecay()
+'}
+'class GeneralRash {
+'+GeneralRash()
+'}
+'class Hives {
+'+Hives()
+'}
+'class Psoriasis {
+'+Psoriasis()
+'}
+'class Constipation {
+'+Constipation()
+'}
+'class Diarrhoea {
+'+Diarrhoea()
+'}
+'class FoodPoisoning {
+'+FoodPoisoning()
+'}
+'class GeneralStomachAche {
+'+GeneralStomachAche()
+'}
+'class Hemorrhoids {
+'+Hemorrhoids()
+'}
+'class Diabetes {
+'+Diabetes()
+'}
+'class GeneralFever {
+'+GeneralFever()
+'}
+'class HumanImmunodeficiencyVirus {
+'+HumanImmunodeficiencyVirus()
+'}
+'class Arthritis {
+'+Arthritis()
+'}
+'class GeneralBackAche {
+'+GeneralBackAche()
+'}
+'class GeneralMuscleAche {
+'+GeneralMuscleAche()
+'}
+'class Osteoporosis {
+'+Osteoporosis()
+'}
+'class GeneralHeadAche {
+'+GeneralHeadAche()
+'}
+'class Migraine {
+'+Migraine()
+'}
+'class Fracture {
+'+Fracture()
+'}
+'class InternalBleeding {
+'+InternalBleeding()
+'}
+'class SuperficialWound {
+'+SuperficialWound()
+'}
+'class AttentionDeficitHyperactivityDisorder {
+'+AttentionDeficitHyperactivityDisorder()
+'}
+'class Depression {
+'+Depression()
+'}
+'class Insomnia {
+'+Insomnia()
+'}
+'class Conjunctivitis {
+'+Conjunctivitis()
+'}
+'class Coronavirus {
+'+Coronavirus()
+'}
+'class Dengue {
+'+Dengue()
+'}
+'class GeneralCold {
+'+GeneralCold()
+'}
+'class GeneralFlu {
+'+GeneralFlu()
+'}
+'
+'Asthma -|> Illness
+'GeneralAllergicReaction -|> Illness
+'Bronchitis -|> Illness
+'GeneralBacterialInfection -|> Illness
+'Pneumonia -|> Illness
+'SoreThroat -|> Illness
+'Tuberculosis -|> Illness
+'CoronaryHeartDisease -|> Illness
+'Hypertension -|> Illness
+'GeneralToothAche -|> Illness
+'ToothDecay -|> Illness
+'GeneralRash -|> Illness
+'Hives -|> Illness
+'Psoriasis -|> Illness
+'Constipation -|> Illness
+'Diarrhoea -|> Illness
+'FoodPoisoning -|> Illness
+'GeneralStomachAche -|> Illness
+'Hemorrhoids -|> Illness
+'Diabetes -|> Illness
+'GeneralFever -|> Illness
+'HumanImmunodeficiencyVirus -|> Illness
+'Arthritis -|> Illness
+'GeneralBackAche -|> Illness
+'GeneralMuscleAche -|> Illness
+'Osteoporosis -|> Illness
+'GeneralHeadAche -|> Illness
+'Migraine -|> Illness
+'Fracture -|> Illness
+'InternalBleeding -|> Illness
+'SuperficialWound -|> Illness
+'AttentionDeficitHyperactivityDisorder -|> Illness
+'Depression -|> Illness
+'Insomnia -|> Illness
+'Conjunctivitis -|> Illness
+'Coronavirus -|> Illness
+'Dengue -|> Illness
+'GeneralCold -|> Illness
+'GeneralFlu -|> Illness
+'
+'Asthma *-- "3" Symptom : consists >
+'GeneralAllergicReaction *-- "1" Symptom : consists >
+'Bronchitis *-- "5" Symptom : consists >
+'GeneralBacterialInfection *-- "2" Symptom : consists >
+'Pneumonia *-- "8" Symptom : consists >
+'SoreThroat *-- "3" Symptom : consists >
+'Tuberculosis *-- "4" Symptom : consists >
+'CoronaryHeartDisease *-- "5" Symptom : consists >
+'Hypertension *-- "5" Symptom : consists >
+'GeneralToothAche *-- "1" Symptom : consists >
+'ToothDecay *-- "2" Symptom : consists >
+'GeneralRash *-- "2" Symptom : consists >
+'Hives *-- "3" Symptom : consists >
+'Psoriasis *-- "3" Symptom : consists >
+'Constipation *-- "1" Symptom : consists >
+'Diarrhoea *-- "3" Symptom : consists >
+'FoodPoisoning *-- "5" Symptom : consists >
+'GeneralStomachAche *-- "1" Symptom : consists >
+'Hemorrhoids *-- "1" Symptom : consists >
+'Diabetes *-- "6" Symptom : consists >
+'GeneralFever *-- "1" Symptom : consists >
+'HumanImmunodeficiencyVirus *-- "8" Symptom : consists >
+'Arthritis *-- "2" Symptom : consists >
+'GeneralBackAche *-- "1" Symptom : consists >
+'GeneralMuscleAche *-- "1" Symptom : consists >
+'Osteoporosis *-- "3" Symptom : consists >
+'GeneralHeadAche *-- "1" Symptom : consists >
+'Migraine *-- "5" Symptom : consists >
+'Fracture *-- "2" Symptom : consists >
+'InternalBleeding *-- "6" Symptom : consists >
+'SuperficialWound *-- "3" Symptom : consists >
+'AttentionDeficitHyperactivityDisorder *-- "1" Symptom : consists >
+'Depression *-- "1" Symptom : consists >
+'Insomnia *-- "1" Symptom : consists >
+'Conjunctivitis *-- "2" Symptom : consists >
+'Coronavirus *-- "5" Symptom : consists >
+'Dengue *-- "5" Symptom : consists >
+'GeneralCold *-- "6" Symptom : consists >
+'GeneralFlu *-- "3" Symptom : consists >
+
+@enduml

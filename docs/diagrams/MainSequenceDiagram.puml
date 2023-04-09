@@ -1,0 +1,37 @@
+[comment]: <> (//@@author Jeraldchen)
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+!include Style.puml
+
+activate Duke
+activate Storage
+Duke -> Storage: loadData()
+Storage --> Duke: data
+deactivate Storage
+loop hash = 0
+    Duke -> Menu: showWelcomeMenu()
+    activate Menu
+    Menu -> Parser: parseWelcome()
+    activate Parser
+    Parser --> Menu: command
+    deactivate Parser
+    Menu --> Duke: command
+    deactivate Menu
+end
+loop true
+    Duke -> Menu: showAccountMenu()
+    activate Menu
+    Menu -> Parser: parseAccountCommand()
+    activate Parser
+    Parser --> Menu: command
+    deactivate Parser
+    Menu --> Duke: command
+    deactivate Menu
+end
+
+destroy Parser
+destroy Menu
+
+
+@enduml

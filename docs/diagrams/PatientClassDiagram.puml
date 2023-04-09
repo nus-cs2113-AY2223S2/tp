@@ -1,0 +1,35 @@
+[comment]: <> (//@@author Geeeetyx)
+
+@startuml
+'https://plantuml.com/sequence-diagram
+hide circle
+skinparam classAttributeIconSize 0
+
+class Patient{
+#patientDiagnosisHistory: ArrayList<String>
+#patientMedicineHistory:  HashTable<String, ArrayList<String>>
+#name: String
+#hash: int
+
++Patient(name: String, hash: int, patientDiagnosisHistory: Hashtable<String, ArrayList<String>>,
+         patientDiagnosisHistory: HashTable<String, ArrayList<String>>)
+
++getName()
++getPassword()
++setName(name: String)
++setPassword(hash: int)
+
++setPatientDiagnosisHistory(diagnosisHistory: Hashtable<String, ArrayList<String>>)
++getPatientDiagnosisHistory()
++updatePatientDiagnosisHistory(date: String, diagnoses: ArrayList<String>)
+
++getPatientMedicineHistory()
++setPatientMedicineHistory(patientMedicineHistory: Hashtable<String, ArrayList<String>>)
++updatePatientMedicineHistory(date: String, medicines: ArrayList<String>)
++printPatientMedicineHistory()
+
+-appendMedicineToSameDate(date: String, medicines: ArrayList<String>)
+-appendDiagnosisToSameDate(date: String, diagnoses: ArrayList<String>)
+}
+
+@enduml

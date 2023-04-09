@@ -1,0 +1,19 @@
+[comment] <> (@@author Geeeetyx)
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+create Patient
+Storage -> Patient : new Patient()
+activate Patient
+Patient --> Storage: patient
+deactivate Patient
+
+create Patient
+Menu -> Patient : new Patient()
+activate Patient
+Patient --> Menu: patient
+deactivate Patient
+
+@enduml

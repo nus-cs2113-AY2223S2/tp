@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+"<<class>>\nMedicineManager" -> "<<class>>\nDiagnosis": analyseIllness()
+activate "<<class>>\nMedicineManager"
+activate "<<class>>\nDiagnosis"
+group for each child of Illness
+create "illness:Illness"
+"<<class>>\nDiagnosis" -> "illness:Illness": Illness()
+activate "illness:Illness"
+"illness:Illness" --> "<<class>>\nDiagnosis"
+deactivate "illness:Illness"
+end
+
+loop for all Illness
+    "<<class>>\nDiagnosis" -> "<<class>>\nDiagnosis": getMatchingSymptoms()
+    activate "<<class>>\nDiagnosis"
+    "<<class>>\nDiagnosis" -> "illness:Illness": getSymptoms
+    activate "illness:Illness"
+    "illness:Illness" --> "<<class>>\nDiagnosis": size()
+    deactivate "illness:Illness"
+    create "illnessMatch:IllnessMatch"
+    "<<class>>\nDiagnosis" -> "illnessMatch:IllnessMatch": IllnessMatch()
+    deactivate "<<class>>\nDiagnosis"
+    activate "illnessMatch:IllnessMatch"
+    "illnessMatch:IllnessMatch" --> "<<class>>\nDiagnosis": illnessMatch
+    deactivate "illnessMatch:IllnessMatch"
+end
+destroy "illness:Illness"
+destroy "illnessMatch:IllnessMatch"
+"<<class>>\nDiagnosis" --> "<<class>>\nMedicineManager": possibleIllnesses
+deactivate "<<class>>\nDiagnosis"
+destroy "<<class>>\nDiagnosis"
+
+
+@enduml

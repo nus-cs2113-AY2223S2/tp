@@ -1,0 +1,64 @@
+[comment]: <> (//@@author Jeraldchen)
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+!include Style.puml
+class Menu {
+    + {static} symptoms: ArrayList<Symptom>
+    + {static} showWelcomeMenu(): void
+    + {static} register(): void
+    + {static} login(): void
+    + {static} exit(): void
+    + {static} exitWithoutSaving(): void
+    + {static} showAccountMenu(): void
+    + {static} getUserSymptoms(): ArrayList<Symptom>
+    - {static} printExitLogo(): void
+    - {static} addSymptomToSymptomList(scanner: Scanner, symptoms: ArrayList<symptoms>): void
+    - {static} parseSymptomInput(symptoms: ArrayList<Symptom>, symptomChoices: String[]): void
+    - {static} addSymptoms(symptom: Symptom, symptoms: ArrayList<Symptom>): void
+    - {static} displaySymptomList() : void
+    + {static} displayPossibleIllness(symptoms: ArrayList<Symptom>): void
+}
+
+class Information {
+    - {static} patientsList: HashMap<Integer, Patient>
+    - {static} logger: Logger
+    + {static} storePatientInfo(hash: int, patient: Patient): void
+    + {static} getPatientInfo(hash: int): Patient
+    + {static} printDiagonsis History(int hash) : void
+    + {static} resetDiagnosticHistory(int hash) : void
+    + {static} checkHash(int hash) : boolean
+    + {static} getAllPatientData() : HashMap<Integer, Patient>
+    + {static} resetSymptomChoice(symptoms: ArrayList<Symptom>)) : void
+    + {static} hashPassword(String password) : int
+}
+
+class Parser {
+    + {static} parseWelcome(choice: String): void
+    + {static} parseAccountCommand(choice: String): void
+}
+
+class Patient {
+    # patientDiagnosticHistory: ArrayList<String>
+    # patientMedicineHistory: Hashtable<String, ArrayList<String>>
+    # name: String
+    # hash: int
+    + getName(): String
+    + setName(name: String): void
+    + getPassword(): void
+    + setPassword(hash: int): void
+    + setPatientDiagnosticHistory(diagnosis: ArrayList<String>): void
+    + getPatientDiagnosticHistory(): ArrayList<String>
+    + updatePatientDiagnosticHistory(diagnosis: String): void
+}
+
+Information "1" *-- "many" Patient : contains
+Parser o-- Patient
+Parser o-- Information
+Parser o-- Menu
+
+@enduml
