@@ -44,6 +44,8 @@ Unfortunately, expense list can't be found. I'll make a new one!
 7. Type in desired command to start using the program! List of commands are listed below.
 8. Do not edit any program-created saved files (.json files, etc.), else the program may crash.
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 ### Adding an entry: `add`
@@ -81,6 +83,8 @@ Format:
 <br> `list expense`
 <br> `list income`
 
+<div style="page-break-after: always;"></div>
+
 ### Updating an entry: `edit`
 
 Edit an existing expense/income that is currently in the list.
@@ -101,38 +105,7 @@ Example of usage:
 `edit expense /in 1 /de Lunch @Technoedge /v 5.20`
 <br> `edit income /in 2 /da 12-12-2022 /v 100`
 
-### Setting currency to be converted: `set currency`
-
-Setting a currency that the user wants to convert to. So the converted amount will show in the list of expenses and incomes.
-
-Format:
-<br> `set currency /cr CURRENCY`
-
-Use case:
-- show the currency that users want to convert to.
-- List of supported currencies:
-  * HKD - Hong Kong Dollar
-  * PHP - Philippine Peso
-  * IDR - Indonesian Rupiah
-  * MYR - Malaysian Ringgit
-  * VND - Vietnamese Dong
-
-Example of usage:
-<br> `set currency /cr HKD`
-
-### Unset currency to be converted: `unset currency`
-
-Unset the currency that the user does not want to convert to.
-
-Format:
-<br> `unset currency /cr CURRENCY`
-
-Use case:
-
-- stop showing the currency that users do not want to convert to.
-
-Example of usage:
-<br> `unset currency /cr HKD`
+<div style="page-break-after: always;"></div>
 
 ### Finding an entry: `find`
 
@@ -174,6 +147,8 @@ Example of usage:
 <br>`delete expense /in 1`
 <br>`delete income /in 2`
 
+<div style="page-break-after: always;"></div>
+
 ### Clear entire income list: `clear income`
 
 Clear the entire list of incomes.
@@ -194,6 +169,8 @@ Clear the entire list of incomes and expenses.
 
 Format:
 <br> `clear all`
+
+<div style="page-break-after: always;"></div>
 
 ### Set a target for balance of finances: `set target`
 
@@ -229,12 +206,49 @@ Format:
 Use case:
 - A target must have been set in the first place.
 
+<div style="page-break-after: always;"></div>
+
 ### Finding balance of finances: `balance`
 
 Shows users the balance after calculating the difference between income and expenses and informs users on whether they have reached their target.
 
 Format:
 <br> `balance`
+
+### Setting currency to be converted: `set currency`
+
+Setting a currency that the user wants to convert to. So the converted amount will show in the list of expenses and incomes.
+
+Format:
+<br> `set currency /cr CURRENCY`
+
+Use case:
+- show the currency that users want to convert to.
+- List of supported currencies:
+  * HKD - Hong Kong Dollar
+  * PHP - Philippine Peso
+  * IDR - Indonesian Rupiah
+  * MYR - Malaysian Ringgit
+  * VND - Vietnamese Dong
+
+Example of usage:
+<br> `set currency /cr HKD`
+
+### Unset currency to be converted: `unset currency`
+
+Unset the currency that the user does not want to convert to.
+
+Format:
+<br> `unset currency /cr CURRENCY`
+
+Use case:
+
+- stop showing the currency that users do not want to convert to.
+
+Example of usage:
+<br> `unset currency /cr HKD`
+
+<div style="page-break-after: always;"></div>
 
 ### View help: `help`
 
@@ -256,6 +270,8 @@ Record entries are saved in `data/chching.json` file. This file is updated upon 
 When reading from the file, entries for income and expenses are stored in their respective arrayList.
 The data file is not to be edited manually.
 
+<div style="page-break-after: always;"></div>
+
 ### Other Notes
 * Should additional fields that is not required be added to the input, the program will ignore it.
 <br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`, and `exit /de 1` will still successfully exit the program.
@@ -270,6 +286,8 @@ The data file is not to be edited manually.
 <br> e.g. `add expense /c meal /de breakfast / lunch /da 22-03-2023 /v 3.50` will be allowed.
 * For values that require double/float, ChChing will only allow for 2 decimal places. Furthermore, ChChing will not accept values that does not have a number before the decimal point.
 <br> e.g. `.01` and `0.001` is not taken as a valid value, but `0.01` is.
+
+<div style="page-break-after: always;"></div>
 
 ## Command Summary (Alphabetical Order)
 
