@@ -22,6 +22,9 @@ alt isInvalidTodo(toDo) is "Invalid todo"
     Store -> notes: notes.add(toDo)
     activate notes
     deactivate notes
+    Store -> Ui: Ui.printAddNote(toDo, notes.getSize());
+    activate Ui
+    deactivate Ui
     Store -> NotesFileWriter: NotesFileWriter.saveFile(filePath, notes.getAll())
     activate NotesFileWriter
     deactivate NotesFileWriter
