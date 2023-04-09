@@ -1,0 +1,16 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class Ui <<abstract>> {
+    -LINE_DIVIDER: String
+    -LINE_PREFIX: String
+
+    +getUserCommand(): String
+    +showWelcomeMessages(): void
+    +showGoodByeMessages(): void
+    +showToUserWithLineBreak(): void
+    +showToUser(): void
+}
+
+@enduml
