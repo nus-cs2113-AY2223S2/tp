@@ -45,9 +45,8 @@ public abstract class Appointment {
     public abstract String retrieveStorageInfo();
 
     /**
-     * Sets the status of the appointment.
-     *
-     * @param status The status of the appointment.
+     * Depending on the status input by the user the task gets marked or unmarked
+     * @param status is a boolean value true or false that sets the mark and unmark status of the task
      */
     public void setIsDone(boolean status) {
         this.isDone = status;
