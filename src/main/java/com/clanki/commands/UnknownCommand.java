@@ -12,4 +12,3 @@ public class UnknownCommand extends Command {
         display.printInvalidInput();
     }
 }
-

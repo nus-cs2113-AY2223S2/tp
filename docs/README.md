@@ -1,8 +1,10 @@
-# Duke
+# Clanki
 
-{Give product intro here}
+Clanki is a command-line interface (CLI) application for managing flashcards. It
+allows users to create, manage and study flashcards to assist them with
+memorisation by using a technique called
+[spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
-Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](DeveloperGuide.md)
-* [About Us](AboutUs.md)
+- [User Guide](./UserGuide)
+- [Developer Guide](./DeveloperGuide)
+- [About Us](./AboutUs)

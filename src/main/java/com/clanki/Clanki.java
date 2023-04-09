@@ -17,10 +17,8 @@ public class Clanki {
     public Clanki() {
         try {
             this.ui = new Ui();
-            storageFile = new StorageFile();
+            this.storageFile = new StorageFile();
             this.flashcardList = new FlashcardList(storageFile.load());
-            ui.printWelcomeMessage();
-            ui.printSeparationLine();
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
             System.out.println(e.getMessage());
         }
@@ -31,10 +29,12 @@ public class Clanki {
     }
 
     /**
-     * Function that loop the process of getting an user input, processing the
-     * input and execute the command, until a ByeCommand is inputted.
+     * Function that loop the process of getting an user input, processing the input
+     * and execute the command, until a ByeCommand is inputted.
      */
     public void run() {
+        ui.printWelcomeMessage();
+        ui.printSeparationLine();
         while (true) {
             String inputText = ui.getUserCommand();
             Command command = Parser.parseCommand(inputText);

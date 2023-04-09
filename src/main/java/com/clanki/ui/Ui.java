@@ -3,8 +3,6 @@ package com.clanki.ui;
 import com.clanki.objects.Flashcard;
 
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,18 +12,14 @@ import java.util.Scanner;
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java.
  */
 public class Ui {
-    public static final String AFTER_COMMAND_SPACING = "     ";
-    public static final String BEFORE_ELABORATION_SPACING = "         ";
     private final Scanner in;
-    // private final PrintStream out;
 
     public Ui() {
-        this(System.in, System.out);
+        this(System.in);
     }
 
-    public Ui(InputStream in, PrintStream out) {
+    public Ui(InputStream in) {
         this.in = new Scanner(in);
-        // this.out = out;
     }
 
     public String getUserCommand() {
@@ -33,7 +27,8 @@ public class Ui {
     }
 
     /**
-     * Display messages to inform user that a flashcard have been successfully added.
+     * Display messages to inform user that a flashcard have been successfully
+     * added.
      *
      * @param questionText The question of the new flashcard.
      * @param answerText   The answer of the new flashcard.
@@ -56,8 +51,8 @@ public class Ui {
      * Display message to inform user that their input is of a wrong format.
      */
     public void printInvalidInput() {
-        System.out.println("The input is in an incorrect format.\n" +
-                "You can view our user guide or type help to see the correct formats for commands.\n");
+        System.out.println("The input is in an incorrect format.\n"
+                + "You can view our user guide or type help to see the correct formats for commands.\n");
     }
 
     /**
@@ -84,28 +79,22 @@ public class Ui {
      * Display all the current valid commands the user can key in.
      */
     public void printHelpMessage() {
-        System.out.println(
-                "The following are the commands you can use:\n" +
-                        "add:" + AFTER_COMMAND_SPACING + "Adds a flashcard to the current list of flashcards.\n"
-                        + BEFORE_ELABORATION_SPACING + "Parameters: add /q QUESTION /a ANSWER\n"
-                        + BEFORE_ELABORATION_SPACING + "Example: add /q What is the worst fruit? /a Durian\n"
-                        + "update:  Changes the content of flashcard's question, answer or date.\n"
-                        + BEFORE_ELABORATION_SPACING + "Parameters: update /q QUERY\n"
-                        + BEFORE_ELABORATION_SPACING + "Example: update fruit \n"
-                        + BEFORE_ELABORATION_SPACING + BEFORE_ELABORATION_SPACING +
-                        "Which flashcard do you want to update? 1 /q What is the best fruit?\n"
-                        + "delete:  Removes a flashcard with specified string.\n"
-                        + BEFORE_ELABORATION_SPACING + "Parameters: delete /q QUERY\n"
-                        + BEFORE_ELABORATION_SPACING + "Example: delete fruit \n"
-                        + "review:  Go through all flashcards that are due today.\n"
-                        + "list:    lists out the questions and answers in the list of flashcards.\n"
-                        + BEFORE_ELABORATION_SPACING + "Parameters: list all (lists all flashcards)\n"
-                        + BEFORE_ELABORATION_SPACING + "Parameters: list DUE_DATE (list all flashcards with that " +
-                        "specified due date)\n"
-                        + BEFORE_ELABORATION_SPACING + "Example: list 2023-05-04\n"
-                        + "clear:   Deletes all the flashcards in the list.\n"
-                        + "bye:     Exit the program.\n"
-        );
+        System.out.println("The following are the commands you can use:\n"
+                + "add     Adds a flashcard to the current list of flashcards.\n"
+                + "        Parameters: add /q QUESTION /a ANSWER\n"
+                + "        Example: add /q What is the worst fruit? /a Durian\n"
+                + "update  Changes the content of flashcard's question or answer.\n"
+                + "        Parameters: update QUERY\n" + "        Example: update fruit\n"
+                + "        Which flashcard do you want to update? 1 /q What is the best fruit?\n"
+                + "delete  Removes a flashcard with specified string.\n"
+                + "        Parameters: delete QUERY\n" + "        Example: delete fruit\n"
+                + "review  Go through all flashcards that are due today.\n"
+                + "list    Lists out the questions and answers in the list of flashcards.\n"
+                + "        Parameters: list all (lists all flashcards)\n"
+                + "        Parameters: list DUE_DATE (list all flashcards with that specified due date)\n"
+                + "        Example: list 2023-05-04\n"
+                + "clear   Deletes all the flashcards in the list.\n"
+                + "bye     Exit the program.");
     }
 
     public void printSeparationLine() {
@@ -137,23 +126,6 @@ public class Ui {
     public void printSuccessfulUpdateMessage(Flashcard updatedFlashcard) {
         System.out.println("Understood. The card has been updated to");
         printFlashCard(updatedFlashcard);
-    }
-
-    public void printFlashCardsOnDate(ArrayList<Flashcard> flashcards, LocalDate date) {
-        int countFlashcardsPrinted = 0;
-        for (int i = 0; i < flashcards.size(); i++) {
-            if (flashcards.get(i).getDueDate().compareTo(date) == 0) {
-                countFlashcardsPrinted++;
-                if (countFlashcardsPrinted == 1) {
-                    System.out.println("Here is your list of flashcards with the specified due date:");
-                }
-                System.out.println("[" + (countFlashcardsPrinted) + "]");
-                printFlashCard(flashcards.get(i));
-            }
-        }
-        if (countFlashcardsPrinted == 0) {
-            System.out.println("Your list of flashcards with the specified due date is empty.");
-        }
     }
 
     /**

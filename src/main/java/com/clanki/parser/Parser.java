@@ -16,14 +16,10 @@ import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InputIsEmptyException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
-import com.clanki.exceptions.UpdatedContentIsEmptyException;
-
 
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
     private static final String ANSWER_OPTION_IDENTIFIER = "a";
-    private static final String DATE_OPTION_IDENTIFIER = "d";
-    //private static Logger logger = Logger.getLogger("Parser");
 
     public static Command parseCommand(String userInput) {
         try {
@@ -61,13 +57,13 @@ public class Parser {
         case "bye":
             return getByeCommand(parsedInput);
         case "help":
-            return new HelpCommand();
+            return getHelpCommand(parsedInput);
         case "list":
             return getListCommand(parsedInput);
         case "clear":
-            return new ClearCommand();
+            return getClearCommand(parsedInput);
         default:
-            return new UnknownCommand();
+            return getUnknownCommand(parsedInput);
         }
     }
 
@@ -77,7 +73,8 @@ public class Parser {
      *
      * @param parsedInput The input collected by Ui from the user, after being
      *                    parsed with the ParsedInput class.
-     * @return An AddCommand with the question and answer text extracted from user input
+     * @return An AddCommand with the question and answer text extracted from user
+     *         input
      * @throws InvalidAddFlashcardInputException If the start indicators cannot be
      *                                           found.
      * @throws EmptyFlashcardQuestionException   If the string is empty after
@@ -88,19 +85,15 @@ public class Parser {
     public static AddCommand getAddCommand(ParsedInput parsedInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
             EmptyFlashcardAnswerException {
-        //logger.log(Level.INFO, "Start to parse input to obtain question text.");
         String questionText = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
-        //logger.log(Level.INFO, "Start to parse input to obtain answer text.");
         String answerText = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
         if (questionText == null || answerText == null) {
             throw new InvalidAddFlashcardInputException();
         }
         if (questionText.isEmpty()) {
-            //logger.log(Level.INFO, "No input at question text detected.");
             throw new EmptyFlashcardQuestionException();
         }
         if (answerText.isEmpty()) {
-            //logger.log(Level.INFO, "No input at answer text detected.");
             throw new EmptyFlashcardAnswerException();
         }
         return new AddCommand(questionText, answerText);
@@ -110,7 +103,8 @@ public class Parser {
         return new ReviewCommand();
     }
 
-    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput) throws NoQueryInInputException {
+    public static UpdateCommand getUpdateCommand(ParsedInput parsedInput)
+            throws NoQueryInInputException {
         String query = parsedInput.getBody();
         if (query.isEmpty()) {
             throw new NoQueryInInputException();
@@ -134,54 +128,15 @@ public class Parser {
         return new ByeCommand();
     }
 
-    public static int getIndexForUpdateCommand(String userInput) {
-        ParsedInput parsedInput = new ParsedInput(userInput);
-        String index = parsedInput.getCommand();
-        return Integer.parseInt(index) - 1;
+    public static HelpCommand getHelpCommand(ParsedInput parsedInput) {
+        return new HelpCommand();
     }
 
-    public static String getIdentifierForUpdateCommand(String userInput) throws InvalidIdentifierException {
-        String[] userTexts = userInput.split(" ", 3);
-        String identifier = null;
-        if (userTexts[1] == null) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        if (userTexts[1].equals("/q")) {
-            identifier = "q";
-        }
-        if (userTexts[1].equals("/a")) {
-            identifier = "a";
-        }
-        if (userTexts[1].equals("/d")) {
-            identifier = "d";
-        }
-        return identifier;
+    public static ClearCommand getClearCommand(ParsedInput parsedInput) {
+        return new ClearCommand();
     }
 
-    public static String parseInputForUpdateCommand(String userInput) throws InvalidIdentifierException,
-            UpdatedContentIsEmptyException {
-        ParsedInput parsedInput = new ParsedInput(userInput);
-        String identifier = getIdentifierForUpdateCommand(userInput);
-        String updatedContent = null;
-        if (identifier == null) {
-            throw new InvalidIdentifierException();
-        }
-        if (identifier.equals(QUESTION_OPTION_IDENTIFIER)) {
-            updatedContent = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
-        }
-        if (identifier.equals(ANSWER_OPTION_IDENTIFIER)) {
-            updatedContent = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
-        }
-        if (identifier.equals(DATE_OPTION_IDENTIFIER)) {
-            updatedContent = parsedInput.getOptionByName(DATE_OPTION_IDENTIFIER);
-        }
-        if (updatedContent.isEmpty()) {
-            throw new UpdatedContentIsEmptyException();
-        }
-        if (updatedContent == null) {
-            throw new InvalidIdentifierException();
-        }
-        return updatedContent;
+    public static UnknownCommand getUnknownCommand(ParsedInput parsedInput) {
+        return new UnknownCommand();
     }
-
 }

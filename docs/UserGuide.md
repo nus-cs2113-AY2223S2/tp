@@ -1,4 +1,4 @@
-# Clanki User Guide
+# User Guide
 
 Clanki is a command-line interface (CLI) application for managing flashcards. It
 allows users to create, manage and study flashcards to assist them with
@@ -22,12 +22,12 @@ memorisation by using a technique called
 5. Type the command in the command box and press Enter to execute it. Some
    example commands you can try:
 
-    - `add /q what is the worst fruit? /a durian`: Add a flashcard with Question:
-      What is the worst fruit? and Answer: Durian to the list of flashcards.
+   - `add /q what is the worst fruit? /a durian`: Add a flashcard with Question:
+     What is the worst fruit? and Answer: Durian to the list of flashcards.
 
-    - `review`: Go through the flashcards that are due today.
+   - `review`: Go through the flashcards that are due today.
 
-    - `bye`: Exit the app.
+   - `bye`: Exit the app.
 
 6. Refer to the Features below for details of each command.
 
@@ -45,23 +45,38 @@ add /q QUESTION /a ANSWER
   works, see "Review flashcards" section below.
 
 - Since a slash character (`/`) can be interpreted as a command option, both
-  `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
-  with a space before it).
+  `QUESTION` and `ANSWER` must not include (`/`). (In some of the times, `/`
+  might still work normally, that's just you being lucky.)
 
-    - We might fix this in a future version.
+  - We might fix this in a future version. A far, far future version that might
+    never come...
 
 - `/q QUESTION` and `/a ANSWER` can be arranged in any order.
+
 - The first letter of `QUESTION` and `ANSWER` are automatically capitalised.
 
 - If any options are duplicated, all but the last one are ignored.
 
+- The question and answer can include non-Latin characters such as Chinese
+  characters. However, your terminal might have trouble displaying it. If you
+  need such characters, find a terminal that supports it. A relatively modern
+  terminal (more modern than cmd.exe) should do, or buy a Mac since the default
+  Mac terminal does support it.
+
 #### Example
 
 ```
-> add /q What is the worst fruit? /a Durian
+add /q What is the worst fruit? /a Durian
 You have added the following card:
 Q: What is the worst fruit?
 A: Durian
+```
+
+```
+add /a 果物 /q What is the Japanese word for "fruit"?
+You have added the following card:
+Q: What is the Japanese word for "fruit"?
+A: 果物
 ```
 
 ### Review flashcards
@@ -71,7 +86,7 @@ review
 ```
 
 - Flashcards that are due on the day will be displayed one after another, queued
-  in a randomised order.
+  in a secret order.
 
 - When the user has recalled the answer for a card, or has given up on doing so,
   they can then press <kbd>Enter</kbd>.
@@ -80,11 +95,13 @@ review
   can then type `y`/`n` to indicate that they remembered the answer correctly,
   or they couldn't remember the correct answer, respectively.
 
-    - If `y` is indicated, the card is then set to a new due date in the future.
+  - If `y` is indicated, the card is then set to a new due date in the future.
 
-    - Otherwise, the card is pushed back to the today's queue for reviewing later,
-      until the user can get it correct. When the user has got it correct, the new
-      date is set to tomorrow.
+  - Otherwise, the card is pushed back to the today's queue for reviewing later,
+    until the user can get it correct. When the user has got it correct, the new
+    date is set to a future date according to a top-secret
+    [Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
+    schedule that you can try to figure out if you want to explore mysteries.
 
 - Then the review session continues with the next card in the queue.
 
@@ -92,24 +109,24 @@ review
 
 ```
 > review
-There are 10 cards available for review today.
+There are 2 cards available for review today.
 ---
-Q: What is the worst fruit? (ENTER to show answer)
+Q: What is the worst fruit? (ENTER to view answer)
 A: Durian
 Did you get it right? (y/n) n
-The card will be asked later today.
+No worries, we will try again later today.
 ---
-Q: What is the Japanese word for "fruit"? (ENTER to show answer)
+Q: What is the Japanese word for "fruit"? (ENTER to view answer)
 A: 果物
 Did you get it right? (y/n) y
-The card will be asked on 20 February 2023
+Great, you got it right!
 ---
-Q: What is the worst fruit? (ENTER to show answer)
+Q: What is the worst fruit? (ENTER to view answer)
 A: Durian
 Did you get it right? (y/n) y
-The card will be asked tomorrow.
+Great, you got it right!
 ---
-You have finished reviewing for today. Congratulations.
+Congrats! You have reviewed all the flashcards due today!
 ```
 
 ### Update flashcards
@@ -118,48 +135,36 @@ You have finished reviewing for today. Congratulations.
 update QUERY
 ```
 
-- `QUERY` can be the card's date or be part of the card's question or answer.
+- `QUERY` is part of the card's question or answer. It is not case sensitive.
 
-    - A list of cards that contain this query will be listed, with an index assigned
-      to each.
+- A list of cards that contain this query will be listed, with an index assigned
+  to each.
 
-        - The user can then type the index of the card they wish to update with the
-          following syntax
+- The user can then type the index of the card they wish to update with the
+  following syntax
 
   ```
-  INDEX /q NEW_QUESTION
+  INDEX [/q NEW_QUESTION] [/a NEW_ANSWER]
   ```
 
+- At least one of `/q` and `/a` must be provided.
 
-- This updates the question of the flashcard to `NEW_QUESTION`
-
-    - To update the answer of the flashcard, use `/a`
-      ```
-      INDEX /a NEW_ANSWER
-      ```
-
-    - To update the due date of the flashcard, use `/d`
-
-          INDEX /d NEW_DUE_DATE
-
-        - `NEW_DUE_DATE` has to be in the format `yyyy-mm-dd`
-        - The user can only update either one of the question, answer or due date at a time
-        - Since a slash character (`/`) can be interpreted as a command option,
-          `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
-          ` /` (the slash with a space before it).
+- Format of `NEW_QUESTION` and `NEW_ANSWER` is the same as in the `add` command
+  above.
 
 #### Example
 
 ```
-> update fruit
-Found 2 cards with the query "fruit":
+update fruit
+Found 2 card(s) with query "fruit":
 [1]
 Q: What is the worst fruit?
 A: Durian
 [2]
 Q: What is the Japanese word for "fruit"?
 A: 果物
-Which flashcard do you want to update? 1 /q What is the best fruit?
+Which one do you want to update?
+1 /q What is the best fruit?
 Understood. The card has been updated to
 Q: What is the best fruit?
 A: Durian
@@ -168,7 +173,7 @@ A: Durian
 ### Delete a flashcard
 
 ```
-delete /q QUERY
+delete QUERY
 ```
 
 - `QUERY` can be part of the card's question or answer.
@@ -182,14 +187,16 @@ delete /q QUERY
 #### Example
 
 ```
-> delete fruit
-Found 2 cards with the query "fruit":
-[1] Q: What is the best fruit?
-    A: Durian
-[2] Q: What is the Japanese word for "fruit"?
-    A: 果物
+delete fruit
+Found 2 card(s) with query "fruit":
+[1]
+Q: What is the best fruit?
+A: Durian
+[2]
+Q: What is the Japanese word for "fruit"?
+A: 果物
 Which one do you want to delete?
-> 2
+2
 Got it. Deleted the flashcard at index 2
 ```
 
@@ -199,34 +206,29 @@ Got it. Deleted the flashcard at index 2
 clear
 ```
 
-Deletes all the flashcards in the list
+Delete all the flashcards in the list.
 
 #### Example
 
 ```
-> clear
+clear
 All flashcards have been deleted.
 Your list of flashcards is now empty.
-
-> list
-Your list of flashcards is empty.
 ```
 
-### List flashcards
-
-1. list all flashcards
+### List all flashcards
 
 ```
 list all
 ```
 
-Display the questions and answers for all the flashcards in the list that have been added by the user,
-regardless of the date.
+Display the questions and answers for all the flashcards in the list that have
+been added by the user, regardless of the date.
 
 #### Example
 
 ```
-> list all
+list all
 Here is your list of flashcards:
 [1]
 Q: What is the biggest animal in the world
@@ -239,19 +241,20 @@ Q: What colour is the sun
 A: Red
 ```
 
-2. List flashcards with specific due date
+### List flashcards with specific due date
 
 ```
 list DUE_DATE
 ```
 
-Display the questions and answers for all the flashcards in the list that has the due date specified by the user
+Display the questions and answers for all the flashcards in the list that has
+the due date specified by the user
 
 - `DUE_DATE` has to be in the format `yyyy-mm-dd`
 
 ```
-> list 2023-04-05
-Here is your list of flashcards with the specified due date:
+list 2023-04-15
+Here is your list of flashcards:
 [1]
 Q: What is the biggest animal in the world
 A: Antartic blue whale
@@ -274,25 +277,25 @@ Display the list of possible commands the user can input.
 #### Example
 
 ```
-> help
+help
 The following are the commands you can use:
-add:     Adds a flashcard to the current list of flashcards.
-         Parameters: add /q QUESTION /a ANSWER
-         Example: add /q What is the worst fruit? /a Durian
-update:  Changes the content of flashcard's question, answer or date.
-         Parameters: update /q QUERY
-         Example: update fruit 
-                  Which flashcard do you want to update? 1 /q What is the best fruit?
-delete:  Removes a flashcard with specified string.
-         Parameters: delete /q QUERY
-         Example: delete fruit 
-review:  Go through all flashcards that are due today.
-list:    lists out the questions and answers in the list of flashcards.
-         Parameters: list all (lists all flashcards)
-         Parameters: list DUE_DATE (list all flashcards with that specified due date)
-         Example: list 2023-05-04
-clear:   Deletes all the flashcards in the list.
-bye:     Exit the program.
+add     Adds a flashcard to the current list of flashcards.
+        Parameters: add /q QUESTION /a ANSWER
+        Example: add /q What is the worst fruit? /a Durian
+update  Changes the content of flashcard's question or answer.
+        Parameters: update QUERY
+        Example: update fruit
+        Which flashcard do you want to update? 1 /q What is the best fruit?
+delete  Removes a flashcard with specified string.
+        Parameters: delete QUERY
+        Example: delete fruit
+review  Go through all flashcards that are due today.
+list    Lists out the questions and answers in the list of flashcards.
+        Parameters: list all (lists all flashcards)
+        Parameters: list DUE_DATE (list all flashcards with that specified due date)
+        Example: list 2023-05-04
+clear   Deletes all the flashcards in the list.
+bye     Exit the program.
 ```
 
 ### Exit program
@@ -301,4 +304,4 @@ bye:     Exit the program.
 bye
 ```
 
-Exits the program.
+Exit the program. Bye.

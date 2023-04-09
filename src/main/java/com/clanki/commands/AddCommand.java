@@ -8,7 +8,6 @@ import com.clanki.ui.Ui;
  * of flashcards.
  */
 public class AddCommand extends Command {
-    //private static Logger logger = Logger.getLogger("AddCommand");
     String questionText;
     String answerText;
 
