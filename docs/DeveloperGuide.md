@@ -342,7 +342,7 @@ based on both of these inputs, the `Command` class then identifies the relevant 
 to be executed.
 
 Step 2. The `executeCommand` method does the executing of the relevant functions depending on the `command` that
-was being input by users. There are several functionalities provided in the `executeCommand` for users, including but
+is being input by users. There are several functionalities provided in the `executeCommand` for users, including but
 not limited to the Storing and Deleting of Notes, Marking and Unmarking of notes items as completed or incomplete, and
 the searching for notes through keywords or priorities of the notes. 
 
@@ -364,6 +364,8 @@ user that an incorrect command format for badMaths has been entered.
 `printVerticalShift(double verticalShift)`: prints out the vertical shift of the Mathematical function provided by the user.
 
 `printFrequency(Double freq)`: prints out the frequency of the Mathematical function provided by the user.
+
+`printInvalidNumberEntered()` : prints out a warning message to alert that the user has input a non-numerical input.
 
 `printMark(String text)`: prints out a message indicating that a note has been marked as done by the user.
 
