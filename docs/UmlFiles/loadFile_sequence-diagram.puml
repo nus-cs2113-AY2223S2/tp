@@ -1,0 +1,113 @@
+@startuml
+title Notes File Parsing
+
+activate System
+
+--> NotesFileParser: loadFile(path)
+activate NotesFileParser
+NotesFileParser -> ArrayList: ArrayList()
+activate ArrayList
+ArrayList --> NotesFileParser
+deactivate ArrayList
+NotesFileParser -> Scanner: new Scanner(path)
+activate Scanner
+NotesFileParser -> Scanner: scanner.hasNextLine()
+loop for each line
+    Scanner -> Scanner: scanner.nextLine()
+    NotesFileParser -> NoteParser: parseNoteString(noteScanner)
+    activate NoteParser
+    NoteParser -> String: split()
+    activate String
+    String --> NoteParser
+    deactivate String
+    alt noteInfo.length == 4
+        alt priorityStr is valid
+            NoteParser -> NotePriority: Priority.valueOf(priorityStr)
+            activate NotePriority
+            NotePriority --> NoteParser
+            deactivate NotePriority
+        else priorityStr is invalid
+            NoteParser -> InvalidFormatException: throw exception
+        end
+        alt isDoneStr is valid
+            NoteParser -> String: equals()
+            activate String
+            String --> NoteParser
+            deactivate String
+        else isDoneStr is invalid
+            NoteParser -> InvalidFormatException: throw exception
+        end
+        alt reviewCountStr is valid
+            NoteParser -> Integer: parseInt(reviewCountStr)
+            activate Integer
+            Integer --> NoteParser
+            deactivate Integer
+        else reviewCountStr is invalid
+            NoteParser -> InvalidFormatException: throw exception
+        end
+        NoteParser -> Note: Note(noteStr, priority)
+        activate Note
+        Note -> Note: setReviewCount(reviewCount)
+        alt isDone = true
+            Note -> Note: markAsDone()
+        else isDone = false
+            Note -> Note: markAsNotDone()
+        end
+        Note --> NoteParser
+        deactivate Note
+        NoteParser --> NotesFileParser: note
+        NotesFileParser -> ArrayList: add()
+        activate ArrayList
+        ArrayList --> NotesFileParser
+        deactivate ArrayList
+    else noteInfo.length != 4
+            NoteParser -> InvalidFormatException: throw exception
+    end
+end
+deactivate NoteParser
+deactivate Scanner
+
+alt file is invalid
+    NotesFileParser -> InvalidNotesFileHandler: responseHandler(path, notes)
+    activate InvalidNotesFileHandler
+    InvalidNotesFileHandler -> System: out()
+    InvalidNotesFileHandler -> Scanner: Scanner()
+    activate Scanner
+    InvalidNotesFileHandler -> System: out()
+    Scanner -> Scanner: nextLine()
+    alt userInput is "y"
+        InvalidNotesFileHandler -> PrintWriter: PrintWriter(path)
+        activate PrintWriter
+        PrintWriter -> PrintWriter: print("")
+        PrintWriter -> PrintWriter: close()
+        PrintWriter --> InvalidNotesFileHandler
+        deactivate PrintWriter
+        InvalidNotesFileHandler -> ArrayList: clear()
+        activate ArrayList
+        ArrayList --> InvalidNotesFileHandler
+        deactivate ArrayList
+        InvalidNotesFileHandler -> System: out()
+    else userInput is "n"
+        InvalidNotesFileHandler -> System: out()
+        InvalidNotesFileHandler -> Timer: Timer()
+        activate Timer
+        InvalidNotesFileHandler -> TimerTask: TimerTask()
+        activate TimerTask
+        InvalidNotesFileHandler -> Timer: schedule(TimerTask, delay)
+        Timer -> TimerTask: run()
+        TimerTask -> System: exit(0)
+        deactivate Timer
+        deactivate TimerTask
+    end
+    deactivate Scanner
+    deactivate InvalidNotesFileHandler
+else file is valid
+    <-- NotesFileParser: notes
+end
+
+deactivate NotesFileParser
+
+deactivate System
+
+@enduml
+
