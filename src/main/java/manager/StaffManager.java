@@ -84,7 +84,7 @@ public class StaffManager {
     public static void findStaff(String name, TextUi ui) {
         ArrayList<Staff> staffsFound = new ArrayList<>();
         for(Staff m:staffs){
-            if(m.getName().contains(name)){
+            if(m.getName().toLowerCase().contains(name.toLowerCase())){
                 staffsFound.add(m);
             }
         }
