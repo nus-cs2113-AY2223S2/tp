@@ -45,16 +45,18 @@ Allows the restaurant manager using the application to see the list of commands 
 Format: `help`
 
 ### Meetings
+#### Purpose
 Meeting is a feature for the restaurant manager to manage meetings with 
 boss or workers. MeetingManager supports add_meeting, view_meetings,
 delete_meeting and find_meeting. 
 
 #### Add Meetings:
-Add a meeting to the meeting list. The name of the meeting is written after
-'n/', followed by the time of the meeting written after 't/'. Note that add_meeting
-command will not handle extra parameters other than 'n/' and 't/', which will be considered
-part of meeting name or meeting time. Besides, please do not contain 't/' inside your meeting
-name because the MeetingManager will consider what after 't/' as time.
+Add a meeting to the meeting list.  The name of the meeting is written after `n/`, followed by the time of the meeting written after `t/`.  
+
+Note: `add_meeting` command will not handle extra parameters other than `n/` and `t/`.  
+Furthermore, please do not contain `t/` inside the meeting name because anything after `t/` will be considered as time.  
+
+Note: User is allowed to input time parameter in any time format they prefer.
 
 Format: `add_meeting n/<name> t/<time>`
 
@@ -116,7 +118,7 @@ needs to be completed for the restaurant.
 #### Add a deadline to the deadline list:
 Format: `add_deadline n/<name> t/<time>`
 
-Note: User is allowed to input name and time parameter of any format.
+Note: User is allowed to input time parameter in any time format they prefer.
 
 Example: 
 ```
@@ -262,20 +264,24 @@ Outcome 2:
 ```
 
 ### Staffs
+#### Purpose
+This feature allows the restaurant manager to record their staff members personal particulars and also what date they are working on. It allows the restaurant manager to keep track of their staff and what day they are working on.
 
 #### Add a staff:
 Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
+Note that date format should be in YYYY-MM-DD.
+
 Example: 
 ```
-add_staff n/John Doe w/Sunday d/09 March 2001 p/82802123
+add_staff n/John Doe w/Sunday d/2003-01-01 p/82802123
 ```
 
 Outcome: 
 ```
-John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123 added!
+John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 added!
 ```
 
 #### View a staff:
