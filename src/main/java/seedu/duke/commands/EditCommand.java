@@ -342,7 +342,7 @@ public class EditCommand extends Command {
         } catch (CategoryFormatException e) {
             Ui.printInvalidCategory();
         } catch (OutOfRangeException ore) {
-            ore.printOutOfRange();
+            ore.printEditOutOfRange();
         }
     }
 
