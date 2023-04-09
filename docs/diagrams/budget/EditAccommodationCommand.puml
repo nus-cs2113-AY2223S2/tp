@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":EditAccommodationCommand" : command.execute()
+-> ":EditAccommodationCommand" : command.execute()
 activate ":EditAccommodationCommand"
 ":EditAccommodationCommand" -> ":BudgetPlanner" : budgetPlanner.getAccommodationTotalCost()
 activate ":BudgetPlanner"
@@ -31,6 +30,6 @@ deactivate ":Accommodation"
 activate "<<class>>\n:UI"
 ":EditAccommodationCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditAccommodationCommand" --> ":Duke"
+<-- ":EditAccommodationCommand"
 deactivate ":EditAccommodationCommand"
 @enduml

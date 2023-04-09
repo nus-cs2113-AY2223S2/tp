@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":EditBudgetCommand" : command.execute()
+-> ":EditBudgetCommand" : command.execute()
 activate ":EditBudgetCommand"
 ":EditBudgetCommand" -> ":BudgetPlanner" : budgetPlanner.getBudget()
 activate ":BudgetPlanner"
@@ -26,6 +25,6 @@ end
 activate "<<class>>\n:UI"
 ":EditBudgetCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditBudgetCommand" --> ":Duke"
+<-- ":EditBudgetCommand"
 deactivate ":EditBudgetCommand"
 @enduml

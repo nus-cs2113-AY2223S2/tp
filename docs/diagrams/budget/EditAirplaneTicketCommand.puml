@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":EditAirplaneTicketCommand" : command.execute()
+-> ":EditAirplaneTicketCommand" : command.execute()
 activate ":EditAirplaneTicketCommand"
 ":EditAirplaneTicketCommand" -> ":BudgetPlanner" : budgetPlanner.getAirplaneTicketTotalCost()
 activate ":BudgetPlanner"
@@ -31,6 +30,6 @@ deactivate ":AirplaneTicket"
 activate "<<class>>\n:UI"
 ":EditAirplaneTicketCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditAirplaneTicketCommand" --> ":Duke"
+<-- ":EditAirplaneTicketCommand"
 deactivate ":EditAirplaneTicketCommand"
 @enduml

@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":EditEntertainmentCommand" : command.execute()
+-> ":EditEntertainmentCommand" : command.execute()
 activate ":EditEntertainmentCommand"
 ":EditEntertainmentCommand" -> ":BudgetPlanner" : budgetPlanner.getEntertainmentTotalCost()
 activate ":BudgetPlanner"
@@ -31,6 +30,6 @@ deactivate ":Entertainment"
 activate "<<class>>\n:UI"
 ":EditEntertainmentCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditEntertainmentCommand" --> ":Duke"
+<-- ":EditEntertainmentCommand"
 deactivate ":EditEntertainmentCommand"
 @enduml
