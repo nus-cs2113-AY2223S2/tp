@@ -1,0 +1,29 @@
+@startuml check class diagram
+abstract class UserCommand{
+    + {abstract} CommandResult execute()
+    + void setData()
+}
+class LoanController{
+    + {static} String checkBorrowingStatus(BorrowableItem item)
+    + {static} String checkItemAvailability(BorrowableItem item)
+    + {static} void borrowItem(LoanRecords loanRecords, Person borrower, BorrowableItem toBorrow, LocalDateTime borrowTime)
+    + {static} void returnItem(Loan nRecords loanRecords, Person borrower, BorrowableItem toReturn)
+    + {static} void renewItem(LoanRecords loanRecords, Person person, BorrowableItem toRenew)
+    + {static} void renewItem(LoanRecords loanRecords, Person person, BorrowableItem toRenew, LocalDateTime newDue)
+}
+class CheckBorrowingStatusCommand{
+    - BorrowableItem item
+    + CommandResult execute()
+}
+abstract class BorrowableItem{}
+class LoanRecords{}
+class Person{}
+
+LoanController ..>LoanRecords
+LoanController ..> Person
+LoanController -..> BorrowableItem
+
+UserCommand <|-- CheckBorrowingStatusCommand
+CheckBorrowingStatusCommand ..> LoanController
+CheckBorrowingStatusCommand ..> CommandResult
+@enduml

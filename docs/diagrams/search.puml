@@ -1,5 +1,5 @@
-@startuml search diagram
-abstract class Command{
+@startuml search class diagram
+abstract class UserCommand{
     + {abstract} CommandResult execute()
     + void setData()
 }
@@ -20,6 +20,8 @@ class Book{}
 
 SearchController --> Inventory
 SearchController ..> Book
-Command <|-- SearchCommand
+UserCommand <|-- SearchCommand
 SearchCommand ..> SearchController
-SearchCommand ..> Book
+SearchCommand "1" ..> "*" Book
+SearchCommand ..> CommandResult
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+!include style.puml
+
+participant "main :DukeofBooks"
+activate "main :DukeofBooks"
+"main :DukeofBooks" -> "main :DukeofBooks": run()
+activate "main :DukeofBooks"
+"main :DukeofBooks" -> "main :DukeofBooks": start()
+activate "main :DukeofBooks"
+"main :DukeofBooks" -> "main :DukeofBooks": runCommandLoopUntilSystemExit()
+loop !ExitCommand.isExit(accessCommand)
+
+    "main :DukeofBooks" -> TextUI: showLoginMessage()
+    activate TextUI
+    TextUI -> TextUI: getUserCommand()
+    activate TextUI
+    TextUI --> "main :DukeofBooks": commandText
+    deactivate TextUI
+    deactivate TextUI
+
+    "main :DukeofBooks" -> AccessCommandParser
+    activate AccessCommandParser
+    AccessCommandParser --> "main :DukeofBooks": AccessCommand
+    deactivate AccessCommandParser
+
+    "main :DukeofBooks" -> "main :DukeofBooks": login()
+    activate "main :DukeofBooks"
+
+    opt currentUser != null
+        "main :DukeofBooks" -> TextUI: showGreetingMessage()
+        activate TextUI
+        TextUI --> "main :DukeofBooks"
+        deactivate TextUI
+        "main :DukeofBooks" -> "main :DukeofBooks": runCommandLoopUntilUserLogout()
+        activate "main :DukeofBooks"
+    end
+end
+@enduml
