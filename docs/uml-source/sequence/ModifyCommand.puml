@@ -20,11 +20,14 @@ activate Parser
 Parser -> modify** : ModifyCommand()
 activate modify
 modify --> Parser: new ModifyCommand
+Parser --> Apollo
 deactivate modify
+deactivate Parser
+destroy Parser
 
 
 
-Parser -> modify : execute()
+Apollo -> modify : execute()
 
 activate modify
 modify -> modify++ : unmarkTask()
@@ -48,9 +51,6 @@ destroy Storage
 
 
 
-
-
-
 else Task marked as incomplete previously
 
 modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
@@ -59,10 +59,9 @@ Ui --> modify
 deactivate Ui
 destroy Ui
 end
-modify --> Parser
+modify --> Apollo
 destroy modify
-Parser --> Apollo
-destroy Parser
+
 
 deactivate Apollo
 

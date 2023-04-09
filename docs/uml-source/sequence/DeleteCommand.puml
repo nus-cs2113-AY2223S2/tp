@@ -20,9 +20,12 @@ activate Parser
 Parser -> modify** : ModifyCommand()
 activate modify
 modify --> Parser: new ModifyCommand
+Parser --> Apollo
 deactivate modify
+deactivate Parser
+destroy "Parser"
 
-Parser -> modify : execute()
+Apollo -> modify : execute()
 
 activate modify
 
@@ -49,12 +52,10 @@ activate Storage
 Storage --> modify
 destroy Storage
 
-modify --> Parser
+modify --> Apollo
 deactivate modify
 destroy modify
 
-Parser --> Apollo
-destroy Parser
 deactivate Apollo
 
 @enduml

@@ -8,13 +8,7 @@ interface LoggerInterface {
 class Storage {
     - filePath: String
     - moduleDataFilePath: String
-    - TYPE_POS: int
-    - STATUS_POS: int
-    - PARAM_POS: int
-    - TXT_TODO_WORD: char
-    - TXT_DEADLINE_WORD: char
-    - TXT_EVENT_WORD: char
-    - logger: Logger
+
 
     + Storage(String, String)
     + setUpLogger(): void
@@ -23,15 +17,17 @@ class Storage {
     + updateModule(ModuleList, Calendar): void
     - writeModules(FileWriter, Module): void
 }
+note left of Storage::moduleDataFilePath
+    Other static variables for Storage
+    words have been omitted for brevity.
+end note
 
 class TaskList {
     -tasks: Task[*]
-    + TaskList()
     + addTask(Task): void
     + deleteTask(int): Task
     + markTaskAsDone(int): Task
-    + getTask(int): Task
-    + getAllTasks(): List<Task>
+
 }
 
 abstract class Task {
@@ -41,9 +37,7 @@ abstract class Task {
 
     + Task(String)
     + getDescription(): String
-    + markAsDone(): void
-    + getStatus(): String
-    + getType(): String
+
 }
 
 class Todo extends Task {
@@ -68,7 +62,7 @@ class Event extends Task {
 }
 
 class Ui {
-    + showLine(): void
+
 }
 
 class ModuleList  {
@@ -76,16 +70,13 @@ class ModuleList  {
     + ModuleList()
     + addModule(Module): void
     + deleteModule(int): Module
-    + getModule(int): Module
-    + getAllModules(): List<Module>
+
 }
 
 class Module {
     - code: String
     - moduleTimetable: List<Timetable>
 
-    + Module(String)
-    + getCode(): String
     + addTimetable(Timetable): void
     + getModuleTimetable(): List<Timetable>
 }

@@ -188,8 +188,8 @@ public class AddCommand extends Command {
         DayOfWeek day = by.getDayOfWeek();
         int dayNum = day.getValue() - 1;
         int week = getWeekNumber(by.toLocalDate());
-        ArrayList<CalendarModule> clashLessons = calendar.getModulesForDay(week, dayNum);
-        taskList.sortTaskByDay(clashTasks);
+        ArrayList<CalendarModule> clashLessons = calendar.getLessonsForDay(week, dayNum);
+        clashTasks.sortTaskByDay();
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }
 
@@ -216,12 +216,11 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Checks if an event user wants to add clashes with existing lessons.
+     * Checks and warns if an event user wants to add clashes with existing lessons.
      *
      * @param ui       For printing warning message.
      * @param calendar The timetable of lessons stored in an ArrayList.
      * @param event    The event to be added.
-     * @return true if there is a clash, false otherwise.
      */
     private void warnEventModuleClash(Ui ui, Calendar calendar, Event event) {
         LocalDateTime eventStart = event.getFromDate();
@@ -289,7 +288,7 @@ public class AddCommand extends Command {
      * Checks if event occurs during the academic semester 1 or 2
      * @param eventStart The start time of the event
      * @param eventEnd  The end time of the event
-     * @return
+     * @return {@code true} If event occurs during semester, {@code false} otherwise.
      */
     private boolean isDuringSemester(LocalDateTime eventStart,LocalDateTime eventEnd) {
         LocalDateTime startSemesterTwo = LocalDateTime.of(2023, 1, 9, 0, 0);

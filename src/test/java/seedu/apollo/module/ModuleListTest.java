@@ -18,6 +18,7 @@ class ModuleListTest {
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule(invalidModuleCode));
         assertNull(allModules.findModule(invalidModuleCode));
+        assertEquals(1, modules.size());
     }
 
     @Test
@@ -38,4 +39,18 @@ class ModuleListTest {
         Module validModule = allModules.findModule("CS2113");
         assertEquals(validModule, modules.findModule("CS2113"));
     }
+
+    @Test
+    void getTotalModuleCredits_validModuleCode_returnsMC() throws FileNotFoundException {
+        Storage storage = new Storage("test.txt", "testModuleData.txt" );
+        ModuleList allModules = storage.loadModuleData();
+        ModuleList modules = new ModuleList();
+        modules.add(allModules.findModule("CS2113"));
+        modules.add(allModules.findModule("CG2023"));
+        modules.add(allModules.findModule("EE2211"));
+        modules.add(allModules.findModule("EE2026"));
+        modules.add(allModules.findModule("CDE2000"));
+        assertEquals(20, modules.getTotalModuleCredits());
+    }
+
 }

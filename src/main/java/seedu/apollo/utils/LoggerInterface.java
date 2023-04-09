@@ -11,13 +11,13 @@ import java.util.logging.Logger;
 public interface LoggerInterface {
     default void setUpLogger(Logger logger) {
         LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
+        logger.setLevel(Level.WARNING);
         ConsoleHandler logConsole = new ConsoleHandler();
         logConsole.setLevel(Level.SEVERE);
         logger.addHandler(logConsole);
         try {
             if (!new File("apollo.log").exists()) {
-                assert (new File("apollo.log").createNewFile()) : "Error creating logger";
+                assert (new File("apollo.log").createNewFile()) : "Error creating logger.";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);

@@ -11,11 +11,10 @@ participant ":Parser" as Parser
 participant ":AddCommand" as add
 participant ":Event" as Event
 participant ":TaskList" as TaskList
-participant ":Calendar" as Calendar
 participant ":Ui" as Ui
 participant ":Storage" as Storage
 
-User -> Apollo : "event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00"
+User -> Apollo : "event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
@@ -33,34 +32,18 @@ add -> add++ : addTask()
 add -> Event** : new Event()
 Event++
 return
-add -> add++ : isClashingEvent()
-TaskList --> add
-add--
+destroy Event
 opt Event clashes with Task
 add -> Ui : printClashingEventMessage()
 end
-add -> add++ : warnEventModuleClash()
-Calendar --> add
 opt Event clashes with Lesson
 add -> Ui : printClashingEventModuleMessage()
 end
 add--
-add -> TaskList++ : add()
-Event -> TaskList
-Event++
-destroy Event
-add--
-add <-- TaskList--
+add -> TaskList : add()
 
-
-add -> Ui++ : printAddMessage()
-TaskList -> Ui
-TaskList++
-destroy TaskList
-destroy Ui
-add -> Storage ++ : updateTask()
-return
-destroy Storage
+add -> Ui : printAddMessage()
+add -> Storage : updateTask()
 add --> Apollo
 destroy add
 Apollo--

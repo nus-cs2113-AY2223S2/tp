@@ -65,6 +65,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_listHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help list";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(ListHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -75,6 +76,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_todoHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help todo";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(TodoHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -85,6 +87,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_eventHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help event";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(EventHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -95,6 +98,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_deadlineHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help deadline";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(DeadlineHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -105,6 +109,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_markHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help mark";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(MarkHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -115,6 +120,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_unMarkHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help unmark";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(UnmarkHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -125,6 +131,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_deleteHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help delete";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(DeleteHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -135,6 +142,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_findHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help find";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(FindHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -145,6 +153,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_dateHelpCommand_expectNoException() throws UnexpectedException {
         String userCommand = "help date";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(DateHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -154,6 +163,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_showmodHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help showmod";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(ShowModHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -163,6 +173,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_listModuleHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help listmod";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(ListModuleHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -172,6 +183,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_weekHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help week";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(WeekHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -181,6 +193,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_addModuleHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help addmod";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(AddModHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -190,6 +203,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_deleteModuleHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help delmod";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(DeleteModHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -199,6 +213,7 @@ class SpecificHelpCommandTest {
     void parseHelpCommand_specificHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help help";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(SpecifiedAidHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
@@ -208,6 +223,7 @@ class SpecificHelpCommandTest {
     void exitHelpCommand_specificHelpCommand_expectNoException() throws UnexpectedException{
         String userCommand = "help bye";
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assert newCommand != null;
         assertEquals(ExitHelpCommand.class, newCommand.getClass());
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));

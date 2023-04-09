@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User executes delete command;
+
+if () then ([valid_INDEX])
+  :Create new ModifyCommand Object;
+  :Execute ModifyCommand;
+  :Iterate to corresponding index in TaskList;
+  :Delete task corresponding to INDEX;
+  :Update TaskList;
+  :Update Storage;
+  :Print success message;
+
+else([invalid_INDEX])
+    :Print error message;
+endif
+
+stop
+
+@enduml

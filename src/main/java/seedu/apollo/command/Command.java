@@ -48,7 +48,7 @@ public abstract class Command implements LoggerInterface {
      * @return LessonType of the command.
      * @throws IllegalCommandException If the command is invalid.
      */
-    protected LessonType getCommand(String arg) throws IllegalCommandException {
+    protected LessonType getLessonType(String arg) throws IllegalCommandException {
         switch (arg) {
         case "-lec":
             return LessonType.LECTURE;

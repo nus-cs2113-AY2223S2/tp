@@ -1,10 +1,12 @@
 # PoobalanAatmikaLakshmi - Project Portfolio Page
 
 ## Overview
-
+Apollo is a scheduling app for managing your tasks and lessons at the same time,
+with integrated module information from the NUSMods database.
+The target user, an average NUS student, interacts with Apollo using a CLI.
+It is written in Java, and has about 5kLoC.
 
 ### Summary of Contributions
-- ### Summary of Contributions
 -[My code contributions](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=PoobalanAatmikaLakshmi&tabRepo=AY2223S2-CS2113-T13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 #### Enhancements Implemented
@@ -27,9 +29,10 @@
 
 #### Contributions to the DG
 - Delete Module 
-- UML diagrams for DateCommand, FindCommand
-- Class diagram for Storage,DeleteHelpCommand 
+- Sequence diagrams for DateCommand, FindCommand,DeleteHelpCommand
+- Class diagram for Storage
 - Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 
+- Released v2.1 jar 
 - [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Apoobalanaatmikalakshmi+)
