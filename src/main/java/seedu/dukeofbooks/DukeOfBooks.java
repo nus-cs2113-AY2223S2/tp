@@ -108,16 +108,16 @@ public class DukeOfBooks {
 
     private User login(AccessCommand accessCommand) {
         if (AccessHelpCommand.isHelp(accessCommand)) {
-            ui.showToUser(AccessHelpCommand.getUsage());
+            TextUi.showToUser(AccessHelpCommand.getUsage());
             return null;
         }
 
         try {
             AccessResponse response = accessCommand.execute();
-            ui.showToUser(response.message == null ? "" : response.message);
+            TextUi.showToUser(response.message == null ? "" : response.message);
             return response.user;
         } catch (Exception e) {
-            ui.showToUser(e.getMessage());
+            TextUi.showToUser(e.getMessage());
             throw new RuntimeException();
         }
     }
@@ -127,7 +127,7 @@ public class DukeOfBooks {
             // command.setData(#placeholder);
             return command.execute();
         } catch (Exception e) {
-            ui.showToUser(e.getMessage());
+            TextUi.showToUser(e.getMessage());
             throw new RuntimeException(e);
         }
     }
