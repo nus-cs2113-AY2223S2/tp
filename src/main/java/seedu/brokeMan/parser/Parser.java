@@ -319,8 +319,6 @@ public class Parser {
             throw new RuntimeException(e);
         }
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[2]);
-
-        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[2]);
         return new AddIncomeCommand(amount, newDescription, time, category);
     }
 

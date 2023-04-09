@@ -118,6 +118,7 @@ class ParserTest {
         assertTrue(secondCommand instanceof ViewBudgetCommand);
     }
 
+    @Test
     void testSetBudget_invalidBudgetAmount_returnInvalidCommand() {
         final String userFullInput = "setBudget five";
         Command actualCommand = Parser.parseCommand(userFullInput);
@@ -133,6 +134,7 @@ class ParserTest {
         actualCommand.execute();
     }
 
+    @Test
     void parseCommand_invalidDateForViewBudget_returnInvalidCommand() {
         final String userFullInput = "viewBudget t/ 203/02";
         Command command = Parser.parseCommand(userFullInput);
@@ -317,6 +319,7 @@ class ParserTest {
         cleanUpCommand.execute();
     }
 
+    @Test
     void parseCommand_invalidEditIncomeCommand_returnInvalidCommand() {
         final String userFullInput = "editIncome wrong arguments";
         Command actualCommand = Parser.parseCommand(userFullInput);
@@ -464,6 +467,7 @@ class ParserTest {
         assertTrue(actualCommand instanceof InvalidCommand);
     }
 
+    @Test
     void parseCommand_validEditIncomeCommand_success() {
         final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2000 10 19 12 42 c/ SALARY";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
