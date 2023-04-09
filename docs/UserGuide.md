@@ -395,3 +395,4 @@ Format : `view_ingredients`
 | View user ingredients              | `view_ingredients`                                                                                          |
 | Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
 | Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |
+| Exit the program                   | `bye`                                                                                                       |
