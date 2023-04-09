@@ -14,12 +14,13 @@ abstract class "{abstract}\nCommand" as Command {
 # logger: Logger
 + Command(commandName: String)
 + execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
-allModules: ModuleList, calendar Calendar): void
+allModules: ModuleList, calendar: Calendar): void
 # setExit(): void
 }
 
 note left of Command::execute
-    All Command subclasses overwrite the execute() method
+    All Command subclasses
+    overwrite the execute() method
 end note
 
 interface LoggerInterface {
@@ -83,14 +84,12 @@ Storage <-- Command : updates <
 Ui <-- Command : calls for printing <
 TaskList "1 " <-- Command : "reads and\n writes to" <
 abstract class "{abstract}\nTask" as Task
-ToDo "*" <--* "1" TaskList : contains <
-Deadline "*" <--* "1" TaskList : contains <
-Event "*" <--* "1" TaskList : contains <
-Calendar "1   " <-- Command : reads <
-"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
+Task "*" <--* "1" TaskList : contains <
 
-Task <|-- ToDo
-Task <|-- Deadline
-Task <|-- Event
+Calendar "1   " <-- Command : reads <
+
+ToDo --|> Task
+Deadline --|> Task
+Event --|> Task
 
 @enduml

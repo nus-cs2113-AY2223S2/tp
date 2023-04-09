@@ -14,7 +14,7 @@ abstract class "{abstract}\nCommand" as Command {
 # logger: Logger
 + Command(commandName: String)
 + execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
-allModules: ModuleList, calendar Calendar): void
+allModules: ModuleList, calendar: Calendar): void
 # setExit(): void
 # getLessonType(arg: String): LessonType
 }
