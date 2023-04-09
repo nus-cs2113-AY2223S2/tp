@@ -94,8 +94,8 @@ public class Ui {
      * @author notbingsu
      * @author junenita
      * @param recipeListToPrint list containing recipes to be printed
-     * @param emptyListMsg error message for empty list
-     * @param listHeaderMsg print list header message
+     * @param emptyListMsg      error message for empty list
+     * @param listHeaderMsg     print list header message
      */
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg, String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
@@ -128,22 +128,23 @@ public class Ui {
         printMessage("4. Delete Recipe: delete {index number} or delete {starting index-ending index} or");
         printMessage("delete /r {recipe name} or delete /r all");
         printMessage("5. List All Recipes: list");
-        printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
-        printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
+        printMessage("6. List Available Recipes: available");
+        printMessage("7. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
+        printMessage("8. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
         printMessage("   /r {recipe2 name} /q {quantity2}");
-        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
-        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
+        printMessage("9. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
+        printMessage("10. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
         printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
-        printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Marking recipe in weekly plan as done: weekly /done RECIPE_NAME");
-        printMessage("12. Clearing weekly plan: weekly /clear");
-        printMessage("13. View Weekly Ingredients: weeklyingredients");
-        printMessage("14. Give a random recipe: random");
-        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && "
+        printMessage("11. View Weekly Plan: weeklyplan");
+        printMessage("12. Marking recipe in weekly plan as done: weekly /done RECIPE_NAME");
+        printMessage("13. Clearing weekly plan: weekly /clear");
+        printMessage("14. View Weekly Ingredients: weeklyingredients");
+        printMessage("15. Give a random recipe: random");
+        printMessage("16. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && "
                 + "...}");
-        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ."
+        printMessage("17. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ."
                 + "..}");
-        printMessage("17. Exit: bye");
+        printMessage("18. Exit: bye");
         printMessage("HOW TO ADD INGREDIENTS?");
         printMessage("ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...");
     }

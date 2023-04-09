@@ -91,14 +91,16 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage =
-                        "Please enter a valid recipe number or name in the correct format. You did not enter a recipe" +
-                                " number or name. See 'help' for more details.";
+                String errorMessage = "Please enter a valid recipe number or name in the correct format. You did not " +
+                        "enter a recipe"
+                        +
+                        " number or name. See 'help' for more details.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number or name. You entered %s, "
-                                + "which is in invalid.", command[1]);
+                                + "which is in invalid.",
+                        command[1]);
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -164,8 +166,8 @@ public class Meal360 {
                 ui.printSeparator();
                 String returnMessage = parser.parseTagRecipe(command, recipeList);
                 ui.printTagMessage(returnMessage);
-            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException |
-                     RecipeNotFoundInTagException | TagNotFoundException | NoRecipeException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException
+                     | RecipeNotFoundInTagException | TagNotFoundException | NoRecipeException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -210,8 +212,8 @@ public class Meal360 {
                     ui.printMessage("Please enter a valid command.");
                     break;
                 }
-            } catch (IllegalArgumentException | InvalidValueException | InvalidRecipeNameException |
-                     ArrayIndexOutOfBoundsException | IngredientNotFoundException e) {
+            } catch (IllegalArgumentException | InvalidValueException | InvalidRecipeNameException
+                     | ArrayIndexOutOfBoundsException | IngredientNotFoundException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -245,8 +247,8 @@ public class Meal360 {
                 Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
                 userIngredients.deleteIngredient(ingredientToDelete);
                 ui.printMessage("Ingredients successfully deleted!");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException |
-                     InvalidValueException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException
+                     | InvalidValueException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
