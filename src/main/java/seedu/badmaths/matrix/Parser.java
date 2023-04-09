@@ -1,6 +1,11 @@
 package seedu.badmaths.matrix;
 
-import seedu.badmaths.matrix.exception.*;
+
+import seedu.badmaths.matrix.exception.ExceptionChecker;
+import seedu.badmaths.matrix.exception.ExceptionPrinter;
+import seedu.badmaths.matrix.exception.UnknownOperatorException;
+import seedu.badmaths.matrix.exception.MatrixShapeException;
+import seedu.badmaths.matrix.exception.MatrixFormatException;
 
 public class Parser {
     static ExceptionChecker check = new ExceptionChecker();
