@@ -28,25 +28,25 @@ ___
 
 ## Features
 
-* [Add Recipes](#adding-recipes--add)
-* [Edit Recipes](#editing-recipes--edit)
-* [Delete Recipes](#deleting-recipes--delete)
-* [View recipes](#viewing-recipes--view)
-* [List Relevant Recipes](#listing-recipes--list)
-* [Tag/Categorise Recipes](#taggingcategorising-recipes--tag)
-* [Add Single Recipe To Weekly Plan](#add-single-recipe-to-weekly-plan--weekly-add)
-* [Add Multiple Recipe To Weekly Plan](#add-multiple-recipes-to-weekly-plan--weekly-multiadd)
-* [Remove Single Recipe From Weekly Plan](#delete-single-recipe-from-weekly-plan--weekly-delete)
-* [Remove Multiple Recipe From Weekly Plan](#delete-multiple-recipes-from-weekly-plan--weekly-multidelete)
-* [Clear Weekly Plan](#clear-weekly-plan--weekly-clear)
-* [Mark Recipe In Weekly Plan As Done](#mark-recipe-in-weekly-plan-as-done--weekly-done)
-* [View Weekly Plan Ingredients](#view-weekly-plan-ingredients--weeklyingredients)
-* [View User Ingredients](#view-user-ingredients--viewingredients)
-* [View Weekly Plan](#view-weekly-plan--weeklyplan)
-* [Random A Recipe](#random-a-recipe--random)
-* [Exit Program](#exit-the-program--bye)
-* [Add User Ingredient](#add-user-ingredient--addi)
-* [Delete User Ingredient](#delete-user-ingredient--deli)
+* [Add Recipes](#add-recipes)
+* [Edit Recipes](#edit-recipes)
+* [Delete Recipes](#delete-recipes)
+* [View recipes](#view-recipes)
+* [List Relevant Recipes](#list-recipes)
+* [Tag/Categorize Recipes](#tagcategorize-recipes)
+* [Add Single Recipe To Weekly Plan](#add-single-recipe-to-weekly-plan)
+* [Add Multiple Recipe To Weekly Plan](#add-multiple-recipes-to-weekly-plan)
+* [Remove Single Recipe From Weekly Plan](#delete-single-recipe-from-weekly-plan)
+* [Remove Multiple Recipe From Weekly Plan](#delete-multiple-recipes-from-weekly-plan)
+* [Clear Weekly Plan](#clear-weekly-plan)
+* [Mark Recipe In Weekly Plan As Done](#mark-recipe-in-weekly-plan-as-done)
+* [View Weekly Plan Ingredients](#view-weekly-plan-ingredients)
+* [View User Ingredients](#view-user-ingredients)
+* [View Weekly Plan](#view-weekly-plan)
+* [Random A Recipe](#random-a-recipe)
+* [Exit Program](#exit-the-program)
+* [Add User Ingredient](#add-user-ingredient)
+* [Delete User Ingredient](#delete-user-ingredient)
 
 
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
@@ -55,6 +55,11 @@ ___
 
 Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
+Examples of usage:
+  * `chicken=100 meat and oil=200`
+  * `white rice=300 vegetables=400 pepper,chilli and seeds=500`
+
+
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
   *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
@@ -62,7 +67,7 @@ Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_
 
 <br>
 
-### Adding recipes: `add`
+### Add Recipes
 
 Add new recipes to your list.
 
@@ -78,7 +83,7 @@ Example of usage:
 
 <br>
 
-### Editing recipes: `edit`
+### Edit Recipes
 
 Edit recipes in your list partially, fully or add new ingredients to already existing recipe.
 
@@ -96,7 +101,7 @@ Example of usage:
 
 <br>
 
-### Listing recipes: `list`
+### List Recipes
 
 List all recipes or filtered list recipes by the name or ingredients.
 
@@ -121,7 +126,7 @@ Example of usage:
 
 <br>
 
-### Viewing recipes: `view`
+### View Recipes
 
 Views the list of ingredients and their quantities for a recipe.
 
@@ -137,7 +142,7 @@ Example of usage:
 
 <br>
 
-### Deleting recipes: `delete`
+### Delete Recipes
 
 Deletes one, a range, or all recipes currently in list.
 
@@ -156,7 +161,7 @@ Example of usage:
 
 <br>
 
-### Tagging/Categorising recipes: `tag`
+### Tag/Categorize Recipes
 
 __Categorize recipes into a specific tag__
 
@@ -196,7 +201,7 @@ Example of usage:
 
 <br>
 
-### Add single recipe to weekly plan: `weekly /add`
+### Add single recipe to weekly plan
 
 Adds an existing recipe to this week's plan.
 
@@ -215,7 +220,7 @@ Example of usage:
 
 <br>
 
-### Add multiple recipes to weekly plan: `weekly /multiadd`
+### Add multiple recipes to weekly plan
 
 Adds multiple existing recipe to this week's plan.
 
@@ -237,7 +242,7 @@ Example of usage:
 
 <br>
 
-### Delete single recipe from weekly plan: `weekly /delete`
+### Delete single recipe from weekly plan
 
 Deletes an existing recipe from this week's plan.
 
@@ -256,7 +261,7 @@ Example of usage:
 
 <br>
 
-### Delete multiple recipes from weekly plan: `weekly /multidelete`
+### Delete multiple recipes from weekly plan
 
 Deletes multiple existing recipe from this week's plan.
 
@@ -281,7 +286,7 @@ Example of usage:
 
 <br>
 
-### Clear weekly plan: `weekly /clear`
+### Clear weekly plan
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
@@ -289,7 +294,7 @@ Format: `weekly /clear`
 
 <br>
 
-### Mark recipe in weekly plan as done: `weekly /done`
+### Mark recipe in weekly plan as done
 
 Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
 ingredients will be removed from the weekly plan and the list of ingredients.
@@ -307,7 +312,7 @@ Example of usage:
 
 <br>
 
-### View weekly plan: `weeklyplan`
+### View weekly plan
 
 View this week's plan.
 
@@ -315,7 +320,7 @@ Format: `weeklyplan`
 
 <br>
 
-### View weekly plan ingredients: `weeklyingredients`
+### View weekly plan ingredients
 
 View this week's ingredients.
 
@@ -323,7 +328,7 @@ Format: `weeklyingredients`
 
 <br>
 
-### Random a recipe: `random`
+### Random a recipe
 
 Random a recipe from all the recipes that user have, and show the list of
 ingredients and their quantities for a recipe.
@@ -332,7 +337,7 @@ Format: `random`
 
 <br>
 
-### Exit the program: `bye`
+### Exit the program
 
 Exits the program.
 
@@ -340,7 +345,7 @@ Format: `bye`
 
 <br>
 
-### Add user ingredient: `add_i`
+### Add user ingredient
 
 Add user's ingredients into the ingredient list.
 Format : `add_i /n INGREDIENT_NAME /c QUANTITY /d DATE`
@@ -357,7 +362,7 @@ Example of usage:
 
 <br>
 
-### Delete user ingredient: `del_i`
+### Delete user ingredient
 
 Delete user's ingredients from the ingredient list.
 Format : `del_i /n INGREDIENT_NAME /c QUANTITY`
@@ -374,7 +379,7 @@ Example of usage:
 
 <br>
 
-### View user ingredients: `view_ingredients`
+### View user ingredients
 
 View user's ingredients from the ingredient list.
 Format : `view_ingredients`
