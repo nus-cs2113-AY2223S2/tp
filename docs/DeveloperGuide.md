@@ -57,6 +57,7 @@ with index and getDishesSize which returns the size of the dishes, apart from me
 - MeetingManager: This class contains an ArrayList of meetings and methods implementing the meetings shown in the class diagram.
 - StaffManager: This class contains an ArrayList of staffs and methods like getStaffs with returns the staff list,
 apart from the methods in the diagram.
+
 ### Ui Component
 
 ![](uml/images/UiClassDiagram.png)
@@ -122,6 +123,7 @@ The User will also be able to delete deadlines, view deadline list.
 
 When the user input a deadline command, it will be parsed into Parser to determine which deadline command will be called.
 Then, the deadline command will be executed, and the respective method in the DeadlineManager class will be called, which are:
+
 #### addDeadline
 
    Adds the deadline object to the ArrayList `deadlines`.
@@ -181,6 +183,7 @@ The Dish feature consists of three functions:
 - It then prints out the formatted string to the console.
 
 ### Storage Feature 
+
 #### Create directory, Read and load from XYZ file
 ![](uml/images/CreateDirectorySequenceDiagram.png)  
 1. The `Storage()` class will be called to create a new instance of `Storage`.
