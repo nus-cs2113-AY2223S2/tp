@@ -165,9 +165,9 @@ public interface Parser {
                     throw new WrongFormatException();
                 }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
-            } else if (inputWords[1].equals("company")) {
+            } else if(inputWords[1].equals("companies")){
                 String targetCompany = input.replace("find", "").trim();
-                targetCompany = targetCompany.replace("company", "").trim();
+                targetCompany = targetCompany.replace("companies", "").trim();
                 if (targetCompany.equals("")) {
                     ui.emptyInputErrorMessage("target company name");
                     throw new WrongFormatException();
