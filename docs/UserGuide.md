@@ -530,3 +530,9 @@ Goodbye!
  ```
  Graph 2*cos(1*x-6)-100
  ```
+````
+Quadratic 2x^2 + x - 5
+````
+````
+Quadratic -x^2 - x + 2.5
+````
