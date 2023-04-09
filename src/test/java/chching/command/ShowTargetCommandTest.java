@@ -51,7 +51,7 @@ public class ShowTargetCommandTest {
         System.setOut(new PrintStream(outputStreamCaptor));
         selector.setCurrency("HKD");
         convertedCurrencies = converter.printConverter(350, selector);
-        expectedString = "Current target: " + 350.0 + " SGD" + convertedCurrencies;
+        expectedString = "Current target: 350.00 SGD" + convertedCurrencies;
     }
 
 
