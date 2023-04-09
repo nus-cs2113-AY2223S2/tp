@@ -414,22 +414,22 @@ The recipe manager data are saved in the hard disk automatically after any comma
 
 <h2 id="edit-data"> Editing the data file </h2>
 
-The recipe data are saved as a text file `[JAR file location]/data/[INDEX]-[dish name].txt`. 
-Here is an example of a valid file, `data/1-Hotpot.txt`:
+The recipe data are saved as a text file `[JAR file location]/data/[NUMBER].txt`. 
+Here is an example of a valid file, `data/1.txt`:
 ```
 Hotpot
 Chinese
-Ingredient list
+3
 Beef
 Potatoes
 Carrots
-Step list
+4
 chop beef
 add potatoes
 add carrots
 cook 5 minutes
 ```
-The first line is the name of the dish. And the second line is the tag of the dish. The third line is the ingredient list. The following lines are the ingredients until the line "Step list". The following lines are the steps until the end of the file.
+The first line is the name of the dish. And the second line is the tag of the dish. The third line is number of the ingredient list $X$. The following $X$ lines are the ingredients. Then the next line is the number of the step list $Y$. The following $Y$ lines are the steps.
 ***WARNING***:
 * Do **NOT** modify the save files.
 * If you modify the data file, and save data has **the wrong format**, the recipe manager will not process the data correctly.
