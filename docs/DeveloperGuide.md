@@ -74,11 +74,11 @@ the commands `deleteExpense 1` and `exit`.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/ui/Ui.java)
 
-The Ui consists of methods read inputs from user and to format the outputs to be displayed to the user.
-
 Below is the UML diagram for Ui class:
 
 ![UiClassDiagram](images/UiClassDiagram.png)
+
+The Ui consists of methods to read inputs from user and to format the outputs to be displayed to the user.
 
 [back to contents](#table-of-contents)
 
@@ -87,6 +87,7 @@ Below is the UML diagram for Ui class:
 The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
 
 Below is the UML diagram for Parser class:
+
 ![ParserClassDiagram](./images/ParserClassDiagram.png)
 
 How the `Parser` component works:
