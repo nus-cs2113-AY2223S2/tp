@@ -23,7 +23,9 @@ V1.0: [PR](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22)
 4. Create initial unpack command feature [#6](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/6)
 
 V2.1
+
 5. Create packall command feature [#132](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/132)
+
 6. Create unpackall command feature [#153](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/153)
 
 ---
