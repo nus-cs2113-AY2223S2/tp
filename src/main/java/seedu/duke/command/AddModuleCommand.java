@@ -27,6 +27,6 @@ public class AddModuleCommand extends Command {
         if (!isAddSuccessful) {
             return;
         }
-        ui.printAddModMessage();
+        ui.printAddModMessage(moduleToAdd);
     }
 }
