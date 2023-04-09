@@ -1,21 +1,23 @@
 @startuml
+!include Style.puml
 hide footbox
 title Find Dish Sequence Diagram
 
 box "FindDishCommand"
-participant ":FindDishCommand" as FindDishCommand
+participant ":FindDishCommand" as FindDishCommand COMMAND_COLOR
 endbox
 
 box "DishManager"
-participant ":DishManager" as DishManager
+participant ":DishManager" as DishManager MANAGER_COLOR
 endbox
 
--> FindDishCommand ++ : FindDishCommand(stringToFind)
 -> FindDishCommand: execute(stringToFind)
+activate FindDishCommand
 FindDishCommand -> DishManager ++ : findDish(stringToFind)
-
 FindDishCommand <-- DishManager
-<-- FindDishCommand: ui.printMessage()
+deactivate
+<-- FindDishCommand:
 
+destroy FindDishCommand
 |||
 @enduml
