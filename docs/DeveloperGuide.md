@@ -507,12 +507,17 @@ __`FILTER_BY_QUERY`__ String
 
 - Filter entries by user query
 
+__`FILTER_BY_TIME_START`__ AND __`FILTER_BY_TIME_END`__ DateTime (dd/MM/yy HH:mm)
+
+- Filter entries by date and time
+- Both parameters are required if used
+
 __Responses__
 
-| Status Code | Description           | Remarks                                                                       |
-| ----------- | --------------------- | ----------------------------------------------------------------------------- |
-| `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
-| `422`       | Unprocessable Content | -                                                                             |
+| Status Code | Description           | Remarks                                                                                        |
+| ----------- | --------------------- | ---------------------------------------------------------------------------------------------- |
+| `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise`                  |
+| `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid category, date, ID, etc.) |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -541,9 +546,10 @@ N/A
 
 __Responses__
 
-| Status Code | Description | Remarks |
-| ----------- | ----------- | ------- |
-| `201`       | Created     | -       |
+| Status Code | Description           | Remarks                                                                                         |
+| ----------- | --------------------- | ----------------------------------------------------------------------------------------------- |
+| `201`       | Created               | -                                                                                               |
+| `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid description, amount, etc.) |
 
 ##### View a specific entry
 
@@ -632,7 +638,7 @@ __Responses__
 | ----------- | --------------------- | -------------------------------------------------------------------- |
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
-| `422`       | Unprocessable Content | -                                                                    |  |
+| `422`       | Unprocessable Content | -                                                                    |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>

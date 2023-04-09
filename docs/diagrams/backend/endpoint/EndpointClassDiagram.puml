@@ -11,20 +11,13 @@ class EntryEndpoint
 class EntriesEndpoint
 class EntryLog
 
-Request <.. Endpoint
-Request <.. EntryEndpoint
-Request <.. EntriesEndpoint
-Request <.. Requestable
-
 Requestable <|.. Endpoint
-Endpoint --|> EntryEndpoint
-Endpoint --|> EntriesEndpoint
-EntryLog "1" --o EntryEndpoint
-EntryLog "1" --o EntriesEndpoint
-Endpoint ...> Response
-EntryEndpoint ...> Response
-EntriesEndpoint ...> Response
-Requestable ...> Response
+Requestable .left.> Request
+Requestable .right.> Response
+Endpoint -left-|> EntryEndpoint
+Endpoint -right-|> EntriesEndpoint
+EntryEndpoint o-- "1" EntryLog
+EntriesEndpoint o-- "1" EntryLog
 
 abstract class Endpoint {
 + handleRequest(request : Request) : Response

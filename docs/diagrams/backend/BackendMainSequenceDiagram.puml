@@ -10,6 +10,9 @@ note over Backend, XEndpoint
     X refers to the specific endpoint.
     Refer to the various endpoints requests
     for specific implementation.
+    The corresponding sequence diagram
+    titles follow the following format:
+    Endpoint /<path>: Handle <method>"
 end note
 alt DELETE
     Backend -> XEndpoint : handleDelete()
