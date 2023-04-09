@@ -490,6 +490,46 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author Khulon
+    @Test
+    void testPrintPlannerMode () {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.plannerMode();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "\r\n===>Planner Mode<===\r\n";
+        } else {
+            expectedOutput = "\n===>Planner Mode<===\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    //@@author Khulon
+    @Test
+    void testPrintworkoutMode () {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.workoutMode();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "\r\n===>Workout Mode<===\r\n";
+        } else {
+            expectedOutput = "\n===>Workout Mode<===\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
     //@@author L-K-Chng
 
     /**
