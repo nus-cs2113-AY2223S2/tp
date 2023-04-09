@@ -9,11 +9,12 @@
     - [Storage Component](#storage-component)
     - [CardList Component](#cardlist-component)
     - [TagList Component](#taglist-component)
+    - [DeckList Component](#decklist-component)
 - [Implementation](#implementation)
 
     - [card feature](#card-feature)
     - [tag feature](#tag-feature)
-    - [[Proposed] deck feature](#deck-feature)
+    - [deck feature](#deck-feature)
 
 - [Appendix: Requirements](#appendix-requirements)
     - [Product scope](#product-scope)
@@ -49,6 +50,7 @@ include links to the original source as well}
 - [Storage Component](#storage-component)
 - [CardList Component](#cardlist-component)
 - [TagList Component](#taglist-component)
+- [DeckList_Component](#decklist-component)
 
 ### Architecture
 
@@ -130,12 +132,24 @@ share the same methods and implementations.
 The following describes the class diagram for TagList Component :
 ![TagList Class Diagram](img/TagListClass.svg)
 
+### DeckList Component
+
+API: `DeckList.java`
+
+Inka's DeckList Component stores a list fo `Deck` as decks. Each `Deck` contains its own `UUID`, which is auto generated
+in the constructor of `Deck` as well as the tags and cards that is associated with, which are stored in the form of
+`CardUUID`, `TagUUID`. As mentioned previously, `CardUUID`, `TagUUID` and `DeckUUID` inherit from `InkaUUID`.
+
+The following describes the class diagram for the DeckList Component :
+
+![DeckList_Class_Diagram](img/DeckListFinal.svg)
+
 ## Implementation
 
 - [card feature](#card-feature)
 - [tag feature](#tag-feature)
 - [export feature](#export-feature)
-- [[Proposed] deck feature](#deck-feature)
+- [deck feature](#deck-feature)
 
 ### Card Feature
 
@@ -358,6 +372,23 @@ The sequence diagram below shows how this feature works:
 ![List Cards under Tag](img/ListCardsUnderTagSequence.png)
 
 ### Deck Feature
+
+The Deck Feature currently supports the following functionalities :
+
+- add a `Deck` to a `Card`
+- add a `Deck` to a `Tag`
+- delete a `Deck` from the `DeckList`
+- delete a `Card` from a `Deck`
+- delete a `Tag` from a `Deck`
+- list all the `Deck` in the `DeckList`
+- list all the `Card` under a `Deck`
+- list all the `Tag` under a `Deck`
+- let the user cycle through all the `Card` in the `Deck`
+- rename the `Deck`
+
+
+This guide will show two of the more complex implementation of the tag features, other tag-related features will be
+similar :
 
 ---
 
