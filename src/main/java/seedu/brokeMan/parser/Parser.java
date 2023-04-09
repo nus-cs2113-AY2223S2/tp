@@ -39,6 +39,7 @@ import seedu.brokeMan.exception.NegativeAmountException;
 import seedu.brokeMan.exception.NewDescriptionContainFlagsException;
 import seedu.brokeMan.exception.WrongFlagOrderException;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -376,6 +377,9 @@ public class Parser {
         checkEmptyAddFlag(splitDescriptions);
         checkDoubleException(splitDescriptions[0]);
         splitDescriptions[0] = checkExceedMaxCharForAmount(splitDescriptions[0]);
+        // 0.000001 will get pass the <= 0 check in checkDoubleException. checkExceedMaxCharForAmount will convert it to
+        // 0.00, which is why we call checkDoubleException again.
+        checkDoubleException(splitDescriptions[0]);
         checkTimeException(splitDescriptions[2]);
         convertStringToCategory(splitDescriptions[3]);
         return splitDescriptions;
@@ -399,6 +403,7 @@ public class Parser {
         if (amount > maxAmountAllowed) {
             throw new ExceedMaximumLengthForAmountException();
         }
+        df.setRoundingMode(RoundingMode.HALF_UP);
         return df.format(amount);
     }
 
