@@ -416,6 +416,7 @@ The amount you provided is not in the right format! Please enter a single number
 ```
 
 2. Adding a lend/borrow spending
+- Important information: Our application does not support names with slash (/), thus input names should not have them.
    
 Test Case 1:
 ```
@@ -550,6 +551,8 @@ Index must be an integer and within bounds! Please try again
 #### Editing an expenditure
 1. Editing a current expenditure within the list of inputs.
 - Prerequisite : Similar to delete, an existing expenditure is required. 
+- Important information: Our application does not support names with slash (/), thus when editing lend/borrow 
+expenditures, input names should not have slashes.
 
 
 - Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
