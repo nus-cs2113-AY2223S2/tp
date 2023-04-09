@@ -1,6 +1,9 @@
 package seedu.commands;
 
 import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.InvalidCharacterInAmount;
+import seedu.exceptions.NotPositiveValueException;
+import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.WrongPrecisionException;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
@@ -13,6 +16,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_PRECISION;
+import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_LACK_OF_PARAMETERS_MESSAGE;
 
 public class EditCommand extends Command {
     // Edit file accordingly
@@ -59,10 +64,15 @@ public class EditCommand extends Command {
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
 
         } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException | NumberFormatException s) {
-            return new CommandResult("Failed to edit! Please check the format and try again!");
+            return new CommandResult(ERROR_LACK_OF_PARAMETERS_MESSAGE.toString());
         } catch (WrongPrecisionException e) {
             return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
+        }  catch (NotPositiveValueException p) {
+            return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
+        }   catch (SmallAmountException | InvalidCharacterInAmount e) {
+            return new CommandResult(e.getMessage());
         }
+        
     }
 
     public boolean fliterLendAndBorrow(Expenditure expenditure) {
@@ -82,10 +92,12 @@ public class EditCommand extends Command {
     }
 
     public double fetchAmount(boolean isLendOrBorrowExpenditure)
-            throws StringIndexOutOfBoundsException, EmptyStringException, WrongPrecisionException {
+            throws StringIndexOutOfBoundsException, EmptyStringException, WrongPrecisionException, InvalidCharacterInAmount, NumberFormatException, NotPositiveValueException, SmallAmountException {
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH,
                 isLendOrBorrowExpenditure ? BSLASH : PSLASH);
         ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
+        ExceptionChecker.checkValidDoubleInput(amountVal);
+        ExceptionChecker.checkValidAmount(Double.parseDouble(amountVal));
         return Double.parseDouble(amountVal);
     }
 
@@ -105,4 +117,6 @@ public class EditCommand extends Command {
         String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
         return LocalDate.parse(deadline);
     }
+
+    
 }
