@@ -148,9 +148,9 @@ public class MealCompanionSession {
      * Runs the read, evaluate, print loop for MealCompanion.
      */
     public void runRepl() {
-        ingredientStorage.getFile(this.ingredients);
         this.ui.printLogo();
         this.ui.printIntroduction();
+        ingredientStorage.getFile(this.ingredients);
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();
             CommandTokens tokens = new CommandTokens(nextCommand);

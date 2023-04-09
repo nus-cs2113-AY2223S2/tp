@@ -2,6 +2,7 @@ package seedu.mealcompanion.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.ui.MealCompanionUI;
@@ -14,6 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
+import static seedu.mealcompanion.command.ingredients.AddCommand.MAX_INGREDIENTS;
+import static seedu.mealcompanion.command.ingredients.AddCommand.MIN_INGREDIENTS;
 
 //@@ author jingyaaa
 
@@ -77,14 +81,23 @@ public class IngredientStorage {
             }
             if (fileHasBeenEdited) {
                 ui.printMessage("Please refrain from editing the 'ingredients.txt' file, " +
-                        "some ingredients in your list has been affected and is now invalid.");
+                        "some ingredients in your list may have been affected and is now invalid.");
+                ui.printMessage("File will now be overwritten to contain only valid ingredients.");
+                writeIngredientsToFile(ingredients);
             }
         } catch (FileNotFoundException e) {
             ui.printMessage("Oops, an error occurred while loading file");
         } catch (IOException e) {
             ui.printMessage("Oops, an error occurred while reading file");
         } catch (JsonSyntaxException e) {
-            ui.printMessage("Please refrain from editing the 'ingredients.txt' file, stored data cannot be loaded");
+            ui.printMessage("Please refrain from editing the 'ingredients.txt' file, stored data cannot be loaded.");
+            ui.printMessage("The corrupted file will now be overwritten.");
+            ingredients.clear();
+            try {
+                this.bufferedWriter = new BufferedWriter(new FileWriter(filename));
+            } catch (IOException ex) {
+                ui.printMessage("Oops, unable to create or write to file");
+            }
         }
     }
 
@@ -96,14 +109,46 @@ public class IngredientStorage {
      */
     private void addStoredIngredients(String inputFromFile, IngredientList ingredients) {
         Ingredient ingredient = gson.fromJson(inputFromFile, Ingredient.class);
-        if (ingredient.getMetadata() == null ||
-                ingredient.getMetadata().getName() == null ||
-                (ingredient.getMetadata().getUnits() == null && ingredient.getMetadata().getUnitLabel() == null) ||
-                ingredient.getQuantity() <= 0 || ingredient.getQuantity() > 10000) {
+        try {
+            // check if is valid ingredient
+            Ingredient checkIngredient = new Ingredient(ingredient.getMetadata().getName(), ingredient.getQuantity());
+            // check if there is duplicate
+            if (duplicatedIngredients(ingredients, checkIngredient)) {
+                ui.printMessage("File has been edited to contain duplicated ingredients, duplicates will be ignored");
+                return;
+            }
+            // check for valid quantity
+            if (checkIngredient.getQuantity() <= MIN_INGREDIENTS || checkIngredient.getQuantity() > MAX_INGREDIENTS) {
+                fileHasBeenEdited = true;
+                return;
+            }
+            // check for valid units
+            if (ingredient.getMetadata().getUnits() == null && ingredient.getMetadata().getUnitLabel() == null) {
+                fileHasBeenEdited = true;
+            }
+            ingredients.add(checkIngredient);
+        } catch (MealCompanionException e) {
             fileHasBeenEdited = true;
-            return;
+        } catch (NullPointerException e) {
+            fileHasBeenEdited = true;
         }
-        ingredients.add(ingredient);
+    }
+
+    /**
+     * Checks for duplicated ingredients after user edits the ingredients.txt file.
+     *
+     * @param ingredients list of ingredients
+     * @param ingredient ingredient to be checked
+     * @return true if the ingredient is duplicated
+     */
+    private boolean duplicatedIngredients(IngredientList ingredients, Ingredient ingredient) {
+        for (Ingredient ingredientInList : ingredients.getIngredients()) {
+            if (ingredientInList.getMetadata().getName().contentEquals(ingredient.getMetadata().getName())) {
+                fileHasBeenEdited = true;
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
