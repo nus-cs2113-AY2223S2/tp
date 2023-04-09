@@ -86,7 +86,26 @@ public class Storage {
 
         reader = new FileReader(filePath);
         SavedData savedData = gson.fromJson(reader, SavedData.class);
+        roundDouble(savedData);
         return savedData;
+    }
+
+    /**
+     * Ensures that all data loaded from json is in 2 decimal place.
+     *
+     * @param savedData The data that is loaded from the Json file.
+     */
+    private static void roundDouble(SavedData savedData) {
+        double budgetGoal = savedData.getBudgetGoal();
+        budgetGoal = (double) Math.round(budgetGoal * 100) / 100;
+        savedData.setBudgetGoal(budgetGoal);
+
+        FinancialReport financialReport = savedData.getFinancialReport();
+        for (int i = 0; i < financialReport.getStatementCount(); i++) {
+            double statementValue = financialReport.getFinancialStatement(i).getValue();
+            statementValue = (double) Math.round(statementValue * 100) / 100;
+            financialReport.getFinancialStatement(i).setValue(statementValue);
+        }
     }
 
     /**
