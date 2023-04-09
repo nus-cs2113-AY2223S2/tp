@@ -42,11 +42,8 @@ end
 add--
 add -> TaskList : add()
 
-add -> Ui++ : printAddMessage()
-destroy Ui
-add -> Storage ++ : updateTask()
-return
-destroy Storage
+add -> Ui : printAddMessage()
+add -> Storage : updateTask()
 add --> Apollo
 destroy add
 Apollo--

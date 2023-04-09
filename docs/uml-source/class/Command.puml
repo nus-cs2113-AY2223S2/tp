@@ -83,9 +83,14 @@ Storage <-- Command : updates <
 Ui <-- Command : calls for printing <
 TaskList "1 " <-- Command : "reads and\n writes to" <
 abstract class "{abstract}\nTask" as Task
-Task "*" <--* "1" TaskList : contains <
+ToDo "*" <--* "1" TaskList : contains <
+Deadline "*" <--* "1" TaskList : contains <
+Event "*" <--* "1" TaskList : contains <
 Calendar "1   " <-- Command : reads <
 "ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
 
+Task <|-- ToDo
+Task <|-- Deadline
+Task <|-- Event
 
 @enduml
