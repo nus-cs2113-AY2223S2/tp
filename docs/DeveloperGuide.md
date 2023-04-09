@@ -211,7 +211,7 @@ in a simple and convenient manner through a command line interface.
 
 - Constraints:
 
-  - Total Expense and Total Income should not exceed 2^31 - 1.
+  - Total number of entries for Expenses and Incomes should not exceed 10 000 each.
   - The '/' should not be used within any of the inputs, unless it is for specifying a category.
 
 - Technical Requirements:
