@@ -2,7 +2,7 @@
 'https://plantuml.com/class-diagram
 !include Style.puml
 
-class Manager MANAGER_COLOR{
+class XYZManager MANAGER_COLOR{
     - XYZs:ArrayList<XYZ>
     + XYZManager(ArrayList<XYZ>:XYZs)
     + {static} addXYZ(xyz:XYZ, ui:TextUI) : void

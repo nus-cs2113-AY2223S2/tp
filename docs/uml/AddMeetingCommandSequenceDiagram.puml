@@ -12,10 +12,9 @@ box "MeetingManager"
 participant ":MeetingManager" as MeetingManager
 endbox
 
-Activate AddMeetingCommand
-->AddMeetingCommand:AddMeetingCommand(time,issue)
-->AddMeetingCommand:execute(ui)
 
+->AddMeetingCommand:execute(ui)
+Activate AddMeetingCommand
 
 create Meeting
 AddMeetingCommand->Meeting++:m=new Meeting(time,issue)
