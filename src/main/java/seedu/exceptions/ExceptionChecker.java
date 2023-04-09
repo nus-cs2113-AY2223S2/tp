@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import seedu.expenditure.AccommodationExpenditure;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.TuitionExpenditure;
+import seedu.parser.ParseIndividualValue;
 
 public class ExceptionChecker {
     public static void checkEmptyString(String string) throws EmptyStringException {
@@ -68,6 +69,16 @@ public class ExceptionChecker {
                     .equals(TuitionExpenditure.iconUnpaid);
             if (isAlreadyPaidTuition) {
                 throw new AlreadyUnmarkException();
+            }
+        }
+    }
+    public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String DOT, String BLANK)
+            throws WrongPrecisionException, EmptyStringException {
+        if (userInput.contains(DOT)) {
+            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,DOT,BLANK);
+            System.out.println(twoDecimalPlaces);
+            if (twoDecimalPlaces.length() > 2) {
+                throw new WrongPrecisionException();
             }
         }
     }

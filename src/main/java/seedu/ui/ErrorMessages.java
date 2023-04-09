@@ -24,8 +24,9 @@ public enum ErrorMessages {
     ERROR_WRONG_FORMAT_MESSAGE("Input command cannot be recognised as it is in the wrong format. Please try again"),
     ERROR_BUDGET_NOT_NUMERICAL_MESSAGE("Budget amount is not a numerical value!"),
     ERROR_INVALID_DATE_MESSAGE("Borrow date must be before the return date! Please try again"),
-    ERROR_INVALID_DEADLINE_MESSAGE("Return date must be after today's date! " + "Today's date is " + LocalDate.now());
- 
+    ERROR_INVALID_DEADLINE_MESSAGE("Return date must be after today's date! " + "Today's date is " + LocalDate.now()),
+    ERROR_INVALID_AMOUNT_PRECISION("Precision of amount is more than 2 decimal places. " +
+                                           "Please re-enter a valid amount value");
 
     public final String message;
 
