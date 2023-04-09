@@ -228,81 +228,83 @@ public class Parser {
     }
 
     private static void parseEditCommand(String task) throws SniffException{
-        int uidIndex = task.indexOf("uID/");
-        String type = task.substring(uidIndex + 4, uidIndex + 5);
-        String uid = task.substring(uidIndex + 4, uidIndex + 14);
-        if (type.equals("C")){
-            try {
-                String animalType = splitInputBy(task, "at/");
-                String animalName = splitInputBy(task, "an/");
-                String ownerName = splitInputBy(task, "on/");
-                String contactNumber = splitInputBy(task, "cn/");
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String date = splitInputBy(task, "cd/");
-                LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
-                String time = splitInputBy(task, "ct/");
-                LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
-                command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber, parsedDate,
-                       parsedTime);
-            }  catch (DateTimeParseException e) {
-                throw new SniffException("The date/time description is invalid.");
-            } catch (NullPointerException e) {
-                throw new SniffException("The consultation description is invalid!");
-            }
-        }
-        else if (type.equals("S")){
-            try{
-                String animalType = splitInputBy(task, "at/");
-                String animalName = splitInputBy(task, "an/");
-                String ownerName = splitInputBy(task, "on/");
-                String contactNumber = splitInputBy(task, "cn/");
-                String priority = splitInputBy(task, "p/");
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String startDate = splitInputBy(task, "sd/");
-                LocalDate parsedStartDate = LocalDate.parse(startDate, dateFormatter);
-                String startTime = splitInputBy(task, "st/");
-                LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
-                String endDate = splitInputBy(task, "ed/");
-                LocalDate parsedEndDate = LocalDate.parse(endDate, dateFormatter);
-                String endTime = splitInputBy(task, "et/");
-                LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
-                if (parsedStartDate.isAfter(parsedEndDate)) {
-                    throw new SniffException(" The start date must be before the end date!");
-                } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.isAfter(parsedEndTime)) {
-                    throw new SniffException(" The start time must be before the end time!");
-                } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.equals(parsedEndTime)) {
-                    throw new SniffException(" The start time cannot be the same as the end time!");
+        try {
+            int uidIndex = task.indexOf("uID/");
+            String type = task.substring(uidIndex + 4, uidIndex + 5);
+            String uid = task.substring(uidIndex + 4, uidIndex + 14);
+            if (type.equals("C")) {
+                try {
+                    String animalType = splitInputBy(task, "at/");
+                    String animalName = splitInputBy(task, "an/");
+                    String ownerName = splitInputBy(task, "on/");
+                    String contactNumber = splitInputBy(task, "cn/");
+                    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String date = splitInputBy(task, "cd/");
+                    LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
+                    String time = splitInputBy(task, "ct/");
+                    LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
+                    command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber, parsedDate,
+                            parsedTime);
+                } catch (DateTimeParseException e) {
+                    throw new SniffException("The date/time description is invalid.");
+                } catch (NullPointerException e) {
+                    throw new SniffException("The consultation description is invalid!");
                 }
-                command = new EditSurgeryCommand(uid,animalType, animalName, ownerName, contactNumber,
-                        parsedStartDate, parsedStartTime, parsedEndDate, parsedEndTime, priority);
-            } catch (DateTimeParseException e) {
-                throw new SniffException("The date/time description is invalid.");
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new SniffException("The vaccination description is invalid!");
+            } else if (type.equals("S")) {
+                try {
+                    String animalType = splitInputBy(task, "at/");
+                    String animalName = splitInputBy(task, "an/");
+                    String ownerName = splitInputBy(task, "on/");
+                    String contactNumber = splitInputBy(task, "cn/");
+                    String priority = splitInputBy(task, "p/");
+                    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String startDate = splitInputBy(task, "sd/");
+                    LocalDate parsedStartDate = LocalDate.parse(startDate, dateFormatter);
+                    String startTime = splitInputBy(task, "st/");
+                    LocalTime parsedStartTime = LocalTime.parse(startTime, timeFormatter);
+                    String endDate = splitInputBy(task, "ed/");
+                    LocalDate parsedEndDate = LocalDate.parse(endDate, dateFormatter);
+                    String endTime = splitInputBy(task, "et/");
+                    LocalTime parsedEndTime = LocalTime.parse(endTime, timeFormatter);
+                    if (parsedStartDate.isAfter(parsedEndDate)) {
+                        throw new SniffException(" The start date must be before the end date!");
+                    } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.isAfter(parsedEndTime)) {
+                        throw new SniffException(" The start time must be before the end time!");
+                    } else if (parsedStartDate.equals(parsedEndDate) && parsedStartTime.equals(parsedEndTime)) {
+                        throw new SniffException(" The start time cannot be the same as the end time!");
+                    }
+                    command = new EditSurgeryCommand(uid, animalType, animalName, ownerName, contactNumber,
+                            parsedStartDate, parsedStartTime, parsedEndDate, parsedEndTime, priority);
+                } catch (DateTimeParseException e) {
+                    throw new SniffException("The date/time description is invalid.");
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new SniffException("The vaccination description is invalid!");
+                }
+            } else if (type.equals("V")) {
+                try {
+                    String animalType = splitInputBy(task, "at/");
+                    String animalName = splitInputBy(task, "an/");
+                    String ownerName = splitInputBy(task, "on/");
+                    String contactNumber = splitInputBy(task, "cn/");
+                    String vaccine = splitInputBy(task, "v/");
+                    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String date = splitInputBy(task, "vd/");
+                    LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
+                    String time = splitInputBy(task, "vt/");
+                    LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
+                    command = new EditVaccinationCommand(uid, animalType, animalName, ownerName, contactNumber,
+                            vaccine, parsedDate, parsedTime);
+                } catch (DateTimeParseException e) {
+                    throw new SniffException("The date/time description is invalid.");
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new SniffException("The vaccination description is invalid!");
+                }
             }
-        }
-        else if (type.equals("V")){
-            try {
-                String animalType = splitInputBy(task, "at/");
-                String animalName = splitInputBy(task, "an/");
-                String ownerName = splitInputBy(task, "on/");
-                String contactNumber = splitInputBy(task, "cn/");
-                String vaccine = splitInputBy(task, "v/");
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String date = splitInputBy(task, "vd/");
-                LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
-                String time = splitInputBy(task, "vt/");
-                LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
-                command = new EditVaccinationCommand(uid,animalType, animalName, ownerName, contactNumber,
-                        vaccine, parsedDate, parsedTime);
-            } catch (DateTimeParseException e) {
-                throw new SniffException("The date/time description is invalid.");
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new SniffException("The vaccination description is invalid!");
-            }
+        }catch(StringIndexOutOfBoundsException e){
+            throw new SniffException("The edit uID/ command is invalid!");
         }
     }
 
