@@ -190,20 +190,12 @@ public class Parser {
         }
     }
 
-
+    //@@author Briantjs00
     private Command prepareListPuModulesCommand(ArrayList<String> userInputWords, String univAbbNameOrIndex,
                                                 ArrayList<University> universities) {
         String filter = "";
         try {
-            if (userInputWords.size() == 3) {
-                String userCommandThirdKeyword = userInputWords.get(2);
-                String[] filterWords = userCommandThirdKeyword.split(" ");
-                if (userCommandThirdKeyword.startsWith("/filter") && filterWords.length == 4) {
-                    filter = userCommandThirdKeyword.substring(8);
-                } else {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
-            }
+            filter = prepareFilterString(userInputWords, filter);
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
         }
@@ -222,6 +214,39 @@ public class Parser {
             return new ExceptionHandleCommand(e);
         }
     }
+
+    private String prepareFilterString(ArrayList<String> userInputWords, String filter) throws InvalidCommandException {
+        if (userInputWords.size() == 3) {
+            String lowerCaseUserCommandThirdKeyword = userInputWords.get(2).toLowerCase();
+            String[] filterWords = lowerCaseUserCommandThirdKeyword.split(" ", 3);
+            if (lowerCaseUserCommandThirdKeyword.startsWith("/filter") && filterWords.length == 3) {
+                if (filterWords[1].equalsIgnoreCase("/mc")) {
+                    String credits = filterWords[2];
+                    checkIsValidModuleCredit(credits);
+                    filter = lowerCaseUserCommandThirdKeyword.replaceFirst("/filter", "").trim();
+                } else if (filterWords[1].equalsIgnoreCase("/name")) {
+                    filter = lowerCaseUserCommandThirdKeyword.replaceFirst("/filter", "").trim();
+                } else {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
+            } else {
+                throw new InvalidCommandException(ui.getCommandInputError());
+            }
+        }
+        return filter;
+    }
+
+    private void checkIsValidModuleCredit(String credits) throws InvalidCommandException {
+        if (credits.startsWith("-")) {
+            throw new InvalidCommandException(ui.NotIntegerError());
+        }
+        try {
+            Integer.parseInt(credits);
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException(ui.NotIntegerError());
+        }
+    }
+    //@@author
 
     private Command handleListPuModulesCommand(ArrayList<University> universities, String universityAbbName,
                                                int univIndex, boolean isUnivAbbr, String filter)

@@ -51,6 +51,7 @@ public class UI {
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
     private static final String MAPPABLE_NUS_MOD_CODE_MESSAGE = "This is the list of mappable NUS module codes";
+    private static final String NOT_INTEGER_MESSAGE = "Please enter an integer between 0 and 2,147,483,647";
     private static ArrayList<Module> puModules = DataReader.getDataReaderOneInstance().getModules();
     private static ArrayList<University> universities = DataReader.getDataReaderOneInstance().getUniversities();
 
@@ -58,6 +59,7 @@ public class UI {
      * UI has a Singleton Design Pattern
      */
     private static UI uiOneInstance = null;
+
     private UI() {
     }
 
@@ -155,7 +157,7 @@ public class UI {
         System.out.println(LINE);
         System.out.println(MAPPABLE_NUS_MOD_CODE_MESSAGE);
         System.out.println(LINE);
-        int listIndex =  0;
+        int listIndex = 0;
         for (String nusModCode : nusModuleCodeList) {
             listIndex++;
             for (Module m : allModules) {
@@ -164,7 +166,7 @@ public class UI {
                 int nusModuleMc = m.getNusModuleMCs();
                 if (nusModuleCode.equalsIgnoreCase(nusModCode)) {
                     System.out.println(listIndex + ". [" + nusModuleCode + "] " + nusModuleName + " "
-                                        + nusModuleMc + " MCs");
+                            + nusModuleMc + " MCs");
                     break;
                 }
             }
@@ -423,6 +425,10 @@ public class UI {
         System.out.println("Deadline Storage is corrupted, deleting corrupted deadlines");
     }
 
+    public String NotIntegerError() {
+        return NOT_INTEGER_MESSAGE;
+    }
+
     public static void printInvalidBudgetAmountMessage() {
         System.out.println(INVALID_BUDGET_AMOUNT_MESSAGE);
     }
@@ -454,7 +460,7 @@ public class UI {
         }
         int listIndex = 0;
         if (puModulesToPrint.size() < 1) {
-            assert puModulesToPrint.size() < 1: "size of puModulesToPrint array should be < 1";
+            assert puModulesToPrint.size() < 1 : "size of puModulesToPrint array should be < 1";
             System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
             System.out.println(LINE);
             System.out.println(LINE);

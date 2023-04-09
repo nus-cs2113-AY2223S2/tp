@@ -54,19 +54,20 @@ public class Module {
         return nusModuleName;
     }
 
+    //@@author L0Z1K
     public boolean isInFilter(String filter) {
         if (filter == null) {
             return true;
         }
         String[] conditions = filter.split(", ");
         for (String condition : conditions) {
-            if (condition.toLowerCase().startsWith("mc == ")) {
-                int credits = Integer.parseInt(condition.substring(6));
+            if (condition.startsWith("/mc")) {
+                int credits = Integer.parseInt(condition.replaceFirst("/mc", "").trim());
                 if (moduleMCs != credits) {
                     return false;
                 }
-            } else if (condition.toLowerCase().contains(" in name")) {
-                String keyword = condition.substring(0, condition.indexOf(" in name"));
+            } else if (condition.startsWith("/name")) {
+                String keyword = condition.replaceFirst("/name", "").trim();
                 if (!moduleName.toLowerCase().contains(keyword)) {
                     return false;
                 }
@@ -74,9 +75,11 @@ public class Module {
         }
         return true;
     }
+    //@@author
 
     /**
      * Returns the length of the line to be printed to User Console for a module information.
+     *
      * @param module Module to be printed to User Console
      * @return Length of line printed when module information is printed out
      */
