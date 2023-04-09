@@ -28,10 +28,6 @@ import com.google.gson.JsonElement;
  * Models a class to handle storage for the program.
  */
 public class Storage {
-    /**
-     * Program Logging
-     */
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
     public static final String TYPE_PROPERTY = "type";
     public static final String CATEGORY_PROPERTY = "category";
     public static final String DESCRIPTION_PROPERTY = "description";
@@ -39,6 +35,7 @@ public class Storage {
     public static final String AMOUNT_PROPERTY = "amount";
     public static final String EXPENSE_SYMBOL = "E";
     public static final String INCOME_SYMBOL = "I";
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
     
     static {
         LogManager.getLogManager().reset();
