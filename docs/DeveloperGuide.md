@@ -158,11 +158,15 @@ An ArrayList of meetings is initialized in the MeetingManager. Three methods tha
 - addMeeting: Add a meeting to the meeting list.
   ![](uml/images/AddMeetingCommandSequenceDiagram-Add_Meeting_Sequence_Diagram.png)
 - deleteMeeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
-- printMeetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
+- viewMeetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
+- findMeetings: Find and print all the meetings which contain the keyword that the user specified.
+  The sequence diagram follows the same pattern as above.
 
-When the user input a meeting command, the Parser will determine which command it is and return a command object.
-One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
-Inside the command, the execute function will call the corresponding methods inside the MeetingManager and implement on the meeting list.
+Step 1: When the user input a meeting command, the Parser will determine which command it is and return a command object.
+
+Step 2: One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
+
+Step 3: Inside the command, the execute function will call the corresponding methods inside the MeetingManager and implement on the meeting list.
 
 ### Deadline Feature
 The Deadline Feature allows user to add Deadline objects in a deadline list.
