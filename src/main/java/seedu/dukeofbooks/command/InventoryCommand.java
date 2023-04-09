@@ -26,7 +26,7 @@ public class InventoryCommand extends UserCommand {
     public CommandResult execute() {
         try {
             Book targetBook = checkBook();
-
+            assert(targetBook!=null);
             switch(action){
             case ADD_WORD:
                 InventoryController.addBook(targetBook);
