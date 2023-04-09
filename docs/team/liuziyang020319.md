@@ -54,15 +54,15 @@ In the feature section:
 * Recipe Manage Feature
 * Recipe Find Feature
 #### UML diagrams
-* Added the architecture diagram
-![image](../PlantUML/MainArchitecture.png)
-* Added the sequence diagram for showing how the components interact with each other
-![image](../PlantUML/ArchitectureInteract.png)
-* Added the sequence diagram for managing the recipe (Wrote the main codes, Phone divided the diagram into two parts)
-![image](../PlantUML/RecipeManage_Add_List.png)
-![image](../PlantUML/RecipeManage_Delete_Clear.png)
-* Added the sequence diagram for finding the recipe
-![image](../PlantUML/FindRecipe.png)
+* Added the architecture diagram.
+[Architecture Diagram](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/docs/PlantUML/MainArchitecture.png)
+* Added the sequence diagram for showing how the components interact with each other.
+[Interaction Diagram](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/docs/PlantUML/ArchitectureInteract.png)
+* Added the sequence diagram for managing the recipe (Wrote the main codes, Phone divided the diagram into two parts).
+[Add&List Diagram](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/docs/PlantUML/RecipeManage_Add_List.png)
+[Delete&Clear Diagram](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/docs/PlantUML/RecipeManage_Delete_Clear.puml)
+* Added the sequence diagram for finding the recipe.
+[Find Diagram](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/docs/PlantUML/FindRecipe.png)
 ### Contribution to team based task
 * Came up with the user stories.
 * Managed releases `v1.0` on GitHub.

@@ -387,9 +387,11 @@ Adding a person by using the `add` command and the recipe to be added.
    
    Expected: No recipe is added. Error details shown in the result display.
    ```
-   Error in description of inputs!
-   Exception occurred: Recipe is missing the "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs
-   or there is more than one "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
+    Error in description of inputs!
+    Exception occurred:
+    Recipe is missing the "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs,
+    or there is more than one
+    "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
    ```
    
 3. Other incorrect add commands to try: 
