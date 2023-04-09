@@ -24,7 +24,7 @@ budget manager.
 
 ## Summary of Contributions
 
-I have contributed a **majority** of the enhancements to BrokeMan, User Guide (UG), and Developer Guide (DG).
+I have contributed a **majority** of the enhancements to BrokeMan, instructions in User Guide (UG), and explanations in Developer Guide (DG).
 
 The following below is the breakdown of my contributions to the team project BrokeMan.
 
@@ -59,7 +59,7 @@ Most of the exceptions handling are done in the Parser class.
 1. Set up the  Table of Contents (TOC) to work properly such that it can link to the appropriate sections,
 and added link back to the TOC at the end of every section.
 2. Added the example outputs for **all** features of the product as well as the welcome message.
-3. Contributed a **large portion** (more than half) of the instructions for **all** the feature in the UG such as `deleteExpense`, `deleteIncome`, `addExpense`, etc.
+3. Contributed a **large portion** (more than half) of the instructions for **all** the [features](../UserGuide.md#features) in the UG such as `deleteExpense`, `deleteIncome`, `addExpense`, etc.
 4. Helped with the formatting of [Command Summary](../UserGuide.md#command-summary)
 
 [back to contents](#table-of-contents)
