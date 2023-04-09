@@ -4,29 +4,29 @@
    * [1.1 What is SEP Helper](#11-what-is-sep-helper)
 * **[2 Quick Start](#2-quick-start)**
 * **[3 Features Overview](#3-features-overview)**
-* [3.1 Help Command](#31-help-command-help)
+* [3.1 Help Command](#31-help-command)
    * [3.2 Modules](#32-modules)
-     * [3.2.1 List](#321-list-list-command)
-       * [3.2.1.1 List the Saved Modules](#3211-listing-modules-user-has-selected-list-current)
-       * [3.2.1.2 List all the Partner Universities](#3212-listing-out-pu-module-list-list-pu-abbreviationpu-index)
-       * [3.2.1.3 List the Modules from a Partner University](#3213-listing-out-all-partner-universities-list-pu)
-       * [3.2.1.4 List the Modules from a Partner University with Filters](#3214-listing-out-pu-module-list-with-filters-list-pu-abbreviationpu-index-filter-filter)
-       * [3.2.1.5 List the Saved Modules from a Partner 
-University](#3215-listing-modules-user-has-selected-for-specific-partner-university-list-current-pu-abbreviation)
-     * [3.2.2 Add](#322-add-user-selected-modules-to-list-add)
-     * [3.2.3 Remove](#323-remove-user-selected-modules-from-list-remove)
-     * [3.2.4 Search](#324-search-by-nus-module-code-search)
+     * [3.2.1 List](#321-list-commands)
+       * [3.2.1.1 List the Saved Modules](#3211-listing-modules-user-has-selected)
+       * [3.2.1.2 List all the Partner Universities](#3212-listing-out-all-partner-universities)
+       * [3.2.1.3 List the Modules from a Partner University](#3213-listing-out-pu-module-list)
+       * [3.2.1.4 List the Modules from a Partner University with Filters](#3214-listing-out-pu-module-list-with-filters)
+       * [3.2.1.5 List the Saved Modules from a Partner
+University](#3215-listing-modules-user-has-selected-for-specific-partner-university)
+     * [3.2.2 Add](#322-add-user-selected-modules-to-list)
+     * [3.2.3 Remove](#323-remove-user-selected-modules-from-list)
+     * [3.2.4 Search](#324-search-by-nus-module-code)
    * [3.3 Deadline](#33-deadlines)
-     * [3.3.1 List the Deadlines](#331-list-all-the-deadlines-saved-deadlinelist)
-     * [3.3.2 Add Deadlines](#332-add-a-new-deadline-deadlineadd)
-     * [3.3.3 Remove Deadlines](#333-remove-a-deadline-from-the-list-deadlineremove)
-   * [3.4 Budget Planner](#34-budget-planner-budget)
-     * [3.4.1 Edit the Budget](#341-edits-the-budget---budget)
-     * [3.4.2 Edit the Accommodation Cost](#342-edits-the-accommodation-cost---accommodation)
-     * [3.4.3 Edit the Airplane Ticket Cost](#343-edits-the-airplane-ticket-cost---airplane)
-     * [3.4.4 Edit the Food Cost](#344-edits-the-food-cost---food)
-     * [3.4.5 Edit the Entertainment Cost](#345-edits-the-entertainment-cost---entertainment)
-     * [3.4.6 View the Budget Plan](#346-views-the-entire-budget-plan---view)
+     * [3.3.1 List the Deadlines](#331-list-all-the-deadlines-saved)
+     * [3.3.2 Add Deadlines](#332-add-a-new-deadline)
+     * [3.3.3 Remove Deadlines](#333-remove-a-deadline-from-the-list)
+   * [3.4 Budget Planner](#34-budget-planner)
+     * [3.4.1 Edit the Budget](#341-edits-the-budget)
+     * [3.4.2 Edit the Accommodation Cost](#342-edits-the-accommodation-cost)
+     * [3.4.3 Edit the Airplane Ticket Cost](#343-edits-the-airplane-ticket-cost)
+     * [3.4.4 Edit the Food Cost](#344-edits-the-food-cost)
+     * [3.4.5 Edit the Entertainment Cost](#345-edits-the-entertainment-cost)
+     * [3.4.6 View the Budget Plan](#346-views-the-entire-budget-plan)
 * **[4 Command Summary](#4-command-summary)**
 
 ---
@@ -424,15 +424,15 @@ ____________________________________________________________
 
 ---
 
-### 3.4 Budget Planner: `/budget`
+### 3.4 Budget Planner
 
-All Budget Planner commands start with /budget.
+All Budget Planner commands start with `/budget`.
 
 Budget `AMOUNT` should be an integer between the range of 0 to 20000000.
 
 ****
 
-#### 3.4.1 Edits the budget - `budget`
+#### 3.4.1 Edits the Budget
 
 Edits the current total budget to a new amount the user plans to spend on his/her SEP trip
 
@@ -459,7 +459,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.2 Edits the accommodation cost - `accommodation` 
+#### 3.4.2 Edits the Accommodation Cost
 
 Edits the current accommodation planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -486,7 +486,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.3 Edits the Airplane Ticket cost - `airplane` 
+#### 3.4.3 Edits the Airplane Ticket Cost
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -513,7 +513,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.4 Edits the Food cost - `Food` 
+#### 3.4.4 Edits the Food Cost
 
 Edits the current Food planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -540,7 +540,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.5 Edits the Entertainment cost - `Entertainment` 
+#### 3.4.5 Edits the Entertainment Cost
 
 Edits the current Entertainment planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -567,7 +567,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.6 Views the entire budget plan - `View` 
+#### 3.4.6 Views the Entire Budget Plan
 
 Provides an overview of what the budget consists of.
 
