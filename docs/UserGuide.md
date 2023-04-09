@@ -558,6 +558,9 @@ Format: <br />
 !> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
 should **NOT** be used concurrently.
 
+!> Categories are **CASE-INSENSITIVE**. (i.e. An item of category `Fruit` and an item of category `fRuIt` will be
+interpreted as being in the same `fruit` category.)
+
 #### Example of Usage 
 
 `cat list`

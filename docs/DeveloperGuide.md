@@ -439,18 +439,20 @@ the category that user input is found. Otherwise, the method will inform user th
 * Has a need to manage a wide variety of items, and track various information related to the item.
 * Is able to type fast which leads to usage of CLI applications being a more efficient method of managing inventories
 as compared to tradition inventory management systems.
-* Prefers a desktop application for inventory management and tracking rather than traditional pen and paper or
+* Prefers a desktop application for inventory management and tracking rather than using traditional pen and paper, or
 smartphones.
-* Requires only a simplistic solution to the management of inventories, rather than a complex but costly one.
+* Requires a simplistic yet effective solution to the problem of inventory management, rather than a complex but 
+costly one.
 
 ### Value proposition
 * For users who can type fast, usage of MagusStock over conventional GUI applications for inventory management will be
 significantly faster.
-* MagusStock offers a wide variety of features that improves the user's experience in inventory management.
-* A low-cost solution for small companies whom do not require a costly and complex inventory management system for
-tracking of their stocks.
+* MagusStock offers a wide variety of features that are critical in enhancing the user's experience in inventory
+management.
+* A low-cost solution for small companies and individuals, who likely do not require a costly and complex inventory 
+management system for tracking of their stocks.
 * Simple command formats that are easy to learn and get used to, without complex functions and terms that may be 
-unsuitable for the less seasoned users of the application.
+unsuitable for less seasoned users of the application.
 
 ## User Stories
 
@@ -480,6 +482,8 @@ unsuitable for the less seasoned users of the application.
 
 1. MagusStock should be able to hold up to 10,000 unique items, without a noticeable drop in its speed or performance.
 2. MagusStock should be able to work on both Windows and macOS with Java `11` installed.
+3. No prior setup of the application or downloading of external software is required, users are able to launch and 
+use the application once it is downloaded and transferred to an empty folder.
 
 ## Glossary
 
