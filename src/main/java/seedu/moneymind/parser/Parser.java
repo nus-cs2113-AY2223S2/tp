@@ -18,8 +18,8 @@ import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.exceptions.InvalidTimeFormatException;
 import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.exceptions.NonPositiveNumberException;
-
 import static seedu.moneymind.UserDate.isValidDate;
+
 import static seedu.moneymind.string.Strings.BYE;
 import static seedu.moneymind.string.Strings.CATEGORY;
 import static seedu.moneymind.string.Strings.DELETE;
@@ -68,6 +68,18 @@ import static seedu.moneymind.string.Strings.NO_SEARCH_KEYWORD_MESSAGE;
  */
 public class Parser {
 
+    private static final int KEYWORD_INDEX = 0;
+    private static final int DESCRIPTION_INDEX = 1;
+    private static final int LENGTH_FOR_SINGLE_WORD_COMMAND = 1;
+    private static final int MAXIMUM_INDEX = 2;
+    private static final int LENGTH_FOR_BYE_COMMAND = 1;
+    private static final int LENGTH_FOR_HELP_COMMAND = 1;
+    private static final int LENGTH_FOR_SUMMARY_COMMAND = 1;
+    private static final int LENGTH_FOR_VIEW_ALL_COMMAND = 1;
+    private static final int MINIMUM_LENGTH_FOR_SEARCH_COMMAND = 2;
+    private static final int VIEW_CATEGORY_INDEX = 1;
+    private static final int DEFAULT_BUDGET = 0;
+
     /**
      * Parses user input and returns a command object that can be executed by the application.
      *
@@ -77,8 +89,8 @@ public class Parser {
      */
     public Command parseNextCommand(String input) throws Exception {
         assert input != null : NULL_INPUT_ASSERTION;
-        String[] separatedKeywordAndDescription = input.split(WHITE_SPACE, 2);
-        String keyword = separatedKeywordAndDescription[0];
+        String[] separatedKeywordAndDescription = input.split(WHITE_SPACE, MAXIMUM_INDEX);
+        String keyword = separatedKeywordAndDescription[KEYWORD_INDEX];
 
         switch (keyword) {
         case BYE:
@@ -114,7 +126,7 @@ public class Parser {
      */
     private Command prepareByeCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         try {
-            if (separatedKeywordAndDescription.length > 1) {
+            if (separatedKeywordAndDescription.length > LENGTH_FOR_BYE_COMMAND) {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
             return new ByeCommand();
@@ -133,7 +145,7 @@ public class Parser {
      */
     private Command prepareHelpCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         try {
-            if (separatedKeywordAndDescription.length > 1) {
+            if (separatedKeywordAndDescription.length > LENGTH_FOR_HELP_COMMAND) {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
             return new HelpCommand();
@@ -151,7 +163,7 @@ public class Parser {
      */
     private Command prepareSummaryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         try {
-            if (separatedKeywordAndDescription.length > 1) {
+            if (separatedKeywordAndDescription.length > LENGTH_FOR_SUMMARY_COMMAND) {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
             return new SummaryCommand();
@@ -169,10 +181,10 @@ public class Parser {
      *     object to view all categories if the user input does not contain a category name.
      */
     private Command prepareViewCommand(String[] separatedKeywordAndDescription) {
-        if (separatedKeywordAndDescription.length == 1) {
+        if (separatedKeywordAndDescription.length == LENGTH_FOR_VIEW_ALL_COMMAND) {
             return new ViewCommand();
         } else {
-            return new ViewCommand(separatedKeywordAndDescription[1]);
+            return new ViewCommand(separatedKeywordAndDescription[VIEW_CATEGORY_INDEX]);
         }
     }
 
@@ -190,10 +202,10 @@ public class Parser {
      */
     private Command prepareDeleteCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(DELETE_REGEX);
-        if (separatedKeywordAndDescription.length == 1) {
+        if (separatedKeywordAndDescription.length == LENGTH_FOR_SINGLE_WORD_COMMAND) {
             throw new InvalidCommandException(EMPTY_DELETION);
         }
-        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[DESCRIPTION_INDEX]);
         try {
             if (!matcher.find()) {
                 throw new InvalidCommandException(EMPTY_STRING);
@@ -205,6 +217,7 @@ public class Parser {
             checkNonPositive(matcher.group(2));
             checkBigNumber(matcher.group(2));
             int eventIndex = Integer.parseInt(matcher.group(2));
+            // the operation below switches the eventIndex to 0-based indexing
             return new DeleteCommand(categoryName, eventIndex - 1);
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
@@ -231,7 +244,7 @@ public class Parser {
     private Command prepareEventCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(EVENT_REGEX);
         try {
-            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[DESCRIPTION_INDEX]);
             if (!matcher.find()) {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
@@ -274,13 +287,13 @@ public class Parser {
     private Command prepareCategoryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(CATEGORY_REGEX);
         try {
-            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[DESCRIPTION_INDEX]);
             if (!matcher.find()) {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
             String categoryName = matcher.group(1);
             if (matcher.group(2) == null) {
-                return new CategoryCommand(categoryName, 0);
+                return new CategoryCommand(categoryName, DEFAULT_BUDGET);
             }
             checkNegative(matcher.group(2));
             checkBigNumber(matcher.group(2));
@@ -309,10 +322,10 @@ public class Parser {
      *     or if there is a bug in the application.
      */
     private Command prepareSearchCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
-        if (separatedKeywordAndDescription.length < 2) {
+        if (separatedKeywordAndDescription.length < MINIMUM_LENGTH_FOR_SEARCH_COMMAND) {
             throw new InvalidCommandException(NO_SEARCH_KEYWORD_MESSAGE);
         }
-        return new SearchCommand(separatedKeywordAndDescription[1]);
+        return new SearchCommand(separatedKeywordAndDescription[DESCRIPTION_INDEX]);
     }
 
     /**
@@ -329,10 +342,10 @@ public class Parser {
      */
     private Command prepareEditCommand(String[] separatedKeywordAndDescription) throws Exception {
         Pattern pattern = Pattern.compile(EDIT_REGEX);
-        if (separatedKeywordAndDescription.length == 1) {
+        if (separatedKeywordAndDescription.length == LENGTH_FOR_SINGLE_WORD_COMMAND) {
             throw new InvalidCommandException(EMPTY_DESCRIPTION_FOR_EDIT);
         }
-        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
+        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[DESCRIPTION_INDEX]);
         try {
             if (!matcher.find()) {
                 throw new InvalidCommandException(EMPTY_STRING);
@@ -344,6 +357,7 @@ public class Parser {
             checkNonPositive(matcher.group(2));
             checkBigNumber(matcher.group(2));
             int eventIndex = Integer.parseInt(matcher.group(2));
+            // the operation below switches the eventIndex to 0-based indexing
             return new EditCommand(categoryName, eventIndex - 1);
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
