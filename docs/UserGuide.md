@@ -255,9 +255,21 @@ Example of usage:
 
 ### Show help menu: `/help`
 
-Displays the help menu.
+Displays the help menu in the format of the supported commands in the application and their functions.
 
-Format: `/help`
+If a valid command is entered after `/help`, it displays the format and function of that specific command instead.
+
+
+Format: `/help [command_type]`
+
+Example of usage:
+
+`/help`
+
+`/help edit`
+
+`/help delete`
+
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -291,7 +303,7 @@ These are the categories currently supported by PocketPal:
 |   /view | /view [count] [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;]                   |
 |   /edit | /edit &lt;index&gt; [-c &lt;category&gt;]<br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-d &lt;description&gt;] |
 | /delete | /delete &lt;index&gt; [additional_index...]                                                                                |
-|   /help | /help                                                                                                                      |
+|   /help | /help [command_type]                                                                                                       |
 |    /bye | /bye                                                                                                                       |
 
 <!-- @@author -->
