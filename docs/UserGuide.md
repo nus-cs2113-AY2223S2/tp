@@ -8,8 +8,8 @@ is unpacked and travel with an ease of mind.
 ---
 
 ## <span style="color:#00A36C">Table of contents</span>
-* [Quick Start](#span-stylecolor00a36c-quick-start-span)
-* [Features](#span-stylecolor00a36c-features-span)
+* [Quick Start](#quick-start)
+* [Features](https://ay2223s2-cs2113-t14-2.github.io/tp/UserGuide.html#features)
   * [Help message](#span-stylecolor6495ed-help-message--span-help)
   * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
   * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
@@ -39,7 +39,8 @@ is unpacked and travel with an ease of mind.
    * For Windows users: search for Command Prompt, and launch it.
    * For macOS users: search for Terminal, and launch it.
 5. Execute the following command `java -jar BagPacker.jar` to run BagPacker. BagPacker should start up, and the following message will be displayed.
-    ```
+    
+   ```
     Hi this is,
      ____              _____           _
     |  _ \            |  __ \         | |
@@ -55,6 +56,7 @@ is unpacked and travel with an ease of mind.
     ________________________________________________________________________________________________________________________
     Welcome back, User!
     ```
+   
 6. Type a command, and press Enter to execute it. 
 To start off, typing `help` and pressing Enter will display a help message.
 
@@ -85,39 +87,40 @@ Example:
 
 `help`
 * Expected outcome:
+
   ```
   All Commands:
   1. add: Adds quantity and name of item to the packing list.
-      Example: add 3 /of toothbrush
-      Meaning: Add quantity of 3 toothbrushes to the packing list
+    Example: add 3 /of toothbrush
+    Meaning: Add quantity of 3 toothbrushes to the packing list
   2. delete: Deletes an item from the packing list.
-      Example: delete 1
-      Meaning: Removes the first item in the packing list
+    Example: delete 1
+    Meaning: Removes the first item in the packing list
   3. pack: Adds to the current quantity of items packed in the packing list.
-      Example: pack 2 /of 3
-      Meaning: Packs 2 more quantities of the third item in the packing list
+    Example: pack 2 /of 3
+    Meaning: Packs 2 more quantities of the third item in the packing list
   4. packall: Fully pack an item of choice from the packing list.
-      Example: packall /of 3
-      Meaning: Set the third item in the packing list as fully packed
+    Example: packall /of 3
+    Meaning: Set the third item in the packing list as fully packed
   5. unpack: Deducts from the current quantity of items packed in the packing list.
-      Example: unpack 1 /of 2
-      Meaning: Unpacks 1 quantity of the second item in the packing list
+    Example: unpack 1 /of 2
+    Meaning: Unpacks 1 quantity of the second item in the packing list
   6. unpackall: Fully unpacks an item of choice from the packing list.
-      Example: unpackall /of 3
-      Meaning: Set the third item in the packing list as totally not packed yet
+    Example: unpackall /of 3
+    Meaning: Set the third item in the packing list as totally not packed yet
   7. editquantity: Edit the total quantity of an item to be packed.
-      Example: editquantity 3 /of 2
-      Meaning: Change the total quantity of the second item to 3
+    Example: editquantity 3 /of 2
+    Meaning: Change the total quantity of the second item to 3
   8. list: List all items and their total quantities packed in packing list.
-      Example: list
+    Example: list
   9. listunpacked: List all items and their total quantities if they are not fully packed yet.
-      Example: listunpacked
+    Example: listunpacked
   10. deletelist: Deletes all items in the packing list.
-      Example: deletelist
+    Example: deletelist
   11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
-      Example: find jacket
+    Example: find jacket
   12. bye: Stops the BagPacker Application
-      Example: bye
+    Example: bye
   ```
 
 ### <span style="color:#6495ED">Adding a new item:</span> `add`
@@ -138,13 +141,16 @@ Examples:
 `add 3 /of jackets`
 * Adds an item of name `jackets` with a total quantity of `3`.
 * Expected outcome: 
+  
   ```
   New item added: [0/3] jackets
   ```
+
 `add 2 /of water bottles` and `add 3 /of water bottles`
 * Adds an item of name `water botles` with a total quantity of `2`.
 * Adds `3` to the total quantity of the index of the item `water bottles`.
 * Expected outcome:
+
   ```
   New item added: [0/2] water bottles
   ```
@@ -167,14 +173,9 @@ Examples:
 `delete 2`
 * Deletes the item at index `2` from the packing list.
 * Expected outcome: 
+  
   ```
   [0/2] water bottles removed from the list
-  ```
-`deletes 100`
-* Deletes the item at index `100` from the packing list.
-* Expected outcome:
-  ```
-  [12/20] pens removed from the list
   ```
 
 ### <span style="color:#6495ED">Packing an item:</span> `pack`
@@ -194,6 +195,7 @@ Example:
 `pack 2 /of 1`
 * Adds `3` to the packed quantity of the item at index `1` in the packing list.
 * Expected outcome:
+  
   ```
   Item packed: [2/3] jackets
   ```
@@ -212,6 +214,7 @@ Example:
 `packall /of 3`
 * The packed quantity of the item at index `3` becomes its total quantity.
 * Expected outcome:
+  
   ```
   Item packed: [20/20] socks
   ```
@@ -233,6 +236,7 @@ Example:
 `unpack 2 /of 5`
 * Subtracts `2` from the packed quantity of the item at index `5` in the packing list.
 * Expected outcome:
+  
   ```
   Item unpacked: [2/10] shirts
   ```
@@ -251,6 +255,7 @@ Example:
 `unpackall /of 5`
 * The packed quantity of the item at index 5 becomes 0.
 * Expected outcome:
+  
   ```
   Item unpacked: [0/10] shirts
   ```
@@ -273,9 +278,10 @@ Example:
 `editquantity 200 /of 1`
 * Replaces the total quantity of the item at index `1` with `200`.
 * Expected outcome:
-```
-Item total quantity edited: [0/200] jackets 
-```
+
+  ```
+  Item total quantity edited: [0/200] jackets 
+  ```
 
 
 ### <span style="color:#6495ED">Listing all items:</span> `list`
@@ -291,6 +297,7 @@ Example:
 * Both will give the same output - return a list of all the items in the packing list.
 * Format explanation: `ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`.
 * Expected outcome:
+
   ``` 
   Here are the items in your list
   1. [1000000/1000000] jackets
@@ -312,6 +319,7 @@ Example:
 * Format explanation: `INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
   * ❗ The `INDEX` here is not the `ITEM_INDEX` in the `list` command. `INDEX` is the number of the item in this list of unpacked items.
 * Expected outcome:
+
   ```
   Here are the unpacked items in your list
   1. [10/200] jackets
@@ -331,6 +339,7 @@ Example:
 `deletelist` and `deletelist abc123*#+`
 * Both will give the same output - delete the entire packing list of items.
 * Expected outcome:
+
   ```
   Packing list deleted
   ```
@@ -356,6 +365,7 @@ Example:
 `find shirt`
 * The names of all the items in the packing list will be searched.
 * Expected outcome:
+
   ```
   There are 2 items(s) in your list containing shirt: 
   1. [0/3] inner shirts
@@ -372,6 +382,7 @@ Example:
 `bye`
 * Exits BagPacker
 * Expected outcome:
+
   ```
   Bye thanks for using,
    ____              _____           _
