@@ -24,6 +24,7 @@ import utils.exceptions.CardInTagException;
 import utils.exceptions.CardNotFoundException;
 import utils.exceptions.CardNotInDeck;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNeverWasInDeck;
 import utils.parser.Parser;
@@ -353,6 +354,40 @@ public class LogicTest {
                     ListCardsUnderTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_AddDeckLongDeckName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String LONG_DECK_NAME_EXCEPTION_STR = "Deck name specified is too long.";
+
+        // Create tag with long name
+        try {
+            // Create tag
+            parseAndExecute("card deck -d testDecksetsetsettsetststsststtstststststststststtstststshrhhsdrhdhsdhs -i 1",
+                    AddCardToDeckCommand.class);
+        } catch (LongDeckNameException e) {
+            assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_DeleteDeckLongDeckName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String LONG_DECK_NAME_EXCEPTION_STR = "Deck name specified is too long.";
+
+        // Create tag with long name
+        try {
+            // Create tag
+            parseAndExecute("deck delete -d gjshguhsuigshuighzsduighzuighyzuighzughzughzughzughzughzugzhgugzug",
+                    DeleteDeckCommand.class);
+        } catch (LongDeckNameException e) {
+            assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
         }
     }
 
