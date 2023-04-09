@@ -22,9 +22,13 @@ public class ViewCommandTest extends CommandTest {
                 + "   1." + salad + System.lineSeparator()
                 + "   2." + pizza + System.lineSeparator()
                 + "   3." + nutrition + System.lineSeparator()
+                + "   Reminder: The total one time expense have exceeded the budget for this category!"
+                + System.lineSeparator()
                 + "2) Category: book (budget: 0)" + System.lineSeparator()
                 + "   1." + harryPotter + System.lineSeparator()
-                + "   2." + lordOfTheRings + System.lineSeparator();
+                + "   2." + lordOfTheRings + System.lineSeparator()
+                + "   Reminder: The total one time expense have exceeded the budget for this category!"
+                + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }
@@ -34,7 +38,9 @@ public class ViewCommandTest extends CommandTest {
         setup();
         String terminalOutput = executeInput("view food").toString();
         String expected = "1." + salad + System.lineSeparator()
-                + "2." + pizza + System.lineSeparator();
+                + "2." + pizza + System.lineSeparator()
+                + "Reminder: The total one time expense have exceeded the budget for this category!"
+                + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }

@@ -2,6 +2,9 @@ package seedu.moneymind.string;
 
 public class Strings {
 
+    public static final String BIG_WHITE_SPACE = "   ";
+    public static final String EXCEEDED_BUDGET_WARNING_MESSAGE = "Reminder: The total one time expense" +
+            " have exceeded the budget for this category!";
     public static final String TYPING_NEW_EXPENSE_MESSAGE = "Your new expense would be:";
     public static final String TYPING_NEW_BUDGET_MESSAGE = "Your new budget would be:";
     public static final String NEW_EXPENSE_MESSAGE = "Ok, the new expense is now changed to: ";

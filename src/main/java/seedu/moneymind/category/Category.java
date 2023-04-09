@@ -72,14 +72,16 @@ public class Category {
     }
 
     /**
-     * Gets the total expense of the category.
+     * Gets the total one time expense of the category.
      *
-     * @return the total expense of the category
+     * @return the total one time expense of the category
      */
-    public int getTotalExpense() {
+    public int getTotalOneTimeExpense() {
         int totalExpense = 0;
         for (int i = 0; i < events.size(); i++) {
-            totalExpense += events.get(i).getExpense();
+            if (events.get(i).isOneTimeExpense()) {
+                totalExpense += events.get(i).getExpense();
+            }
         }
         return totalExpense;
     }

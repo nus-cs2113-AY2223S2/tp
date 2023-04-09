@@ -37,6 +37,6 @@ class CategoryTest {
     @Test
     void getTotalExpense() {
         setup();
-        assertEquals(30, food.getTotalExpense());
+        assertEquals(30, food.getTotalOneTimeExpense());
     }
 }

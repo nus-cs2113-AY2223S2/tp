@@ -11,6 +11,8 @@ import static seedu.moneymind.string.Strings.NULL_CATEGORY_LIST_ASSERTION;
 import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
 import static seedu.moneymind.string.Strings.DOT;
 import static seedu.moneymind.string.Strings.SHOW_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.BIG_WHITE_SPACE;
+import static seedu.moneymind.string.Strings.EXCEEDED_BUDGET_WARNING_MESSAGE;
 
 /**
  * Views the categories and events.
@@ -50,6 +52,9 @@ public class ViewCommand implements Command {
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
         category.viewEventList();
+        if (category.getTotalOneTimeExpense() > category.getBudget()) {
+            System.out.println(EXCEEDED_BUDGET_WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -61,18 +66,22 @@ public class ViewCommand implements Command {
             return;
         }
         System.out.println(SHOW_CATEGORY_MESSAGE);
-        int cat_count = 1;
+        int category_count = 1;
         for (Category category : CategoryList.categories) {
-            System.out.println(cat_count + ") Category: " + category.getName() +
+            System.out.println(category_count + ") Category: " + category.getName() +
                     " (budget: " + category.getBudget() + ")");
-            cat_count++;
+            category_count++;
             int count = 1;
             // print all the events in the category with index
             for (Event event : category.getEvents()) {
-                System.out.println("   " + count + DOT + event.toString());
+                System.out.println(BIG_WHITE_SPACE + count + DOT + event.toString());
                 count++;
             }
+            if (category.getTotalOneTimeExpense() > category.getBudget()) {
+                System.out.println(BIG_WHITE_SPACE + EXCEEDED_BUDGET_WARNING_MESSAGE);
+            }
         }
+
     }
 
     @Override
