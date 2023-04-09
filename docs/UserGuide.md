@@ -45,6 +45,7 @@ Allows the restaurant manager using the application to see the list of commands 
 Format: `help`
 
 ### Meetings
+#### Purpose
 Meeting is a feature for the restaurant manager to manage meetings with 
 boss or workers. MeetingManager supports add_meeting, view_meetings,
 delete_meeting and find_meeting. 
@@ -262,6 +263,8 @@ Outcome 2:
 ```
 
 ### Staffs
+#### Purpose
+This feature allows the restaurant manager to record their staff members personal particulars and also what date they are working on. It allows the restaurant manager to keep track of their staff and what day they are working on.
 
 #### Add a staff:
 Add a staff to the staffs list.
