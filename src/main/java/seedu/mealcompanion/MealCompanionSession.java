@@ -166,6 +166,10 @@ public class MealCompanionSession {
 
             ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
             cmd.execute(this);
+
+            if (!this.controlFlow.shouldRun()) {
+                this.ui.printFarewell();
+            }
         }
     }
 }

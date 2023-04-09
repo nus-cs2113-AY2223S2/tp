@@ -53,14 +53,33 @@ public class MealCompanionUI {
     /**
      * Prints the welcome message.
      */
-    public void printIntroduction() {
-        System.out.println("Welcome to Meal Companion!");
-    }
+    public void printIntroduction() { System.out.println("Welcome to Meal Companion!"); }
 
     /**
      * Prints the provided message.
      * @param message the message to print.
      */
+
+    /**
+     * Prints the farewell image to user
+     *
+     * @author aaronxujiachen
+     */
+    public void printFarewell() {
+        System.out.println("Thank you for using MealCompanion. Have a great day!");
+        try {
+            FileReader reader = new FileReader("bye.txt");
+            int data = reader.read();
+            while (data != -1) {
+                System.out.print((char)data);
+                data = reader.read();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void printMessage(String message) {
         System.out.println(message);
     }
