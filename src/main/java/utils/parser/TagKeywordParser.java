@@ -1,11 +1,7 @@
 package utils.parser;
 
 import java.util.List;
-<<<<<<< HEAD
 import model.TagSelector;
-=======
-
->>>>>>> 8dbba37 (Autoindent for checkstyle)
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -31,7 +27,6 @@ public class TagKeywordParser extends KeywordParser {
     protected Command handleAction(String action, List<String> tokens)
             throws ParseException, InkaException {
         switch (action) {
-<<<<<<< HEAD
         case DECK_ACTION:
             return handleDeck(tokens);
         case DELETE_ACTION:
@@ -44,20 +39,6 @@ public class TagKeywordParser extends KeywordParser {
             return handleList(tokens);
         default:
             throw new UnrecognizedCommandException();
-=======
-            case DECK_ACTION:
-                return handleDeck(tokens);
-            case DELETE_ACTION:
-                return handleDelete(tokens);
-            case EDIT_ACTION:
-                return handleEdit(tokens);
-            case HELP_ACTION:
-                return handleHelp();
-            case LIST_ACTION:
-                return handleList(tokens);
-            default:
-                throw new UnrecognizedCommandException();
->>>>>>> 8dbba37 (Autoindent for checkstyle)
         }
     }
 
