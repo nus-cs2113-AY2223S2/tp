@@ -20,6 +20,7 @@ import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.ListFoundNusModsCommand;
+import seedu.duke.command.ListMappableNusModsCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
@@ -61,44 +62,30 @@ public class Parser {
             case "/list":
                 return prepareListCommands(userInputWords, universities, modules);
             case "/search":
-                if (userInputWords.size() >= 3) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput3WordsException(userInputWords);
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "/exit":
-                if (userInputWords.size() >= 2) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput2WordsException(userInputWords);
                 return new ExitCommand();
             case "/add":
-                if (userInputWords.size() >= 3) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput3WordsException(userInputWords);
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "/remove":
-                if (userInputWords.size() >= 3) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput3WordsException(userInputWords);
                 return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
-                if (userInputWords.size() >= 2) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput2WordsException(userInputWords);
                 return new HelpCommand();
             case "/budget":
                 return prepareBudgetCommand(userInput, budgetPlanner);
             case "/deadline/list":
-                if (userInputWords.size() >= 2) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput2WordsException(userInputWords);
                 return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
                 return prepareAddDeadlineCommand(deadlineStorage, userInputWords);
             case "/deadline/remove":
-                if (userInputWords.size() >= 3) {
-                    throw new InvalidCommandException(ui.getCommandInputError());
-                }
+                userInput3WordsException(userInputWords);
                 int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
                 return new DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines);
             default:
@@ -106,6 +93,18 @@ public class Parser {
             }
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
+        }
+    }
+
+    private void userInput3WordsException(ArrayList<String> userInputWords) throws InvalidCommandException {
+        if (userInputWords.size() >= 3) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+    }
+
+    private void userInput2WordsException(ArrayList<String> userInputWords) throws InvalidCommandException {
+        if (userInputWords.size() >= 2) {
+            throw new InvalidCommandException(ui.getCommandInputError());
         }
     }
 
@@ -173,19 +172,24 @@ public class Parser {
     private Command handleSearchByNusModCode(ArrayList<Module> foundModulesToPrint, String searchModCode,
                                              ArrayList<Module> allModules, ArrayList<University> universities)
             throws InvalidModuleException {
-        for (Module module : allModules) {
-            String nusModuleCode = module.getNusModuleCode();
-            if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
-                foundModulesToPrint.add(module);
+        if (searchModCode.equalsIgnoreCase("/mods")) {
+            return new ListMappableNusModsCommand(allModules);
+        } else {
+            for (Module module : allModules) {
+                String nusModuleCode = module.getNusModuleCode();
+                if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
+                    foundModulesToPrint.add(module);
+                }
+            }
+            int numOfFoundModules = foundModulesToPrint.size();
+            if (numOfFoundModules == 0) {
+                throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
+            } else {
+                return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
             }
         }
-        int numOfFoundModules = foundModulesToPrint.size();
-        if (numOfFoundModules == 0) {
-            throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
-        } else {
-            return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
-        }
     }
+
 
     private Command prepareListPuModulesCommand(ArrayList<String> userInputWords, String univAbbNameOrIndex,
                                                 ArrayList<University> universities) {
