@@ -19,6 +19,8 @@ Given below are my contributions to the project.
 
 * Creating issues for team members to work on
 
+<div style="page-break-after: always;"></div>
+
 #### Enhancements Implemented:
 
 * Created a `DeleteIncomeCommand` to allow users to delete an income from the income list.
@@ -29,7 +31,9 @@ Given below are my contributions to the project.
 * Created a Selector to allow users to select the currency of interest.
 * Created a Converter class to allow users to convert the currency of interest.
 * Created a LiveCurrencyApi to get live currency rates from the internet and put it into the convertor hashmap.
-* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`, `IncomeList`, `ExpenseList`,
+* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`, `IncomeList`, `ExpenseList`.
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to the UG:
 
