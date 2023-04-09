@@ -16,7 +16,8 @@ It is written in Java, and has about 5kLoC.
 - Added the ability to show class information for a module
 - Added the ability to list the module list from timetable
 - Added the ability to list specific module and classes from module list
-- JUnit tests with full branch coverage for ListModuleWithLessonCommand and SemesterUtils
+- JUnit tests with full branch coverage for Module, ModuleList and SemesterUtils classes
+- Junit tests for Parser, Ui, and ListModuleWithLessonCommand classes
 - Patches, bug fixes
 - Enhancing methods using Single Level of Abstraction Principle
 
@@ -53,5 +54,6 @@ It is written in Java, and has about 5kLoC.
 #### Contributions to team-based tasks
 
 - Assisted in maintaining the issue tracker
+- Created Powerpoint slides for Demo Video
 - Most instances of helping team members were done offline during our weekly meetings
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Ayixuann02)
