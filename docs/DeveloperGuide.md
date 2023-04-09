@@ -292,7 +292,7 @@ public static HashMap<Integer, HashMap<Month, Double>> readFile()
 
 ---
 
-### Wishlist (To be implemented)
+### Wishlist (COMING SOON)
    
 The Wishlist class represents a good or a product the user wants to purchase in the future that are expensive enough, prompting the user to save up. Users can funnel their income entry to a specific wishlisted-product. Users can view how much percentage of the good's price they have saved up, which can give them further motivation to cut their spendings. Users will be able to add a list of wishlisted products. 
    
@@ -304,7 +304,7 @@ The wishlist entry can then be arranged to a list, where users can easily naviga
 
 ---
 
-### Spending Advisor (To be implemented)
+### Spending Advisor (COMING SOON)
    
 The spending advisor will be integrated to the product by assisting users to make best consumption choices. The advisor will help users compare prices from different food outlets and shops. As the target user for this program is students, the program will first implement food stalls and shops in NUS, which is where the developers for this program are enrolled. In subsequent iterations of the program, the advisor will expand into other regions and recommend users of the best-value purchases.
 
@@ -343,19 +343,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | Version | As a ... | I want to ...                                  | So that I can ...                                                                 |
 |----------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
-| `* * *`  | v1.0    | user     | add my income                                  | track my incomes                                                                  |
-| `* * *`  | v1.0    | user     | delete my income entered                       | manage my incomes and delete unwanted incomes                                     |
+| `* * *`  | v1.0    | user     | add my income                                  | add my new incomes and keep track of them                                                                 |
+| `* * *`  | v1.0    | user     | delete my income entered                       | delete incorrectly added or unwantedincomes                                     |
 | `* * *`  | v1.0    | user     | edit my income previously entered              | edit a component of my income without having to delete and re-entering the income |
-| `* * *`  | v1.0    | user     | list my incomes                                | track all of my incomes                                                           |
-| `* * *`  | v1.0    | user     | add my expenses                                | track my incomes                                                                  |
-| `* * *`  | v1.0    | user     | delete my expenses entered                     | manage my expenses and delete unwanted expenses                                   |
+| `* * *`  | v1.0    | user     | list my incomes                                | track all of my incomes and take a look at them at once                                                         |
+| `* * *`  | v1.0    | user     | add my expenses                                | add my new expenses and keep track of them                                                                  |
+| `* * *`  | v1.0    | user     | delete my expenses entered                     | delete incorrectly added or unwanted expenses                                    |
 | `* * *`  | v1.0    | user     | edit my expense previously entered             | edit a component of my expense without having to delete and re-enter the expense  |
-| `* * *`  | v1.0    | user     | list my expenses                               | track all my expenses                                                             |
+| `* * *`  | v1.0    | user     | list my expenses                               | track all my expenses and take a look at them at once                                                             |
 | `* * *`  | v1.0    | user     | set and view my budget                         | set expectation of how much money I should use                                    |
-| `* * *`  | v1.0    | user     | view how much of the budget I spend            | manage and change my spending habit as necessary                                  |
+| `* * *`  | v1.0    | user     | view how much of the budget I spent            | keep track of my spending status, as well as manage and change my spending habit as necessary                                  |
 | `* *`    | v1.0    | user     | view all command that I can enter              | get help on the features if necessary                                             |
 | `* *`    | v2.0    | user     | list monthly expenses, income, and budget      | refer to financial status in previous months                                      |
-| `* *`    | v2.0    | user     | save all my income and expenses entered        | so that I can refer to it next time I return                                      |
+| `* *`    | v2.0    | user     | save all my income and expenses entered        | so that I can refer to it next time I reopen the program                                     |
 | `* *`    | v3.0    | user     | add goods on wishlist                          | so that I can save my incomes to purchase them                                    |
 | `* `     | v3.0    | user     | compare different spending options in the area | so that I can make the best-value purchases                                       |
 
