@@ -10,6 +10,10 @@ import seedu.mealcompanion.parser.extractor.ArgumentExtractor;
 public class IntegerExtractor extends ArgumentExtractor {
     private int extracted;
 
+    private boolean isNum(String argument) {
+        return argument.matches("-?[0-9]+");
+    }
+
     @Override
     public void extractFrom(MealCompanionSession session, String argument) throws InvalidArgumentException {
         if (argument == null) {
@@ -18,10 +22,13 @@ public class IntegerExtractor extends ArgumentExtractor {
         if (argument.isEmpty()) {
             throw new InvalidArgumentException("is empty");
         }
+        if (!isNum(argument)) {
+            throw new InvalidArgumentException("is not a number");
+        }
         try {
             this.extracted = Integer.parseInt(argument);
         } catch (NumberFormatException e) {
-            throw new InvalidArgumentException("is not a number");
+            throw new InvalidArgumentException("is too big or small to represent");
         }
     }
 
