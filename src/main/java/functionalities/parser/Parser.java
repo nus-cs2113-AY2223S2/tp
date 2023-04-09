@@ -433,10 +433,12 @@ public class Parser {
         command = new ExitCommand();
     }
 
-    /**
-     * Parses the help command and creates a new HelpCommand object to show the help message to the user.
-     */
-    private static void parseHelpCommand () {
-        command = new HelpCommand();
-    }
+   /**
+    *  Parses the help command and creates a new HelpCommand object to show the help message to the user.
+    */
+  private static void parseHelpCommand () {
+       command = new HelpCommand();
+  }
 }
+
+
