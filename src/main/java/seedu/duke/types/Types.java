@@ -7,6 +7,7 @@ public class Types {
     }
     public static final String SESSIONFILEPATH = "./data/InventoryData.csv";
     public static final String ALERTFILEPATH = "./data/AlertData.csv";
+    public static final int MAX_QTY = 99999999;
     public enum FileHealth {
         OK,
         CORRUPT,

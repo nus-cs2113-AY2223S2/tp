@@ -5,6 +5,7 @@ import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RestockErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
@@ -25,7 +26,7 @@ public class RestockCommand extends Command{
      * @throws RestockErrorException Exception related to all errors associated with the "restock" command.
      */
     private void checkQuantityValidity(int quantity, int oldQuantity) throws RestockErrorException {
-        int maxQuantity = 99999999;
+        int maxQuantity = Types.MAX_QTY;
         int minQuantity = 0;
         if (quantity <= minQuantity || quantity + oldQuantity < minQuantity || quantity + oldQuantity > maxQuantity) {
             throw new RestockErrorException();

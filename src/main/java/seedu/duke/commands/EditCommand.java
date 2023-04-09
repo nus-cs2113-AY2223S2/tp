@@ -5,6 +5,7 @@ import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
+import seedu.duke.types.Types;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
@@ -25,7 +26,6 @@ public class EditCommand extends Command {
     private static final String UPC_LABEL = "upc/";
     private static final String SPACING = " ";
     private static final String EMPTY_STRING = "";
-    private static final Long MAX_VALUE_RANGE = 99999999L;
     private static final int ZERO = 0;
     private static final int MIN_VALUE_RANGE = 0;
     private static final String NULL = "null";
@@ -249,10 +249,10 @@ public class EditCommand extends Command {
         try {
             double newPrice = Double.parseDouble(updatedPrice);
             BigDecimal newPriceRange = new BigDecimal(updatedPrice);
-            if (newPrice >= MIN_VALUE_RANGE && newPrice <= MAX_VALUE_RANGE) {
+            if (newPrice >= MIN_VALUE_RANGE && newPrice <= Types.MAX_QTY) {
                 item.setPrice(newPrice);
             } else if (newPriceRange.compareTo(BigDecimal.valueOf(0.01)) < ZERO ||
-                    newPriceRange.compareTo(BigDecimal.valueOf(MAX_VALUE_RANGE)) > ZERO) {
+                    newPriceRange.compareTo(BigDecimal.valueOf(Types.MAX_QTY)) > ZERO) {
                 throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
@@ -277,10 +277,10 @@ public class EditCommand extends Command {
         try {
             int newQuantity = Integer.parseInt(updatedQuantity);
             BigInteger newQuantityRange = new BigInteger(updatedQuantity);
-            if (newQuantity >= MIN_VALUE_RANGE && newQuantity <= MAX_VALUE_RANGE) {
+            if (newQuantity >= MIN_VALUE_RANGE && newQuantity <= Types.MAX_QTY) {
                 item.setQuantity(newQuantity);
             } else if (newQuantityRange.compareTo(BigInteger.ONE) < ZERO ||
-                    newQuantityRange.compareTo(BigInteger.valueOf(MAX_VALUE_RANGE)) > ZERO) {
+                    newQuantityRange.compareTo(BigInteger.valueOf(Types.MAX_QTY)) > ZERO) {
                 throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
