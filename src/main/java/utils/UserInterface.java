@@ -199,7 +199,7 @@ public class UserInterface {
 
     public void printEditTagName(String oldTagName, Tag tag) {
         System.out.println(
-                "Tag " + tag.getUUID() + "tag name has been changed from " + oldTagName + " to " + tag.getTagName());
+                "Tag " + tag.getUUID() + " name has been changed from " + oldTagName + " to " + tag.getTagName());
     }
 
     public void printEditDeckNameSuccess(String oldDeckName, Deck deck) {
