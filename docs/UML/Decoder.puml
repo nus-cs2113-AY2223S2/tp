@@ -5,9 +5,17 @@ hide footbox
 
  -> ":CompanyListDecoder": read()
      activate ":CompanyListDecoder"
-                ":CompanyListDecoder" -> "f:File":
-                activate "f:File"
-                    "f:File" --> ":CompanyListDecoder"
-                ":CompanyListDecoder" -> "s:Scanner"
+        ":CompanyListDecoder" -> ":Storage" :checkFileAccess(filePath)
+        activate ":Storage"
+        ":Storage" --> ":CompanyListDecoder"
+        ":CompanyListDecoder" -> "f:File" :(filePath)
+        activate "f:File"
+            "f:File" --> ":CompanyListDecoder"
+        ":CompanyListDecoder" -> "s:Scanner"
+        activate "s:Scanner"
+            loop Next line exists
+                "s:Scanner" -> "s:Scanner" : nextLine()
+                ":CompanyListDecoder" -> ":CompanyListDecoder" :parseInput(line)
+            end
 
 @enduml
