@@ -6,65 +6,65 @@
 
 ## Table of Contents
 
-- [Developer Guide](#developer-guide)
-  - [Table of Contents](#table-of-contents)
 - [Design](#design)
-  - [Architecture](#architecture)
-  - [Frontend](#frontend)
-    - [Parser](#parser)
-    - [Commands](#commands)
-      - [Add Command](#add-command)
-      - [Delete Command](#delete-command)
-      - [Edit Command](#edit-command)
-        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-        - [Implementation](#implementation)
-        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-      - [View Command](#view-command)
-        - [Class diagram of view command](#class-diagram-of-view-command)
-        - [Implementation](#implementation-1)
-      - [Help Command](#help-command)
-        - [Implementation](#implementation-2)
-      - [Exit/Bye Command](#exitbye-command)
-        - [Implementation](#implementation-3)
-  - [Backend](#backend)
-    - [Storage](#storage)
-      - [Reading from Database](#reading-from-database)
-      - [Writing to Database](#writing-to-database)
-      - [Resetting Database](#resetting-database)
-    - [API](#api)
-      - [Endpoints](#endpoints)
-        - [Creating a request](#creating-a-request)
-        - [Making a request](#making-a-request)
-      - [Access all entries available](#access-all-entries-available)
-        - [Get recent or all entries](#get-recent-or-all-entries)
-      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-        - [Add an entry](#add-an-entry)
-        - [View a specific entry](#view-a-specific-entry)
-        - [Delete an entry](#delete-an-entry)
-        - [Modify an entry](#modify-an-entry)
-  - [Data Structure](#data-structure)
-  - [Communication](#communication)
+    - [Architecture](#architecture)
+    - [Frontend](#frontend)
+        - [Parser](#parser)
+        - [Commands](#commands)
+            - [Add Command](#add-command)
+            - [Delete Command](#delete-command)
+            - [Edit Command](#edit-command)
+                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+                - [Implementation](#implementation)
+                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+            - [View Command](#view-command)
+                - [Class diagram of view command](#class-diagram-of-view-command)
+                - [Implementation](#implementation-1)
+            - [Help Command](#help-command)
+                - [Implementation](#implementation-2)
+            - [Exit/Bye Command](#exitbye-command)
+                - [Implementation](#implementation-3)
+    - [Backend](#backend)
+        - [Storage](#storage)
+            - [Reading from Database](#reading-from-database)
+            - [Writing to Database](#writing-to-database)
+            - [Resetting Database](#resetting-database)
+        - [API](#api)
+            - [Endpoints](#endpoints)
+                - [Creating a request](#creating-a-request)
+                - [Making a request](#making-a-request)
+            - [Access all entries available](#access-all-entries-available)
+                - [Get recent or all entries](#get-recent-or-all-entries)
+            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+                - [Add an entry](#add-an-entry)
+                - [View a specific entry](#view-a-specific-entry)
+                - [Delete an entry](#delete-an-entry)
+                - [Modify an entry](#modify-an-entry)
+    - [Data Structure](#data-structure)
+    - [Communication](#communication)
+- [Implementation](#implementation-4)
 - [Testing](#testing)
-  - [Unit Tests](#unit-tests)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Feature Testing](#feature-testing)
-    - [Add entry: /add](#add-entry-add)
-    - [View entry: /view](#view-entry-view)
-    - [Delete entry: /delete](#delete-entry-delete)
-    - [Edit entry: /edit](#edit-entry-edit)
-    - [Show help menu: /help](#show-help-menu-help)
-    - [Terminate program: /bye](#terminate-program-bye)
-  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-    - [Exceptions](#exceptions)
+    - [Unit Tests](#unit-tests)
+    - [Instructions for manual testing](#instructions-for-manual-testing)
+        - [Feature Testing](#feature-testing)
+        - [Add entry: /add](#add-entry-add)
+        - [View entry: /view](#view-entry-view)
+        - [Delete entry: /delete](#delete-entry-delete)
+        - [Edit entry: /edit](#edit-entry-edit)
+        - [Show help menu: /help](#show-help-menu-help)
+        - [Terminate program: /bye](#terminate-program-bye)
+    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+        - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-  - [Target user profile](#target-user-profile)
-  - [Value proposition](#value-proposition)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
+- [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
-  - [Documentation](#documentation)
-  - [Storage](#storage-1)
-  - [Unit Tests](#unit-tests-1)
+    - [Documentation](#documentation)
+    - [Storage](#storage-1)
+    - [Unit Tests](#unit-tests-1)
 
 # Design
 
@@ -103,7 +103,27 @@ __Communication between `Frontend` and `Backend`__
   model.
 - Each endpoint takes in a `Request`, and returns a `Response` based on the requested data.
 
+__How the architecture components interact with one another__
+
+The following sequence diagram shows how the main components, `Frontend` and `Backend`, interact with one another.
+
+![PocketPal Sequence Diagram](static/PocketPalSequenceDiagram.png)
+
+Further design details are documented in the [Frontend](#frontend) and [Backend](#backend) sections below.
+
 ## Frontend
+
+The API of this component is specified
+in [`Frontend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/frontend/Frontend.java)
+
+![Frontend Sequence Diagram](static/frontend/FrontendSequenceDiagram.png)
+
+- User input and output is handled by `Frontend`
+- The application parses the input given by the user in [`Parser`](#parser)
+- If parsed successfully, the corresponding `Command` object is executed, which sends a `Request` to the
+  appropriate [`Endpoint`](#endpoints) in [`Backend`](#backend) (Refer to `Backend Request Process` sequence diagram)
+- If the request is successful, the user is updated through `UI`. Otherwise the error message
+  corresponding the user's action is printed instead.
 
 <!-- @@author adenteo -->
 
@@ -321,11 +341,25 @@ as "true", the while loop of the program will terminate since !isExit is the loo
 
 ## Backend
 
+The API of this component is specified
+in [`Backend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/backend/Backend.java)
+
 The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
 The following diagram illustrates the relationship between various classes involved in `Backend` as described in
-the [application architecture](#architecture)
+the [application architecture](#architecture).
 
 ![Backend](./static/backend/BackendClassDiagram.png)
+
+On startup, `Backend` creates various `Endpoint` instances, which can be illustrated by the following diagram:
+<img src="static/backend/BackendStartupSequenceDiagram.png" alt="Backend Startup Sequence Diagram" />
+
+Making a request
+
+When `Backend` receives a `Request` from `Frontend`, the receiving `Endpoint` will process it based on the request
+method and parameters, which can be accessed using `Request::getParam()`. The request will be processed based on its
+method. There are currently 4 methods supported: `GET`, `POST`, `PATCH`, `DELETE`.
+
+![Backend Sequence Diagram](static/backend/BackendMainSequenceDiagram.png)
 
 To find out more, visit the following sections:
 
@@ -489,12 +523,17 @@ __`FILTER_BY_QUERY`__ String
 
 - Filter entries by user query
 
+__`FILTER_BY_TIME_START`__ AND __`FILTER_BY_TIME_END`__ DateTime (dd/MM/yy HH:mm)
+
+- Filter entries by date and time
+- Both parameters are required if used
+
 __Responses__
 
-| Status Code | Description           | Remarks                                                                       |
-|-------------|-----------------------|-------------------------------------------------------------------------------|
-| `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
-| `422`       | Unprocessable Content | -                                                                             |
+| Status Code | Description           | Remarks                                                                                        |
+|-------------|-----------------------|------------------------------------------------------------------------------------------------|
+| `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise`                  |
+| `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid category, date, ID, etc.) |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -523,9 +562,10 @@ N/A
 
 __Responses__
 
-| Status Code | Description | Remarks |
-|-------------|-------------|---------|
-| `201`       | Created     | -       |
+| Status Code | Description           | Remarks                                                                                         |
+|-------------|-----------------------|-------------------------------------------------------------------------------------------------|
+| `201`       | Created               | -                                                                                               |
+| `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid description, amount, etc.) |
 
 ##### View a specific entry
 
@@ -614,7 +654,7 @@ __Responses__
 |-------------|-----------------------|----------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
-| `422`       | Unprocessable Content | -                                                                    |  |
+| `422`       | Unprocessable Content | -                                                                    |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -642,7 +682,7 @@ operations. The backend returns a `Response`, which is then processed by the fro
 </div>
 <!-- @@author -->
 
-<!-- # Implementation -->
+# Implementation
 
 <!-- ## [Proposed] Undo/Redo feature -->
 
@@ -1143,13 +1183,17 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-<!-- # Glossary
+# Glossary
 
-* *glossary item* - Definition
+- __Request Method__ - The action to be performed by the `Endpoint` requested
+  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods))
+- __Request Parameter__ - The details of the action to be performed (Edit category, filter by date, etc.)
+- __Response Code__ - The status of the response after a request is made
+  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div> -->
+</div>
 
 # Acknowledgements
 
