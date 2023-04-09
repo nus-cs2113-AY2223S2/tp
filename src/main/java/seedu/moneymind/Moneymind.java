@@ -59,13 +59,13 @@ public class Moneymind {
                 } else {
                     assert !command.isExit() : "Command must have a valid execute method";
                     command.execute(ui); // should also accept storage object as parameter
+                    storage.save(CategoryList.categories);
                 }
             } catch (InvalidCommandException e) {
                 e.showErrorMessage();
             } catch (Exception e) {
                 ui.error(e);
             }
-            storage.save(CategoryList.categories);
         }
     }
 

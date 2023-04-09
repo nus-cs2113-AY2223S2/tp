@@ -34,8 +34,8 @@ public class HelpCommandTest extends CommandTest {
                 "(category name is optional and if you do not enter a category name, " +
                 "all the categories will be shown)\n"
                 + System.lineSeparator()
-                + "6. edit - edit the expense for an event\n" +
-                "Format: edit c/<category name> e/<event index>\n" +
+                + "6. edit - edit the expense for an event or budget for a category\n" +
+                "Format: edit c/<category name> [(optional) e/<event index>]\n" +
                 "Example: edit c/food e/1\n" + System.lineSeparator()
                 + "7. delete - delete an event or a category\n" +
                 "Format: delete c/<category name> [(optional) e/<event index>]\n" +

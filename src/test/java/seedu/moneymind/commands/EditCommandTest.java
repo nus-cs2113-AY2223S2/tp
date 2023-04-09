@@ -31,7 +31,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_dummyInput_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit hsadis").toString();
-        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+        assertEquals("Please following the correct format: edit c/<category name> [(optional) e/<event index>]\n"
                 + "Remember do not leave any things inside the brackets empty!" +
                 System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
@@ -52,7 +52,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_emptyCategory_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit c/ e/1").toString();
-        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+        assertEquals("Please following the correct format: edit c/<category name> [(optional) e/<event index>]\n"
                 + "Remember do not leave any things inside the brackets empty!" +
                 System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
@@ -63,7 +63,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_emptyEventIndex_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit c/food e/").toString();
-        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+        assertEquals("Please following the correct format: edit c/<category name> [(optional) e/<event index>]\n"
                 + "Remember do not leave any things inside the brackets empty!" +
                 System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
@@ -138,7 +138,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_spareSlash_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit c/food/ e/1").toString();
-        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+        assertEquals("Please following the correct format: edit c/<category name> [(optional) e/<event index>]\n"
                 + "Remember do not leave any things inside the brackets empty!" +
                 System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
