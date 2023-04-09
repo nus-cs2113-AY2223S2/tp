@@ -20,21 +20,21 @@ experience.
 
 #### 2. Parser Version 2: OptionBuilder
 
-- ***What it is :*** 
-  The `OptionBuilder` class is a part of `Parser` Version 2, which custom builds `Options` object for the Apache Commons CLI parser, 
+- ***What it is :***
+  The `OptionBuilder` class is a part of `Parser` Version 2, which custom builds `Options` object for the Apache Commons CLI parser,
   allowing us to parse flags and their arguments in users' inputs more easily.
 
-- ***Value :*** 
-  Now we can scale the variety of acceptable command line inputs more easily. For example, we can now more easily support Inka to 
+- ***Value :***
+  Now we can scale the variety of acceptable command line inputs more easily. For example, we can now more easily support Inka to
   take in multi-flag user input, such as `tag edit -o TAG_OLD -n TAG_NEW`.
 
 #### 3. Tag Selector
 
 - ***What it is :***
-  The `TagSelector` class has two optional fields, a string for the name of the `Tag` object, and an int for the index of the `Tag` 
-  object. 
+  The `TagSelector` class has two optional fields, a string for the name of the `Tag` object, and an int for the index of the `Tag`
+  object.
 
-- ***Value :*** : 
+- ***Value :*** :
   With `TagSelector`, we can give more freedom to users to choose whether they want to identify the `Tag` object in their command line
   input by its name or index.
 
@@ -46,7 +46,7 @@ found [here.](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Wang&so
 ### Team-based tasks :
 
 - Retest the bugs raised during PE dry-run, and flag the possible causes of bugs to facilitate more efficient bug fixing, for example in
-[#110.](https://github.com/AY2223S2-CS2113-F10-1/tp/issues/110)
+  [#110.](https://github.com/AY2223S2-CS2113-F10-1/tp/issues/110)
 - Created the skeleton for Developer Guide, and assigned the roles for filling up each part of the Developer Guide.
 - Helped teammates using Mac with `checkstyle` issues.
 
@@ -58,7 +58,7 @@ Add initial documentations for all the `Tag` features [link](https://github.com/
 
 #### Developer Guide
 
-- Add in explanation for card feature. 
+- Add in explanation for card feature.
 
 - Add Sequence Diagram for `card add -q QN -a ANS`, `card delete [-i CARDINDEX | -c CARDUUID]` and `card list`.
 
@@ -70,7 +70,6 @@ The Sequence Diagram for `card delete [-i CARDINDEX | -c CARDUUID]` can be found
 
 The Sequence Diagram for `card list` can be found below :
 ![Card List Sequence Diagram](../img/CardListSequence.svg)
-
 
 
 
