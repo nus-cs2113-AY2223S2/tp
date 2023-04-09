@@ -151,10 +151,6 @@ public class Task {
         return id;
     }
 
-    public boolean isDone() {
-        return isDone;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -203,7 +199,7 @@ public class Task {
     }
 
     public String setRepeatTimes(int newRepeatTimes) {
-        this.repeatTimes = newRepeatTimes;
+        repeatTimes = newRepeatTimes;
         return toString();
     }
 
