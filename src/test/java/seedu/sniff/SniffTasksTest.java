@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-class SniffTasksTest {
+public class SniffTasksTest {
 
-    private static SniffTasks testList = new SniffTasks();
+    private static final SniffTasks testList = new SniffTasks();
     @Test
     void duplicateConsultationTest() {
         try {
