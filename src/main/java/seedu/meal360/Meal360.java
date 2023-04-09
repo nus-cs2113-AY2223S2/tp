@@ -91,17 +91,9 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = "Please enter a valid recipe number or name in the correct format. You did not " +
-                        "enter a recipe"
-                        +
-                        " number or name. See 'help' for more details.";
-                ui.printMessage(errorMessage);
+                ui.printMessage(e.getMessage());
             } catch (IndexOutOfBoundsException e) {
-                String errorMessage = String.format(
-                        "Please enter a valid recipe number or name. You entered %s, "
-                                + "which is in invalid.",
-                        command[1]);
-                ui.printMessage(errorMessage);
+                ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
         } else if (command[0].equals("view")) {

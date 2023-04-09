@@ -183,7 +183,7 @@ class Meal360Test {
         }
     }
 
-    //@@author
+    //@@author gurmankalkat
     @Test
     public void testDeleteRecipe() {
         HashMap<String, Integer> testIngredients = new HashMap<>();
@@ -198,6 +198,118 @@ class Meal360Test {
         int newRecipeListSize = recipes.size();
         // check if recipe list size is 1 less than before
         assertEquals((oldRecipeListSize - 1), newRecipeListSize);
+
+        // No recipe inputted
+        try {
+            String userInput = "delete";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Recipe in incorrect format
+        try {
+            String userInput = "delete pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Index out of bounds
+        try {
+            String userInput = "delete 100000";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Index out of bounds
+        try {
+            String userInput = "delete -5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Range invalid
+        try {
+            String userInput = "delete 0-2000000";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Range invalid
+        try {
+            String userInput = "delete 1---------";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Range invalid
+        HashMap<String, Integer> testIngredients1 = new HashMap<>();
+        testIngredients1.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR1 = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR1);
+
+        HashMap<String, Integer> testIngredients2 = new HashMap<>();
+        testIngredients2.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR2 = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR2);
+        try {
+            String userInput = "delete 2-1";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Delete all
+        try {
+            String userInput = "delete /r all";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assertEquals(0, recipes.size());
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Recipe does not exist in recipe list)
+        try {
+            String userInput = "delete /r pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.", e.getMessage());
+        }
     }
 
     //@@author jaredoong
@@ -807,8 +919,12 @@ class Meal360Test {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 1);
         weeklyPlan.put("pizza", 3);
-
         // Testing clearing weekly plan
+        weeklyPlan.clearPlan();
+        assertEquals(weeklyPlan.size(), 0);
+
+        // weekly plan of size 0
+        weeklyPlan = new WeeklyPlan();
         weeklyPlan.clearPlan();
         assertEquals(weeklyPlan.size(), 0);
     }
