@@ -30,7 +30,7 @@ DinerDirector is a desktop productivity application used by restaurant managers 
 * Contributions to DG:
   * Added documentation for `Parser` and `Utils` feature [#51](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/51/files)
   * Added UML diagrams for `Parser` and `Utils` feature [#75](https://github.com/AY2223S2-CS2113-W15-4/tp/pull/75/files)
-  * Added User stories.
+  * Added User stories, Non-Functional Requirements, Instructions for Manaual Testing
 
 #### Project management and Contributions to team-based tasks:
 * Managed the release of `v1.0`.

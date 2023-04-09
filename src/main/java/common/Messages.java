@@ -10,24 +10,25 @@ public class Messages {
     public static final String MESSAGE_GENERIC_COMMANDS = "help - View list of commands\n" +
             "exit - exits the program\n";
     public static final String MESSAGE_MEETING_COMMANDS = "add_meeting n/<name> t/<time>\n" +
-            "delete_meeting <index>\n" +
+            "delete_meeting <meeting index>\n" +
             "view_meetings\n" +
             "find_meeting <keyword>\n";
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
-            "delete_deadline <integer>\n" +
+            "delete_deadline <deadline index>\n" +
             "view_deadlines\n" +
             "find_deadline <keyword>\n";
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
             "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
-            "delete_dish <integer>\n" +
+            "delete_dish <dish index>\n" +
             "view_dish\n" +
             "find_dish <keyword>\n";
 
     public static final String MESSAGE_STAFF_COMMANDS =
-            "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
+            "add_staff n/<name> w/<working day> d/<date of birth> p/<phone_number>\n" +
             "delete_staff <staff index>\n" +
             "view_staff\n" +
-            "find_staff <keyword>\n";
+            "find_staff <keyword>\n" +
+            "Note that date of birth format: YYYY-MM-DD. Phone number only takes integers.\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";
@@ -48,12 +49,12 @@ public class Messages {
      * Errors for programs to print.
      */
     public static final String ERROR_COMMAND_INVALID = "Please give a valid command! " +
-            "Type \"help\" for list of valid commands";
+            "Type \"help\" for list of valid commands\n";
     public static final String ERROR_HELP_EXCESS_PARAM = "help command should not have excess parameter!";
     public static final String ERROR_EXIT_EXCESS_PARAM = "exit command should not have excess parameter!";
     public static final String ERROR_DEADLINE_INVALID_INDEX = "Invalid deadline index number!\n" +
             "Enter \"view_deadlines\" to check the index.";
-    public static final String ERROR_DEADLINE_MISSING_INDEX = "Delete deadline command must be followed by an index!" +
+    public static final String ERROR_DEADLINE_MISSING_INDEX = "Delete command must be followed by an index!\n" +
             "Enter \"view_deadlines\" to check the index.";
     public static final String ERROR_DEADLINE_MISSING_KEYWORD = "Find deadline command must be followed by keyword!";
     public static final String ERROR_DEADLINE_MISSING_PARAM = "Missing deadline parameter!";
@@ -90,9 +91,17 @@ public class Messages {
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
+    public static final String ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER = "Phone number length is at most 15!";
+    public static final String ERROR_STAFF_ADD_FUTURE_DOB = "Date of birth must be earlier than current date!";
+    public static final String INVALID_STAFF_ADD_NAME = "Invalid name given for staff";
+    public static final String INVALID_STAFF_ADD_WORKING_DAY = "Invalid working day format";
+    public static final String INVALID_STAFF_ADD_PHONE_NUMBER = "Format of phone number must consist of only numbers";
+    public static final String INVALID_STAFF_ADD_DATE_OF_BIRTH = "Format of date of birth must be YYYY-MM-DD";
+    public static final String ERROR_STAFF_ADD_ALREADY_EXISTS = "Staff with that specific name already exists!";
     public static final String ERROR_PRICE_EXCEED_INTEGER_BOUNDS = "The maximum must not be greater than "
             + Integer.MAX_VALUE + " cents";
     public static final String ERROR_DUPLICATE_DISH_NAME = "There is already a dish with the same name.";
     public static final String ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME = "There is already a dish with the same name." +
             "\n%s\nSkipping line...\n";
+
 }

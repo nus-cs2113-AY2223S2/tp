@@ -10,11 +10,20 @@ import java.util.ArrayList;
 
 public class MeetingManager {
     private static ArrayList<Meeting> meetings = new ArrayList<>();
-
+    /**
+     * Creates MeetingList with input list.
+     *
+     * @param meetings is the list of meetings.
+     */
     public MeetingManager(ArrayList<Meeting> meetings) {
         MeetingManager.meetings = meetings;
     }
-
+    /**
+     * Adds a meeting item to the meeting list.
+     *
+     * @param meeting is the meeting item to be added.
+     * @param ui       manages user output.
+     */
     public static void addMeeting(Meeting meeting, TextUi ui) {
         meetings.add(meeting);
         ui.printMessage(meeting.getIssue() + " at " + meeting.getTime());
@@ -25,8 +34,12 @@ public class MeetingManager {
             ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
-
-    public static String printMeetings() {
+    /**
+     * Print the meeting list.
+     *
+     * @return a String of all the meetings
+     */
+    public static String viewMeetings() {
         String meetingList = "";
         int index=1;
         for (Meeting meeting : meetings) {
@@ -35,7 +48,12 @@ public class MeetingManager {
         }
         return meetingList;
     }
-
+    /**
+     * Deletes a meeting from the meeting list.
+     *
+     * @param index is the index of meeting to be deleted.
+     * @param ui    manages user output.
+     */
     public static void deleteMeeting(int index, TextUi ui) {
         if(index<0){
             ui.printMessage(Messages.ERROR_MEETING_INVALID_INDEX);
@@ -57,19 +75,27 @@ public class MeetingManager {
         }
 
     }
+    /**
+     * Prints all the meetings that contain the keyword.
+     *
+     * @param keyword is the keyword to be searched.
+     * @param ui manages user output.
+     */
     public static void findMeeting(String keyword, TextUi ui){
-        ArrayList<Meeting> meetingFound=new ArrayList<>();
+        ArrayList<Meeting> meetingsFound=new ArrayList<>();
         for(Meeting m:meetings){
             if( m.getIssue().contains(keyword)){
-                meetingFound.add(m);
+                meetingsFound.add(m);
             }
         }
-        if(meetingFound.isEmpty()){
+        if(meetingsFound.isEmpty()){
             ui.printMessage(Messages.MESSAGE_MEETING_NOT_FOUND);
         } else{
             ui.printMessage(Messages.MESSAGE_MEETING_FOUND);
-            for(Meeting n:meetingFound){
-                ui.printMessage(n.getIssue());
+            int index=1;
+            for(Meeting n:meetingsFound){
+                ui.printMessage(index+". "+n.getIssue()+" at "+n.getTime());
+                index++;
             }
         }
 

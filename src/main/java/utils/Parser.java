@@ -27,6 +27,7 @@ import entity.Deadline;
 import manager.DishManager;
 import manager.StaffManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -95,6 +96,13 @@ public class Parser {
     }
 
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
+    /**
+     * Parsing the input into properties of Meeting class and checking for error.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return AddMeetingCommand object based on the info in the description,
+     *     if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareAddMeetingCommand(String description) {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
@@ -106,26 +114,36 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         String issue = (words[0].substring(2)).trim();
         String time = words[1].trim();
         return new AddMeetingCommand(time, issue);
     }
-
+    /**
+     * Checking for whether user input has excess command.
+     *
+     * @param userInput Cleaned UserInput without the Command keyword.
+     * @return ViewMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareViewMeetingCommand(String userInput) {
         try {
             if (!userInput.isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new ViewMeetingCommand();
     }
-
+    /**
+     * Checking whether user input has an number and the number format.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return DeleteMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareDeleteMeetingCommand(String description) {
         int index;
         try {
@@ -134,7 +152,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_INDEX);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_MEETING_MISSING_INDEX);
@@ -143,14 +161,19 @@ public class Parser {
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
     }
-
+    /**
+     * Checking whether the user input is empty.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return FindMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareFindMeetingCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new FindMeetingCommand(description.trim());
@@ -172,8 +195,10 @@ public class Parser {
             } else if (userInputNoCommandSplitBySlash.length > 5) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PARAM);
             }
-            String pattern = "n/(?<name>[\\w\\s]+)\\sw/(?<workingDay>[\\w\\s]+)" +
-                    "\\sd/(?<dateOfBirth>[\\w\\s\\-]+)\\sp/(?<phoneNumber>[\\w\\s]+)";
+            String pattern = "n/(?<name>[\\w\\s]+)" +
+                    "\\sw/(?<workingDay>[\\w\\s]+)" +
+                    "\\sd/(?<dateOfBirth>(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))" +
+                    "\\sp/(?<phoneNumber>[\\d\\s]+)";
 
             Pattern regex = Pattern.compile(pattern);
             Matcher matcher = regex.matcher(userInputNoCommand);
@@ -183,9 +208,30 @@ public class Parser {
             String staffDateOfBirth = "";
             if (matcher.find()) {
                 staffName = matcher.group("name");
+                if (staffName.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_NAME);
+                }
                 staffWorkingDay = matcher.group("workingDay");
+                if (staffWorkingDay.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_WORKING_DAY);
+                }
                 staffPhoneNumber = matcher.group("phoneNumber");
+                if (staffPhoneNumber.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
+                }
                 staffDateOfBirth = matcher.group("dateOfBirth");
+                if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
+                }
+
+                LocalDate today = LocalDate.now();
+                LocalDate parsedStaffDateOfBirth = LocalDate.parse(staffDateOfBirth);
+                if (parsedStaffDateOfBirth.isAfter(today)) {
+                    throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_FUTURE_DOB);
+                }
+            }
+            if (staffPhoneNumber.length() > 15) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
             }
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
