@@ -19,7 +19,8 @@ public class EventList {
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     // exceptions information
-    private static final String WRONG_DATE_TIME_FORMAT_E = "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
+    private static final String WRONG_DATE_TIME_FORMAT_E = 
+        "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
     private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
     private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
     private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";

@@ -21,7 +21,6 @@ public class Parser {
     
     private static final int OFFSET = 1;
     private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
-    private final Ui ui;
 
     // command types
     private static final String ADD_T = "add";
@@ -47,12 +46,15 @@ public class Parser {
     private static final String INVALID_FLAG_E = "please input a valid flag!";
     private static final String NO_FLAG_E = "need a flag to specify your action!";
     private static final String TOO_MANY_FLAGS_E = "Too many flags, or negative index entered";
-    private static final String NO_EVENT_DESC_AND_START_DAY_E = "Event description and start day of your event are strictly required!";
+    private static final String NO_EVENT_DESC_AND_START_DAY_E = 
+        "Event description and start day of your event are strictly required!";
     private static final String NO_START_DAY_E = "Empty starting date/time detected! Please add starting date.";
     private static final String UNDEFINED_FLAG_E = "undefined flag!";
     private static final String INCORRECT_CMD_FORMAT_E = "Please use correct command format!";
     private static final String INVALID_EVENT_INDEX_E = "Event index is in valid!";
     private static final String EVENT_INDEX_OUT_OF_BOUND_E = "Event index out of bound!";
+
+    private final Ui ui;
 
     public Parser() {
         ui = new Ui();

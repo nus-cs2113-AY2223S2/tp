@@ -1,12 +1,15 @@
 package seedu.duke;
 
-// import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Schedule {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
+    private static final String RECUR_DAILY = "D";
+    private static final String RECUR_WEEKLY = "W";
+    private static final String RECUR_MONTHLY = "M";
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -21,97 +24,126 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
-    private static final String RECUR_DAILY = "D";
-    private static final String RECUR_WEEKLY = "W";
-    private static final String RECUR_MONTHLY = "M";
-
     public Schedule(LocalDateTime start, boolean hasSt) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = false;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            "", 
+            "",
+            hasSt,
+            false,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, boolean hasSt, String recurringTime) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            "",
+            recurringTime,
+            hasSt,
+            false,
+            true
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
-        this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
-        this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = false;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            end,
+            "",
+            "",
+            hasSt,
+            hasEd,
+            false,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd,
             String recurringTime) {
-        this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
-        this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            end,
+            "",
+            recurringTime,
+            hasSt,
+            hasEd,
+            false,
+            true
+        );
     }
 
     public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = false;
-        this.hasLocation = hasLocation;
-        this.location = location;
-    }
-
-    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation,
-            String recurringTime) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = hasLocation;
-        this.location = location;
+        this(
+            start,
+            location,
+            "",
+            hasSt,
+            hasLocation,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
             boolean hasLocation) {
+        this(
+            start,
+            end,
+            location,
+            "",
+            hasSt,
+            hasEd,
+            hasLocation,
+            false
+        );
+    }
+    
+    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation,
+            String recurringTime) {
+        this(
+            start,
+            location,
+            recurringTime,
+            hasSt,
+            hasLocation,
+            true
+        );
+    }
+    
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
+            boolean hasLocation, String recurringTime) {
+        this(
+            start,
+            end,
+            location,
+            recurringTime,
+            hasSt,
+            hasEd,
+            hasLocation,
+            true
+        );
+    }
+
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, String recurringTime, boolean hasSt,
+        boolean hasEd, boolean hasLocation, boolean isRecurring) {
         this.startTime = start;
         this.endTime = end;
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.isRecurring = isRecurring;
+        this.timeInterval = recurringTime;
         this.hasLocation = hasLocation;
         this.location = location;
     }
 
-    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
-            boolean hasLocation, String recurringTime) {
+    public Schedule(LocalDateTime start, String location, String recurringTime, boolean hasSt,
+            boolean hasLocation, boolean isRecurring) {
         this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
+        this.hasEndInfo = false;
         this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.hasEndTime = false;
+        this.isRecurring = isRecurring;
         this.timeInterval = recurringTime;
         this.hasLocation = hasLocation;
         this.location = location;
