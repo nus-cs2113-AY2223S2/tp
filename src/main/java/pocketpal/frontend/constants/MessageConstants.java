@@ -76,7 +76,8 @@ public final class MessageConstants {
     public static final String MESSAGE_NON_EXISTENT_ID = "Item ID does not exist: ";
     public static final String MESSAGE_INVALID_ID = "Please specify a valid integer from 1 to 2147483647!";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
-            + "Value should be between 0.01 and 999999999.99";
+            + "1. Value should be between 0.01 and 999999999.99" + NEWLINE
+            + "2. All non-zero integers in \"amount\" field mustn't exceed the second decimal point (20.40, 2023.0000)";
     public static final String MESSAGE_INVALID_AMOUNT_RANGE = "Please specify a valid range!" + NEWLINE
             + "Values should be between 0 and 1000000000";
     public static final String MESSAGE_UNKNOWN_OPTION = "Unknown option: ";
