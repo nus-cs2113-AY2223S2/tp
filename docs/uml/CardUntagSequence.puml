@@ -10,7 +10,9 @@ participant ":TagList" as TagList
 participant ":DeckList" as DeckList
 participant ":Tag" as Tag
 participant ":Card" as Card
+participant ":Deck" as Deck
 participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
 
 
 Create RemoveTagFromCardCommand
@@ -50,10 +52,22 @@ end
 return tagToRemove
 
 RemoveTagFromCardCommand -> RemoveTagFromCardCommand : RemoveTagFromCard(cardAffected, tagToRemove)
+
+opt tagToRemove.isDeckEmpty()
+RemoveTagFromCardCommand -> Tag : getDecks()
+return decksUUIDArr
+loop curr uuid of dekcsUUIDArr != null
+RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
+return affectedDeck
+RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
+
+end loop
+end
+
 opt cardAffected.getUUID() != null
 RemoveTagFromCardCommand -> Card : getUUID()
 return cardUUID
-RemoveTagFromCardCommand -> Tag : removeCard(carUUID)
+RemoveTagFromCardCommand -> Tag : removeCard(cardUUID)
 return
 RemoveTagFromCardCommand -> Tag : getUUID()
 return tagUUID
