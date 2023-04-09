@@ -23,6 +23,7 @@ public class CompletedExerciseSearchCommand extends Command{
      * @param userCareerData Data which contains the user's completed workout sessions.
      * @throws DukeError if user does not enter keyword or if there are no exercises that match keyword provided.
      */
+
     public CompletedExerciseSearchCommand (String[] userCommands, UserCareerData userCareerData) throws DukeError {
         assert userCommands != null : "User Commands should not be null!";
         assert userCareerData != null : "User Career Data should not be null!";
@@ -47,8 +48,8 @@ public class CompletedExerciseSearchCommand extends Command{
                         get(i).getSessionExercises().get(j).getName();
                 String exerciseInstructions = userCareerData.getTotalUserCareerSessions().
                         get(i).getSessionExercises().get(j).getInstructions().toString();
-                String exerciseDifficulty = userCareerData.getTotalUserCareerSessions().
-                        get(i).getSessionExercises().get(j).getLevel();
+                String exerciseDifficulty = parseDifficultyLevel(userCareerData.getTotalUserCareerSessions().
+                        get(i).getSessionExercises().get(j).getLevel());
                 String exerciseWorkoutType = userCareerData.getTotalUserCareerSessions().
                         get(i).getSessionExercises().get(j).getWorkoutType().toString();
                 String exerciseId = userCareerData.getTotalUserCareerSessions().
@@ -73,6 +74,24 @@ public class CompletedExerciseSearchCommand extends Command{
         }
         if (foundList.size() == 0) {
             throw new DukeError(ErrorMessages.ERROR_NO_MATCHING_KEYWORD.toString());
+        }
+    }
+
+    /**
+     * Parses the difficulty level to change its value from beginner, intermediate and expert to
+     * easy, medium and hard.
+     *
+     * @param difficulty The difficulty of the exercise.
+     * @return renames the difficulties to easy, medium and hard.
+     */
+
+    public static String parseDifficultyLevel(String difficulty) {
+        if (difficulty.equals("beginner")) {
+            return "easy";
+        } else if (difficulty.equals("intermediate")) {
+            return "medium";
+        } else {
+            return "hard";
         }
     }
 
