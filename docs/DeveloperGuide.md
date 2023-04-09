@@ -14,7 +14,7 @@ We hope this documents serves useful to understand the behind-the-scenes working
     * [2.2.3 Add Modules Diagram](#223-add-modules-diagram)
     * [2.2.4 Why is the feature implemented this way?](#224-why-is-the-feature-implemented-this-way)
   * [2.3 Storage Component](#23-storage-component)
-    * [2.3.1 How the feature is implemented](#231-how-the-feature-is-implemented-)
+    * [2.3.1 How the feature is implemented and design considerations](#231-how-the-feature-is-implemented-and-design-considerations-)
     * [2.3.2 Load Events Sequence Diagram](#232-load-events-sequence-diagram)
     * [2.3.3 Load Modules Sequence Diagram](#233-load-modules-sequence-diagram)
     * [2.3.4 Save Events Sequence Diagram](#234-save-events-sequence-diagram)
@@ -133,12 +133,14 @@ The class diagram below illustrates the structure of the storage package
 
 ![Storage Class Diagram](UML/Images/StorageClass.png)
 
-#### 2.3.1 How the feature is implemented:
+#### 2.3.1 How the feature is implemented and design considerations:
 
 The Storage component uses a custom type adapter to serialize and deserialize data from java to json and vice versa using
 a gson, a third party library for Json serialization/deserialization.
 
-`NusMods.json` is stored in the resources folder and is deserialized into a hash table storing all module information.
+`NusMods.json` is stored in the resources folder and is deserialized into a hash table storing all module information. A 
+hash map was used to prevent the slow processing of the program each time a module needed to be searched up as it is a feature
+that is likely to see high amounts of usage given the target user.
 
 
 
