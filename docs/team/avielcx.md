@@ -16,6 +16,8 @@ Given below are my contributions to the project.
 * Managed release of v2.0 on GitHub.
 * Managed Product Website.
 
+<div style="page-break-after: always;"></div>
+
 #### Enhancements Implemented:
 * Created a balance command to allow users to check their balance when total income deducts total expense and compare with their target.
 * Created a clear incomes feature which allow users to clear their income list.
@@ -28,6 +30,8 @@ Given below are my contributions to the project.
 `IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
 * Created logging for `ChChing`, `ChChingException`, `UI`,`Parser`, `TargetParser`, `LiveCurrencyAPI`, `ParameterStringBuilder`.
 * Contributed to logging for `Storage`.
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to the UG:
 * Created `Table of Contents`.
@@ -46,6 +50,8 @@ Given below are my contributions to the project.
 * Added `Target` and `TargetStorage` UML class diagrams.
 * Added `SetTargetCommand` sequence diagram.
 * Added Non-Functional Requirements section.
+
+<div style="page-break-after: always;"></div>
 
 #### Contributions to team-based tasks:
 * Method documentations for most methods.
