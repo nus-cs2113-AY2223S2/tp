@@ -95,10 +95,10 @@ public class UserCommandParser implements IParser {
                 BorrowableItem toCheckStatus = SearchController.searchBookByTitle(title);
                 return new CheckBorrowingStatusCommand(toCheckStatus);
             } catch (IllegalValueException e) {
-                return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+                return new IncorrectUserCommand(CheckBorrowingStatusCommand.INVALID_SYNTAX);
             }
         } else {
-            return new IncorrectUserCommand(CheckItemAvailabilityCommand.INCORRECT_SYNTAX);
+            return new IncorrectUserCommand(CheckBorrowingStatusCommand.INCORRECT_SYNTAX);
         }
     }
 
@@ -189,7 +189,7 @@ public class UserCommandParser implements IParser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(RenewCommand.INVALID_SYNTAX);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -200,7 +200,7 @@ public class UserCommandParser implements IParser {
             BorrowableItem toRenew = SearchController.searchBookByTitle(title);
             return new RenewCommand(loanRecords, currentUser, toRenew);
         } catch (IllegalValueException ive) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(RenewCommand.INVALID_SYNTAX);
         }
     }
 
@@ -214,7 +214,7 @@ public class UserCommandParser implements IParser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(BorrowCommand.INVALID_SYNTAX);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -225,7 +225,7 @@ public class UserCommandParser implements IParser {
             BorrowableItem toBorrow = SearchController.searchBookByTitle(title);
             return new BorrowCommand(loanRecords, currentUser, toBorrow);
         } catch (IllegalValueException e) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(BorrowCommand.INVALID_SYNTAX);
         }
     }
 
@@ -239,7 +239,7 @@ public class UserCommandParser implements IParser {
             }
         }
         if (titleIndex == -1) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(ReturnCommand.INVALID_SYNTAX);
         }
         try {
             StringBuilder sb = new StringBuilder();
@@ -250,7 +250,7 @@ public class UserCommandParser implements IParser {
             BorrowableItem toReturn = SearchController.searchBookByTitle(title);
             return new ReturnCommand(loanRecords, currentUser, toReturn);
         } catch (IllegalValueException e) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(ReturnCommand.INVALID_SYNTAX);
         }
     }
 

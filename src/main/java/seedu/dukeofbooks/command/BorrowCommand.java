@@ -14,6 +14,7 @@ public final class BorrowCommand extends LoanCommand {
     private static final String FAIL_MSG = "This item is not borrowable.";
     private static final String ERROR_MSG = "Cannot borrow: %s";
     private static final String NOT_FOUND_MSG = "Item not found!";
+    public static final String INVALID_SYNTAX = "Expected: borrow -title TITLE";
     private final Person person;
     private final BorrowableItem item;
 

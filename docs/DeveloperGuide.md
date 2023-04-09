@@ -103,8 +103,6 @@ the relevant features of the application.
 
 
 ### Search book by title
-<img src="images/Search%20class%20diagram.png" width="50%" height="50%" />  
-
 Description: Searches for a book using its title.  
 Format: `search -title TITLE`  
 Example:  
@@ -113,11 +111,6 @@ Example:
 Successful searches will result in the program outputting the relevant book details, including ISBN, 
 title, author, and topic. If the search is unsuccessful, the program will output a message indicating 
 that there is no match in the inventory for the input title. 
-
-Note: Partial string matching will not be considered in this application. 
-The search will only return exact matches for the book's title and topic. If a match is found, 
-the book object will be returned.
-
 
 ### Search book by topic
 <img src="images/search class diagram.png"/> 
@@ -247,6 +240,19 @@ Description: Make payment for overdue loans.
 When returning item(s) that are overdue, the user will be prompted to make a payment. 
 Failure to do so will result in the returning action being unsuccessful.
 
+Example:
+```text
+|| Enter command: return -title Introduction to Algorithms
+|| Payment method:
+|| 1.PayNow
+|| 2.Debit/Credit card
+|| 3.NETS
+|| 4.Cash
+|| 5.Cancel Payment
+2
+|| Payment Successful! Transaction ID: 978-0262033848202304090809
+|| Item has been returned!
+```
 
 ## Product Scope
 ### Target user profile

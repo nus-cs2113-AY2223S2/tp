@@ -8,6 +8,7 @@ public class CheckBorrowingStatusCommand extends UserCommand {
     public static final String COMMAND_WORD = "status";
     public static final String INCORRECT_SYNTAX = "INVALID SYNTAX\nExpected: status -title TITLE";
     private static final String NOT_FOUND_MSG = "Item not found!";
+    public static final String INVALID_SYNTAX = "Expected: status -title TITLE";
     private BorrowableItem item;
 
     public CheckBorrowingStatusCommand(BorrowableItem item) {

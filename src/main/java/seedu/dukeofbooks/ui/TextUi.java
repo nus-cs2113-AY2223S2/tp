@@ -12,18 +12,19 @@ import seedu.dukeofbooks.data.book.BorrowableItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TextUi {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
-    private static final String LINE_PREFIX = "|| ";
+    public static final String LINE_PREFIX = "|| ";
     private static final String LS = System.lineSeparator();
-    private static final String DIVIDER = "===================================================";
-    private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
-    private static final String LOGIN_PROMPT = "Welcome! Please login or signup.";
-    private static final String GREETINGS_FORMAT = "Welcome %s!";
+    public static final String DIVIDER = "===================================================";
+    public static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    public static final String LOGIN_PROMPT = "Welcome! Please login or signup.";
+    public static final String GREETINGS_FORMAT = "Welcome %s!";
 
     private final Scanner in;
-    private final PrintStream out;
+    private static final PrintStream out=System.out;
 
     public TextUi() {
         this(System.in, System.out);
@@ -31,10 +32,10 @@ public class TextUi {
 
     public TextUi(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
-        this.out = out;
+        // out = out;
     }
 
-    public void showToUser(String... message) {
+    public static void showToUser(String... message) {
         for (String m : message) {
             out.println(LINE_PREFIX + m.replace("\n", LS + LINE_PREFIX));
         }
@@ -46,13 +47,17 @@ public class TextUi {
 
     public String getUserCommand() {
         out.print(LINE_PREFIX + "Enter command: ");
-        String fullInputLine = in.nextLine();
+        String fullInputLine = "";
+        try {
+            fullInputLine = in.nextLine();
+        } catch (NoSuchElementException e) {
+            // fall through
+        }
 
         while (toIgnore(fullInputLine)) {
             fullInputLine = in.nextLine();
         }
 
-        //showToUser("[Command entered:" + fullInputLine + "]");
         return fullInputLine;
     }
 
