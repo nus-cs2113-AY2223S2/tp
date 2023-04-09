@@ -314,14 +314,14 @@ Step 1. The `Delete` class takes in two variables `notes` and `toDo`, and constr
 instance using the two variables.
 
 Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the 
-validity of the `todo` string input by users.
+validity of the `toDo` string input by users.
 
-Step 3. The `deleteNotes` public method will then delete the respective specific notes in the notes list
+Step 3. The `deleteNotes` public method will then delete the specific note in the notes list
 based on the index that users have input to BadMaths.
 
 ### CommandHistory class:
 The `CommandHistory` class stores a list of all inputs entered by users during the current programme run session.
-It consists of only a two public class methods, `storeCommand` and `displayHistory`. 
+It consists of two public class methods, `storeCommand` and `displayHistory`. 
 
 Step 1. The `CommandHistory` class takes in only one variable `historyCommand`, 
 and constructs a new `CommandHistory` instance using that one variable.
@@ -334,7 +334,7 @@ the current programme run.
 
 ### Command class:
 The `Command` class takes in inputs from users
-and executes relevant functions based on the inputs of the users. It consists of 
+and executes the relevant functions based on the inputs of the users. It consists of 
 public methods such as `isInvalidTodo` and `executeCommand`.
 
 Step 1. The `Command` class takes in a `command` and a `toDo` item and

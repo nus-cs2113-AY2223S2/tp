@@ -53,22 +53,6 @@ public class Command {
         return todo.equals("Invalid todo");
     }
 
-    public boolean isInvalidIndex(int index, NotesList notes) {
-        return (index < 0 || index >= notes.getSize());
-    }
-
-    public boolean isAnInt(String todo) {
-        try {
-            Integer.parseInt(todo);
-        } catch (NumberFormatException numberException) {
-            Ui.printInvalidNumberEntered();
-            return false;
-        }
-        return true;
-    }
-
-
-
     public void executeCommand(NotesList notes, ArrayList<String> historyCommand) {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
@@ -114,6 +98,7 @@ public class Command {
                 Delete deletes = new Delete(notes, toDo);
                 deletes.deleteNotes();
                 break;
+            //@@author WilsonLee2000
             case "History":
                 commandHist.displayHistory();
                 break;
