@@ -61,14 +61,16 @@ public class Parser {
                     if(words.length==2 && isNumeric(words[1])){
                         Ui.printUpcomingEvents(tasks,words[1]);
                     } else{
-                        Ui.unknownCommandMessage();
+                        TaskList.addTask(line, tasks, classes);
+                        Storage.trySave(tasks, classes);
                     }
                     break;
                 case "deadline":
                     if(words.length==2 && isNumeric(words[1])){
                         Ui.printUpcomingDeadline(tasks,words[1]);
                     } else{
-                        Ui.unknownCommandMessage();
+                        TaskList.addTask(line, tasks, classes);
+                        Storage.trySave(tasks, classes);
                     }
                     break;
                 case "list_today":
