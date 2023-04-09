@@ -59,7 +59,9 @@ public class TaskList extends ArrayList<Task> {
      * @param endDay1   The end day of the first event.
      * @param startDay2 The start day of the second event.
      * @param endDay2   The end day of the second event.
-     * @return The order of the events.
+     * @return The order of the events, where 1 stands for the first event being later than the second event,
+     *          -1 stands for the first event being earlier than the second event, and 0 stands for the events being
+     *          0 stands for the events ending at the same time equal.
      */
     private int deterministicSortForEvent(LocalDateTime startDay1, LocalDateTime endDay1, LocalDateTime startDay2,
                                           LocalDateTime endDay2) {
@@ -67,15 +69,15 @@ public class TaskList extends ArrayList<Task> {
         assert endDay1 != null : "End day of first event should not be null";
         assert startDay2 != null : "Start day of second event should not be null";
         assert endDay2 != null : "End day of second event should not be null";
-        //both events have same start time
+
         if (startDay1.equals(startDay2)) {
-            //if event2 ends first
+
             if (endDay2.isAfter(endDay1)) {
                 return 1;
-                //event1 ends first
+
             } else if (endDay1.isBefore(endDay2)) {
                 return -1;
-                //both events end at the same time
+
             } else {
                 return 0;
             }
@@ -92,7 +94,9 @@ public class TaskList extends ArrayList<Task> {
      *
      * @param deadline1 The deadline of the first deadline task.
      * @param deadline2 The deadline of the second deadline task.
-     * @return The order of the deadlines.
+     * @return The order of the deadlines. 1 stands for the first deadline being later than the second deadline,
+     *         -1 stands for the first deadline being earlier than the second deadline, and 0 stands for the deadlines
+     *          being equal.
      */
     private int deterministicSortForDeadline(LocalDateTime deadline1, LocalDateTime deadline2) {
         assert deadline1 != null : "Deadline should not be null";
@@ -108,6 +112,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the deadline tasks in the TaskList by their respective due dates.
+     * @param allTasks The TaskList to be sorted.
      */
     private void sortDeadlineTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
@@ -128,6 +133,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the event tasks in the TaskList by their respective from and to dates.
+     * @param allTasks The TaskList to be sorted.
      */
     private void sortEventTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
@@ -148,6 +154,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the TaskList by date.
+     *
      */
     public void sortTaskByDay() {
         this.clusterByType();
