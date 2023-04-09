@@ -48,10 +48,10 @@
   - [Unit Tests](#unit-tests)
   - [Instructions for manual testing](#instructions-for-manual-testing)
     - [Feature Testing](#feature-testing)
-    - [Add expense: /add](#add-expense-add)
-    - [View expense: /view](#view-expense-view)
-    - [Delete expense: /delete](#delete-expense-delete)
-    - [Edit expense: /edit](#edit-expense-edit)
+    - [Add entry: /add](#add-entry-add)
+    - [View entry: /view](#view-entry-view)
+    - [Delete entry: /delete](#delete-entry-delete)
+    - [Edit entry: /edit](#edit-entry-edit)
     - [Show help menu: /help](#show-help-menu-help)
     - [Terminate program: /bye](#terminate-program-bye)
   - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
@@ -717,11 +717,11 @@ in PocketPal.
 
 ---
 
-**Do note that the expenses depicted in the test cases below may vary depending on the expenses you have added.**
+**Do note that the entries depicted in the test cases below may vary depending on the entries you have added.**
 
 ---
 
-### Add expense: /add
+### Add entry: /add
 
 **Usage:** `/add -d <description> -c <category> -p <price>`
 
@@ -735,7 +735,7 @@ __Test Case 1 (All required flags are provided):__
 
 ```
 ________________________________________________
-The following expenditure has been added:
+The following entry has been added:
 Description: McDonalds
 Price: $10.50
 Category: Food
@@ -765,13 +765,13 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### View expense: /view
+### View entry: /view
 
 **Usage:** `/view [count] [filter_options]`
 
-__Test case 1 (No expenses exist):__
+__Test case 1 (No entries exist):__
 
-- **Prerequisites:** Ensure that there are currently no expenses added.
+- **Prerequisites:** Ensure that there are currently no entries added.
 - __Input:__ `/view`
 
 <details markdown=1>
@@ -787,9 +787,9 @@ Enter a command or /help to see the list of commands available.
 </details>
 
 
-__Test case 2 (Multiple expenses exist):__
+__Test case 2 (Multiple entries exist):__
 
-- **Prerequisites:** At least **3** existing expenses.
+- **Prerequisites:** At least **3** existing entries.
 - __Input:__ ```/view 3```
 
 <details markdown=1>
@@ -811,7 +811,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3 (View entries in price range)__
 
-- **Prerequisites:** At least **2** existing expenses with price range between $120.50 and $210.00 inclusive.
+- **Prerequisites:** At least **2** existing entries with price range between $120.50 and $210.00 inclusive.
 - __Input:__ ```/view -sp 120.50 -ep 210.00```
 
 <details markdown=1>
@@ -830,15 +830,15 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Delete expense: /delete
+### Delete entry: /delete
 
 **Usage:** `/delete <index> [additional_index...]`
 
-You may view the list of existing expenses along with their corresponding indexes with `/view`.
+You may view the list of existing entries along with their corresponding indexes with `/view`.
 
 __Test case 1:__
 
-- **Prerequisites:** At least **3** expenses pre-added into the program.
+- **Prerequisites:** At least **3** entries pre-added into the program.
 - __Input:__ `/delete 3`
 
 <details markdown=1>
@@ -846,7 +846,7 @@ __Test case 1:__
 
 ```
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Birthday Dinner
 Price: $150.00
 Category: Food
@@ -859,7 +859,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2__
 
-- **Prerequisites:** Fewer than **20** expenses pre-added into the program
+- **Prerequisites:** Fewer than **20** entries pre-added into the program
 - __Input:__ `/delete 20`
 
 <details markdown=1>
@@ -878,7 +878,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program
+- **Prerequisites:** At least **2** entries pre-added into the program
 - __Input:__ `/delete 1 2`
 
 <details markdown=1>
@@ -886,13 +886,13 @@ __Test case 3__
 
 ```
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Light bulb
 Price: $10.20
 Category: Utilities
 28 Mar 2023, 01:04:42
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Pizza
 Price: $8.30
 Category: Food
@@ -903,13 +903,13 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Edit expense: /edit
+### Edit entry: /edit
 
 **Usage:** `/edit <index> [options]`
 
 __Test case 1 (Editing all flags)__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program.
+- **Prerequisites:** At least **2** entries pre-added into the program.
 - __Input:__ `/edit 2 -p 300.50 -c others -d MacBook Air`
 
 <details markdown=1>
@@ -917,7 +917,7 @@ __Test case 1 (Editing all flags)__
 
 ```
 ________________________________________________
-The following expenditure has been updated:
+The following entry has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
@@ -930,7 +930,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2 (Editing price only)__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown in
+- **Prerequisites:** At least **2** entries pre-added into the program, with the 2nd entry matching the one shown in
   the example above.
 - __Input:__ `/edit 2 -p 300.50`
 
@@ -939,7 +939,7 @@ __Test case 2 (Editing price only)__
 
 ```
 ________________________________________________
-The following expenditure has been updated:
+The following entry has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
@@ -964,11 +964,11 @@ __Test case__
 
 ```
 ________________________________________________
-PocketPal is a expense tracking app, optimised for use via a Command Line Interface. 
+PocketPal is an expense tracking app, optimised for use via a Command Line Interface. 
 Users can take advantage of the input flags for entering entries quickly.
 Listed below are the various commands that are currently supported.
 
-Add - Adds an expense to your current expenditure.
+Add - Adds an entry to your current account.
 Usage: /add -d <description> -c <category> -p <price>
 Options:
 -d <description>
@@ -978,13 +978,13 @@ See below for examples
 /add -d Apple Macbook Air -p 1300 -c Personal
 /add -p 1300 -c Personal -d Apple Macbook Air
 
-Delete - Deletes specified expense(s) from your expenditure.
+Delete - Deletes specified entry(s) from your account.
 Usage: /delete <index> [additional_index...]
 See below for examples
 /delete 10 11 13 
 /delete 1
 
-Edit - Edits a specified expense in your current expenditure.
+Edit - Edits a specified entry in your account.
 Usage: /edit <index> [options]
 Options:
 -d <description>
@@ -993,7 +993,7 @@ Options:
 See below for examples
 /edit 5 -d Grab to school -c Transportation -p 20.00
 
-View - Displays a list of your current expenditure.
+View - Displays a list of your current entries.
 Usage: /view [count] [filter_options]
 Filter options:
 -c <category>
@@ -1046,7 +1046,7 @@ More test cases will be added as more features are introduced.
 ## Testing with sample data (from file)
 
 PocketPal stores data in a *storage.txt* file under the "*data/*" directory. Each row in the "*storage.txt*" file
-represents a single expense Entry. Each column in each row should have 3 columns, representing the *description* of the
+represents a single Entry. Each column in each row should have 3 columns, representing the *description* of the
 Entry, *amount* associated with the Entry and *category* of the Entry in that order, and are separated with the ","
 delimiter. All of them are in the String format.
 

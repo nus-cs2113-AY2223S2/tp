@@ -6,23 +6,27 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Features](#features)
-    - [Adding an expense: `/add`](#adding-an-expense-add)
-    - [Deleting an expense: `/delete`](#deleting-an-expense-delete)
-    - [Edit an expense: `/edit`](#edit-an-expense-edit)
-    - [View an expense: `/view`](#view-an-expense-view)
-    - [Show help menu: `/help`](#show-help-menu-help)
-    - [Exit Program: `/bye`](#exit-program-bye)
-    - [Supported Categories](#supported-categories)
-- [Command Summary](#command-summary)
-- [Frequently Asked Questions](#frequently-asked-questions)
+- [User Guide](#user-guide)
+    - [Table of Contents](#table-of-contents)
+    - [Introduction](#introduction)
+    - [Getting Started](#getting-started)
+    - [Features](#features)
+        - [Adding an entry: `/add`](#adding-an-entry-add)
+            - [Supported Categories](#supported-categories)
+        - [Deleting an entry: `/delete`](#deleting-an-entry-delete)
+        - [Edit an entry: `/edit`](#edit-an-entry-edit)
+        - [View an entry: `/view`](#view-an-entry-view)
+        - [Filter options](#filter-options)
+        - [Show help menu: `/help`](#show-help-menu-help)
+        - [Exit Program: `/bye`](#exit-program-bye)
+    - [Command Summary](#command-summary)
+    - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Introduction
-PocketPal is an expense tracking command line application that allows users to record their expenses in different 
-categories. Subsequently, users can monitor their expenses within a specified timeframe, or price range. They may also 
-monitor expenses in certain categories. This makes it easier for users to plan their budgets and make better financial 
+
+PocketPal is an expense tracking command line application that allows users to record their expenses in different
+categories. Subsequently, users can monitor their expenses within a specified timeframe, or price range. They may also
+monitor expenses in certain categories. This makes it easier for users to plan their budgets and make better financial
 decisions.
 
 ## Getting Started
@@ -47,7 +51,7 @@ decisions.
    Enter a command or /help to see the list of commands available.
    > 
    ```
-5. To enter an entry, you may use [`/add`](#adding-an-expense-add-add),
+5. To enter an entry, you may use [`/add`](#adding-an-entry-add-add),
    or enter [`/help`](#show-help-menu-help-help) to view the help menu.
 
 <!-- @@author adenteo -->
@@ -69,49 +73,62 @@ This user guide adopts the following conventions for the command-line syntax:
 - All arguments starting with a dash (`-`) will be treated as options.
 
 - For all specified options, only the arguments that follow the first declaration will be parsed. **i.e. any
-  subsequent re-declarations of the same option will be ignored.**<br>For example, for the following input:<br>`/view -c food -c clothing`<br>Only expenses in the `food` category will be listed.
+  subsequent re-declarations of the same option will be ignored.**<br>For example, for the following
+  input:<br>`/view -c food -c clothing`<br>Only entries in the `food` category will be listed.
 
 If you face any problems, do visit the [FAQ](#frequently-asked-questions) segment!
 
-| Command                                |                      Function                       |
-|----------------------------------------|:---------------------------------------------------:|
-| [/add](#adding-an-expense-add)         |                   Adds an expense                   |
-| [/delete](#deleting-an-expense-delete) |                 Deletes an expense                  |
-| [/edit](#edit-an-expense-edit)         |                  Edits an expense                   |
-| [/view](#view-an-expense-view)         | Displays details of an expense e.g. Price, Category |
-| [/help](#show-help-menu-help)          |               Displays the help menu                |
-| [/bye](#exit-program-bye)              |               Terminates the program                |
+| Command                              |                     Function                      |
+|--------------------------------------|:-------------------------------------------------:|
+| [/add](#adding-an-entry-add)         |                   Adds an entry                   |
+| [/delete](#deleting-an-entry-delete) |                 Deletes an entry                  |
+| [/edit](#edit-an-entry-edit)         |                  Edits an entry                   |
+| [/view](#view-an-entry-view)         | Displays details of an entry e.g. Price, Category |
+| [/help](#show-help-menu-help)        |              Displays the help menu               |
+| [/bye](#exit-program-bye)            |              Terminates the program               |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-### Adding an expense: `/add`
+### Adding an entry: `/add`
 
-Adds an expense to your current expenditure.
+Adds an entry to your current account.
 
 Format: `/add -d <description> -c <category> -p <price>`
 
 Options:
 
-- `-d <description>`<br>`-description <description>`<br>Description of the expense.
+- `-d <description>`<br>`-description <description>`<br>Description of the entry.
     - All characters except comma (,) are valid.
     - Multiple words separated by spaces are allowed. However, a word should not start with dash (`-`) or it will be
       treated as an option.
 
 
-- `-c <category>`<br>`-category <category>`<br>Category of the expense.
+- `-c <category>`<br>`-category <category>`<br>Category of the entry.
     - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
     - Non case-sensitive.
 
 
-- `-p <price>`<br>`-price <price>`<br>Price of the expense.
+- `-p <price>`<br>`-price <price>`<br>Price of the entry.
     - Must be a positive numeric or decimal value.
     - Minimum value: `0.01`
     - Maximum value: `999999999.99`
 
 
 - The order of the options are interchangeable, but they are all **required**.
+
+#### Supported Categories
+
+These are the categories currently supported by PocketPal:
+
+`Clothing, Entertainment, Food, Medical, Personal, Transportation, Utilities, Others, Income`
+
+---
+Note: An entry with category `Income` will be added to your total income which can be seen in `/view`.
+
+---
+
 
 Example of usage:
 
@@ -125,16 +142,16 @@ Example of usage:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-### Deleting an expense: `/delete`
+### Deleting an entry: `/delete`
 
-Deletes specified expense(s) from your current expenditure.
+Deletes specified entry(s) from your current account.
 
-The expense IDs can be obtained from the [`/view`](#view-an-expense-view) command.
+The entry IDs can be obtained from the [`/view`](#view-an-entry-view) command.
 
 Format: `/delete <index> [additional_index...]`
 
-- `index`, `additional_index`: Index of the expense to be deleted.
-    - Index must be a positive integer. The maximum index allowed is the total number of existing expenses.
+- `index`, `additional_index`: Index of the entry to be deleted.
+    - Index must be a positive integer. The maximum index allowed is the total number of existing entries.
     - Additional indexes must be separated by spaces.
 
 Example of usage:
@@ -147,29 +164,29 @@ Example of usage:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-### Edit an expense: `/edit`
+### Edit an entry: `/edit`
 
-Edits a specified expense in your current expenditure with the given flag(s).
+Edits a specified entry in your current account with the given flag(s).
 
 Format: `/edit <index> [options]`
 
-- `index`: Index of the expense to be deleted.
+- `index`: Index of the entry to be deleted.
     - Only digits characters are allowed.
-    - The maximum index allowed is the number of existing expenses.
+    - The maximum index allowed is the number of existing entries.
 
 Options:
 
-- `-d | -description` `<description>`: New description of the expense.
+- `-d | -description` `<description>`: New description of the entry.
     - All characters except comma (,) are valid.
     - Multiple words are allowed.
 
 
-- `-c | -category` `<category>`: New category of the expense.
+- `-c | -category` `<category>`: New category of the entry.
     - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
     - Non case-sensitive.
 
 
-- `-p | -price` `<price>`: New price of the expense.
+- `-p | -price` `<price>`: New price of the entry.
     - Must be a non-negative numeric or decimal value.
 
 The order of the options are interchangeable.
@@ -186,57 +203,56 @@ Example of usage:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-### View an expense: `/view`
+### View an entry: `/view`
 
-Displays a list of your current expenditure.
+Displays a list of your current entries.
 
 Format: `/view [count] [filter_options]`
 
-- `count`: Number of expenses to be listed.
+- `count`: Number of entries to be listed.
     - Only digits characters are allowed.
-    - If not specified, or if count is greater than number of existing expenses, all expenses will be listed.
+    - If not specified, or if count is greater than number of existing entries, all entries will be listed.
 
 ### Filter options
 
 **Filter by category**
 
-- `-c | -category`  `<category>`: Category of expenses to be listed.
-    - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+- `-c | -category`  `<category>`: Category of entries to be listed.
+    - Must be a **one-word** category currently supported in PocketPal.
     - Non case-sensitive.
-    - If not specified, expenses of all categories will be listed.
+    - If not specified, entries of all categories will be listed.
 
 **Filter by price**
 
-- `-sp | -startprice` `<min_price>`: Minimum price of expenses to be listed.
-- `-ep | -endprice` `<max_price>` Maximum price of expenses to be listed.
+- `-sp | -startprice` `<min_price>`: Minimum price of entries to be listed.
+- `-ep | -endprice` `<max_price>` Maximum price of entries to be listed.
 
 Note:
 
-
-- If `max_price` and `min_price` are both specified, all expenses between and **inclusive** of `min_price` and
+- If `max_price` and `min_price` are both specified, all entries between and **inclusive** of `min_price` and
   `max_price` will
   be listed.
-- If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed.
-- If only `max_price` is specified, all expenses smaller than or equal to `max_price` will be listed.
+- If only `min_price` is specified, all entries greater than or equal to `min_price` will be listed.
+- If only `max_price` is specified, all entries smaller than or equal to `max_price` will be listed.
 - `min_price` should not be greater than `max_price`.
-- If both specified prices are the same, the expenses with that exact price will be listed.
+- If both specified prices are the same, the entries with that exact price will be listed.
 
 **Filter by date range**
 
-- `-sd, -startdate` `<start_date>`: Starting date of expenses to be listed.
-- `-ed, -enddate` `<end_date>`: Ending date of expenses to be listed.
+- `-sd, -startdate` `<start_date>`: Starting date of entries to be listed.
+- `-ed, -enddate` `<end_date>`: Ending date of entries to be listed.
 
 Note:
 
 - `start_date`, `end_date` must be in `dd/MM/yy` format.
-  - *warning*: users are advised to set start date and end date parameters with a maximum interval of 5 years. This is
-    because of the
-    [implementation of SimpleDateTime](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
+    - *warning*: users are advised to set start date and end date parameters with a maximum interval of 5 years. This is
+      because of the
+      [implementation of SimpleDateTime](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
 
 - Both flags are **required** if user wishes to use this
   option.
 - `start_date` should not be after `end_date`.
-- If both specified dates are the same, the expenses on that date will be listed.
+- If both specified dates are the same, the entries on that date will be listed.
 
 Order of options are **interchangeable**.
 
@@ -269,16 +285,6 @@ Format: `/help`
 Terminates PocketPal.
 
 Format: `/bye`
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-### Supported Categories
-
-These are the categories currently supported by PocketPal:
-
-`Clothing, Entertainment, Food, Medical, Personal, Transportation, Utilities, Income, Others`
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -331,10 +337,12 @@ These are the categories currently supported by PocketPal:
 > __A:__ PocketPal is an open-source application, and we welcome developers to share their ideas.
 
 >        You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
-> 
+>
 > __Q:__ I accidentally touched the data in my `storage.txt` file - what do I do?
 >
-> __A:__ The data in the `storage.txt` file is saved in the format `DESCRIPTION,PRICE,CATEGORY,DATE`. Make sure the data in the file is in the correct format, or else it will be overwritten with a blank data file. The category must be capitalized, and the date must be in the format `D MMM YYYY; HH:MM`.
+> __A:__ The data in the `storage.txt` file is saved in the format `DESCRIPTION,PRICE,CATEGORY,DATE`. Make sure the data
+> in the file is in the correct format, or else it will be overwritten with a blank data file. The category must be
+> capitalized, and the date must be in the format `D MMM YYYY; HH:MM`.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>

@@ -80,7 +80,7 @@ public class ParseViewCommand extends ParseCommand {
     /**
      * Returns the start and end dates specified by the user when using the filter
      * by date feature. Both dates have to specified if user uses this feature. If
-     * both not specified, all expenses are displayed.
+     * both not specified, all entries are displayed.
      *
      * @param arguments User input string after view command.
      * @return String[] Array containing start and end date respectively.
@@ -117,7 +117,7 @@ public class ParseViewCommand extends ParseCommand {
     /**
      * Returns the start and end prices specified by the user when using the filter
      * by price feature. If both not specified, the entire price range is displayed.
-     * If only the starting price is specified, all expenses above that price is
+     * If only the starting price is specified, all entries above that price is
      * displayed.
      *
      * @param arguments User input string after view command.

@@ -23,7 +23,7 @@ public class ParseAddCommand extends ParseCommand {
 
     /**
      * Returns an AddCommand object to be executed by the backend. The AddCommand
-     * contains the parameters of the expenses to be added to the expense list.
+     * contains the parameters of the entries to be added to the account.
      *
      * @param input User input entered after add command.
      * @return Command AddCommand object to be executed.
@@ -58,9 +58,9 @@ public class ParseAddCommand extends ParseCommand {
     /**
      * Checks if all required options of /add command exists
      *
-     * @param description Description of expense
-     * @param price Price of expense
-     * @param category Category of expense
+     * @param description Description of entry
+     * @param price Price of entry
+     * @param category Category of entry
      * @throws MissingArgumentsException If any of the above fields are not specified
      */
     private void checkAddOptionsExistence(String description, String price, String category)

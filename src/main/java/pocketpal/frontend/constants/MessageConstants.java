@@ -14,11 +14,11 @@ public final class MessageConstants {
 
     // Command Messages
     public static final String MESSAGE_EXIT = "Bye. See you again :)" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_ADDED = "The following expenditure has been added:" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_DELETED = "The following expenditure has been deleted:" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_ADDED = "The following entry has been added:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_DELETED = "The following entry has been deleted:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_EDITED = "The following entry has been updated:" + NEWLINE;
     public static final String MESSAGE_NO_ENTRIES = "There are no entries available." + NEWLINE;
-    public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current expenditure." + NEWLINE
+    public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current account." + NEWLINE
             + "Usage: /add -d <description> -c <category> -p <price>" + NEWLINE
             + "Options:" + NEWLINE
             + "-d <description>" + NEWLINE
@@ -27,13 +27,13 @@ public final class MessageConstants {
             + "See below for examples" + NEWLINE
             + "/add -d Apple Macbook Air -p 1300 -c Personal" + NEWLINE
             + "/add -p 1300 -c Personal -d Apple Macbook Air" + NEWLINE + NEWLINE;
-    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
+    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified entry(s) from your account."
             + NEWLINE
             + "Usage: /delete <index> [additional_index...]" + NEWLINE
             + "See below for examples" + NEWLINE
             + "/delete 10 11 13 " + NEWLINE
             + "/delete 1" + NEWLINE + NEWLINE;
-    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
+    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified entry in your account."
             + NEWLINE
             + "Usage: /edit <index> [options]" + NEWLINE
             + "Options:" + NEWLINE
@@ -43,7 +43,7 @@ public final class MessageConstants {
             + "See below for examples" + NEWLINE
             + "/edit 5 -d Grab to school -c Transportation -p 20.00" + NEWLINE + NEWLINE;
 
-    public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
+    public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current entries."
             + NEWLINE
             + "Usage: /view [count] [filter_options]" + NEWLINE
             + "Filter options:" + NEWLINE

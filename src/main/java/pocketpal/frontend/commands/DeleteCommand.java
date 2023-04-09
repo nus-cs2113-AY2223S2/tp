@@ -53,7 +53,7 @@ public class DeleteCommand extends Command {
             Request requestDelete = new Request(RequestMethod.DELETE, String.valueOf(entryId));
             Response responseDelete = backend.requestEndpointEntry(requestDelete);
             Entry deletedEntry = EntryParser.deserialise(responseDelete.getData());
-            ui.printExpenditureDeleted(deletedEntry);
+            ui.printEntryDeleted(deletedEntry);
         }
     }
 

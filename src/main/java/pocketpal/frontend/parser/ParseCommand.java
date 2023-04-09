@@ -71,8 +71,8 @@ public abstract class ParseCommand {
     }
 
     /**
-     * Checks if specified expense ID is valid
-     * @param id Expense id
+     * Checks if specified entry ID is valid
+     * @param id Entry id
      * @throws InvalidArgumentsException if id is not an integer
      */
     public void checkIdValidity(String id) throws InvalidArgumentsException {
