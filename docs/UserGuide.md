@@ -3,7 +3,7 @@
 Welcome to rainyDay's user guide! Thank you so much for choosing rainyDay. We sincerely hope that rainyDay can
 successfully take you one step closer to reaching your financial goals!
 Should you have any feedback or enquiries, please do not hesitate to drop us an
-[email!](mailto:rainydayfinancialtracker@gmail.com) (rainydayfinancialtracker@gmail.com).
+[email!](mailto:rainydayfinancialtracker@gmail.com) (rainydayfinancialtracker@gmail.com)
 
 ## Introduction
 
@@ -88,25 +88,25 @@ install rainyDay on your device and start using it. Please refer to the steps be
    from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v2.1/rainyDay.jar)
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
-    2. Right-click the "rainyDay.jar" file and select "Cut" from the option that appears <br>
-       ![cut.png](images/UserGuide/cut.png)
+    2. Right-click the "rainyDay.jar" file and select "Cut" from the option that appears <br><br>
+       ![cut.png](images/UserGuide/cut.png) <br><br>
     3. Go to the folder of your choice
-    4. Right-click in the file window and select "Paste" as seen below <br>
-       ![paste.png](images/UserGuide/paste.png)
+    4. Right-click in the file window and select "Paste" as seen below <br><br>
+       ![paste.png](images/UserGuide/paste.png) <br><br>
 4. To run "rainyDay.jar" on the command line, do the following:
-    1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
-       ![folderpath.png](images/UserGuide/folderPath.png)
+    1. Open the folder containing "rainyDay.jar" and click on the address bar <br><br>
+       ![folderpath.png](images/UserGuide/folderPath.png) <br><br>
     2. You will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder
-       path in the address bar as shown <br>
-       ![cmd.png](images/UserGuide/cmd.png)
+       path in the address bar as shown <br><br>
+       ![cmd.png](images/UserGuide/cmd.png)<br><br>
     3. Press Enter. Your Command Line terminal should now be open in the folder containing "rainyDay.jar" as shown below. The
        location you saved rainyDay should be shown. In this example we saved it in the path
-       "\Users\Qi Rong\Downloads\rainyDay Folder"
-       ![cmd prompt open.png](images/UserGuide/cmdPromptOpen.png)
+       "\Users\Qi Rong\Downloads\rainyDay Folder" <br><br>
+       ![cmd prompt open.png](images/UserGuide/cmdPromptOpen.png)<br><br>
 5. Type `java -jar rainyDay.jar` in the terminal and press "Enter" on your keyboard to start the application. You should
-   see the following if the start-up is successful.
-   ![cmd start up.png](images/UserGuide/cmdStartUp.png)
-6. Type your name and press "Enter". The following will be shown:
+   see the following if the start-up is successful. <br><br>
+   ![cmd start up.png](images/UserGuide/cmdStartUp.png) <br><br>
+6. Type your name and press "Enter". The following will be shown: <br><br>
    ![cmd enter name.png](images/UserGuide/cmdEnterName.png)
 
 ## Understanding CLI
@@ -115,8 +115,8 @@ install rainyDay on your device and start using it. Please refer to the steps be
   offer!
 - A [CLI](#glossary) receives commands from a user, that is you, in the form of lines of text.
 - In rainyDay, we make it simple for you. Whenever we require you to input something, we will prompt you with a `>`. 
-  A sample input is boxed in red as shown:
-  ![understandingCLI.png](images/UserGuide/understandingCLI.png)
+  A sample input is boxed in red as shown: <br><br>
+  ![understandingCLI.png](images/UserGuide/understandingCLI.png) <br><br>
 - If you are interested in learning more about CLI, you may refer to the following
   [guide](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/).
 
@@ -149,9 +149,9 @@ install rainyDay on your device and start using it. Please refer to the steps be
 
 ### Viewing help
 
-Welcome to the help section of rainyDay! Now that you have started rainyDay by following [Quick Start](#quick-start),
-you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to perform a
-certain task, don't worry! The help command is here to help you every step of the way!
+Welcome to the help section of rainyDay! Now that you have started rainyDay by following the [Quick Start](#quick-start)
+section, you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to 
+perform a certain task, don't worry! The help command is here to help you every step of the way!
 
 To get an overview of possible commands and their respective formats, you can use the `help` command as seen
 below:
@@ -404,7 +404,7 @@ Conversely, the "unignore" feature is used to include a transaction that was pre
 
 Format: **`ignore [INDEX]`** or **`unignore [INDEX]`**
 
-* `index` The index of the entry you want to ignore, obtained by using the `view` command:
+* `INDEX` is the transaction number given by rainyDay to identify a transaction
 
 Example of Usage:
 
@@ -417,7 +417,7 @@ To ignore the entry, you can use the following command:
 
 ![ignoreGST.png](images/UserGuide/ignoreGST.png)
 
-Now, the value of the transaction's value will be indicated as ignored, and it will not be used during calculations.
+Now, the value of the transaction will be indicated as ignored, and it will not be used during calculations.
 You can see this change by using the `view` command:
 
 ![ignoreGSTAfter.png](images/UserGuide/ignoreGSTAfter.png)
@@ -427,7 +427,7 @@ You can see this change by using the `view` command:
 ### Setting a Monthly Budget
 
 After knowing how to manage your transactions, the next step to reach your financial goals is to set a monthly budget!
-rainyDay can help you by giving you reminders and encouraging you to stick to your budget! With a set monthly budget,
+rainyDay can help you by giving you reminders and encouraging you to stick to your budget. With a set monthly budget,
 rainyDay will remind you how much you have spent for the month with every new expense.
 
 Format: **`setbudget [AMOUNT]`**
@@ -454,10 +454,10 @@ To do so, you can use the following command:
 
 ### Shortcuts
 
-After using rainyDay for a period of time, you realise that there are some commands that you seem to repeat more
-often. rainyDay's "shortcut" feature can be utilised to save time! In this section, we'll show you how to create and
+After using rainyDay for a period of time, you realised that there are some commands that you seem to repeat frequently.
+rainyDay's "shortcut" feature can be utilised to save time! In this section, we'll show you how to create and
 use shortcuts effectively. Whether you need to add a new shortcut, view an existing one, or delete an old one, we'll
-cover them all. So, if you're ready to start working smarter, not harder, let's dive into the world of shortcuts!
+cover them all. So, if you're ready to start working smarter and not harder, let's dive into the world of shortcuts!
 
 * [Adding a shortcut](#adding-a-shortcut)
 * [Using a shortcut](#using-a-shortcut)
@@ -643,7 +643,7 @@ and their contents do not affect rainyDay's functions. The "logs" folder and its
 | [Filter transactions](#filter-transactions)     | `filter [FLAG] {FIELD}` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023` <br> `filter -date 01/01/2023 18/03/2023`                                                                                                                |
 | [Ignore transaction](#ignoring-a-transaction)   | `ignore [INDEX]` <br><br> **Example:** <br> `ignore 1` <br> `ignore 2`                                                                                                                                                                                       |
 | [Unignore transaction](#ignoring-a-transaction) | `unignore [INDEX]` <br><br> **Example:** <br> `unignore 1` <br> `unignore 2`                                                                                                                                                                                 |
-| [Set Budget](#setting-a-monthly-budget)         | `setbudget [VALUE]`                                                                                                                                                                                                                                          |   
+| [Set Budget](#setting-a-monthly-budget)         | `setbudget [AMOUNT]`                                                                                                                                                                                                                                         |   
 | [Add Shortcut](#adding-a-shortcut)              | `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`<br><br> **Example:** <br> `shortcut FavLunch -maps add -out noodles $4`                                                                                                                                      |   
 | [Use Shortcut](#using-a-shortcut)               | `[SHORTCUTNAME]`                                                                                                                                                                                                                                             |
 | [View Shortcuts](#viewing-a-shortcut)           | `shortcut_view`                                                                                                                                                                                                                                              |
