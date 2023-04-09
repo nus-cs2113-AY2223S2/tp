@@ -6,7 +6,7 @@ import seedu.duke.Deadline;
 import seedu.duke.DeadlineStorage;
 import seedu.duke.Module;
 import seedu.duke.Parser;
-import seedu.duke.Storage;
+import seedu.duke.ModueStorage;
 import seedu.duke.University;
 import seedu.duke.budget.BudgetPlanner;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteDeadlineCommandTest {
     DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-    Storage storage = Storage.getInstance();
+    ModueStorage storage = ModueStorage.getInstance();
     DataReader dataReader = DataReader.getDataReaderOneInstance();
 
     @Test

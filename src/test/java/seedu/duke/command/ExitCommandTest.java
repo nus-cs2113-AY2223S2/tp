@@ -5,7 +5,7 @@ import seedu.duke.Deadline;
 import seedu.duke.DeadlineStorage;
 import seedu.duke.Module;
 import seedu.duke.Parser;
-import seedu.duke.Storage;
+import seedu.duke.ModueStorage;
 import seedu.duke.University;
 import seedu.duke.budget.BudgetPlanner;
 
@@ -27,7 +27,7 @@ public class ExitCommandTest {
         ArrayList<Deadline> deadlines = new ArrayList<>();
         Parser parser = Parser.getInstance();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-        Storage storage = Storage.getInstance();
+        ModueStorage storage = ModueStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ExitCommand);

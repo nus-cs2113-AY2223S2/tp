@@ -47,7 +47,7 @@ public class Parser {
     }
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                    ArrayList<Module> puModules, Storage storage, DeadlineStorage deadlineStorage,
+                                    ArrayList<Module> puModules, ModueStorage storage, DeadlineStorage deadlineStorage,
                                     BudgetPlanner budgetPlanner, ArrayList<Deadline> deadlines) {
 
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
@@ -278,8 +278,8 @@ public class Parser {
         }
     }
 
-    private Command prepareAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
-                                            ArrayList<University> universities) {
+    private Command prepareAddModuleCommand(ModueStorage storage, String abbreviationAndCode,
+                                            ArrayList<Module> allModules, ArrayList<University> universities) {
         try {
             return handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities);
         } catch (InvalidPuException e) {
@@ -308,8 +308,8 @@ public class Parser {
      * @throws InvalidPuException      Thrown when Abbreviation given cannot be matched with any PUs.
      * @throws InvalidModuleException  Thrown when no Module can be found at the inputted Index.
      */
-    private Command handleAddModuleCommand(Storage storage, String abbreviationAndIndex, ArrayList<Module> allModules,
-                                           ArrayList<University> universities)
+    private Command handleAddModuleCommand(ModueStorage storage, String abbreviationAndIndex,
+                                           ArrayList<Module> allModules, ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException, InvalidModuleException {
         String[] stringSplit = abbreviationAndIndex.split("/");
         if (stringSplit.length != 2) {
@@ -511,7 +511,7 @@ public class Parser {
         return new ListCurrentPuCommand(modules, univID);
     }
 
-    private Command handleRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+    private Command handleRemoveModuleCommand(ModueStorage storage, String abbreviationAndIndex,
                                               ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException {
         String[] stringSplit = abbreviationAndIndex.split("/");
@@ -535,7 +535,7 @@ public class Parser {
         return new DeleteModuleCommand(storage, indexToDelete, univID);
     }
 
-    private Command prepareRemoveModuleCommand(Storage storage, String abbreviationAndIndex,
+    private Command prepareRemoveModuleCommand(ModueStorage storage, String abbreviationAndIndex,
                                                ArrayList<University> universities) {
         try {
             return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities);

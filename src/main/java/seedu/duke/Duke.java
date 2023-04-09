@@ -13,7 +13,7 @@ public class Duke {
      */
     private static DataReader dataReader = DataReader.getDataReaderOneInstance();
     private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-    private static Storage storage = Storage.getInstance();
+    private static ModueStorage storage = ModueStorage.getInstance();
 
     private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
     private static UI ui = UI.getUiOneInstance();
