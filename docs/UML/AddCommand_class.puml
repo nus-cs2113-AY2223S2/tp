@@ -8,7 +8,7 @@ Command <|-- AddCommand
 
 class Command{
 -commandType: String
-+command(commandType: String)
++Command(commandType: String)
 +getCommandType(): String
 +execute(companyList: CompanyList): void
 +execute(venueList: VenueList): void
