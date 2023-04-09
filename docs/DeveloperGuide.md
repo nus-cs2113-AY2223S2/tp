@@ -1,4 +1,4 @@
-# Developer Guide
+# DinerDirector Developer Guide
 ## Table of Contents
 - [Acknowledgements](#acknowledgements)
 - [Setting up](#setting-up)
