@@ -60,7 +60,7 @@ Most of the exceptions handling are done in the Parser class.
 and added link back to the TOC at the end of every section.
 2. Added the example outputs for **all** features of the product as well as the welcome message.
 3. Contributed a **large portion** (more than half) of the instructions for **all** the feature in the UG such as `deleteExpense`, `deleteIncome`, `addExpense`, etc.
-4. Helped with the formatting of [Command Summary](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/UserGuide.md#command-summary)
+4. Helped with the formatting of [Command Summary](../UserGuide.md#command-summary)
 
 [back to contents](#table-of-contents)
 
@@ -70,11 +70,11 @@ and added link back to the TOC at the end of every section.
 
 1. Set up the skeleton of DG with appropriate headers for everything.
 2. Set up the TOC to work properly such that it can link to the appropriate sections.
-3. Added the [Acknowledgements](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#acknowledgements) section which acknowledges the external libraries we have used
-4. Added the entire [Architecture](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#architecture)
+3. Added the [Acknowledgements](../DeveloperGuide.md#acknowledgements) section which acknowledges the external libraries we have used
+4. Added the entire [Architecture](../DeveloperGuide.md#architecture)
 section of the DG to explain how the classes of our program interacts with each other.
-5. Added the entire [Ui](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#ui-component) section of the DG.
-6. Added the [Common class](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#common-class) section of the DG.
+5. Added the entire [Ui](../DeveloperGuide.md#ui-component) section of the DG.
+6. Added the [Common class](../DeveloperGuide.md#common-class) section of the DG.
 7. Contributed to Target user profile  under `Appendix: Requirements` of DG.
 8. Contributed to Value proposition  under `Appendix: Requirements` of DG.
 9. Contributed to User Stories under `Appendix: Requirements` of DG.
@@ -102,6 +102,6 @@ classes together for a working program. This happened at the early stage of our 
 Expense and Income are implemented, without any main, Ui, Parser, or Command classes. I implemented the rest of the classes and
 made sure the features of expense and income are working as intended and that the program runs together with all the other classes.
 
-- Helped my group members linked their github accounts and portfolio in [AboutUs.md](../AboutUs.md), as well as updating the [Readme.md](../Readme.md).
+- Helped my group members linked their github accounts and portfolio in [AboutUs.md](../AboutUs.md), as well as updating the [Readme.md](../README.md).
 
 [back to contents](#table-of-contents)
