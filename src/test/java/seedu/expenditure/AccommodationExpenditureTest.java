@@ -72,6 +72,8 @@ public class AccommodationExpenditureTest {
 
     @Test
     public void testAccommodationExpenditure_inPast_onRepeatDay() {
+        // Equivalence Partition in the past: Past marking of this expenditure should unmark in current date of 2023,
+        // and set the next repeat date to 2024
         AccommodationExpenditure pastRepeatingAccommodationExpenditure = new AccommodationExpenditure(
                 "This has been marked in 2010",
                 1000,
@@ -92,14 +94,18 @@ public class AccommodationExpenditureTest {
             pastRepeatingAccommodationExpenditure.setRepeatDate(
                     pastRepeatingAccommodationExpenditure.setNextRepeatDate());
         }
+        // Since it was set in the past, it should unmark on the repeat day and month in 2023
         assertEquals("[Accommodation] || [ ] || Date: 9 Apr 2010 || Value: 1000.0 || " +
                         "Description: This has been marked in 2010",
                 pastRepeatingAccommodationExpenditure.toString());
+        // Next repeat date is set in 2024
         assertEquals("2024-04-09", pastRepeatingAccommodationExpenditure.getRepeatDate().toString());
     }
 
     @Test
     public void testAccommodationExpenditure_inNextFewDays() {
+        // Boundary Value Analysis: Since user is creating the expenditure for the year,
+        // next repeat date will be set to the next year
         AccommodationExpenditure inNextFewDaysAccommodationExpenditure = new AccommodationExpenditure(
                 "Today is 9 April 2023, but repeat date is set in the future of the same year",
                 1000,
@@ -123,5 +129,34 @@ public class AccommodationExpenditureTest {
                         "Description: Today is 9 April 2023, but repeat date is set in the future of the same year",
                 inNextFewDaysAccommodationExpenditure.toString());
         assertEquals("2024-04-20", inNextFewDaysAccommodationExpenditure.getRepeatDate().toString());
+    }
+
+    @Test
+    public void testAccommodationExpenditure_inFuture() {
+        // Equivalence Partition in the future: Since user is creating the expenditure for the future year,
+        // next repeat date will be set to the next year similarly
+        AccommodationExpenditure futureAccommodationExpenditure = new AccommodationExpenditure(
+                "Today is 9 April 2023, but expenditure is set to future",
+                1000,
+                LocalDate.parse("2025-04-20"),
+                LocalDate.parse("2025-04-20"));
+        futureAccommodationExpenditure.setPaid();
+        LocalDate firstDate = futureAccommodationExpenditure.getDate();
+        LocalDate currentDate = LocalDate.parse("2023-04-09");
+        LocalDate repeatDate = futureAccommodationExpenditure.getRepeatDate();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
+            futureAccommodationExpenditure.setRepeatDate(
+                    futureAccommodationExpenditure.setNextRepeatDate());
+            repeatDate = futureAccommodationExpenditure.getRepeatDate();
+        }
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            futureAccommodationExpenditure.resetPaid();
+            futureAccommodationExpenditure.setRepeatDate(
+                    futureAccommodationExpenditure.setNextRepeatDate());
+        }
+        assertEquals("[Accommodation] || [X] || Date: 20 Apr 2025 || Value: 1000.0 || " +
+                        "Description: Today is 9 April 2023, but expenditure is set to future",
+                futureAccommodationExpenditure.toString());
+        assertEquals("2026-04-20", futureAccommodationExpenditure.getRepeatDate().toString());
     }
 }

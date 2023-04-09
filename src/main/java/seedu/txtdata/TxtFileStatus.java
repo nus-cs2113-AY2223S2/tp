@@ -145,7 +145,6 @@ public abstract class TxtFileStatus {
     }
 
     /**
-     *
      * @author Leo Zheng Rui Darren
      */
     public static void checkRepeatDate(String stringRepeatDate, String stringFirstDate) throws TxtFileException {
