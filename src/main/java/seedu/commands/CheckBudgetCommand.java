@@ -182,7 +182,7 @@ public class CheckBudgetCommand extends Command {
     }
 
     public void fetchDayExpenditureAmounts(Expenditure expenditure, LocalDate dayVal) {
-        if (!expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().equals(dayVal))) {
+        if (expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().equals(dayVal))) {
             totalAmount += expenditure.getValue();
         }
     }
@@ -204,7 +204,7 @@ public class CheckBudgetCommand extends Command {
     }
 
     public void fetchYearExpenditureAmounts(Expenditure expenditure, Year year) {
-        if (!expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().getYear() == year
+        if (expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().getYear() == year
                 .getValue())) {
             totalAmount += expenditure.getValue();
         }

@@ -6,8 +6,6 @@ import java.time.format.DateTimeFormatter;
 public class BorrowExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "B";
     public static String iconPaid = "[X]";
-    public static String iconUnpaid = "[ ]";
-    boolean isPaid;
     private LocalDate deadline;
     private String borrowerName;
 
@@ -30,7 +28,7 @@ public class BorrowExpenditure extends Expenditure {
         return borrowerName;
     }
     public String getPaidIcon() {
-        return (isPaid) ? iconPaid : iconUnpaid;
+        return iconPaid;
     }
     public void setBorrowerName(String borrowerName) {
         this.borrowerName = borrowerName;
