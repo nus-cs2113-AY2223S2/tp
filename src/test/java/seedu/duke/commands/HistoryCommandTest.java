@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class HistoryCommandTest {
+class HistoryCommandTest {
     Inventory inventory;
 
     /**
      * Integration tests with add and edit functions.
      */
     @Test
-    public void historyAddEditTest() {
+    void historyAddEditTest() {
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5", inventory);
         addParser.run();
@@ -44,7 +44,7 @@ public class HistoryCommandTest {
      * Integration tests with remove function.
      */
     @Test
-    public void historyRemoveTest(){
+    void historyRemoveTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5", inventory);
         addParser.run();
@@ -62,7 +62,7 @@ public class HistoryCommandTest {
      * Integration tests with edit category
      */
     @Test
-    public void historyCategoryTest(){
+    void historyCategoryTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5", inventory);
         addParser.run();

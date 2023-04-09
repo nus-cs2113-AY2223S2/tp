@@ -1,5 +1,7 @@
 @startuml
+title SellParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 participant ":SellParser"
 User -> ":SellParser"**:SellParser()
@@ -17,18 +19,18 @@ alt Contains "upc/" and input length > 1
     deactivate ":SellCommand"
     ":SellParser" -> ":SellCommand":run()
     activate ":SellCommand"
-    ref over ":SellCommand","<<Class>>\nUI": Deduct quantity of the Item
+    ref over ":SellCommand","<<class>>\nUI": Deduct quantity of the Item
     ":SellCommand"-->":SellParser":
     deactivate ":SellCommand"
     destroy ":SellCommand"
 else No "upc/" or input length <= 1
     ":SellParser"->":SellParser": EditErrorException()
     activate ":SellParser" #Cyan
-    ":SellParser"->"<<Class>>\nUI":printInvalidSellCommand()
-    activate "<<Class>>\nUI"
-    ref over "<<Class>>\nUI":Print Error Message
-    "<<Class>>\nUI"-->":SellParser":
-    deactivate "<<Class>>\nUI"
+    ":SellParser"->"<<class>>\nUI":printInvalidSellCommand()
+    activate "<<class>>\nUI"
+    ref over "<<class>>\nUI":Print Error Message
+    "<<class>>\nUI"-->":SellParser":
+    deactivate "<<class>>\nUI"
     ":SellParser"-->":SellParser":
     deactivate ":SellParser"
 end

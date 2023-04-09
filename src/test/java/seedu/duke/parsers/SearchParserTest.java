@@ -8,7 +8,7 @@ import seedu.duke.types.Types;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class SearchParserTest {
+class SearchParserTest {
     /**
      * Runs SearchParserMock for a given input and returns whether the input was parsed successfully
      * Trims input to simulate trimming in ParserHandler
@@ -25,24 +25,24 @@ public class SearchParserTest {
         return searchParserMock.isValidParse();
     }
     @Test
-    public void searchKeywordPositiveTests(){
+    void searchKeywordPositiveTests(){
         assertTrue(getMockSearchResult("test", Types.SearchType.KEYWORD));
         assertTrue(getMockSearchResult("test 2", Types.SearchType.KEYWORD));
         assertTrue(getMockSearchResult("test multiple words in a line", Types.SearchType.KEYWORD));
     }
     @Test
-    public void searchKeywordNegativeTests(){
+    void searchKeywordNegativeTests(){
         assertFalse(getMockSearchResult("", Types.SearchType.KEYWORD));
         assertFalse(getMockSearchResult(" ", Types.SearchType.KEYWORD));
         assertFalse(getMockSearchResult("         ", Types.SearchType.KEYWORD));
     }
     @Test
-    public void searchUPCPositiveTests(){
+    void searchUPCPositiveTests(){
         assertTrue(getMockSearchResult("123", Types.SearchType.UPC));
         assertTrue(getMockSearchResult("241704928709481720487083728730", Types.SearchType.UPC));
     }
     @Test
-    public void searchUPCNegativeTests(){
+    void searchUPCNegativeTests(){
         assertFalse(getMockSearchResult("", Types.SearchType.UPC));
         assertFalse(getMockSearchResult(" ", Types.SearchType.UPC));
         assertFalse(getMockSearchResult("         ", Types.SearchType.UPC));

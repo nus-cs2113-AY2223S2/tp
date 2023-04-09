@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title FilterCommand (Price) Sequence Diagram
 
+skinparam style strictuml
 participant ":FilterParser"
 group sd [filter price]
     ":FilterParser" -> ":FilterCommand" ** : run() with parameters set for price

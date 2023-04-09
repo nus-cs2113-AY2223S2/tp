@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class FilterCommandTest {
+class FilterCommandTest {
     Inventory inventory;
 
     /**
      * Tests the filter price function.
      */
     @Test
-    public void filterPriceTest() {
+    void filterPriceTest() {
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -39,7 +39,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void filterCategoryTest() {
+    void filterCategoryTest() {
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();

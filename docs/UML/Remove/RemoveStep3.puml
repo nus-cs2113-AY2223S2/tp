@@ -3,7 +3,7 @@
 
 
 object RemoveParser{
-    - rawInput = "f/item upc/123"
+    - rawInput = "f/upc 123"
     - Inventory = inventory
     - alertList = alertList
 }
@@ -15,13 +15,11 @@ object RemoveParser1{
 }
 
 object RemoveCommand{
-    - userConfirmation = "Y"
     - Inventory = inventory
     - upcCode = 123
 }
 
 object RemoveCommand1{
-    - userConfirmation = "Y"
     - Inventory = inventory
     - itemIndex = 2
 }
