@@ -156,10 +156,14 @@ Step 3: The execute method in the ListWorkoutCommand class that is overrides wil
 ###### [Back to table of contents](#table-of-contents)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Workout view component
 =======
 ### Calories Component
 >>>>>>> b7e87bb310c62e77d8e1c09bf78b75559d011043
+=======
+### Workout view component
+>>>>>>> 2e3ab3d23fcecec0f76e19117a3901bf499eab81
 The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
 enter a specific workout date and the number of exercises on that date will be displayed
 
