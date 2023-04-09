@@ -34,8 +34,7 @@ public class PrintExercises {
     private static String difficultyLevel(String difficulty) {
         if (difficulty.equals("beginner")) {
             return "easy";
-        }
-        else if (difficulty.equals("intermediate")) {
+        }else if (difficulty.equals("intermediate")) {
             return "medium";
         }
         assert difficulty.equals("expert");

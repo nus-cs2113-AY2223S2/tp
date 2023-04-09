@@ -11,8 +11,13 @@ public class PrintHelpMessage {
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
-        System.out.println("[ippt] [AGE] [RUNTIME] [PUSHUPs] [SITUPs]");
-        System.out.println("\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises.");
+        System.out.println("ippt AGE RUNTIME PUSHUPS SITUPS");
+        System.out.println("\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,");
+        System.out.println("\twhere AGE is a valid positive integer from 16-60;");
+        System.out.println("\tRUNTIME is in the format of 'mm:ss' where " +
+                "mm is minute (positive integer) and ss is seconds (positive integer);");
+        System.out.println("\tPUSHUPS is a valid positive integer from 0 to 60;");
+        System.out.println("\tand SITUPS is a valid positive integer from 0 to 60;");
         System.out.println("[start]");
         System.out.println("\tStart a workout session");
         System.out.println("[history]");
