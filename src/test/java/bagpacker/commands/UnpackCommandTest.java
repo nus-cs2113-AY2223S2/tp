@@ -15,6 +15,7 @@ public class UnpackCommandTest {
         PackingList dummyPackingList = new PackingList();
         Item firstItem = new Item(30, "pairs of socks");
         dummyPackingList.addItem(firstItem);
+        firstItem = PackingList.get(0);
         PackCommand packCmd = new PackCommand(20, 1);
         packCmd.execute(dummyPackingList);
         int initialPackedQty = firstItem.getPackedQuantity();
