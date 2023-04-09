@@ -161,13 +161,13 @@ Format: `find_deadline <keyword>`
 
 Example: 
 ```
-find_deadline fix
+find_deadline buy
 ```
 
 Outcome:
 ```
 Here are the matching deadlines in your list:
-1. fix water pipes by: 9 Apr 2PM
+1. need to buy more potatoes by: 9 Apr 2PM
 ```
 
 ### Dish
