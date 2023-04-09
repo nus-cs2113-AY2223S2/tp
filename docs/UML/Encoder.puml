@@ -52,6 +52,7 @@ hide footbox
             end
             ":CompanyListEncoder" -> "fw:FileWriter": close()
             ":CompanyListEncoder" <-- "fw:FileWriter"
+            <-- ":CompanyListEncoder"
         deactivate "fw:FileWriter"
 
 @enduml
