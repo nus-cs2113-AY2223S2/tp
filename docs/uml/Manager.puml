@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include Style.puml
+
+class XYZManager MANAGER_COLOR{
+    - XYZs:ArrayList<XYZ>
+    + XYZManager(ArrayList<XYZ>:XYZs)
+    + {static} addXYZ(xyz:XYZ, ui:TextUI) : void
+    + {static} viewXYZs() :String
+    + {static} deleteXYZ(index:int, ui:TextUI) : void
+    + {static} findXYZ(keyword:String, ui:TextUI):void
+}
+
+@enduml

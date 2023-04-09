@@ -1,6 +1,11 @@
 @startuml
 'https://plantuml.com/class-diagram
 !include Style.puml
+title UI Class Diagram
+
+class DinerDirector DINERDIRECTOR_COLOR {
+}
+
 
 class TextUi UI_COLOR{
     - in:Scanner
@@ -12,5 +17,11 @@ class TextUi UI_COLOR{
     + printMessage(message: String) : void
     + {static} printBanner() : void
 }
+
+class XYZManager MANAGER_COLOR {
+}
+
+DinerDirector --> TextUi: read user input with >
+XYZManager --> TextUi: print command output with >
 
 @enduml

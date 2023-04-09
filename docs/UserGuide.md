@@ -39,14 +39,22 @@ This section will guide you through the installation process
 ## Features 
 
 ### Help
-A simple command to display the help page in the program. 
+#### Purpose
+Allows the restaurant manager using the application to see the list of commands available to use.  
 
 Format: `help`
 
 ### Meetings
+Meeting is a feature for the restaurant manager to manage meetings with 
+boss or workers. MeetingManager supports add_meeting, view_meetings,
+delete_meeting and find_meeting. 
 
 #### Add Meetings:
-Add a meeting to the meeting list.
+Add a meeting to the meeting list. The name of the meeting is written after
+'n/', followed by the time of the meeting written after 't/'. Note that add_meeting
+command will not handle extra parameters other than 'n/' and 't/', which will be considered
+part of meeting name or meeting time. Besides, please do not contain 't/' inside your meeting
+name because the MeetingManager will consider what after 't/' as time.
 
 Format: `add_meeting n/<name> t/<time>`
 
@@ -89,7 +97,7 @@ meeting with boss
 #### Delete meeting:
 Will delete the meeting specified from the list.
 
-Format: `delete_meeting <index_number>`
+Format: `delete_meeting <meeting index>`
 
 Example:
 ```
@@ -101,11 +109,14 @@ Meeting meeting with boss deleted!
 ```
 
 ### Deadlines
+#### Purpose
+Deadline objects helps our user, the restaurant manager, to better keep track of and manage the many task that
+needs to be completed for the restaurant.
 
 #### Add a deadline to the deadline list:
-Successfully adds deadline only if the name is unique, otherwise it informs the user to key in a unique deadline name
-
 Format: `add_deadline n/<name> t/<time>`
+
+Note: User is allowed to input name and time parameter of any format.
 
 Example: 
 ```
@@ -118,13 +129,12 @@ Example:
 ```
 
 #### View all deadlines:
-View the deadline list.
 
 Format: `view_deadlines`
 
 
 #### Delete a deadline:
-Format: `delete_deadline <index>`
+Format: `delete_deadline <deadline index>`
 
 Example:
 ```
@@ -198,7 +208,7 @@ Format: `view_dish`
 
 Deletes the dish in the list based on the index given, if a dish exists at that index.
 
-Format: `delete_dish <index_number>`
+Format: `delete_dish <dish index>`
 
 Example: 
 
@@ -375,20 +385,20 @@ John Doe~|~Sunday~|~2001-03-09~|~82802123
 
 ## Summary of Commands
 
-| Action          | Command                                                                                                      |
-|-----------------|--------------------------------------------------------------------------------------------------------------|
-| help            | `help`                                                                                                       |
-| add_meeting     | `add_meeting n/<name> t/<time>`                                                                              |
-| view_meetings   | `view_meetings`                                                                                              |
-| delete_meeting  | `delete_meeting <index>`                                                                                         |
-| find_meeting    | `find_meeting <string>`                                                                                      |
+| Action          | Command                                                                                                        |
+|-----------------|----------------------------------------------------------------------------------------------------------------|
+| help            | `help`                                                                                                         |
+| add_meeting     | `add_meeting n/<name> t/<time>`                                                                                |
+| view_meetings   | `view_meetings`                                                                                                |
+| delete_meeting  | `delete_meeting <meeting index>`                                                                               |
+| find_meeting    | `find_meeting <string>`                                                                                        |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
 | view_dish       | `view_dish`                                                                                                    |
-| delete_dish     | `delete_dish <index_number>`                                                                                   |
+| delete_dish     | `delete_dish <dish index>`                                                                                     |
 | find_dish       | `find_dish <keyword>`                                                                                          |
 | add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
 | view_deadlines  | `view_deadlines`                                                                                               |
-| delete_deadline | `delete_deadline <index>`                                                                                      |
+| delete_deadline | `delete_deadline <deadline index>`                                                                             |
 | find_deadline   | `find_deadline <keyword>`                                                                                      |
 | add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
 | view_staff      | `view_staff`                                                                                                   |

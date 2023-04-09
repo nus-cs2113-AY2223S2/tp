@@ -27,4 +27,5 @@ Hello from
 Welcome to DinerDirector! Please type "help" for a list of valid commands.
 What can I do for you?
 >Please give a valid command! Type "help" for list of valid commands
+
 >Thank you for using DinerDirector!
