@@ -208,28 +208,37 @@ public class Parser {
             String staffDateOfBirth = "";
             if (matcher.find()) {
                 staffName = matcher.group("name");
-                if (staffName.equals("")) {
-                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_NAME);
-                }
                 staffWorkingDay = matcher.group("workingDay");
-                if (staffWorkingDay.equals("")) {
-                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_WORKING_DAY);
-                }
                 staffPhoneNumber = matcher.group("phoneNumber");
-                if (staffPhoneNumber.equals("")) {
-                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
-                }
                 staffDateOfBirth = matcher.group("dateOfBirth");
-                if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
-                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
-                }
-
                 LocalDate today = LocalDate.now();
                 LocalDate parsedStaffDateOfBirth = LocalDate.parse(staffDateOfBirth);
                 if (parsedStaffDateOfBirth.isAfter(today)) {
                     throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_FUTURE_DOB);
                 }
             }
+
+            System.out.println(staffName);
+            System.out.println(staffWorkingDay);
+            System.out.println(staffPhoneNumber);
+            System.out.println(staffDateOfBirth);
+
+            if (staffName.equals("")) {
+                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_NAME);
+            }
+
+            if (staffWorkingDay.equals("")) {
+                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_WORKING_DAY);
+            }
+
+            if (staffPhoneNumber.equals("")) {
+                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
+            }
+
+            if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
+                throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
+            }
+
             if (staffPhoneNumber.length() > 15) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
             }
