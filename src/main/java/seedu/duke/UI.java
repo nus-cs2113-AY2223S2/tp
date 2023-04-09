@@ -84,7 +84,8 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public void printAddModMessage() {
+    public void printAddModMessage(Module moduleToAdd) {
+        printModule(moduleToAdd);
         System.out.println(ADD_MOD_MESSAGE);
         System.out.println(LINE);
     }
@@ -92,6 +93,13 @@ public class UI {
     public void printDeleteModMessage() {
         System.out.println(DELETE_MOD_MESSAGE);
         System.out.println(LINE);
+    }
+
+    public void printModuleDeleted(Module moduleDeleted) {
+        if (moduleDeleted == null) {
+            return;
+        }
+        printModule(moduleDeleted);
     }
 
     public void printInputNotNumMessage() {
@@ -219,20 +227,26 @@ public class UI {
         int puModulesIndex = 0;
         for (Module puModuleToPrint : puModulesToPrint) {
             puModulesIndex++;
-            String moduleCode = puModuleToPrint.getModuleCode();
-            String moduleName = puModuleToPrint.getModuleName();
-            int moduleMCs = puModuleToPrint.getModuleMCs();
-            String nusModuleCode = puModuleToPrint.getNusModuleCode();
-            String nusModuleName = puModuleToPrint.getNusModuleName();
-            int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
-            System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+            printModule(puModuleToPrint);
         }
         System.out.println(LINE);
     }
 
+    //@@author MuxPotato
+    private void printModule(Module puModuleToPrint) {
+        String moduleCode = puModuleToPrint.getModuleCode();
+        String moduleName = puModuleToPrint.getModuleName();
+        int moduleMCs = puModuleToPrint.getModuleMCs();
+        String nusModuleCode = puModuleToPrint.getNusModuleCode();
+        String nusModuleName = puModuleToPrint.getNusModuleName();
+        int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
+        System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+        System.out.print("   maps to ----> ");
+        System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
+    }
+
+    //@@author
     public void printPUList() {
         System.out.println(LINE);
         System.out.println(LIST_PU_HEADER_MESSAGE);

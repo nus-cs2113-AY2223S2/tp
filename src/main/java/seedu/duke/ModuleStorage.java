@@ -151,7 +151,7 @@ public class ModuleStorage implements DatabaseInterface {
      *         list of modules.
      */
     public boolean addModuleToModuleList(Module moduleToAdd) {
-        assert (moduleToAdd != null) : "error line 111";
+        assert (moduleToAdd != null) : "error null moduleToAdd";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
             return false;
@@ -212,6 +212,7 @@ public class ModuleStorage implements DatabaseInterface {
      */
     public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,
                                        ModuleStorage database, int uniID) {
+        UI ui = UI.getUiOneInstance();
         int indexToDeletePuSpecificListToZeroBased = indexToDeletePuSpecificList - 1;
         int counterUpToIndexToDelete = 0;
         int indexToDelete = -1;
@@ -227,8 +228,9 @@ public class ModuleStorage implements DatabaseInterface {
                         + "should not be greater than indexToDeletePuSpecificListToZeroBased";
             }
         }
-
+        Module moduleToBeDeleted = null;
         try {
+            moduleToBeDeleted = modules.get(indexToDelete);
             modules.remove(indexToDelete);
         } catch (IndexOutOfBoundsException e) {
             UI.printDeleteNumError();
@@ -241,6 +243,7 @@ public class ModuleStorage implements DatabaseInterface {
             UI.printWriteToDatabaseFailureMessage();
             return false;
         }
+        ui.printModuleDeleted(moduleToBeDeleted);
         return true;
     }
 
