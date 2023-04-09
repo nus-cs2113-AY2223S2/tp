@@ -147,7 +147,7 @@ public class CheckBudgetCommand extends Command {
      * @author TzeLoong
      */
     private void checkYear(ExpenditureList expenditures) throws EmptyStringException, StringIndexOutOfBoundsException, 
-    DateTimeParseException, YearLimitException {
+            DateTimeParseException, YearLimitException {
         Year year = fetchYear();
         for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
             fetchYearLendBorrowAmounts(individualExpenditure, year);
