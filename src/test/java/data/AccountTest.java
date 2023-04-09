@@ -59,7 +59,8 @@ public class AccountTest {
             List<String> lines = new ArrayList<>();
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts[0].equalsIgnoreCase(newAccount.getAccountName()) && parts[1].equals(newAccount.getPasswordHash())) {
+                if (parts[0].equalsIgnoreCase(newAccount.getAccountName())
+                        && parts[1].equals(newAccount.getPasswordHash())) {
                     found = true;
                     continue;
                 }
@@ -74,8 +75,6 @@ public class AccountTest {
                 }
                 writer.close();
             }
-        } catch (FileNotFoundException e) {
-
         } catch (IOException e) {
             e.printStackTrace();
         }
