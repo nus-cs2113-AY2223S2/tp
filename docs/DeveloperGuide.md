@@ -378,7 +378,7 @@ of the notes stored in the Notes List by users.
 <summary>Sequence Diagram for Store</summary>
 <div markdown="1">
 
-![img_2.png](img_2.png)![img_2.png](SequenceDiagrams/img_2.png)
+![img_4.png](img_4.png)
 
 </div>
 </details>
