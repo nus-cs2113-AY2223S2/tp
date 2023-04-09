@@ -83,4 +83,10 @@ public class ExceptionChecker {
             }
         }
     }
+
+    public static void checkLargeValue(Double value) throws LargeValueException {
+        if (value >= 10000000d) {
+            throw new LargeValueException();
+        }
+    }
 }

@@ -26,7 +26,8 @@ public enum ErrorMessages {
     ERROR_INVALID_DATE_MESSAGE("Borrow date must be before the return date! Please try again"),
     ERROR_INVALID_DEADLINE_MESSAGE("Return date must be after today's date! " + "Today's date is " + LocalDate.now()),
     ERROR_INVALID_AMOUNT_PRECISION("Precision of amount is more than 2 decimal places. " +
-                                           "Please re-enter a valid amount value");
+                                           "Please re-enter a valid amount value"),
+    ERROR_INVALID_AMOUNT_TOO_LARGE("The amount you have entered is too large please input a smaller value!");
 
     public final String message;
 
