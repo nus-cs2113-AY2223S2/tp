@@ -77,7 +77,7 @@ public class AddIncomeCommandTest {
         String expectedOutput = "No fields found";
         try {
             new AddIncomeCommand(null);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -92,7 +92,7 @@ public class AddIncomeCommandTest {
         Income input = new Income(null, DATE, INCOME_VALUE);
         try {
             new AddIncomeCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -107,7 +107,7 @@ public class AddIncomeCommandTest {
         Income input = new Income(DESCRIPTION, null, INCOME_VALUE);
         try {
             new AddIncomeCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -122,7 +122,7 @@ public class AddIncomeCommandTest {
         Income input = new Income(DESCRIPTION, DATE, ZERO_INCOME_VALUE);
         try {
             new AddIncomeCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -137,7 +137,7 @@ public class AddIncomeCommandTest {
         Income input = new Income(DESCRIPTION, DATE, NEGATIVE_INCOME_VALUE);
         try {
             new AddIncomeCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }

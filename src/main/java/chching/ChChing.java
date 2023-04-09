@@ -18,7 +18,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-
+/**
+ * Main class of ChChing.
+ * Contains the main method, and the main logic of the program.
+ */
 public class ChChing {
     /**
      * Program Logging
@@ -82,7 +85,7 @@ public class ChChing {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand, ui);
                 c.execute(incomes, expenses, ui, storage, selector, converter, targetStorage);
                 isExit = c.isExit();
