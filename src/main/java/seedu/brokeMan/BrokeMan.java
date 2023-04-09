@@ -20,13 +20,13 @@ public class BrokeMan {
         new BrokeMan().run();
     }
 
-    public static void run() {
+    private static void run() {
         Ui.showWelcomeMessages();
         runCommandUntilExitCommand();
         Ui.showGoodByeMessages();
     }
 
-    public static void runCommandUntilExitCommand() {
+    private static void runCommandUntilExitCommand() {
         Command command = null;
         SaveExpense.readExpenseFile();
         SaveIncome.readIncomeFile();

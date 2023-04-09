@@ -6,28 +6,29 @@ class "Parser" as parser
 class "Command" as command
 
 class parser <<abstract>> {
-    -prepareViewBudgetCommand(): Command
-    -prepareSetBudgetCommand(): Command
-    -prepareDeleteExpenseCommand(): Command
-    -prepareDeleteIncomeCommand(): Command
-    -prepareAddExpenseCommand(): Command
-    -prepareAddIncomeCommand(): Command
-    -prepareListExpenseCommand(): Command
-    -prepareListIncomeCommand(): Command
-    -prepareEditExpenseCommand(): Command
-    -prepareEditIncomeCommand(): Command
-    -checkAddCommandException(): String[]
-    -checkExceedMaxCharForAmount(): String
-    -checkValidOptionalTimeFlagException(): String
-    -checkEmptyAddFlag(): void
-    -checkEmptyFlag(): void
-    -checkTimeException(): void
-    -checkDoubleException(): void
-    -checkEditCommandException(): String[]
-    -checkContainFlagsException(): void
-    -checkIsIntegerIndex(): void
-    -checkCorrectType(): void
-    +parseCommand(): Command
+    -prepareViewBudgetCommand(description: String): Command
+    -prepareSetBudgetCommand(description: String): Command
+    -prepareDeleteExpenseCommand(description: String): Command
+    -prepareDeleteIncomeCommand(description: String): Command
+    -prepareAddExpenseCommand(description: String): Command
+    -prepareAddIncomeCommand(description: String): Command
+    -prepareListExpenseCommand(description: String): Command
+    -prepareListIncomeCommand(description: String): Command
+    -prepareEditExpenseCommand(description: String): Command
+    -prepareEditIncomeCommand(description: String): Command
+    -checkAddCommandException(description: String): String[]
+    -checkExceedMaxCharForAmount(description: String): String
+    -checkValidOptionalTimeFlagException(description: String): String
+    -checkEmptyAddFlag(splitDescriptions: String[]): void
+    -checkSmallerThanMinTime(date: String): void
+    -checkEmptyFlag(splitDescriptions: String[]): void
+    -checkTimeException(timeToCheck: String): void
+    -checkDoubleException(cost: String): void
+    -checkEditCommandException(description: String): String[]
+    -checkContainFlagsException(newDescription: String): void
+    -checkIsIntegerIndex(index: String): void
+    -checkCorrectType(type: String): void
+    +parseCommand(userFullInput: String): Command
 }
 
 class command <<abstract>> {
@@ -42,7 +43,7 @@ class UserInput <<abstract>> {
     #splitUserInput(): UserInput
 }
 
-parser --> command
-parser .> UserInput
+parser --> "1" command
+parser .> "1" UserInput : uses >
 
 @enduml
