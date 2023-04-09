@@ -15,6 +15,8 @@ Given below are my contributions to the project.
 * Managed release of v1.0 on GitHub.
 * Maintained the issue tracker with the necessary tags and labels.
 
+<div style="page-break-after: always;"></div>
+
 #### Enhancements Implemented:
 * Created parser to parse user input into commands and arguments.
 * Created an add income command to allow users to add and track their incomes.
