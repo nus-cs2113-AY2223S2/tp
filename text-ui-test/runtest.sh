@@ -11,8 +11,6 @@ cd text-ui-test
 java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
 rm -f logging.xml
 rm -f userData.json
-cp EXPECTED.TXT EXPECTED-UNIX.TXT
-dos2unix EXPECTED-UNIX.TXT ACTUAL.TXT
 diff EXPECTED-UNIX.TXT ACTUAL.TXT
 
 if [ $? -eq 0 ]
