@@ -29,5 +29,4 @@ bin/
 **/userPlans.json
 
 /text-ui-test/ACTUAL.TXT
-/text-ui-test/EXPECTED.TXT
 text-ui-test/EXPECTED-UNIX.TXT
