@@ -29,22 +29,25 @@
 Product Name: Duke of Books
 
 ### Target user profile:
-NUS computer science (CS) students who wish to borrow and read CS related books.
+This program is designed for National University of Singapore (NUS) Computer Science (CS) 
+students who wish to borrow and read CS related books.
 
 ### Problem addressed:
-CS students are incredibly busy and hence having a command line interface (CLI) program without GUI makes finding the books they want quick and efficient. This software will also help them track loans and return dates.
+CS students are often busy, so a command line interface (CLI) program without a GUI can make 
+finding the books they need quick and efficient. This software can also help them keep track 
+of loans and return dates.
 
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed.
+1. Ensure that you have Java 11 or a newer version installed.
 2. Download the latest version of `DukeOfBooks` from [here](https://github.com/AY2223S2-CS2113-F10-4/tp/releases).
 
 ## Access Management
-The application requires user to login before performing other actions.
+To perform any actions, users must first log in to their account.
 
 ### <a name="login"> Login an account: `login` </a>
-Login the system using username and password. 
+Log in the system using your username and password. 
 
 Format:
 * login -username USERNAME -password PASSWORD
@@ -58,7 +61,7 @@ Examples:
 ```
 
 ### <a name="signup"> Signup an account: `signup` </a>
-Sign up a new account with a unique username, password and user's actual name.
+Sign up for a new account by providing a unique username, password, and the user's actual name.
 
 Format: 
 * signup -username USERNAME -password PASSWORD -name NAME
@@ -84,7 +87,7 @@ Examples:
 ```
 
 ### <a name="help"> Help in login/signup: `help` </a>
-Get the list of command related to accessing the system.
+Get a list of commands related to accessing the system.
 
 Format:
 * help
@@ -99,7 +102,7 @@ Examples:
 ```
 
 ### <a name="logout"> Logout from an account: `logout` </a>
-Logout the user. This command can only be used after logging in. The user can then log in again with the same / different account.  
+This command allows the user to log out of the system. It can only be used after the user has logged in. After logging out, the user can log in again with the same or a different account.
 
 Format:
 * logout
@@ -111,7 +114,7 @@ Examples:
 ```
 
 ### <a name="exit"> Exit the application: `exit` </a>
-Exits the application. This command should be executed only after logging out of the system.  
+This command is used to exit the application and should only be executed after logging out of the system. It terminates Duke of Books.
 
 Format: 
 * exit
@@ -128,7 +131,7 @@ Examples:
 ## Features
 
 ### <a name="search"> Search book: `search` </a>
-Search for a book with title and/or topic. The string entered will be matched with a subset of the title/topic of the target book, and matches will be returned. Note that multiple books can be returned during searching.
+Search for a book by title and/or topic. The search string will be matched with a subset of the title/topic of the target book, and any matching books will be returned. Note that multiple books can be returned during searching.
 
 Format:
 * search -title TITLE
@@ -172,8 +175,7 @@ Examples:
 ```
 
 ### <a name="check"> Check book availability: `check` </a>
-Check if a book is available for borrowing. Will return either borrowed or not borrowed.
-
+Check if a book is available for borrowing. The system will return either "Borrowed" or "Not borrowed" status of the book.
 Format:
 * check -title TITLE
 
@@ -196,7 +198,7 @@ Examples:
 ```
 
 ### <a name="renew"> Renew borrow period of book: `renew` </a>
-Renew borrowing of books for a fixed duration.
+Renew the borrowing period of a book for a fixed duration.
 
 Format:
 * renew -title TITLE
@@ -208,7 +210,7 @@ Examples:
 ```
 
 ### <a name="status"> Check borrowing status: `status` </a>
-Check borrowing status of book. Will return not borrowed, borrowed with details, or overdue with details.
+Check the borrowing status of a book. The system will return one of the following status: "Not borrowed", "Borrowed" with details, or "Overdue" with details.
 
 Format:
 * status -title TITLE
@@ -232,7 +234,7 @@ Examples:
 ```
 
 ### <a name="librarian"> Add/Delete book: `librarian` </a>
-Adds/deletes book to/from the library for users. This is a superuser method and should only be used by the librarian.
+This method is used by the librarian to add or delete books to/from the library for users. It is a superuser privilege and should not be used by anyone else.
 
 Format:
 * librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add
@@ -285,7 +287,7 @@ Examples:
 ```
 
 ### <a name="history"> View history: `history` </a>
-Check the borrow history of the books.
+Users can view their borrowing history for books with this command.
 
 Format:
 * history
