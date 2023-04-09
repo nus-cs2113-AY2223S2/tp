@@ -1,7 +1,6 @@
 # Developer Guide
 
-SEP Helper is a desktop application for Mechanical Engineering students, st
-udying at the
+SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 ---
 
@@ -10,7 +9,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
     1. [Architecture](#architecture)
-    2. [Module Storage](#module-storage)
+    2. [ModuleStorage](#modulestorage)
     3. [Parser](#parser)
     4. [UserInterface](#userinterface--ui-) 
     5. [Help Command](#help-command)
@@ -51,8 +50,7 @@ original source as well}
 1. Using ByteArrayOutputStream to test System.out.print functions
    Author: dfa. Link: https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
 
-
-
+   
 # Design & implementation
 
 ## Architecture
@@ -255,7 +253,7 @@ Sequence Diagram of List Pu Command.
 2. ListPuCommand calls printPUList() of UI class.
 3. UI class holds an instance of all the possible PUs in an Arraylist<University> object.
 4. UI class loops through ArrayList<University> to receive the various university information and print out
-   to UserConsole
+   to UserConsole.
 
 
 ### List Pu Modules Command
@@ -336,6 +334,32 @@ module message in the User Console.
 
 ---
 
+#### Reference Block for SortModulesAccording to Printing Length Function
+
+![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FMiscellaneous%2FSortModulesAccordingToPrintingLengthFunction.png)
+
+**Explanation** 
+1. ModuleStorage calls Module's getPrintingLength() function.
+2. Module retrieves its own module code, name and MCs and calculate their total length known as "printing length"
+and returns it to ModuleStorage
+3. ModuleStorage calls ArrayList modules sort function passing the "printing length" into a comparator. 
+4. ArrayList Modules sorts the modules according to this "printing length"
+
+**Goal of this sorting function**
+
+The main objective of this sorting function is to increase readability of print functions for users.
+
+Previously, when printing out multiple lines, the lines that are printed out are messy and hard to read.
+
+![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
+
+The sorting functions aids in helping it more readable, when the list of mappings are made to be in one line and sorted
+according to the length of string before the "maps to ---->" key words.
+
+![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsMoreReadable.jpg)
+
+---
+
 ## Deadline Commands
 Class Diagram of Deadline Commands
 
@@ -360,10 +384,10 @@ called.
 ### Add Deadline Command
 The add deadline command allows the user to add a deadline into the user's list of deadlines.
 > Syntax: /deadline/add [_task_] /by [_due date_]
-> 
+>
 > Take note that [_due date_] is in the format of [_dd-mm-yyyy_]
 
-The following sequence diagram shows the relationship between the classes involved when the add deadline command is 
+The following sequence diagram shows the relationship between the classes involved when the add deadline command is
 called.
 
 ![AddDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FAddDeadlineCommandSequenceDiagram.png)
@@ -371,17 +395,17 @@ called.
 **Explanation**
 1. AddDeadlineModule command calls addDeadlineToDeadlines(deadlineToAdd) of DeadlineStorage class.
 2. In the circumstance that the deadlineToAdd is null, DeadlineStorage will call printAddDeadlineFailureMessage to tell
-the user that the deadline adding has failed, and stop the operation of AddDeadlineCommand.
+   the user that the deadline adding has failed, and stop the operation of AddDeadlineCommand.
 3. DeadlineStorage class will then add the deadline to its ArrayList of saved deadlines.
 4. DeadlineStorage class will then initialise an instance of FileWriter to append the newly added deadline to the txt
-file.
+   file.
 5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to Duke.
 
 ### Delete Deadline Command
 The delete deadline command removes a deadline from the user's list of deadlines that is specified by the user.
 > Syntax: /deadline/remove [_index_]
 
-The following sequence diagram shows the relationship between the classes involved when the delete deadline command is 
+The following sequence diagram shows the relationship between the classes involved when the delete deadline command is
 called.
 
 ![DeleteDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FDeleteDeadlineCommandSequenceDiagram.png)
@@ -390,33 +414,8 @@ called.
 1. DeleteDeadlineCommand calls deleteDeadline(indexToRemove, deadline, deadlineStorage) of DeadlineStorage class.
 2. It then removes the deadline respective to the index via .remove(index) function.
 3. The list is saved in the deadlines txt file by overwriting it via writeDeadlinesToFile(deadline) function.
-4. deleteDeadline function then returns true and DeleteDeadlineCommand calls UI class to print the successful deletion 
-of deadline message in the User Console.
-
-
-#### Reference Block for SortModulesAccording to Printing Length Function
-
-![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FMiscellaneous%2FSortModulesAccordingToPrintingLengthFunction.png)
-
-**Explanation** 
-1. ModuleStorage calls Module's getPrintingLength() function.
-2. Module retrieves its own module code, name and MCs and calculate their total length known as "printing length"
-and returns it to ModuleStorage
-3. ModuleStorage calls ArrayList modules sort function passing the "printing length" into a comparator. 
-4. ArrayList Modules sorts the modules according to this "printing length"
-
-**Goal of this sorting function**
-
-The main objective of this sorting function is to increase readability of print functions for users.
-
-Previously, when printing out multiple lines, the lines that are printed out are messy and hard to read.
-
-![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
-
-The sorting functions aids in helping it more readable, when the list of mappings are made to be in one line and sorted
-according to the length of string before the "maps to ---->" key words.
-
-![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsMoreReadable.jpg)
+4. deleteDeadline function then returns true and DeleteDeadlineCommand calls UI class to print the successful deletion
+   of deadline message in the User Console.
 
 ---
 

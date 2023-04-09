@@ -420,7 +420,7 @@ ____________________________________________________________
 #### 3.3.2 Add a New Deadline
 Adds a new deadline to the list of saved deadlines.
 
-Format: `/deadline/add  [TASK] /by [DUE DATE]`
+Format: `/deadline/add [TASK] /by [DUE DATE]`
 
 :warning: Take note DUE DATE format is in DD-MM-YYYY
 
