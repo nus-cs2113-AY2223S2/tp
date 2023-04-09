@@ -11,6 +11,8 @@ import static seedu.moneymind.string.Strings.NULL_CATEGORY_LIST_ASSERTION;
 import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
 import static seedu.moneymind.string.Strings.DOT;
 import static seedu.moneymind.string.Strings.SHOW_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.BIG_WHITE_SPACE;
+import static seedu.moneymind.string.Strings.EXCEEDED_BUDGET_WARNING_MESSAGE;
 
 /**
  * Views the categories and events.
@@ -50,6 +52,9 @@ public class ViewCommand implements Command {
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
         category.viewEventList();
+        if (category.getTotalExpense() > category.getBudget()) {
+            System.out.println(EXCEEDED_BUDGET_WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -69,10 +74,14 @@ public class ViewCommand implements Command {
             int count = 1;
             // print all the events in the category with index
             for (Event event : category.getEvents()) {
-                System.out.println("   " + count + DOT + event.toString());
+                System.out.println(BIG_WHITE_SPACE + count + DOT + event.toString());
                 count++;
             }
+            if (category.getTotalExpense() > category.getBudget()) {
+                System.out.println(BIG_WHITE_SPACE + EXCEEDED_BUDGET_WARNING_MESSAGE);
+            }
         }
+
     }
 
     @Override
