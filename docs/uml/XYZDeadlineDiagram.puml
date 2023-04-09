@@ -1,7 +1,19 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-title XYZ Deadline Command Sequence Diagram
+!include Style.puml
 
+title XYZ Deadline Command Sequence Diagram
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
+endbox
+box "XYZDeadlineCommand"
+participant ":XYZDeadlineCommand" as XYZDeadlineCommand COMMAND_COLOR
+endbox
+box "DeadlineManager"
+participant ":DeadlineManager" as DeadlineManager MANAGER_COLOR
+endbox
+box "TextUi"
+participant ":TextUi" as TextUi UI_COLOR
+endbox
 activate DinerDirector
 
 DinerDirector -> XYZDeadlineCommand: execute(ui)
@@ -13,16 +25,13 @@ activate DeadlineManager
 DeadlineManager -> TextUi: printMessage(message)
 activate TextUi
 
-TextUi -> DeadlineManager
-deactivate TextUi
+return
 destroy TextUi
 
-DeadlineManager -> XYZDeadlineCommand
-deactivate DeadlineManager
-destroy DeadlineManager
+return
 
-XYZDeadlineCommand -> DinerDirector
-deactivate XYZDeadlineCommand
+
+return
 destroy XYZDeadlineCommand
 
 
