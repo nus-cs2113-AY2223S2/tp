@@ -3,6 +3,7 @@ package utils.command;
 import model.Card;
 import model.CardList;
 import model.CardSelector;
+import model.CardUUID;
 import model.Deck;
 import model.DeckList;
 import model.DeckUUID;
@@ -26,22 +27,22 @@ public class AddCardToDeckCommand extends Command {
     }
 
     private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws InkaException {
-        assert cardToAdd != null;
         Deck deckToAdd = deckList.findDeckFromName(deckName);
+        CardUUID cardToAddUUID = cardToAdd.getUuid();
         if (deckName.length() > 50) {
             throw new LongDeckNameException();
         } else if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
-            deckToAdd = new Deck(deckName, cardToAdd.getUuid());
-            deckToAdd.addCardToSet(cardToAdd.getUuid());
+            deckToAdd = new Deck(deckName, cardToAddUUID);
+            deckToAdd.addCardToSet(cardToAddUUID);
             deckList.addDeck(deckToAdd);
-        } else if (deckToAdd.cardIsInSet(cardToAdd.getUuid())) {
+        } else if (deckToAdd.cardIsInSet(cardToAddUUID)) {
             throw new CardInDeckException();
-        } else if (deckToAdd.cardIsInMap(cardToAdd.getUuid())) {
+        } else if (deckToAdd.cardIsInMap(cardToAddUUID)) {
             throw new CardInDeckUnderTagException();
         } else {
-            deckToAdd.addCard(cardToAdd.getUuid()); // add card to the array list
-            deckToAdd.addCardToSet(cardToAdd.getUuid()); // add card to the set
+            deckToAdd.addCard(cardToAddUUID); // add card to the array list
+            deckToAdd.addCardToSet(cardToAddUUID); // add card to the set
         }
 
         //add the tag uuid to the card
@@ -56,6 +57,7 @@ public class AddCardToDeckCommand extends Command {
         assert cardToAdd != null;
 
         addCardToDeck(deckList, cardToAdd, ui);
-        ui.printAddCardToDeckSuccess(cardToAdd.getUuid(), deckName);
+        CardUUID cardUUID = cardToAdd.getUuid();
+        ui.printAddCardToDeckSuccess(cardUUID, deckName);
     }
 }

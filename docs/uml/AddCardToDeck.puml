@@ -1,0 +1,66 @@
+@startuml
+autoactivate on
+
+participant ":AddCardToDeckCommand" as AddCardToDeckCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Deck" as Deck
+
+participant ":UserInterface" as UserInterface
+participant ":DeckKeywordParser" as DeckKeywordParser
+
+Create AddCardToDeckCommand
+TagKeywordParser -> AddCardToDeckCommand : AddCardToDeckCommand()
+activate AddCardToDeckCommand
+
+Create CardSelector
+AddCardToDeckCommand -> CardSelector : cardSelector()
+return
+
+AddCardToDeckCommand -> AddCardToDeckCommand : execute()
+AddCardToDeckCommand -> CardList : findCard(cardSelector)
+return cardToAdd
+
+AddCardToDeckCommand -> AddCardToDeckCommand : addCardToDeck(cardToAdd)
+AddCardToDeckCommand -> DeckList : findDeckFromName(deckName)
+return deckToAdd
+AddCardToDeckCommand -> Card : cardToAdd.getUuid()
+return cardToAddUUID
+
+ref over AddCardToDeckCommand, UserInterface
+If deckToAdd is null, create a new deck and add the card, else add the card to the existing deck
+end ref
+
+'alt deckToAdd is null
+'AddCardToDeckCommand -> UserInterface : printDeckCreationSuccess()
+'return
+'AddCardToDeckCommand -> Deck : deck(deckName, cardToAddUUID)
+'return deckToAdd
+'AddCardToDeckCommand -> Deck : addCardToSet(cardToAddUUID)
+'return
+'AddCardToDeckCommand -> DeckList : addDeck(deckToAdd)
+'return
+'
+'else deckToAdd is not null
+'AddCardToDeckCommand -> Deck : addCard(cardToAddUUID)
+'return
+'AddCardToDeckCommand -> Deck : addCardToSet(cardToAddUUID)
+'return
+'end
+
+AddCardToDeckCommand -> Deck : getDeckUUID()
+return deckUUID
+AddCardToDeckCommand -> Card : addDeck(deckUUID)
+return
+
+AddCardToDeckCommand -> Card : getUuid()
+return cardUUID
+AddCardToDeckCommand -> UserInterface : printAddCardToDeckSuccess(cardUUID, deckName)
+return
+
+@enduml
