@@ -56,20 +56,10 @@ ___
 Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
-<<<<<<< HEAD
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
   *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
     manager knows that you have entered 1 ingredient. No need to type `done`.
-     
-=======
-* Type done when finished inputting all ingredients for the recipe.
-* Example:
-```
-chicken=100 and oil and sauce=200 and vegetables=300 
-done
-```
 
->>>>>>> 41947e5123afe06974a9d3a6735e1aafc5cd1967
 <br>
 
 ### Adding recipes: `add`
