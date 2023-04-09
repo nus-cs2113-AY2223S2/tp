@@ -168,7 +168,6 @@ public class Ui {
         }
 
         logger.info("showMatchedExpense UI works");
-
     }
 
     public static void showHelp() {

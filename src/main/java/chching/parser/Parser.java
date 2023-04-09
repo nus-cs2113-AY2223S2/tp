@@ -195,10 +195,6 @@ public class Parser {
     public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
-
-        // split each argument according to their field and their value, and add into
-        // hashmap accordingly
-        // Hashmap's key is its field, value is the value of the field
         for (int i = 0; i < argumentsCount; i++) {
             String argument = arguments.get(i);
             String[] fieldAndValue = argument.split(" ", 2);
@@ -215,9 +211,9 @@ public class Parser {
                 }
             }
 
-            // checks if it is an existing field
+            
             boolean isDuplicateField = argumentsByField.containsKey(field);
-            // check if field/value is empty or just spaces
+            
             boolean isEmptyFieldOrValue = field.isBlank() || value.isBlank();
             if (isDuplicateField) {
                 throw new ChChingException("Duplicate fields detected");
@@ -280,6 +276,5 @@ public class Parser {
         }
         return date;
     }
-
 
 }
