@@ -1,9 +1,9 @@
 @startuml
 !include Style.puml
-participant "root:CommandRouterNode" as root
-participant "rootChildren:List<RouteDescription>" as lvl1
-participant "matchedRootChild:Routable" as lvl1match
-participant "recipeChildren:List<RouteDescription>" as lvl2
+participant ":CommandRouterNode" as root
+participant ":List<RouteDescription>" as lvl1
+participant ":Routable" as lvl1match
+participant ":List<RouteDescription>" as lvl2
 participant ":RecipeAllCommandFactory" as lvl2match
 
 -> root: resolve("recipe all")

@@ -5,11 +5,14 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
+   - [Architecture](#architecture)
    - [Command Parsing](#command-parsing)
    - [Ingredient Class](#ingredient-class)
    - [Recipe Class](#recipe-class)
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
+   - [Clear Command](#clear-command)
+   - [Make Command](#make-command)
    - [Recipe Detail Command](#recipe-detail-command)
    - [Recipe Possible Command](#recipe-possible-command)
    - [Recipe All Command](#recipe-all-command)
@@ -53,6 +56,22 @@ Please be advised that we cannot guarantee complete functionality of Meal Compan
 ###### [Back to table of contents](#table-of-contents)
 
 ## Design
+
+### Architecture
+
+![Architecture.png](images\Architecture.png)
+
+The **Architecture Diagram** given above explains the high-level design of the program.
+Given below is a quick overview of main components.
+
+#### Main Components
+
+* `MealCompanion`: Main entry of the program, initialises and connects the components
+* `UI`: In charge of printing messages
+* `Logic`: Determines the command to execute
+* `Model`: Holds data from program in memory
+* `Storage`: Read and write data from hard disk
+* `Command`: Specific commands for execution
 
 ### Command Parsing
 
@@ -103,7 +122,9 @@ The current `MealCompanionSession` would keep track of the `RecipeList` which is
 
 ### Add and Remove Command
 
-The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
+The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient` of `MealCompanionSession`.
+
+Given below is an example usage scenario and how the add and remove command behaves:
 
 Step 1. The user inputs his command e.g. `add egg /qty 5`, `IngredientList` would be called to check if egg is already stored inside the list
 
@@ -123,11 +144,43 @@ Step 5. Since egg is in the list, its corresponding index in the list would be g
 
 Step 6. The current quantity of egg in the list would be obtained by calling `getQuantity()` and checked to see if it is greater or equals to '2' the quantity input by the user
 
-Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 3, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
+Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 5, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
 
 Below shows the sequence diagram for the above RemoveCommand:
 
 ![RemoveIngredientSequenceUML.png](images/RemoveIngredientSequenceUML.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Clear Command
+
+The clear command is facilitated by "ClearCommand"
+
+It requires `IngredientList` of `MealCompanionSession`.
+
+The clear commands clears all ingredients currently in inventory
+
+The following sequence diagram shows how the Clear Command works:
+
+![ClearSequenceUML.png](images/ClearSequenceUML.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Make Command
+
+The make command is facilitated by `MakeCommand`.
+
+It requires `RecipeList`, `IngredientList` and `Recipe` of `MealCompanionSession`. 
+
+It is also implemented through methods in `RecipeCommand`.  
+
+The make command takes in a recipe number as parameter.
+
+The ingredients needed to make the recipe specified by the recipe number would be removed from inventory
+
+The following sequence diagram shows how the Make Command works:
+
+![MakeSequenceUML.png](images/MakeSequenceUML.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -142,6 +195,10 @@ This features saves ingredient list data in json format and reads them back into
 The following sequence diagram shows how data storage works:
 
 ![StorageSequenceUML.png](images/StorageSequenceUML.png)
+
+The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
+
+![StoargeActivity.png](images/StorageActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -297,13 +354,12 @@ Our product targets students who would like to save money on buying or ordering 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should respond to a command within a second.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. A user should be able to predict what the commands do by their names.
+4. A user should be able to infer what the commands do from their names.
 
 ###### [Back to table of contents](#table-of-contents)
 
 ## Glossary
 
-* *glossary item* - Definition
 * **Mainstream OS:** Windows, Linux, Unix, OS-X
 
 ###### [Back to table of contents](#table-of-contents)
@@ -312,12 +368,16 @@ Our product targets students who would like to save money on buying or ordering 
 
 Given below are instructions to test the app manually.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 ### Launch and Shutdown
 
 1. Initial Launch
    * Download the jar file and copy into an empty folder.
+   * Run jar file in a terminal. <br>
+   Expected: Welcome message is shown in the terminal and `ingredients.txt` file is created in the folder containing the jar file.
+<br/><br/>
+2. Exit from Program
+   * Run the `bye` command. <br>
+   Expected: Program exits and updates are made accordingly to the `ingredients.txt` file based on the commands ran before exiting the program.
 
 ### Make a Recipe
 
@@ -336,8 +396,7 @@ Expected: Similar to previous.
 
 ### Saving Data
 1. Dealing with corrupted data file
-   * To simulate a corrupted data file, ...(to be completed) <br>
+   * To simulate a corrupted data file, <br>
    Expected: MealCompanion to throw error message notifying users of corrupted data file.
-2. 
 
 ###### [Back to the top](#developer-guide)

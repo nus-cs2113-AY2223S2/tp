@@ -1,6 +1,9 @@
 package seedu.mealcompanion.ui;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Scanner;
+import java.io.IOException;
 
 /**
  * Contains the UI helpers for the current MealCompanionSession session.
@@ -18,6 +21,7 @@ public class MealCompanionUI {
 
     /**
      * Returns a string representing the next command the user enters.
+     *
      * @return the next command string.
      */
     public String getNextCommandString() {
@@ -30,6 +34,25 @@ public class MealCompanionUI {
 
 
     /**
+     * Prints the Meal Companion logo
+     *
+     * @author aaronxujiachen
+     */
+    public void printLogo() {
+        try {
+            Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/chef.txt"));
+            int data = reader.read();
+            while (data != -1) {
+                System.out.print((char)data);
+                data = reader.read();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Prints the welcome message.
      */
     public void printIntroduction() {
@@ -37,7 +60,28 @@ public class MealCompanionUI {
     }
 
     /**
+     * Prints the farewell image to user
+     *
+     * @author aaronxujiachen
+     */
+    public void printFarewell() {
+        System.out.println("Thank you for using MealCompanion. Have a great day!");
+        try {
+            Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/bye.txt"));
+            int data = reader.read();
+            while (data != -1) {
+                System.out.print((char)data);
+                data = reader.read();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Prints the provided message.
+     *
      * @param message the message to print.
      */
     public void printMessage(String message) {

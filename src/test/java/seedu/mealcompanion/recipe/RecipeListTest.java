@@ -1,7 +1,7 @@
 package seedu.mealcompanion.recipe;
 
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 
@@ -20,12 +20,12 @@ class RecipeListTest {
         // make recipe for cup of water
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100));
-        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
                 waterIngredients, new InstructionList());
         // make recipe for raw chicken
         IngredientList chickenIngredients = new IngredientList();
         chickenIngredients.add(new Ingredient("chicken", 5));
-        Recipe chicken = new Recipe("Raw Chicken", false,0, 0, 0,
+        Recipe chicken = new Recipe("Raw Chicken", false, 0, 0, 0,
                 chickenIngredients, new InstructionList());
         // add tea and water recipe to recipe list
         recipes.add(cupOfWater);

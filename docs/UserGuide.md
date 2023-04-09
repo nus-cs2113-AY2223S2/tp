@@ -7,6 +7,25 @@ Hey there! Thanks for choosing Meal Companion, your one-stop solution to handlin
 
 Meal Companion is designed by computing students, for computing students, especially those staying in hostels on campus, as a means to track ingredients and get started on their cooking and meal prep journey! Meal Companion provides recipes, as well as the ability to filter those recipes based on the ingredients you have, and many more features!
 
+## Who is this for?
+This document is for busy students and working adults who want to begin cooking with Meal Companion. If you want to see how Meal Companion can change your food habits to support a sustainable and healthy lifestyle, read on!
+
+## Why Meal Companion?
+
+Cooking is a committment. It's hard to buy exactly the right amount of ingredients especially when you're cooking for one, and even if you can stomach eating the same recipe every day for a week, the ingredients run out at different times! Most people, when faced with this problem, will simply throw out whatever goes bad and go back to their daily trips to canteens, hawkers, or resturaunts. And, that's where Meal Companion comes in! Here's how we improve upon the experience of commonly used recipe sources.
+
+### Versus Traditional Recipe Books
+
+Let's be real here, very few of us still use traditional recipe books. They're clunky to navigate, easy to dirty, and expensive to buy. Comparatively, Meal Companion is fast to navigate and easy to use. More importantly, someone with no idea what to cook beforehand would struggle to find a suitable recipe in a long recipe book, but with Meal Companion, you can instantly figure out what dishes you can cook with what you have.
+
+### Versus Online Recipe Websites
+
+Online recipe websites have a leg up on traditional recipe books because they are also easy to navigate and search through. However, similar to their analog counterparts, it can be daunting to scroll through hundreds of recipes only to find that you're a few eggs or half a carrot short of being able to cook any of them. Meal Companion alleviates this pain by allowing you to only display recipes that are possible for you to cook right now.
+
+### Versus Recipe Videos
+
+With the rise of shortform content such as TikToks, YouTube Shorts, and Instagram Reels, the trendiest recipes are always just a swipe away. However, those recipes can be hard to follow. Even if a text version is provided in the description of these videos, they still fall into the same issues as other online recipes. Plus, searching for them is a nightmare as the platforms they are on were not purpose-built for cooking. Not only does Meal Companion help you easily find recipes that you'd actually be interested in, it can also help you with using up the rest of your ingredients.
+
 # Table of Contents
 1. [Using this Guide](#using-this-guide)
 1. [Getting Started](#getting-started)

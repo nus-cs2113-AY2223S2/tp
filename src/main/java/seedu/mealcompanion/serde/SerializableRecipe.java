@@ -1,6 +1,6 @@
 package seedu.mealcompanion.serde;
 
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.IngredientDatabase;
@@ -23,12 +23,12 @@ public class SerializableRecipe {
 
     public Recipe toRecipe() throws MealCompanionException {
         IngredientList ingredientList = new IngredientList();
-        for(SerializableIngredient ingredient : ingredients) {
+        for (SerializableIngredient ingredient : ingredients) {
             IngredientDatabase db = IngredientDatabase.getDbInstance();
-            if (!db.getKnownIngredients().containsKey(ingredient.getName())) {
+            if (!db.getKnownIngredients().containsKey(ingredient.getName().toLowerCase())) {
                 throw new MealCompanionException("Unknown ingredient in recipe book: " + ingredient.getName());
             }
-            ingredientList.add(new Ingredient(ingredient.getName(), ingredient.getAmount()));
+            ingredientList.add(new Ingredient(ingredient.getName().toLowerCase(), ingredient.getAmount()));
         }
 
         InstructionList instructionList = new InstructionList();

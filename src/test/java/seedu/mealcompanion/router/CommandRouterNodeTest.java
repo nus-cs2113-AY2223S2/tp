@@ -12,6 +12,7 @@ class CommandRouterNodeTest {
                             .route("world", new MockCommandFactory("hello world"))
                     )
                     .route("bye", new MockCommandFactory("bye"));
+
     @Test
     public void resolveCommandValidOneWords() {
         assertEquals(TEST_COMMAND_TREE.resolve(new CommandTokens("bye")), "bye");

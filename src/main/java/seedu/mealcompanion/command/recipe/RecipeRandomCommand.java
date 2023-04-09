@@ -1,9 +1,10 @@
 package seedu.mealcompanion.command.recipe;
 
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
+
 import java.util.Random;
 
 //@@author ngyida
@@ -24,7 +25,7 @@ public class RecipeRandomCommand extends RecipeCommand {
 
         Random rand = new Random();
         int index = rand.nextInt(recipes.size());
-        assert(index >= 0 && index < recipes.size()) : "index is out of range!";
+        assert (index >= 0 && index < recipes.size()) : "index is out of range!";
         return index;
     }
 
@@ -34,7 +35,7 @@ public class RecipeRandomCommand extends RecipeCommand {
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
      */
     @Override
-    public void execute(MealCompanionSession mealCompanionSession){
+    public void execute(MealCompanionSession mealCompanionSession) {
         try {
             RecipeList recipes = mealCompanionSession.getRecipes();
             int index = getRandomIndex(recipes);

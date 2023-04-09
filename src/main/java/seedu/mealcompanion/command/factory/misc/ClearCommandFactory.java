@@ -13,4 +13,8 @@ public class ClearCommandFactory extends ExecutableCommandFactory {
     public ClearCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new ClearCommand();
     }
+
+    public String getCommandFormat() {
+        return "recipe favourite <index_number>";
+    }
 }

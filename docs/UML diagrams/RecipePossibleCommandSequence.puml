@@ -17,7 +17,7 @@ deactivate mealCompanionSession
 loop for each recipe
 RecipePossibleCommand -> RecipePossibleCommand: canMakeRecipe(recipe, ingredients)
 activate RecipePossibleCommand
-RecipePossibleCommand -> RecipePossibleCommand: canMakeRecipe
+RecipePossibleCommand --> RecipePossibleCommand: canMakeRecipe
 deactivate RecipePossibleCommand
 opt canMakeRecipe == true
 RecipePossibleCommand -> recipe: getName()

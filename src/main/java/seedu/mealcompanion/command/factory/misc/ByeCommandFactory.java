@@ -12,4 +12,8 @@ public class ByeCommandFactory extends ExecutableCommandFactory {
     public ByeCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new ByeCommand();
     }
+
+    public String getCommandFormat() {
+        return "bye";
+    }
 }
