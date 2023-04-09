@@ -10,12 +10,10 @@ activate ":IngredientList"
 ":AddCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
 deactivate ":IngredientList"
 
-":AddCommand" -> ":AddCommand": findIndex("egg")
-activate ":AddCommand"
-
-":AddCommand" -> ":AddCommand": return -1
-
-deactivate ":AddCommand"
+":AddCommand" -> ":IngredientList": findIndex("egg")
+activate ":IngredientList"
+":AddCommand" <-- ":IngredientList": -1
+deactivate ":IngredientList"
 
 ":AddCommand" -> ":Ingredient": new Ingredient("egg", 5)
 activate ":Ingredient"

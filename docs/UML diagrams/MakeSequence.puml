@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> ":MakeCommand": new MakeCommand(Recipe Number)
+
+activate ":MakeCommand"
+
+":MakeCommand" -> ":RecipeList": getRecipes()
+activate ":RecipeList"
+":MakeCommand" <-- ":RecipeList": ArrayList<Recipe>: recipes
+deactivate ":RecipeList"
+
+":MakeCommand" -> ":RecipeList": getRecipe(Recipe Number)
+activate ":RecipeList"
+":MakeCommand" <-- ":RecipeList": recipe
+deactivate ":RecipeList"
+
+":MakeCommand" -> ":IngredientList": getIngredients()
+activate ":IngredientList"
+":MakeCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
+deactivate ":IngredientList"
+
+":MakeCommand" -> RecipeCommand: canMakeRecipe(recipe, ingredients)
+activate RecipeCommand
+":MakeCommand" <-- RecipeCommand: canMakeRecipe
+deactivate RecipeCommand
+
+opt canMakeRecipe == true
+loop for each ingredient in recipe
+":MakeCommand" -> ":MakeCommand": removeIngredient(name, quantity)
+activate ":MakeCommand"
+":MakeCommand" -> ":IngredientList": findIndex(name)
+activate ":IngredientList"
+":MakeCommand" <-- ":IngredientList": index
+deactivate ":IngredientList"
+":MakeCommand" -> ":IngredientList": get(index)
+activate ":IngredientList"
+":IngredientList" -> ":Ingredient": getQuantity()
+activate ":Ingredient"
+":IngredientList" <-- ":Ingredient": quantity
+deactivate ":Ingredient"
+":MakeCommand" <-- ":IngredientList": quantity
+deactivate ":IngredientList"
+
+
+":MakeCommand" -> ":IngredientList": get(index)
+activate ":IngredientList"
+":IngredientList" -> ":Ingredient": setQuantity(newQuantity)
+activate ":Ingredient"
+":IngredientList" <-- ":Ingredient":
+deactivate ":Ingredient"
+":MakeCommand" <-- ":IngredientList":
+deactivate ":IngredientList"
+":MakeCommand" --> ":MakeCommand"
+deactivate ":MakeCommand"
+end
+end
+
+[<-- ":MakeCommand": Done
+destroy ":MakeCommand"
+deactivate ":MakeCommand"
+
+@enduml

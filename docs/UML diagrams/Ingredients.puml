@@ -1,31 +1,50 @@
 @startuml
+!include Style.puml
 'https://plantuml.com/class-diagram
 
 IngredientList <-- MealCompanionSession
 Ingredient "*" <-- IngredientList
+IngredientMetadata "1" <-- Ingredient
 hide circle
 
+enum "<<enumeration>> UnitType" {
+WEIGHT
+COUNT
+VOLUME
+}
+
+class IngredientMetadata {
+-name: String
+-units: UnitType
+-unitLabel: String
++getName(): String
++getUnits(): UnitType
++getUnitLabel(): String
+}
+
 class Ingredient {
-quantity: double
-name: String
-getQuantity()
-setQuantity(double)
-getName()
+-quantity: int
++getQuantity(): int
++setQuantity(int)
++getMetadata(): IngredientMetadata
 }
 
 class IngredientList {
 
-size(): int
-remove(int)
-get(int): Ingredient
-getIngredients() : IngredientList
++size(): int
++remove(int)
++get(int): Ingredient
++get(String): Ingredient
++getIngredients() : IngredientList
++clear()
++findIndex(String): int
 }
 
 Class MealCompanionSession {
- controlFLow: MealCompanionControlFlow
- recipes: RecipeList
- ui: MealCompanionUI
- ingredientStorage: IngredientStorage
+ -controlFLow: MealCompanionControlFlow
+ -recipes: RecipeList
+ -ui: MealCompanionUI
+ -ingredientStorage: IngredientStorage
 
 }
 
