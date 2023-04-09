@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-hide methods
+hide empty members
 
 package Model <<Rectangle>>{
     class Task COLOR_TASK_LIST {
@@ -10,7 +10,6 @@ package Model <<Rectangle>>{
         -deadline: LocalDateTime = null
         -repeatTimes: int
         -tags: TreeSet<String>
-        -priority: Priority
     }
     class "<<enumeration>>\nPriority" as Priority COLOR_TASK_LIST {
         HIGH
@@ -18,10 +17,7 @@ package Model <<Rectangle>>{
         LOW
         NONE
     }
-    class TaskList COLOR_TASK_LIST {
-        -allocatedIds: int
-        -tasks:TreeMap<Integer, Task>
-    }
+    class TaskList COLOR_TASK_LIST
     class Config COLOR_TASK_LIST {
         -repeatFrequency: int
         -checkFrequency: int
@@ -30,5 +26,6 @@ package Model <<Rectangle>>{
 }
 
 TaskList ..> Priority
-TaskList -[hidden]-> Task
+Task -r-> "1" Priority
+TaskList *-d-> "*" Task
 @enduml

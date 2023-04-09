@@ -137,6 +137,15 @@ public class Task {
         return infoString.toString();
     }
 
+    /**
+     * Checks if a task is due, which means the current time is equal to or after its deadline.
+     *
+     * @return If a task is due.
+     */
+    public boolean isDue() {
+        return deadline != null && !deadline.isAfter(LocalDateTime.now());
+    }
+
     //@@author jeromeongithub
     public int getId() {
         return id;
@@ -216,15 +225,6 @@ public class Task {
     public String removeTags(TreeSet<String> tags) {
         this.tags.removeAll(tags);
         return toString();
-    }
-
-    /**
-     * Checks if a task is due, which means the current time is equal to or after its deadline.
-     *
-     * @return If a task is due.
-     */
-    public boolean isDue() {
-        return deadline != null && !deadline.isAfter(LocalDateTime.now());
     }
 
     /**
