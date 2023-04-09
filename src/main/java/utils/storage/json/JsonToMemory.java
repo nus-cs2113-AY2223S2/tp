@@ -1,6 +1,5 @@
 package utils.storage.json;
 
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -21,6 +20,14 @@ import model.TagUUID;
 import utils.exceptions.InkaException;
 
 public class JsonToMemory {
+    /**
+     * Converts a JsonObject representation of a memory into a Memory object. This method is called by the
+     * {@link JsonStorage#load()} method.
+     *
+     * @param saveDataObject the JsonObject representation of the memory
+     * @return the Memory object converted from the JsonObject
+     * @throws InkaException if there is an error in the conversion process
+     */
     public static Memory convert(JsonObject saveDataObject) throws InkaException {
 
         CardList cardList = getJsonCardList(saveDataObject);
@@ -32,6 +39,13 @@ public class JsonToMemory {
         return memory;
     }
 
+    /**
+     * Converts a JSON object to a CardList object by parsing the "cards" JsonArray.
+     *
+     * @param saveDataObject the JSON object containing the data to be converted
+     * @return a CardList object generated from the JSON data
+     * @throws InkaException if there is an error while parsing the data
+     */
     public static CardList getJsonCardList(JsonObject saveDataObject) throws InkaException {
         JsonArray jsonCardArray = saveDataObject.getAsJsonArray("cards");
         ArrayList<Card> cards = new ArrayList<>();
@@ -65,6 +79,12 @@ public class JsonToMemory {
         return cardList;
     }
 
+    /**
+     * Converts a JSON object to a TagList object by parsing the "tags" member of saveDataObject
+     *
+     * @param saveDataObject the JsonObject representing the savedata with the "tags" member
+     * @return the TagList object containing the taglist
+     */
     public static TagList getJsonTagList(JsonObject saveDataObject) {
         TagList tagList = new TagList(); // construct empty taglist to append stuff to
         JsonArray tagJsonArray = saveDataObject.getAsJsonArray("tags");
@@ -90,6 +110,12 @@ public class JsonToMemory {
         return tagList;
     }
 
+    /**
+     * Extracts and converts a JSON object representing savedata into a DeckList object.
+     *
+     * @param saveDataObject the JSON object containing the data
+     * @return the DeckList object
+     */
     public static DeckList getJsonDeckList(JsonObject saveDataObject) {
         DeckList deckList = new DeckList();
         JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
@@ -101,6 +127,12 @@ public class JsonToMemory {
         return deckList;
     }
 
+    /**
+     * Converts a JSON object into a Deck object. Used by the {@link JsonToMemory#getJsonDeckList(JsonObject)} method.
+     *
+     * @param deckObject the JSON object representing a deck
+     * @return a Deck object with properties parsed from the JSON object
+     */
     public static Deck getJsonDeck(JsonObject deckObject) {
 
         String deckName = deckObject.get("deckName").getAsString();
@@ -132,7 +164,7 @@ public class JsonToMemory {
                 int value = entry.getValue().getAsInt();
                 cardUuidIntegerHashMap.put(new CardUUID(UUID.fromString(cardUuidString)), value);
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             mapEmpty = true;
         }
 

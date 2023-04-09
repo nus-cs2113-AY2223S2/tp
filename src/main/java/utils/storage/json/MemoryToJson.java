@@ -11,9 +11,14 @@ import model.DeckList;
 import model.Card;
 import model.Deck;
 
-
 public class MemoryToJson {
 
+    /**
+     * Converts a Memory object into a JsonObject.
+     *
+     * @param memory the Memory object to convert
+     * @return a JsonObject representing the Memory object in JSON format
+     */
     public static JsonObject convert(Memory memory) {
         JsonObject jsonMemory = new JsonObject();
         Gson gson = new Gson();
@@ -30,10 +35,15 @@ public class MemoryToJson {
         jsonMemory.add("tags", tagData);
         jsonMemory.add("cards", cardData);
 
-
         return jsonMemory;
     }
 
+    /**
+     * Converts a CardList object into a JsonArray.
+     *
+     * @param cardList the CardList object to convert
+     * @return a JsonArray representing the CardList object in JSON format
+     */
     private static JsonArray cardListToJson(CardList cardList) {
         Gson gson = new Gson();
         JsonArray cardData = new JsonArray();
@@ -46,6 +56,12 @@ public class MemoryToJson {
         return cardData;
     }
 
+    /**
+     * Converts a TagList object into a JsonArray.
+     *
+     * @param tagList the TagList object to convert
+     * @return a JsonArray representing the TagList object in JSON format
+     */
     private static JsonArray tagListToJson(TagList tagList) {
         Gson gson = new Gson();
         JsonArray tagData = new JsonArray();
@@ -58,6 +74,12 @@ public class MemoryToJson {
         return tagData;
     }
 
+    /**
+     * Converts a DeckList object into a JsonArray.
+     *
+     * @param deckList the DeckList object to convert
+     * @return a JsonArray representing the DeckList object in JSON format
+     */
     private static JsonArray deckListToJson(DeckList deckList) {
         Gson gson = new Gson();
         JsonArray deckData = new JsonArray();
