@@ -39,8 +39,9 @@ public class Ui {
             "Cannot change a lend record to a borrow record\n" +
             "Example: edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040\n" +
             HORIZONTAL_LINE +
-            "\n6. List all expenditures in the record\n"
-            + "Example: list\n" +
+            "\n6. List all expenditures in the record in the specified currency\n"
+            + "Format: list CURRENCY \n" + "A currency has to be specified for list to display.\n"
+            + "Example: list SGD \n" +
             HORIZONTAL_LINE +
             "\n7. Sort the expenditure list\n"
             + "Format: sort TYPE\n" +
@@ -72,6 +73,9 @@ public class Ui {
             + "Example of checking budget by year: check y/2023\n \n" +
             "By expenditure category \n" + "Format: check t/CATEGORY\n" +
             "Example of checking budget by category: check t/academic\n" +
+            HORIZONTAL_LINE +
+            "\n12. Display the conversion rates used in MyLedger\n"
+            + "Format: showrates\n" +
             HORIZONTAL_LINE;
 
         
