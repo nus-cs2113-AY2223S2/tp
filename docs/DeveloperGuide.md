@@ -9,11 +9,12 @@
     - [Storage Component](#storage-component)
     - [CardList Component](#cardlist-component)
     - [TagList Component](#taglist-component)
+    - [DeckList Component](#decklist-component)
 - [Implementation](#implementation)
 
     - [card feature](#card-feature)
     - [tag feature](#tag-feature)
-    - [[Proposed] deck feature](#deck-feature)
+    - [deck feature](#deck-feature)
 
 - [Appendix: Requirements](#appendix-requirements)
     - [Product scope](#product-scope)
@@ -49,6 +50,7 @@ include links to the original source as well}
 - [Storage Component](#storage-component)
 - [CardList Component](#cardlist-component)
 - [TagList Component](#taglist-component)
+- [DeckList_Component](#decklist-component)
 
 ### Architecture
 
@@ -142,12 +144,24 @@ share the same methods and implementations.
 The following describes the class diagram for TagList Component :
 ![TagList Class Diagram](img/TagListClass.svg)
 
+### DeckList Component
+
+API: `DeckList.java`
+
+Inka's DeckList Component stores a list fo `Deck` as decks. Each `Deck` contains its own `UUID`, which is auto generated
+in the constructor of `Deck` as well as the tags and cards that is associated with, which are stored in the form of
+`CardUUID`, `TagUUID`. As mentioned previously, `CardUUID`, `TagUUID` and `DeckUUID` inherit from `InkaUUID`.
+
+The following describes the class diagram for the DeckList Component :
+
+![DeckList_Class_Diagram](img/DeckListFinal.svg)
+
 ## Implementation
 
 - [card feature](#card-feature)
 - [tag feature](#tag-feature)
 - [export feature](#export-feature)
-- [[Proposed] deck feature](#deck-feature)
+- [deck feature](#deck-feature)
 
 ### Card Feature
 
@@ -157,7 +171,103 @@ The current functionalities:
 - delete card from the cardlist
 - show all cards the cardlist contains
 - view the card by its uuid
-- add tag to a card
+
+#### Card Add
+
+User input format for adding a card
+
+```
+card delete -q QN -a ANS
+```
+
+For adding a card, a sample user input like `card add -q QN -a ANS` would be broken down as:
+
+- Keyword: `card`
+- Action: `add`
+- Flags
+    - `-q`: Question text
+    - `-a`: Answer text
+
+The implementation of `card add -q QN -a ANS` will be shown below :
+
+1. When the user enters `card add -q QN -a ANS`, the input is passed to `Parser` class which
+   calls `Parser#parseCommand()`. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on
+   the user inputs excluding the "card" keyword.
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "add" from the user input, and calls
+   the `CardKeywordParser#handleAdd()` method.
+3. The method uses the Apache Commons CLI library to parse the remaining user input to create a `Card` object with the
+   arguements of the flags "-q" and "-a" in the input as its question and answer, and returns an `AddCardCommand` with
+   the created `Card` object. The sequence diagram for the first 3 steps has been shown in
+   the [parser sequence diagram](#parser-component).
+4. This `AddCardCommand` will call the `CardList#addCard()` function and add the created `Card` object to
+   the `CardList`.
+5. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with
+   the corresponding functions.
+
+The sequence diagram below shows how this feature of card works:
+![Card Add feature](img/CardAddSequence.svg)
+
+#### Card Delete
+
+User input format for deleting a card
+
+```
+card delete [-i CARDINDEX | -c CARDUUID]
+```
+
+A sample user input, like `card delete -i 3` would be broken down as:
+
+- Keyword: `card`
+- Action: `delete`
+- Flag
+    - `-i`: Index of card to be deleted
+
+The implementation of `card delete -i 3` will be shown below :
+
+1. When the user enters `card delete -i 3`, the input is passed to `Parser` class which calls `Parser#parseCommand()`.
+   The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "
+   card" keyword.
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "delete" from the user input and
+   call `CardKeywordParser#handleDelete()` method.
+3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand`
+   with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field,
+   used in identifying the `Card` object, in this case to be deleted. The sequence diagram for the first 3 steps has
+   been shown in the [parser sequence diagram](#parser-component).
+4. The `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is
+   associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them.
+5. Then the `Card` object is deleted from the `CardList`.
+6. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with
+   the corresponding functions.
+
+The sequence diagram below shows how this feature of card works:
+![Card Delete feature](img/CardDeleteSequence.svg)
+
+#### Card List
+
+User input format for listing all card
+
+```
+card list
+```
+
+A sample user input, like `card list` would be broken down as :
+
+- Keyword: `card`
+- Action: `list`
+
+The implementation of `card list` will be shown below :
+
+1. When the user enters `card list`, the input is passed to `Parser` class which calls `Parser#parseCommand()`. The
+   parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "
+   card" keyword.
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "list" from the user input and
+   call `CardKeywordParser#handleList()` method.
+3. If there are no more user input after `card list`, a `ListCardCommand()` is returned. The sequence diagram for the
+   first 3 steps has been shown in the [parser sequence diagram](#parser-component).
+4. The command will call `UserInterface#printCardList()` method to print all `Card` objects in the `CardList`.
+
+The sequence diagram below shows how this feature of card works:
+![Card List feature](img/CardListSequence.svg)
 
 #### Card View
 
@@ -184,7 +294,7 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
   return `tagsUUID` and `Card#getDecksUUID()` which will return `decksUUID`.
 
 
-- Once the `tagsUUID`  is ready, `ViewCardCommand` will then call  `ViewCardCommand#findTagFromTagUUID` which will loop
+- Once the `tagsUUID` is ready, `ViewCardCommand` will then call  `ViewCardCommand#findTagFromTagUUID` which will loop
   through each element `Tag` of `TagList`, call `Tag#getUUID()` and match it with every element of the `tagsUUID`
   previously.
   If the `Tag` element's uuid matches the uuid in `tagsUUID`, then the `Tag` will be added to a `tagsFound` and returned
@@ -200,6 +310,12 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
 The sequence diagram below shows how this feature works:
 ![Card View feature](img/CardViewSequence.png)
 
+Reference Frames :
+
+![Add Tags to tagsFound](img/AddTagsToTagsFoundRef.png)
+
+![Add Decks to decksFound](img/AddDecksToDecksFoundRef.png)
+
 ### Tag Feature
 
 Tag Feature currently supports the following functionalities :
@@ -210,41 +326,14 @@ Tag Feature currently supports the following functionalities :
 - list all the cards under a tag
 - edit the tag name
 
-#### Tag a Card
-
-The implementation of the `card tag` feature is as follows :
-
-- When the user enters `card tag -c {cardUUID} -t {tagName}`, the input is passed to `Parser` class which
-  calls `Parser#parseCommand()`. The parser detects the keyword `card` and process the remaining input and pass them
-  to  `Parser#CardKeywordParser` class which calls `HandleTag()` method and returns a `AddCardToTagCommand`. The
-  sequence diagram for this section has been
-  shown [above](#parser-component).
-
-- This `AddCardToTagCommand` will first find the card to which the tag should be added to by calling
-  the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
-  and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToAdd` to `CardList` and
-  to `AddCardToTagCommand`.
-
-- After finding the card on which to add the tag, `AddCardToTagCommand` will check if the tag has already existed by
-  calling `TagList#findTagFromName` which will return a `tagToAdd`. If the `tagToAdd` currently does not
-  exist, `AddCardToTagCommand` will then create a new `Tag` and add it to `TagList` by
-  calling `TagList#addCard(tagToAdd)`. If it already exists, it will just use the
-  existing `tagToAdd`.
-
-- Once the `tagToAdd` and `cardToAdd` are ready, `AddCardToTagCommand` will then call `Card#getUUID()` and add the
-  returned `cardUUID` into `tagToAdd` by calling `Tag#addCard(cardUUID)`.
-
-- Similarly, `AddCardToTagCommand` will also call `Tag#getUUID()` and add the returned `tagUUID` into `cardToAdd` by
-  calling `Card#addTag(tagUUID)`.
-
-The sequence diagram below shows how this feature works:
-![Tag feature](img/TagListSequence.png)
+This guide will show two of the more complex implementation of the tag features, other tag-related features will be
+similar :
 
 #### Untag a Card
 
-The implementation of the `card untag` feature is as follows :
+The implementation of the `card untag` feature is as follows:
 
-- When the user enters `card untag {-c {cardUUID} | -i {cardIndex}} {-t {tagName} | -i {tagIndex}}`, the input is passed
+- When the user enters `card untag {-c CARD_UUID} | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
   to `Parser` class which
   calls `Parser#parseCommand()`. The parser detects the keyword `card` and process the remaining input and pass them
   to  `Parser#CardKeywordParser` class which calls `HandleUntag()` method and returns a `RemoveTagFromCardCommand`. The
@@ -266,7 +355,13 @@ The implementation of the `card untag` feature is as follows :
 
 
 - After `cardAffected` and `tagToRemove` is ready, `RemoveCardFromTagCommand` will
-  call `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)` which will in turn remove the reference
+  call `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)` which will check if the `Tag` is
+  currently inside a deck,
+  if it is, we will loop through all the decks that the `Tag` is currently inside and remove the `cardAffected` from
+  each of the deck.
+
+
+- Afterwards, `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)`  will remove the reference
   to the tag from the card and remove the reference to the card from the tag
   by calling `Card#getUUID()`, `Tag#removeCard()`, `Tag#getUUID()`,`Card#RemoveTag()`.
 
@@ -277,11 +372,17 @@ The implementation of the `card untag` feature is as follows :
 The sequence diagram below shows how this feature works:
 ![Card Untag](img/CardUntagSequence.png)
 
-#### List Cards under Tag
+Reference Frames :
 
-The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
+![Remove affected Cards from Decks](img/RemoveCardFromDecksRef.png)
 
-- When the user enters `tag list {-t {tagName} | -i {tagIndex}}`, the input is passed
+![Remove Tag from Card and vice versa](img/RemoveTagFromCardRef.png)
+
+#### List Cards under a Tag
+
+The implementation of the `tag list {-t TAG_NAME | -x TAG_INDEX}`
+
+- When the user enters `tag list {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
   to `Parser` class which
   calls `Parser#parseCommand()`. The parser detects the keyword `tag` and process the remaining input and pass them
   to  `Parser#TagKeywordParser` class which calls `HandleList()` method and returns a `ListCardsUnderTagCommand`. The
@@ -310,6 +411,7 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
 The sequence diagram below shows how this feature works:
 ![List Cards under Tag](img/ListCardsUnderTagSequence.png)
 
+
 ### Export Feature
 The implementation of the Export feature is split into [saving](#save) and [loading](#load)
 
@@ -337,8 +439,28 @@ Loading is implemented with `load()`
 The sequence diagram below illustrates this feature:
 ![export feature](img/LoadSequence.png)
 
+Reference Frames :
+![Add Cards to foundCardList](img/AddCardsToFoundCardListRef.png)
+
 
 ### Deck Feature
+
+The Deck Feature currently supports the following functionalities :
+
+- add a `Deck` to a `Card`
+- add a `Deck` to a `Tag`
+- delete a `Deck` from the `DeckList`
+- delete a `Card` from a `Deck`
+- delete a `Tag` from a `Deck`
+- list all the `Deck` in the `DeckList`
+- list all the `Card` under a `Deck`
+- list all the `Tag` under a `Deck`
+- let the user cycle through all the `Card` in the `Deck`
+- rename the `Deck`
+
+
+This guide will show two of the more complex implementation of the tag features, other tag-related features will be
+similar :
 
 ---
 

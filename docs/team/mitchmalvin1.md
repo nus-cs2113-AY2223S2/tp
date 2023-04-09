@@ -21,7 +21,7 @@ experience.
 This feature consists of a few subfeatures :
 
 - `card tag {-c CARD_UUID | -i CARD_INDEX} -t TAG_NAME ` to attach a tag onto a Card
-- `card untag {-c CARDUUID | -i CARD_INDEX} {-t TAGNAME | -x TAG_INDEX}` to remove the tag from a Card
+- `card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}` to remove the tag from a Card
 - `tag edit -o OLD_NAME -n NEW_NAME` to edit the name of the Tag
 - `tag list` to list all the existing tags
 - `tag list [-c CARD_UUID | -i CARD_INDEX]` to list all the Cards that fall under the Tag
@@ -33,7 +33,6 @@ This feature consists of a few subfeatures :
   to be run later as the user simply needs to specify `deck tag -t physics` as opposed to adding the card into the deck
   one by one. This feature also
   allows users to better organize their cards as they can see what are the cards that fall under the tag.
-
 
 - ***Highlights :*** The most notable thing to keep in mind in this feature is on the importance on ensuring that all
   the data structures in `TagList`, `Tag`,`CardList` and `Card` are properly
@@ -51,14 +50,13 @@ More specifically, I contributed to the following features :
   A notable feature that comes with `card list` is its ***truncation*** feature which automatically truncates
   the `question` and `answer` strings in each card if they exceed 50 characters.
 
-
 - ***Justification :*** This feature is introduced as we foresee that there will be a lot of cards in the `cardList` and
   that it
   might not be user-friendly to overwhelm the users with detailed information at this stage.
 
 With that in mind, another feature that I implemented is :
 
-`card view {-c CAR_DUUID | -i CARD_INDEX}`
+`card view {-c CARD_UUID | -i CARD_INDEX}`
 
 - ***What it does :***
   This feature allows users to view what are the `tags` and `decks` that the card is currently associated with. It makes
@@ -66,8 +64,7 @@ With that in mind, another feature that I implemented is :
   reference to the `ArrayList` representing `tags` and `decks` inside the `Card` class to ensure that the
   appropriate `tags` and `decks` get displayed.
 
-
-- ***Justification :*** : This feature is introduced so that users can make sure that their cards already have the
+- ***Justification :*** This feature is introduced so that users can make sure that their cards already have the
   correct `tags` and `decks`. This is because
   information provided by `card list` does not include the `tags` and `decks` for brevity purposes,
   Additionally, `questions` and `answers` displayed here are no longer truncated
@@ -86,7 +83,7 @@ found [here.](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=g
   in [#150.](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/150)
 - Contributed to various exception checking and the unit test to ensure that the exception message is appropriate.
 - Contributed to the overall architecture of `Inka` such as all the `UUID` classes.
-- Contributed to the skeleton code in `Inka` so the `tp` can get started.
+- Set up and filled in the AboutUs.md and README.md of `Inka`
 - Set up the [AY2223-S2-CS21113-F10-1](https://github.com/AY2223S2-CS2113-F10-1) organization and
   the [tp](https://github.com/AY2223S2-CS2113-F10-1/tp) repository inside.
 - Helped create issues in `v1.0` and `v2.0` milestones and close the milestones in a timely manner.
@@ -112,22 +109,29 @@ Add documentations for the following features :
 - Add Class Diagrams for `CardList` and `TagList`
 
 The Class Diagram for `CardList` can be found below :
+
 ![CardList Class Diagram](../img/CardListClass.svg)
 
 The Class Diagram for `TagList` can be found below :
+
 ![TagList Class Diagram](../img/TagListClass.svg)
 
-- Add Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}`, `card untag {-c CaRDUUID | -t TAGNAME}`
-  and `tag list {-c CARDUUID | -i CARDINDEX}`
+- Add Sequence Diagram for `card view {-c CARD_UUID | -i CARD_INDEX}`, `card untag {-c CARD_UUID | -t TAG_NAME}`
+  and `tag list {-c CARD_UUID | -i CARD_INDEX}`
 
-The Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}` can be found below :
+The Sequence Diagram for `card view {-c CARD_UUID | -i CARD_INDEX}` can be found below :
+
 ![Card View Sequence Diagram](../img/CardViewSequence.png)
 
-The Sequence Diagram for `card untag {-c CaRDUUID | -t TAGNAME}` can be found below :
+The Sequence Diagram for `card untag {-c CARD_UUID | -t TAG_NAME}` can be found below :
+
 ![Card Untag Sequence Diagram](../img/CardUntagSequence.png)
 
-The Sequence Diagram for `tag list {-c CARDUUID | -i CARDINDEX}` can be found below :
+The Sequence Diagram for `tag list {-c CARD_UUID | -i CARD_INDEX}` can be found below :
+
 ![List Card Under Tag Sequence Diagram](../img/ListCardsUnderTagSequence.png)
+
+The Reference Frames (if needed) created for the Sequence Diagrams can be found [here.](mitch-reference-frames.md)
 
 
 

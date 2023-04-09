@@ -268,6 +268,20 @@
         }
       ],
       "decks": []
+
+    },
+    {
+      "uuid": {
+        "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
+      },
+      "tagName": "chemmmm",
+      "cards": [
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "decks": []
+
     }
   ],
   "cards": [
@@ -295,6 +309,9 @@
         },
         {
           "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
+        },
+        {
+          "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
         }
       ],
       "decks": [
@@ -385,11 +402,13 @@
           "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
         }
       ],
+
       "decks": [
         {
           "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
         }
       ]
+
     }
   ]
 }

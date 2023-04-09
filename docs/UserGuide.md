@@ -230,7 +230,7 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 
 ```
 Tag does not exist.. creating a new tag: physics
-Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
+Successfully added tag physics to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
 ### Removing a Tag from a card :
@@ -258,7 +258,7 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 ***Sample output :***
 
 ```
-Successfully removed tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 from card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
+Successfully removed tag physics from card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
 ### Putting a card into a deck :
@@ -287,7 +287,7 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 
 ```
 Deck does not exist.. creating a new one
-Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4bbe-4be7-83df-5ddaecd3f1ca
+Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck midterms
 ```
 
 ### Viewing a card :
@@ -353,7 +353,7 @@ Example of usage :
 Sample output :
 
 ```
-Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
+Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 name has been changed from CS2113 to CS2113T
 ```
 
 ### Deleting a tag :
@@ -378,8 +378,8 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 ***Sample output :***
 
 ```
-Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
-Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
+Successfully removed tag physics from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
+Successfully removed tag physics from the tag list.
 ```
 
 ### List all tags : `tag list [-t TAG_NAME | -x TAG_INDEX]`
@@ -452,7 +452,7 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 
 ```
 Deck does not exist.. creating a new one
-Successfully added tag c8259fee-125d-4700-829c-0da79eba1e91 to deck aef23e46-5327-4ca9-80f2-84e9e8e7dacd
+Successfully added tag physics to deck midterm
 ```
 
 ---
@@ -500,8 +500,8 @@ Example of usage: `deck delete -d my-deck`
 Sample output:
 
 ```
-Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
-Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
+Successfully removed deck my-deck from card c2c61475-df53-4656-94c4-c2e36933d359
+Successfully removed deck my-deck from the deck list.
 ```
 
 ### List all decks: `deck list`
@@ -562,16 +562,15 @@ Your file will be loaded the next time you run Inka!
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 | **Command**                   | **Format**                                                                          |
 |-------------------------------|-------------------------------------------------------------------------------------|
-| Create a `Card`               | `card add -q {question_here} -a {answer_here}`                                      |
+| Create a `Card`               | `card add -q {question} -a {answer}`                                                |
 | Create a `Tag`                | `card tag -c {cardUUID} -t {tag_name}`                                              |
 | Create a `Deck`               | `card deck -c {cardUUID} -d {deck_name}` OR `card deck -t {tagUUID} -d {deckName}`  |
 | Add a `Card` to a `Deck`      | `card deck -c {cardUUID} -d {deckName}` OR `card deck -i {cardIndex} -d {deckName}` |
 | Add a `Tag` to a `Deck`       | `tag deck -t {tagUUID} -d {deckName}`                                               |
 | Add a `Card` to a `Tag`       | `card tag -c {cardUUID} -t {tagName}`                                               |
+| Delete a `Tag` from a `Card`  | `card untag -c {cardUUIID} -t {tagName}`                                            |
 | Delete a `Card`               | `card delete -i {cardUUID}`                                                         |
 | Delete a `Tag`                | `tag delete -t {tagName}`                                                           |
 | Delete a `Deck`               | `deck delete -d {deckName}`                                                         |

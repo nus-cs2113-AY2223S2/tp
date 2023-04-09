@@ -22,9 +22,6 @@ public class DeckList {
         this.deckList.add(deck);
     }
 
-    public boolean deleteDeckByUUID(DeckUUID deckUUID) {
-        return deckList.removeIf(deck -> (deck.getDeckUUID().equals(deckUUID.uuid)));
-    }
 
     public boolean isEmpty() {
         return deckList.isEmpty();
