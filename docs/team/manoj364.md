@@ -11,9 +11,12 @@ operation through the Command-Line Interface(CLI).
 
 #### Enhancements Implemented:
 
-- New Feature: Ui Elements
+- New Feature: Ui
     - What it does: Allows the user to interact with the program by receiving messages from the program, triggered by
       their inputs.
+    - Justification: This feature improves the product significantly as a user is able to receive visual confirmation
+      that the requested commands are either being executed or rejected by the application. If rejected, 
+      the corresponding reason is also displayed to the user
 - New Feature: Duplication checker
     - What it does: Makes sure that duplicate entries by the user are not added into the list
     - Justification: This feature improves the product significantly as a user can mistakenly add the same company twice
@@ -48,6 +51,6 @@ operation through the Command-Line Interface(CLI).
         - ![Duplication_checker.png](..%2FUML%2FImage%2FDuplication_checker.png)
 
 ### Contributions to team-based tasks
-- Created milestones in lieu of each release
+- Created milestones for each release
 - Reviewed and merged PRs
 
