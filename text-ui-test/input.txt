@@ -1,0 +1,7 @@
+help
+generAte 1337
+start
+cancel
+exit
+data
+exit
