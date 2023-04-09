@@ -35,18 +35,28 @@ public class AccountTest {
         Account account = new Account(VALID_USERNAME, VALID_PASSWORD);
         account.signup();
         assertEquals("Login successfully.", account.login());
+        deleteAccountAfterTest(account);
+        deleteStorageFileAfterTest();
     }
 
     @Test
     void testInvalidUsernameLogin() {
-        Account account = new Account(INVALID_USERNAME, VALID_PASSWORD);
-        assertEquals("Invalid username or password.", account.login());
+        Account account = new Account(VALID_USERNAME, VALID_PASSWORD);
+        account.signup();
+        Account invalidAccount = new Account(INVALID_USERNAME, VALID_PASSWORD);
+        assertEquals("Invalid username or password.", invalidAccount.login());
+        deleteAccountAfterTest(account);
+        deleteStorageFileAfterTest();
     }
 
     @Test
     void testInvalidPasswordLogin() {
-        Account account = new Account(VALID_USERNAME, INVALID_PASSWORD);
-        assertEquals("Invalid username or password.", account.login());
+        Account account = new Account(VALID_USERNAME, VALID_PASSWORD);
+        account.signup();
+        Account invalidAccount = new Account(VALID_USERNAME, INVALID_PASSWORD);
+        assertEquals("Invalid username or password.", invalidAccount.login());
+        deleteAccountAfterTest(account);
+        deleteStorageFileAfterTest();
     }
 
     void deleteAccountAfterTest(Account newAccount) {
@@ -107,17 +117,23 @@ public class AccountTest {
 
     @Test
     void testInvalidSignUpUserNameIsTaken() {
+        Account account = new Account(VALID_USERNAME, VALID_PASSWORD);
+        account.signup();
         Account newAccount = new Account(VALID_USERNAME, INVALID_PASSWORD);
         assertEquals(USERNAME_IS_TAKEN_MESSAGE, newAccount.signup());
         newAccount = new Account(VALID_USERNAME, VALID_PASSWORD);
         assertEquals(USERNAME_IS_TAKEN_MESSAGE, newAccount.signup());
+        deleteAccountAfterTest(newAccount);
+        deleteStorageFileAfterTest();
     }
 
     @Test
     void testSaveLogOut() { //Test for both exit and logout command
-        Account newAccount = new Account(VALID_USERNAME, VALID_PASSWORD);
-        assertEquals(SAVED_MESSAGE, newAccount.saveLogOut());
-        deleteAccountAfterTest(newAccount);
+        Account account = new Account(VALID_USERNAME, VALID_PASSWORD);
+        account.signup();
+        account.login();
+        assertEquals(SAVED_MESSAGE, account.saveLogOut());
+        deleteAccountAfterTest(account);
         deleteStorageFileAfterTest();
     }
 }
