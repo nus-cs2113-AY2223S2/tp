@@ -32,8 +32,6 @@ else UPC exists
         "<<class>>\n Ui" -->":RemoveAlertCommand":
         deactivate "<<class>>\n Ui"
     end
-end
-
      opt "<<class>>\nSessionManager".getAutoSave()
         ":RemoveAlertCommand" ->"<<class>>\nSessionManager":writeSession(alertList)
         activate "<<class>>\nSessionManager"
@@ -43,7 +41,10 @@ end
         deactivate "<<class>>\nStorage"
         "<<class>>\nSessionManager" -->":RemoveAlertCommand":
         deactivate "<<class>>\nSessionManager"
-        end
+     end
+end
+
+
 return
 ":RemoveAlertCommand" --> ":AlertParser"
 destroy ":RemoveAlertCommand"
