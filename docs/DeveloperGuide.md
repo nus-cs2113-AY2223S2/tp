@@ -353,17 +353,23 @@ The spending advisor will be integrated to the product by assisting users to mak
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | Version | As a ... | I want to ...                             | So that I can ...                                |
-|----------|---------|----------|-------------------------------------------|--------------------------------------------------|
-| `* * *`  | v1.0    | user     | add, delete, edit, and list my income     | manage my income                                 |
-| `* * *`  | v1.0    | user     | add, delete, edit, and list my expenses   | manage my expenses                               |
-| `* * *`  | v1.0    | user     | set and view my budget                    | set expectation of how much money I should use   |
-| `* * *`  | v1.0    | user     | view how much of the budget I spend       | manage and change my spending habit as necessary |
-| `* *`    | v1.0    | user     | view all command that I can enter         | get help on the features if necessary            |
-| `* *`    | v2.0    | user     | list monthly expenses, income, and budget | refer to financial status in previous months     |
-| `* *`    | v2.0    | user     | save all my income and expenses entered   | so that I can refer to it next time I return     |
-| `* *`    | v3.0    | user     | add goods on wishlist                     | so that I can save my incomes to purchase them   |
-| `* `     | v3.0    | user     | compare different spending options in the area | so that I can make the best-value purchases |
+| Priority | Version | As a ... | I want to ...                                  | So that I can ...                                                                 |
+|----------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
+| `* * *`  | v1.0    | user     | add my income                                  | track my incomes                                                                  |
+| `* * *`  | v1.0    | user     | delete my income entered                       | manage my incomes and delete unwanted incomes                                     |
+| `* * *`  | v1.0    | user     | edit my income previously entered              | edit a component of my income without having to delete and re-entering the income |
+| `* * *`  | v1.0    | user     | list my incomes                                | track all of my incomes                                                           |
+| `* * *`  | v1.0    | user     | add my expenses                                | track my incomes                                                                  |
+| `* * *`  | v1.0    | user     | delete my expenses entered                     | manage my expenses and delete unwanted expenses                                   |
+| `* * *`  | v1.0    | user     | edit my expense previously entered             | edit a component of my expense without having to delete and re-enter the expense  |
+| `* * *`  | v1.0    | user     | list my expenses                               | track all my expenses                                                             |
+| `* * *`  | v1.0    | user     | set and view my budget                         | set expectation of how much money I should use                                    |
+| `* * *`  | v1.0    | user     | view how much of the budget I spend            | manage and change my spending habit as necessary                                  |
+| `* *`    | v1.0    | user     | view all command that I can enter              | get help on the features if necessary                                             |
+| `* *`    | v2.0    | user     | list monthly expenses, income, and budget      | refer to financial status in previous months                                      |
+| `* *`    | v2.0    | user     | save all my income and expenses entered        | so that I can refer to it next time I return                                      |
+| `* *`    | v3.0    | user     | add goods on wishlist                          | so that I can save my incomes to purchase them                                    |
+| `* `     | v3.0    | user     | compare different spending options in the area | so that I can make the best-value purchases                                       |
 
 [back to contents](#table-of-contents)
 
@@ -394,8 +400,6 @@ unless specified otherwise)
 
     Use case resumes at step 2.
 
-{More to be added}
-
 [back to contents](#table-of-contents)
 
 ---
@@ -405,7 +409,6 @@ unless specified otherwise)
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-{More to be added}
 
 [back to contents](#table-of-contents)
 
@@ -423,5 +426,29 @@ unless specified otherwise)
 ## Appendix: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+1. Download the latest .jar file from this link (**to be added**).
+2. Open the folder that the .jar file is in and run the program in your terminal using `java -jar [CS2113-F13-2][BrokeMan].jar`.
+3. Read through the user guide to get the detailed instructions for the various features of the program.
+4. Additional, user can see all the available commands and a less detailed description of them by entering `help`.
+5. Add an expense at 2023/04/01 at 12:00 using the command `addExpense a/ 5.0 d/ lunch t/ 2023 04 01 12 00 c/ FOOD`.
+6. Delete expense using the command `deleteExpense 1`.
+7. Edit an expense using the command `editExpense i/ 1 t/ amount n/ 12.5`.
+8. List all expenses across the entire time period using the command `listExpense`.
+9. List all expenses for the month specified using the command `listExpense t/ 2023/04`.
+10. Add an income at 2023/04/01 at 12:00 using the command `addIncome a/ 4000 d/ salary t/ 2023 04 01 12 00 c/ SALARY`.
+11. Delete an income using the command `deleteIncome 1`.
+12. Edit an Income using the command `editIncome i/ 1 t/ info n/ stocks`.
+13. List all incomes across the entire time period using the command `listIncome`.
+14. List all incomes for the month specified using the command `listIncome t/ 2023/04`.
+15. Set a budget for current month using the command `setBudget 500`.
+16. Set a budget for a specific month using the command `setBudget 500 t/ 2023/05`.
+17. View budget for current month and amount of budget remaining using the command `viewBudget`.
+18. View budget for the month specified and the amount of budget remaining using the command `viewBudget t/ 2023/05`.
+19. View Expenses by decreasing amount using the command `sortExpenseByAmount`.
+20. View Income by decreasing amount using the command `sortIncomeByAmount`.
+21. View Expenses by dates from the latest to oldest using the command `sortExpenseByDate`.
+22. View incomes by dates from the latest to oldest using the command `sortIncomeByDate`.
+23. Exit and save the content of the program by using the command `exit`.
 
 [back to contents](#table-of-contents)
