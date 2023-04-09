@@ -60,9 +60,10 @@ The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-
 
 The `Ui` component consists of just the `Ui` class.
 
-The `getUserInput()` method is used by the `ToDoListManager` to get the user's input, which is used to create a
-`Command` object. Output from executing a `Command` is displayed using `println()`. When the program terminates, the
-`ToDoListManager` will call `close()` to close the `Scanner`.
+The `Ui` component,
+- gets the user's input with the `getUserInput()` method.
+- displays output from executing a `Command` using the `println()` method.
+- closes the `Scanner` used to get user input when `close()` is called.
 
 ### Logic component
 
@@ -73,10 +74,10 @@ The code for this component is found [here](https://github.com/AY2223S2-CS2113-T
 The `Logic` component contains the `Parser`, `Command`, `ParserUtil`, and `FormatterUtil` classes, as well as
 extensions of the `Command` class like the `AddTaskCommand`, `ListTagsCommand`, and `EditEmailCommand` subclasses.
 
-When the `ToDoListManager` component passes user input to the `Parser`, a `Command` object (such as an
-`AddTaskCommand`) is created and returned to the `ToDoListManager`. The `ToDoListManager` executes the returned
-`Command` object, which will act on the `TaskList` and `Config` if needed and output the result of the command
-through the `Ui` component.
+The `Logic` component,
+- parses user input through the `Parser` and `ParserUtil` classes, returning a `Command` object (such as an `AddTaskCommand`).
+- operates on the `TaskList` and `Config` classes, if needed, when a `Command` is executed.
+- invokes the `Ui` component to display the result of executing a `Command`.
 
 ### Model component
 
@@ -86,9 +87,18 @@ The code for this component is found in [here](https://github.com/AY2223S2-CS211
 
 The `Model` component contains the `Config`, `TaskList`, and `Task` classes, and the `Priority` enum.
 
-The `Config` stores the attributes related to recurring tasks. The `TaskList` stores all `Task` objects in a `TreeMap`,
-which it can operate on. The `Task` class consists of several attributes such as a description as well as a priority
-level, which is represented as an enumeration `Priority`.
+The `Model` component,
+- stores the user's recurrence-related config settings within the `Config`.
+- stores the user's tasks within the `TaskList`, which it can operate on.
+
+The `Task` class consists of several attributes:
+- An `id`, which is a unique positive `int`.
+- A `description`, which is a non-empty `String`.
+- An optional `email address`, which must be of a valid email address format and is stored as a `String`.
+- An optional `deadline`, stored in a `LocalDateTime` object. 
+- A `recurrence count`, also known as `repeat times`, stored as an `int`.
+- Any number of `tags`, each of which is a `String`.
+- A `priority level`, which is represented as an enumeration `Priority`.
 
 <!-- @@author jeromeongithub -->
 
