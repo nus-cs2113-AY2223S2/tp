@@ -94,8 +94,6 @@ public class JsonStorage extends Storage {
         }
     }
 
-
-
     public static Memory makeMemory(CardList cardList, TagList tagList, DeckList deckList) {
         Memory memory = new Memory();
         memory.setCardList(cardList);
@@ -104,7 +102,6 @@ public class JsonStorage extends Storage {
 
         return memory;
     }
-
 
     @Override
     public void save(CardList cardList, TagList tagList, DeckList deckList) throws StorageSaveFailure {
@@ -124,7 +121,7 @@ public class JsonStorage extends Storage {
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {
         try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String serialized = gson.toJson(data);

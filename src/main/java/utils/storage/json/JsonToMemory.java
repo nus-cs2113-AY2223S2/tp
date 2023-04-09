@@ -1,13 +1,10 @@
 package utils.storage.json;
 
-
-
 import static utils.storage.json.JsonStorage.logger;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,7 +22,6 @@ import model.Deck;
 import model.TagUUID;
 import utils.exceptions.InkaException;
 
-
 public class JsonToMemory {
     public static Memory convert(JsonObject saveDataObject) throws InkaException {
 
@@ -35,10 +31,8 @@ public class JsonToMemory {
 
         Memory memory = new Memory(cardList, tagList, deckList);
 
-
         return memory;
     }
-
 
     public static CardList getJsonCardList(JsonObject saveDataObject) throws InkaException {
         JsonArray jsonCardArray = saveDataObject.getAsJsonArray("cards");
@@ -73,7 +67,7 @@ public class JsonToMemory {
         return cardList;
     }
 
-    public static TagList getJsonTagList(JsonObject saveDataObject){
+    public static TagList getJsonTagList(JsonObject saveDataObject) {
         TagList tagList = new TagList(); // construct empty taglist to append stuff to
         JsonArray tagJsonArray = saveDataObject.getAsJsonArray("tags");
         for (JsonElement jsonTag : tagJsonArray) {
@@ -96,10 +90,9 @@ public class JsonToMemory {
         }
 
         return tagList;
-
     }
 
-    public static DeckList getJsonDeckList(JsonObject saveDataObject){
+    public static DeckList getJsonDeckList(JsonObject saveDataObject) {
         DeckList deckList = new DeckList();
         JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
         for (JsonElement jsonDeck : deckJsonArray) {
@@ -108,10 +101,9 @@ public class JsonToMemory {
             deckList.addDeck(deck);
         }
         return deckList;
-
     }
 
-    public static Deck getJsonDeck(JsonObject deckObject){
+    public static Deck getJsonDeck(JsonObject deckObject) {
 
         String deckName = deckObject.get("deckName").getAsString();
         Deck deck = new Deck(deckName);
@@ -134,13 +126,13 @@ public class JsonToMemory {
         JsonObject cardUuidIntegerHashMapObject = deckObject.getAsJsonObject("cardUuidIntegerHashMap");
         HashMap<CardUUID, Integer> cardUuidIntegerHashMap = new HashMap<>();
 
-        try{
+        try {
             for (HashMap.Entry<String, JsonElement> entry : cardUuidIntegerHashMapObject.entrySet()) {
                 String cardUuidString = entry.getKey();
                 int value = entry.getValue().getAsInt();
                 cardUuidIntegerHashMap.put(new CardUUID(UUID.fromString(cardUuidString)), value);
             }
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             logger.log(Level.WARNING, "Invalid: hashmap", e);
         }
         deck.setcardUUIDIntegerHashMap(cardUuidIntegerHashMap);
@@ -153,7 +145,6 @@ public class JsonToMemory {
             String cardUuidString = cardUuidObject.get("uuid").getAsString();
             deck.addCard(new CardUUID(UUID.fromString(cardUuidString)));
         }
-
 
         //obtain tags from a jsonDeck
         JsonArray deckTagArray = deckObject.getAsJsonArray("tags");
