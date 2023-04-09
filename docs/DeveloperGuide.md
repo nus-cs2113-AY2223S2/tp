@@ -63,6 +63,7 @@
 ### Acknowledgements
 
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
+2. The source for the nutritional data is from the following links, [Western](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2022/10/Western-TE-1.pdf), [Nasi Padang](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Nasi-Padang-TE.pdf), [Taiwanese](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Taiwanese-TE.pdf), and [Mala](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Mala-TE.pdf).
 ---
 
 ## Design
@@ -109,10 +110,9 @@ API: commands.java
 How the `Command` component works:
 1. When `Command` is called upon to execute a command, it first uses the `CommandParser` subclass from the `Parser` class to parse the user command. 
 2. This results in a Command object (more precisely, an object of one its subclasses e.g. AddMealCommand), which would then be excuted by LifeTracker.
-3. The command can communicate with ENTITIES?
-4. The command can also communicate with the Storage Component when it is executed, such as saving and loading of User Data.
-5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
-6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException is thrown.
+3. The command can also communicate with the Storage Component when it is executed, such as saving and loading of User Data.
+4. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
+5. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException is thrown.
 
 ### Storage Component
 
