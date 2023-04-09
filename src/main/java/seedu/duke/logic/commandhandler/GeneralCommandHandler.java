@@ -3,6 +3,7 @@ package seedu.duke.logic.commandhandler;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import seedu.duke.Duke;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
@@ -68,8 +69,7 @@ public class GeneralCommandHandler implements CommandList {
                     }
                     exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
                 } catch (NumberFormatException e) {
-                    System.out.println("You did not key in a session number. " +
-                            "Please key in a valid session number and try again!");
+                    throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_SESSION_NUMBER.toString());
                 }
                 break;
             case GENERATE_COMMAND:

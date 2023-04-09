@@ -86,6 +86,7 @@ public class CompletedExerciseSearchCommand extends Command{
      */
 
     public static String parseDifficultyLevel(String difficulty) {
+        assert difficulty.length() != 0 : "The string length cannot be 0";
         if (difficulty.equals("beginner")) {
             return "easy";
         } else if (difficulty.equals("intermediate")) {

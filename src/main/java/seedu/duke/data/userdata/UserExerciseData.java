@@ -68,6 +68,7 @@ public class UserExerciseData {
      */
 
     public static String parseDifficultyLevel(String difficulty) {
+        assert difficulty.length() != 0 : "The string length cannot be 0";
         if (difficulty.equals("beginner")) {
             return "easy";
         } else if (difficulty.equals("intermediate")) {
@@ -85,6 +86,7 @@ public class UserExerciseData {
      */
 
     public static int totalExerciseSessionSize(UserCareerData userCareerData) {
+        assert userCareerData != null : "User career data cannot be null.";
         int sessionSize = 0;
         int totalSessionsArraySize = userCareerData.getTotalUserCareerSessions().size();
         for (int i = 0; i < totalSessionsArraySize; i++) {
@@ -105,6 +107,7 @@ public class UserExerciseData {
      */
 
     public static int totalUniqueSessionSize(HashMap<String, Integer> addUserExerciseHistory) {
+        assert addUserExerciseHistory != null : "The hashmap cannot be null";
         return addUserExerciseHistory.size();
     }
 
