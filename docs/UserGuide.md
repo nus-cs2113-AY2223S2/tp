@@ -15,7 +15,7 @@ listed of a multi-user application by CS2113 definition.
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of **Dr Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v2.0).
-3. Download the jar file from the latest release, labelled as **[CS2113-W13-1][DrDuke].jar**.
+3. Download the jar file from the latest release, labelled as **DrDuke.jar**.
 4. Place the file in the folder you want to use as the home folder for your Duke.
 5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the copied
    filepath command into your terminal:
