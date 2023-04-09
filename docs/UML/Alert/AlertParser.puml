@@ -5,9 +5,8 @@ title AlertParser Sequence Diagram
 skinparam style strictuml
 actor User
 participant ":AlertParser"
-User -> ":AlertParser" **
 
-User -> ":AlertParser": run()
+User -> ":AlertParser" **:run()
 activate ":AlertParser"
 
 alt rawInput == empty string
