@@ -20,7 +20,9 @@ import seedu.duke.utils.Storage;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EfficiencyBenchmark {
     private static final long timeToBeat = 1000;
@@ -59,7 +61,7 @@ public class EfficiencyBenchmark {
         end = System.currentTimeMillis();
         timeTaken = end - start;
         System.out.println("Time taken to find item: " + timeTaken + "ms");
-        assertTrue(result != null);
+        assertNotNull(result);
         assertTrue(timeTaken <= timeToBeat);
     }
 

@@ -33,9 +33,15 @@ Contributions to the UG:
 
 
 Contributions to the DG:
+<<<<<<< HEAD
 * Designed and came up with the architecture diagram of Magus Stock
 * Wrote the breakdown and explaination of the architecture diagram
 * Designed the Sequence Diagram overview of Magus Stock
+=======
+* Designed and came up with the architecture diagram of Magus Stock 
+* Wrote the breakdown and explaination of the architecture diagram
+* Designed the Sequence Diagram overview of Magus Stock 
+>>>>>>> 27dc41617a1d496fd5b7e93d0bcbf83520b7e953
 * Designed Sequence Diagram and UML Diagram of `Add` Command (Including its parser)
 * Wrote the explaination and steps of the `Add` Command
 * Created the class diagrams for `Parser` and `Command` components

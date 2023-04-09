@@ -9,10 +9,8 @@ import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class RemoveParser extends Parser {
-    private static Scanner in = new Scanner(System.in);
     private static final int VALID_COMMAND_LENGTH = 2;
 
 
