@@ -18,10 +18,11 @@ public class Owner {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         Owner other = (Owner) o;
         return this.name.equals(other.name) && this.contactNumber.equals(other.contactNumber);
     }
+
     public String getName() {
         return name;
     }
@@ -33,11 +34,9 @@ public class Owner {
     public String setContactNumber(String contactNumber) throws SniffException {
         if (contactNumber.isBlank()) {
             throw new SniffException(" Contact Number cannot be empty!");
-        }
-        else if (!isNumeric(contactNumber)) {
+        } else if (!isNumeric(contactNumber)) {
             throw new SniffException(" Contact Number must only contain numbers!");
-        }
-        else if (contactNumber.length() != 8) {
+        } else if (contactNumber.length() != 8) {
             throw new SniffException(" Contact Number has to be 8 digits!");
         }
         return contactNumber;
@@ -46,8 +45,7 @@ public class Owner {
     public String setOwnerName(String name) throws SniffException {
         if (name.isBlank()) {
             throw new SniffException(" Owner Name cannot be empty!");
-        }
-        else if (!isAlphaSpace(name)) {
+        } else if (!isAlphaSpace(name)) {
             throw new SniffException(" Owner Name must only contain alphabets!");
         }
         return name;

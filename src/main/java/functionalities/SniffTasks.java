@@ -73,6 +73,7 @@ public class SniffTasks {
             assert appointment != null : "Appointment is not empty";
             if (appointment.isDone) {
                 Ui.formatPrintList(markedAppointmentsIndex, appointment.toString());
+                Ui.printBlankLine();
                 markedAppointmentsIndex++;
             }
         }
@@ -96,6 +97,7 @@ public class SniffTasks {
             assert appointment != null : "Appointment is not empty";
             if (appointment.getStatus().equals(" ")) {
                 Ui.formatPrintList(notMarkedAppointmentsIndex, appointment.toString());
+                Ui.printBlankLine();
                 notMarkedAppointmentsIndex++;
             }
         }
@@ -104,6 +106,15 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Adds a consultation appointment to the appointment list.
+     *
+     * @param animal Animal object generated from input from user.
+     * @param owner  Owner object generated from input from user.
+     * @param date   LocalDate object generated from the date input from user.
+     * @param time   LocalTime object generated from the time input from user.
+     * @throws SniffException thrown when the inputs from the user is invalid.
+     */
     public void addConsultation(Animal animal, Owner owner,
                                 LocalDate date, LocalTime time) throws SniffException {
         try {
@@ -155,6 +166,16 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Adds a vaccination appointment to the appointment list.
+     *
+     * @param animal  Animal object generated from input from user.
+     * @param owner   Owner object generated from input from user.
+     * @param date    LocalDate object generated from the date input from user.
+     * @param time    LocalTime object generated from the time input from user.
+     * @param vaccine String representing the vaccine description from the user.
+     * @throws SniffException thrown when the inputs from the user is invalid.
+     */
     public void addVaccination(Animal animal, Owner owner,
                                LocalDate date, LocalTime time, String vaccine) throws SniffException {
         try {
@@ -207,6 +228,17 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Adds a surgery appointment to the appointment list.
+     *
+     * @param animal    Animal object generated from input from user.
+     * @param owner     Owner object generated from input from user.
+     * @param startDate LocalDate object generated from the start date input from user.
+     * @param startTime LocalTime object generated from the start time input from user.
+     * @param endDate   LocalDate object generated from the end date input from user.
+     * @param endTime   LocalTime object generated from the end time input from user.
+     * @throws SniffException thrown when the user input is invalid.
+     */
     public void addSurgery(Animal animal, Owner owner,
                            String priority, LocalDate startDate, LocalTime startTime,
                            LocalDate endDate, LocalTime endTime) throws SniffException {
@@ -263,25 +295,27 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Removes an appointment from the appointment list.
+     *
+     * @param uid UID of the appointment that is being removed from the list.
+     * @throws SniffException thrown if UID is not found in the hashSet.
+     */
     public void removeAppointment(String uid) throws SniffException {
-        try {
-            if (!UIDS.contains(uid)) {
-                throw new SniffException(" There are no appointments with this ID.");
-            }
-            int index = 0;
-            for (int i = 0; i < APPOINTMENTS.size(); i++) {
-                if (uid.equals(APPOINTMENTS.get(i).uid)) {
-                    index = i;
-                    break;
-                }
-            }
-            Appointment temp = APPOINTMENTS.get(index);
-            APPOINTMENTS.remove(index);
-            UIDS.remove(uid);
-            Ui.printAppointmentRemovedMessage(temp);
-        } catch (IndexOutOfBoundsException e) {
-            throw new SniffException(" The remove command entry is invalid!");
+        if (!UIDS.contains(uid)) {
+            throw new SniffException(" There are no appointments with this ID.");
         }
+        int index = 0;
+        for (int i = 0; i < APPOINTMENTS.size(); i++) {
+            if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                index = i;
+                break;
+            }
+        }
+        Appointment temp = APPOINTMENTS.get(index);
+        APPOINTMENTS.remove(index);
+        UIDS.remove(uid);
+        Ui.printAppointmentRemovedMessage(temp);
     }
 
     /**
@@ -371,6 +405,7 @@ public class SniffTasks {
     /**
      * Gets the ID input by the user and marks the corresponding appointment and generates a success message.
      * If the specific appointment is already marked then generates another message informing the user
+     *
      * @param uid UID object generated by program that is input by the user.
      * @throws SniffException thrown when the command input the user is missing an object or is of wrong format.
      */
@@ -401,7 +436,7 @@ public class SniffTasks {
                 System.out.println("\n");
                 Ui.printAppointmentMarkMessage();
             }
-        } catch(IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The mark command entry is invalid!");
         }
     }
@@ -409,8 +444,9 @@ public class SniffTasks {
     /**
      * Gets the ID input by the user and UnMarks the corresponding appointment and generates a success message.
      * If the specific appointment has already been UnMarked then generates another message informing the user.
+     *
      * @param uid UID object generated by program that is input by the user.
-     * @throws SniffException  thrown when the command input the user is missing an object or is of wrong format.
+     * @throws SniffException thrown when the command input the user is missing an object or is of wrong format.
      */
 
     public void unMarkAppointment(String uid) throws SniffException {
@@ -419,8 +455,8 @@ public class SniffTasks {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" Here are possible places where you could have gone wrong: " + "\n"
                         + "1. Check if the entered UID is valid." + "\n"
-                 + "2. Check if you have left the UID field empty." + "\n"
-                + "3. Lastly check if the format is correct unmark uid/UID");
+                        + "2. Check if you have left the UID field empty." + "\n"
+                        + "3. Lastly check if the format is correct unmark uid/UID");
             }
             int index = 0;
             for (int i = 0; i < APPOINTMENTS.size(); i++) {
@@ -442,8 +478,9 @@ public class SniffTasks {
             throw new SniffException(" The unMark command entry is invalid!");
         }
     }
-    public void editConsultation(String uid,Animal animal, Owner owner,
-                                LocalDate date, LocalTime time) throws SniffException {
+
+    public void editConsultation(String uid, Animal animal, Owner owner,
+                                 LocalDate date, LocalTime time) throws SniffException {
         try {
             checkConsultationDuplicate(animal, owner, date, time);
             int index = 0;
@@ -469,9 +506,10 @@ public class SniffTasks {
             System.out.println(" Appointment failed to be changed.");
         }
     }
+
     public void editSurgery(String uid, Animal animal, Owner owner,
                             String priority, LocalDate startDate, LocalTime startTime,
-                            LocalDate endDate, LocalTime endTime) throws SniffException{
+                            LocalDate endDate, LocalTime endTime) throws SniffException {
         try {
             checkSurgeryDuplicate(animal, owner, startDate, startTime, endDate, endTime);
             int index = 0;
@@ -499,8 +537,8 @@ public class SniffTasks {
         }
     }
 
-    public void editVaccination(String uid,Animal animal, Owner owner,
-                               LocalDate date, LocalTime time, String vaccine) throws SniffException {
+    public void editVaccination(String uid, Animal animal, Owner owner,
+                                LocalDate date, LocalTime time, String vaccine) throws SniffException {
         try {
             checkVaccinationDuplicate(animal, owner, date, time, vaccine);
             int index = 0;

@@ -33,10 +33,13 @@ public class Vaccination extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " [" + getStatus() + "]" + " | vaccine: " + vaccine + '\n'
-                + " Date: " + date + " | Time: " + time + '\n'
-                + " Animal Name: " + animal.toString() + '\n'
-                + " Owner Name: " + owner.toString();
+        return " Vaccination   " + "[" + getStatus() + "]" + System.lineSeparator() +
+                " Date: " + date + System.lineSeparator() +
+                " Time: " + time + System.lineSeparator() +
+                " UID: " + uid + System.lineSeparator() +
+                " Vaccine: " + vaccine + System.lineSeparator() +
+                " Animal Name: " + animal.toString() + System.lineSeparator() +
+                " Owner Name: " + owner.toString();
     }
 
     @Override

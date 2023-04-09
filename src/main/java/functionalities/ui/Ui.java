@@ -10,10 +10,14 @@ public class Ui {
     private static final String DOT_THEN_SPACE = ". ";
     private static final String LINE = "______________________________________________________________________";
 
+    private static final String BLANK = "";
     public static void showUserMessage(String s) {
         System.out.println(s);
     }
 
+    public static void printBlankLine() {
+        System.out.println(BLANK);
+    }
     public static void printFileCreated(boolean b) {
         showLine();
         if (b) {

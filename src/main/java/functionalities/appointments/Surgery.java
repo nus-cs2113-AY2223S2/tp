@@ -78,11 +78,15 @@ public class Surgery extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " [" + getStatus() + "]" + " | Priority: " + priority + '\n'
-                + " Animal Name: " + animal.toString() + '\n'
-                + " Owner Name: " + owner.toString() + '\n'
-                + " Start Date: " + startDate + " | Start Time: " + startTime + '\n'
-                + " End Date: " + endDate + " | End Time: " + endTime;
+        return " Surgery  " + "[" + getStatus() + "]" + " | Priority: " + priority + System.lineSeparator() +
+                " Start Date: " + startDate + System.lineSeparator() +
+                " End Date: " + endDate + System.lineSeparator() +
+                " Start Time: " + startTime + System.lineSeparator() +
+                " End Time: " + endTime + System.lineSeparator() +
+                " UID: " + uid + System.lineSeparator() +
+                " Animal Name: " + animal.toString() + System.lineSeparator() +
+                " Owner Name: " + owner.toString();
+
     }
 
     @Override
