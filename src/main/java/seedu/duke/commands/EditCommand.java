@@ -28,7 +28,7 @@ public class EditCommand extends Command {
     private static final Long MAX_VALUE_RANGE = 99999999L;
     private static final int ZERO = 0;
     private static final int MIN_VALUE_RANGE = 0;
-    public static final String NULL = "null";
+    private static final String NULL = "null";
     private final String[] editInfo;
 
     public EditCommand(Inventory inventory, String[] editInfo) {

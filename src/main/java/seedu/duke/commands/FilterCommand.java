@@ -15,7 +15,7 @@ public class FilterCommand extends Command {
     private static final String GREATER_THAN_FLAG = "p/gt";
     private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
     private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
-    public static final String TYPE_CATEGORY = "f/category";
+    private static final String TYPE_CATEGORY = "f/category";
     private static ArrayList<Item> filteredCategory;
     private String filterType;
     private String filterValue;

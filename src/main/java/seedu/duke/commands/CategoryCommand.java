@@ -149,7 +149,8 @@ public class CategoryCommand extends Command {
                     ((isA || isThe || isAn) && isNotFirstWord)) {
                 capsString = capsString + word;
             } else {
-                capsString = capsString + word.substring(BEGIN_INDEX, NEXT_INDEX).toUpperCase() + word.substring(NEXT_INDEX);
+                capsString = capsString + word.substring(BEGIN_INDEX, NEXT_INDEX).toUpperCase() +
+                        word.substring(NEXT_INDEX);
             }
             capsString = capsString + EMPTY_SPACE;
         }
