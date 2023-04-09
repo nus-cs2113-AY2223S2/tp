@@ -22,7 +22,7 @@ import java.util.Scanner;
  */
 public class TaskList {
     private static final int DESCRIPTION_OFFSET = 12;
-    private static final int DEADLINE_OFFSET = 12;
+    private static final int DEADLINE_OFFSET = 9;
     private static final int FROM_OFFSET = 5;
     private static final int TO_OFFSET = 3;
     private static final int DAY_OFFSET = 4;
