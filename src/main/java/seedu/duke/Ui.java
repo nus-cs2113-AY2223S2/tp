@@ -308,7 +308,7 @@ public class Ui {
 
     public static void printOverlapInfo(String info, String conflictionTime) {
         printDash();
-        System.out.println("The current task clashes with this task: ");
+        System.out.println("The current task/class clashes with this task: ");
         System.out.println("    > "+info);
         System.out.println("    > at : "+conflictionTime.substring(0,conflictionTime.length() -14));
     }

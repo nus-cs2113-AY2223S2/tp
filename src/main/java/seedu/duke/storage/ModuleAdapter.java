@@ -10,10 +10,14 @@ import com.google.gson.stream.JsonWriter;
 import seedu.duke.SemData;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static seedu.duke.Parser.SEMESTER_START_DATES;
+import static seedu.duke.Parser.SEMESTER_END_DATES;
 /**
  * A deserializer to deserialize NusMods data from its Json format
  */
@@ -101,7 +105,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 semester = reader.nextInt();
                 break;
             case "timetable":
-                timetable = readTimetable(reader);
+                timetable = readTimetable(reader, semester);
                 break;
             case "examDate":
                 examDate = reader.nextString();
@@ -122,18 +126,18 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         }
     }
 
-    private List<Lesson> readTimetable(JsonReader reader) throws IOException{
+    private List<Lesson> readTimetable(JsonReader reader, int semester) throws IOException{
         List<Lesson> timetable = new ArrayList<>();
         reader.beginArray();
         while (reader.hasNext()){
-            Lesson lesson = readLesson(reader);
+            Lesson lesson = readLesson(reader, semester);
             timetable.add(lesson);
         }
         reader.endArray();
         return timetable;
     }
 
-    private Lesson readLesson(JsonReader reader) throws IOException{
+    private Lesson readLesson(JsonReader reader, int semester) throws IOException{
         String classNumber = null;
         String startTime = null;
         String endTime = null;
@@ -155,7 +159,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 endTime = reader.nextString();
                 break;
             case "weeks":
-                weeks = readWeeks(reader);
+                weeks = readWeeks(reader, semester);
                 break;
             case "venue":
                 venue = reader.nextString();
@@ -175,7 +179,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         return new Lesson(classNumber, startTime, endTime, weeks, venue, lessonType, day);
     }
 
-    private ArrayList<Integer> readWeeks(JsonReader reader) throws IOException{
+    private ArrayList<Integer> readWeeks(JsonReader reader, int semester) throws IOException{
         ArrayList<Integer> weeks = new ArrayList<>();
         if (reader.peek() == JsonToken.BEGIN_ARRAY) {
             reader.beginArray();
@@ -210,6 +214,24 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 }
             }
             reader.endObject();
+            if ((semester > 2) && (weeks.isEmpty())) {
+                LocalDate start = LocalDate.parse(startDate);
+                LocalDate end = start;
+                if (endDate.equals("")) {
+                    end = SEMESTER_END_DATES.get(semester);
+                } else {
+                    end = LocalDate.parse(endDate);
+                }
+                LocalDate semStart = SEMESTER_START_DATES.get(semester);
+                int currWeek = (int) ChronoUnit.WEEKS.between(semStart, start) + 1;
+                weeks.add(currWeek);
+                start = start.plusWeeks(weekInterval);
+                while (start.isBefore(end) || start.isEqual((end))) {
+                    currWeek += weekInterval;
+                    weeks.add(currWeek);
+                    start = start.plusWeeks(weekInterval);
+                }
+            }
             return weeks;
         }
         return weeks;

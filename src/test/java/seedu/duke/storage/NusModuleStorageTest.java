@@ -23,6 +23,12 @@ class NusModuleStorageTest {
         System.out.println(cg2023.getDescription());
         System.out.println(cg2023.getFaculty());
         System.out.println(cg2023.getLesson(2,"lecture", "02"));
+        System.out.println("================================================================");
+        NusModule cs3244 = nusmods.get("CS3243"); //test special sem modules.
+        System.out.println(cs3244.getLesson(3, "lecture", "1"));
+        System.out.println(nusmods.get("CS3243").getLesson(3, "Tutorial", "01").toString());
     }
+
+
 
 }
