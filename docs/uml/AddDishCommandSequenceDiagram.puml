@@ -1,17 +1,18 @@
 @startuml
+!include Style.puml
 hide footbox
 title Add Dish Sequence Diagram
 
 box "AddDishCommand"
-participant ":AddDishCommand" as AddDishCommand
+participant ":AddDishCommand" as AddDishCommand COMMAND_COLOR
 endbox
 
 box "DishManager"
-participant ":DishManager" as DishManager
+participant ":DishManager" as DishManager MANAGER_COLOR
 endbox
 
 box "Dish"
-participant ":Dish" as Dish
+participant ":Dish" as Dish ENTITY_COLOR
 endbox
 
 -> AddDishCommand: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
