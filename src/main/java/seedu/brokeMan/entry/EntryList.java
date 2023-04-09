@@ -2,6 +2,7 @@ package seedu.brokeMan.entry;
 
 import seedu.brokeMan.ui.Ui;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedList;
@@ -189,10 +190,14 @@ public abstract class EntryList {
      * @return          Double representation of the sum of entry amounts
      */
     public static double getEntryListSum(List<Entry> entryList) {
-        double sum = 0;
+        double sum;
+        BigDecimal temp = new BigDecimal(0);
         for (Entry entry : entryList) {
-            sum += entry.getAmount();
+            BigDecimal temp2 = new BigDecimal(entry.getAmount());
+            temp = temp.add(temp2);
         }
+
+        sum = temp.doubleValue();
         return sum;
     }
 }

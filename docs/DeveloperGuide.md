@@ -74,10 +74,11 @@ the commands `deleteExpense 1` and `exit`.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/ui/Ui.java)
 
-The Ui consists of methods to format the output to be displayed to the user.
+The Ui consists of methods read inputs from user and to format the outputs to be displayed to the user.
 
-Here is the UML diagram of Ui class:
-{to be added}
+Below is the UML diagram for Ui class:
+
+![UiClassDiagram](images/UiClassDiagram.png)
 
 [back to contents](#table-of-contents)
 
@@ -85,17 +86,14 @@ Here is the UML diagram of Ui class:
 
 The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
 
+Below is the UML diagram for Parser class:
+![ParserClassDiagram](./images/ParserClassDiagram.png)
+
 How the `Parser` component works:
-1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
-2. The `Parser` class uses `UserInput` class to split the user input.
-3. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
-4. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
-5. The result of the command execution is returned back from `Parser`.
-
-How the parsing works:
-
-- When called upon to parse a user command, the `Parser` class creates an `prepareXYZCommand` (XYZ is a placeholder for the specific command name e.g., `prepareViewBudgetCommand`) which uses the other classes shown above to parse the user command and create a XYZCommand object (e.g., `ViewBudgetCommand`) which the `Parser` returns back as a `Command` object.
-- All `prepareXYZCommand` methods (e.g., `prepareViewBudgetCommand`, `prepareSetBudgetCommand`, …) can be treated similarly where possible e.g, during testing.
+1. When the `BrokeMan` class calls the `Parser` class to execute a command using the `parseCommand` method. 
+2. The `parseCommand` method uses `UserInput` class to split the user input in two, command input and description of command.
+3. Depending on the command input, the `parseCommand` method will call its respective `prepareXCommand` (i.e, `prepareDeleteExpenseCommand`).
+4. The `prepareXCommand` will then return the respective Command object (i.e, `deleteExpenseCommand`) back to the `parseCommand` method and then to the `BrokeMan` class.
 
 [back to contents](#table-of-contents)
 
