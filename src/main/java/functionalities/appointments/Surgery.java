@@ -29,13 +29,22 @@ public class Surgery extends Appointment {
     protected char priorityType;
     protected String description = "surgery";
 
+    /**
+     * Constructs a new Surgery object with the specified parameters.
+     * @param uid The unique identifier for the surgery appointment.
+     * @param animal The animal being treated in the surgery appointment.
+     * @param owner The owner of the animal being treated.
+     * @param priority The priority level of the surgery appointment.
+     * @param startDate The start date of the surgery appointment.
+     * @param startTime The start time of the surgery appointment.
+     * @param endDate The end date of the surgery appointment.
+     * @param endTime The end time of the surgery appointment.
+     * @throws SniffException if priority level is not in the correct format.
+     */
     public Surgery(String uid, Animal animal, Owner owner,
                    String priority, LocalDate startDate, LocalTime startTime,
                    LocalDate endDate, LocalTime endTime) throws SniffException {
         super(uid, animal, owner);
-        this.uid = uid;
-        this.animal = animal;
-        this.owner = owner;
         this.priorityType = priority.charAt(0);
         this.priority = setPriority(priority);
         this.startDate = startDate;
