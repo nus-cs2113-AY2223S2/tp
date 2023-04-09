@@ -1,6 +1,7 @@
 package utils.command;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import model.CardList;
 import model.Deck;
 import model.DeckList;
@@ -11,6 +12,8 @@ import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNeverWasInDeck;
 import utils.exceptions.TagNotFoundException;
 import utils.exceptions.UUIDWrongFormatException;
@@ -31,16 +34,24 @@ public class RemoveTagFromDeckCommand extends Command {
 
     public void removeTagFromDeck(DeckList deckList, TagList tagList, String deckName, TagSelector tagSelector)
             throws InkaException {
+
         Tag tagToBeDeleted = tagList.findTag(tagSelector);
-        if (tagToBeDeleted == null) {
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (tagToBeDeleted == null) {
             throw new TagNotFoundException();
         }
 
         Deck deck = deckList.findDeckFromName(deckName);
 
-        if (deck == null) {
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deck == null) {
             throw new DeckNotFoundException();
         }
+
         ArrayList<TagUUID> deckTagList = deck.getTagsUUID();
         boolean wasTagInDeck = deckTagList.removeIf(tag -> tag.equals(tagToBeDeleted.getUUID()));
         if (!wasTagInDeck) {
@@ -48,7 +59,6 @@ public class RemoveTagFromDeckCommand extends Command {
         }
         deck.removeTaggedCardsMap(tagToBeDeleted.getUUID(), tagList);
         deck.setTags(deckTagList);
-
     }
 
     @Override
@@ -58,6 +68,6 @@ public class RemoveTagFromDeckCommand extends Command {
         assert tagToBeAdded != null;
 
         removeTagFromDeck(deckList, tagList, deckName, tagSelector);
-        ui.printRemoveTagFromDeckSuccess(tagToBeAdded.getUUID(), deckName);
+        ui.printRemoveTagFromDeckSuccess(tagToBeAdded.getTagName(), deckName);
     }
 }

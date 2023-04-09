@@ -98,17 +98,9 @@
       "deckUUID": {
         "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
       },
-      "cardsSet": [
-        {
-          "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
-        }
-      ],
+      "cardsSet": [],
       "cardUUIDIntegerHashMap": {},
-      "cards": [
-        {
-          "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
-        }
-      ],
+      "cards": [],
       "tags": [
         {
           "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
@@ -142,12 +134,6 @@
         },
         {
           "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
-        },
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        },
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
       ],
       "decks": []
@@ -172,7 +158,16 @@
       "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        },
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
+      },
+      "tagName": "chemm",
+      "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
@@ -238,6 +233,18 @@
         }
       ],
       "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
+      },
+      "tagName": "chemmmm",
+      "cards": [
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "decks": []
     }
   ],
   "cards": [
@@ -264,7 +271,10 @@
           "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
         },
         {
-          "uuid": "1631221a-1b21-4481-8113-76b0b6ce6499"
+          "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
+        },
+        {
+          "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
         }
       ],
       "decks": [
@@ -356,19 +366,6 @@
         }
       ],
       "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "793a110b-0033-4ed0-8a79-201eb0231956"
-      },
-      "question": "new question",
-      "answer": "new answer",
-      "tags": [],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
     }
   ]
 }

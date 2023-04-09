@@ -2,6 +2,7 @@
 package utils.command;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import model.Card;
 import model.CardList;
 import model.CardSelector;
@@ -15,6 +16,8 @@ import model.TagSelector;
 import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
+import utils.exceptions.TagNotFoundException;
 import utils.exceptions.TagNotInCardException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
@@ -41,7 +44,13 @@ public class RemoveTagFromCardCommand extends Command {
     private void removeTagFromCard(Card cardAffected, Tag tagToDelete, DeckList deckList)
             throws InkaException {
 
-        if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (tagToDelete == null) {
+            throw new TagNotFoundException();
+        } else if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
             throw new TagNotInCardException();
         }
 
@@ -68,7 +77,7 @@ public class RemoveTagFromCardCommand extends Command {
         Tag tagToDelete = tagList.findTag(tagSelector);
         removeTagFromCard(cardAffected, tagToDelete, deckList);
 
-        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getUUID());
+        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getTagName());
     }
 }
 

@@ -1,6 +1,7 @@
 package utils.command;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import model.Card;
 import model.CardList;
 import model.CardUUID;
@@ -10,13 +11,14 @@ import model.TagList;
 import model.TagSelector;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 
-public class ListCardsUnderTagCommand extends Command {
+public class ListCardsInTagCommand extends Command {
     private TagSelector tagSelector;
 
-    public ListCardsUnderTagCommand(TagSelector tagSelector) {
+    public ListCardsInTagCommand(TagSelector tagSelector) {
         this.tagSelector = tagSelector;
     }
 
@@ -46,9 +48,12 @@ public class ListCardsUnderTagCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-
         Tag foundTag = tagList.findTag(tagSelector);
-        if (foundTag == null) {
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (foundTag == null) {
             throw new TagNotFoundException();
         }
         CardList foundCardList = findCardsUnderTag(cardList, foundTag);

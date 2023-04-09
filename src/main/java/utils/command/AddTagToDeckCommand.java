@@ -1,5 +1,6 @@
 package utils.command;
 
+import java.util.Optional;
 import model.CardList;
 import model.Deck;
 import model.DeckList;
@@ -10,6 +11,8 @@ import model.TagSelector;
 import utils.UserInterface;
 import utils.exceptions.CreateTagBeforeAddingToDeck;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagInDeckException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
@@ -29,15 +32,21 @@ public class AddTagToDeckCommand extends Command {
     }
 
     private void addTagToDeck(DeckList deckList, TagList tagList, UserInterface ui) throws InkaException {
-        Tag tagToAdd = tagList.findTag(tagSelector);
 
-        if (tagToAdd == null) {
+        Tag tagToAdd = tagList.findTag(tagSelector);
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (tagToAdd == null) {
             // exception here
             throw new CreateTagBeforeAddingToDeck();
         }
 
         Deck deckToAdd = deckList.findDeckFromName(deckName);
-        if (deckToAdd == null) {
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, tagToAdd.getUUID());
             deckList.addDeck(deckToAdd);
@@ -58,6 +67,6 @@ public class AddTagToDeckCommand extends Command {
         addTagToDeck(deckList, tagList, ui);
 
         Tag tagToBeAdded = tagList.findTag(tagSelector);
-        ui.printAddTagToDeckSuccess(tagToBeAdded.getUUID(), deckUUID);
+        ui.printAddTagToDeckSuccess(tagToBeAdded.getTagName(), deckName);
     }
 }

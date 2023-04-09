@@ -6,10 +6,11 @@ import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 import model.Deck;
 
-public class EditDeckNameCommand extends Command{
+public class EditDeckNameCommand extends Command {
     private String oldDeckName;
     private String newDeckName;
 
@@ -19,10 +20,14 @@ public class EditDeckNameCommand extends Command{
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
+
         Deck deck = deckList.findDeckFromName(oldDeckName);
-        if (deck == null) {
+
+        if (oldDeckName.length() > 50 || newDeckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deck == null) {
             throw new DeckNotFoundException();
         }
 

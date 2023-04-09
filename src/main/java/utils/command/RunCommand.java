@@ -11,6 +11,7 @@ import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.EmptyDeckException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 
 public class RunCommand extends Command {
@@ -25,7 +26,10 @@ public class RunCommand extends Command {
             throws InkaException {
         Scanner in = new Scanner(System.in);
         Deck deck = deckList.findDeckFromName(deckName);
-        if (deck == null) {
+
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deck == null) {
             throw new DeckNotFoundException();
         }
         boolean isExit = false;

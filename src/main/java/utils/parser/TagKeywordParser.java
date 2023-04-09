@@ -9,7 +9,7 @@ import utils.command.AddTagToDeckCommand;
 import utils.command.Command;
 import utils.command.DeleteTagCommand;
 import utils.command.EditTagNameCommand;
-import utils.command.ListCardsUnderTagCommand;
+import utils.command.ListCardsInTagCommand;
 import utils.command.ListTagsCommand;
 import utils.command.PrintHelpCommand;
 import utils.exceptions.InkaException;
@@ -90,7 +90,7 @@ public class TagKeywordParser extends KeywordParser {
         if (tagSelector == null) {
             return new ListTagsCommand();
         } else {
-            return new ListCardsUnderTagCommand(tagSelector);
+            return new ListCardsInTagCommand(tagSelector);
         }
     }
 
