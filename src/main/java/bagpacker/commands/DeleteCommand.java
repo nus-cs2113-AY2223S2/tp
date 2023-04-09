@@ -21,6 +21,8 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int targetIndex) {
         super(targetIndex);
+        assert (targetIndex >= 1 && targetIndex <= PackingList.getItemList().size()) :
+                "Delete Command Target Index is out of bounds";
     }
     /**
      * Deletes a given item in the packing list by its packing list index, and prints a successfully deleted message

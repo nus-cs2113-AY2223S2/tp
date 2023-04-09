@@ -9,20 +9,20 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 #### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
 1. commands 
    - Command
-   - AddCommand
-   - ByeCommand
-   - DeleteCommand
-   - DeleteListCommand
+   - [AddCommand](#add-command)
+   - [ByeCommand](#bye-command)
+   - [DeleteCommand](#delete-command)
+   - [DeleteListCommand](#deletelist-command)
    - EditQuantityCommand
    - FindCommand
-   - HelpCommand
+   - [HelpCommand](#help-command)
    - IncorrectCommand
-   - ListCommand
-   - ListUnpackedCommand
+   - [ListCommand](#list-command)
+   - [ListUnpackedCommand](#list-unpacked-command)
    - PackAllCommand
-   - PackCommand
+   - [PackCommand](#pack-command)
    - UnpackAllCommand
-   - UnpackCommand
+   - [UnpackCommand](#unpack-command)
 2. exception
    - EmptyInputException
    - InvalidIndexException
@@ -88,6 +88,49 @@ Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``
 
 ---
 
+#### Pack Command
+
+Pack command is used to pack a quantity of an item in the packing list.
+
+Create Mechanism: Creating of `PackCommand` object is done in `Parser.CreatePackObj()`, which should return a new `PackCommand` object if there are no exceptions caught.
+The following conditions will cause an `IncorrectCommand` to be returned instead of a `PackCommand`, signalling an error has occurred. 
+1. Empty PackingList
+2. `QuantityPacked` less than 1 OR greater than 1,000,000 OR greater than the item's unpacked quantity 
+3. Item index not a positive integer at most the size of the Packing List
+
+This new command created (either `PackCommand` OR `IncorrectCommand`) will then be executed by `BagPacker()`.
+
+Execute Mechanism: ```PackCommand.execute()``` calls the ```PackCommand.getTargetItem()``` method to retrieve the target item to pack. 
+After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. `Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
+Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to print a message to the user signifying that the pack command has been executed successfully.
+
+![ExecutePackCommandSequenceDiagram.png](umlDiagrams%2FExecutePackCommandSequenceDiagram.png)
+
+Sequence Diagram of Successful `PackCommand.execute()`
+
+---
+
+#### Unpack Command
+
+Unpack command is used to unpack a quantity of an item in the packing list.
+
+Create Mechanism: Creating of `UnpackCommand` object is done in `Parser.CreateUnpackObj()`, which should return a new `UnpackCommand` object if there are no exceptions caught.
+The following conditions will cause an `IncorrectCommand` to be returned instead of a `PackCommand`, signalling an error has occurred.
+1. Empty PackingList
+2. `QuantityUnpacked` less than 1 OR greater than 1,000,000 OR greater than the item's packed quantity
+3. Item index not a positive integer at most the size of the Packing List
+
+This new command created (either `UnpackCommand` OR `IncorrectCommand`) will then be executed by `BagPacker()`.
+
+Execute Mechanism: ```UnpackCommand.execute()``` calls the ```UnpackCommand.getTargetItem()``` method to retrieve the target item to pack.
+After which the ```PackingList.UnpackItem(item, quantity)``` method is called in ```PackingList``` which calls ```Item.setUnpacked(quantity)```in `Item` class. `Item.setUnpacked()` will remove the `quantity` from the current pack quantity of the item.
+Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to print a message to the user signifying that the unpack command has been executed successfully.
+
+![ExecuteUnpackCommandSequenceDiagram.png](umlDiagrams%2FExecuteUnpackCommandSequenceDiagram.png)
+
+Sequence Diagram of Successful `UnpackCommand.execute()`
+
+---
 #### Help Command
 Help command is used to display all the possible commands in the BagPacker application for the user.
 

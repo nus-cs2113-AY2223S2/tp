@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+note right #MediumSeaGreen
+All details in green activation
+bars omitted as it depends
+on the type of command input
+end note
+":Parser" -> ":Parser" : createPackObj()
+activate ":Parser"
+Create ":PackCommand"
+":Parser" -> ":PackCommand" : Parser.parse()
+activate ":PackCommand" #MediumSpringGreen
+":PackCommand" -> ":PackCommand" : getTargetItem()
+activate ":PackCommand" #DarkGreen
+":PackCommand" --> ":PackCommand" : item
+deactivate ":PackCommand"
+deactivate ":PackCommand"
+@enduml
