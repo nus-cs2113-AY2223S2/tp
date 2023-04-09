@@ -10,7 +10,15 @@ opt moduleToAdd == null
 activate "<<class>>\n:UI"
 ":Storage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":AddModuleCommand"<-- ":Storage"
+":AddModuleCommand"<-- ":Storage" : false
+end
+
+opt doesModuleExist(moduleToAdd)
+":Storage" -> "<<class>>\n:UI" : UI.printModAlreadyExistMessage()
+activate "<<class>>\n:UI"
+":Storage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":AddModuleCommand"<-- ":Storage" : false
 end
 
 ":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
@@ -27,6 +35,8 @@ deactivate ":Storage"
 activate ":Module"
 ":Storage" <-- ":Module" : tempString:String
 deactivate ":Module"
+
+alt no exception
 ":Storage" -> ":Storage" : saveModuleToStorage(tempString)
 activate ":Storage"
 create ":FileWriter"
@@ -34,10 +44,10 @@ create ":FileWriter"
 activate ":FileWriter"
 ":Storage" <-- ":FileWriter"
 deactivate ":FileWriter"
-":Storage" -> ":DatabaseInterface" : writeTaskPreparation(saveModuleString)
-activate ":DatabaseInterface"
-":Storage" <-- ":DatabaseInterface" : tempString:String
-deactivate ":DatabaseInterface"
+":Storage" -> ":Storage" : writeTaskPreparation(saveModuleString)
+activate ":Storage"
+":Storage" --> ":Storage" : tempString:String
+deactivate ":Storage"
 ":Storage" -> ":FileWriter" : fw.write(tempString)
 activate ":FileWriter"
 ":Storage" <-- ":FileWriter"
@@ -46,18 +56,20 @@ deactivate ":FileWriter"
 activate ":FileWriter"
 ":Storage" <-- ":FileWriter"
 deactivate ":FileWriter"
+":Storage" --> ":Storage"
 deactivate ":Storage"
-":AddModuleCommand" <-- ":Storage"
+else exception
+":Storage" -> "<<class>>\n:UI" :  UI.printAddModuleFailureMessage()
+activate "<<class>>\n:UI"
+":Storage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+end
+":AddModuleCommand" <-- ":Storage" : true
+opt isAddSuccessful == false
+":AddModuleCommand" --> ":Duke"
+end
 ":AddModuleCommand" -> "<<class>>\n:UI" : UI.printAddModMessage()
 activate "<<class>>\n:UI"
-"<<class>>\n:UI" -> PrintStream :  println(ADD_MOD_MESSAGE)
-activate PrintStream
-"<<class>>\n:UI" <-- PrintStream
-deactivate PrintStream
-"<<class>>\n:UI" -> PrintStream :  println(LINE)
-activate PrintStream
-"<<class>>\n:UI" <-- PrintStream
-deactivate PrintStream
 ":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 ":Duke" <-- ":AddModuleCommand"

@@ -99,14 +99,21 @@ and DeleteCommand. This involves adding of new modules and deleting of old modul
 be continuously updated every time an Add or Delete command is called.
 
 Class Diagram of Storage:
+
 ![StorageClassDiagram.png](diagrams%2FStorage%2FStorageClassDiagram.png)
 
 The Storage class follows the Singleton pattern, where there is only one instance of Storage class. During the
-fist initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
+first initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
 How the Storage handles this is through the checkDatabaseCorrupted function which the Storage class implements from
-the Database Interface. The Storage class would save module mappings which contains all the information. To double-check
-that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
-DataReader class, and also checked for duplication. Tampered data will be removed or the module database would reset if
+the Database Interface. 
+
+**Checking for tampering:**
+
+- The Storage class would save module mappings in a string format that contains all the information. 
+- Checking for duplication would then occur.
+- To double-check that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
+DataReader class.
+- Tampered data will be removed or the module database would reset if
 too many modules are affected.
 
 Sequence Diagram of Storage initialisation:
