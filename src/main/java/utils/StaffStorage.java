@@ -1,6 +1,5 @@
 package utils;
 
-import commands.IncorrectCommand;
 import common.Messages;
 import entity.Staff;
 import exceptions.DinerDirectorException;
