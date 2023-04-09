@@ -1,10 +1,12 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.model.Priority;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
+import seedu.todolist.model.Config;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -21,8 +23,8 @@ public class AddTaskCommand extends Command {
     private String email;
     private LocalDateTime deadline;
     private TreeSet<String> tags;
-    private int repeatDuration;
-    private int priority;
+    private int repeatTimes;
+    private Priority priority;
 
     /**
      * Constructs an AddTaskCommand object by parsing the provided arguments.
@@ -36,14 +38,20 @@ public class AddTaskCommand extends Command {
         deadline = ParserUtil.parseDeadline(args.get(Flags.DEADLINE));
         email = ParserUtil.parseEmail(args.get(Flags.EMAIL));
         tags = ParserUtil.parseTags(args.get(Flags.TAG));
-        repeatDuration = ParserUtil.parseRepeatDuration(args.get(Flags.REPEAT), deadline);
+        repeatTimes = ParserUtil.parseRepeatTimes(args.get(Flags.REPEAT), deadline);
         priority = ParserUtil.parsePriority(args.get(Flags.PRIORITY));
         assert description != null && !description.isEmpty(): "Missing description uncaught by parser!";
     }
 
+    /**
+     * Adds a task with the attributes given in the constructor to the task list.
+     *
+     * @param taskList The task list to add the task to.
+     * @param ui The Ui object used to display the result of adding the task.
+     */
     @Override
-    public void execute(TaskList taskList, Ui ui) {
-        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration, priority);
+    public void execute(TaskList taskList, Config config, Ui ui) {
+        String taskString = taskList.addTask(description, deadline, email, tags, repeatTimes, priority);
         ui.printAddTaskMessage(taskString);
     }
 }

@@ -34,7 +34,7 @@ The above diagram provides a high-level overview of the program's design, which 
 - [`ToDoListManager`](#manager-component): Initializes the other components and connects them together
 - [`UI`](#ui-component): Handles all input and output between the user and the program
 - [`Logic`](#logic-component): Parses user input to commands and executes them
-- [`TaskList`](#tasklist-component): Holds the program's data in memory
+- [`TaskList`](#model-component): Holds the program's data in memory
 - [`Storage`](#storage-component): Saves data to the hard disk and loads it during the program's startup
 
 ### Manager Component
@@ -43,22 +43,30 @@ The code for this component is found in [`ToDoListManager.java`](https://github.
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
-The `ToDoListManager` component contains the `Ui`, `Logic`, `TaskList`, and `Storage` components, and depends
+The `ToDoListManager` component contains the `Ui`, `Logic`, `Model`, and `Storage` components, and depends
 on the `Command` class, which is returned by the `Parser` class and executed by the `ToDoListManager`.
 
 The `ToDoListManager` component,
-- initializes all the other components that it operates on (`Ui`, `Parser`, `TaskList`, `Storage`).
+- initializes all the other components that it operates on (`Ui`, `Parser`, `Model`, `Storage`).
 - passes user input from the `Ui` component to the `Logic` component, which returns a `Command` object.
-- executes the returned `Command` object on the `TaskList` component, using the `Logic` component.
-- calls on the `Storage` component to save the data of the `TaskList` component to the hard disk.
+- executes the returned `Command` object on the `Model` component, using the `Logic` component.
+- calls on the `Storage` component to save the data of the `Model` component locally.
 
 ### Ui component
 
 The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
 
+![UiClassDiagram](images/UiClassDiagram.png)
+
+The `Ui` component consists of just the `Ui` class.
+
+The `getUserInput()` method is used by the `ToDoListManager` to get the user's input, which is used to create a
+`Command` object. Output from executing a `Command` is displayed using `println()`. When the program terminates, the
+`ToDoListManager` will call `close()` to close the `Scanner`.
+
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
+The code for this component is found [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -67,19 +75,27 @@ extensions of the `Command` class like the `AddTaskCommand`, `ListTagsCommand`, 
 
 When the `ToDoListManager` component passes user input to the `Parser`, a `Command` object (such as an
 `AddTaskCommand`) is created and returned to the `ToDoListManager`. The `ToDoListManager` executes the returned
-`Command` object, which will act on the `TaskList` if needed and output the result of the command through the `Ui`
-component.
+`Command` object, which will act on the `TaskList` and `Config` if needed and output the result of the command
+through the `Ui` component.
 
-### TaskList component
+### Model component
 
-The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/model).
+
+![ModelClassDiagram](images/ModelClassDiagram.png)
+
+The `Model` component contains the `Config`, `TaskList`, and `Task` classes, and the `Priority` enum.
+
+The `Config` stores the attributes related to recurring tasks. The `TaskList` stores all `Task` objects in a `TreeMap`,
+which it can operate on. The `Task` class consists of several attributes such as a description as well as a priority
+level, which is represented as an enumeration `Priority`.
 
 ### Storage component
 
 The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
 
-The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
-back into a TaskList object.
+The Storage component can save the task list as TaskList objects in a .json file format using the GSON library and read 
+it back into a TaskList object.
 
 ## Implementation
 
@@ -107,10 +123,11 @@ The following sequence diagram shows how the delete task operation works:
 
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
 
-Step 4: The user then decides to execute the command list. This command does not modify the TaskList.
-Thus, the TaskList will return to its initial state where there are no tasks stored in the TaskList.
-
 ### Mark/unmark task feature
+The Mark/UnmarkTaskCommand extends NUS To-Do List with a mark/unmark feature for the marking of tasks of the task list
+as complete or incomplete.
+It is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes.
+It implements the `TaskList#setDone()` operation.
 
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
@@ -119,11 +136,11 @@ Step 2: The user executes `add survey -due 20/03/2023 23:59` command to add a ta
 The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3: The user wants to mark the task as completed by inputting the command `mark 1` into the terminal
-to mark the task as done. The command will then call the `TaskList#setDone`, which marks the task at id 1
+to mark the task as done. The command will then call the `TaskList#setDone()`, which marks the task at id 1
 of the TaskList as done.
 
 For the unmark command, the user can instead input the command `unmark 1` to set the task as incomplete.
-The command also calls `TaskList#setDone` which sets the task at id 1 to be not done.
+The command also calls `TaskList#setDone()` which sets the task at id 1 to be not done.
 
 The following sequence diagram shows how the mark/unmark task operation works:
 
@@ -132,9 +149,8 @@ The following sequence diagram shows how the mark/unmark task operation works:
 ### Edit task deadline feature
 
 The edit deadline function extends NUS To-Do List with an edit feature for the deadlines assigned to tasks.
-It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#setDeadline()` operation,
 which edits deadline of task at assigned id.
-
 
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
@@ -151,11 +167,60 @@ The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
 
+### Edit task email feature
+The edit email function extends NUS To-Do List with an edit feature to add/edit/delete emails to tasks.
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#editEmail()` operation,
+which adds/edits/deletes the email of task at assigned id.
+
+
+Given below is an example usage scenario and how the edit email mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20/03/2023 23:59` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user has the email of a teaching staff for the task, and decides to add
+the email to the task by executing the `email 1 -edit username@gmail.com` command. The command will call
+`TaskList#setEmail()`, which adds the email address for the Task item saved at id 1.
+
+Step 4. If the user decides to remove the email address for the task, the user can choose to execute `email 1 -del`
+command. The command will call
+`TaskList#setEmail()`, which removes the email address for the Task item saved at id 1.
+
+The following sequence diagram shows how the edit operations works:
+
+![EditEmailCommandSequence](images/EditEmailCommandSequence.png)
+
+### Edit task priority feature
+The edit priority function extends NUS To-Do List with an edit feature to add/edit/delete priority levels to tasks.
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#editPriority()` operation,
+which adds/edits/deletes the priority level of task at assigned id.
+
+
+Given below is an example usage scenario and how the edit email mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20/03/2023 23:59` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user has realised that the tasks has great urgency, and decides to add priority level to the task by
+executing the `prio 1 -edit 3` command. The command will call `TaskList#setPriority()`, which sets the priority level
+for the Task item saved at id 1 to be high.
+
+Step 4. If the user decides to remove the priority for the task, the user can choose to execute `email 1 -del`
+command. The command will call `TaskList#setEmail()`, which removes the priority level for the Task item saved at id 1.
+
+The following sequence diagram shows how the edit operations works:
+
+![EditPrioritySequence](images/EditPriorityCommandSequence.png)
+
 ### Repeating tasks feature
 
 The repeating tasks function extends NUS To-Do List allowing tasks to be listed as repeating for a certain number of
 occurrences.
-It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatDuration()` 
+It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatTimes()` 
 which sets the number of times the task is to repeat, and `TaskList#checkRepeatingTasks()` to check for tasks stored
 in the TaskList for repeat settings.
 
@@ -168,12 +233,12 @@ The `add` command calls `TaskList#addTask()`, which causes a new Task to be adde
 
 Step 3. The user then exits the program with the saved TaskList.
 
-Step 4. The user opens the program a week after the set deadline of the `survey` task. Upon program startup, it checks 
-if any tasks in the TaskList have a repeat count of > 0. Since the existing task fulfils the condition, a new task 
-with the same description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
+Step 4. The user opens the program a week after the set deadline of the `survey` task. Since the configuration file is
+still at default settings, it will check after every command is executed if any tasks in the TaskList have a repeat 
+count of > 0 and is due for repeat after 1 week. Since the existing task fulfils the condition, a new task with the same
+description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
 task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
 task will have a repeat count of 2.
-
 
 ### List tasks sorted by deadline feature
 
@@ -190,7 +255,7 @@ tasks to the To-Do List. The `add` command calls `TaskList#addTask()` once for e
 be added to the existing TaskList.
 
 Step 3. The user wants to view the entire list of deadlines that he/she has added. The user can do this by using the
-command `list` into the terminal. By doing so,`TaskList#toString()` will be executed, which will sort
+command `list -sort due` into the terminal. By doing so,`TaskList#toString()` will be executed, which will sort
 the list in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline
 furthest to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of
 deadlines to the user in the terminal.
@@ -204,7 +269,7 @@ The following sequence diagram shows how the list operation works:
 The storage feature is facilitated by the `Storage` class.
 
 The Storage class implements the following operations:
-- `Storage#saveData(TaskList)` --- Saves the current task list.
+- `Storage#save()` --- Saves the current task list.
 - `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
 
 Given below are 3 example usage scenarios and how the Storage mechanism behaves in each scenario.
@@ -234,14 +299,16 @@ Storage occur even when the user performs other commands to edit the task list.
 - **Option 2**: Append rather than overwrite when saving the task list.
     - Pros: Will likely be able to save the task list much faster.
     - Cons: Difficult to implement, especially when considering the current mark task operation.
-- **Option 3 (current choice)**: Save task list as a Serializable TaskList object in a .txt file.
+- **Option 3 (current choice)**: Save task list as a json file using the GSON library.
     - Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
-            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as
-            it is irrelevant when using this implementation.
-    - Cons: No physical task list to use as the saved .txt file is practically unreadable.
+added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
+irrelevant when using this implementation. The GSON library's pretty printing functionality makes the json file very 
+easy to read for humans and understand which allows advanced users to easily modify the file for quick updating of their
+task list.
+    - Cons: Users have to download some dependencies to be able to use the GSON library.
 
 Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
-and we found that the lack of a physical task list to use is not a very significant issue.
+and we found that the need to download dependencies to use the GSON library would not be a big issue.
 
 ### Progress Bar Feature
 The ProgressBarCommand extends NUS To-Do List with a progress bar feature for tracking the progress on tasks in the task 
@@ -257,31 +324,36 @@ their tasks and a progress bar to help them visualize their progress.
 
 ![ProgressBarCommandSequence](images/ProgressBarCommandSequence.png)
 
-### [Proposed] History feature
+In the above diagram `printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskListString)`
+is abbreviated as `printProgressBar(...)`.
 
-The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will
-be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done
-works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
+### Reset feature
+The ResetCommand extends NUS To-Do List with a reset feature to allow users to start a new To-Do list if needed.
+It is facilitated by ToDoListManager, Parser, TaskList and Ui classes.
 
-There will be 2 new operations:
-* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.
-* `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
 
-Given below is an example usage scenario and how the history mechanism works.
+Given below is an example usage scenario and how the reset mechanism will behave at each step.
 
-Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
+Step 1. The user launches the program, assuming the To-Do list is filled with tasks. However, the user realise all the
+tasks in the tasks list have expired and wants to remove all of them in a quick way.
 
-Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add a task that (s)he has to complete. The
-`add` command causes the task to be added to `uncompletedTasks`.
+Step 2. The user executes `reset` to remove all the tasks and start a new To-Do list.
 
-Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
-be added to `completedTasks` and removed from `uncompletedTasks`.
+Step 3.The user would be shown a confirmation message. If the user inputs `YES`, the command calls `TaskList#reset()` to
+reset the task list and a reset message will be printed to inform the user that the To-Do list has reset. However, if
+the user inputs anything else, a cancellation message will be printed to notify the users.
 
-Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the
-tasks in `uncompletedTasks` to be listed for the user to see.
+The following sequence diagram shows how the ResetCommand operation works:
+![ResetCommandSequence](images/ResetCommandSequence.png)
 
-Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes
-the tasks in `completedTasks` to be listed for the user to see.
+### Help List feature
+The HelpCommand extends NUS To-Do List with a help list feature to allow users to keep track of all the possible
+commands of the program. It is facilitated by ToDoListManager, Parser, Ui classes. It implements the
+`Ui#printHelpList(helpMessage)` operation, which displays a help list for the users. Different help lists would be
+displayed based on the different `HELP_TYPE` such as `filter` or `sort` or none.
+
+The following sequence diagram shows how the ResetCommand operation works:
+![HelpCommandSequence](images/HelpCommandSequence.png)
 
 ## Appendix: Requirements
 
@@ -316,7 +388,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 | v2.0    | user     | set a task to repeat                                                                                             | create 1 task to represent repeating tasks every week                     |
 | v2.0    | user     | set priority level and can sort the tasks based on the priority level                                            | identify high priority tasks                                              |
 | v2.0    | user     | see a progress bar                                                                                               | track my progress of unfinished tasks                                     |
-| v2.0    | user     | view up to 10 previously completed tasks tied with the completion date and time                                  | track my progress of finished tasks                                       |
+| v2.1    | user     | customise some of the repeating settings                                                                         | reduce my system usage and repeat my tasks at a more suitable frequency   |
 
 ### Non-Functional Requirements
 
@@ -328,10 +400,8 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 
 The following are instructions on how to test the program manually.
 
-### Startup/Exit
-
-- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0),
-double-click on it or run `java -jar todolist.jar` in a terminal to start the program.
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0), run `java -jar todolist.jar` in a terminal to start the program.
   - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
-- To exit, use the exit command: `exit`
+- Try running some commands - use the command `help` or refer to the [User Guide](https://ay2223s2-cs2113-t11-4.github.io/tp/UserGuide.html) for a list of commands.
+- To exit, use the command: `exit`
   - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.

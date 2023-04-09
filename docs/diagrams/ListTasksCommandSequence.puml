@@ -21,9 +21,9 @@ box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box
 
-User -> ToDoListManager: input("list")
+User -> ToDoListManager: input("list -sort due")
 activate ToDoListManager
-ToDoListManager -> Parser : parseCommand("list")
+ToDoListManager -> Parser : parseCommand("list -sort due")
 activate Parser
 create ListTasksCommand
 Parser -> ListTasksCommand
@@ -34,7 +34,7 @@ Parser --> ToDoListManager: command
 deactivate Parser
 ToDoListManager -> ListTasksCommand : execute(TaskList, ui)
 activate ListTasksCommand
-ListTasksCommand -> TaskList : toString(Task.deadlineComparator)
+ListTasksCommand -> TaskList : toString(comparator)
 activate TaskList
 TaskList --> ListTasksCommand : taskListString
 deactivate TaskList
@@ -45,6 +45,6 @@ deactivate Ui
 ListTasksCommand --> ToDoListManager
 deactivate ListTasksCommand
 destroy ListTasksCommand
-ToDoListManager --> User : list of tasks
+ToDoListManager --> User
 deactivate ToDoListManager
 @enduml

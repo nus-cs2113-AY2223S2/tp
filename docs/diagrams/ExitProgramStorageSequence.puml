@@ -12,7 +12,6 @@ participant ":Parser" as Parser COLOR_LOGIC
 participant ":ExitCommand" as ExitCommand COLOR_LOGIC
 end box
 
-
 box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI
 end box

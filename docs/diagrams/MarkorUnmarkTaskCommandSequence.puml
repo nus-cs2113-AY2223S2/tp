@@ -34,7 +34,7 @@ Parser --> ToDoListManager : command
 deactivate Parser
 ToDoListManager -> MarkTaskCommand : execute(taskList, ui)
 activate MarkTaskCommand
-MarkTaskCommand -> TaskList: setDone(<id>, isDone)
+MarkTaskCommand -> TaskList: setDone(id, isDone)
 activate TaskList
 TaskList --> MarkTaskCommand : taskString
 deactivate TaskList
@@ -42,8 +42,9 @@ MarkTaskCommand -> Ui : printMark/UnmarkTaskMessage(taskString)
 activate Ui
 Ui --> MarkTaskCommand
 deactivate Ui
-MarkTaskCommand --> ToDoListManager : result
+MarkTaskCommand --> ToDoListManager
 deactivate MarkTaskCommand
 destroy MarkTaskCommand
-ToDoListManager --> User : Notify user task has been marked/unmarked
+ToDoListManager --> User
+deactivate ToDoListManager
 @enduml

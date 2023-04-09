@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 @startuml
 !include Style.puml
 
@@ -19,9 +20,9 @@ participant ":Ui" as Ui COLOR_UI
 User -> Main: start program
 Main -> ToDoListManager
 activate ToDoListManager
-ToDoListManager -> Storage: isNewSave()
+ToDoListManager -> Storage: loadData()
 activate Storage
-Storage --> ToDoListManager: true
+Storage --> ToDoListManager
 deactivate Storage
 ToDoListManager -> Ui: printNewSaveMessage()
 activate Ui
@@ -30,3 +31,4 @@ deactivate Ui
 ToDoListManager --> User
 deactivate ToDoListManager
 @enduml
+

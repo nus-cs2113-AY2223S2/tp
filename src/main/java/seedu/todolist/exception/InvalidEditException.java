@@ -6,4 +6,8 @@ public class InvalidEditException extends ToDoListException {
     public InvalidEditException() {
         super(Errors.INVALID_EDIT);
     }
+
+    public InvalidEditException(int count) {
+        super(Errors.INVALID_TAG_EDIT);
+    }
 }
