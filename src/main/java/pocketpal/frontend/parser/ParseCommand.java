@@ -147,7 +147,7 @@ public abstract class ParseCommand {
             return;
         }
         Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
-        if (!matcher.find()) { //Date incorrect format
+        if (!matcher.matches()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
         }
     }
