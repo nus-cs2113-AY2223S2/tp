@@ -29,7 +29,7 @@ return
 destroy TextUi
 
 return
-destroy DeadlineManager
+
 
 return
 destroy XYZDeadlineCommand
