@@ -43,16 +43,19 @@ public class Parser {
 
     // exceptions
     private static final String DUPLICATE_FLAGS_E = "Cannot have duplicate flags a command!";
-    private static final String INVALID_FLAG_E = "please input a valid flag!";
-    private static final String NO_FLAG_E = "need a flag to specify your action!";
+    private static final String INVALID_FLAG_E = "Please input a valid flag!";
+    private static final String NO_FLAG_E = "Need a flag to specify your action!";
     private static final String TOO_MANY_FLAGS_E = "Too many flags, or negative index entered";
     private static final String NO_EVENT_DESC_AND_START_DAY_E = 
         "Event description and start day of your event are strictly required!";
     private static final String NO_START_DAY_E = "Empty starting date/time detected! Please add starting date.";
-    private static final String UNDEFINED_FLAG_E = "undefined flag!";
-    private static final String INCORRECT_CMD_FORMAT_E = "Please use correct command format!";
+    private static final String UNDEFINED_FLAG_E = "Undefined flag!";
+    private static final String INCORRECT_CMD_FORMAT_E = 
+        "Event name/index, start time/date or module info is missing!\n" +
+        "Please use correct command format!";
     private static final String INVALID_EVENT_INDEX_E = "Event index is in valid!";
     private static final String EVENT_INDEX_OUT_OF_BOUND_E = "Event index out of bound!";
+    private static final String WEEK_NUMBER_NOT_POSITIVE_E = "Please use positive value for your week number!";
 
     private final Ui ui;
 
@@ -94,7 +97,7 @@ public class Parser {
         }
     }
 
-    private static void parseListCommand(String remainder, EventList eventList) {
+    private static void parseListCommand(String remainder, EventList eventList) throws NPExceptions {
         String[] details = remainder.split("-");
 
         if (details.length <= 1) {
@@ -104,6 +107,12 @@ public class Parser {
 
         String information = details[1].substring(2).trim();
         int weekNumber = Integer.parseInt(information);
+
+        // Exception: week number is not a positive value
+        if(weekNumber <= 0) {
+            throw new NPExceptions(WEEK_NUMBER_NOT_POSITIVE_E);
+        }
+
         Ui.printScheduleTable(eventList.getFullList(), weekNumber);
 
     }

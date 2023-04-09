@@ -101,6 +101,12 @@ public class EventList {
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
+    /**
+     * Check whether there is overlap between different events.
+     * @param newEvent the new event to be added.
+     * @param index newEvent will not check overlap with index event in event list.
+     * @return true if there is no overlap.
+     */
     public boolean canAddNewEvent(Event newEvent, int index) {
         boolean isOverlap = true;
         for (int i = 0; i < listSize; i++) {
@@ -156,6 +162,16 @@ public class EventList {
         return isOverlap;
     }
 
+    /**
+     * Add an event.
+     * @param description Event description, describes what the Event is.
+     * @param startTime Start time of the Event. Format "HH:MM".
+     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
+     * @param endTime End time of the Event. Foramt "HH:MM".
+     * @param endDay End day of the Event. Format "YYYY/MM/DD".
+     * @throws NPExceptions when start time is after end time or 
+     * new event has time conflict with events already exist.
+     */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
 
@@ -192,6 +208,28 @@ public class EventList {
         listSize++;
     }
 
+    /**
+     * Add an event.
+     * @param description Event description, describes what the Event is.
+     * @param startTime Start time of the Event. Format "HH:MM".
+     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
+     * @param endTime End time of the Event. Foramt "HH:MM".
+     * @param endDay End day of the Event. Format "YYYY/MM/DD".
+     * @throws NPExceptions when start time is after end time or 
+     * new event has time conflict with events already exist.
+     */
+
+    /**
+     * Add an Event.
+     * @param description Event description, describes what the event is.
+     * @param startTime Start time of the Event. Format "HH:MM".
+     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
+     * @param endTime End time of the Event. Foramt "HH:MM".
+     * @param endDay End day of the Event. Format "YYYY/MM/DD".
+     * @param recurTime Recur time of the Event. 
+     * @throws NPExceptions when start time is after end time or 
+     * new event has time conflict with events already exist.
+     */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
             String recurTime) throws NPExceptions {
 
@@ -212,6 +250,11 @@ public class EventList {
         listSize++;
     }
 
+    /**
+     * Change location(vanue) field of an event.
+     * @param index Index of the event to be changed in event list.
+     * @param location New location.
+     */
     public void reviseLocation(int index, String location) {
         taskList.get(index).changeLocation(location);
     }
@@ -231,13 +274,29 @@ public class EventList {
 
     }
 
+    /**
+     * Change time field of an event.
+     * @param index Index of the event to be changed in event list.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(int index, String startTime, String startDay) throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
     }
-
-    // need handle exceptions when index = -1
+   
+    /**
+     * Change time field of an event.
+     * @param description Description of the event to be changed. 
+     * This method will find the event from the event list according to description.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @param endTime New end time of the event. Format "HH:MM".
+     * @param endDay New end day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
             String endDay) throws NPExceptions {
         int index = searchTaskIndex(description);
@@ -247,7 +306,14 @@ public class EventList {
         reviseTimeInfo(index, startTime, startDay, endTime, endDay);
     }
 
-    // need handle exceptions when index = -1
+    /**
+     * Change time field of an event.
+     * @param description Description of the event to be changed. 
+     * This method will find the event from the event list according to description.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(String description, String startTime, String startDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if (index == -1) {
@@ -256,10 +322,19 @@ public class EventList {
         reviseTimeInfo(index, startTime, startDay);
     }
 
+    /**
+     * Get the full event list.
+     * @return Arraylist of the full event list.
+     */
     public ArrayList<Schedule> getFullList() {
         return this.taskList;
     }
 
+    /**
+     * Search an event according to its description in event list.
+     * @param description description of the task to search.
+     * @return index of the task in event list. Return -1 if it's not found.
+     */
     public int searchTaskIndex(String description) {
         int index = 0;
         for (Schedule cur : taskList) {
@@ -275,6 +350,9 @@ public class EventList {
         return taskList.get(listSize - 1).toString();
     }
 
+    /**
+     * Delete all tasks in event list.
+     */
     public void deleteAll() {
         if (this.listSize == 0) {
             Ui.deleteAllError();
