@@ -201,7 +201,7 @@ Step 3: The `ui` will retrieve the relevant information from the storage and pri
 
 ### Design Considerations
 
-#### Aspect: How to list all of the foods in the database, and the meals and the exercises of the user
+#### Aspect: How to list all the foods in the database, and the meals and the exercises of the user
 
 - Alternative 1 (current choice): List information based on input command.
   - Pros: More concise, no unnecessary information.
@@ -230,7 +230,7 @@ delete it via the method from mealStorage() and prints out the deleted meal to t
   - Pros: Does not needlessly delete wanted items. 
   - Cons: Need to get the index from `list` command first.
 - Alternative 2: Clears all data.
-  - Pros: Faster input, no need for `list` command to retrive index.
+  - Pros: Faster input, no need for `list` command to retrieve index.
   - Cons: Deletes data that user might want to keep.
 
 ## View feature
@@ -245,88 +245,39 @@ initializes the UI for calories as `calorieUI`.
 
 Given below is an example usage scenario and how the view feature behaves at each step.
 
-Step 1. The user launches the application and calls the `view` command. The `ViewUserCommand` will be initialized
-with the current user and meal storage state. `user` and `meals` will point to the user storage and meal state 
-respectively.
+Step 1. The user launches the application and calls the `view /[fieldname]` command. The `ViewUserCommand` will be 
+initialized with the current user and meal storage state. `user` and `meals` will point to the user storage 
+and meal state respectively. 
 
-<img src="uml/ViewUserCommandSD1.png" alt="Sequence Diagram 1" width="500">
+The method `parseCommand()` is then called to check and ensure that the `/[fieldname]`
+provided is valid information that can be viewed as well as the number of arguments provided is correct.
+
+<img src="uml/ViewUserCommandSD1.png" alt="Sequence Diagram 1" width = "500">
 
 
-The user will then be presented with a menu showing the different user details he can view as seen in the code
-snippet below.  
+Step 2. Based on the `/[fieldname]` that the user provided the different getter methods will be called in the entity
+`User` to return the appropriate information. In this case, the user has input the command `view /weight` which will
+call the getter method `getWeight()` in the entity `User` to return the current weight of the user and initializes the 
+variable `weight` with that value.
 
-````
-View user settings
-1. View Name
-2. View Weight
-3. View Height
-4. View Age      
-5. View Gender
-6. View Daily Caloric limit
-7. View Calories left today
-8. Back
-````
-
-Step 2. The user chooses to view his weight by inputting the number `2` to choose `View Weight`.
-This calls the getter method `getWeight()` in the entity `User` to return the current weight of the user
-and initializes the variable `weight` with that value. 
+If the user's weight is equal to 0.0 then the method `printFieldNotStored()` in `GeneralUi` will be called to notify the 
+user that that specific information has not been stored yet. Otherwise, the method `printWeight()` will be called to
+print out the weight of the user.
 
 <img src="uml/ViewUserCommandSD2.png" alt="Sequence Diagram 2" width="500">
 
-It then prints to screen the weight of the user like in the code snippet below.
-
-````
-Weight: {weight} kg
-
-Continue viewing?
-1. Yes
-2. No
-````
-Step 3. The user chooses to continue viewing by inputting the number `1` and chooses `View Daily Caloric Limit` next
-by inputting the number `6`. This calls the getter method `getCaloricLimit()` in the entity `User` to return the
-current daily caloric limit of the user and initializes the variable `caloricLimit` with that value. 
-
-<img src="uml/ViewUserCommandSD3.png" alt="Sequence Diagram 2" width="500">
-
-It then prints to screen the daily caloric limit of the user like in the code snippet below.
-
-````
-This is your daily caloric limit: 
-{caloricLimit} Kcal
-
-Continue viewing?
-1. Yes
-2. No
-````
-
-Step 4. The user executes the command `update` to update his user details. The user is presented with a menu showing the
-different user details he can update as seen in the code snippet below.
-
-````
-Update user settings
-1. Update Name
-2. Update Weight
-3. Update Height
-4. Update Age
-5. Update Gender
-````
-The user chooses to update his weight by inputting the number `2`. This causes the state of the user's details to be 
-modified and the user's weight as well as his caloric limit will be updated in accordance to the new weight entered.
-
-> Insert UML diagram showing the update process
-
-Step 5. The user then executes the command `view` to view his updated weight and daily caloric limits.
-
+For name, weight, height, age and gender there will a check done to see whether the field has information stored in it.
+If the fields are empty the user will be alerted and asked to update it.
 ### Design considerations
 
 #### Aspect: How to view user data
 
-- Alternative 1 (current choice): 
-  - Pros: 
-  - Cons:
-- Alternative 2: 
-  - Pros: 
-  - Cons: 
+- Alternative 1 (current choice): Use a one-line for the CLI
+  - Pros: Faster to input for experienced users.
+  - Cons: Format might be difficult for new users.
+- Alternative 2 : Follow printed prompts for data.
+  - Pros: Usage would be easier for new users.
+  - Cons: Slower to input for experienced users.
 
 ## Update feature
 
@@ -334,16 +285,56 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
+It stores the user's data internally as `user` and the meals consumed by the user as `meals`. It also
+initializes the UI for calories as `calorieUI`.
+
+Given below is an example usage scenario and how the view feature behaves at each step.
+
+It stores the user's data internally as `user`.
+
+Step 1. The user launches the application and calls the `update /[fieldname] [newInfo]` command. The `UpdateUserCommand` class will be
+initialized with the current user storage state. `user` will point to the user storage.
+
+The method `parseCommand()` is then called to check and ensure that the `/[fieldname]`
+provided is valid information that can be updated as well as the number of arguments provided is correct.
+
+<img src="uml/UpdateUserCommandSD1.png" alt="Sequence Diagram 2" width="500">
+
+Step 2. Based on the `/[fieldname]` that the user provided the different setter methods will be called in the entity
+`User` to update the appropriate information. In this case, the user has input the command `update /weight [newInfo]` which will
+call the setter method `setWeight()` in the entity `User` to return the set the current weight of the user to the newly 
+updated one. 
+
+The caloric limit is then recalculated with the calling of `calculateCaloricNeeds()` static method in User
+based on the new information provided and the caloric limit in `user` is then updated with `setCaloricLimit`.
+
+The new weight difference between the current weight and target weight is also shown with the calling of the static 
+method `displayNewWeightDifference()`.
+
+The method `updateUser()` in userStorage is then called to update the user's detail in the storage.
+
+<img src="uml/UpdateUserCommandSD2.png" alt="Sequence Diagram 2" width="500">
+
+For updates made to weight, height, age and gender, there will be a call to the static method `calculateCaloricNeeds()`
+in the class User. This is done to ensure that with every new change, the caloric limit is recalculated. This recalculated
+caloric limit is will then be the new limit and the method `setCaloricLimit()` is called to update the user's daily caloric
+limit to the new one.
+
+For updates made to weight and targetWeight, there will be a call to the static method `displayNewWeightDifference()` and
+`displayNewTargetWeightDifference()` respectively to show the new difference between target weight and current weight of the user.
+
+At the end of every update, the userStorage will be updated accordingly.
+
 ### Design considerations:
 
 #### Aspect:
 
-- Alternative 1 (current choice): 
-  - Pros:
-  - Cons:
-- Alternative 2:
-  - Pros:
-  - Cons:
+- Alternative 1 (current choice): Use a one-line for the CLI
+  - Pros: Faster to input for experienced users.
+  - Cons: Format might be difficult for new users.
+- Alternative 2 : Follow printed prompts for data.
+  - Pros: Usage would be easier for new users.
+  - Cons: Slower to input for experienced users.
 
 ## Nutrition feature
 
