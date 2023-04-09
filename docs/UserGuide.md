@@ -92,7 +92,10 @@ To filter according to industry, type:
  
 To choose a venue, type:
                     choose venue <INDEX>
- 
+
+To update the event name, type:
+                    update event name <EVENT_NAME>
+                     
 To exit the program, type:
                     exit
  
