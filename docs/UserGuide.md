@@ -341,63 +341,63 @@ __________________________________________________________
 <br>
 * INDEX:
   
-  ```
-  __________________________________________________________
-  view 1
-  Here is the recipe you requested, which is a Chinese flavour:
-  name: Hotpot
-  __________________________________________________________
-  Here are 3 ingredients in the list:
-  1. Beef
-  2. Potatoes
-  3. Carrots
-  __________________________________________________________
-  There are 4 steps in the list
-  Do you want to view step-by-step?
-  Type "yes" if so
-  yes
-  To exit recipe view, type "quit"
-  Else, enter any key to continue
-  1. chop beef
-  
-  2. add potatoes
-  
-  3. add carrots
-  
-  4. cook 5 minutes
-  
-  __________________________________________________________
-  ```
+```
+__________________________________________________________
+view 1
+Here is the recipe you requested, which is a Chinese flavour:
+name: Hotpot
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+__________________________________________________________
+There are 4 steps in the list
+Do you want to view step-by-step?
+Type "yes" if so
+yes
+To exit recipe view, type "quit"
+Else, enter any key to continue
+1. chop beef
+
+2. add potatoes
+
+3. add carrots
+
+4. cook 5 minutes
+
+__________________________________________________________
+```
 
 * NAME:
   
-  ```
-  __________________________________________________________
-  view Hotpot
-  Here is the recipe you requested, which is a Chinese flavour:
-  name: Hotpot
-  __________________________________________________________
-  Here are 3 ingredients in the list:
-  1. Beef
-  2. Potatoes
-  3. Carrots
-  __________________________________________________________
-  There are 4 steps in the list
-  Do you want to view step-by-step?
-  Type "yes" if so
-  yes
-  To exit recipe view, type "quit"
-  Else, enter any key to continue
-  1. chop beef
-  
-  2. add potatoes
-  
-  3. add carrots
-  
-  4. cook 5 minutes
-  
-  __________________________________________________________
-  ```
+```
+__________________________________________________________
+view Hotpot
+Here is the recipe you requested, which is a Chinese flavour:
+name: Hotpot
+__________________________________________________________
+Here are 3 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+__________________________________________________________
+There are 4 steps in the list
+Do you want to view step-by-step?
+Type "yes" if so
+yes
+To exit recipe view, type "quit"
+Else, enter any key to continue
+1. chop beef
+
+2. add potatoes
+
+3. add carrots
+
+4. cook 5 minutes
+
+__________________________________________________________
+```
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
