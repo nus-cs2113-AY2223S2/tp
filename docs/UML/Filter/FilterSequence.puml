@@ -1,11 +1,12 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title FilterParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 participant ":FilterParser"
-User -> ":FilterParser" **
+User -> ":FilterParser" **:run()
 
-User -> ":FilterParser": run()
 activate ":FilterParser"
 alt rawInput == null
     ref over ":FilterParser"

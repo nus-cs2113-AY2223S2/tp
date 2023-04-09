@@ -2,6 +2,7 @@
 'https://plantuml.com/sequence-diagram
 title AlertParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 participant ":AlertParser"
 User -> ":AlertParser" **
@@ -15,11 +16,8 @@ alt rawInput == empty string
     end
     ":AlertParser" --> User
 
-end
 
-
-
-alt rawInput == "add"
+else rawInput == "add"
 
     ":AlertParser" -> ":AlertParser": parseAddAlert()
     activate ":AlertParser" #cyan
@@ -34,10 +32,8 @@ alt rawInput == "add"
             add alert
         end ref
     return
- end
 
-
-alt rawInput == "end"
+else rawInput == "end"
 
     ":AlertParser" -> ":AlertParser": parseRemoveAlert()
      activate ":AlertParser" #cyan
@@ -52,9 +48,9 @@ alt rawInput == "end"
             remove alert
         end ref
     return
-end
 
-alt rawInput == any other input
+
+else rawInput == any other input
    ref over ":AlertParser"
     handle input error
     end ref

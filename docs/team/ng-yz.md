@@ -32,6 +32,8 @@ Contributions to the UG:
 Contributions to the DG:
 * Added details for `remove` and `category` commands
 * Added sequence diagrams and UML diagrams for `remove` and `category` commands
+* Check for any formatting difference and standardise across most, if not all, UML diagrams
+* Added title for sequence diagrams that did not include them
 
 Contributions to team-based tasks:
 * Maintaining issue tracker
