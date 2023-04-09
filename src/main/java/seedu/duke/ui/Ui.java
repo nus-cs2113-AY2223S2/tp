@@ -47,11 +47,11 @@ public class Ui {
     }
 
     public void plannerMode () {
-        System.out.println(System.lineSeparator() + "===>Planner Mode<===");
+        System.out.println("\n===>Planner Mode<===");
     }
 
     public void workoutMode () {
-        System.out.println(System.lineSeparator() + "===>Workout Mode<===");
+        System.out.println("\n===>Workout Mode<===");
     }
 
     //public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory) {

@@ -503,7 +503,7 @@ public class TestUi {
         String expectedOutput = "";
 
         if (os.contains("Windows")) {
-            expectedOutput = "\r\n===>Planner Mode<===";
+            expectedOutput = "\r\n===>Planner Mode<===\r\n";
         } else {
             expectedOutput = "\n===>Planner Mode<===\n";
         }
