@@ -44,6 +44,8 @@ Given below are my contribution to the project.
     - Added documentation for `bye` and `help` functions.
 - **Contributions to DG:**
     - Added implementation details for the `add` function.
+    - Added implementation details for storage function.
+    - Added user stories
 
 - Other contributions:
     - Reviewed pull requests, such as [#53](https://github.com/AY2223S2-CS2113-T15-4/tp/pull/53)

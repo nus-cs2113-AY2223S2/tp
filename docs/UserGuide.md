@@ -48,9 +48,7 @@ add /q QUESTION /a ANSWER
   `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
   with a space before it).
 
-    - Deal with it. We make the rules.
-
-    - We might fix this in a future version. A very, very distant future version.
+    - We might fix this in a future version.
 
 - `/q QUESTION` and `/a ANSWER` can be arranged in any order.
 - The first letter of `QUESTION` and `ANSWER` are automatically capitalised.
