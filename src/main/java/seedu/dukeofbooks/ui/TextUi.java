@@ -17,14 +17,14 @@ import java.util.NoSuchElementException;
 public class TextUi {
     public static final int DISPLAYED_INDEX_OFFSET = 1;
     public static final String LINE_PREFIX = "|| ";
-    private static final String LS = System.lineSeparator();
     public static final String DIVIDER = "===================================================";
     public static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
     public static final String LOGIN_PROMPT = "Welcome! Please login or signup.";
     public static final String GREETINGS_FORMAT = "Welcome %s!";
-
-    private final Scanner in;
+    
     private static final PrintStream out=System.out;
+    private static final String LS = System.lineSeparator();
+    private final Scanner in;
 
     public TextUi() {
         this(System.in, System.out);
