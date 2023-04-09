@@ -358,7 +358,8 @@ If this lesson clashes with any of your other lessons a warning message will be 
 However, the lesson will still be added to your timetable, similar to NUSMods.
 
 **NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
-the corresponding flag inputs are -lec 01 and -lec 1 respectively.**
+the corresponding flag inputs are -lec 01 and -lec 1 respectively. Additionally, class number is case-sensitive.
+E.g. class number e01 is not the same as class number e01**
 
 
 #### Behaviour of Command:
@@ -417,7 +418,8 @@ Lessons deleted: SECTIONAL TEACHING - 1
 ```
 
 **NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
-the corresponding flag inputs are -lec 01 and -lec 1 respectively.**
+the corresponding flag inputs are -lec 01 and -lec 1 respectively. Additionally, class number is case-sensitive.
+E.g. class number e01 is not the same as class number e01**
 
 ### `showmod` - Show information of a module
 
@@ -697,6 +699,13 @@ certain modules such as Special Term Modules and iBloc Modules (CS1010x).
 **A**: No. Apollo is not designed to be edited manually. If you edit the save file manually, you may corrupt the data 
 and cause unpredictable behaviours in Apollo. If you want to edit the save file, you can do so at your own risk. Editing the file
 while Apollo is running will not affect the data in Apollo.
+
+**Q**: Why am I not able to add my class number even though the number exists?
+
+**A**: Apollo only supports class numbers that are available in the official NUS Semester 2 timetable. If you are unable to add
+a class number, it is likely that the class number is not available in the official NUS Semester 2 timetable. Do note 
+that official class numbers are sensitive to case and leading numbers or letters. For example, `01` is not the same as `1` and
+`A01` is not the same as `a01`.
 
 
 
