@@ -160,6 +160,10 @@ The following sequence diagram shows how data storage works:
 
 ![StorageSequenceUML.png](images/StorageSequenceUML.png)
 
+The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
+
+![StoargeActivity.png](images/StorageActivity.png)
+
 ###### [Back to table of contents](#table-of-contents)
 
 ### Recipe Detail Command

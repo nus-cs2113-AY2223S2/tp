@@ -1,0 +1,14 @@
+@startuml
+start
+:User executes command which alters ingredient list;
+
+if () then ([addition of new ingredient to list])
+    :add new ingredient to ingredient list;
+    :append additional ingredient to file;
+else ([modify/remove existing ingredient(s) in list])
+    :modify ingredient(s) in ingredient list;
+    :create new file to overwrite existing file;
+    :write all ingredients in the ingredient list to file;
+endif
+stop
+@enduml
