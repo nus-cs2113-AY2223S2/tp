@@ -136,7 +136,8 @@ The class diagram below illustrates the structure of the storage package
 #### 2.3.1 How the feature is implemented and design considerations:
 
 The Storage component uses a custom type adapter to serialize and deserialize data from java to json and vice versa using
-a gson, a third party library for Json serialization/deserialization.
+a gson, a third party library for Json serialization/deserialization. The custom type adapter allows for finer controls over
+how objects are deserialized and serialized.
 
 `NusMods.json` is stored in the resources folder and is deserialized into a hash table storing all module information. A 
 hash map was used to prevent the slow processing of the program each time a module needed to be searched up as it is a feature
