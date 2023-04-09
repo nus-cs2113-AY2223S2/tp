@@ -11,8 +11,8 @@ public class MarkCommand extends Command {
     public MarkCommand (String uid){
         this.uid = uid;
     }
-    /** Executes Mark Command method located in SniffTasks class
-     *
+    /**
+     * Executes Mark Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */

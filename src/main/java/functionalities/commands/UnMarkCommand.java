@@ -13,8 +13,8 @@ public class UnMarkCommand extends Command {
         this.uid = uid;
     }
 
-    /** Executes UnMark Command method located in SniffTasks class
-     *
+    /**
+     * Executes UnMark Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */

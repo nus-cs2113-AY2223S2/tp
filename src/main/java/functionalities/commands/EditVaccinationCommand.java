@@ -30,8 +30,8 @@ public class EditVaccinationCommand extends Command{
         this.date = date;
         this.time = time;
     }
-    /** Executes EditVaccination Command method located in SniffTasks class
-     *
+    /**
+     * Executes EditVaccination Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */
