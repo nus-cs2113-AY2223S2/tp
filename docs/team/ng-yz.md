@@ -19,5 +19,20 @@ Enhancements implemented:
   * Allows the user to view all categories available in the inventory by entering `cat list` command
   * Allows the user to view items by category (all items in each category are listed in a table) by entering `cat table` command
   * Enhanced `filter`, `add`, `edit` features to include any category of the same spelling yet different capitalizations under the same known category.
+* Enhanced `addWordWithoutWrap` for certain features like `cat table` to print each item in the table on a separate row 
 * Javadoc comments for relevant classes and methods
 * Junit tests for `RemoveCommand` and `CategoryCommand`
+
+Contributions to the UG:
+* Set up initial structure if UG
+* Helped check and modify some sample outputs when changes were made along the way
+* Added documentation for the `remove` and `cat` commands
+* Help vet through formatting
+
+Contributions to the DG:
+* Added details for `remove` and `category` commands
+* Added sequence diagrams and UML diagrams for `remove` and `category` commands
+
+Contributions to team-based tasks:
+* Maintaining issue tracker
+* Created UG Draft Template
