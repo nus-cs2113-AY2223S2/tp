@@ -1,11 +1,12 @@
 package seedu.brokeMan.entry.expense;
 
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.ui.Ui;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedList;
@@ -13,8 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ExpenseList extends EntryList {
-    private static final LinkedList<Entry> expenseList = new LinkedList<>();
-    //private final EntryList expenseList;
+    public static final LinkedList<Entry> expenseList = new LinkedList<>();
 
     /**
      * Adds new expense to the list
@@ -23,11 +23,12 @@ public class ExpenseList extends EntryList {
      */
     public static void addExpense(Expense newExpense) {
         addEntry(newExpense, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
-     * lists out expenses in the list
+     * Lists expenses saved
+     *
+     * @param date Optional of String that contains information about the date
      */
 
     public static void listExpense(Optional<String> date) {
@@ -39,10 +40,15 @@ public class ExpenseList extends EntryList {
 
         Ui.showToUser("Here are the expenses you have made for " + dateInString + ".");
         listEntry(expenseOfDate);
-        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseOfDate));
+        double totalDoubleExpenses = getEntryListSum(expenseOfDate);
+        BigDecimal totalExpenses = new BigDecimal(totalDoubleExpenses);
+        Ui.showToUser(String.format("Total expenses: $%.2f", totalExpenses));
         Ui.showToUserWithLineBreak("");
     }
 
+    /**
+     * Lists expenses saved
+     */
     public static void listExpense() {
         Ui.showToUser("Here are the expenses you have made.");
         listEntry(expenseList);
@@ -57,7 +63,6 @@ public class ExpenseList extends EntryList {
      */
     public static void deleteExpense(int expenseIndex) {
         deleteEntry(expenseIndex, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
 
@@ -69,29 +74,35 @@ public class ExpenseList extends EntryList {
      */
     public static void editExpense(int expenseIndex, String newEntry) {
         editEntryDescription(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
      * Edits the amount of expense specified by the index in the list
-     *
      * @param expenseIndex index of the expense in the list
      * @param newEntry     new amount that will replace the current amount
      */
     public static void editExpense(int expenseIndex, Double newEntry) {
         editEntryCost(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
      * Edits the time of expense specified by the index in the list
      *
      * @param expenseIndex index of the expense in the list
-     * @param newEntry     new time that will replace the current amount
+     * @param newEntry     new time that will replace the current time
      */
     public static void editExpense(int expenseIndex, LocalDateTime newEntry) {
         editEntryTime(expenseIndex, newEntry, expenseList);
-        SaveExpense.writeFile(expenseList);
+    }
+
+    /**
+     * Edits the category of expense specified by the index in the list
+     *
+     * @param expenseIndex index of the expense in the list
+     * @param newEntry     new category of the expense
+     */
+    public static void editExpense(int expenseIndex, Category newEntry) {
+        editEntryCategory(expenseIndex, newEntry, expenseList);
     }
 
     /**
@@ -101,7 +112,6 @@ public class ExpenseList extends EntryList {
         sortEntriesByAmount(expenseList);
         Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
         Ui.showToUserWithLineBreak("");
-        SaveExpense.writeFile(expenseList);
     }
 
     /**
@@ -111,9 +121,24 @@ public class ExpenseList extends EntryList {
         sortEntriesByDate(expenseList);
         Ui.showToUser("Total expenses: $" + getEntryListSum(expenseList));
         Ui.showToUserWithLineBreak("");
-        SaveExpense.writeFile(expenseList);
     }
 
+    /**
+     * Finds list of all expenses that is under category specified
+     *
+     * @param category Category of the expense
+     */
+    public static void findExpenseByCategory(Category category) {
+        findEntriesByCategory(category, expenseList);
+    }
+
+    /**
+     * Returns list of all expenses made in the month specified
+     *
+     * @param year Year of the expense made
+     * @param month Month of the expense made
+     * @return List of entries that contain expenses made in the specified month
+     */
     public static List<Entry> getExpensesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, expenseList);
     }

@@ -1,10 +1,9 @@
 package seedu.brokeMan.entry.income;
 
-
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.save.SaveIncome;
 import seedu.brokeMan.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class IncomeList extends EntryList {
-    private static final LinkedList<Entry> incomeList = new LinkedList<>();
+    public static final LinkedList<Entry> incomeList = new LinkedList<>();
 
     /**
      * Adds new income to the list.
@@ -23,7 +22,6 @@ public class IncomeList extends EntryList {
      */
     public static void addIncome(Income newIncome) {
         addEntry(newIncome, incomeList);
-        SaveIncome.writeFile(incomeList);
     }
 
     /**
@@ -33,11 +31,12 @@ public class IncomeList extends EntryList {
      */
     public static void deleteIncome(int index) {
         deleteEntry(index, incomeList);
-        SaveIncome.writeFile(incomeList);
     }
 
     /**
-     * list out income in the list
+     * Lists incomes saved
+     *
+     * @param date Optional of String that contains information about the date
      */
     public static void listIncome(Optional<String> date) {
         int year = StringToTime.createYearFromString(date);
@@ -52,6 +51,9 @@ public class IncomeList extends EntryList {
         Ui.showToUserWithLineBreak("");
     }
 
+    /**
+     * list out income in the list
+     */
     public static void listIncome() {
         Ui.showToUser("Here are the income you have made.");
         listEntry(incomeList);
@@ -60,44 +62,78 @@ public class IncomeList extends EntryList {
     }
 
     /**
-     * Edits a specific income entry in the list
+     * Edits the description of the income specified by the index in the list
      *
-     * @param index    index of the expense in the list
-     * @param newEntry new entry that will replace current entry
+     * @param index        index of the income in the list
+     * @param newEntry     new description that will replace current description
      */
     public static void editIncome(int index, String newEntry) {
         editEntryDescription(index, newEntry, incomeList);
-        SaveIncome.writeFile(incomeList);
     }
 
+    /**
+     * Edits the amount of income specified by the index in the list
+     *
+     * @param index        index of the income in the list
+     * @param newEntry     new amount that will replace the current amount
+     */
     public static void editIncome(int index, Double newEntry) {
         editEntryCost(index, newEntry, incomeList);
-        SaveIncome.writeFile(incomeList);
     }
 
+    /**
+     * Edits the time of income specified by the index in the list
+     *
+     * @param index        index of the income in the list
+     * @param newEntry     new time that will replace the current time
+     */
     public static void editIncome(int index, LocalDateTime newEntry) {
         editEntryTime(index, newEntry, incomeList);
-        SaveIncome.writeFile(incomeList);
     }
+
+    /**
+     * Edits the category of income specified by the index in the list
+     *
+     * @param index        index of the income in the list
+     * @param newEntry     new category of the income
+     */
+    public static void editIncome(int index, Category newEntry) { editEntryCategory(index, newEntry, incomeList);}
 
 
     /**
-     * Sorts income using Entry comparator
+     * Sorts incomes by amount, from largest to smallest
      */
     public static void sortIncomeByAmount() {
         sortEntriesByAmount(incomeList);
         Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
         Ui.showToUserWithLineBreak("");
-        SaveIncome.writeFile(incomeList);
     }
 
+    /**
+     * Sorts incomes by date, from latest to oldest
+     */
     public static void sortIncomeByDate() {
         sortEntriesByDate(incomeList);
         Ui.showToUser(String.format("Total income: $%.2f", getEntryListSum(incomeList)));
         Ui.showToUserWithLineBreak("");
-        SaveIncome.writeFile(incomeList);
     }
 
+    /**
+     * Finds list of all incomes that is under category specified
+     *
+     * @param category Category of the income
+     */
+    public static void findIncomeByCategory(Category category) {
+        findEntriesByCategory(category, incomeList);
+    }
+
+    /**
+     * Returns list of all incomes made in the month specified
+     *
+     * @param year Year of the income made
+     * @param month Month of the income made
+     * @return List of entries that contain incomes made in the specified month
+     */
     public static List<Entry> getIncomesMadeInMonth(int year, Month month) {
         return selectEntryForDate(year, month, incomeList);
     }

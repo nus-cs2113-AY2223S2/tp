@@ -5,6 +5,7 @@ import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
@@ -15,20 +16,7 @@ import static seedu.brokeMan.entry.expense.ExpenseList.getExpensesMadeInMonth;
 import static seedu.brokeMan.parser.StringToTime.createDateString;
 
 public class Budget {
-    private static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
-
-    // will remove when read write function works
-    static {
-        HashMap<Month, Double> budget2022 = new HashMap<>();
-        budget2022.put(Month.of(11), 1000.0);
-        budget2022.put(Month.of(12), 1200.0);
-        HashMap<Month, Double> budget2023 = new HashMap<>();
-        budget2023.put(Month.of(1), 1400.0);
-        budget2023.put(Month.of(2), 1600.0);
-        budget2023.put(Month.of(3), 1800.0);
-        budgetEachMonth.put(2023, budget2023);
-        budgetEachMonth.put(2022, budget2022);
-    }
+    public static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
 
     public static void viewBudget(Optional<String> dateInString) {
         int year = StringToTime.createYearFromString(dateInString);
@@ -43,14 +31,15 @@ public class Budget {
             double totalExpenses = EntryList.getEntryListSum(expensesInMonth);
             double budgetThisMonth = budgetEachMonth.get(yearOfInterest).get(monthOfInterest);
             double budgetLeft = budgetThisMonth - totalExpenses;
+            BigDecimal BigDecimalBudgetLeft = new BigDecimal(budgetThisMonth - totalExpenses);
             Ui.showToUser(String.format("You have set your budget as $%.2f for %s.",
                     budgetThisMonth, createDateString(yearOfInterest, monthOfInterest)));
             if (budgetLeft >= 0) {
                 Ui.showToUserWithLineBreak(
-                        String.format("The amount of budget left is $%.2f", budgetLeft), "");
+                        String.format("The amount of budget left is $%.2f", BigDecimalBudgetLeft), "");
             } else if (budgetLeft < 0){
                 Ui.showToUserWithLineBreak(String.format(
-                        "You have overspent your expenses by $%.2f", budgetLeft), "");
+                        "You have overspent your expenses by $%.2f", BigDecimalBudgetLeft), "");
             }
         } catch (NullPointerException npe) {
             Ui.showToUserWithLineBreak("Budget information for the given month does not exist!", "");

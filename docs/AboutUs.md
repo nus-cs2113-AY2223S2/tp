@@ -1,9 +1,8 @@
 # About us
 
-| Display                                             |        Name        |        Github Profile         |             Portfolio             |
-|-----------------------------------------------------|:------------------:|:-----------------------------:|:---------------------------------:|
-| ![](https://via.placeholder.com/100.png?text=Photo) |      Yu Sichen     | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md) |
-| ![](https://via.placeholder.com/100.png?text=Photo) |      Liam Van      | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md) |
-| ![](https://via.placeholder.com/100.png?text=Photo) | Samuel Tan Sze Wee | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md) |
-| ![](https://via.placeholder.com/100.png?text=Photo) |     Sangjun Nam    | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md) |
-| ![](https://via.placeholder.com/100.png?text=Photo) |      Don Roe       | [Github](https://github.com/) | [Portfolio](docs/team/johndoe.md) |
+| Display                 |        Name        |        Github Profile         |             Portfolio              |
+|-------------------------|:------------------:|:-----------------------------:|:----------------------------------:|
+| ![](./teamImages/A.jpg) |      Yu Sichen     | [Github](https://github.com/sistine-yu) | [Portfolio](./team/sistine-yu.md)  |
+| ![](./teamImages/B.jpg) |      Liam Van      | [Github](https://github.com/SpeciLiam) |  [Portfolio](./team/speciliam.md)  |
+| ![](./teamImages/C.jpg) | Samuel Tan Sze Wee | [Github](https://github.com/Samueltansw) | [Portfolio](./team/samueltansw.md) |
+| ![](./teamImages/D.jpg) |     Sangjun Nam    | [Github](https://github.com/namsengi11) | [Portfolio](./team/namsengi11.md)  |

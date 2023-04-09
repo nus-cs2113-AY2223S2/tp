@@ -14,6 +14,6 @@ public class UserInput {
             return new UserInput(userFullInput, "");
         }
         String[] userSplitInputs = userFullInput.split(" ", 2);
-        return new UserInput(userSplitInputs[0], userSplitInputs[1]);
+        return new UserInput(userSplitInputs[0], userSplitInputs[1].trim());
     }
 }

@@ -7,7 +7,8 @@ import java.util.Optional;
 public class ListIncomeCommand extends Command {
     public static final String COMMAND_WORD = "listIncome";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": lists incomes made in the current month.\n" +
-            "|  " + COMMAND_WORD + " [t/ YYYY/MM]: : lists incomes made in the specified month\n" +
+            "|  " + COMMAND_WORD + " t/ <date in YYYY/MM>: : lists incomes made in the specified month\n" +
+            "|  Optional Parameter: t/ <date in YYYY/MM>\n" +
             "|  Example: " + COMMAND_WORD + "\n" +
             "|  Example: " + COMMAND_WORD + " t/ 2023/03";
 

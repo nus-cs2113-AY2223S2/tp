@@ -7,6 +7,7 @@ import seedu.brokeMan.command.DeleteExpenseCommand;
 import seedu.brokeMan.command.DeleteIncomeCommand;
 import seedu.brokeMan.command.EditExpenseCommand;
 import seedu.brokeMan.command.EditIncomeCommand;
+import seedu.brokeMan.exception.ExceedMaximumLengthForAmountException;
 import seedu.brokeMan.command.ExitCommand;
 import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
@@ -22,9 +23,12 @@ import seedu.brokeMan.exception.hasNotSetBudgetException;
 import seedu.brokeMan.exception.InvalidDateTimeException;
 import seedu.brokeMan.exception.InvalidMonthTimeException;
 import seedu.brokeMan.exception.DateSmallerThanMinimumException;
-import seedu.brokeMan.exception.BrokeManException;
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
+import seedu.brokeMan.exception.BrokeManException;
 import seedu.brokeMan.exception.BudgetNotADoubleException;
+import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.exception.ContainDuplicatedFlagException;
 import seedu.brokeMan.exception.ContainsEmptyFlagException;
 import seedu.brokeMan.exception.IncorrectTypeException;
 import seedu.brokeMan.exception.IndexNotAnIntegerException;
@@ -32,14 +36,17 @@ import seedu.brokeMan.exception.InvalidAddCommandException;
 import seedu.brokeMan.exception.InvalidEditCommandException;
 import seedu.brokeMan.exception.InvalidOptionalTimeFlagException;
 import seedu.brokeMan.exception.NegativeAmountException;
+import seedu.brokeMan.exception.NewDescriptionContainFlagsException;
 import seedu.brokeMan.exception.WrongFlagOrderException;
 
+import java.text.DecimalFormat;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_ARGUMENTS_NOT_SPECIFIED;
 import static seedu.brokeMan.common.Messages.MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION;
+import static seedu.brokeMan.parser.StringToCategory.convertStringToCategory;
 
 
 /*
@@ -49,6 +56,9 @@ https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/p
  */
 
 public class Parser {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
 
     /**
      * parse the inputs entered by user into command for execution
@@ -151,6 +161,7 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
+        assert(!description.equals("")) : "You did not specify your budget\n";
         String[] descriptionByWord = description.split(" t/ ");
         if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
             return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
@@ -160,7 +171,12 @@ public class Parser {
         String budgetInString = descriptionByWord[0];
 
         try {
+            if (budgetInString.length() > 10) {
+                String errorMessage = new ExceedMaximumLengthForAmountException().getMessage();
+                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
+            }
             budget = Double.parseDouble(budgetInString);
+            budget = Double.parseDouble(df.format(budget));
             if (budget < 0) {
                 String errorMessage = new NegativeAmountException().getMessage();
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
@@ -240,7 +256,7 @@ public class Parser {
      * @return the prepared command
      */
     private static Command prepareAddExpenseCommand(String description) {
-        // description in the form of "a/ <amount> d/ <description> t/ time"
+        // description in the form of "a/ <amount> d/ <description> t/ time c/ category"
 
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_ARGUMENTS_NOT_SPECIFIED,
@@ -254,16 +270,20 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), AddExpenseCommand.MESSAGE_USAGE);
         }
 
-        double amount = Double.parseDouble(splitDescriptions[1]);
-        String newDescription = splitDescriptions[2];
+        double amount = Double.parseDouble(splitDescriptions[0]);
+        String newDescription = splitDescriptions[1];
+        Category category;
         try {
-            checkSmallerThanMinTime(splitDescriptions[3]);
+            checkSmallerThanMinTime(splitDescriptions[2]);
+            category = convertStringToCategory(splitDescriptions[3]);
         } catch (DateSmallerThanMinimumException sme) {
             return new InvalidCommand(sme.getMessage(), AddExpenseCommand.MESSAGE_USAGE);
+        } catch (CategoryNotCorrectException e) {
+            throw new RuntimeException(e);
         }
-        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
+        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[2]);
 
-        return new AddExpenseCommand(amount, newDescription, time);
+        return new AddExpenseCommand(amount, newDescription, time, category);
     }
 
     /**
@@ -273,7 +293,7 @@ public class Parser {
      * @return the prepared command
      */
     private static Command prepareAddIncomeCommand(String description) {
-        // description in the form of "a/ <amount> d/ <description> t/ time"
+        // description in the form of "a/ <amount> d/ <description> t/ time c/ category"
 
         if (description.equals("")) {
             return new InvalidCommand(MESSAGE_ARGUMENTS_NOT_SPECIFIED,
@@ -287,16 +307,20 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), AddIncomeCommand.MESSAGE_USAGE);
         }
 
-        double amount = Double.parseDouble(splitDescriptions[1]);
-        String newDescription = splitDescriptions[2];
+        double amount = Double.parseDouble(splitDescriptions[0]);
+        String newDescription = splitDescriptions[1];
+        Category category;
         try {
-            checkSmallerThanMinTime(splitDescriptions[3]);
+            checkSmallerThanMinTime(splitDescriptions[2]);
+            category = convertStringToCategory(splitDescriptions[3]);
         } catch (DateSmallerThanMinimumException sme) {
             return new InvalidCommand(sme.getMessage(), AddIncomeCommand.MESSAGE_USAGE);
+        } catch (CategoryNotCorrectException e) {
+            throw new RuntimeException(e);
         }
-        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
+        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[2]);
 
-        return new AddIncomeCommand(amount, newDescription, time);
+        return new AddIncomeCommand(amount, newDescription, time, category);
     }
 
     /**
@@ -306,31 +330,54 @@ public class Parser {
      * @return the split command descriptions
      * @throws BrokeManException the custom exception for specific exception case
      */
-    private static String[] checkAddCommandException(String description) throws BrokeManException {
-        boolean containsAllFlags = description.contains("a/ ") &&
-                description.contains(" d/ ") && description.contains(" t/");
+    public static String[] checkAddCommandException(String description) throws BrokeManException {
+        description = " " + description + " ";
+
+        boolean containsAllFlags = description.contains(" a/ ") &&
+                description.contains(" d/ ") && description.contains(" t/ ")
+                && description.contains(" c/");
 
         if (!containsAllFlags) {
             throw new InvalidAddCommandException();
         }
+
         boolean isFlagInCorrectOrder = description.indexOf("a/") < description.indexOf("d/") &&
-                description.indexOf("d/") < description.indexOf("t/");
+                description.indexOf("d/") < description.indexOf("t/") &&
+                description.indexOf("t/") < description.indexOf("c/");
         if (!isFlagInCorrectOrder) {
             throw new WrongFlagOrderException();
         }
 
-        String[] splitDescriptions = description.split("/");
+        boolean hasDuplicatedFlags = (description.indexOf(" a/ ") != description.lastIndexOf(" a/ ")) ||
+                (description.indexOf(" d/ ") != description.lastIndexOf(" d/ ")) ||
+                (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
+                (description.indexOf(" c/ ") != description.lastIndexOf(" c/ "));
+        if (hasDuplicatedFlags) {
+            throw new ContainDuplicatedFlagException();
+        }
 
-        int length = splitDescriptions[1].length();
-        int length1 = splitDescriptions[2].length();
+        assert(isFlagInCorrectOrder) : "|  flag is not in order";
 
-        splitDescriptions[1] = splitDescriptions[1].substring(0, length - 1).trim();
-        splitDescriptions[2] = splitDescriptions[2].substring(0, length1 - 1).trim();
-        checkEmptyFlag(splitDescriptions);
+        String[] splitDescriptions = new String[4];
+        splitDescriptions[0] = description.substring(description.indexOf("a/") + 2,
+                description.indexOf("d/"));
+        splitDescriptions[1] = description.substring(description.indexOf("d/") + 2,
+                description.indexOf("t/"));
+        splitDescriptions[2] = description.substring(description.indexOf("t/") + 2,
+                description.indexOf("c/"));
+        splitDescriptions[3] = description.substring(description.indexOf("c/") + 2,
+                description.length());
+
+        splitDescriptions[0] = splitDescriptions[0].trim();
+        splitDescriptions[1] = splitDescriptions[1].trim();
+        splitDescriptions[2] = splitDescriptions[2].trim();
         splitDescriptions[3] = splitDescriptions[3].trim();
-        checkDoubleException(splitDescriptions[1]);
-        checkTimeException(splitDescriptions[3]);
 
+        checkEmptyAddFlag(splitDescriptions);
+        checkDoubleException(splitDescriptions[0]);
+        splitDescriptions[0] = checkExceedMaxCharForAmount(splitDescriptions[0]);
+        checkTimeException(splitDescriptions[2]);
+        convertStringToCategory(splitDescriptions[3]);
         return splitDescriptions;
     }
 
@@ -344,6 +391,15 @@ public class Parser {
         if (Integer.parseInt(dateByWord[0]) < 2000) {
             throw new DateSmallerThanMinimumException();
         }
+    }
+
+    private static String checkExceedMaxCharForAmount(String description) throws ExceedMaximumLengthForAmountException {
+        double amount = Double.parseDouble(description);
+        double maxAmountAllowed = 9999999999.99D;
+        if (amount > maxAmountAllowed) {
+            throw new ExceedMaximumLengthForAmountException();
+        }
+        return df.format(amount);
     }
 
     private static Command prepareListExpenseCommand(String description) {
@@ -380,12 +436,17 @@ public class Parser {
      * @param splitDescriptions split command descriptions that contains the description of flags
      * @throws ContainsEmptyFlagException custom exception to indicate flag descriptions is / are empty
      */
-    private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
-        if (splitDescriptions.length == 3) {
-            throw new ContainsEmptyFlagException();
-        }
-
+    private static void checkEmptyAddFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
         assert (splitDescriptions.length == 4) : "Invalid input\n";
+        for (String description : splitDescriptions) {
+            if (description.isEmpty()) {
+                throw new ContainsEmptyFlagException();
+            }
+        }
+    }
+
+    private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
+        assert (splitDescriptions.length == 3) : "Invalid input\n";
         for (String description : splitDescriptions) {
             if (description.isEmpty()) {
                 throw new ContainsEmptyFlagException();
@@ -416,8 +477,8 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
         }
 
-        return new EditExpenseCommand(Integer.parseInt(splitDescriptions[1]),
-                splitDescriptions[2], splitDescriptions[3]);
+        return new EditExpenseCommand(Integer.parseInt(splitDescriptions[0]),
+                splitDescriptions[1], splitDescriptions[2]);
     }
 
     /**
@@ -443,8 +504,8 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), EditIncomeCommand.MESSAGE_USAGE);
         }
 
-        return new EditIncomeCommand(Integer.parseInt(splitDescriptions[1]),
-                splitDescriptions[2], splitDescriptions[3]);
+        return new EditIncomeCommand(Integer.parseInt(splitDescriptions[0]),
+                splitDescriptions[1], splitDescriptions[2]);
     }
 
     /**
@@ -460,6 +521,7 @@ public class Parser {
         }
     }
 
+
     /**
      * Checks if the input string to a double greater than 0
      *
@@ -474,13 +536,14 @@ public class Parser {
 
         try {
             amount = Double.parseDouble(cost);
-            if (amount < 0) {
+            if (amount <= 0) {
                 throw new NegativeAmountException();
             }
         } catch (NumberFormatException nfe) {
             throw new AmountIsNotADoubleException();
         }
     }
+
 
     /**
      * Parses the command description in the context for the context of
@@ -491,7 +554,9 @@ public class Parser {
      * @throws BrokeManException the custom exception that indicate the specific exception cases
      */
     private static String[] checkEditCommandException(String description) throws BrokeManException {
-        boolean containsAllFlags = description.contains("i/ ") &&
+        description = " " + description + " ";
+
+        boolean containsAllFlags = description.contains(" i/ ") &&
                 description.contains(" t/ ") && description.contains(" n/");
         if (!containsAllFlags) {
             throw new InvalidEditCommandException();
@@ -501,22 +566,50 @@ public class Parser {
         if (!isFlagInOrder) {
             throw new WrongFlagOrderException();
         }
-        String[] splitDescriptions = description.split("/");
-        int length1 = splitDescriptions[1].length();
-        int length2 = splitDescriptions[2].length();
-        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
-        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
-        checkEmptyFlag(splitDescriptions);
-        checkIsIntegerIndex(splitDescriptions[1]);
-        checkCorrectType(splitDescriptions[2]);
-        splitDescriptions[3] = splitDescriptions[3].trim();
 
-        if (splitDescriptions[2].equals("amount")) {
-            checkDoubleException(splitDescriptions[3]);
-        } else if (splitDescriptions[2].equals("time")) {
-            checkTimeException(splitDescriptions[3]);
+        boolean hasDuplicatedFlags = (description.indexOf(" i/ ") != description.lastIndexOf(" i/ ")) ||
+                (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
+                (description.indexOf(" n/ ") != description.lastIndexOf(" n/ "));
+        if (hasDuplicatedFlags) {
+            throw new ContainDuplicatedFlagException();
         }
+
+        String[] splitDescriptions = new String[3];
+        splitDescriptions[0] = description.substring(description.indexOf("i/") + 2,
+                description.indexOf("t/"));
+        splitDescriptions[1] = description.substring(description.indexOf("t/") + 2,
+                description.indexOf("n/"));
+        splitDescriptions[2] = description.substring(description.indexOf("n/") + 2,
+                description.length());
+
+        splitDescriptions[0] = splitDescriptions[0].trim();
+        splitDescriptions[1] = splitDescriptions[1].trim();
+        splitDescriptions[2] = splitDescriptions[2].trim();
+
+        checkEmptyFlag(splitDescriptions);
+        checkIsIntegerIndex(splitDescriptions[0]);
+        checkCorrectType(splitDescriptions[1]);
+        if (splitDescriptions[1].equals("category")) {
+            convertStringToCategory(splitDescriptions[2]);
+        } else if (splitDescriptions[1].equals("amount")) {
+            checkDoubleException(splitDescriptions[2]);
+            splitDescriptions[2] = checkExceedMaxCharForAmount(splitDescriptions[2]);
+        } else if (splitDescriptions[1].equals("time")) {
+            checkTimeException((splitDescriptions[2]));
+        } else if (splitDescriptions[1].equals("info")) {
+            checkContainFlagsException(splitDescriptions[2]);
+        }
+
         return splitDescriptions;
+    }
+
+    private static void checkContainFlagsException(String newDescription) throws NewDescriptionContainFlagsException {
+        newDescription = " " + newDescription + " ";
+        boolean isContainFlags = newDescription.contains(" c/ ") ||
+                newDescription.contains(" a/ ") || newDescription.contains(" d/ ");
+        if (isContainFlags) {
+            throw new NewDescriptionContainFlagsException();
+        }
     }
 
     /**
@@ -541,7 +634,7 @@ public class Parser {
      */
     private static void checkCorrectType(String type) throws IncorrectTypeException {
         if (!type.equals("amount") && !type.equals("info") &&
-                !type.equals("time")) {
+                !type.equals("time") && !type.equals("category")) {
             throw new IncorrectTypeException();
         }
     }
