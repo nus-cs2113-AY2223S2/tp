@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import model.Card;
 import model.CardUUID;
+import model.Deck;
 import model.DeckList;
 import model.DeckUUID;
 import model.Memory;
@@ -27,6 +28,8 @@ public class JsonStorageTest {
     private static final Path MALFORMED_FILE = TEST_DATA_FOLDER.resolve("malformed.json");
     private static final Path VALID_FILE = TEST_DATA_FOLDER.resolve("valid.json");
 
+    private static final Path VALID_HASH = TEST_DATA_FOLDER.resolve("valid_hash.json");
+
     //valid file properties
 
     private static final String card1Uuid = "1ddd9a67-f56c-4914-99c0-2f90c580f0e9";
@@ -34,13 +37,19 @@ public class JsonStorageTest {
     private static final String card1A = "ffffffghgg";
     private static final String fileCard1DeckUuid = "c83e08ad-e5b7-4812-9dd1-4b44504386ad";
     private static final int fileCard1DeckSize = 1;
-    private static final int fileCard1TagSize = 1;
+    private static final int fileCard1TagSize = 6;
     private static final String fileCard1TagUuid = "03658854-e5d4-468f-8c41-74917e5d4515";
 
-    private static final int fileDeckSize = 2;
+    private static final int fileDeckSize = 1;
 
     private static final String card2Uuid = "619c689d-395a-4bb8-ab00-6ae9972bb929";
     private static final String card2Q = "question2";
+
+    private static final String hashDeckUuid = "7f688a43-b13c-40ab-926d-72ae9acf8605";
+
+    private static final String hashSetCard1= "924119c1-a807-4df2-b311-080be9ee8522";
+    private static final String hashSetCard2= "619c689d-395a-4bb8-ab00-6ae9972bb929";
+    private static final String hashSetCard3= "1ddd9a67-f56c-4914-99c0-2f90c580f0e9";
 
 
 
@@ -73,9 +82,9 @@ public class JsonStorageTest {
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
         int cardListSize = cardList.size();
-        int validFileCardListSize = 2;
+        int validFileCardListSize = 6;
         int expectedSize = validFileCardListSize;
-        assertEquals(cardListSize, expectedSize);
+        assertEquals(expectedSize, cardListSize);
 
     }
 
@@ -93,7 +102,6 @@ public class JsonStorageTest {
         String card1TestUuidStr = card1TestUuidobj.toString();
 
         assertEquals(card1UuidStr, card1TestUuidStr);
-        //todo need to add case for checking for malformed UUID
 
     }
 
@@ -111,7 +119,6 @@ public class JsonStorageTest {
 
 
         assertEquals(expectedSize, card1Tags.size());
-        //todo need to add case for checking for malformed UUID
 
     }
 
@@ -130,7 +137,6 @@ public class JsonStorageTest {
 
 
         assertEquals(fileCard1TagUuid, card1Tag1UuidObjStr);
-        //todo need to add case for checking for malformed UUID
 
     }
 
@@ -149,7 +155,6 @@ public class JsonStorageTest {
 
 
         assertEquals(expectedSize, card1Decks.size());
-        //todo need to add case for checking for malformed UUID
 
     }
     @Test
@@ -167,7 +172,6 @@ public class JsonStorageTest {
 
 
         assertEquals(fileCard1DeckUuid, card1Deck1UuidObjStr);
-        //todo need to add case for checking for malformed UUID
 
     }
 
@@ -182,9 +186,37 @@ public class JsonStorageTest {
 
 
         assertEquals(fileDeckSize, testDeckSize);
-        //todo need to add case for checking for malformed UUID
 
     }
+
+
+    @Test
+    public void load_hashFile_deckcardsSet() throws InkaException {
+        //check if it is loading cardsSet
+        Storage storage = new JsonStorage(VALID_HASH.toString());
+        Memory memory = storage.load();
+        DeckList deckList = memory.getDeckList();
+        DeckUUID deck1Uuidobj = new DeckUUID(UUID.fromString(hashDeckUuid));
+        Deck testDeck = deckList.findDeckFromUUID(deck1Uuidobj);
+
+        boolean[] testCases  = {false, false};
+
+        CardUUID card1Uuid = new CardUUID(UUID.fromString(hashSetCard1));
+        testCases[0] = testDeck.cardIsInSet(card1Uuid);
+        CardUUID card2Uuid = new CardUUID(UUID.fromString(hashSetCard2));
+        testCases[1] = testDeck.cardIsInSet(card2Uuid);
+
+        int numTrueTestCases = 0;
+        for (boolean testCase : testCases) {
+            if (testCase) {
+                numTrueTestCases++;
+            }
+        }
+        assertEquals(2, numTrueTestCases);
+
+    }
+
+
 
 
 }

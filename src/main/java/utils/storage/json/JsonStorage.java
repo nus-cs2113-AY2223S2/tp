@@ -33,10 +33,17 @@ import utils.storage.Storage;
 
 public class JsonStorage extends Storage {
 
-    private static Logger logger = Logger.getLogger("storage.JsonStorage");
+    public static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
     private File backupFile;
 
+    /**
+     * This class represents a JSON storage object that extends the functionality of the {@link Storage} class. It
+     * creates a backup file, adds custom adapters and allows for the serialization and deserialization of objects to
+     * and from JSON.
+     *
+     * @param filePath The file path of the JSON storage file.
+     */
     public JsonStorage(String filePath) {
         super(filePath);
 
@@ -56,6 +63,12 @@ public class JsonStorage extends Storage {
         gsonBuilder.registerTypeAdapter(TagUUID.class, new TagUuidJsonAdapter());
     }
 
+    /**
+     * Loads the memory data from the JSON file.
+     *
+     * @return A Memory object containing the loaded data.
+     * @throws InkaException If there is an issue loading or converting the data from the file.
+     */
     @Override
     public Memory load() throws InkaException {
         try {
@@ -78,6 +91,12 @@ public class JsonStorage extends Storage {
         }
     }
 
+    /**
+     * Loads the backup save to a Memory object.
+     *
+     * @return Memory object representing the savedata in backup save file.
+     * @throws InkaException if an I/O error occurs while reading the backup file or if the backup file is corrupted.
+     */
     private Memory loadBackup() throws InkaException {
         try {
             FileReader fileReader = new FileReader(backupFile);
@@ -94,18 +113,14 @@ public class JsonStorage extends Storage {
         }
     }
 
-
-
-    public static Memory makeMemory(CardList cardList, TagList tagList, DeckList deckList) {
-        Memory memory = new Memory();
-        memory.setCardList(cardList);
-        memory.setTagList(tagList);
-        memory.setDeckList(deckList);
-
-        return memory;
-    }
-
-
+    /**
+     * Saves cardList, tagList, and deckList data to a JSON file
+     *
+     * @param cardList the CardList object containing all cards to be saved
+     * @param tagList  the TagList object containing all tags to be saved
+     * @param deckList the DeckList object containing all decks to be saved
+     * @throws StorageSaveFailure if the file cannot be saved
+     */
     @Override
     public void save(CardList cardList, TagList tagList, DeckList deckList) throws StorageSaveFailure {
 
@@ -122,9 +137,16 @@ public class JsonStorage extends Storage {
         }
     }
 
+    /**
+     * Saves the given JSON data to a file.
+     *
+     * @param file the file to save the data to
+     * @param data the JSON data to save to the file
+     * @throws IOException if an I/O error occurs while writing to the file
+     */
     private void saveDataToFile(File file, JsonObject data) throws IOException {
         try (FileWriter fileWriter = new FileWriter(file);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String serialized = gson.toJson(data);
