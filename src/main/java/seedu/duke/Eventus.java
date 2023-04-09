@@ -49,7 +49,7 @@ public class Eventus {
             input = in.nextLine();
             try {
                 Command c = Parser.parse(input);
-                if (c.getCommandType().equals("list venues")) {
+                if (c.getCommandType().equals("list venues") || c.getCommandType().equals("filter venues")) {
                     c.execute(venueList);
                 } else if (c.getCommandType().equals("choose venue")) {
                     c.execute(event, venueList);
