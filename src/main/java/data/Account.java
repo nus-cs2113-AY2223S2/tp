@@ -26,7 +26,7 @@ import static common.AccountMessage.SAVED_MESSAGE;
 public class Account {
 
     public static ExpenseList account;
-    public static final String SECURITY_STORAGE_FILE_PATH = "./src/main/java/storage/userList.txt";
+    public static final String SECURITY_STORAGE_FILE_PATH = "userList.txt";
     protected static String expensesStorageFilePath;
     protected static String accountName;
     protected static Storage storage;
@@ -38,9 +38,9 @@ public class Account {
         this.passwordHash = hashPassword(password);
         this.account = new ExpenseList();
         storage = new Storage(account);
-        expensesStorageFilePath = "./data/userdata/" + accountName + ".json";
+        expensesStorageFilePath = accountName + ".json";
 
-        // Read the expense list from the file with the file path of accountName + ".txt" if it exists
+        // Read the expense list from the file with the file path of expensesStorageFilePath if it exists
         try (BufferedReader br = new BufferedReader(new FileReader(expensesStorageFilePath))) {
             account = new ExpenseList(br);
         } catch (FileNotFoundException e) {
