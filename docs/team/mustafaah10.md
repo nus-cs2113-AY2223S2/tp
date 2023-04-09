@@ -2,23 +2,21 @@
 
 ## Project: [LifeTracker](https://github.com/AY2223S2-CS2113-W15-1/tp)
 
-LifeTracker is a desktop application used for encouraging users to lead a healthier life by tracking their meals, exercises and net calorie intake. The user interacts with it using a CLI. 
-
+LifeTracker is a desktop application used for encouraging users to lead a healthier life by tracking their meals, exercises and net calorie intake. The user interacts with it using a CLI.
 Given below are my contributions to the project.
 
 ### General
 
 #### LifeTracker
- - Worked on creating the main executable `LifeTracker` which initialises the various databases upon first starting the programme and continuously takes in and executes the user input thereafter.
+ - Created the main executable `LifeTracker` which initialises the various databases upon first starting the programme and continuously takes in and executes the user input thereafter.
 
 #### Command Parser
- - Worked on creating the main interface `CommandParser` for parsing of user input to decide which command needs to be executed by the programme.
+ - Created the class `CommandParser` for parsing of user input to decide which command needs to be executed by the programme.
 
-### Commands
+#### Commands
 
 I worked on some commands which help the user to input the relevant data into the CLI so that it can be tracked and recorded into the app's databases. Some examples are as follows:
-
-#### Add Exercise
+#### Add Exercise Command
  - Handled the `AddExerciseCommand` for users to add exercise into the exercise database. Handles the parsing and exceptions for fields like the exercise name, description, date, calories etc. 
 #### Delete Command
  - Handled the `DeleteCommand` for users to delete a meal or exercise from their respective databases.
@@ -31,6 +29,14 @@ I worked on some commands which help the user to input the relevant data into th
 #### Exercise
  - Created the `Exercise` entity to be used which stores values in its fields for the exercise name, its description, the calories burnt and the date it was performed.
 
+### Unit Testing
+ - Wrote JUnit tests for the following commands: `DeleteCommand`, `TrackCalorieCommand`, `FilterCaloriesCommand`, `ListCommand`, `ExitCommand`
+
+### Contributions to Developer Guide
+ - Created the class diagram for the `Command` components
+ - Created sequence diagrams for `AddMealCommand` and `DeleteCommand`
+ - Added documentation for above diagrams and execution
+
 ### Contributions to team-based tasks
  - Created the logger which logs events like when the user started the app, meals and exercises added, when exceptions occurred. 
  - Created a local log file which is written to by the logger mentioned above.
@@ -40,6 +46,7 @@ I worked on some commands which help the user to input the relevant data into th
 
 ## Project Management
 - Helped to fix bugs discovered in our Team's product during user testing.
+- Managed milestone releases and assisted in distributing and keeping track of issues via issue-tracker
 
 ## Enhancements to existing features
  - Combined the deletion of meals and exercises into a single command since they used similar functionality
