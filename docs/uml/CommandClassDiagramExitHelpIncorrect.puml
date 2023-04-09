@@ -1,0 +1,31 @@
+@startuml
+!include Style.puml
+'https://plantuml.com/component-diagram
+
+abstract class Command {
+    +{abstract} execute(TextUi ui): void
+    +{abstract} isExit(): boolean
+}
+
+class HelpCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+
+class ExitCommand {
+    - boolean IsExit
+    + execute(TextUi ui): void
+    + setExit(boolean exit): void
+    + isExit(): boolean
+}
+
+class IncorrectCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+
+HelpCommand --|> Command
+IncorrectCommand --|> Command
+ExitCommand --|> Command
+
+@enduml

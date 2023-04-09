@@ -1,0 +1,39 @@
+@startuml
+!include Style.puml
+'https://plantuml.com/component-diagram
+
+
+abstract class Command {
+    +{abstract} execute(TextUi ui): void
+    +{abstract} isExit(): boolean
+}
+
+package deadline/meeting/menu/staff {
+class AddXYZCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+
+class ViewXYZCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+
+class DeleteXYZCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+
+class FindXYZCommand {
+    + execute(TextUi ui): void
+    + isExit(): boolean
+}
+}
+
+
+AddXYZCommand --|> Command
+ViewXYZCommand --|> Command
+DeleteXYZCommand --|> Command
+FindXYZCommand --|> Command
+
+@enduml

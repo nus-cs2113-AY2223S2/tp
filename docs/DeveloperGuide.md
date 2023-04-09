@@ -22,15 +22,22 @@ request to `Manager` to assist the CRUD operations.
 
 ##### The command component consists of the following:
 
-![](uml/images/CommandPackageDiagram.png)
+![](uml/images/CommandClassDiagramExitHelpIncorrect.png)
 
 - 4 subcomponents: Command, HelpCommand, ExitCommand, IncorrectCommand
 
+The above commands are contained in the `commands` package.
+
+In addition to that, within the `commands` package, there are also 4 packages named `deadline`, `meeting`, `menu` and `staff`, all of which contains their own specific command classes as shown below:
+
+![](uml/images/CommandClassDiagramAddViewDeleteFind.png)
+
 - 4 sub packages with the following names: deadline, meeting, menu and staff
-    - Each package contains the 3 general commands:
-        - AddCommand
-        - DeleteCommand
-        - ViewCommand
+    - Each package contains the 4 general commands:
+        - AddXYZCommand
+        - DeleteXYZCommand
+        - ViewXYZCommand
+        - FindXYZCommand
     - The general commands have specific names depending on the package it is in.
 
 The command component consist of the Abstract `Command` class.
@@ -38,7 +45,6 @@ It has multiple child `Command` classes that inherits from the Abstract `Command
 Each child `Command` class accepts arguments that are parsed from the `Parser` class and set those arguments to private variables in their respective classes, if there is any private variables to be set.
 An `execute` method will execute the operations needed for each individual commands.
 An `isExit` method will return a boolean value that decides whether the program should exit after this command is called.
-
 
 ### Manager Component
 The manager component consists of four different managers, 
