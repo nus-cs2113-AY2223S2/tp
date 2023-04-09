@@ -251,7 +251,7 @@ Output:
 | View      | view /[fieldName]                                                                                        |
 | Update    | update /[fieldName]                                                                                      |
 | Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list foods or list meals or list exercises                                                               |
+| List      | list [foods/meals/exercises]                                                                             |
 | Delete    | delete INDEX e.g delete 3                                                                                |
 | Filter    | filter [lower_bound] [upper_bound]                                                                       |
 | Nutrition | nutrition                                                                                                |
