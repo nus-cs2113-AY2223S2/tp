@@ -241,6 +241,7 @@ then calls `Ui#printAddMessage()` which prints a success message.
 
 `execute()` calls `Storage#updateTask()` to update the local save file `save.txt` to reflect the changes.
 
+Here is a Sequence Diagram illustrating the adding of an `Event`: 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)

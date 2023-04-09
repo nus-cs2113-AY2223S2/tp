@@ -16,8 +16,8 @@ import java.time.format.DateTimeParseException;
  * Date Command class that shortlists Tasks that occur on the given date.
  */
 public class DateCommand extends Command {
-    LocalDate date;
-    DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    protected LocalDate date;
+    protected DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
      * Initialises the class with the given date to shortlist for.

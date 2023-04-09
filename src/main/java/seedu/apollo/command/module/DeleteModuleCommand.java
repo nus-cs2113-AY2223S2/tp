@@ -101,7 +101,7 @@ public class DeleteModuleCommand extends Command {
         String lessonNumber = args[2];
 
         try {
-            LessonType lessonType = getCommand(command);
+            LessonType lessonType = getLessonType(command);
             Module toDelete = moduleList.findModule(moduleCode);
 
             if (toDelete == null) {
