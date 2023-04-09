@@ -7,7 +7,7 @@ import seedu.mealcompanion.exception.InvalidCommandException;
 import seedu.mealcompanion.parser.CommandArguments;
 import seedu.mealcompanion.parser.extractor.Extractor;
 import seedu.mealcompanion.parser.extractor.PositionalArgumentExtractor;
-import seedu.mealcompanion.parser.extractor.argtype.NotEmptyStringExtractor;
+import seedu.mealcompanion.parser.extractor.argtype.StringExtractor;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 //@@author EthanYidong
 public class HelloWorldCommandFactory extends ExecutableCommandFactory {
-    NotEmptyStringExtractor name = new NotEmptyStringExtractor();
+    StringExtractor name = new StringExtractor();
 
     @Override
     public List<Extractor> getExtractors() {

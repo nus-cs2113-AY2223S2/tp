@@ -1,7 +1,8 @@
 package seedu.mealcompanion.ui;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Scanner;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -39,7 +40,7 @@ public class MealCompanionUI {
      */
     public void printLogo() {
         try {
-            FileReader reader = new FileReader("chef.txt");
+            Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/chef.txt"));
             int data = reader.read();
             while (data != -1) {
                 System.out.print((char)data);
@@ -54,7 +55,9 @@ public class MealCompanionUI {
     /**
      * Prints the welcome message.
      */
-    public void printIntroduction() { System.out.println("Welcome to Meal Companion!"); }
+    public void printIntroduction() {
+        System.out.println("Welcome to Meal Companion!");
+    }
 
     /**
      * Prints the farewell image to user
@@ -64,7 +67,7 @@ public class MealCompanionUI {
     public void printFarewell() {
         System.out.println("Thank you for using MealCompanion. Have a great day!");
         try {
-            FileReader reader = new FileReader("bye.txt");
+            Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/bye.txt"));
             int data = reader.read();
             while (data != -1) {
                 System.out.print((char)data);
