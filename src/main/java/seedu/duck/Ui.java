@@ -7,13 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.PriorityQueue;
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
 
 
 /**
@@ -384,24 +378,20 @@ public class Ui {
         Date d;
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        int requiredDays = Integer.parseInt(days);
         for (Task t : tasks) {
             String timeUntilTask = null;
             if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
                 timeUntilTask = ((Deadline) t).getDeadline();
             } else if (t instanceof Event && !(t instanceof RecurringEvent)) {
                 timeUntilTask = ((Event) t).getStart();
-            } else if (t instanceof SchoolClass) {
-                timeUntilTask = ((SchoolClass) t).getStart();
             }
             if (timeUntilTask != null) {
                 try {
                     d = format.parse(timeUntilTask);
                     long diff = d.getTime() - n.getTime();
-                    String di = getTimeDiff(diff);
-                    String[] diffSplit = di.split(" ");
-                    if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
-                            <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
-                            || diffSplit[1].contains("minute"))) {
+                    int di = getDayDiff(diff);
+                    if (di <= requiredDays) {
                         count++;
                         System.out.println("\t " + count + "." + t);
                     }
@@ -495,6 +485,15 @@ public class Ui {
         borderLine();
     }
 
+    /**
+     * gets the day difference
+     * @param timeDifferenceMilliseconds time difference between now and the input time
+     * @return day difference
+     */
+    static int getDayDiff(long timeDifferenceMilliseconds) {
+        return (int) (timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay));
+    }
+
     static final int secondsPerMinute = 60;
     static final int minutesPerHour = 60;
     static final int hoursPerDay = 24;
@@ -508,12 +507,11 @@ public class Ui {
      * @return time difference in structured format
      */
     static String getTimeDiff(long timeDifferenceMilliseconds) {
-
-        long diffMinutes = timeDifferenceMilliseconds / (secondsPerMinute * 1000) % secondsPerMinute;
-        long diffHours = timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000) % minutesPerHour;
-        long diffDays = timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay) % hoursPerDay;
-        long diffMonths = (long) ((timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth)) % daysPerMonth);
-        long diffYears = (long) ((timeDifferenceMilliseconds / ( secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth * monthsPerYear)) % monthsPerYear);
+        long diffMinutes = timeDifferenceMilliseconds / (secondsPerMinute * 1000) % minutesPerHour;
+        long diffHours = timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000) % hoursPerDay;
+        long diffDays = (long) (timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay) % daysPerMonth);
+        long diffMonths = (long) (timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth)) % monthsPerYear;
+        long diffYears = (long) (timeDifferenceMilliseconds / ( secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth * monthsPerYear));
         String result = "";
         if (diffYears != 0) {
             result += diffYears;
