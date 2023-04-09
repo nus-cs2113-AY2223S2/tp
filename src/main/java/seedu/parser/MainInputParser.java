@@ -65,7 +65,8 @@ public class MainInputParser {
     }
 
     public static Command filterCategories(String command, String[] splitValues) throws IndexOutOfBoundsException,
-            DateTimeParseException, WrongInputException, NotPositiveValueException, InvalidDateException, DateLimitException {
+            DateTimeParseException, WrongInputException, NotPositiveValueException, 
+            InvalidDateException, DateLimitException {
         switch (command) {
 
         // Commands that insert new inputs
