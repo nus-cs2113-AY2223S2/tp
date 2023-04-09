@@ -44,6 +44,6 @@ class UserInput <<abstract>> {
 }
 
 parser --> "1" command
-parser .> UserInput : uses >
+parser .> "1" UserInput : uses >
 
 @enduml
