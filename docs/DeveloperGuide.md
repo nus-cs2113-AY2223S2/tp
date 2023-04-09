@@ -79,7 +79,7 @@ in the [Glossary](#appendix-d--glossary) section.
 
 ### Commands component
   
-<img src="images\CommandParser.png" height = "400" width= "1400">
+<img src="images\CommandParser.png" height = "550" width= "1400">
 
 **API**: `Command.java`
 
