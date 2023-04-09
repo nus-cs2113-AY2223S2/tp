@@ -83,6 +83,9 @@ public abstract class TxtFileStatus {
         while (s.hasNext()) {
             String saveString = s.nextLine();
             String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
+            if (Double.parseDouble(saveData[INDEX_VALUE]) <= 0) {
+                throw new NumberFormatException();
+            }
             switch (saveData[INDEX_TYPE]) {
             case "Acad":
                 initializeAcademicExpenditure(saveData, expenditures);
@@ -112,7 +115,7 @@ public abstract class TxtFileStatus {
                 initializeTuitionExpenditure(saveData, expenditures);
                 break;
             default:
-                break;
+                throw new ArrayIndexOutOfBoundsException();
             }
         }
         s.close();
