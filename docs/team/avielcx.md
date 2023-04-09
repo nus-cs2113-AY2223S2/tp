@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 #### Contributions to the UG:
 * Created `Table of Contents`.
-* Created `Quick Start` portion.
+* Created `Quick Start` portion of the UG.
 * Created the `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`,`clear target`, `balance`, `exit`  in the Feature portion of the UG.
 * Created `Command Summary` in the Feature portion of the UG.
 
