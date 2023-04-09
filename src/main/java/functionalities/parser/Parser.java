@@ -62,6 +62,15 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Parses the user's consultation command into its respective inputs and creates a new ConsultationCommand object.
+     * The consultation command is expected to have the following format:
+     * consultation at/[animal type] an/[animal name] on/[owner name] cn/[contact number] cd/[date] ct/[time]
+     *
+     * @param task the Snifftask class that handles the adding of the consultation appointment.
+     * @throws SniffException if the consultation command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseConsultationCommand(String task) throws SniffException {
         try {
             String animalType = splitConsultationInput(task, "at/");
@@ -82,6 +91,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given consultation input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full consultation command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the consultation command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
     private static String splitConsultationInput(String input, String splitter) throws SniffException {
         if (input.contains("v/") || input.contains("vd/") || input.contains("vt/") || input.contains("sd/") ||
                 input.contains("st/") || input.contains("ed/") || input.contains("et/") || input.contains("p/")) {
@@ -99,6 +117,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user's vaccination command into its respective inputs and creates a new VaccinationCommand object.
+     * The vaccination command is expected to have the following format:
+     * vaccination at/[animal type] an/[animal name] on/[owner name] cn/[contact number] v/[vaccine] vd/[date]
+     * vt/[time]
+     *
+     * @param task the Snifftask class that handles the adding of the vaccination appointment.
+     * @throws SniffException if the vaccination command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseVaccinationCommand(String task) throws SniffException {
         try {
             String animalType = splitVaccinationInput(task, "at/");
@@ -121,6 +149,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given vaccination input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full vaccination command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the vaccination command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
     private static String splitVaccinationInput(String input, String splitter) throws SniffException {
         if (input.contains("cd/") || input.contains("ct/") || input.contains("sd/") || input.contains("st/") ||
                 input.contains("ed/") || input.contains("et/") || input.contains("p/")) {
@@ -138,6 +175,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user's surgery command into its respective inputs and creates a new SurgeryCommand object.
+     * The surgery command is expected to have the following format:
+     * surgery at/[animal type] an/[animal name] on/[owner name] cn/[contact number] sd/[start date]
+     * st/[start time] ed/[end date] et/[end time] p/[priority level]
+     *
+     * @param task the Snifftask class that handles the adding of the surgery appointment.
+     * @throws SniffException if the surgery command or its descriptions are in the wrong format,
+     *                        or if the date/time description is invalid.
+     */
     private static void parseSurgeryCommand(String task) throws SniffException {
         try {
             String animalType = splitSurgeryInput(task, "at/");
@@ -171,6 +218,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given surgery input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full surgery command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if the surgery command contains other command tags, or if there are repeated
+     *                        descriptions, or if the descriptions are invalid format.
+     */
     private static String splitSurgeryInput(String input, String splitter) throws SniffException {
         if (input.contains("cd/") || input.contains("ct/") || input.contains("vd/") || input.contains("vt/") ||
                 input.contains("v/")) {
@@ -292,6 +348,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Splits the given input command using the specified splitter and returns the specified description.
+     *
+     * @param input    the full command from the user.
+     * @param splitter the tag of the specified description.
+     * @return the actual specified description.
+     * @throws SniffException if there are repeated descriptions, or if the descriptions are invalid format.
+     */
     private static String splitInputBy(String input, String splitter) throws SniffException {
         try {
             String[] firstSplit = input.split(splitter, 2);
@@ -315,6 +379,9 @@ public class Parser {
         command = new ExitCommand();
     }
 
+    /**
+     * Parses the help command and creates a new HelpCommand object to show the help message to the user.
+     */
     private static void parseHelpCommand() {
         command = new HelpCommand();
     }
