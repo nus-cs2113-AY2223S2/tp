@@ -1,5 +1,6 @@
 package seedu.duke.utils;
 
+import seedu.duke.commands.CategoryCommand;
 import seedu.duke.exceptions.EditErrorException;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
@@ -359,7 +360,7 @@ public class Ui {
         table.append(printHeadings(columnWidths));
         table.append(printTableSeparator(columnWidths));
         categoryHash.forEach((category, items)
-                -> table.append((printRow(category, items, columnWidths))));
+                -> table.append((printRow(CategoryCommand.capitaliseCategory(category), items, columnWidths))));
         return table.toString();
     }
 
@@ -1266,7 +1267,7 @@ public class Ui {
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
         System.out.println(CATEGORY_LISTING);
-        categoryHash.forEach((cat, items) -> System.out.println(cat));
+        categoryHash.forEach((cat, items) -> System.out.println(CategoryCommand.capitaliseCategory(cat)));
         printLine();
     }
 }

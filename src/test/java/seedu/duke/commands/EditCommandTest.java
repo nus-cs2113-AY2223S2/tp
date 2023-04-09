@@ -141,7 +141,7 @@ public class EditCommandTest {
         addInventory();
         EditParser editParser = new EditParser("upc/123 c/Fruit and Vegetables c/Test", inventory);
         editParser.run();
-        assertEquals("uncategorized", inventory.getItemInventory().get(0).getCategory());
+        assertEquals("Uncategorized", inventory.getItemInventory().get(0).getCategory());
     }
 
     @Test
@@ -150,7 +150,7 @@ public class EditCommandTest {
         addInventory();
         EditParser editParser = new EditParser("upc/123 c/ Fruit and Vegetables", inventory);
         editParser.run();
-        assertEquals("uncategorized", inventory.getItemInventory().get(0).getCategory());
+        assertEquals("Uncategorized", inventory.getItemInventory().get(0).getCategory());
     }
 
 
