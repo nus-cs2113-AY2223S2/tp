@@ -22,7 +22,7 @@ public class PackAllCommand extends Command {
     public PackAllCommand(int targetIndex) {
         super(targetIndex);
 
-        assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()) :
+        assert (targetIndex >= 1 && targetIndex <= PackingList.getItemList().size()) :
                 "Packall Command Target index is out of bounds";
     }
     /**

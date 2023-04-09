@@ -22,8 +22,8 @@ public class PackCommand extends Command {
     public PackCommand(int quantity, int targetIndex) {
         super(targetIndex);
         packQuantity = quantity;
-        assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()) :
-                "Pack Command Target index is out of bounds";
+        assert (targetIndex >= 1 && targetIndex <= PackingList.getItemList().size()) :
+                "Pack Command Target Index is out of bounds";
     }
     /**
      * Adds to the total packed quantity of an item in the packing list and prints a successfully packed message when
