@@ -23,7 +23,7 @@ public class IngredientNameExtractor extends ArgumentExtractor {
         }
         IngredientDatabase db = IngredientDatabase.getDbInstance();
         try {
-            this.extracted = db.getKnownIngredient(argument);
+            this.extracted = db.getKnownIngredient(argument.toLowerCase());
         } catch (InvalidIngredientNameException e) {
             throw new InvalidArgumentException("is not a valid ingredient");
         }
