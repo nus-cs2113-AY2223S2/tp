@@ -465,8 +465,9 @@ The category command is mainly handled by the `CategoryCommand` class, which ext
 the `CategoryParser` class, which extends the `Parser` class.
 
 ![CategoryParser.png](UML/Category/CategoryParser.png)
+![CategoryCommand.png](UML/Category/CategoryCommand.png)
 
-**Step 1** When the user executes the command `cat {list/function/[Category]}`, the `ParserHandler` will create a new 
+**Step 1** When the user executes the command `cat list` or `cat table`, the `ParserHandler` will create a new 
 `CategoryParser` object and pass to it the appropriate `input` and the appropriate `Inventory` in which the items are
 stored.
 
@@ -476,13 +477,12 @@ Otherwise, the `CategoryParser` will create a new `CategoryCommand` object and p
 user input.
 
 **Step 3**. The `run` method in the `CategoryParser` object is called which overrides the `run` method in the `Command` 
-object. The `CategoryCommand` object will call either `listAllCategories` or `listCategoriesAndItems` or `findCategory` 
-method, depending on the user input (`list`, `table`, `[Category]` respectively).
+object. The `CategoryCommand` object will call either `listAllCategories` or `listCategoriesAndItems` 
+method, depending on the user input (`list`, `table` respectively).
 
-**Step 4**. `listAllCategories` and `listCategoriesAndItems` will call the `printCategory` function from the `Ui` object
+**Step 4**. `listAllCategories` and `listCategoriesAndItems` will call the `printCategoryList` or `printCategory` functions respectively from the `Ui` object
 if the category hashmap is not empty. Otherwise, the methods will inform the user that the inventory list is empty and there
-is no category hashmap available. Whereas `findCategory` will call the `printCategory` function from the `Ui` object if 
-the category that user input is found. Otherwise, the method will inform user that the category cannot be found.
+is no category hashmap available. 
 
 
 ## Product scope

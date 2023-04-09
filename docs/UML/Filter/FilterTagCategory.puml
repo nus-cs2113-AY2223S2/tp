@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+skinparam style strictuml
 participant ":FilterParser"
 group sd [filter category]
     ":FilterParser" -> ":FilterCommand" ** : run() with parameters set for category or tag
@@ -23,9 +24,9 @@ group sd [filter category]
         return filteredItems
     return null or filteredItems
     end
-    Participant "Ui" << Class >>
+    Participant "Ui" <<class>>
     alt filteredItems is not null
-        ":FilterCommand" -> "Ui": printSearchItems()
+        ":FilterCommand" -> "Ui": printCategory()
         activate "Ui"
         ref over "Ui"
             print items in table

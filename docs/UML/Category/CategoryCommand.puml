@@ -1,20 +1,16 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant CategoryParser
+participant ":CategoryParser"
 
-
+skinparam style strictuml
 group sd [execute command by categoryCommandType]
-
-'activate CategoryParser
-'alt categoryCommandType is 'list' or 'table
-'    CategoryParser -> CategoryCommand**: run()
-     CategoryParser -> CategoryCommand**: run()
-     participant Ui
-     activate CategoryCommand
+     ":CategoryParser" -> ":CategoryCommand"**: run()
+     participant "Ui" <<class>>
+     activate ":CategoryCommand"
      alt if categoryCommandType is 'list'
-        CategoryCommand -> Ui: listAllCategories()
-        activate CategoryCommand #cyan
+        ":CategoryCommand" -> Ui: listAllCategories()
+        activate ":CategoryCommand" #cyan
         ref over Ui
             print list of categories in inventory
         end ref
@@ -22,16 +18,16 @@ group sd [execute command by categoryCommandType]
         destroy Ui
         return
      else if categoryCommandType is 'table'
-        CategoryCommand -> Ui: listCategoryAndItems()
-        activate CategoryCommand #cyan
+        ":CategoryCommand" -> Ui: listCategoryAndItems()
+        activate ":CategoryCommand" #cyan
         ref over Ui
             print table of categories and all items in each category
         end ref
         return
         destroy Ui
-        deactivate CategoryCommand #cyan
-        CategoryCommand --> CategoryParser
-        destroy CategoryCommand
+        deactivate ":CategoryCommand" #cyan
+        ":CategoryCommand" --> ":CategoryParser"
+        destroy ":CategoryCommand"
      end
 
 end

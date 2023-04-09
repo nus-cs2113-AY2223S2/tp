@@ -2,6 +2,7 @@
 @startuml
 title AddCommand Sequence Diagram
 
+skinparam style strictuml
 participant ":AddParser"
 participant ":AddCommand"
 ":AddParser" -> ":AddCommand"**: run()
@@ -21,6 +22,7 @@ deactivate "<<class>>\nUi"
 else
 ref over ":AddCommand",":Inventory":Store Item's UPC code into upcCodes
 ref over ":AddCommand",":Inventory":Store Item into itemInventory
+ref over ":AddCommand",":Inventory":Add Item into categoryHash
 ":Command" -->":AddCommand":
 deactivate ":Command"
 destroy ":Command"

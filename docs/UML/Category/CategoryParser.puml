@@ -3,18 +3,25 @@
 
 
 actor User
-
-User -> CategoryParser: run()
-activate CategoryParser
+skinparam style strictuml
+User -> ":CategoryParser"**: run()
+activate ":CategoryParser"
 alt categoryCommandType is 'list' or 'table
-    CategoryParser -> CategoryCommand**: run()
-    activate CategoryCommand
-    ref over CategoryCommand
+    ":CategoryParser" -> ":CategoryCommand"**: run()
+    activate ":CategoryCommand"
+    ref over ":CategoryCommand"
         execute command by categoryCommandType
     end ref
+    return
+    deactivate ":CategoryCommand"
+    destroy ":CategoryCommand"
+else invalid input
+    ref over ":CategoryParser"
+        throw exception and print error message
+    end ref
+end
+":CategoryParser" --> User
+deactivate ":CategoryParser"
+destroy ":CategoryParser"
 
-return
-destroy CategoryCommand
-return
-destroy CategoryParser
 @enduml

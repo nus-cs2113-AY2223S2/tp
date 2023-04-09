@@ -2,6 +2,7 @@
 @startuml
 title AddParser Sequence Diagram
 
+skinparam style strictuml
 participant ":ParserHandler" as ParserHandler
 participant ":AddParser" as AddParser
 ParserHandler -> AddParser: run()

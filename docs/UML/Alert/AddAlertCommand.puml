@@ -2,6 +2,7 @@
 'https://plantuml.com/sequence-diagram
 title AddAlertCommand Sequence Diagram
 
+skinparam style strictuml
 participant ":AlertParser"
 participant ":AddAlertCommand"
 participant ":AlertList"

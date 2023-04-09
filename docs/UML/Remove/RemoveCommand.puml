@@ -1,23 +1,24 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant RemoveParser
+skinparam style strictuml
+participant ":RemoveParser"
 group sd [remove item in RemoveCommand]
-    RemoveParser -> RemoveCommand: run()
-participant Ui
-    activate RemoveCommand
-        RemoveCommand -> RemoveCommand: removeByUpcCode() or removeByIndex()
-        activate RemoveCommand #cyan
-        ref over RemoveCommand
+    ":RemoveParser" -> ":RemoveCommand": run()
+participant "Ui" <<class>>
+    activate ":RemoveCommand"
+        ":RemoveCommand" -> ":RemoveCommand": removeByUpcCode() or removeByIndex()
+        activate ":RemoveCommand" #cyan
+        ref over ":RemoveCommand"
             remove item
         end ref
-        RemoveCommand -> Ui: printSuccessRemove
+        ":RemoveCommand" -> Ui: printSuccessRemove()
         activate Ui
         return successful remove message
         deactivate
     end
 return
-destroy RemoveCommand
-destroy RemoveParser
+destroy ":RemoveCommand"
+destroy ":RemoveParser"
 
 @enduml
