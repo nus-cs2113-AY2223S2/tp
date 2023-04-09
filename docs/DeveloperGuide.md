@@ -212,19 +212,18 @@ Step 3: After the `XYZdeadline` method completed the task given, a message will 
    If the deletion was a success, a message will be printed through `TextUi` class to notify the reader that the `Deadline` object has been deleted.
 
 #### Printing the deadline list
-   
+
+   Prints an ArrayList through `TextUi` class.
+
+   For `viewDeadline`, the entire deadline list `deadlinelist` will be printed.
     
-Prints an ArrayList through `TextUi` class.
+   For `findDeadline`, a separate list, `matchingDeadlines`, containing only deadlines with matching keywords will be created and printed.
 
-For `viewDeadline`, the entire deadline list `deadlinelist` will be printed.
-    
-For `findDeadline`, a separate list, `matchingDeadlines`, containing only deadlines with matching keywords will be created and printed.
+   The variable here refers to the keyword String for `findDeadline`, whereas `viewDeadline` do not require a variable.
 
-The variable here refers to the keyword String for `findDeadline`, whereas `viewDeadline` do not require a variable.
+   The message here refers to the list that will be printed.
 
-The message here refers to the list that will be printed.
-
-If any of the list is empty, a separate message notifying the user that the list is empty will be printed.
+   If any of the list is empty, a separate message notifying the user that the list is empty will be printed.
 
 
 ### Staff Feature 
@@ -233,7 +232,7 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
 ![](uml/images/XYZStaffDiagram.png)
 
-#### Adding staff to the list:
+#### Adding staff to the list
 
 Step 1: It first checks whether the parameter needed to add `Staff` is already given in the correct format. 
 
@@ -241,7 +240,7 @@ Step 2: If it passes the format checking, the `Parser` object will return `AddSt
 
 Step 3: `AddStaffCommand` redirect the task to `StaffManager` to add the `Staff` object to the list of `Staff` 
 
-#### Deleting staff on the list:
+#### Deleting staff on the list
 
 Step 1: It first finds the corresponding `Staff` object to be deleted using its index in the list in `StaffManager`. 
 
@@ -249,7 +248,7 @@ Step 2: If it is a valid index, it will return `DeleteStaffCommand` to be execut
 
 Step 3: `DeleteStaffCommand` redirect the task to `StaffManager` to delete the `Staff` object at that index. 
 
-#### Viewing the list of staffs:
+#### Viewing the list of staffs
 
 Step 1: It first checks whether there exists excessive parameter or not. 
 
@@ -261,7 +260,7 @@ Step 3: `ViewStaffCommand` redirect the task to `StaffManager` to print all the 
 
 The Dish feature consists of three functions:
 
-#### Add dish to list:
+#### Add dish to list
 
 ![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)  
 Step 1: When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.  
@@ -270,7 +269,7 @@ Step 2: When the ```execute()``` command in ```AddDishCommand``` is called, it c
 
 Step 3: It then prints out the dish that was added to the console.  
  
-#### Delete dish on the list:
+#### Delete dish on the list
 
 ![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)  
 Step 1: When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.  
@@ -279,7 +278,7 @@ Step 2: When the ```execute()``` command in ```DeleteDishCommand``` is called, i
 
 Step 3: It then prints out the dish that was deleted to the console.  
 
-#### View the list of dishes:
+#### View the list of dishes
 ![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)  
 Step 1: When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.  
 
