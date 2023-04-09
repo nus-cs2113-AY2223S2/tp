@@ -1,19 +1,21 @@
 @startuml
-skinparam classAttributeIconSize 0
 hide footbox
-hide members
 hide circle
+skinparam classAttributeIconSize 0
+!include Style.puml
 
-Package " "<<Rectangle>>{
+Package "FITZ"<<Rectangle>>{
     class Ui
     class Storage
     class Parser
     class Exception
     class Command
     class Duke
+    class Calories
+    class Workout
 }
 
-User ..> Ui
+User .right.> Ui
 
 
 Duke -left-> Storage
@@ -25,8 +27,12 @@ Parser --> Command
 
 Command --> Ui
 Exception -up> Ui
+
+Storage -up-> Calories
+Storage -right-> Workout
+
 Storage --> Ui
 
-Storage ..> File
+Storage .left.> File
 
 @enduml

@@ -18,11 +18,31 @@ public class CalorieTracker {
     private final HashMap<Date, FoodList> dailyFoodConsumption;
     private final FoodDictionary foodDictionary;
 
+
+    //@@author ZIZI-czh
+    /**
+     * Constructs a new CalorieTracker object with the given storage and food dictionary. The
+     * initial daily food consumption records are read from the storage, and the food dictionary
+     * is used to look up food items by their names.
+     *
+     * @param storage the storage object to use for reading and writing the daily food consumption
+     *                records
+     * @param foodDictionary the food dictionary object to use for looking up food items by their names
+     */
     public CalorieTracker(Storage storage, FoodDictionary foodDictionary) {
         dailyFoodConsumption = storage.readCalorieTrackerFile();
         this.foodDictionary = foodDictionary;
     }
 
+    //@@author ZIZI-czh
+    /**
+     * Returns a FoodList representing the list of foods consumed on the specified date. If no
+     * such list exists in the daily food consumption records, a new, empty list is created and
+     * added to the records for that date.
+     *
+     * @param date the date for which to retrieve the list of consumed foods
+     * @return a FoodList object representing the list of foods consumed on the specified date
+     */
     public FoodList getFoodList(Date date) {
         if (!dailyFoodConsumption.containsKey(date)) {
             FoodList foodList = new FoodList();
@@ -30,6 +50,8 @@ public class CalorieTracker {
         }
         return dailyFoodConsumption.get(date);
     }
+
+    //@@author ZIZI-czh
 
     public HashMap<Date, FoodList> getDailyFoodConsumption() {
         return dailyFoodConsumption;

@@ -30,6 +30,8 @@ public class Ui {
                     +System.lineSeparator() + LINE + System.lineSeparator()
                     + "- [Start a workout: /wstart EXERCISE_NAME])" + System.lineSeparator()
                     + "- [Add exercise: /wadd EXERCISE_NAME WEIGHT_USED_WEIGHT_UNIT RPS]" + System.lineSeparator()
+                    + "- [Start a workout: /wstart])" + System.lineSeparator()
+                    + "- [Add exercise: /wadd]" + System.lineSeparator()
                     + "- [Display all the days: /wlist]" + System.lineSeparator()
                     + "- [Display workouts information for a specific day: /wview INDEX]" + System.lineSeparator()
                     + "- [Display total amount of reps and set for one week /wcount DD/MM/YY]" + System.lineSeparator()
@@ -120,4 +122,9 @@ public class Ui {
     public static String getCaloriesHelpMessage() {
         return HELP_MESSAGE_CALORIES;
     }
+
+    public static void setInput(String userInput) {
+
+    }
+
 }
