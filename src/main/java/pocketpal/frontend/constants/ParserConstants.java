@@ -41,14 +41,14 @@ public final class ParserConstants {
     public static final String COMMAND_DELETE = "/delete";
     public static final String COMMAND_HELP = "/help";
     public static final String COMMAND_BYE = "/bye";
-    public static final Pattern DESCRIPTION_PATTERN = Pattern.compile("\\s+(-d|-description)(.*?)(\\s+-|$)");
-    public static final Pattern CATEGORY_PATTERN = Pattern.compile("\\s+(-c|-category)(.*?)(\\s+-|$)");
-    public static final Pattern PRICE_PATTERN = Pattern.compile("\\s+(-p|-price)(.*?)(\\s+-|$)");
+    public static final Pattern DESCRIPTION_PATTERN = Pattern.compile("\\s+(-description|-d)(.*?)(\\s+-|$)");
+    public static final Pattern CATEGORY_PATTERN = Pattern.compile("\\s+(-category|-c)(.*?)(\\s+-|$)");
+    public static final Pattern PRICE_PATTERN = Pattern.compile("\\s+(-price|-p)(.*?)(\\s+-|$)");
     public static final Pattern ID_PATTERN = Pattern.compile("(.*?)(\\s*-|$)");
-    public static final Pattern START_DATE_PATTERN = Pattern.compile("\\s+(-sd|-startdate)(.*?)(\\s+-|$)");
-    public static final Pattern END_DATE_PATTERN = Pattern.compile("\\s+(-ed|-enddate)(.*?)(\\s+-|$)");
-    public static final Pattern START_PRICE_PATTERN = Pattern.compile("\\s+(-sp|-startprice)(.*?)(\\s+-|$)");
-    public static final Pattern END_PRICE_PATTERN = Pattern.compile("\\s+(-ep|-endprice)(.*?)(\\s+-|$)");
+    public static final Pattern START_DATE_PATTERN = Pattern.compile("\\s+(-startdate|-sd)(.*?)(\\s+-|$)");
+    public static final Pattern END_DATE_PATTERN = Pattern.compile("\\s+(-enddate|-ed)(.*?)(\\s+-|$)");
+    public static final Pattern START_PRICE_PATTERN = Pattern.compile("\\s+(-startprice|-sp)(.*?)(\\s+-|$)");
+    public static final Pattern END_PRICE_PATTERN = Pattern.compile("\\s+(-endprice|-ep)(.*?)(\\s+-|$)");
 
 
 }
