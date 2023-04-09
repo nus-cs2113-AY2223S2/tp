@@ -10,10 +10,10 @@ import java.time.LocalDateTime;
 
 public final class BorrowCommand extends LoanCommand {
     public static final String COMMAND_WORD = "borrow";
-    private static final String SUCCESS_MSG = "Borrow is successful.";
-    private static final String FAIL_MSG = "This item is not borrowable.";
-    private static final String ERROR_MSG = "Cannot borrow: %s";
-    private static final String NOT_FOUND_MSG = "Item not found!";
+    public static final String SUCCESS_MSG = "Borrow is successful.";
+    public static final String FAIL_MSG = "This item is not borrowable.";
+    public static final String ERROR_MSG = "Cannot borrow: %s";
+    public static final String NOT_FOUND_MSG = "Item not found!";
     public static final String INVALID_SYNTAX = "Expected: borrow -title TITLE";
     private final Person person;
     private final BorrowableItem item;

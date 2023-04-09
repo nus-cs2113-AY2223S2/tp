@@ -8,10 +8,10 @@ import seedu.dukeofbooks.data.person.Person;
 
 public final class RenewCommand extends LoanCommand {
     public static final String COMMAND_WORD = "renew";
-    private static final String SUCCESS_MSG = "Item has been renewed!";
-    private static final String FAIL_MSG = "This book is not borrowed!";
-    private static final String ERROR_MSG_F = "Cannot renew: %s";
-    private static final String NOT_FOUND_MSG = "This item is not found!";
+    public static final String SUCCESS_MSG = "Item has been renewed!";
+    public static final String FAIL_MSG = "This book is not borrowed!";
+    public static final String ERROR_MSG_F = "Cannot renew: %s";
+    public static final String NOT_FOUND_MSG = "This item is not found!";
     public static final String INVALID_SYNTAX = "Expected: renew -title TITLE";
     private final Person person;
     private final BorrowableItem item;
