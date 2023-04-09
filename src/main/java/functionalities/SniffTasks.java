@@ -29,6 +29,10 @@ public class SniffTasks {
         APPOINTMENTS.add(appointment);
     }
 
+    public static int getNumberOfAppointments() {
+        return APPOINTMENTS.size();
+    }
+
     public static void retrieveTask(FileWriter savedFile) throws IOException {
         for (Appointment appointment : SniffTasks.APPOINTMENTS) {
             if (appointment.getStatus().equals(" ")) {
@@ -86,6 +90,7 @@ public class SniffTasks {
     /**
      * Sorts the ArrayList by date and time before listing out unmarked appointments in the appointment list.
      */
+    //@@author dendendenden04
     public void listAppointments() {
         APPOINTMENTS.sort(new DateTimeComparator());
         int notMarkedAppointmentsIndex = 1;
@@ -318,6 +323,7 @@ public class SniffTasks {
         Ui.printAppointmentRemovedMessage(temp);
     }
 
+    //@@author Vignesh-30
     /**
      * Searches through APPOINTMENTS arraylist and checks if appointment with matching uID is stored
      * Prints out appointment details if found

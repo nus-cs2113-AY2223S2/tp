@@ -22,6 +22,8 @@ class ConsultationCommandTest {
                 contactNumber, date, time);
         assertNotNull(c);
     }
+
+
 }
 
 

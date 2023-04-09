@@ -1,10 +1,12 @@
 package functionalities.commands;
 
 import exception.SniffException;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -23,4 +25,6 @@ class VaccinationCommandTest {
                 contactNumber, vaccine, date, time);
         assertNotNull(c);
     }
+
+
 }
