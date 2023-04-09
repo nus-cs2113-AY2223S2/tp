@@ -21,6 +21,9 @@ public class BudgetStorage implements DatabaseInterface {
 
     private int budget;
 
+    /**
+     * Constructor of BudgetStorage that creates a new BudgetStorage class
+     */
     private BudgetStorage() {
         try {
             initialiseDatabase();
@@ -29,6 +32,14 @@ public class BudgetStorage implements DatabaseInterface {
         }
     }
 
+    /**
+     * Returns the instance of the BudgetStorage object.
+     * Creates a new instance of BudgetStorage if it has never been created before, else it will return the current
+     * instance of the BudgetStorage.
+     * Follows Singleton pattern.
+     *
+     * @return a BudgetStorage object.
+     */
     public static BudgetStorage getInstance() {
         if (instance == null) {
             instance = new BudgetStorage();
@@ -36,6 +47,11 @@ public class BudgetStorage implements DatabaseInterface {
         return instance;
     }
 
+    /**
+     * Initialises the BudgetStorage database by retrieving file information from the txt file
+     *
+     * @throws IOException when there is an error accessing the savedModulesFile
+     */
     @Override
     public void initialiseDatabase() throws IOException {
         File savedModulesFile = new File(SAVED_BUDGET_FILE_PATH);
@@ -58,6 +74,12 @@ public class BudgetStorage implements DatabaseInterface {
         entertainment = new Entertainment(0);
     }
 
+    /**
+     * Returns true if budget storage is corrupted and when there is tampering of the txt file.
+     * Returns false if the budget storage is not corrupted and the values are within the set amount.
+     *
+     * @return a boolean value, either true or false if the values in the txt file are within acceptable range.
+     */
     @Override
     public boolean checkDatabaseCorrupted() {
         if (budget < 0 || budget > BudgetPlanner.MAX_BUDGET) {
@@ -78,6 +100,11 @@ public class BudgetStorage implements DatabaseInterface {
         return false;
     }
 
+    /**
+     * Reads the Budget Data from the txt file and initialises the value for budget, accommodation, airplaneTicket,
+     * food and entertainment. Checks for txt file tampering too, where reset will happen if that are values not within
+     * the range of acceptable budget.
+     */
     private void readBudgetData() {
         try (BufferedReader br = new BufferedReader(new FileReader(SAVED_BUDGET_FILE_PATH))) {
             String line;
@@ -107,12 +134,18 @@ public class BudgetStorage implements DatabaseInterface {
         }
     }
 
+    /**
+     * Resets the budgetStorage to 0 for all budgets.
+     */
     private void corruptBudgetFixProcedure() {
         UI.printBudgetStorageCorruptedMessage();
         setBaseBudget();
         updateBudgetStorage();
     }
 
+    /**
+     * Updates the txt file by rewriting the txt file.
+     */
     private void updateBudgetStorage() {
         try {
             writeListToFile();
@@ -121,6 +154,11 @@ public class BudgetStorage implements DatabaseInterface {
         }
     }
 
+    /**
+     * Writes the list of format to the txt file.
+     *
+     * @throws IOException when the file path does not exist even though there is writing to the txt file
+     */
     private void writeListToFile() throws IOException {
         FileWriter fw = new FileWriter(SAVED_BUDGET_FILE_PATH);
         String stringToAdd = "";
@@ -133,46 +171,96 @@ public class BudgetStorage implements DatabaseInterface {
         fw.close();
     }
 
+    /**
+     * Returns the accommodation cost
+     *
+     * @return an integer value for the accommodation cost
+     */
     public int getAccommodationCost() {
         return accommodation.getPrice();
     }
 
+    /**
+     * Returns the airplane ticket cost
+     *
+     * @return an integer value for the airplane ticket cost
+     */
     public int getAirplaneTicketCost() {
         return airplaneTicket.getPrice();
     }
 
+    /**
+     * Returns the food cost
+     *
+     * @return an integer value for the food cost
+     */
     public int getFoodCost() {
         return food.getPrice();
     }
 
+    /**
+     * Returns the entertainment cost
+     *
+     * @return an integer value for the entertainment cost
+     */
     public int getEntertainmentCost() {
         return entertainment.getPrice();
     }
 
+    /**
+     * Returns the budget
+     *
+     * @return an integer value for the budget
+     */
     public int getBudget() {
         return budget;
     }
 
+    /**
+     * Sets the new Budget
+     *
+     * @param budget the value of the budget to set
+     */
     public void setBudget(int budget) {
         this.budget = budget;
         updateBudgetStorage();
     }
 
+    /**
+     * Sets the Accommodation Cost
+     *
+     * @param cost the value of the accommodation to set
+     */
     public void setAccommodationCost(int cost) {
         accommodation.setPrice(cost);
         updateBudgetStorage();
     }
 
+    /**
+     * Sets the Airplane Ticket Cost
+     *
+     * @param cost the value of the airplane ticket to set
+     */
     public void setAirplaneTicketCost(int cost) {
         airplaneTicket.setPrice(cost);
         updateBudgetStorage();
     }
 
+    /**
+     * Sets the Food Cost
+     *
+     * @param cost the value of the food to set
+     */
     public void setFoodCost(int cost) {
         food.setPrice(cost);
         updateBudgetStorage();
     }
 
+    /**
+     * Sets the Entertainment Cost
+     *
+     * @param cost the value of the entertainment to set
+     */
     public void setEntertainmentCost(int cost) {
         entertainment.setPrice(cost);
         updateBudgetStorage();
