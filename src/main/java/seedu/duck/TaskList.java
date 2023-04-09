@@ -21,6 +21,13 @@ import java.util.Scanner;
  * Contains operations to manipulate the task list
  */
 public class TaskList {
+    private static final int DESCRIPTION_OFFSET = 12;
+    private static final int DEADLINE_OFFSET = 12;
+    private static final int FROM_OFFSET = 5;
+    private static final int TO_OFFSET = 3;
+    private static final int DAY_OFFSET = 4;
+    private static final int BY_OFFSET = 3;
+
     static void addTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {
         if (line.contains("/by")) {
             // Adding a Deadline
@@ -153,7 +160,7 @@ public class TaskList {
     static void addEvent(String line, ArrayList<Task> tasks) throws IllegalEventException, startAfterEndException,
             expiredDateException {
         String description = line.substring(0, line.indexOf("/from")).trim();
-        String startString = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
+        String startString = line.substring(line.indexOf("/from") + FROM_OFFSET, line.indexOf("/to")).trim();
         String endString = line.substring(line.indexOf("/to") + 3).trim();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         LocalDateTime start = LocalDateTime.parse(startString, dateFormat);
@@ -171,11 +178,17 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a RecurringEvent to the list
+     * @param line input from user
+     * @param tasks the array list of tasks
+     * @throws IllegalEventException handles incorrect event format
+     */
     static void addRecurringEvent(String line, ArrayList<Task> tasks) throws IllegalEventException{
         String description = line.substring(4, line.indexOf("/from")).trim();
-        String start = line.substring(line.indexOf("/from") + 5, line.indexOf("/to")).trim();
-        String end = line.substring(line.indexOf("/to") + 3, line.indexOf("/day")).trim();
-        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        String start = line.substring(line.indexOf("/from") + FROM_OFFSET, line.indexOf("/to")).trim();
+        String end = line.substring(line.indexOf("/to") + TO_OFFSET, line.indexOf("/day")).trim();
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + DAY_OFFSET).trim());
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
         //check whether start and end are in the correct format
         LocalTime.parse(start, timeFormat);
@@ -228,8 +241,6 @@ public class TaskList {
      * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
-
-
     static void addDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException, expiredDateException {
         String description = line.substring(0, line.indexOf("/by")).trim();
         String deadlineString = line.substring(line.indexOf("/by") + 3).trim();
@@ -257,10 +268,10 @@ public class TaskList {
     static void addRecurringDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException,
             IllegalArgumentException {
         String description = line.substring(4, line.indexOf("/by")).trim();
-        String deadline = line.substring(line.indexOf("/by") + 3, line.indexOf("/day")).trim();
+        String deadline = line.substring(line.indexOf("/by") + BY_OFFSET, line.indexOf("/day")).trim();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
         LocalTime.parse(deadline, timeFormat);
-        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + 4).trim());
+        DayOfWeek day = DayOfWeek.valueOf(line.substring(line.indexOf("/day") + DAY_OFFSET).trim());
         if (description.isBlank() || deadline.isBlank()) {
             throw new IllegalDeadlineException();
         } else {
@@ -331,122 +342,158 @@ public class TaskList {
         }
         Task taskToEdit = tasks.get(taskNumber - 1);
         if (taskToEdit instanceof Todo) {
-            Ui.editTodoMessage();
-            String editLine = Ui.askForEditMessage().trim();
-            if (editLine.isBlank()) {
-                throw new EmptyDescriptionException();
-            }
-            taskToEdit.setDescription(editLine);
+            editTodo(taskToEdit);
         } else if (taskToEdit instanceof Deadline) {
-            Ui.editDeadlineMessage();
-            String editLine = Ui.askForEditMessage().trim();
-            String[] editWords = editLine.split(" ");
-            if (taskToEdit instanceof RecurringDeadline) {
-                if (editWords.length > 1 && editWords[0].equals("/description")) {
-                    String newDescription = editLine.substring(12).trim();
-                    if (newDescription.isBlank()) {
-                        throw new EmptyDescriptionException();
-                    }
-                    taskToEdit.setDescription(newDescription);
-                } else if (editWords.length > 1 && editWords[0].equals("/deadline")){
-                    String deadline = editLine.substring(9).trim();
-                    LocalTime.parse(deadline, timeFormat);
-                    ((RecurringDeadline) taskToEdit).setDeadline(deadline);
-                } else if (editWords.length > 1 && editWords[0].equals("/day")) {
-                    DayOfWeek day = DayOfWeek.valueOf(editLine.substring(4).trim());
-                    ((RecurringDeadline) taskToEdit).setDay(day);
-                } else {
-                    Ui.unknownCommandMessage();
-                }
-            } else {
-                if (editWords.length > 1 && editWords[0].equals("/description")) {
-                    String newDescription = editLine.substring(editLine.indexOf(words[1]));
-                    if (newDescription.isBlank()) {
-                        throw new EmptyDescriptionException();
-                    }
-                    taskToEdit.setDescription(newDescription);
-                } else if (editWords.length > 1 && editWords[0].equals("/deadline")) {
-                    String deadlineString = editLine.substring(9).trim();
-                    System.out.println(deadlineString);
-                    LocalDateTime deadline = LocalDateTime.parse(deadlineString, dateFormat);
-                    if (deadline.isBefore(LocalDateTime.now())){
-                        throw new expiredDateException();
-                    } else {
-                        ((Deadline) taskToEdit).setDeadline(deadlineString);
-                    }
-                } else {
-                    Ui.unknownCommandMessage();
-                }
-            }
+            editDeadline(words, timeFormat, dateFormat, taskToEdit);
         } else if (taskToEdit instanceof Event) {
-            Ui.editEventMessage();
-            String editLine = Ui.askForEditMessage().trim();
-            String[] editWords = editLine.split(" ");
-            if (taskToEdit instanceof RecurringEvent) {
-                if (editWords.length > 1 && editWords[0].equals("/description")) {
-                    String newDescription = editLine.substring(12).trim();
-                    if (newDescription.isBlank()) {
-                        throw new EmptyDescriptionException();
-                    }
-                    taskToEdit.setDescription(newDescription);
-                } else if (editWords.length > 1 && editWords[0].equals("/from")){
-                    String start = editLine.substring(5).trim();
-                    LocalTime.parse(start, timeFormat);
-                    ((RecurringEvent) taskToEdit).setStart(start);
-                } else if (editWords.length > 1 && editWords[0].equals("/to")) {
-                    String end = editLine.substring(3).trim();
-                    LocalTime.parse(end, timeFormat);
-                    ((RecurringEvent) taskToEdit).setEnd(end);
-                } else if(editWords.length > 1 && editWords[0].equals("/day")) {
-                    DayOfWeek day = DayOfWeek.valueOf(editLine.substring(4).trim());
-                    ((RecurringEvent) taskToEdit).setDay(day);
-                } else {
-                    Ui.unknownCommandMessage();
+            editEvent(timeFormat, dateFormat, taskToEdit);
+        }
+        Ui.printEditedTask(taskToEdit);
+    }
+
+    /**
+     * edits an attribute of an event
+     * @param timeFormat time format for event
+     * @param dateFormat date format for event
+     * @param taskToEdit the event to edit
+     * @throws EmptyDescriptionException if the new description is empty
+     * @throws startAfterEndException if the start-end time is incorrect
+     * @throws expiredDateException if the task is expired
+     */
+    private static void editEvent(DateTimeFormatter timeFormat, DateTimeFormatter dateFormat, Task taskToEdit) throws
+            EmptyDescriptionException, startAfterEndException, expiredDateException {
+        Ui.editEventMessage();
+        String editLine = Ui.askForEditMessage().trim();
+        String[] editWords = editLine.split(" ");
+        if (taskToEdit instanceof RecurringEvent) {
+            if (editWords.length > 1 && editWords[0].equals("/description")) {
+                String newDescription = editLine.substring(DESCRIPTION_OFFSET).trim();
+                if (newDescription.isBlank()) {
+                    throw new EmptyDescriptionException();
                 }
+                taskToEdit.setDescription(newDescription);
+            } else if (editWords.length > 1 && editWords[0].equals("/from")){
+                String start = editLine.substring(FROM_OFFSET).trim();
+                LocalTime.parse(start, timeFormat);
+                ((RecurringEvent) taskToEdit).setStart(start);
+            } else if (editWords.length > 1 && editWords[0].equals("/to")) {
+                String end = editLine.substring(TO_OFFSET).trim();
+                LocalTime.parse(end, timeFormat);
+                ((RecurringEvent) taskToEdit).setEnd(end);
+            } else if(editWords.length > 1 && editWords[0].equals("/day")) {
+                DayOfWeek day = DayOfWeek.valueOf(editLine.substring(DAY_OFFSET).trim());
+                ((RecurringEvent) taskToEdit).setDay(day);
             } else {
-                LocalDateTime start = LocalDateTime.parse(((Event) taskToEdit).getStart(), dateFormat);
-                LocalDateTime end = LocalDateTime.parse(((Event) taskToEdit).getEnd(), dateFormat);
-                String newStartString = null;
-                String newEndString = null;
-                LocalDateTime newStart = null;
-                LocalDateTime newEnd = null;
-                if (editWords.length > 1 && editWords[0].equals("/description")) {
-                    String newDescription = editLine.substring(12).trim();
-                    if (newDescription.isBlank()) {
-                        throw new EmptyDescriptionException();
-                    }
-                    taskToEdit.setDescription(newDescription);
-                } else if (editWords.length > 1 && editWords[0].equals("/from")){
-                    newStartString = editLine.substring(5).trim();
-                    newStart = LocalDateTime.parse(newStartString, dateFormat);
-                    //((Event) taskToEdit).setStart(newStart);
-                } else if (editWords.length > 1 && editWords[0].equals("/to")) {
-                    newEndString = editLine.substring(3).trim();
-                    newEnd= LocalDateTime.parse(newEndString, dateFormat);
-                    //((Event) taskToEdit).setEnd(newEnd);
-                } else {
-                    Ui.unknownCommandMessage();
+                Ui.unknownCommandMessage();
+            }
+        } else {
+            LocalDateTime start = LocalDateTime.parse(((Event) taskToEdit).getStart(), dateFormat);
+            LocalDateTime end = LocalDateTime.parse(((Event) taskToEdit).getEnd(), dateFormat);
+            String newStartString = null;
+            String newEndString = null;
+            LocalDateTime newStart = null;
+            LocalDateTime newEnd = null;
+            if (editWords.length > 1 && editWords[0].equals("/description")) {
+                String newDescription = editLine.substring(DESCRIPTION_OFFSET).trim();
+                if (newDescription.isBlank()) {
+                    throw new EmptyDescriptionException();
                 }
-                if (newStart != null) {
-                    if (newStart.isAfter(end)) {
-                        throw new startAfterEndException();
-                    } else if (newStart.isBefore(LocalDateTime.now()) || end.isBefore(LocalDateTime.now())) {
-                        throw new expiredDateException();
-                    } else {
-                        ((Event) taskToEdit).setStart(newStartString);
-                    }
-                } else if (newEnd != null) {
-                    if (start.isAfter(newEnd)) {
-                        throw new startAfterEndException();
-                    } else if (start.isBefore(LocalDateTime.now()) || newEnd.isBefore(LocalDateTime.now())) {
-                        throw new expiredDateException();
-                    } else {
-                        ((Event) taskToEdit).setEnd(newEndString);
-                    }
+                taskToEdit.setDescription(newDescription);
+            } else if (editWords.length > 1 && editWords[0].equals("/from")){
+                newStartString = editLine.substring(FROM_OFFSET).trim();
+                newStart = LocalDateTime.parse(newStartString, dateFormat);
+            } else if (editWords.length > 1 && editWords[0].equals("/to")) {
+                newEndString = editLine.substring(TO_OFFSET).trim();
+                newEnd= LocalDateTime.parse(newEndString, dateFormat);
+            } else {
+                Ui.unknownCommandMessage();
+            }
+            if (newStart != null) {
+                if (newStart.isAfter(end)) {
+                    throw new startAfterEndException();
+                } else if (newStart.isBefore(LocalDateTime.now()) || end.isBefore(LocalDateTime.now())) {
+                    throw new expiredDateException();
+                } else {
+                    ((Event) taskToEdit).setStart(newStartString);
+                }
+            } else if (newEnd != null) {
+                if (start.isAfter(newEnd)) {
+                    throw new startAfterEndException();
+                } else if (start.isBefore(LocalDateTime.now()) || newEnd.isBefore(LocalDateTime.now())) {
+                    throw new expiredDateException();
+                } else {
+                    ((Event) taskToEdit).setEnd(newEndString);
                 }
             }
         }
-        Ui.printEditedTask(taskToEdit);
+    }
+
+    /**
+     * edits an attribute of a stored deadline
+     *
+     * @param words input split into an array of string
+     * @param timeFormat time format for deadline
+     * @param dateFormat date format for deadline
+     * @param taskToEdit the task to edit
+     * @throws EmptyDescriptionException if the new description is empty
+     * @throws expiredDateException if the deadline has expired
+     */
+    private static void editDeadline(String[] words, DateTimeFormatter timeFormat, DateTimeFormatter dateFormat,
+                                     Task taskToEdit) throws EmptyDescriptionException, expiredDateException {
+        Ui.editDeadlineMessage();
+        String editLine = Ui.askForEditMessage().trim();
+        String[] editWords = editLine.split(" ");
+        if (taskToEdit instanceof RecurringDeadline) {
+            if (editWords.length > 1 && editWords[0].equals("/description")) {
+                String newDescription = editLine.substring(12).trim();
+                if (newDescription.isBlank()) {
+                    throw new EmptyDescriptionException();
+                }
+                taskToEdit.setDescription(newDescription);
+            } else if (editWords.length > 1 && editWords[0].equals("/deadline")){
+                String deadline = editLine.substring(DEADLINE_OFFSET).trim();
+                LocalTime.parse(deadline, timeFormat);
+                ((RecurringDeadline) taskToEdit).setDeadline(deadline);
+            } else if (editWords.length > 1 && editWords[0].equals("/day")) {
+                DayOfWeek day = DayOfWeek.valueOf(editLine.substring(DAY_OFFSET).trim());
+                ((RecurringDeadline) taskToEdit).setDay(day);
+            } else {
+                Ui.unknownCommandMessage();
+            }
+        } else {
+            if (editWords.length > 1 && editWords[0].equals("/description")) {
+                String newDescription = editLine.substring(editLine.indexOf(words[1]));
+                if (newDescription.isBlank()) {
+                    throw new EmptyDescriptionException();
+                }
+                taskToEdit.setDescription(newDescription);
+            } else if (editWords.length > 1 && editWords[0].equals("/deadline")) {
+                String deadlineString = editLine.substring(DEADLINE_OFFSET).trim();
+                System.out.println(deadlineString);
+                LocalDateTime deadline = LocalDateTime.parse(deadlineString, dateFormat);
+                if (deadline.isBefore(LocalDateTime.now())){
+                    throw new expiredDateException();
+                } else {
+                    ((Deadline) taskToEdit).setDeadline(deadlineString);
+                }
+            } else {
+                Ui.unknownCommandMessage();
+            }
+        }
+    }
+
+    /**
+     * edits the todd
+     * @param taskToEdit the todo to edit
+     * @throws EmptyDescriptionException empty description
+     */
+    private static void editTodo(Task taskToEdit) throws EmptyDescriptionException {
+        Ui.editTodoMessage();
+        String editLine = Ui.askForEditMessage().trim();
+        if (editLine.isBlank()) {
+            throw new EmptyDescriptionException();
+        }
+        taskToEdit.setDescription(editLine);
     }
 
     /**
