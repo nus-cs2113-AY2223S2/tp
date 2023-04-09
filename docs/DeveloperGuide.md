@@ -90,6 +90,8 @@ The `Config` stores the attributes related to recurring tasks. The `TaskList` st
 which it can operate on. The `Task` class consists of several attributes such as a description as well as a priority
 level, which is represented as an enumeration `Priority`.
 
+<!-- @@author jeromeongithub -->
+
 ### Storage component
 
 The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
@@ -100,6 +102,8 @@ it back into a TaskList object.
 ## Implementation
 
 > The lifeline of the sequence diagrams in this section should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
+<!-- @@author RuiShengGit -->
 
 ### Delete task feature
 
@@ -141,6 +145,8 @@ The command also calls `TaskList#setDone()` which sets the task at id 1 to be no
 The following sequence diagram shows how the mark/unmark task operation works:
 
 ![MarkOrUnmarkTaskCommandSequence](images/MarkorUnmarkTaskCommandSequence.png)
+
+<!-- @@author clement559 -->
 
 ### Edit task deadline feature
 
@@ -187,6 +193,8 @@ description `survey` will be created, with a deadline of 1 week from the origina
 task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
 task will have a repeat count of 2.
 
+<!-- @@author KedrianLoh -->
+
 ### List tasks sorted by deadline feature
 
 This ListTasksCommand extends NUS To-Do List with an automatic sorting feature that sorts all tasks in an ascending
@@ -210,6 +218,8 @@ deadlines to the user in the terminal.
 The following sequence diagram shows how the list operation works:
 
 ![ListTasksCommandSequence](images/ListTasksCommandSequence.png)
+
+<!-- @@author jeromeongithub -->
 
 ### Storage feature
 
@@ -274,7 +284,7 @@ their tasks and a progress bar to help them visualize their progress.
 In the above diagram `printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskListString)`
 is abbreviated as `printProgressBar(...)`.
 
-## Appendix: Requirements
+## Appendix
 
 ### Product scope
 
@@ -315,12 +325,63 @@ bring an application to keep you aware of your deadlines and not miss them.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
 able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Instructions for manual testing
+<!-- @@author ERJUNZE -->
+
+### Glossary
+
+| Term          | Definition                                                              |
+|---------------|-------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                              |
+| Main command  | The first word in a command, like `add` or `help`                       |
+| Flag          | A word preceded by a dash, like `-edit` or `-due`                       |
+| Argument      | The words following the main command or a flag and before the next flag |
+| Id            | Identification number; it is fixed for any given task                   |
+
+### Instructions for manual testing
 
 The following are instructions on how to test the program manually.
 
-- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0), run `java -jar todolist.jar` in a terminal to start the program.
-  - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0), run it in a terminal to start the program.
+  - Test case: `java -jar NUSTo-DoList.jar`
+  - Expected: The startup and save loading messages will be displayed in the terminal.
 - Try running some commands - use the command `help` or refer to the [User Guide](https://ay2223s2-cs2113-t11-4.github.io/tp/UserGuide.html) for a list of commands.
+  - Test case: `help`
+  - Help message is displayed.
+- Try adding a task with various attributes with the `add` command.
+  - Test case: `add do homework -due 9/9/2025 19:37 -email rui@gmail.com -tags difficult later -prio 2 -rep 12`
+  - The above command adds a task with the description `do homework`, the deadline `9/9/2025 19:37`, the email address `rui@gmail.com`, the tags `difficult` and `later`, the priority level `Medium`, and will recur weekly up to `12` times starting from its deadline.
+  - Expected: A message about how the task was successfully added is displayed.
+- Try marking a task as complete/incomplete with the `mark` and `unmark` commands.
+  - Test case: `mark 1`, `unmark 1`
+  - Expected: A message about how the task was marked as complete/incomplete is displayed.
+- Try displaying a summary of tasks using the `list` command.
+  - Test case: `list -done 1 -sort due`
+  - Expected: A summary of tasks is displayed. This particular test case shows only complete tasks, sorted by deadline with earlier deadlines first.
+  - You may want to use the `add` and `mark` commands to add more complete tasks after trying this command to see the difference.
+- Try displaying the detailed attributes of a task using the `info` command.
+  - Test case: `info 1`
+  - Expected: All the attributes of the task is displayed.
+- Try editing an attribute of a task using the `desc`, `due`, `email`, `tags`, `prio`, or `rep` commands.
+  - Test case: `prio 1 -edit 1`
+  - Expected: A message about how the task's priority level was edited to `Low` is displayed. You can use the `list` or `info` commands to verify this.
+- Try checking all the tags in your task list with the `taglist` command.
+  - Test case: `taglist`
+  - Expected: A comma separated list of any tags your tasks have is displayed, in lexicographic order.
+- Try viewing a summary of this week's tasks, with a progress bar, using the `progress` command.
+  - Test case: `progress`
+  - "This week" is defined as from this Monday to this Sunday.
+  - Expected: A summary of this week's tasks is displayed, similar to the `list` command, along with a progress bar.
+  - You may want to add some tasks that will be due "this week" after trying this command to see the difference.
+- Try deleting a task from your task list using the `delete` command.
+  - Test case: `delete 1`
+  - Expected: A message about how the task was deleted is displayed. You can use the `list` command to verify this.
+- Try viewing your config settings using the `config` command.
+  - Test case: `config`
+  - Expected: Your current config settings are displayed.
+- Try resetting your task list using the `reset` command.
+  - Test case: `reset`
+  - You will need to confirm this by entering `YES` (case sensitive).
+  - **Warning!** This is irreversible.
+  - Expected: Your task list is reset, with all tasks deleted. Running an `add` command will start from id 1 again.
 - To exit, use the command: `exit`
   - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.
