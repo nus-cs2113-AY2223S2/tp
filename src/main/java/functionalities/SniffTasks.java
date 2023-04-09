@@ -151,7 +151,7 @@ public class SniffTasks {
      * @throws DuplicateAppointmentException thrown when the appointment details of another Consultation appointment
      *                                       currently in the ArrayList is same as the user input.
      */
-    private void checkConsultationDuplicate(Animal animal, Owner owner,
+    public void checkConsultationDuplicate(Animal animal, Owner owner,
                                             LocalDate date, LocalTime time) throws DuplicateAppointmentException {
         for (Appointment appointment : APPOINTMENTS) {
             if (appointment.uid.charAt(0) == 'C') {
@@ -213,7 +213,7 @@ public class SniffTasks {
      * @throws DuplicateAppointmentException thrown when the appointment details of another Vaccination appointment
      *                                       currently in the ArrayList is same as the user input.
      */
-    private void checkVaccinationDuplicate(Animal animal, Owner owner, LocalDate date, LocalTime time,
+    public void checkVaccinationDuplicate(Animal animal, Owner owner, LocalDate date, LocalTime time,
                                            String vaccine) throws DuplicateAppointmentException {
         for (Appointment appointment : APPOINTMENTS) {
             if (appointment.uid.charAt(0) == 'V') {
@@ -279,7 +279,7 @@ public class SniffTasks {
      * @throws DuplicateAppointmentException thrown when the appointment details of another Surgery appointment
      *                                       currently in the ArrayList is same as the user input.
      */
-    private void checkSurgeryDuplicate(Animal animal, Owner owner, LocalDate startDate, LocalTime startTime,
+    public void checkSurgeryDuplicate(Animal animal, Owner owner, LocalDate startDate, LocalTime startTime,
                                        LocalDate endDate, LocalTime endTime) throws DuplicateAppointmentException {
         for (Appointment appointment : APPOINTMENTS) {
             if (appointment.uid.charAt(0) == 'S') {

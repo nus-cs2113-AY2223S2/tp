@@ -1,7 +1,9 @@
 package seedu.sniff;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import exception.DuplicateAppointmentException;
 import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
@@ -16,7 +18,7 @@ public class SniffTasksTest {
 
     private static final SniffTasks testList = new SniffTasks();
     @Test
-    void duplicateConsultationTest() {
+    public void duplicateConsultationTest() {
         try {
             String animalName = "lulu";
             String animalType = "cat";
@@ -27,15 +29,15 @@ public class SniffTasksTest {
             Animal animal = new Animal(animalType, animalName);
             Owner owner = new Owner(ownerName, contactNumber);
             testList.addConsultation(animal, owner, date, time);
-            testList.addConsultation(animal, owner, date, time);
-            assertEquals(1, testList.getNumberOfAppointments());
+            assertThrows(DuplicateAppointmentException.class,
+                    () -> testList.checkConsultationDuplicate(animal, owner, date, time));
         } catch (SniffException e) {
             Assertions.fail("Should now throw error as inputs are valid");
         }
     }
 
     @Test
-    void duplicateVaccinationTest() {
+    public void duplicateVaccinationTest() {
         try {
             String animalName = "lulu";
             String animalType = "cat";
@@ -47,15 +49,15 @@ public class SniffTasksTest {
             Animal animal = new Animal(animalType, animalName);
             Owner owner = new Owner(ownerName, contactNumber);
             testList.addVaccination(animal, owner, date, time, vaccine);
-            testList.addVaccination(animal, owner, date, time, vaccine);
-            assertEquals(2, testList.getNumberOfAppointments()); //1 vaccination + 1 consultation
+            assertThrows(DuplicateAppointmentException.class,
+                    () -> testList.checkVaccinationDuplicate(animal, owner, date, time, vaccine));
         } catch (SniffException e) {
             Assertions.fail("Should now throw error as inputs are valid");
         }
     }
 
     @Test
-    void duplicateSurgeryTest() {
+    public void duplicateSurgeryTest() {
         try {
             String animalName = "lulu";
             String animalType = "cat";
@@ -69,7 +71,8 @@ public class SniffTasksTest {
             Animal animal = new Animal(animalType, animalName);
             Owner owner = new Owner(ownerName, contactNumber);
             testList.addSurgery(animal, owner, priority, startDate, startTime, endDate, endTime);
-            assertEquals(3, testList.getNumberOfAppointments()); //1 surgery + 1 vaccination + 1 consultation
+            assertThrows(DuplicateAppointmentException.class,
+                    () -> testList.checkSurgeryDuplicate(animal, owner, startDate, startTime, endDate, endTime));
         } catch (SniffException e) {
             Assertions.fail("Should now throw error as inputs are valid");
         }
