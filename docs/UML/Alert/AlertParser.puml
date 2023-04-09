@@ -1,35 +1,67 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title AlertParser Sequence Diagram
 
 actor User
-User -> AlertParser
+participant ":AlertParser"
+User -> ":AlertParser" **
 
-group sd [AddAlertCommand running]
-alt first word of input == "add"
-    AlertParser -> AddAlertCommand: run()
-    activate AddAlertCommand
-    participant AddAlertCommand
-    AddAlertCommand -> AddAlertCommand: run()
+User -> ":AlertParser": run()
+activate ":AlertParser"
+
+alt rawInput == empty string
+    ref over ":AlertParser"
+        handle input error
     end
- alt first word of input == "remove"
-    AlertParser -> RemoveAlertCommand: run()
-    activate RemoveAlertCommand
-    RemoveAlertCommand -> RemoveAlertCommand: run()
-    end
-    participant SessionManager
-    participant Storage
-    opt SessionManager.getAutoSave()
-    AddAlertCommand ->SessionManager:writeSession(alertList)
-    activate SessionManager
-    SessionManager->Storage:writeCSV(alertList)
-    activate Storage
-    Storage --> SessionManager:
-    deactivate Storage
-    SessionManager -->AddAlertCommand:
-    deactivate SessionManager
-    destroy AddAlertCommand
-    destroy RemoveAlertCommand
+    ":AlertParser" --> User
+
 end
+
+
+
+alt rawInput == "add"
+
+    ":AlertParser" -> ":AlertParser": parseAddAlert()
+    activate ":AlertParser" #cyan
+        opt incorrect format or exceeded quantity limit
+            ref over ":AlertParser"
+                handle input error
+            end ref
+        end
+
+    ":AlertParser" --> User
+        ref over ":AlertParser"
+            add alert
+        end ref
+    return
+ end
+
+
+alt rawInput == "end"
+
+    ":AlertParser" -> ":AlertParser": parseRemoveAlert()
+     activate ":AlertParser" #cyan
+        opt incorrect format or exceeded quantity limit
+            ref over ":AlertParser"
+                handle input error
+            end ref
+        end
+
+    ":AlertParser" --> User
+        ref over ":AlertParser"
+            remove alert
+        end ref
+    return
+end
+
+alt rawInput == any other input
+   ref over ":AlertParser"
+    handle input error
+    end ref
+    ":AlertParser" --> User
+end
+return
+destroy ":AlertParser"
 
 
 

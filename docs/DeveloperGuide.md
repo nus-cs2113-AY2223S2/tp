@@ -374,17 +374,19 @@ the details of the last and most current instant of the item.
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
 ![AlertParser.png](UML%2FAlert%2FAlertParser.png)
-
-
+![AddAlertCommand.png](UML%2FAlert%2FAddAlertCommand.png)
+![AddAlertCommand.png](UML%2FAlert%2FRemoveAlertCommand.png)
 
 **Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
 
 ![AlertStep1.png](UML%2FAlert%2FAlertStep1.png)
 
 
-**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if 
-This leads the `AlertParser` to call either the `parseAddAlert` or `parseRemoveAlert`, depending on whether the `input` begins with the word `add` or `remove`.
-If the `input` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
+**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if the `rawInput`
+begins with the word `add` or `remove`.
+This leads the `AlertParser` to call either the `parseAddAlert` if `rawInput` begins with the word `add`,
+or `parseRemoveAlert` if `rawInput` begins with the word `remove`.
+If the `rawInput` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
 
 **Step 3**. 
 If the input begins with `add`, the `AlertParser` creates a new `AddAlertCommand` object 
@@ -463,17 +465,17 @@ unsuitable for the less seasoned users of the application.
 | v1.0    | IT team member           | search for items in the inventory by name SKU or category       | quickly find what I need                                      |
 
 
-| Version | As a ...                | I want to ...                                                            | So that I can ...                                                                                           |
-|---------|-------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| v2.0    | small business owner    | analyze past sales from the historical records of the stocks             | make better decisions                                                                                       |
-| v2.0    | small business owner    | see a report of items that are due to be reordered                       | make sure we have enough stock to meet customer demand                                                      |
-| v2.0    | small business owner    | set different prices for items in the inventory                          | charge different prices for different items                                                                 |
-| v2.0    | small business owner    | categorize items in the inventory                                        | quickly find items that belong to a specific category                                                       |
-| v2.0    | small business owner    | directly top up and deduct the quantity of an item in the inventory list | keep track of the item quantities with ease without the inconvenience of editing the item quantity manually |
-| v2.0    | small business owner    | see the list of commands that can be executed                            | quickly identify the function I can use and their command formats.                                          |
-| v2.0    | small business owner    | set minimum and maximum stock levels for items in the inventory          | be alerted if our stock levels fall outside of these limits                                                 |
-| v2.0    | IT team member          | assign unique SKUs to items in the inventory                             | easily track and manage the items                                                                           |
-| v2.0    | convenience store owner | store information on the large variety of products                       | find them easily                                                                                            |
+| Version | As a ...                | I want to ...                                                           | So that I can ...                                                                                            |
+|---------|-------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| v2.0    | small business owner    | analyze past sales from the historical records of the stocks            | make better decisions                                                                                        |
+| v2.0    | small business owner    | see a report of items that are due to be reordered                      | make sure we have enough stock to meet customer demand                                                       |
+| v2.0    | small business owner    | set different prices for items in the inventory                         | charge different prices for different items                                                                  |
+| v2.0    | small business owner    | categorize items in the inventory                                       | quickly find items that belong to a specific category                                                        |
+| v2.0    | small business owner    | directly top up and deduct the quantity of an item in the inventory list | keep track of the item quantities with ease without the inconvenience of editing the item quantity manually  |
+| v2.0    | small business owner    | see the list of commands that can be executed                           | quickly identify the function I can use and their command formats.                                           |
+| v2.0    | small business owner    | set minimum and maximum stock levels for items in the inventory         | be alerted if our stock levels fall outside of these limits                                                  |
+| v2.0    | IT team member          | assign unique identifying numbers to items in the inventory             | easily track and manage the items                                                                            |
+| v2.0    | convenience store owner | store information on the large variety of products                      | find them easily                                                                                             |
 
 
 ## Non-Functional Requirements

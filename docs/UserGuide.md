@@ -583,7 +583,7 @@ __________________________________________________________________________
 +-----------------+-----------------------------------------------+
 __________________________________________________________________________
 ```
-
+---
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display messages when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -637,7 +637,7 @@ alert remove upc/1234 level/min
 __________________________________________________________________________
 Successfully removed the alert.
 __________________________________________________________________________
-``` 
+```
 
 ---
 ### Change Auto save Mode: `autosave` <a name = "autosave"></a>
@@ -703,22 +703,36 @@ __________________________________________________________________________
 <a name = "faq"></a>
 <a name = "command_summary"></a>
 ## Command Summary
-| Action                          |
-|---------------------------------|
-| Add item (`add`)                |
-| Remove item (`remove`)          |
-| Edit item (`edit`)              |
-| List all items (`list`)         |
-| Search items (`search`)         |
-| Filter items (`filter`)         |
-| Sell items (`sell`)             |
-| Restock items (`restock`)       |
-| Add and remove alerts (`alert`) |
-| View item categories (`cat`)    |
-| View history (`history`)        |
-| View dashboard (`db`) |
-| View all commands (`help`) |
-| Set autosave mode (`autosave`) |
-| Exit the program (`exit`) |
+| Action                                                     | Format                                                                     |
+|------------------------------------------------------------|----------------------------------------------------------------------------|
+| Add item                                                   | `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`        | 
+| Remove item using UPC                                      | `remove f/upc [UPC]`                                                       |
+| Remove item using index in list                            | `remove f/index [index]`                                                   |
+| Edit item                                                  | `edit upc/[UPC] {n/[item_name]} {qty/[quantity]} {p/[price]} {c/[category]}` |
+| Sell a quantity of an item                                 | `sell upc/[UPC] qty/[quantity]`                                            |
+| Restock a quantity of an item                              | `restock upc/[UPC] qty/[quantity]`                                         |
+| List all items                                             | `list`                                                                     |
+| Search items by keyword                                    | `search [keyword]`                                                         |
+| Search items by UPC                                        | `search [UPC]`                                                             |
+| Filter items with price greater than `[price]`             | `filter f/price p/gt [price]`                                              |
+| Filter items with price greater than or equal to `[price]` | `filter f/price p/get [price]`                                             |
+| Filter items with price less than `[price]`                | `filter f/price p/lt [price]`                                              |
+| Filter items with price less than or equal to `[price]`    | `filter f/price p/let [price]`                                             |
+| View list of all item categories                           | `cat list`                                                                 |
+| View all items sorted by category                          | `cat table`                                                                |
+| Add a minimum alert warning for an item                    | `alert add upc/[UPC] min/[quantity]`                                       |
+| Add a maximum alert warning for an item                    | `alert add upc/[UPC] max/[quantity]`                                       |
+| Remove the minimum alert for an item                       | `alert remove upc/[UPC] level/min`                                         |
+| Remove the maximum alert for an item                       | `alert remove upc/[UPC] level/max`                                         |
+| View historical changes of an item                         | `history [UPC]`                                                            |
+| View dashboard                                             | `db`                                                                       |
+| View all commands                                          | `help`                                                                     |
+| Switch on autosave                                         | `autosave on`                                                              |
+| Switch off autosave                                        | `autosave off`                                                             |
+| Exit the program                                            | `bye` or `exit`                                                            |
+
+
+* Words in square brackets `[ ]` are parameters to be supplied by the user
+* Words in curly brackets `{ }` are optional parameters to be supplied by the user
 
 

@@ -78,11 +78,10 @@ public class AlertParser extends Parser {
      * Processes the "alert" command by delegating it to either add or remove alert parsing functions and prints an
      * error message if wrong inputs from the user are detected.
      */
-
     @Override
     public void run() {
         try {
-            if (rawInput == null) {
+            if (rawInput == "") {
                 throw new MissingParametersException();
             }
 
