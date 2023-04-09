@@ -53,28 +53,37 @@ return tagToRemove
 
 RemoveTagFromCardCommand -> RemoveTagFromCardCommand : RemoveTagFromCard(cardAffected, tagToRemove)
 
-opt tagToRemove.isDeckEmpty()
-RemoveTagFromCardCommand -> Tag : getDecks()
-return decksUUIDArr
-loop curr uuid of dekcsUUIDArr != null
-RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
-return affectedDeck
-RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
 
-end loop
-end
+ref over RemoveTagFromCardCommand, Tag, DeckList, Deck
+Remove affected Cards from Deck
+end ref
 
-opt cardAffected.getUUID() != null
-RemoveTagFromCardCommand -> Card : getUUID()
-return cardUUID
-RemoveTagFromCardCommand -> Tag : removeCard(cardUUID)
-return
-RemoveTagFromCardCommand -> Tag : getUUID()
-return tagUUID
-RemoveTagFromCardCommand -> Card : removeTag(tagUUID)
-return
+'opt tagToRemove.isDeckEmpty()
+'RemoveTagFromCardCommand -> Tag : getDecks()
+'return decksUUIDArr
+'loop curr uuid of decksUUIDArr != null
+'RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
+'return affectedDeck
+'RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
+'
+'end loop
+'end
 
-end
+ref over RemoveTagFromCardCommand, Tag, Card
+Remove Tag from Card and vice versa
+end ref
+
+'opt cardAffected.getUUID() != null
+'RemoveTagFromCardCommand -> Card : getUUID()
+'return cardUUID
+'RemoveTagFromCardCommand -> Tag : removeCard(cardUUID)
+'return
+'RemoveTagFromCardCommand -> Tag : getUUID()
+'return tagUUID
+'RemoveTagFromCardCommand -> Card : removeTag(tagUUID)
+'return
+
+'end
 return
 
 RemoveTagFromCardCommand -> UserInterface : printRemoveTagFromCard()

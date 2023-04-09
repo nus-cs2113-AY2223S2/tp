@@ -1,0 +1,32 @@
+
+@startuml
+autoactivate on
+
+mainframe sd Remove affected Cards from Deck
+
+participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Card" as Card
+participant ":Deck" as Deck
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+
+opt tagToRemove.isDeckEmpty()
+RemoveTagFromCardCommand -> Tag : getDecks()
+return decksUUIDArr
+loop curr uuid of decksUUIDArr != null
+RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
+return affectedDeck
+RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
+
+end loop
+end
+
+@enduml

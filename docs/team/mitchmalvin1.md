@@ -21,7 +21,7 @@ experience.
 This feature consists of a few subfeatures :
 
 - `card tag {-c CARD_UUID | -i CARD_INDEX} -t TAG_NAME ` to attach a tag onto a Card
-- `card untag {-c CARDUUID | -i CARD_INDEX} {-t TAGNAME | -x TAG_INDEX}` to remove the tag from a Card
+- `card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}` to remove the tag from a Card
 - `tag edit -o OLD_NAME -n NEW_NAME` to edit the name of the Tag
 - `tag list` to list all the existing tags
 - `tag list [-c CARD_UUID | -i CARD_INDEX]` to list all the Cards that fall under the Tag
@@ -130,6 +130,8 @@ The Sequence Diagram for `card untag {-c CARD_UUID | -t TAG_NAME}` can be found 
 The Sequence Diagram for `tag list {-c CARD_UUID | -i CARD_INDEX}` can be found below :
 
 ![List Card Under Tag Sequence Diagram](../img/ListCardsUnderTagSequence.png)
+
+The Reference Frames (if needed) created for the Sequence Diagrams can be found [here.](mitch-reference-frames.md)
 
 
 
