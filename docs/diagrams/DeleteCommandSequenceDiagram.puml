@@ -1,0 +1,134 @@
+@startuml
+
+Actor User as user
+box execution of commands
+Participant ":Ui" as ui
+Participant ":Parser" as parser
+Participant "delete:Command" as deleteCommand
+Participant "exit:Command" as exitCommand
+Participant ":EntryList" as entryList
+Participant ":Save" as save
+Participant ":Data" as data
+end box
+
+
+user -> ui : "deleteExpense 1"
+activate ui
+
+ui -> parser : parseCommand("deleteExpense 1")
+activate parser
+
+parser -> parser : prepareDeleteExpenseCommand(1)
+activate parser
+
+create deleteCommand
+parser -> deleteCommand : DeleteExpenseCommand(1)
+activate deleteCommand
+
+deleteCommand --> parser : delete
+deactivate deleteCommand
+
+
+parser --> parser : delete
+deactivate parser
+
+parser --> ui : delete
+deactivate parser
+
+ui -> deleteCommand : execute()
+activate deleteCommand
+
+deleteCommand -> entryList : deleteExpense(1)
+activate entryList
+
+entryList --> deleteCommand
+deactivate entryList
+
+deleteCommand --> ui
+deactivate deleteCommand
+destroy deleteCommand
+
+
+ui --> user
+deactivate ui
+
+user -> ui : "exit"
+activate ui
+
+'ui -> parser : execute("exit")
+'activate parser
+
+
+ui -> parser : parseCommand("exit");
+activate parser
+
+create exitCommand
+parser -> exitCommand : ExitCommand()
+activate exitCommand
+
+exitCommand --> parser : exit
+deactivate exitCommand
+
+parser --> ui : exit
+deactivate parser
+destroy parser
+
+ui -> exitCommand : execute()
+activate exitCommand
+
+exitCommand -> save : writeFile(expenseList)
+activate save
+
+save -> data : Save to file
+activate data
+save -> entryList : expenseList
+activate entryList
+entryList --> save
+deactivate entryList
+data --> save
+deactivate data
+
+save --> exitCommand
+deactivate save
+
+exitCommand -> save : writeFile(incomeList)
+activate save
+
+save -> data : Save to file
+activate data
+save -> entryList : incomeList
+activate entryList
+entryList --> save
+deactivate entryList
+data --> save
+deactivate data
+
+save --> exitCommand
+deactivate save
+
+exitCommand -> save : writeFile(budgetEachMonth)
+activate save
+
+save -> data : Save to file
+activate data
+save -> entryList : budgetList
+activate entryList
+entryList --> save
+deactivate entryList
+destroy entryList
+data --> save
+deactivate data
+
+save --> exitCommand
+deactivate save
+destroy save
+
+exitCommand --> ui
+deactivate exitCommand
+destroy exitCommand
+
+ui --> user
+deactivate ui
+destroy ui
+
+@enduml
