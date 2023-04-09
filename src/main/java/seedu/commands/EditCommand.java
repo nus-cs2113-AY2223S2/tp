@@ -1,5 +1,7 @@
 package seedu.commands;
 
+import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.WrongPrecisionException;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
 import seedu.expenditure.LendExpenditure;
@@ -9,6 +11,8 @@ import seedu.expenditure.BorrowExpenditure;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
+import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_PRECISION;
 
 public class EditCommand extends Command {
     // Edit file accordingly
@@ -22,6 +26,7 @@ public class EditCommand extends Command {
     public static final String PSLASH = "p/";
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
+    public static final String DOT = ".";
     public final int index;
     public final String userInput;
 
@@ -53,6 +58,8 @@ public class EditCommand extends Command {
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
         } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException | NumberFormatException s) {
             return new CommandResult("Failed to edit! Please check the format and try again!");
+        } catch (WrongPrecisionException e) {
+            return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
         }
     }
 
@@ -73,9 +80,10 @@ public class EditCommand extends Command {
     }
 
     public double fetchAmount(boolean isLendOrBorrowExpenditure)
-            throws StringIndexOutOfBoundsException, EmptyStringException {
+            throws StringIndexOutOfBoundsException, EmptyStringException, WrongPrecisionException {
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH,
                 isLendOrBorrowExpenditure ? BSLASH : PSLASH);
+        ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
         return Double.parseDouble(amountVal);
     }
 

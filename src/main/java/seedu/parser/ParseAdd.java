@@ -14,6 +14,7 @@ import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.EmptyStringException;
+import seedu.exceptions.WrongPrecisionException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import static seedu.ui.ErrorMessages.ERROR_AMOUNT_FORMAT_MESSAGE;
@@ -21,6 +22,7 @@ import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_PRECISION;
 
 
 public class ParseAdd {
@@ -28,6 +30,7 @@ public class ParseAdd {
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
     public static final String PSLASH = "p/";
+    private static final String DOT = ".";
     private final String userInput;
 
     public ParseAdd(String userInput) {
@@ -75,6 +78,8 @@ public class ParseAdd {
             return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
+        } catch (WrongPrecisionException e) {
+            return new InvalidCommand(ERROR_INVALID_AMOUNT_PRECISION.toString());
         }
     }
 
@@ -84,9 +89,11 @@ public class ParseAdd {
     }
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
-            StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException {
+            StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException,
+            WrongPrecisionException {
         // Converts string to double for numerical addition functionalities
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, PSLASH);
+        ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
         ExceptionChecker.checkValidDoubleInput(amountVal);
         double amount = Double.parseDouble(amountVal);
         ExceptionChecker.checkValidAmount(amount);
