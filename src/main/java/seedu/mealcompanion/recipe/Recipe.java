@@ -59,8 +59,10 @@ public class Recipe {
     }
 
     //@@author ngyida
+
     /**
      * Get the list of ingredients of the recipe
+     *
      * @return IngredientList of recipe
      */
     public IngredientList getIngredients() {
@@ -71,6 +73,7 @@ public class Recipe {
 
     /**
      * Get the list of instructions of the recipe
+     *
      * @return InstructionList of recipe
      */
     public InstructionList getInstructions() {
@@ -79,8 +82,10 @@ public class Recipe {
 
 
     //@@author ngyida
+
     /**
      * Get a formatted string of recipe details.
+     *
      * @return string of recipe details
      */
     @Override

@@ -9,6 +9,7 @@ import seedu.mealcompanion.parser.CommandTokens;
 public interface Routable {
     /**
      * Returns the resolved <code>ExecutableCommandFactory</code> by the <code>Routable</code> object.
+     *
      * @param commandTokens the command tokens to resolve.
      * @return the resolved command factory.
      */

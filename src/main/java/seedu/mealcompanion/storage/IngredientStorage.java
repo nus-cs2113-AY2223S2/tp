@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 //@@ author jingyaaa
+
 /**
  * Reads ingredients initially stored in a file to ingredient list and updates stored ingredients in a file
  * after every change made to the ingredient list.
@@ -36,6 +37,7 @@ public class IngredientStorage {
 
     /**
      * Checks for existing file containing ingredients and initialises buffered writer accordingly
+     *
      * @param ingredients current ingredient list
      */
 
@@ -60,6 +62,7 @@ public class IngredientStorage {
 
     /**
      * Reads from existing file and adds all ingredient objects found to ingredient list
+     *
      * @param ingredients current ingredient list
      */
 
@@ -87,8 +90,9 @@ public class IngredientStorage {
 
     /**
      * Processes an ingredient string in JSON format to an object and adds it to the ingredient list
+     *
      * @param inputFromFile string containing an ingredient object in JSON format
-     * @param ingredients current ingredient list
+     * @param ingredients   current ingredient list
      */
     private void addStoredIngredients(String inputFromFile, IngredientList ingredients) {
         Ingredient ingredient = gson.fromJson(inputFromFile, Ingredient.class);
@@ -104,6 +108,7 @@ public class IngredientStorage {
 
     /**
      * Write all ingredients in the ingredient list into a new file
+     *
      * @param ingredients current ingredient list
      */
 
@@ -113,13 +118,14 @@ public class IngredientStorage {
         } catch (IOException e) {
             ui.printMessage("Oops, unable to create or write to file");
         }
-        for (Ingredient ingredient: ingredients.getIngredients()) {
+        for (Ingredient ingredient : ingredients.getIngredients()) {
             writeIngredientToFile(ingredient);
         }
     }
 
     /**
      * Writes a given ingredient into file
+     *
      * @param ingredient ingredient object
      */
 

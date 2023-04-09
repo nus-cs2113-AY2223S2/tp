@@ -1,9 +1,9 @@
 package seedu.mealcompanion.storage;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
-import seedu.mealcompanion.MealCompanionException;
+import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionSession;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 

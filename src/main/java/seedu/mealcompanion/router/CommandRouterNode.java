@@ -14,8 +14,9 @@ public class CommandRouterNode implements Routable {
 
     /**
      * Returns a <code>CommandRouterNode</code> with the specified route description added.
+     *
      * @param routeName the name of the route to match.
-     * @param result the <code>Routable</code> to resolve to.
+     * @param result    the <code>Routable</code> to resolve to.
      * @return a copy of this <code>CommandRouterNode</code> to allow chaining.
      */
     public CommandRouterNode route(String routeName, Routable result) {

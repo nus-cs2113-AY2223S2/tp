@@ -4,7 +4,9 @@ package seedu.mealcompanion;
  * Represents the control flow state of the current MealCompanion session.
  */
 public class MealCompanionControlFlow {
-    /** Whether the current session has been quit */
+    /**
+     * Whether the current session has been quit
+     */
     private boolean isQuit;
 
     public MealCompanionControlFlow() {
@@ -13,6 +15,7 @@ public class MealCompanionControlFlow {
 
     /**
      * Sets whether the current session should be quit.
+     *
      * @param isQuit current quit state of the session.
      */
     public void setQuit(boolean isQuit) {
@@ -21,6 +24,7 @@ public class MealCompanionControlFlow {
 
     /**
      * Returns true if the session should continue running, false otherwise.
+     *
      * @return whether the session should continue running.
      */
     public boolean shouldRun() {
