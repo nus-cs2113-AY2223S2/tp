@@ -98,14 +98,8 @@
       "deckUUID": {
         "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
       },
-      "cardsSet": [
-        {
-          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
-        }
-      ],
-      "cardUUIDIntegerHashMap": {
-        "924119c1-a807-4df2-b311-080be9ee8522": 1
-      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
       "cards": [],
       "tags": [
         {
@@ -126,6 +120,37 @@
           "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
         }
       ]
+    },
+    {
+      "deckName": "physicsdeck",
+      "deckUUID": {
+        "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
+      },
+      "cardsSet": [
+        {
+          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+        },
+        {
+          "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
+        },
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "cardUUIDIntegerHashMap": {
+        "619c689d-395a-4bb8-ab00-6ae9972bb929": 1,
+        "1ddd9a67-f56c-4914-99c0-2f90c580f0e9": 1
+      },
+      "cards": [
+        {
+          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+        }
+      ],
+      "tags": [
+        {
+          "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
+        }
+      ]
     }
   ],
   "tags": [
@@ -142,7 +167,11 @@
           "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
         }
       ],
-      "decks": []
+      "decks": [
+        {
+          "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
+        }
+      ]
     },
     {
       "uuid": {
@@ -226,11 +255,7 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
+      "decks": []
     },
     {
       "uuid": {
@@ -242,11 +267,7 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
+      "decks": []
     }
   ],
   "cards": [
@@ -364,7 +385,11 @@
           "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
         }
       ],
-      "decks": []
+      "decks": [
+        {
+          "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
+        }
+      ]
     }
   ]
 }

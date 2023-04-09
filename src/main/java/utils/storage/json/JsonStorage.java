@@ -33,7 +33,7 @@ import utils.storage.Storage;
 
 public class JsonStorage extends Storage {
 
-    private static Logger logger = Logger.getLogger("storage.JsonStorage");
+    public static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
     private File backupFile;
 

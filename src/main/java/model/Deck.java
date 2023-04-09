@@ -102,7 +102,9 @@ public class Deck {
         this.cardsSet = cardsSet;
     }
 
-
+    public void setcardUUIDIntegerHashMap(HashMap<CardUUID, Integer> cardUuidIntegerHashMap) {
+        this.cardUUIDIntegerHashMap = cardUuidIntegerHashMap;
+    }
 
     public HashSet<CardUUID> getCardsSet() {
         return this.cardsSet;
