@@ -102,11 +102,14 @@ Meeting meeting with boss deleted!
 ```
 
 ### Deadlines
+#### Purpose
+Deadline objects helps our user, the restaurant manager, to better keep track of and manage the many task that
+needs to be completed for the restaurant.
 
 #### Add a deadline to the deadline list:
-Successfully adds deadline only if the name is unique, otherwise it informs the user to key in a unique deadline name
-
 Format: `add_deadline n/<name> t/<time>`
+
+Note: User is allowed to input name and time parameter of any format.
 
 Example: 
 ```
@@ -119,7 +122,6 @@ Example:
 ```
 
 #### View all deadlines:
-View the deadline list.
 
 Format: `view_deadlines`
 

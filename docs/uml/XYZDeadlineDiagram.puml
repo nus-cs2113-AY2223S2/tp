@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title XYZ Deadline Command Sequence Diagram
+
+activate DinerDirector
+
+DinerDirector -> XYZDeadlineCommand: execute(ui)
+activate XYZDeadlineCommand
+
+XYZDeadlineCommand -> DeadlineManager: XYZDeadlines(variable, ui)
+activate DeadlineManager
+
+DeadlineManager -> TextUi: printMessage(message)
+activate TextUi
+
+TextUi -> DeadlineManager
+deactivate TextUi
+destroy TextUi
+
+DeadlineManager -> XYZDeadlineCommand
+deactivate DeadlineManager
+destroy DeadlineManager
+
+XYZDeadlineCommand -> DinerDirector
+deactivate XYZDeadlineCommand
+destroy XYZDeadlineCommand
+
+
+@enduml
