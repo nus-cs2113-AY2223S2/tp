@@ -362,6 +362,7 @@ The sequence diagram below shows how this feature works:
 ![](./UML/Implementation/ListAvailableFunction/availableSequenceDiagram.drawio.png)
 
 <!-- @@author gurmankalkat -->
+
 ### Delete Recipes Feature
 
 The current implementation:
@@ -384,6 +385,7 @@ It is implemented through the following step:
 ![](./UML/Implementation/DeleteFunction/DeleteFunction.jpg)
 
 <!-- @@author gurmankalkat -->
+
 ### Add Recipes Feature
 
 The current implementation:
