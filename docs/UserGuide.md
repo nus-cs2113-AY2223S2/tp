@@ -114,8 +114,8 @@ install rainyDay on your device and start using it. Please refer to the steps be
 - For those who are familiar with what a CLI is, go ahead and proceed to view the [features](#features-overview) that we
   offer!
 - A [CLI](#glossary) receives commands from a user, that is you, in the form of lines of text.
-- In rainyDay, we make it simple for you. Whenever we require you to input, we will prompt you with a `>` as shown below
-  with a sample input boxed in red.
+- In rainyDay, we make it simple for you. Whenever we require you to input something, we will prompt you with a `>`. 
+  A sample input is boxed in red as shown:
   ![understandingCLI.png](images/UserGuide/understandingCLI.png)
 - If you are interested in learning more about CLI, you may refer to the following
   [guide](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/).
@@ -164,12 +164,13 @@ The table below will be shown with the `help` command: <br>
 
 Suppose you require more details on any of the other commands, you can use the following command:
 
-Format: `help {COMMAND}`
+Format: **`help {COMMAND}`**
 
 This command will give you more information on the particular command, such as input constraints and examples.
 
-For instance, suppose you want to find out more information on rainyDay's `add` command, you can type the following
-command: <br>
+Example of Usage:
+
+Suppose you want to find out more information on rainyDay's `add` command, you can use the following command: 
 
 ![helpAdd.png](images/UserGuide/helpAdd.png)
 
@@ -193,7 +194,7 @@ An integral feature of any financial tracker is to add transactions. The "add" f
 to keep track of your inflows and outflows. The following explains how you can add different types of transactions
 to rainyDay.
 
-Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
+Format: **`add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`**
 
 * `DIRECTION` should be either:
     * `-in` signifying an [inflow](#glossary) type of transaction, or
@@ -204,21 +205,21 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 * `CATEGORY` is a field representing the category to be tagged with the transaction, where category can consist of
   characters and space, with `-c` appended before the category
 * `DATE` is a field representing the date to be tagged with the transaction, where date needs to be in the format
-  of `DAY/MONTH/YEAR`, with <br>`-date` appended before the date
+  of `DAY/MONTH/YEAR`, with `-date` appended before the date
     * `DAY` and `MONTH` can either be a single or double-digit number
     * `YEAR` needs to be a four-digit number
     * When this field is omitted, the date will be set to the day when the transaction is added to rainyDay
 
 > ⚠️ Amount provided must be a positive value and cannot be more than $21,474,836.47!
 >
-> ⚠️ `DESCRIPTION` and `CATEGORY` cannot contain dash `-`.
+> ⚠️ `DESCRIPTION` and `CATEGORY` cannot contain dash `-`
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:
 >
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
 
-Example of usage:
+Example of Usage:
 
 You had dinner at Haidilao for $500. To add it to rainyDay, you can use the following command:
 
@@ -236,14 +237,14 @@ You received your pay of $50000 on 26/04/2023. To add it to rainyDay, you can us
 
 ![add4pay](images\UserGuide\add4Pay.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Viewing the transactions
 
 After adding your transactions into rainyDay, you can view them by using the "view" feature of rainyDay.
 This lists all the transactions added, and the summary of all your inflows and outflows.
 
-Format: `view {TIMESPAN} {-sort}`
+Format: **`view {TIMESPAN} {-sort}`**
 
 * `TIMESPAN` is used to denote how much history to show from the current day.
     * `1d - 31d` is used to view 1 to 31 days of history
@@ -255,7 +256,7 @@ Format: `view {TIMESPAN} {-sort}`
 
 > 💡 To view all entries you can use -all in place of a specific time in TIMESPAN
 
-Example of usage:
+Example of Usage:
 
 You would like to view all of your transactions for the current month, to check if you are staying within your budget.
 To do that, you can use the following command:
@@ -266,19 +267,19 @@ You want to know what you spent the most on in the past 2 months. To do that, yo
 
 ![viewTwoMSort.png](images/UserGuide/viewTwoMSort.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Deleting a transaction
 
 The transactions added into rainyDay are not fixed. For whatever reason that you require deleting any transactions,
 rainyDay's "delete" feature supports removing any previous transactions from your [Financial Report](#glossary).
 
-Format: `delete [INDEX]`
+Format: **`delete [INDEX]`**
 
 * `INDEX` is the transaction number given by rainyDay to identify a transaction
     * The transaction number can be obtained by [viewing the transactions](#viewing-the-transactions)
 
-Example of usage:
+Example of Usage:
 
 Your current financial report is in the same state as the previous example given in
 [viewing the transactions](#viewing-the-transactions).
@@ -291,13 +292,13 @@ subsequently after requesting to view them will be as such: <br>
 
 ![deleteafter.png](images\UserGuide\deleteafter.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Editing a transaction
 
 If you need to update details in a previous transaction, rainyDay's "edit" feature will be of much use to you.
 
-Format : `edit [INDEX] [FLAG] {NEWFIELD}`
+Format: **`edit [INDEX] [FLAG] {NEWFIELD}`**
 
 * `INDEX` is the transaction number given by rainyDay to identify a transaction
 * `FLAG` must be one of the following:
@@ -306,19 +307,19 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
     * `-c` to edit the category
     * `-v` to edit the value
     * `-date` to edit the date
-* `NEWFIELD` is the new information that you would like to change to.
+* `NEWFIELD` is the new information that you would like to change to
     * `NEWFIELD` is not required when changing direction with `-in` or `-out`
     * `NEWFIELD` needs to be in `DD/MM/YYYY` format when changing date with `-date`
     * `NEWFIELD` needs to be appended with a `$` before the number when changing the value with `-v`
 
-Example of usage:
+Example of Usage:
 
 Suppose you realised you forgot to add the "Category" for entry 1, and you would like to place it under
 "Food and Drinks". You can use the following command:
 
 ![editCategory.png](images/UserGuide/editCategory.png)
 
-and use the "view" command afterwards to verify the edits are accurate:
+and use the `view` command afterwards to verify the edits are accurate:
 
 ![editCategoryView.png](images/UserGuide/editCategoryView.png)
 
@@ -327,7 +328,7 @@ You can use the following command:
 
 ![editValue.png](images/UserGuide/editValue.png)
 
-and use the "view" command afterwards to verify the edits are accurate:
+and use the `view` command afterwards to verify the edits are accurate:
 
 ![editValueView.png](images/UserGuide/editValueView.png)
 
@@ -342,18 +343,18 @@ you can use the following command to update the required fields:
 
 ![editMultipleEntries.png](images/UserGuide/editMultipleEntries.png)
 
-and use the "view" command afterwards to verify the edits are accurate:
+and use the `view` command afterwards to verify the edits are accurate:
 
 ![editMultipleEntriesView.png](images/UserGuide/editMultipleEntriesView.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Filter transactions
 
 To save time searching through all the entries in the financial report, the "filter" feature of rainyDay
 helps you to extract certain transactions based on specific criteria.
 
-Format : `filter [FLAG] {FIELD}`
+Format: **`filter [FLAG] {FIELD}`**
 
 * `FLAG` must be at least one of the following:
     * `-in` to filter by [inflows](#glossary) or `-out` to filter by [outflows](#glossary)
@@ -365,7 +366,7 @@ Format : `filter [FLAG] {FIELD}`
         * If only one `FIELD` is provided, only transactions with the specified date will be shown
         * If two `FIELD` is provided, transactions between the 2 dates (inclusive) will be shown.
 
-Example of usage:
+Example of Usage:
 
 Let's say you added a couple more entries. And using `view -all` provides you with this:
 
@@ -392,7 +393,7 @@ can use the following command:
 > 💡 Note that the first date(e.g. 30/3/2023) provided must be before the second date(e.g. 7/4/2023) when you are
 > indicating a date range.
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Ignoring a transaction
 
@@ -401,7 +402,7 @@ keep a more accurate track of your finances by allowing you to ignore certain tr
 of your inflow and outflow.
 Conversely, the "unignore" feature is used to include a transaction that was previously ignored.
 
-Format: `ignore [INDEX]` or `unignore [INDEX]`
+Format: **`ignore [INDEX]`** or **`unignore [INDEX]`**
 
 * `index` The index of the entry you want to ignore, obtained by using the `view` command:
 
@@ -421,7 +422,7 @@ You can see this change by using the `view` command:
 
 ![ignoreGSTAfter.png](images/UserGuide/ignoreGSTAfter.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Setting a Monthly Budget
 
@@ -429,7 +430,7 @@ After knowing how to manage your transactions, the next step to reach your finan
 rainyDay can help you by giving you reminders and encouraging you to stick to your budget! With a set monthly budget,
 rainyDay will remind you how much you have spent for the month with every new expense.
 
-Format : `setbudget [AMOUNT]`
+Format: **`setbudget [AMOUNT]`**
 
 * `AMOUNT` signifies the targeted goal for the user's monthly budget
 
@@ -444,11 +445,12 @@ as shown below:
 
 ![addNoodlesBudget.png](images%2FUserGuide%2FaddNoodlesBudget.png)
 
-If at any point of time you would like to remove this feature, simply set the goal to $0 by using the following command:
+If at any point of time you would like to remove this feature, simply set the goal to $0. 
+To do so, you can use the following command:
 
 ![unsetBudgetGoal.png](images%2FUserGuide%2FunsetBudgetGoal.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Shortcuts
 
@@ -466,12 +468,12 @@ cover them all. So, if you're ready to start working smarter, not harder, let's 
 
 If you would like to add some shortcuts, this is how you can create one!
 
-Format: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`
+Format: **`shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`**
 
 * `SHORTCUTNAME` can be any single word of your choice to reference an actual command
 * `ACTUALCOMMAND` is the actual command which you want your shortcut to perform
 
-Example of usage:
+Example of Usage:
 
 You often eat the same noodle dish from your favourite coffee shop. To save yourself the trouble of typing the same
 command in full, you can create a shortcut by using the following command:
@@ -485,22 +487,22 @@ command in full, you can create a shortcut by using the following command:
 After creating your shortcuts, you would want to use the shortcut to save yourself the trouble of typing the
 full command. This can be done by simply inputting the name of your created shortcut.
 
-Format: `[SHORTCUTNAME]`
+Format: **`[SHORTCUTNAME]`**
 
 Example of Usage:
 
-You have created the shortcut according to the example in the [adding a shortcut](#adding-a-shortcut) section. Now
-all you have to do is input the name of your created shortcut.
+You have created the shortcut according to the example in the [adding a shortcut](#adding-a-shortcut) section. Now,
+anytime you want to use your shortcut, all you have to do is input its name as shown below:
 
 ![shortcutUsage.png](images%2FUserGuide%2FshortcutUsage.png)
 
 #### Viewing a shortcut
 
-After creating your shortcuts, the `shortcut_view` command can be used to keep track of all your shortcuts.
+After creating your shortcuts, the `shortcut_view` command can also be used to keep track of all your shortcuts.
 
 Example of Usage:
 
-Suppose you forgot te shortcuts you have created, and you would like to view all of them.
+Suppose you forgot the shortcuts you have created, and you would like to view all of them.
 To do so, you can use the following command:
 
 ![shortcutView.png](images%2FUserGuide%2FshortcutView.png)
@@ -510,7 +512,7 @@ To do so, you can use the following command:
 At some point, you may discover that the shortcut you created is no longer useful, or you may have incorrectly created a
 previously added shortcut. In these situations, the `shortcut_delete` command can prove to be quite handy.
 
-Format: `shortcut_delete [SHORTCUTNAME]`
+Format: **`shortcut_delete [SHORTCUTNAME]`**
 
 * `SHORTCUTNAME` The shortcut command that you want deleted
 
@@ -523,7 +525,7 @@ the following command:
 
 ![shortcutDelete.png](images%2FUserGuide%2FshortcutDelete.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Data Management
 
@@ -564,13 +566,13 @@ The data file is named "rainyDay.json".
 
 Whenever you start up your rainyDay application, any of your previously saved data will automatically be loaded.
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ### Exporting to CSV
 
 Exports your financial statements into a [comma-separated values file (CSV)](#glossary).
 
-Format: `export`
+Format: **`export`**
 > **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
 >
 >💡 Saving your financial statements in a CSV file will allow you to view your statements in commonly used applications
@@ -595,16 +597,16 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 ![statementstable.png](images/UserGuide/statementTable.png)
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
-### Exiting the application
+### Exiting rainyDay
 
-After you have completed updating your transactions and would like to close the application, 
+After you have completed updating your transactions and would like to close rainyDay, 
 you can use the following command:
 
-Format: `bye`
+Format: **`bye`**
 
-[Jump back to features overview](#features-overview)
+[Jump back to Features Overview](#features-overview)
 
 ## FAQ
 
