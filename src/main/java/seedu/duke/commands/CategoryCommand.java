@@ -30,9 +30,11 @@ public class CategoryCommand extends Command {
     public static void updateItemCategory(Item item, String oldCategory, String newCategory)
             throws CategoryFormatException {
         try {
-            if (oldCategory.isBlank() || newCategory.isBlank()) {
+            if (oldCategory.toLowerCase().isBlank() || newCategory.toLowerCase().isBlank()) {
+                System.out.println("Exception thrown in updateItem");
                 throw new CategoryFormatException();
             }
+            System.out.println("Check existing cat");
             checkExistingCategory(item, oldCategory, newCategory);
         } catch (CategoryFormatException cfe) {
             throw new CategoryFormatException();
@@ -47,10 +49,14 @@ public class CategoryCommand extends Command {
      */
     private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
         try {
+            System.out.println("Try remove item");
             removeItemFromCategory(item, oldCategory);
+            System.out.println("Set item cat");
             item.setCategory(newCategory);
+            System.out.println("add item to new cat");
             addItemToCategory(newCategory, item);
         } catch (NullPointerException e) {
+            System.out.println("NPE print new cat");
             Ui.printNewCategory();
         }
     }
@@ -61,6 +67,7 @@ public class CategoryCommand extends Command {
      * @param oldCategory the category that the item currently belongs to.
      */
     private static void removeItemFromCategory(Item item, String oldCategory) {
+        oldCategory = oldCategory.toLowerCase();
         if (!categoryHash.containsKey(oldCategory)) {
             return;
         }
@@ -79,9 +86,11 @@ public class CategoryCommand extends Command {
      */
     private static void addItemToCategory(String categoryToAdd, Item item) {
         if (!categoryHash.containsKey(categoryToAdd.toLowerCase())) {
-            categoryHash.put(categoryToAdd, new ArrayList<>());
+            categoryHash.put(categoryToAdd.toLowerCase(), new ArrayList<>());
         }
-        categoryHash.get(categoryToAdd).add(item);
+        System.out.println("Item to be added into list");
+        categoryHash.get(categoryToAdd.toLowerCase()).add(item);
+        System.out.println(categoryToAdd.toLowerCase() + "category has " + categoryHash.get(categoryToAdd.toLowerCase()).toString());
     }
 
     /**
@@ -103,6 +112,22 @@ public class CategoryCommand extends Command {
         } else {
             Ui.printCategoryList(categoryHash);
         }
+    }
+
+    public static String capitaliseCategory(String category) {
+        String capsString = new String();
+        String[] catWords = category.split(" ");
+        for (String word : catWords) {
+            if (word.equals("and") || word.equals("at") ||
+                    ((word.equals("a") || word.equals("the") || word.equals("an")) && word != catWords[0])) {
+                capsString = capsString + word;
+            } else {
+                capsString = capsString + word.substring(0,1).toUpperCase() + word.substring(1);
+            }
+            capsString = capsString + " ";
+        }
+        capsString = capsString.trim();
+        return capsString;
     }
 
     /**

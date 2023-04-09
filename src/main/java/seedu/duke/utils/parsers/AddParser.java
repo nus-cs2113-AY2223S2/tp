@@ -35,7 +35,9 @@ public class AddParser extends Parser {
                 return;
             }
             String name = matcher.group(NAME_INDEX);
+            name = name.trim();
             String upc = matcher.group(UPC_INDEX);
+            upc = upc.trim();
             BigInteger quantity = new BigInteger(matcher.group(QTY_INDEX));
             BigDecimal price = new BigDecimal(matcher.group(PRICE_INDEX));
             String category = matcher.group(CAT_INDEX);

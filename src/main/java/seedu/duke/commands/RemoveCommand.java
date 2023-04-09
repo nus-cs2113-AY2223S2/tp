@@ -41,9 +41,9 @@ public class RemoveCommand extends Command {
     /**
      * Remove an item from the inventory by the upc code given
      */
-
     public void removeByUpcCode() {
         try {
+            upcCode = upcCode.trim();
             if (!upcCodes.containsKey(upcCode)) {
                 throw new RemoveErrorException();
             }

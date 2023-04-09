@@ -33,12 +33,13 @@ public class AddCommand extends Command {
                 item.setCategory(category);
             }
         } catch (NullPointerException e) {
-            item.setCategory("uncategorized");
+            item.setCategory("Uncategorized");
         }
         try {
             CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
         } catch (CategoryFormatException e) {
-            //Ui.printNewCategory();
+            System.out.println("Exception thrown here");
+            Ui.printNewCategory();
         }
     }
     /**
@@ -48,7 +49,7 @@ public class AddCommand extends Command {
         if (upcCodes.containsKey(item.getUpc())) {
             Ui.printDuplicateAdd();
         } else {
-            upcCodes.put(item.getUpc(), item);
+            upcCodes.put(item.getUpc().toLowerCase(), item);
             itemInventory.add(item);
             addCategory();
             Ui.printSuccessAdd();
