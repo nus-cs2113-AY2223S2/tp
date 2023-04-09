@@ -429,10 +429,22 @@ public class ParserTest {
 
     // @@author kaceycsn
     @Test
-    public void checkHelpCommandValidity_inValidCommand_exceptionThrown(){
+    public void checkHelpCommandValidity_invalidCommand_exceptionThrown(){
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidHelpCommandException.class, () -> {
             parser.parseUserInput("/help export");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_HELP_COMMAND;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void checkHelpCommandValidity_givenMultipleCommands_exceptionThrown(){
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidHelpCommandException.class, () -> {
+            parser.parseUserInput("/help add bye");
         });
 
         String expectedMessage = MessageConstants.MESSAGE_INVALID_HELP_COMMAND;
@@ -451,17 +463,6 @@ public class ParserTest {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/help add"));
     }
-
-    @Test
-    public void parseHelpCommand_invalidArguments_exceptionThrown() {
-        Parser parser = new Parser();
-        Exception exception = assertThrows(InvalidHelpCommandException.class, () -> {
-            parser.parseUserInput("/help export");
-        });
-        String expectedMessage = MessageConstants.MESSAGE_INVALID_HELP_COMMAND;
-        String actualMessage = exception.getMessage();
-        assertEquals(expectedMessage, actualMessage);
-    }
-
+    
     // @@author
 }
