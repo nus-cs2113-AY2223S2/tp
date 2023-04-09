@@ -1,4 +1,25 @@
 # Developer Guide
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up](#setting-up)
+  - [Prerequisite](#prerequisite)
+  - [Setting up the project in your computer](#setting-up-the-project-in-your-computer)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [Command Component](#command-component)
+  - [Manager Component](#manager-component)
+  - [Ui Component](#ui-component)
+  - [Utils Component](#utils-component)
+- [Implementation](#implementation)
+  - [Parsing Feature](#parsing-feature)
+  - [Meeting Feature](#meeting-feature)
+  - [Deadline Feature](#deadline-feature)
+  - [Staff Feature](#staff-feature)
+  - [Dish Feature](#dish-feature)
+  - [Storage Feature](#storage-feature)
+- [Glossary](#glossary)
+- [Appendix A: Requirements](#appendix-a--requirements)
+- [Appendix B: Instructions for manual testing](#appendix-b--instructions-for-manual-testing)
 
 ## Acknowledgements
 Credits to [Personbook](https://github.com/nus-cs2113-AY2223S2/personbook)
@@ -217,6 +238,10 @@ The Dish feature consists of three functions:
 4. The `addXYZ()` method is called from outside `XYZManager()` class.
 5. The above process is listed only for `addXYZ()`, but `deleteXYZ()` follows the same process as the above sequence diagram.
 
+## Glossary
+
+* *Any Operating System* - Windows, Linux, Unix, OS-X
+
 ## Appendix A: Requirements
 ### Product scope
 **Target user profile**  
@@ -254,10 +279,6 @@ The Dish feature consists of three functions:
 - The application should be able to hold up to at least 100 items in the different lists without lagging.
 - The application should be easy to learn and pick up by reading the User Guide.
 - When using the application, a user with above average typing speed should be able to complete tasks faster as compared to using a mouse.
-
-## Glossary
-
-* *Any Operating System* - Windows, Linux, Unix, OS-X
 
 ## Appendix B: Instructions for manual testing
 
