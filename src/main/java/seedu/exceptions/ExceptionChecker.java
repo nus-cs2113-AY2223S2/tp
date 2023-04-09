@@ -76,7 +76,6 @@ public class ExceptionChecker {
             throws WrongPrecisionException, EmptyStringException {
         if (userInput.contains(DOT)) {
             String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,DOT,BLANK);
-            System.out.println(twoDecimalPlaces);
             if (twoDecimalPlaces.length() > 2) {
                 throw new WrongPrecisionException();
             }
