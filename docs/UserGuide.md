@@ -106,7 +106,6 @@ __________________________________________________________
 
 Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`<br>
-**Hint**: Order of `--[s/i] id/[index] desc/[description of step/ingredient]` is flexible<br>
 **Examples**:<br>
 ```
 __________________________________________________________
