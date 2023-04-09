@@ -215,11 +215,11 @@ Below is a class diagram for the implementation
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+Duck is a program developed for students with multiple tasks such as deadlines and events, as well as many different classes who prefer CLI applications.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+Duck will be able to allow students who can type fast to quickly record down the tasks that they need to do, as well as helping them keep track of their different classes in an organised manner. By inputting short commands, students will be able to retrieve information on their upcoming tasks and classes and any related notes easily.
 
 ## User Stories
 
@@ -241,12 +241,37 @@ Below is a class diagram for the implementation
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Duck should be able to run on Macos, Windows and Linux with at least Java 11 installed.
+2. Recorded tasks and classes should not be lost when the program or the system is shut down.
+3. Users who are proficient in typing should be able to accomplish the different tasks faster than a typical user trying to accomplish the same tasks with a GUI instead.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Duck* - The name of the program
+* *Task* - A task that can be recorded in Duck (Todo, Deadline, Event)
+* *Command* - Lines of input that when typed into the terminal, will execute appropriate functions as indicated in the User Guide
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Launching the program
+1. Ensure that Java 11 or above is installed
+2. Download the latest version of Duck
+3. Launch the terminal and navigate to the folder where Duck is located in
+4. Type in the command ```java -jar Duck.jar``` to lauch Duck
+    - Expected Outcome: Duck launches in the terminal with its start message displayed.
+
+### Closing the program
+1. Type ```bye``` in the terminal to exit the program
+    - Expected Outcome: The exit message is displayed in the terminal, and the program closes.
+
+### Storage and Save Data
+- If Duck is run for the first time, the save file will be generated automatically along with the ```data``` folder
+    - Expected Outcome: The ```data``` folder will be created, and the ```savedata.txt``` file will be created inside this folder
+
+- After any changes are made to the list of tasks or schedule, the changes will be stored in to the save file located in ```data/savedata.txt```
+    - Expected Outcome: Any newly added tasks or school classes or other changes made will be reflected in the ```savedata.txt``` file
+
+- If any edits or changes are made directly to the ```savedata.txt``` file (which users are strongly recommended not to do so) which leads to the save file being invalid, the ```savedata.txt``` file will have all its data wiped upon starting up Duck.
+    - Expected Outcome: An error message will be displayed in the terminal when Duck is lauched, with none of the previously saved tasks or classes being loaded. The ```savedata.txt``` file will have all of its contents erased.
