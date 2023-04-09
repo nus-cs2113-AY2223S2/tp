@@ -172,7 +172,7 @@ public class GeneralCommandHandler implements CommandList {
             case CLEAR_ACHIEVEMENTS:
                 achievementListHandler.clearAchievementsData();
                 break;
-            case QUICK_FIND_COMMAND:
+            case SEARCH_COMMAND:
                 command = new CompletedExerciseSearchCommand(userCommands, userCareerData);
                 break;
             default:

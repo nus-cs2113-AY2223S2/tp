@@ -44,7 +44,7 @@ public class UserExerciseData {
                 exerciseWorkoutType = exerciseWorkoutType.substring(startWorkoutType+1,endWorkoutType);
 
                 String exerciseDescription = "Exercise Name: " + exerciseName +
-                        System.lineSeparator() + "Difficulty Level: " + exerciseDifficulty +
+                        System.lineSeparator() + "Difficulty Level: " + parseDifficultyLevel(exerciseDifficulty) +
                         System.lineSeparator() + "Workout type: " + exerciseWorkoutType +
                         System.lineSeparator() + exerciseInstructions;
 
@@ -57,6 +57,24 @@ public class UserExerciseData {
             }
         }
         return userExerciseDataMap;
+    }
+
+    /**
+     * Parses the difficulty level to change its value from beginner, intermediate and expert to
+     * easy, medium and hard.
+     *
+     * @param difficulty The difficulty of the exercise.
+     * @return renames the difficulties to easy, medium and hard.
+     */
+
+    public static String parseDifficultyLevel(String difficulty) {
+        if (difficulty.equals("beginner")) {
+            return "easy";
+        } else if (difficulty.equals("intermediate")) {
+            return "medium";
+        } else {
+            return "hard";
+        }
     }
 
     /**

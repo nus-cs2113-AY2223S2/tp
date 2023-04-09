@@ -3,13 +3,16 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.logic.commands.*;
+import seedu.duke.data.userdata.Session;
+import seedu.duke.data.userdata.UserCareerData;
+
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.storage.*;
 import seedu.duke.ui.Ui;
-
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -126,6 +129,29 @@ public class TestCommands {
         });
         assertDoesNotThrow(() -> {
             new ExerciseSearchCommand(testInputs2);
+        });
+
+    }
+
+    //@@author L-K-Chng
+    @Test
+    public void testFindCompletedExerciseCommand() {
+        String[] testInputs1 = {"quickfind"};
+        String[] testInputs2 = {"quickfind", "3/4"};
+
+        ArrayList<ExerciseData> exerciseList = new ArrayList<>();
+        GenerateExercise generateExercise = new GenerateExercise();
+        ArrayList<ExerciseData> exerciseData = generateExercise.generateSetAll();
+        exerciseList.add(exerciseData.get(0));
+        UserCareerData userCareerData = new UserCareerData();
+        Session session = new Session(exerciseList);
+        userCareerData.addWorkoutSession(session);
+
+        assertThrows(DukeError.class, () -> {
+            new CompletedExerciseSearchCommand(testInputs1, userCareerData);
+        });
+        assertDoesNotThrow(() -> {
+            new CompletedExerciseSearchCommand(testInputs2, userCareerData);
         });
 
     }
