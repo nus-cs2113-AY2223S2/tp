@@ -10,6 +10,9 @@ import java.util.StringJoiner;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
+/**
+ * A class representing a task to be done, with various attributes like deadlines and completion status.
+ */
 public class Task {
     //@@author KedrianLoh
     /**
@@ -65,6 +68,29 @@ public class Task {
         this.priority = priority;
     }
 
+    /**
+     * Checks if this task is still valid after loading it from the save file.
+     * Certain attributes if deleted or edited to invalid values will cause the task to be invalid.
+     *
+     * @return If this task is still valid.
+     */
+    public boolean isValid() {
+        if (id < 1) {
+            // Id must be positive
+            return false;
+        }
+        if (description == null || description.isEmpty()) {
+            // Description must exist
+            return false;
+        }
+        if (repeatTimes < 0 || (repeatTimes > 0 && deadline == null)) {
+            // Recurrence count must be positive, unless there is no deadline, then it must be 0
+            return false;
+        }
+        // Tag list and priority level must exist
+        return tags != null && priority != null;
+    }
+
     //@@author KedrianLoh
     /**
      * Converts this task into its summarised string representation, with only some attributes listed.
@@ -72,7 +98,8 @@ public class Task {
      * @return The summarised string representation of this task.
      */
     public String toString() {
-        String descriptionString = description.length() > 32 ? description.substring(0, 32) + "..." : description;
+        String descriptionString = description.length() > Formats.MAX_DESC_LEN_FOR_LIST
+                ? description.substring(0, Formats.MAX_DESC_LEN_FOR_LIST) + "..." : description;
         String isDoneString = isDone ? "X" : (isDue() ? "!" : " ");
         String taskString = String.format(Formats.TASK_STRING, id, isDoneString,
                 priority.toDisplayString(), descriptionString);
@@ -110,17 +137,26 @@ public class Task {
         return infoString.toString();
     }
 
-    //@@author
+    /**
+     * Checks if a task is due, which means the current time is equal to or after its deadline.
+     *
+     * @return If a task is due.
+     */
+    public boolean isDue() {
+        return deadline != null && !deadline.isAfter(LocalDateTime.now());
+    }
+
+    //@@author jeromeongithub
     public int getId() {
         return id;
     }
 
     public boolean isDone() {
-        return this.isDone;
+        return isDone;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public String getEmail() {
@@ -128,7 +164,7 @@ public class Task {
     }
 
     public LocalDateTime getDeadline() {
-        return this.deadline;
+        return deadline;
     }
 
     public TreeSet<String> getTags() {
@@ -136,11 +172,11 @@ public class Task {
     }
 
     public int getRepeatTimes() {
-        return this.repeatTimes;
+        return repeatTimes;
     }
 
     public Priority getPriority() {
-        return this.priority;
+        return priority;
     }
 
     public String setDone(boolean isDone) {
@@ -191,52 +227,113 @@ public class Task {
         return toString();
     }
 
-    public boolean isDue() {
-        return deadline != null && !deadline.isAfter(LocalDateTime.now());
-    }
-
+    /**
+     * Creates a predicate for checking if a task's deadline is before a given date.
+     * Used for the progress command.
+     *
+     * @param date The date to compare to.
+     * @return A predicate for checking if the task's deadline is before a given date.
+     */
     public static Predicate<Task> beforeDate(LocalDate date) {
         return task -> task.deadline != null && task.deadline.toLocalDate().isBefore(date);
     }
 
+    /**
+     * Creates a predicate for checking if a task's deadline is after a given date.
+     * Used for the progress command.
+     *
+     * @param date The date to compare to.
+     * @return A predicate for checking if the task's deadline is after a given date.
+     */
     public static Predicate<Task> afterDate(LocalDate date) {
         return task -> task.deadline != null && task.deadline.toLocalDate().isAfter(date);
     }
 
+    /**
+     * Creates a predicate for checking if a task is overdue, which means it is incomplete and due.
+     *
+     * @return A predicate for checking if a task is overdue.
+     */
     //@@author clement559
     public static Predicate<Task> isOverdue() {
         return task -> !task.isDone && task.isDue();
     }
 
+    /**
+     * Creates a predicate for checking if a task is completed.
+     *
+     * @return A predicate for checking if a task is completed.
+     */
     public static Predicate<Task> isDonePredicate() {
         return task -> task.isDone;
     }
 
     //@@author KedrianLoh
+    /**
+     * Creates a predicate for checking if a task's description contains a given string.
+     *
+     * @param description The string to check for.
+     * @return A predicate for checking if a task's description contains a given string.
+     */
     public static Predicate<Task> matchesDescription(String description) {
         return task -> task.description.contains(description);
     }
 
+    /**
+     * Creates a predicate for checking if a task has the given email address.
+     *
+     * @param email The email address to check for.
+     * @return A predicate for checking if a task has the given email address.
+     */
     public static Predicate<Task> matchesEmail(String email) {
         return task -> task.email != null && task.email.equals(email);
     }
 
+    /**
+     * Creates a predicate for checking if a task's deadline is before a given date-time.
+     *
+     * @param deadline The date-time to compare to.
+     * @return A predicate for checking if the task's deadline is before a given date-time.
+     */
     public static Predicate<Task> beforeDeadline(LocalDateTime deadline) {
         return task -> task.deadline != null && task.deadline.isBefore(deadline);
     }
 
+    /**
+     * Creates a predicate for checking if a task's deadline is after a given date-time.
+     *
+     * @param deadline The date-time to compare to.
+     * @return A predicate for checking if the task's deadline is after a given date-time.
+     */
     public static Predicate<Task> afterDeadline(LocalDateTime deadline) {
         return task -> task.deadline != null && task.deadline.isAfter(deadline);
     }
 
+    /**
+     * Creates a predicate for checking if a task is a recurring task.
+     *
+     * @return A predicate for checking if a task is a recurring task.
+     */
     public static Predicate<Task> isRepeating() {
         return task -> task.repeatTimes > 0;
     }
 
+    /**
+     * Creates a predicate for checking if a task has all the given tags.
+     *
+     * @param tags The list of tags to check for.
+     * @return A predicate for checking if a task has all the given tags.
+     */
     public static Predicate<Task> matchesTags(TreeSet<String> tags) {
         return task -> task.tags.containsAll(tags);
     }
 
+    /**
+     * Creates a predicate for checking if a task has the given priority level.
+     *
+     * @param priority The priority level to check for.
+     * @return A predicate for checking if a task has the given priority level.
+     */
     public static Predicate<Task> matchesPriority(Priority priority) {
         return task -> task.priority.equals(priority);
     }

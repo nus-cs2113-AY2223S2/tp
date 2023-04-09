@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
+/**
+ * Command class that will edit/delete the deadlines of Task objects of the given TaskList object.
+ */
 public class EditDeadlineCommand extends Command  {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DEADLINE, Flags.EDIT, Flags.EDIT_DELETE,
         Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
@@ -50,6 +53,10 @@ public class EditDeadlineCommand extends Command  {
 
     /**
      * Edits the deadline for the tasks provided in the constructor.
+     *
+     * @param taskList The task list to edit tasks from.
+     * @param ui The Ui object used to display the result of editing deadlines.
+     * @throws InvalidIdException If the given task list does not contain tasks with the specified ids.
      */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {

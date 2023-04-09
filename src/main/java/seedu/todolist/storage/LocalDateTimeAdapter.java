@@ -13,6 +13,9 @@ import seedu.todolist.constants.Formats;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 
+/**
+ * A class for serializing and deserializing LocalDateTime objects since gson does not support that.
+ */
 class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
 
     @Override

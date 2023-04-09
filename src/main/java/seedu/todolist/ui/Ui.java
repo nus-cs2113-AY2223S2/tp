@@ -5,6 +5,9 @@ import seedu.todolist.constants.Messages;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
+/**
+ * Ui class for getting input from the user and displaying the program's output to the user.
+ */
 public class Ui {
     private final Scanner input = new Scanner(System.in);
 
@@ -135,6 +138,15 @@ public class Ui {
     }
 
     //@@author jeromeongithub
+    /**
+     * Displays a summary of tasks due this week, as well as a progress bar for those tasks.
+     * "This week" is defined as from this Monday to this Sunday.
+     *
+     * @param completedTasksThisWeek The number of tasks due this week that are completed.
+     * @param tasksThisWeek The total number of tasks due this week.
+     * @param totalSections The total number of sections in the progress bar.
+     * @param taskListString The string of summarised tasks.
+     */
     public void printProgressBar(int completedTasksThisWeek, int tasksThisWeek,
                                  int totalSections, String taskListString) {
         if (tasksThisWeek == 0) {

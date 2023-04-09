@@ -15,17 +15,19 @@ Given below are my contributions to the project.
     it to do.
 
 - **New Feature**: Created a tag system for users to add tags, in the form of strings, to their tasks.
-  - What it does: Allows users to add, edit and remove tags from their tasks.
+  - What it does: Allows users to add, edit and remove tags from their tasks using the `tags` command. Users can also
+    see all the tags present in their task list using the `taglist` command, in case they forgot what tags they have
+    used, after which they can view/edit tasks with those tags.
   - Justification: This feature is useful to the program as it sets up the ability for users to search for tasks by
     tags, or target certain tasks with commands depending on the tags they have. For example, students can add module
-    codes to tasks, so they can easily find all tasks in their task list that are related to that module later.
+    codes to tasks as a tag, so they can easily find all tasks in their task list that are related to that module later.
 
-- **New Feature**: Created a `info` command for viewing the detailed information of a task.
-  - What it does: Allows users to see certain attributes of a task like its associated email address and tags, which
-    are not displayed by the `list` command.
-  - Justification: This feature is useful to the program as users have the flexibility of being able to see the
-    additional attributes of their tasks when they want, without it cluttering up the task summary offered by the
-    `list` command. 
+- **New Feature**: Increase flexibility of task selection in multiple commands, not just the `list` command.
+  - What it does: Allows users to select more than one task to target with a command. Users can specify multiple task
+    ids instead of just a single id, or use filters to target all tasks fulfilling certain conditions.
+  - Justification: This feature is useful to the program as it affords more flexibility to users when it comes to
+    manipulating their task list. Users do not have to individually target tasks, which will require as many commands
+    as tasks they want to edit/delete, and can instead mass edit/delete tasks.
 
 ### Code Contributed:
 
@@ -33,13 +35,13 @@ Given below are my contributions to the project.
 
 ### Enhancements Implemented:
 
-- Wrote JUnit tests for the `ParserUtil` class.
+- Wrote some JUnit tests for the `ParserUtil` class.
 - Organized code to reduce coupling and be more in line with OOP principles.
 
 ### Contributions to the UG:
 
 - Contributed to the `Command format` section.
-- Contributed to the `Add task`, `Edit description`, `Edit tags`, and `View info` components in the `Features` section.
+- Contributed to the `Add task`, `Edit description`, `Edit tags`, and `View all tags` components in the `Features` section.
 
 ### Contributions to the DG:
 

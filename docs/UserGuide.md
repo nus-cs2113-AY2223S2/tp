@@ -35,7 +35,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 
 Given below is list of task attributes and their restrictions.
 
-- `DESCRIPTION` The description of a task has no additional restrictions.
+- `DESCRIPTION` A task must have a non-empty description.
   - Examples: `Hello yah`, `pi is roughly 3`
 - `DEADLINE` The date-time format is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
   - When adding a task or editing a deadline, the `DEADLINE` cannot be in the past.
@@ -98,7 +98,6 @@ Example of usage and output:
 Okay, I have added this task:
 [ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
-
 `add do math homework -email abc@def.com -prio 2 -tags difficult later 3.14` creates a task with the description `do math homework`, email address `abc@def.com`, priority level `Medium`, and the tags `3.14`, `difficult` and `later`.
 ```
 Okay, I have added this task:
@@ -121,7 +120,6 @@ Okay, I have marked the following task(s) as complete:
 __________________________________________________________________________________________
 [#00001][ID:00001][X][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
-
 `mark -done 0` marks all incomplete tasks as done.
 ```
 Okay, I have marked the following task(s) as complete:
@@ -325,7 +323,7 @@ Format: `list [IDS] [-sort SORT_OPTION]` OR `list [FILTERS] [-sort SORT_OPTION]`
   - The description is shown after the priority, and is truncated with `...` if it is too long.
   - The deadline is shown after the description, if it exists.
   - Other attributes can be seen with the [`info`](#view-detailed-information-of-a-task-info) command.
-- Refer to the [Selecting tasks](#selecting-tasks) section for more information about about selecting targeted tasks.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
   - If no ids or filters are provided, all tasks will be displayed by default.
 - `SORT_OPTION` can be one of the following:
   - `due` sorts tasks by their deadline, with earlier deadlines first and no-deadline tasks last.

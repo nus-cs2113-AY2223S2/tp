@@ -3,6 +3,7 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidEditException;
+import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidSelectException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.ParserUtil;
@@ -16,6 +17,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
+/**
+ * Command class that will edit/delete the repeat count of Task objects of the given TaskList object.
+ */
 public class EditRepeatCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_REPEAT, Flags.EDIT, Flags.EDIT_DELETE,
         Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
@@ -48,6 +52,10 @@ public class EditRepeatCommand extends Command {
 
     /**
      * Edits the repeat count for the tasks provided in the constructor.
+     *
+     * @param taskList The task list to edit tasks from.
+     * @param ui The Ui object used to display the result of editing repeat count.
+     * @throws InvalidIdException If the given task list does not contain tasks with the specified ids.
      */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {

@@ -2,7 +2,6 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
-import seedu.todolist.exception.InvalidBooleanException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.ParserUtil;
@@ -17,7 +16,7 @@ import java.util.HashSet;
 import java.util.function.Predicate;
 
 /**
- * Command for displaying the current task list.
+ * Command class that will display a summary of Task objects from the given TaskList object.
  */
 public class ListTasksCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST, Flags.SORT,
@@ -29,10 +28,11 @@ public class ListTasksCommand extends Command {
     private Comparator<Task> comparator = null;
 
     /**
-     * Constructs a ListTaskCommand object by parsing the provided arguments.
+     * Constructs a ListTasksCommand object by parsing the provided arguments.
+     * Can select tasks to display by providing a list of ids, or one or more filters.
      *
      * @param args The provided arguments, parsed from the user's input.
-     * @throws InvalidBooleanException If any of the provided boolean values are invalid.
+     * @throws ToDoListException If ids/filters are invalid, or if both ids and filters are provided.
      */
     public ListTasksCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_LIST));
@@ -43,11 +43,11 @@ public class ListTasksCommand extends Command {
     }
 
     /**
-     * Displays the full or filtered task list, depending on filters chosen.
+     * Displays a summary of tasks specified in the constructor.
      *
-     * @param taskList The task list whose tasks are to be displayed.
-     * @param config Used in other extensions of the Command class.
-     * @param ui The Ui object used to display the task list.
+     * @param taskList The task list to get task information from.
+     * @param ui The Ui object used to display the task summary.
+     * @throws InvalidIdException If the given task list does not contain tasks with the specified ids.
      */
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         if (idHashSet.isEmpty() && predicate == null) {

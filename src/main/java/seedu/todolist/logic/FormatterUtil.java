@@ -5,6 +5,9 @@ import seedu.todolist.constants.Formats;
 import java.time.LocalDateTime;
 import java.util.TreeSet;
 
+/**
+ * Utility class for formatting deadlines and lists of tags as a string, for display purposes.
+ */
 public class FormatterUtil {
     private FormatterUtil() {
     }

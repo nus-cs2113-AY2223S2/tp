@@ -10,6 +10,9 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
+/**
+ * Command class that will display or edit the configuration settings.
+ */
 public class EditConfigCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG,
         Flags.CONFIG_CHECK_FREQ, Flags.CONFIG_REPEAT_FREQ, Flags.RESET};
@@ -34,6 +37,9 @@ public class EditConfigCommand extends Command {
 
     /**
      * Edits the configuration for the settings to be changed provided in the constructor.
+     *
+     * @param config The Configuration object whose settings are displayed/updated.
+     * @param ui The Ui object used to display the configuration settings.
      */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) {

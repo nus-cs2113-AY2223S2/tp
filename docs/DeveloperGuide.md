@@ -34,7 +34,7 @@ The above diagram provides a high-level overview of the program's design, which 
 - [`ToDoListManager`](#manager-component): Initializes the other components and connects them together
 - [`UI`](#ui-component): Handles all input and output between the user and the program
 - [`Logic`](#logic-component): Parses user input to commands and executes them
-- [`TaskList`](#tasklist-component): Holds the program's data in memory
+- [`TaskList`](#model-component): Holds the program's data in memory
 - [`Storage`](#storage-component): Saves data to the hard disk and loads it during the program's startup
 
 ### Manager Component
@@ -43,22 +43,30 @@ The code for this component is found in [`ToDoListManager.java`](https://github.
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
-The `ToDoListManager` component contains the `Ui`, `Logic`, `TaskList`, and `Storage` components, and depends
+The `ToDoListManager` component contains the `Ui`, `Logic`, `Model`, and `Storage` components, and depends
 on the `Command` class, which is returned by the `Parser` class and executed by the `ToDoListManager`.
 
 The `ToDoListManager` component,
-- initializes all the other components that it operates on (`Ui`, `Parser`, `TaskList`, `Storage`).
+- initializes all the other components that it operates on (`Ui`, `Parser`, `Model`, `Storage`).
 - passes user input from the `Ui` component to the `Logic` component, which returns a `Command` object.
-- executes the returned `Command` object on the `TaskList` component, using the `Logic` component.
-- calls on the `Storage` component to save the data of the `TaskList` component to the hard disk.
+- executes the returned `Command` object on the `Model` component, using the `Logic` component.
+- calls on the `Storage` component to save the data of the `Model` component locally.
 
 ### Ui component
 
 The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
 
+![UiClassDiagram](images/UiClassDiagram.png)
+
+The `Ui` component consists of just the `Ui` class.
+
+The `getUserInput()` method is used by the `ToDoListManager` to get the user's input, which is used to create a
+`Command` object. Output from executing a `Command` is displayed using `println()`. When the program terminates, the
+`ToDoListManager` will call `close()` to close the `Scanner`.
+
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
+The code for this component is found [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -67,12 +75,20 @@ extensions of the `Command` class like the `AddTaskCommand`, `ListTagsCommand`, 
 
 When the `ToDoListManager` component passes user input to the `Parser`, a `Command` object (such as an
 `AddTaskCommand`) is created and returned to the `ToDoListManager`. The `ToDoListManager` executes the returned
-`Command` object, which will act on the `TaskList` if needed and output the result of the command through the `Ui`
-component.
+`Command` object, which will act on the `TaskList` and `Config` if needed and output the result of the command
+through the `Ui` component.
 
-### TaskList component
+### Model component
 
-The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/model).
+
+![ModelClassDiagram](images/ModelClassDiagram.png)
+
+The `Model` component contains the `Config`, `TaskList`, and `Task` classes, and the `Priority` enum.
+
+The `Config` stores the attributes related to recurring tasks. The `TaskList` stores all `Task` objects in a `TreeMap`,
+which it can operate on. The `Task` class consists of several attributes such as a description as well as a priority
+level, which is represented as an enumeration `Priority`.
 
 ### Storage component
 
@@ -107,9 +123,6 @@ The following sequence diagram shows how the delete task operation works:
 
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
 
-Step 4: The user then decides to execute the command list. This command does not modify the TaskList.
-Thus, the TaskList will return to its initial state where there are no tasks stored in the TaskList.
-
 ### Mark/unmark task feature
 
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
@@ -119,11 +132,11 @@ Step 2: The user executes `add survey -due 20/03/2023 23:59` command to add a ta
 The add command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
 
 Step 3: The user wants to mark the task as completed by inputting the command `mark 1` into the terminal
-to mark the task as done. The command will then call the `TaskList#setDone`, which marks the task at id 1
+to mark the task as done. The command will then call the `TaskList#setDone()`, which marks the task at id 1
 of the TaskList as done.
 
 For the unmark command, the user can instead input the command `unmark 1` to set the task as incomplete.
-The command also calls `TaskList#setDone` which sets the task at id 1 to be not done.
+The command also calls `TaskList#setDone()` which sets the task at id 1 to be not done.
 
 The following sequence diagram shows how the mark/unmark task operation works:
 
@@ -132,9 +145,8 @@ The following sequence diagram shows how the mark/unmark task operation works:
 ### Edit task deadline feature
 
 The edit deadline function extends NUS To-Do List with an edit feature for the deadlines assigned to tasks.
-It is facilitated by the TaskList and Command classes. It implements the `TaskList#editDeadline()` operation,
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#setDeadline()` operation,
 which edits deadline of task at assigned id.
-
 
 Given below is an example usage scenario and how the edit deadline mechanism will behave at each step.
 
@@ -175,7 +187,6 @@ description `survey` will be created, with a deadline of 1 week from the origina
 task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
 task will have a repeat count of 2.
 
-
 ### List tasks sorted by deadline feature
 
 This ListTasksCommand extends NUS To-Do List with an automatic sorting feature that sorts all tasks in an ascending
@@ -191,7 +202,7 @@ tasks to the To-Do List. The `add` command calls `TaskList#addTask()` once for e
 be added to the existing TaskList.
 
 Step 3. The user wants to view the entire list of deadlines that he/she has added. The user can do this by using the
-command `list` into the terminal. By doing so,`TaskList#toString()` will be executed, which will sort
+command `list -sort due` into the terminal. By doing so,`TaskList#toString()` will be executed, which will sort
 the list in an ascending deadline order, where the deadline that is closest to date will be at the top and the deadline
 furthest to date will be at the bottom. Next, `ui#printTaskList()` will be executed, which will display the list of
 deadlines to the user in the terminal.
@@ -205,7 +216,7 @@ The following sequence diagram shows how the list operation works:
 The storage feature is facilitated by the `Storage` class.
 
 The Storage class implements the following operations:
-- `Storage#saveData(TaskList)` --- Saves the current task list.
+- `Storage#save()` --- Saves the current task list.
 - `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
 
 Given below are 3 example usage scenarios and how the Storage mechanism behaves in each scenario.
@@ -260,6 +271,8 @@ their tasks and a progress bar to help them visualize their progress.
 
 ![ProgressBarCommandSequence](images/ProgressBarCommandSequence.png)
 
+In the above diagram `printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskListString)`
+is abbreviated as `printProgressBar(...)`.
 
 ## Appendix: Requirements
 
@@ -306,10 +319,8 @@ able to accomplish most of the tasks faster using commands than using the mouse.
 
 The following are instructions on how to test the program manually.
 
-### Startup/Exit
-
-- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0),
-double-click on it or run `java -jar todolist.jar` in a terminal to start the program.
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0), run `java -jar todolist.jar` in a terminal to start the program.
   - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
-- To exit, use the exit command: `exit`
+- Try running some commands - use the command `help` or refer to the [User Guide](https://ay2223s2-cs2113-t11-4.github.io/tp/UserGuide.html) for a list of commands.
+- To exit, use the command: `exit`
   - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.
