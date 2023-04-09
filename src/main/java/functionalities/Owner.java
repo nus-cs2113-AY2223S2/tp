@@ -11,8 +11,10 @@ public class Owner {
     protected String name;
     protected String contactNumber;
 
-    /** Constructs a new Owner object with the specified parameters.
-     * @param name The name of the owner.
+    /**
+     * Constructs a new Owner object with the specified parameters.
+     *
+     * @param name          The name of the owner.
      * @param contactNumber the contact number of the owner.
      * @throws SniffException if contact number is of the wrong format.
      */
@@ -42,6 +44,7 @@ public class Owner {
 
     /**
      * Sets the contact number of the owner to the correct format.
+     *
      * @param contactNumber the contact number of the owner.
      * @return the contact number with the correct format.
      * @throws SniffException if the contact number is of the wrong format.
@@ -59,6 +62,7 @@ public class Owner {
 
     /**
      * Sets the name of the owner to the correct format.
+     *
      * @param name the name of the owner.
      * @return the name with the correct format.
      * @throws SniffException if the name is of the wrong format.
@@ -74,6 +78,7 @@ public class Owner {
 
     /**
      * Checks if the given string is strictly numeric.
+     *
      * @param str the input string.
      * @return true if the input string is not null and is numeric, false otherwise.
      */
@@ -83,6 +88,7 @@ public class Owner {
 
     /**
      * Check if the given string is strictly alphabetic and contains spaces.
+     *
      * @param str the input string.
      * @return true if the input string is not null and is alphabetic and contains space, false otherwise.
      */
