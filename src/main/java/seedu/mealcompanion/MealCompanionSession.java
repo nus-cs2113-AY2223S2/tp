@@ -152,6 +152,7 @@ public class MealCompanionSession {
      */
     public void runRepl() {
         ingredientStorage.getFile(this.ingredients);
+        this.ui.printLogo();
         this.ui.printIntroduction();
         while (this.controlFlow.shouldRun()) {
             String nextCommand = ui.getNextCommandString();

@@ -1,6 +1,8 @@
 package seedu.mealcompanion.ui;
 
 import java.util.Scanner;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Contains the UI helpers for the current MealCompanionSession session.
@@ -28,6 +30,25 @@ public class MealCompanionUI {
         }
     }
 
+
+    /**
+     * Prints the Meal Companion logo
+     *
+     * @author aaronxujiachen
+     */
+    public void printLogo() {
+        try {
+            FileReader reader = new FileReader("chef.txt");
+            int data = reader.read();
+            while (data != -1) {
+                System.out.print((char)data);
+                data = reader.read();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Prints the welcome message.
