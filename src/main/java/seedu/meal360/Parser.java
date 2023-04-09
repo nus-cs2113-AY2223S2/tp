@@ -23,6 +23,18 @@ public class Parser {
     String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
             "[eg:chicken=100] and \"done\" when finished entering ingredients!";
 
+
+    /**
+     * This method is designed to combine multiple words into a single sentence
+     * after trimming the spaces.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param startIndex index to start from
+     * @param length length of substring
+     *
+     * @return an array of strings representing the user input
+     */
     public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex].trim());
         for (int i = startIndex + 1; i < length; i++) {
@@ -94,6 +106,20 @@ public class Parser {
         return ingredients;
     }
 
+
+    /**
+     * This method is designed to add in a recipe to the user's
+     * recipe list.
+     *
+     * The method will also check if a recipe already exists or not
+     * to prevent duplicate recipes.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param recipeList the recipe list of the user containing all recipes
+     *
+     * @return Recipe the recipe that has been added
+     */
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
@@ -122,9 +148,10 @@ public class Parser {
                     String[] command = line.trim().split(" and ");
                     ingredients = parseIngredientName(command);
                     boolean ingredientsInCorrectFormat = true;
-                    for (int i = 0; i < command.length; i++) {
-                        if (!command[i].contains("=")) {
+                    for (String s : command) {
+                        if (!s.contains("=")) {
                             ingredientsInCorrectFormat = false;
+                            break;
                         }
                     }
                     if (ingredients.size() == 0 || !ingredientsInCorrectFormat) {
@@ -144,6 +171,21 @@ public class Parser {
         return newRecipe;
     }
 
+    /**
+     * This method is designed to edit an already existing recipe
+     * to the user's recipe list.
+     *
+     * There are 3 types of editing operations:
+     * 1. Edit the ingredient list fully.
+     * 2. edit the ingredient list partially (1 recipe at a time).
+     * 3. Add new ingredients to the ingredient list.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param recipeList the recipe list of the user containing all recipes
+     *
+     * @return Recipe the recipe that has been edited
+     */
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
