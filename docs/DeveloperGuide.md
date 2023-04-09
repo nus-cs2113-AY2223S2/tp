@@ -59,7 +59,7 @@ Please be advised that we cannot guarantee complete functionality of Meal Compan
 
 ### Architecture
 
-![Architecture.png](images\Architecture.png)
+![Architecture.png](images/Architecture.png)
 
 The **Architecture Diagram** given above explains the high-level design of the program.
 Given below is a quick overview of main components.
