@@ -319,9 +319,12 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 The storage is updated with the new TaskList without the deleted task.
 
 The below diagram shows the sequence diagram for the DeleteTask functionality.
+
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommand-ModifyCommand__Delete_Tasks_.png)
 
+
 The below diagram shows the activity diagram for DeleteCommand for tasks 
+
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommandActivityDiagram.png)
 
 [*Return to TOC*](#table-of-contents)
