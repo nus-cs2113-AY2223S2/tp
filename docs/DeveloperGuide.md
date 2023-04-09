@@ -96,8 +96,6 @@ All commands will be fetched by the getUserCommand() method in the TextUi class.
 
 
 ### Search book by title
-<img src="images/Search%20class%20diagram.png" width="50%" height="50%" />  
-
 Description: Searches for a book using its title.  
 Format: `search -title TITLE`  
 Example:  
