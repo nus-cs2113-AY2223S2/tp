@@ -1,10 +1,10 @@
 @startuml
-skinparam classAttributeIconSize 0
 hide footbox
-hide members
 hide circle
+skinparam classAttributeIconSize 0
+!include Style.puml
 
-Package " "<<Rectangle>>{
+Package "FITZ"<<Rectangle>>{
     class Ui
     class Storage
     class Parser

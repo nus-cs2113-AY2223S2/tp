@@ -75,9 +75,8 @@ public class Ui {
         return HELP_MESSAGE_WORKOUT;
     }
 
-    public static short showErrorMessage(String errorMessage) {
+    public static void showErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
-        return 0;
     }
 
     public static void showCommandResult(Command command)

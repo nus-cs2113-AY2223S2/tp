@@ -97,9 +97,30 @@ The following diagram illustrate how the `Duke` class work.
 
 ### UI Component
 
+<p align="center">
+<img src="images/UiComponentClassDiagram.png" width="450" />
+</p>
+
+The above is the class diagram for Ui.
+The retrieval of user input and display of relevant information and error messages for the application is managed by the `Ui` class, 
+which represents the `Ui` component.
+
+getUserInput() methods is used to get the user input 
+and all the methods that related to showMessage are used for printing out the error message or the relevant information
+which will correspond to the user behaviour.
 
 
 ### Command Component
+
+<p align="center">
+<img src="images/CommandArchitectureDiagram.png" width="450" />
+</p>
+
+The above picture shows the lower level design of Command component of the software. 
+Generally, the commands class in workoutcommnds ,caloriescommands, and workoutcommands package 
+inherit from Command class. Besides, Exit Comamnd also inheerit from Command class
+
+
 
 The add mechanism is facilitated by `AddCommand`. 
 It extends `Command` and modifies the execute function to add an exercise.
