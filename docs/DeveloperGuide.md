@@ -38,6 +38,9 @@
   - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-9)
+  - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-10)
 - [Appendix: Requirements](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#appendix-requirements)
   - [Product Scope](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#product-scope)
     - [Target user profile:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#target-user-profile)
@@ -66,6 +69,7 @@
 ### Acknowledgements
 
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
+2. The source for the nutritional data is from the following links, [Western](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2022/10/Western-TE-1.pdf), [Nasi Padang](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Nasi-Padang-TE.pdf), [Taiwanese](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Taiwanese-TE.pdf), and [Mala](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Mala-TE.pdf).
 ---
 
 ## Design
@@ -93,7 +97,7 @@ The rest of the Application consists of three components:
 
 API: ui.java
 
-INSERT UI UML HERE
+<img src="uml/UI-class-diagram.png" alt="Sequence Diagram" width="1000">
 
 The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
 they improve on the accessibility of the application.
@@ -117,6 +121,9 @@ How the `Command` component works:
 4. The command can also communicate with the various storage components when it is executed, such as saving and loading of user, meals, foods, exercise data.
 5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
 6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException) is thrown.
+
+<img src="uml/Command-class-diagram.png" alt="Sequence Diagram" width="1000">
+
 
 ### Storage Component
 

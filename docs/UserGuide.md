@@ -1,8 +1,8 @@
-# ***Life Tracker user guide***
+# ***LifeTracker user guide***
 
 ## Introduction
 
-**_Life Tracker_** is an application that allows users who are health conscious automate the tracking of their calories and keep a record of 
+**_LifeTracker_** is an application that allows users who are health conscious automate the tracking of their calories and keep a record of 
 their calorie intake history.
 
 The app also allows users to keep track of their daily exercises to compute their calorie loss.
@@ -31,7 +31,7 @@ Their net calorie gain/loss can then be viewed.
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
-4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar lifetracker.jar command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
@@ -117,7 +117,7 @@ Example of usage:
 
 #### Alternatives
 
-For Users who are not experienced with typing fast on keyboards, *LifeTracker* offers a menu option to add meal
+For users who are not experienced with typing fast on keyboards, *LifeTracker* offers a menu option to add meal
 
 Format: `add`
 
@@ -185,7 +185,6 @@ Format: `nutrition`
 
 * The first food search should be in English
 * To select the particular food filtered, an integer should be inputted
-* To continue searching for more food, **1** should be inputted when prompted after, else input any number to exit
 
 Example:
 ![nutrition-example](./UG-images/nutrition-example.PNG)
@@ -227,7 +226,7 @@ Example:
 ![examples-example](./UG-images/examples-example.PNG)
 
 ### Exiting the application: `bye`
-Allows user to exit the application.
+Allows user to exit the appliction.
 
 Format: `bye`
 
@@ -248,15 +247,17 @@ Output:
 
 | Action    | Format, Examples                                                                                         |
 |-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view                                                                                                     |
-| Update    | update                                                                                                   |
+| View      | view /[fieldName]                                                                                        |
+| Update    | update /[fieldName]                                                                                      |
 | Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list foods or list meals                                                                                 |
+| List      | list [foods/meals/exercises]                                                                             |
 | Delete    | delete INDEX e.g delete 3                                                                                |
 | Filter    | filter [lower_bound] [upper_bound]                                                                       |
 | Nutrition | nutrition                                                                                                |
 | Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
 | Track     | track                                                                                                    |
 | Examples  | examples [meal/exercise]                                                                                 |
+| Help      | help
 | Bye       | bye                                                                                                      |
+
 
