@@ -1,7 +1,7 @@
 # DinerDirector User Guide
 
 ## Table of Contents
-- [Introduction](#Introduction)
+- [Introduction](#introduction)
   - [Purpose of this Guide](#purpose-of-this-guide) 
 - [Quick Start](#quick-start)
   - [Installing DinerDirector](#installing-dinerdirector)
