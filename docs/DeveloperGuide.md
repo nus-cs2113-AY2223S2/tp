@@ -89,11 +89,6 @@ the ListCurrentCommand. There are only two commands that will cause changes to t
 and DeleteCommand. This involves adding of new modules and deleting of old modules to the Storage. The text file will
 be continuously updated every time an Add or Delete command is called.
 
-How module data is stored in text file:
-
-Module information is stored in one single line separated by commas
-`univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
-
 Class Diagram of Storage:
 ![StorageClassDiagram.png](diagrams%2FStorage%2FStorageClassDiagram.png)
 
@@ -109,7 +104,13 @@ Sequence Diagram of Storage initialisation:
 
 ![Storage.png](diagrams%2FStorage%2FStorage.png)
 
+How module data is stored in text file:
+
+Module information is stored in one single line separated by commas
+`univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
+
 Reference readModData Diagram:
+
 ![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
 The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
@@ -361,6 +362,7 @@ Edits the total accommodation cost the user plans to spend for his/her SEP trip.
 Sequence Diagram of Edit Accommodation Command
 
 ![EditAccommodationCommand.png](diagrams%2Fbudget%2FEditAccommodationCommand.png)
+
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
 **Explanation**
@@ -384,6 +386,7 @@ Edits the total airplane ticket cost the user plans to spend for his/her SEP tri
 Sequence Diagram of Edit Airplane Ticket Command
 
 ![EditAirplaneTicketCommand.png](diagrams%2Fbudget%2FEditAirplaneTicketCommand.png)
+
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
 **Explanation**
@@ -407,6 +410,7 @@ Edits the total food cost the user plans to spend for his/her SEP trip.
 Sequence Diagram of Edit Budget Command
 
 ![EditFoodCommand.png](diagrams%2Fbudget%2FEditFoodCommand.png)
+
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
 **Explanation**
@@ -430,6 +434,7 @@ Edits the total entertainment cost the user plans to spend for his/her SEP trip.
 Sequence Diagram of Edit Entertainment Command
 
 ![EditEntertainmentCommand.png](diagrams%2Fbudget%2FEditEntertainmentCommand.png)
+
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
 **Explanation**
