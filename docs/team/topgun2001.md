@@ -57,7 +57,7 @@ Given below are my contributions to the project:
           ([#48](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/48)),
           ([#47](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/47)),
           ([#56](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/56)),
-          ([#127](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/127),
+          ([#127](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/127)),
           ([#129](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/129))
 
 
