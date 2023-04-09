@@ -86,7 +86,7 @@
 |  Enter command: |  Here are the expenses you have made for 2022/SEPTEMBER.
 |  The requested list is empty
 |
-|  Total expenses: $0.0
+|  Total expenses: $0.00
 |
 |  -----------------------------------------------------------------------
 |
