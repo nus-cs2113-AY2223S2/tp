@@ -171,10 +171,14 @@ The User will also be able to delete deadlines, view deadline list.
 
 ![](uml/images/XYZDeadlineDiagram.png)
 
-When the user input a deadline command, it will be parsed into Parser to determine which deadline command will be called.
-Then, the deadline command will be executed, and the respective method in the DeadlineManager class will be called, which are:
-
 (XYZ stands for the respective command name.)
+
+Step 1: After the parser returns a `XYZDeadlineCommand`, `DinerDirector` will call the `execute()` method of the command called.  
+
+Step 2: In `execute(ui)` method, the corresponding `XYZdeadline` method of `DeadlineManager` will be called.  
+
+Step 3: After the `XYZdeadline` method completed the task given, a message will be printed through the `TextUi` class with the `printMessage()` method. 
+
 
 #### Add deadline to deadline list
 
