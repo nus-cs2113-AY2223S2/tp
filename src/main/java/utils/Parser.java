@@ -390,6 +390,14 @@ public class Parser {
         return new FindDeadlineCommand((keyword.trim()));
     }
 
+    /**
+     * Deletes a Dish based on the index given by the user
+     * If index is valid, returns AddDishCommand().
+     * Otherwise, it returns IncorrectCommand().
+     *
+     * @param userInputNoCommand Contains the index for deleting a dish.
+     * @return The delete dish command.
+     */
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
 
         int indexToRemove = 0;
@@ -410,6 +418,14 @@ public class Parser {
         return new DeleteDishCommand(indexToRemove);
     }
 
+    /**
+     * Returns the ViewDishCommand after checking the input command by the user.
+     * If the command keyed in is valid, returns ViewDishCommand().
+     * Otherwise it returns IncorrectCommand().
+     *
+     * @param userInputNoCommand The view Dish command.
+     * @return The ViewDishCommand.
+     */
     private Command prepareViewDishCommand(String userInputNoCommand) {
         try {
             if (!userInputNoCommand.isBlank()) {
@@ -421,6 +437,14 @@ public class Parser {
         return new ViewDishCommand();
     }
 
+    /**
+     * Creates a Dish based on parameters given by the user
+     * If successfully created, returns AddDishCommand().
+     * Otherwise, it returns IncorrectCommand().
+     *
+     * @param userInputNoCommand Contains the parameters for creating a dish.
+     * @return The add dish command.
+     */
     private Command prepareAddDishCommand(String userInputNoCommand) {
         //MENU COMMANDS: add_dish n/<name>
         //                      pc/<price in cents>
@@ -468,6 +492,14 @@ public class Parser {
         return new AddDishCommand(name, price, ingredients);
     }
 
+    /**
+     * Finds a Dish based on a keyword given by the user.
+     * If keyword is valid, returns AddDishCommand().
+     * Otherwise, it returns IncorrectCommand().
+     *
+     * @param userInputNoCommand Contains the keyword to find the dishes.
+     * @return The find dish command.
+     */
     private Command prepareFindDishCommand(String userInputNoCommand) {
         String stringToFind = "";
 
