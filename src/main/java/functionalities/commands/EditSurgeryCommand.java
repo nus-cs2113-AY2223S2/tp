@@ -40,7 +40,6 @@ public class EditSurgeryCommand extends Command{
      */
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        tasks.removeAppointment(uid);
         tasks.editSurgery(uid,animal, owner, priority, startDate, startTime, endDate, endTime);
     }
 }

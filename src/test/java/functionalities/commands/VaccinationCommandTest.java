@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class VaccinationCommandTest {
 
     @Test
-    void vaccinationCommandNotNull() throws SniffException {
+    void vaccinationCommand_normalInputs_expectNotNull() throws SniffException {
         String animalName = "lulu";
         String animalType = "cat";
         String ownerName = "jon";

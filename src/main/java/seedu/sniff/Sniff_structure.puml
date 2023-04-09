@@ -1,0 +1,541 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "seedu.sniff.Sniff",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_109586094 { 
+   	label=sniff
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Sniff655660956[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Sniff</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1884274053 { 
+   	label=storage
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Storage1389662410[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Storage</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ extractData(fileName: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ openFile(absolutePath: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveAppointments(path: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3732 { 
+   	label=ui
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Ui1037788935[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Ui</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ formatPrintList(count: int, description: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentAddedMessage(appointment: Appointment)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentAlreadyMarkedMessage(uid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentAlreadyUnMarkedMessage(uid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentMarkMessage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentRemovedMessage(appointment: Appointment)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printAppointmentUnMarkMessage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printArchiveFileCreated(b: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ printFileCreated(b: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ readUserCommand(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showErrorMessage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showHelpMessage()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showLine()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showUserMessage(s: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showWelcomeMessage()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_579021399 { 
+   	label=functionalities
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   SniffTasks579021399[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SniffTasks</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addAppointment(appointment: Appointment)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addAppointmentUID(uid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addConsultation(animal: Animal, owner: Owner, date: LocalDate, time: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addSurgery(animal: Animal, owner: Owner, priority: String, startDate: LocalDate, startTime: LocalTime, endDate: LocalDate, endTime: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addVaccination(animal: Animal, owner: Owner, date: LocalDate, time: LocalTime, vaccine: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ archivedTasks(archiveSavedFile: FileWriter)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkConsultationDuplicate(animal: Animal, owner: Owner, date: LocalDate, time: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkSurgeryDuplicate(animal: Animal, owner: Owner, startDate: LocalDate, startTime: LocalTime, endDate: LocalDate, endTime: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkVaccinationDuplicate(animal: Animal, owner: Owner, date: LocalDate, time: LocalTime, vaccine: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ editConsultation(uid: String, animal: Animal, owner: Owner, date: LocalDate, time: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ editSurgery(uid: String, animal: Animal, owner: Owner, priority: String, startDate: LocalDate, startTime: LocalTime, endDate: LocalDate, endTime: LocalTime)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ editVaccination(uid: String, animal: Animal, owner: Owner, date: LocalDate, time: LocalTime, vaccine: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findAnimal(animal: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findAppointment(uId: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findDate(date: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findType(type: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listAppointments()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listArchivedAppointments()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ markAppointment(uid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAppointment(uid: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ retrieveTask(savedFile: FileWriter)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ unMarkAppointment(uid: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_602535288 { 
+   	label=commands
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ArchiveCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ArchiveCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Command1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Command</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   isExit: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ConsultationCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConsultationCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   date: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   time: LocalTime [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EditConsultationCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EditConsultationCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   date: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   time: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EditSurgeryCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EditSurgeryCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endTime: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   priority: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startTime: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EditVaccinationCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EditVaccinationCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   date: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   time: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vaccine: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ExitCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ExitCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FindCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FindCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   category: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   details: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+HelpCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)HelpCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ListCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ListCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MarkCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MarkCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RemoveCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RemoveCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SurgeryCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SurgeryCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   endTime: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   priority: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startDate: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   startTime: LocalTime [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+UnMarkCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)UnMarkCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   uid: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+VaccinationCommand1845523757[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)VaccinationCommand</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   animal: Animal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   date: LocalDate [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   owner: Owner [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   time: LocalTime [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vaccine: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ executeCommand(tasks: SniffTasks)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_748101438 { 
+   	label=archive
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Archive748101438[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Archive</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ extractArchiveData(archiveFile: File)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ openArchiveFile(filePath: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveArchivedAppointments(filePath: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_995410913 { 
+   	label=parser
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ArchiveParser1930038276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ArchiveParser</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addConsult(content: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addSurgery(content: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addVaccine(content: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FileParser1930038276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FileParser</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addConsultation(currentLine: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addSurgery(currentLine: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addVaccination(currentLine: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Parser1930038276[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Parser</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ parse(userCommand: String): Command</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseArchiveCommand()</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseByeCommand()</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseConsultationCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseEditCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseFindCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseHelpCommand()</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseListCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseMarkCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseRemoveCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseSurgeryCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseUnmarkCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- parseVaccinationCommand(task: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- splitInputBy(input: String, splitter: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Archive748101438 -> SniffTasks579021399[label="saveArchivedAppointments() -> archivedTasks()"];
+Command1845523757 -> ArchiveCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> ConsultationCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> EditConsultationCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> EditSurgeryCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> EditVaccinationCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> ExitCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> FindCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> HelpCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> ListCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> MarkCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> RemoveCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> SurgeryCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> UnMarkCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Command1845523757 -> VaccinationCommand1845523757[arrowhead=none, arrowtail=empty, dir=both];
+Sniff655660956 -> Command1845523757[label="run() -> executeCommand()"];
+Sniff655660956 -> Parser1930038276[label="run() -> parse()"];
+Storage1389662410 -> SniffTasks579021399[label="saveAppointments() -> retrieveTask()"];
+    
+}
+@enduml
