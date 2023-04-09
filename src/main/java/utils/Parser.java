@@ -219,13 +219,13 @@ public class Parser {
             }
 
             if (staffName.equals("") || staffWorkingDay.equals("") || staffPhoneNumber.equals("")
-            || staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10
+                || staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10
             ) {
                 throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PARAMETERS);
             }
 
             if (staffPhoneNumber.length() > 15) {
-                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER)
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
             }
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
