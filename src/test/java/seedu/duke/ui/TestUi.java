@@ -2,8 +2,12 @@ package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.HelpCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -282,6 +286,7 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+    //@@author Khulon
 
     /**
      * Checks if the ui.printPlannerHelp() method prints the correct output.
@@ -485,6 +490,46 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
+    //@@author Khulon
+    @Test
+    void testPrintPlannerMode () {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.plannerMode();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "\r\n===>Planner Mode<===\r\n";
+        } else {
+            expectedOutput = "\n===>Planner Mode<===\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    //@@author Khulon
+    @Test
+    void testPrintworkoutMode () {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        Ui ui = new Ui();
+        ui.workoutMode();
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "\r\n===>Workout Mode<===\r\n";
+        } else {
+            expectedOutput = "\n===>Workout Mode<===\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
     //@@author L-K-Chng
 
     /**
@@ -550,6 +595,110 @@ public class TestUi {
                 "the ground. Reverse the motion going only Â¾ of the way down. " +
                 "Repeat for the recommended amount of repetitions.\n" +
                 "\n";
+        }
+        assertEquals(expectedOutput, actualOutput.toString());
+    }
+
+    //@author Khulon
+    /**
+     * Checks if the ui.printHelp() method prints the correct output.
+     */
+    @Test
+    void testHelpCommand () {
+        ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(actualOutput));
+
+        GenerateExercise exerciseGenerator = new GenerateExercise();
+        Ui ui = new Ui();
+        Command command = null;
+        command = new HelpCommand();
+        try {
+            command.executeCommand(ui, exerciseGenerator);
+        } catch (DukeError e) {
+            System.out.println(e.getMessage());
+        }
+
+
+        String os = System.getProperty("os.name");
+        String expectedOutput = "";
+
+        if (os.contains("Windows")) {
+            expectedOutput = "These are some commands available:\r\n" +
+                    "[generate]\r\n" +
+                    "\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x\r\n" +
+                    "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
+                    "[filters]\r\n" +
+                    "\tView all available filters\r\n" +
+                    "[ippt] [AGE] [RUNTIME] [PUSHUPs] [SITUPs]\r\n" +
+                    "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises.\r\n" +
+                    "[start]\r\n" +
+                    "\tStart a workout session\r\n" +
+                    "[history]\r\n" +
+                    "\tView the information on all workout sessions you have completed\r\n" +
+                    "[data]\r\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\r\n" +
+                    "[delete]\r\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\r\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\r\n" +
+                    "[plans]\r\n" +
+                    "\tShow all plans\r\n" +
+                    "[planner]\r\n" +
+                    "\tEnter workout plan editor\r\n" +
+                    "[quick]\r\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\r\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\r\n" +
+                    "[find]\r\n" +
+                    "\tfinds all relevant exercises based on the keyword : find [keyword]\r\n" +
+                    "[achievements]\r\n" +
+                    "\tShows all the available achievements, their requirements and whether they have been achieved " +
+                    "or not\r\n" +
+                    "[clear_achievements]\r\n" +
+                    "\tClears all the data of finished exercises for the achievements database, resetting " +
+                    "counters for all achievements.  \n\tDo note that this command does not clear the counters for " +
+                    "each specific exercise, hence the number of each exercise completed from the data command will " +
+                    "NOT be cleared.\r\n" +
+                    "[exit]\r\n" +
+                    "\tEnd the program\r\n";
+        } else {
+            expectedOutput = "These are some commands available:\n" +
+                    "[generate]\n" +
+                    "\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x\n" +
+                    "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
+                    "[filters]\n" +
+                    "\tView all available filters\n" +
+                    "[ippt] [AGE] [RUNTIME] [PUSHUPs] [SITUPs]\n" +
+                    "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises.\n" +
+                    "[start]\n" +
+                    "\tStart a workout session\n" +
+                    "[history]\n" +
+                    "\tView the information on all workout sessions you have completed\n" +
+                    "[data]\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\n" +
+                    "[delete]\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\n" +
+                    "[plans]\n" +
+                    "\tShow all plans\n" +
+                    "[planner]\n" +
+                    "\tEnter workout plan editor\n" +
+                    "[quick]\n" +
+                    "\tGenerate a planned exercise: quick PLAN_NAME x\n" +
+                    "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\n" +
+                    "[find]\n" +
+                    "\tfinds all relevant exercises based on the keyword : find [keyword]\n" +
+                    "[achievements]\n" +
+                    "\tShows all the available achievements, their requirements and whether they have been achieved " +
+                    "or not" +
+                    "\n" +
+                    "[clear_achievements]\n" +
+                    "\tClears all the data of finished exercises for the achievements database, resetting " +
+                    "counters for all achievements.  " +
+                    "\n\tDo note that this command does not clear the counters for each specific exercise," +
+                    " hence the number of each exercise completed from the data command will NOT be cleared.\n" +
+                    "[exit]\n" +
+                    "\tEnd the program\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
