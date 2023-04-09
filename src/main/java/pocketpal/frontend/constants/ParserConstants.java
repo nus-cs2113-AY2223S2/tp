@@ -17,9 +17,9 @@ public final class ParserConstants {
     public static final int ARGUMENTS_GROUP = 1;
     public static final String VALID_PRICE_REGEX = "[0-9.]*";
 
-    public static final Pattern DATE_FORMATTER = Pattern.compile("\\d{2}/\\d{2}/\\d{2}$");
+    public static final Pattern DATE_FORMATTER = Pattern.compile("\\d{2}/\\d{2}/\\d{4}$");
 
-    public static final String DATE_FORMAT = "dd/MM/yy HH:mm";
+    public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
     public static final String ADD_OPTIONS = ParserConstants.CATEGORY_OPTION + ParserConstants.PIPE_INDICATOR
             + ParserConstants.DESCRIPTION_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.PRICE_OPTION;
 

@@ -7,20 +7,20 @@
 ## Table of Contents
 
 - [User Guide](#user-guide)
-    - [Table of Contents](#table-of-contents)
-    - [Introduction](#introduction)
-    - [Getting Started](#getting-started)
-    - [Features](#features)
-        - [Adding an entry: `/add`](#adding-an-entry-add)
-            - [Supported Categories](#supported-categories)
-        - [Deleting an entry: `/delete`](#deleting-an-entry-delete)
-        - [Edit an entry: `/edit`](#edit-an-entry-edit)
-        - [View an entry: `/view`](#view-an-entry-view)
-        - [Filter options](#filter-options)
-        - [Show help menu: `/help`](#show-help-menu-help)
-        - [Exit Program: `/bye`](#exit-program-bye)
-    - [Command Summary](#command-summary)
-    - [Frequently Asked Questions](#frequently-asked-questions)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Getting Started](#getting-started)
+  - [Features](#features)
+    - [Adding an entry: `/add`](#adding-an-entry-add)
+      - [Supported Categories](#supported-categories)
+    - [Deleting an entry: `/delete`](#deleting-an-entry-delete)
+    - [Edit an entry: `/edit`](#edit-an-entry-edit)
+    - [View an entry: `/view`](#view-an-entry-view)
+    - [Filter options](#filter-options)
+    - [Show help menu: `/help`](#show-help-menu-help)
+    - [Exit Program: `/bye`](#exit-program-bye)
+  - [Command Summary](#command-summary)
+  - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Introduction
 
@@ -244,10 +244,10 @@ Note:
 
 Note:
 
-- `start_date`, `end_date` must be in `dd/MM/yy` format.
-    - *warning*: users are advised to set start date and end date parameters with a maximum interval of 5 years. This is
-      because of the
-      [implementation of SimpleDateTime](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
+- `start_date`, `end_date` must be in `dd/MM/yyyy` format.
+    - `dd` - Day of the month, from 01 to 31
+    - `MM` - Month of the year, from 01 to 12
+    - `yyyy` - Supported year, from 0001 to 9999
 
 - Both flags are **required** if user wishes to use this
   option.
@@ -262,9 +262,9 @@ Example of usage:
 
 `/view -c food`
 
-`/view -sd 12/03/23 -ed 11/04/23 -c food`
+`/view -sd 12/03/2023 -ed 11/04/2023 -c food`
 
-`/view -c food -sp 2 -sd 12/03/23 -ed 11/04/23`
+`/view -c food -sp 2 -sd 12/03/2023 -ed 11/04/2023`
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -292,14 +292,14 @@ Format: `/bye`
 
 ## Command Summary
 
-| Command | Format                                                                                                                     |
-|--------:|----------------------------------------------------------------------------------------------------------------------------|
-|    /add | /add -d &lt;description&gt; -c &lt;category&gt;<br/>-p &lt;price&gt;                                                       |
-|   /view | /view [count] [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;]                   |
-|   /edit | /edit &lt;index&gt; [-c &lt;category&gt;]<br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-d &lt;description&gt;] |
-| /delete | /delete &lt;index&gt; [additional_index...]                                                                                |
-|   /help | /help                                                                                                                      |
-|    /bye | /bye                                                                                                                       |
+| Command | Format                                                                                                                                                                                                                     |
+|--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    /add | /add -d &lt;description&gt; -c &lt;category&gt;<br/>-p &lt;price&gt;<br/>e.g. <code>/add -d Gucci Bag -c Others -p 2000</code>                                                                                             |
+|   /view | /view [count] [-c &lt;category&gt;] <br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;] <br/>e.g. <code>/view -c food</code><br/>e.g.<code>/view -sp 100 -ep 200</code> |
+|   /edit | /edit &lt;index&gt; [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-d &lt;description&gt;]<br/>e.g. <code>/edit 1 -d Gucci Wallet -p 3000</code>                                                                            |
+| /delete | /delete &lt;index&gt; [additional_index...]<br/>e.g. <code>/delete 1</code><br/>e.g. <code>/delete 1 5 10</code>                                                                                                           |
+|   /help | /help                                                                                                                                                                                                                      |
+|    /bye | /bye                                                                                                                                                                                                                       |
 
 <!-- @@author -->
 

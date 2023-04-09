@@ -17,6 +17,7 @@ import pocketpal.frontend.util.StringUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 
 public class ParseViewCommand extends ParseCommand {
@@ -155,17 +156,22 @@ public class ParseViewCommand extends ParseCommand {
      * Checks if the date range specified by the user is valid.
      *
      * @param startDate Start date specified by user.
-     * @param endDate End date specified by user.
+     * @param endDate   End date specified by user.
      * @return True if range is valid, else false.
-     * @throws InvalidDateException If end date is before start date, and if it is in a correct format.
      */
     private Boolean isDateRangeValid(String startDate, String endDate) throws InvalidDateException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ParserConstants.DATE_FORMAT);
-        LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
-        LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
-        if (startDateTime.isAfter(endDateTime)) {
-            return false;
+        try {
+            LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
+            LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
+            if (startDateTime.isAfter(endDateTime)) {
+                return false;
+            }
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
         }
+
+
         return true;
     }
 }

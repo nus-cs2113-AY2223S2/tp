@@ -53,8 +53,8 @@ public final class MessageConstants {
             + "-sd <startdate>, -ed <enddate>" + NEWLINE
             + "See below for examples" + NEWLINE
             + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
-            + "/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
-            + "/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE + NEWLINE;
+            + "/view -sd 21/11/1997 -ed 22/11/1997 -c Transportation -sp 2.00" + NEWLINE
+            + "/view 10 -sd 21/11/1997 -ed 22/12/1997 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE;
     public static final String MESSAGE_BYE_COMMAND = "Exit - Terminates PocketPal." + NEWLINE
@@ -88,8 +88,11 @@ public final class MessageConstants {
             "edit!";
     public static final String MESSAGE_MISSING_ID_DELETE = "Please specify the ID of the item you would like to " +
             "delete!";
-    public static final String MESSAGE_INVALID_DATE = "Please specify date in dd/MM/yy format" +
-            " and make sure the date exists!";
+    public static final String MESSAGE_INVALID_DATE =
+            "Please specify date in dd/MM/yyyy format!" + System.lineSeparator()
+                    + "dd - Day of month, from 01 - 31" + System.lineSeparator()
+                    + "MM - Month of the year, from 01 - 12" + System.lineSeparator()
+                    + "yyyy - Supported year, from 0001 - 9999";
     public static final String MESSAGE_MIXED_DATE = "Start date should not be after end date!";
     public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
     public static final String MESSAGE_INVALID_DATE_READ = "Date format not recognised.";

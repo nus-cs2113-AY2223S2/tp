@@ -126,12 +126,17 @@ Here's a class diagram that shows only the core structure of the `Parser` class.
 
 How `Parser` works:
 
-1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input. 
-2. Parser creates `ParseXYZCommand` (`XYZ` is a placeholder for the various command names[^1] e.g.`ParseAddCommand()`, `ParseDeleteCommand()`, etc.), which inherits the abstract class `ParseCommand`, to parse the input for the corresponding command.
-2. Within `ParseXYZCommand`, other methods are called to extract and check the validity of the required parameters for that particular command. Any exceptions will be thrown and their corresponding error messages will be shown to the user via the `UI` class.
+1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input.
+2. Parser creates `ParseXYZCommand` (`XYZ` is a placeholder for the various command names[^1]
+   e.g.`ParseAddCommand()`, `ParseDeleteCommand()`, etc.), which inherits the abstract class `ParseCommand`, to parse
+   the input for the corresponding command.
+2. Within `ParseXYZCommand`, other methods are called to extract and check the validity of the required parameters for
+   that particular command. Any exceptions will be thrown and their corresponding error messages will be shown to the
+   user via the `UI` class.
 2. If the user input is valid, an `XYZCommand` object containing the relevant data is created and returned.
    E.g. `ParseAddCommand` would return a `AddCommand` object containing the description, price and category.
-3. From there, the `XYZCommand` is ready to be executed by the `Backend`. (All `XYZCommand` classes inherit from `Command` and
+3. From there, the `XYZCommand` is ready to be executed by the `Backend`. (All `XYZCommand` classes inherit
+   from `Command` and
    have corresponding `execute()` that carry out their specific instructions.)
 
 [^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
@@ -353,12 +358,15 @@ The main callable functions to be used are:
 
 #### Reading from Database
 
-The `readFromDatabase()` method is called from a `Backend` instance upon its instantiation, and reads from the database which comes in the form of a text file.
+The `readFromDatabase()` method is called from a `Backend` instance upon its instantiation, and reads from the database
+which comes in the form of a text file.
 
 ![StorageReadSequenceDiagram](static/backend/storage/StorageSequenceDiagramRead.png)
 
-1. When a `Backend` instance is created, the constructor will call the `readFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
-2. The `readEntryLine()` method reads the data from the database file line by line, until there are no more lines to read. It then returns a list of `Entry` objects which is passed back to the `Backend` instance to be processed.
+1. When a `Backend` instance is created, the constructor will call the `readFromDatabase()` method which first
+   calls `makeFileIfNotExists()` to create a new database file if it does not exist.
+2. The `readEntryLine()` method reads the data from the database file line by line, until there are no more lines to
+   read. It then returns a list of `Entry` objects which is passed back to the `Backend` instance to be processed.
 3. Two possible exceptions to be thrown are the `IOException` and the `InvalidReadFile` exceptions.
 
 #### Writing to Database
@@ -367,8 +375,10 @@ The `writeFromDatabase()` method is called from a `Backend` instance through the
 
 ![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramWrite.png)
 
-1. The `save()` method calls the `writeFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
-2. The `writeEntryLine()` method writes the data into the database file line by line, until there are no more lines to write. If successful, nothing is returned.
+1. The `save()` method calls the `writeFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new
+   database file if it does not exist.
+2. The `writeEntryLine()` method writes the data into the database file line by line, until there are no more lines to
+   write. If successful, nothing is returned.
 3. An `IOException` might be thrown in this method.
 
 #### Resetting Database
@@ -377,7 +387,8 @@ The `reset()` method is called from a `Backend` instance through the `clearData(
 
 ![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramReset.png)
 
-1. The `clearData()` method calls the `reset()` method which first deletes the database file, then calls the `makeFileIfNotExists()` method to create a new database file. If successful, nothing is returned.
+1. The `clearData()` method calls the `reset()` method which first deletes the database file, then calls
+   the `makeFileIfNotExists()` method to create a new database file. If successful, nothing is returned.
 2. An `IOException` might be thrown in this method.
 
 <div style="text-align: right;">
@@ -398,7 +409,7 @@ The sequence diagram for specific request handling at each endpoint can be viewe
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
 | Endpoint   | Method to call             |
-| ---------- | -------------------------- |
+|------------|----------------------------|
 | `/entry`   | `requestEntryEndpoint()`   |
 | `/entries` | `requestEntriesEndpoint()` |
 
@@ -409,8 +420,8 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
 ```java
-Request req = new Request(RequestMethod.PATCH);
-req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
+Request req=new Request(RequestMethod.PATCH);
+        req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 ```
 
 ##### Making a request
@@ -421,14 +432,14 @@ req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 > All request body and parameter data should be serialised with `String.valueOf()` if not specified.
 
 ```java
-Backend backend = new Backend();
-Response res = backend.callEntryEndpoint(req);
+Backend backend=new Backend();
+        Response res=backend.callEntryEndpoint(req);
 
-if (res.getResponseStatus() != ResponseStatus.OK) {
-   // handle status        
-}
+        if(res.getResponseStatus()!=ResponseStatus.OK){
+        // handle status        
+        }
 
-Entry entry = EntryParser.deserialise(res.getData());
+        Entry entry=EntryParser.deserialise(res.getData());
 // process entry
 ```
 
@@ -481,7 +492,7 @@ __`FILTER_BY_QUERY`__ String
 __Responses__
 
 | Status Code | Description           | Remarks                                                                       |
-| ----------- | --------------------- | ----------------------------------------------------------------------------- |
+|-------------|-----------------------|-------------------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
 | `422`       | Unprocessable Content | -                                                                             |
 
@@ -513,7 +524,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks |
-| ----------- | ----------- | ------- |
+|-------------|-------------|---------|
 | `201`       | Created     | -       |
 
 ##### View a specific entry
@@ -538,7 +549,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -564,7 +575,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -600,7 +611,7 @@ __`EDIT_DESCRIPTION`__ string
 __Responses__
 
 | Status Code | Description           | Remarks                                                              |
-| ----------- | --------------------- | -------------------------------------------------------------------- |
+|-------------|-----------------------|----------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |  |
@@ -717,7 +728,7 @@ in PocketPal.
 
 ---
 
-**Do note that the entries depicted in the test cases below may vary depending on the entries you have added.**
+**Do note that the expected output depicted in the test cases below may vary depending on the entries you have added.**
 
 ---
 
@@ -1002,8 +1013,8 @@ Filter options:
 -sd <startdate>, -ed <enddate>
 See below for examples
 /view 100 -c Transportation -sp 2.00 -ep 5.00
-/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00
-/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00
+/view -sd 21/11/1997 -ed 22/11/1997 -c Transportation -sp 2.00
+/view 10 -sd 21/11/1997 -ed 22/12/1997 -c Transportation -sp 2.00 -ep 6.00
 
 Help - Displays the help menu.
 Usage: /help
@@ -1118,7 +1129,7 @@ replicated as follows:
 # User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
-| ------- | -------- | ------------- | ----------------- |
+|---------|----------|---------------|-------------------|
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
