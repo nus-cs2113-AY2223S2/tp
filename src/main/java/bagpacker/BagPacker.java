@@ -41,8 +41,8 @@ public class BagPacker {
 
     public static void runBagPacker() {
         while (ByeCommand.isBagPackerRunning) {
-            Command c = Parser.parse();
-            c.execute(packingList);
+            Command currentCommand = Parser.parse();
+            currentCommand.execute(packingList);
         }
     }
 }
