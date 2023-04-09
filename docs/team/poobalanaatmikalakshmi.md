@@ -36,4 +36,4 @@ It is written in Java, and has about 5kLoC.
 - Helped maintain issue tracker 
 - Helped write script for demo video 
 - Released v2.1 jar 
-- [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Apoobalanaatmikalakshmi+)
+- [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Apoobalanaatmikalakshmi+)
