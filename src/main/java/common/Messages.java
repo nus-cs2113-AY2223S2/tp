@@ -104,4 +104,5 @@ public class Messages {
     public static final String ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME = "There is already a dish with the same name." +
             "\n%s\nSkipping line...\n";
 
+    public static final String MESSAGE_STAFF_EMPTY_LIST = "Your staff list is empty!";
 }

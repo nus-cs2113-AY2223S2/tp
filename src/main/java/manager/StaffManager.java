@@ -45,6 +45,10 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void viewStaff(TextUi ui) {
+        if (staffs.size() == 0) {
+            ui.printMessage(Messages.MESSAGE_STAFF_EMPTY_LIST);
+            return;
+        }
         String staffsString = "";
         int counter = 1;
         for (Staff staff : staffs) {
