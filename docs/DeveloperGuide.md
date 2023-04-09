@@ -40,7 +40,7 @@ read JSON data for our project.
 * Author: NUSMods Team
 
 ### GSON:
-* [GSON API](https://github.com/honglinshang/ip)
+* [GSON API](https://github.com/google/gson)
 * License: [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE)
 * Author: Google
 
