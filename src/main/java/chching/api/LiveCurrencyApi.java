@@ -1,14 +1,43 @@
 package chching.api;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
+import chching.ChChing;
 import chching.currency.Converter;
 import chching.currency.Selector;
 import chching.ChChingException;
 
 public class LiveCurrencyApi {
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        LogManager.getLogManager().reset();
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+        try {
+            new File("data/LiveCurrencyAPILog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/LiveCurrencyAPILog.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
 
     public LiveCurrencyApi(Selector selector, Converter converter) throws Exception {
         try {
@@ -19,7 +48,7 @@ public class LiveCurrencyApi {
             conn.setRequestMethod("GET");
             try (BufferedReader reader = new BufferedReader(
                     new InputStreamReader(conn.getInputStream()))) {
-                for (String line; (line = reader.readLine()) != null;) {
+                for (String line; (line = reader.readLine()) != null; ) {
                     result.append(line);
                 }
             }

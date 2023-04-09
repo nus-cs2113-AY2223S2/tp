@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +28,27 @@ import com.google.gson.JsonElement;
  * Models a class to handle storage for the program.
  */
 public class Storage {
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        LogManager.getLogManager().reset();
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+        try {
+            new File("data/StorageLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/StorageLog.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
+
     private final File file;
 
     /**
@@ -64,9 +90,11 @@ public class Storage {
             }
         } catch (IOException e) {
             System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
+            logger.info("Loading incomes failed");
         }
-
+        logger.info("Successfully loaded incomes");
         return incomes;
+
     }
 
     public ArrayList<Expense> loadExpenses() {
@@ -97,8 +125,9 @@ public class Storage {
             }
         } catch (IOException e) {
             System.out.println("Unfortunately, expense list file can't be found. I'll make a new one!");
+            logger.info("Loading expenses failed");
         }
-
+        logger.info("Successfully loaded expenses");
         return expenses;
     }
 
@@ -139,6 +168,7 @@ public class Storage {
 
         } catch (IOException e) {
             System.out.println("An error occurred while writing JSON data to file.");
+            logger.info("Error saving data");
             e.printStackTrace();
         }
     }

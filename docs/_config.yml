@@ -1,4 +1,4 @@
 #Build Settings
 
 theme: minima
-markdown: GFM
+markdown: kramdown

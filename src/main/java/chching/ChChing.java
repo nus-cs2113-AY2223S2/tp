@@ -10,7 +10,37 @@ import chching.record.IncomeList;
 import chching.record.Target;
 import chching.record.TargetStorage;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
+
 public class ChChing {
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        LogManager.getLogManager().reset();
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+        try {
+            new File("data/MainChChingLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/MainChChingLog.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
+
     private Storage storage;
     private IncomeList incomes;
     private ExpenseList expenses;
@@ -62,6 +92,7 @@ public class ChChing {
                 ui.showLine();
             }
         }
+        logger.info("Program running right");
     }
 
     public static void main(String[] args) {

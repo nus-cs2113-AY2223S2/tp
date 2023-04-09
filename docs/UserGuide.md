@@ -1,44 +1,25 @@
 # User Guide
-<!-- TOC -->
-* [User Guide](#user-guide)
-  * [Introduction](#introduction)
-  * [Quick Start](#quick-start)
-  * [Features](#features)
-    * [Adding an entry: `add`](#adding-an-entry--add)
-    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
-    * [Updating an entry: `edit`](#updating-an-entry--edit)
-    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
-    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
-    * [Finding an entry: `find`](#finding-an-entry--find)
-    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
-    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
-    * [Clear entire expense list: `clear income`](#clear-entire-expense-list--clear-income)
-    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
-    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
-    * [See target set: `show target`](#see-target-set--show-target)
-    * [Clear Target Set: `clear target`](#clear-target-set--clear-target)
-    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
-    * [View help: `help`](#view-help--help)
-    * [Exit: `exit`](#exit--exit)
-    * [Saving and loading of data](#saving-and-loading-of-data)
-    * [Other Notes](#other-notes)
-  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
-<!-- TOC -->
+
+* Table of Contents
+{:toc}
+
+
+
 
 ## Introduction
 
-ChChing is a desktop app for tracking spending, and it uses a Command Line Interface (CLI) for managing finances. If you are someone who needs a simple interface to get a better hold of your finances, this app is for you!
+ChChing is a Command Line Interface (CLI) desktop app for tracking spending and managing finances, with currency conversion capabilities. If you are someone who needs a simple interface to get a better hold of your finances, this app is for you!
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `ChChing` from [here](https://github.com/AY2223S2-CS2113-T12-1/tp/releases).
-3. Copy downloaded `tp.jar` file to the desired home folder of choice.
+3. Copy downloaded `[CS2113-T12-1][ChChing].jar` file to the desired home folder of choice.
 4. Open a command terminal and `cd` into the folder mentioned in step 3.
 5. Type in the following to run the application:
 
 ```
-java -jar tp.jar
+java -jar [CS2113-T12-1][ChChing].jar
 ```
 
 6. If successful, the following greetings should appear:
@@ -60,7 +41,8 @@ Unfortunately, expense list can't be found. I'll make a new one!
     ____________________________________________________________
 ```
 
-7. Type in desired command to start using the program! List of commands are listed below
+7. Type in desired command to start using the program! List of commands are listed below.
+8. Do not edit any program-created saved files (.json files, etc.), else the program may crash.
 
 ## Features
 
@@ -82,8 +64,8 @@ Use case:
 - VALUE will be stored as a positive double up to 2 decimal places.
 - VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
-- Format for DATE will be dd-MM-yyyy.
-- DATE needs to be a valid date, and it cannot be a date in the future.
+- Format for DATE will be DD-MM-YYYY.
+- DATE needs to be an existing date, and it cannot be a date in the future.
 
 Example of usage:
 <br>`add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50`
@@ -104,9 +86,9 @@ Format:
 Edit an existing expense/income that is currently in the list.
 
 Format:
-<br> `edit expense /in INDEX [c/ CATEGORY] [de/ DESCRIPTION] [da/ DATE] [v/ VALUE]`
-<br> `edit income /in INDEX [de/DESCRIPTION] [da/DATE] [v/VALUE]`
-<br> where [] indicates optional fields.
+<br> `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> where [ ] indicates optional fields.
 
 Use case:
 
@@ -163,11 +145,13 @@ Find an existing expense/income that is currently in the list.
 
 Format:
 <br> `find /t TYPE [/c CATEGORY] [/de DESCRIPTION] [/da DATE]`
-<br> fields with [] are optional fields, but at least 1 must be not empty for search to work
+<br> fields with [ ] are optional fields.
 
 Use case:
 
 - Shows user the entry that they are looking for.
+- At least one of the optional fields must be provided.
+- `CATEGORY` field would only be read if `TYPE` specified is `expense`.
 
 Example of usage:
 <br> `find /t expense /c food /de beef `
@@ -223,6 +207,7 @@ Use case:
 - VALUE ranges from negative to positive.
 - Target must be within the range of -9999999.99 to 9999999.99.
 - Target will be set to 2 decimal places.
+- Default target is 0.00
 
 Example of usage:
 <br> `set target /v 350`
@@ -273,7 +258,7 @@ The data file is not to be edited manually.
 
 ### Other Notes
 * Should additional fields that is not required be added to the input, the program will ignore it.
-<br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`.
+<br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`, and `exit /de 1` will still successfully exit the program.
 * ChChing will not allow duplicate fields within the same input.
 <br> e.g. `add expense /c meal /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` will not be allowed since it has duplicate category fields.
 * ChChing allows for the fields' order to be changed.
@@ -301,7 +286,7 @@ The data file is not to be edited manually.
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
 | Edit Income        | `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit income /in 2 /da 12-12-2022 /v 100`                          |
 | Exit               | `exit`                                                                                                                                     |
-| Find               | `find /c CATEGORY /k KEYWORD`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                         |
+| Find               | `find /t TYPE [/c CATEGORY] [/k KEYWORD]`<br>e.g. `find /t expense /c food /de beef`<br>e.g. `find /t income /de salary /da 03-03-2023`    |
 | Help               | `help`                                                                                                                                     |
 | List All Lists     | `list`                                                                                                                                     |
 | List Expense List  | `list expense`                                                                                                                             |
