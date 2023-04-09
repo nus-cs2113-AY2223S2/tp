@@ -1218,7 +1218,7 @@ Given below are instructions to test the app manually.
 
 ### Launch
 * Download the .jar file from the latest release here and copy it into an empty folder. 
-* Open a terminal in the folder and run the command `java -jar apollo.jar`. The CLI should appear in a few seconds.
+* Open a terminal in the folder and run the command `java -jar Apollo.jar`. The CLI should appear in a few seconds.
 * Expected: The CLI should appear with a welcome message and a prompt to enter a command. Resize the CLI window size
     for optimal text wrapping.
 
