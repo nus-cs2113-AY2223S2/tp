@@ -168,6 +168,7 @@ public class LogicTest {
         try {
             parseAndExecute("deck delete -d testDeck -c " + cardUUID, RemoveCardFromDeckCommand.class);
         } catch (CardInSetNotInList ex) {
+            //Should throw out an exception
         }
 
         // Card should remain in Deck
@@ -233,7 +234,7 @@ public class LogicTest {
     }
 
 
-    
+
     @Test
     public void logic_unTagCardWhileTagInDeck() throws InkaException{
         // create a card
@@ -256,7 +257,7 @@ public class LogicTest {
 
     //TODO: Failing
     @Test
-    public void logic_TagCardWhileTagInDeck() throws InkaException {
+    public void logic_tagCardWhileTagInDeck() throws InkaException {
         // create a card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
         parseAndExecute("card add -q test2 -a test2", AddCardCommand.class);
