@@ -434,9 +434,9 @@ public class Parser {
     }
 
 
-     /**
-      *  Parses the help command and creates a new HelpCommand object to show the help message to the user.
-      */
+    /**
+     *  Parses the help command and creates a new HelpCommand object to show the help message to the user.
+     */
     private static void parseHelpCommand () {
         command = new HelpCommand();
     }
