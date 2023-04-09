@@ -196,7 +196,7 @@ Example of usage:
 
 <br>
 
-### Adding single recipe this week's plan: `weekly /add`
+### Add single recipe to weekly plan: `weekly /add`
 
 Adds an existing recipe to this week's plan.
 
@@ -215,7 +215,7 @@ Example of usage:
 
 <br>
 
-### Adding multiple recipes to this week's plan: `weekly /multiadd`
+### Add multiple recipes to weekly plan: `weekly /multiadd`
 
 Adds multiple existing recipe to this week's plan.
 
@@ -237,7 +237,7 @@ Example of usage:
 
 <br>
 
-### Deleting from this week's plan: `weekly /delete`
+### Delete single recipe from weekly plan: `weekly /delete`
 
 Deletes an existing recipe from this week's plan.
 
@@ -256,7 +256,7 @@ Example of usage:
 
 <br>
 
-### Deleting multiple recipes from this week's plan: `weekly /multidelete`
+### Delete multiple recipes from weekly plan: `weekly /multidelete`
 
 Deletes multiple existing recipe from this week's plan.
 
@@ -281,7 +281,7 @@ Example of usage:
 
 <br>
 
-### Clearing this week's plan: `weekly /clear`
+### Clear weekly plan: `weekly /clear`
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
@@ -289,7 +289,7 @@ Format: `weekly /clear`
 
 <br>
 
-### Mark recipe in this week's plan as done: `weekly /done`
+### Mark recipe in weekly plan as done: `weekly /done`
 
 Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
 ingredients will be removed from the weekly plan and the list of ingredients.
@@ -307,7 +307,7 @@ Example of usage:
 
 <br>
 
-### View this week's plan: `weeklyplan`
+### View weekly plan: `weeklyplan`
 
 View this week's plan.
 
@@ -315,7 +315,7 @@ Format: `weeklyplan`
 
 <br>
 
-### View this week's ingredients: `weeklyingredients`
+### View weekly plan ingredients: `weeklyingredients`
 
 View this week's ingredients.
 
