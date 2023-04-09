@@ -7,10 +7,18 @@ import seedu.parser.DateFormatter;
 import java.util.Date;
 
 //@@ author ZIZI-czh
+/**
+ * Represents a command to delete a workout from the workout list, identified by the index of the workout to delete.
+ * The index of the workout to delete is passed in through the constructor.
+ */
 public class DeleteWorkoutCommand extends Command {
     private final int workoutToDeleteIndex;
 
     //@@ author ZIZI-czh
+    /**
+     * Creates a new instance of DeleteWorkoutCommand with the specified index of the workout to delete.
+     * @param workoutToDeleteIndex the index of the workout to delete
+     */
     public DeleteWorkoutCommand(int workoutToDeleteIndex) {
         this.workoutToDeleteIndex = workoutToDeleteIndex;
     }

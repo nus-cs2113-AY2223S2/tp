@@ -42,7 +42,8 @@ public class Ui {
                     + "- [Add food and calories: /cadd]" + System.lineSeparator()
                     + "- [Display total calories consumption: /clist]" + System.lineSeparator()
                     + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
-                    + "- [Delete calories record for one food: /cdelete]" + System.lineSeparator();
+                    + "- [Delete calories record for one food: /cdelete]" + System.lineSeparator()
+                    + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
     private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
@@ -76,8 +77,9 @@ public class Ui {
         return HELP_MESSAGE_WORKOUT;
     }
 
-    public static void showErrorMessage(String errorMessage) {
+    public static short showErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
+        return 0;
     }
 
     public static void showCommandResult(Command command)
@@ -120,4 +122,9 @@ public class Ui {
     public static String getCaloriesHelpMessage() {
         return HELP_MESSAGE_CALORIES;
     }
+
+    public static void setInput(String userInput) {
+
+    }
+
 }

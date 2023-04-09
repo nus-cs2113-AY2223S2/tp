@@ -17,6 +17,14 @@ public class StartWorkoutCommand extends Command {
     private final String workoutName;
     private final Date date;
 
+
+    //@@author ZIZI-czh
+    /**
+     * Represents a command to start a new workout with the specified date and workout name.
+     *
+     * @param date the date of the new workout
+     * @param workoutName the name of the new workout
+     */
     public StartWorkoutCommand(Date date, String workoutName) {
         this.date = date;
         this.workoutName = workoutName;

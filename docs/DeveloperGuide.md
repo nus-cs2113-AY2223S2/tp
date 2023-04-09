@@ -1,4 +1,4 @@
-# Developer Guide
+# Fitz - Developer Guide
 
 ## Table of Contents
 
@@ -7,18 +7,34 @@
 * [Product Scope](#product-scope) 
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
-* [Design & Implementation](#design--implementation)
+* [Design](#design)
   * [Architecture](#architecture)
-  * [UI component](#ui-component)
-  * [Start component](#start-component)
-  * [Add component](#add-component)
-  * [List component](#list-component)
-  * [View component](#view-component)
-  * [Delete component](#delete-component)
-  * [Exit component](#exit-component)
+  * [Duke](#duke)
+  * [UI Component](#ui-component)
+  * [Command Component](#command-component)
+  * [Storage Component](#storage-component)
+  * [Calories Component](#calories-component)
+  * [Workout Component](#workout-component)
+* [Implementation](#implementation)
+  * [Calories Recording](#user-related-features)
+    * [Add Command](#calories-related-features)
+    * [View Command](#calories-related-features)
+    * [List Command](list-command)
+    * [Delete Command](delete-command)
+    * [Help Command](help-command)
+  * [Workout Recording](workout-recording)
+    * [Start Command](start-command)
+    * [Add Command](add-command)
+    * [End Command](end-command)
+    * [View Command](view-command)
+    * [List Command](list-command)
+    * [Delete Command](delete-command)
+    * [Count Command](count-command )
+    * [Help Command](help-command) 
 * [User Stories](#user-stories)
   * [V1.0](#v10)
   * [V2.0](#v20)
+  * [V2.1](#v21)
 * [Non-Functional Requirements](#non-functional-requirements)
 * [Glossary](#glossary)
 * [Instruction for Manual Testing](#instructions-for-manual-testing)
@@ -26,42 +42,64 @@
 
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-###### [Back to table of contents](#table-of-contents)
+The format of this developer guide was adapted from
+[SE-EDU AddressBook Level 3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 ## Product Scope
+The purpose of this app is to help users record their workouts on the current day and track their previous workouts. 
+Additionally, the app will allow users to record their daily food intake to achieve their fitness goals.
+
 
 ### Target User Profile
-* People who go to gym and do exercise
-* People who want to lose weight or strength muscles
+* Fitness enthusiasts who regularly go to the gym and perform various exercises to maintain their fitness
+* Individuals who want to lose weight 
+* People who want to build muscle strength and are looking for an easy and convenient way to record and track their progress towards their fitness goals.
+* Fitness enthusiasts and athletes who are looking for an easy and convenient way to track their daily workouts and calories intake
+* People who want to monitor their progress and achieve their fitness goals.
 
 ### Value Proposition
-Help our target users to record down the exercise, and they can check the exercise whenever they want.
-Besides, this fitness app also help them to calculate the calories consumption for each workout.
+Our app is a comprehensive workout and calories tracking solution that helps fitness enthusiasts 
+and individuals achieve their fitness goals by providing personalized recommendations based on their goals and progress. 
+With features like tracking of workouts and daily calories intake, our app makes it easy for users to stay motivated and track their progress towards their fitness goals.
 
 
 ###### [Back to table of contents](#table-of-contents)
 
-## Design & Implementation
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## Design
 
 ### Architecture
+<p align="center">
+<img src="images/ArchitectureDiagram.png" width="450" />
+</p>
 
-###### [Back to table of contents](#table-of-contents)
+The Architecture Diagram shown above shows the design of FITZ with its components.
+The following are highlighting parts
+* There are 3 Storages class that related to workout and calories.
+They are `CalorieTrackerStorage`, `FoodDictionaryStorage` and `WorkoutListStorage`
+* All the exception messages will be shown in `Ui` 
 
-We aim to help fellow gym enthusiasts and new gym members to help keep
-track of their future and present training.
-=======
-### UI component
+After knowing about the overall architecture of our product, the sequence below shows more specifics.
 
-###### [Back to table of contents](#table-of-contents)
+### Duke
+`Duke` is the class that contains main method 
+which are responsible for `Ui`, `Storage`, `Parser`, `Exception` and `Command`. 
+Once the program start, `storage` and `Ui` will be initialized.
+`Ui` will then show the welcome message and `Storage` will load the exiting data to the system. 
+Afterwards, it takes in user commands and continues to do so until the user inputs the exit command. 
+Whenever a user enters a command, the Ui reads it and passes it to `Duke`, which in turn sends it to the `Parser` class for parsing. 
+If the command is determined to be valid, it is then sent to the `Command` class for processing and returned to `Duke` for execution. 
+`Duke` displays valid responses to the user via the `Ui`, and stores the data in Storage. If the command is invalid, `Duke` displays an appropriate error message instead.
+The following diagram illustrate how the `Duke` class work.
 
-### Start component
+<p align="center">
+<img src="images/ArchitectureSequenceDiagram.png" width="450" />
+</p>
 
-###### [Back to table of contents](#table-of-contents)
+### UI Component
 
-### Add component
+
+
+### Command Component
 
 The add mechanism is facilitated by `AddCommand`. 
 It extends `Command` and modifies the execute function to add an exercise.
@@ -81,7 +119,7 @@ Step 4. Finally, `addExercise()` is called and `toAdd` is added to `currentWorko
 
 ###### [Back to table of contents](#table-of-contents)
 
-### List component
+### Storage Component
 The deletion mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
 <img src="images/ListWorkoutDiagram.png" width="450" />
@@ -111,7 +149,7 @@ Below are the specific steps on how to use the view function and how the mechani
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Delete component
+### Workout Component
 The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
 <img src="images/DeleteWorkoutDiagram.png" width="450" />

@@ -11,9 +11,11 @@ Package " "<<Rectangle>>{
     class Exception
     class Command
     class Duke
+    class Calories
+    class Workout
 }
 
-User ..> Ui
+User .right.> Ui
 
 
 Duke -left-> Storage
@@ -25,8 +27,12 @@ Parser --> Command
 
 Command --> Ui
 Exception -up> Ui
+
+Storage -up-> Calories
+Storage -right-> Workout
+
 Storage --> Ui
 
-Storage ..> File
+Storage .left.> File
 
 @enduml
