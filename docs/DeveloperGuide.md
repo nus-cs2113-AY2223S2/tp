@@ -118,7 +118,7 @@ As for the expenditure types, their fields are as shown below.
 `Expenditure`:
 - Fields: `date`, `amount`, `description`
 
-`AcademicExpenditure`**`: 
+`AcademicExpenditure`: 
 - Fields: `date`, `amount`, `description`
 
 `AccommodationExpenditure`:
@@ -375,7 +375,7 @@ The following are instructions for testers to manual test:
 - Download the JAR file and copy into an empty folder
 - Open the command terminal on your device.
 - Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
-- Alternatively, double click on the JAR file to run the app.
+- Alternatively, double-click on the JAR file to run the app.
 
 #### Adding a record
 1. Adding an expenditure
