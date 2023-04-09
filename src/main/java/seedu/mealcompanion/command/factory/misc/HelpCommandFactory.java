@@ -14,4 +14,8 @@ public class HelpCommandFactory extends ExecutableCommandFactory {
     public HelpCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new HelpCommand();
     }
+
+    public String getCommandFormat() {
+        return "help";
+    }
 }

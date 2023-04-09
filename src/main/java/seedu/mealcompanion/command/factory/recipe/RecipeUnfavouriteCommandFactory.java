@@ -30,4 +30,8 @@ public class RecipeUnfavouriteCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new RecipeUnfavouriteCommand(recipe.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "recipe unfavourite <index_number>";
+    }
 }

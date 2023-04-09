@@ -31,4 +31,8 @@ public class RecipeFindCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new RecipeFindCommand(name.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "recipe find <keyword>";
+    }
 }

@@ -30,4 +30,8 @@ public class MakeCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new MakeCommand(recipe.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "make";
+    }
 }

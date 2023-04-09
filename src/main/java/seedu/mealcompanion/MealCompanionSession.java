@@ -156,17 +156,19 @@ public class MealCompanionSession {
             ExecutableCommandFactory commandFactory = MealCompanionSession.COMMAND_TREE.resolve(tokens);
 
             if (commandFactory == null) {
-                System.out.println("Not a command!");
+                ui.printMessage("Not a command!");
                 continue;
             }
 
             try {
-                ExecutableCommand cmd = commandFactory.buildCommand(this, new CommandArguments(tokens));
+                ExecutableCommand cmd = commandFactory
+                        .buildCommand(this, new CommandArguments(tokens));
                 cmd.execute(this);
             } catch (InvalidCommandException e) {
-                System.out.println(e.getMessage());
+                ui.printMessage(e.getMessage());
+                ui.printMessage("Command usage: " + commandFactory.getCommandFormat());
             } catch (CommandRunException e) {
-                System.out.println(e.getMessage());
+                ui.printMessage(e.getMessage());
             }
         }
     }

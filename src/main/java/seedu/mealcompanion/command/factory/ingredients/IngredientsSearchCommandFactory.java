@@ -29,4 +29,8 @@ public class IngredientsSearchCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new IngredientsSearchCommand(name.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "ingredients search <optional_keyword>";
+    }
 }

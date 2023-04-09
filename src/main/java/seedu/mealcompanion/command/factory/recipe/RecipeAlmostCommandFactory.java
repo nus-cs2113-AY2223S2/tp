@@ -16,4 +16,8 @@ public class RecipeAlmostCommandFactory extends ExecutableCommandFactory {
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new RecipeAlmostCommand();
     }
+
+    public String getCommandFormat() {
+        return "recipe almost";
+    }
 }

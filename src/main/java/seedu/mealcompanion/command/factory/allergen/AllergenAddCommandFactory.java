@@ -25,4 +25,8 @@ public class AllergenAddCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new AllergenAddCommand(ingredientName.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "allergen add <ingredient>";
+    }
 }

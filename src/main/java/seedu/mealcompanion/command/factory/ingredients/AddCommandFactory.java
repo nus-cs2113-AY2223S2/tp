@@ -34,4 +34,8 @@ public class AddCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new AddCommand(ingredientName.getExtractedValue(), addAmount.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "add <ingredient> /qty <quantity>";
+    }
 }

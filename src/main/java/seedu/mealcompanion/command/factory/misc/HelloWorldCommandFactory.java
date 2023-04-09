@@ -28,4 +28,8 @@ public class HelloWorldCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new HelloWorldCommand(name.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "hello world <optional_name>";
+    }
 }

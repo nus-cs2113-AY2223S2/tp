@@ -18,4 +18,8 @@ public class IngredientsListCommandFactory extends ExecutableCommandFactory {
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new IngredientsListCommand();
     }
+
+    public String getCommandFormat() {
+        return "ingredients list";
+    }
 }

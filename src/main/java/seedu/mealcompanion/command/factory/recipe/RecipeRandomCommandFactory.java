@@ -16,4 +16,8 @@ public class RecipeRandomCommandFactory extends ExecutableCommandFactory {
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new RecipeRandomCommand();
     }
+
+    public String getCommandFormat() {
+        return "recipe random";
+    }
 }

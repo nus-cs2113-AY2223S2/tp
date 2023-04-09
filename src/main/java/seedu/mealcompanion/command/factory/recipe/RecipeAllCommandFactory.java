@@ -16,4 +16,8 @@ public class RecipeAllCommandFactory extends ExecutableCommandFactory {
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new RecipeAllCommand();
     }
+
+    public String getCommandFormat() {
+        return "recipe all";
+    }
 }

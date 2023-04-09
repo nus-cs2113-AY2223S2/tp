@@ -34,4 +34,8 @@ public class RemoveCommandFactory extends ExecutableCommandFactory {
         this.runExtractors(mealCompanionSession, arguments);
         return new RemoveCommand(ingredientName.getExtractedValue(), removeAmount.getExtractedValue());
     }
+
+    public String getCommandFormat() {
+        return "remove <ingredient> /qty <quantity>";
+    }
 }

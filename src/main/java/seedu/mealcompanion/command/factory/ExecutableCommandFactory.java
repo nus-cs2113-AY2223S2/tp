@@ -34,4 +34,6 @@ public abstract class ExecutableCommandFactory implements Routable {
     public abstract ExecutableCommand buildCommand(
             MealCompanionSession mealCompanionSession, CommandArguments arguments
     ) throws InvalidCommandException;
+
+    public abstract String getCommandFormat();
 }
