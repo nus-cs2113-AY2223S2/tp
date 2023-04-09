@@ -271,14 +271,16 @@ Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
+Note that date format should be in YYYY-MM-DD.
+
 Example: 
 ```
-add_staff n/John Doe w/Sunday d/09 March 2001 p/82802123
+add_staff n/John Doe w/Sunday d/2003-01-01 p/82802123
 ```
 
 Outcome: 
 ```
-John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123 added!
+John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 added!
 ```
 
 #### View a staff:
