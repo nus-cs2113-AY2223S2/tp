@@ -1,0 +1,46 @@
+@startuml
+!include ../Style.puml
+
+mainframe sd Backend Request Process
+title Backend Sequence Diagram
+
+-> Backend : requestEndpointX(request)
+Backend -> XEndpoint : handleRequest()
+note over Backend, XEndpoint
+    X refers to the specific endpoint.
+    Refer to the various endpoints requests
+    for specific implementation.
+    The corresponding sequence diagram
+    titles follow the following format:
+    Endpoint /<path>: Handle <method>"
+end note
+alt DELETE
+    Backend -> XEndpoint : handleDelete()
+    return
+else GET
+    Backend -> XEndpoint : handleGet()
+    return
+else PATCH
+    Backend -> XEndpoint : handlePatch()
+    return
+else POST
+    Backend -> XEndpoint : handlePatch()
+    return
+end
+note over Backend, XEndpoint
+    If either of the above methods are
+    not implemented, attempting to call
+    them will result in AssertionError
+end note
+
+Backend -> Backend++ : save()
+ref over Backend, Storage
+    Read/Write entries from Storage
+end ref
+return
+
+<-- Backend : Response
+
+
+
+@enduml

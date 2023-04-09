@@ -1,0 +1,28 @@
+@startuml
+mainframe sd Backend Startup Process
+title Backend Startup Overview
+PocketPal -> Backend**
+activate Backend
+
+Backend -> Storage**
+activate Storage
+return
+
+ref over Backend, Storage
+    Read/Write entries from Storage
+end ref
+
+Backend -> EntryLog**
+activate EntryLog
+return entries
+
+note over XEndpoint
+    Multiple endpoints are
+    instantiated here.
+end note
+Backend -> XEndpoint** : entries
+activate XEndpoint
+return
+
+return
+@enduml
