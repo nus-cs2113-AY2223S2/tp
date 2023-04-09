@@ -1,15 +1,16 @@
 # User Guide
 
-
 ## Introduction
 
 Meal360 is a desktop app for managing your recipes and weekly meal plans, optimized for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If
 you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI
 apps.
+
 * [Quick Start](#quick-start)
 * [Features](#features)
 * [Command Summary](#command-summary)
+
 ___
 
 ## Quick Start
@@ -21,7 +22,7 @@ ___
    `tp.jar` file. This folder will contain all the data files that the app will use. Please do not
    touch these files to ensure smooth operation of the app.
 4. To allow for immediate testing of features, the app comes preloaded with 10 recipes.
-5. Take note that changes to the ingredient list, recipe list, and weekly meal plan would be saved 
+5. Take note that changes to the ingredient list, recipe list, and weekly meal plan would be saved
    only when exiting the program properly using `bye` command.
 
 ___
@@ -48,7 +49,6 @@ ___
 * [Add User Ingredient](#add-user-ingredient)
 * [Delete User Ingredient](#delete-user-ingredient)
 
-
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
 * Please follow the below-mentioned format.
@@ -56,14 +56,16 @@ ___
 Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
 Examples of usage:
-  * `chicken=100 meat and oil=200`
-  * `white rice=300 vegetables=400 pepper,chilli and seeds=500`
+
+* `chicken=100 meat and oil=200`
+* `white rice=300 vegetables=400 pepper,chilli and seeds=500`
 
 
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
-  *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
-    manager knows that you have entered 1 ingredient. No need to type `done`.
+    * **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient
+      and the recipe
+      manager knows that you have entered 1 ingredient. No need to type `done`.
 
 <br>
 
