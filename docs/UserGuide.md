@@ -1,5 +1,6 @@
 # User Guide
 ![img_11.png](img_11.png)
+
 ## Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
@@ -68,9 +69,7 @@ ____________________________________________________________
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
-
 Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
-
 
 **REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]` must be a **non-negative numerical value** and exists in the inventory.
@@ -213,7 +212,6 @@ Search for item(s) in the inventory list by keywords or UPC.
 | `search [Keywords]` | `[Keywords]` can be an alphanumerical value. |
 | `searchupc [UPC]` | `[UPC]` can only be a **non-negative numerical** value. |
 
-
 !> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
 and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
 
@@ -222,7 +220,6 @@ and `Clothes Sleeves`, but the search term `laptop slee` will only return the it
 `search laptop slee` or `searchupc 0123241`
 
 #### Sample output
-
 
 **Case I:** Search by keywords
 ```
@@ -252,8 +249,6 @@ __________________________________________________________________________
 ```
 ---
 ### Filtering items: `filter` <a name = "filter"></a>
-
-
 Filters items from the inventory list by price OR category.
 
 
@@ -267,9 +262,7 @@ Filters items from the inventory list by price OR category.
 * For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
 * For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
 
-
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
-
 
 | Price Comparator | Required parameter                     |
 |------------------|----------------------------------------|
@@ -277,8 +270,6 @@ Filters items from the inventory list by price OR category.
 | `p/get`          | Items price greater/equals to`[price]` |
 | `p/lt`           | Items price less than `[price]`        |
 | `p/let`          | Items price lesser/equals to `[price]` |
-
-
 
 #### Example of usage
 
@@ -570,22 +561,26 @@ should **NOT** be used concurrently.
 cat list
 __________________________________________________________________________
 Here is the list of categories you have: 
-uncategorized
-fruits
+Uncategorized
+Fruits
+Electronics and Supplies
 __________________________________________________________________________
 ```
 **CASE II:** Show all the categories in the inventory as well as their respective items
 ```
 cat table
 __________________________________________________________________________
-+-----------------+--------------------------------+
-| Category        | Name: UPC                      |
-+-----------------+--------------------------------+
-| fruit           | apples:1235678910,             |
-|                 | watermelon:1034373783742       |
-+-----------------+--------------------------------+
-| uncategorized   | oranges:1029348576             |
-+-----------------+--------------------------------+
++-----------------+-----------------------------------------------+
+| Category        | Name: UPC                                     |
++-----------------+-----------------------------------------------+
+| Fruit           | apples: 12345678910,                          |
+|                 | watermelon: 1034373783742                     |
++-----------------+-----------------------------------------------+
+| Uncategorized   | oranges: 1029348576                           |
++-----------------+-----------------------------------------------+
+| Electronics and | cpu: 20391928234                              |
+| Supplies        |                                               |
++-----------------+-----------------------------------------------+
 __________________________________________________________________________
 ```
 
@@ -598,7 +593,6 @@ __________________________________________________________________________
 ALERT: The quantity of apples is below the minimum level of 2.
 __________________________________________________________________________
 ```
-
 
 Add Alert Format:  
 `alert add upc/[UPC] min/[Quantity] ` to set an alert when quantity falls below a minimum  
@@ -616,7 +610,6 @@ Remove Alert Format:
 
 `alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item  
-
 
 **REQUIRED** parameters:
 
@@ -646,9 +639,6 @@ Successfully removed the alert.
 __________________________________________________________________________
 ``` 
 
-
-
-Example of
 ---
 ### Change Auto save Mode: `autosave` <a name = "autosave"></a>
 

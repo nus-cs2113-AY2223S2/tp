@@ -521,7 +521,6 @@ public class Ui {
             name = name.replaceAll(" ", "_");
             itemLines.add(name + ":_" + upc);
         }
-        System.out.println("Check items all added to printing " + itemLines);
         String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
         int rowHeight = findRowHeight(categoryLines, itemListLines);
 
