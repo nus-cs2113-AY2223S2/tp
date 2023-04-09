@@ -47,6 +47,8 @@ However, the message will vary depending on the result.
 User data is stored in a HashMap mapping unique usernames to *User* objects, which store personal information 
 as well as the username and the hashed password. Passwords are not explicitly stored for security reasons.
 
+There is a default superuser whose username is `root` and password is also `root`.
+
 Users can only execute user commands, such as checking their borrowing history or borrow books, 
 after successfully logging into the system. They must log out before exiting the application.
 

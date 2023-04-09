@@ -312,6 +312,10 @@ Examples:
 
 **A**: Data is stored in the text files found in the `./tp/database` directory. To transfer the data to another computer, just transfer the files over to the new target computer, and keep the files in the same directory.
 
+**Q**: Why I cannot change my password after logging in?  
+
+**A**: You need to log out using `logout` before changing password. 
+
 ## Command Summary
 
 | Action                      | Format                                   | Example                                                                                      |
