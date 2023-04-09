@@ -39,7 +39,8 @@ This section will guide you through the installation process
 ## Features 
 
 ### Help
-A simple command to display the help page in the program. 
+#### Purpose
+Allows the restaurant manager using the application to see the list of commands available to use.  
 
 Format: `help`
 
