@@ -52,12 +52,12 @@ public class EventList {
         listSize--;
     }
 
-    private LocalDateTime changeToDate(String time, String date) {
+    private static LocalDateTime changeToDate(String time, String date) {
         String combination = date + " " + time;
         return LocalDateTime.parse(combination, dfWithTime);
     }
 
-    private LocalDateTime changeToDate(String date) {
+    private static LocalDateTime changeToDate(String date) {
         return LocalDateTime.parse(date + TIMEPLACEHOLDER, dfWithTime);
     }
 
@@ -68,7 +68,7 @@ public class EventList {
      * @throws NPExceptions if format of time or day is not as specified above
      * @see TimeAndFlag
      */
-    public TimeAndFlag convertToTimeInfo(String time, String day) throws NPExceptions {
+    public static TimeAndFlag convertToTimeInfo(String time, String day) throws NPExceptions {
         try {
             boolean hasTime = true;
             LocalDateTime combinedTime = LocalDateTime.parse(DTINIT, dfWithTime);
@@ -88,21 +88,21 @@ public class EventList {
         }
     }
 
-    private boolean checkSingleOverlap(Schedule eventA, Schedule eventB) {
+    private static boolean checkSingleOverlap(Schedule eventA, Schedule eventB) {
         return ((eventA.getStartTime().compareTo(eventB.getStartTime()) >= 0
                 && eventA.getStartTime().compareTo(eventB.getEndTime()) <= 0)
                 || (eventA.getEndTime().compareTo(eventB.getStartTime()) >= 0
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
-    public boolean canAddNewEvent(Event newEvent, int index) {
+    public static boolean canAddNewEvent(Event newEvent, int index, ArrayList<Schedule> eventList) {
         boolean isOverlap = true;
-        for (int i = 0; i < listSize; i++) {
-            if (!taskList.get(i).hasEndInfo() || i == index) {
+        for (int i = 0; i < eventList.size(); i++) {
+            if (!eventList.get(i).hasEndInfo() || i == index) {
                 continue;
             }
 
-            Event eventA = (taskList.get(i) instanceof Event) ? (Event) taskList.get(i) : null;
+            Event eventA = (eventList.get(i) instanceof Event) ? (Event) eventList.get(i) : null;
             Event eventB = newEvent;
 
             LocalDate semStart = SEMESTER_START_DATES.get(getUser().getSemester());
@@ -150,8 +150,8 @@ public class EventList {
         return isOverlap;
     }
 
-    public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
-            throws NPExceptions {
+    public static Event getInEventType(String description, String startTime, String startDay, String endTime,
+            String endDay) throws NPExceptions {
 
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
@@ -161,12 +161,22 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (!canAddNewEvent(newEvent, -1)) {
+
+        return newEvent;
+    }
+
+    public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
+            throws NPExceptions {
+
+        Event newEvent = getInEventType(description, startTime, startDay, endTime, endDay);
+                
+        if (!canAddNewEvent(newEvent, -1, taskList)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay) throws NPExceptions {
@@ -175,6 +185,7 @@ public class EventList {
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo);
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay, String recurTime)
@@ -184,6 +195,7 @@ public class EventList {
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
@@ -198,12 +210,29 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (!canAddNewEvent(newEvent, -1)) {
+        if (!canAddNewEvent(newEvent, -1, taskList)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
+    }
+
+    public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions{
+        for(int i =0; i <allClasses.size(); i++) {
+            Event curClass = (Event) allClasses.get(i);
+            if(!canAddNewEvent(curClass, -1, taskList)){
+                throw new NPExceptions("class clashes with events/other modules!");
+            }
+        }
+        for(int i =0; i <allClasses.size(); i++) {
+            Event curClass = (Event) allClasses.get(i);
+            taskList.add(curClass);
+            reviseLocation(taskList.size()-1, allVenues.get(i));
+        }
+        listSize = taskList.size();
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void reviseLocation(int index, String location) {
@@ -217,7 +246,7 @@ public class EventList {
 
         Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
                 startInfo.hasInfo, endInfo.hasInfo);
-        if (!canAddNewEvent(eventToCheck, index)) {
+        if (!canAddNewEvent(eventToCheck, index, taskList)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 

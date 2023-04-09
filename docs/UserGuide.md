@@ -39,16 +39,40 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 * r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.
 
 #### Examples of usage
-* Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
+1. Add event that starts and ends on different days: `add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11`
+2. Add event that happens every week: `add -e collect mails -st 08:00 -sd 2023/02/10 -et 08:10 -ed 2023/02/10 -r 1 W`
 
-* Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -ed 2023/02/10 -r 1 W`
+**notice:** 
+
+> date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
+
 
 Expected outcome:
-~~~
-____________________________________________________________
-Event successfully added!
-____________________________________________________________
-~~~
+
+1. ~~~
+	____________________________________________________________
+	Event successfully added: 00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11
+	
+    	> [E] Career Fair (2023/02/10 14:00 to 2023/02/11 16:00 not recurring)
+	____________________________________________________________
+	~~~
+
+2. ~~~
+   ____________________________________________________________
+   Event successfully added: 8:00 -sd 2023/02/10 -et 08:10 -ed 2023/02/10 -r 1 W
+   
+       > [E] collect mails (2023/02/10 08:00 to 2023/02/10 08:10 | recurring, time interval: 1 Week(s))
+   ____________________________________________________________
+   ~~~
+   
+
+
+
+**confliction checking: ** 
+
+- the app will only check conflictions between events and classes that have **starting date & time and ending date & time, within the time period of selected semester. **
+- Users need to check themselves whether the events will clash with each other during vacation periods.
+
 
 ### Adding a module: `add`
 Adds a module to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
@@ -59,6 +83,10 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 #### Examples of usage
 * Add a lecture of module: `add -m AC5001 -n 1 -l lecture`
 * Add a tutorial of module: `add -m CS2100 -n 17 -l tutorial`
+
+**notice**
+
+> For LESSONTYPE field, only `lecture / tutorial / laboratory` are accepted
 
 Expected outcome:
 ~~~
@@ -84,16 +112,25 @@ Format:
 * `delete -all`
 
 #### Examples of usage
-* Delete a single event: `delete –s 1`
-* Delete all events: `delete -all`
+1. Delete a single event: `delete –s 1`
+
+2. Delete all events: `delete -all`
 
 Expected outcome:
-~~~
-____________________________________________________________
-Event(s) successfully deleted!
-____________________________________________________________
-~~~
-
+1. ~~~
+	____________________________________________________________
+	This event is deleted:
+	
+    	> [E] testing (2023/03/21 10:00 to 2023/03/21 10:00 not recurring)
+	____________________________________________________________
+	~~~
+2. ~~~
+	____________________________________________________________
+	    > all events are deleted!
+	____________________________________________________________
+   ~~~
+	
+	
 ### List an event: `list`
 Displays a list of all events that have been added to the schedule.
 
@@ -187,20 +224,43 @@ ____________________________________________________________
 Edit an event that has been added to the schedule. Use –x to specify the attributes to edit.
 
 Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`
-* sd is required and it must be of the format YYYY/MM/DD
-* st is required and it must be of the format HH:MM
-* Other fields are optional
+
+**notice: **
+
+> when Editing the event, User need to rewrite the complete time information including the parts that they do not what to change
+>
+> the format is the same as it in add command
+
+* sd and ed must be of the format YYYY/MM/DD
+* e, sd and st are compulsory fields
+* ed and et are optional, but they must be written together if you use them
+* other fields are optional.
 
 #### Examples of usage
-* Edit the start time of an event: `edit –i 2 –st 16:00`
-* Edit the start date, start time and end time of an event: `edit -i 3 –sd 2023/02/11 –st 8:00 –et 10:00 `
+1. Edit the start time of an event: `edit –i 1 –st 16:00` 
+
+2. Edit the start date, start time and end time of an event: `edit -i 1 –sd 2023/02/11 –st 08:00 –et 10:00 `
+
+**notice: ** 
+
+> Similar to add command, the app will also check whether there is any confliction between the new revised time and other events/classes with **full details of time information** if and only if the revised time information also have **starting date & time and ending date & time**
+>
+> The app will also only check confliction within the current semester. 
 
 Expected outcome:
-~~~
-____________________________________________________________
-Event edited successfully!
-____________________________________________________________
-~~~
+1. ~~~
+	____________________________________________________________
+	Time of event: event is changed to:
+    	> 2023/04/01 16:00 not recurring
+	____________________________________________________________
+	~~~
+
+2. ~~~
+	____________________________________________________________
+	Time of event: event is changed to: ed 2023/02/11
+       > 2023/02/11 08:00 to 2023/02/11 10:00 not recurring
+	____________________________________________________________
+	~~~
 
 ### Saving Data
 NusPlanner data are saved to the hard drive automatically after the `bye` command to quit it. There is no need to save manually.
