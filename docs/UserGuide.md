@@ -42,7 +42,7 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 1. Add event that starts and ends on different days: `add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11`
 2. Add event that happens every week: `add -e collect mails -st 08:00 -sd 2023/02/10 -et 08:10 -ed 2023/02/10 -r 1 W`
 
-**notice:** 
+**Notice:** 
 
 > date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
 
@@ -68,9 +68,9 @@ Expected outcome:
 
 
 
-**confliction checking: ** 
+**Confliction Checking: ** 
 
-- the app will only check conflictions between events and classes that have **starting date & time and ending date & time, within the time period of selected semester. **
+- NUSPlanner will only check for conflicts between events and classes that have **starting date & time and ending date & time, within the time period of selected semester.**
 - Users need to check themselves whether the events will clash with each other during vacation periods.
 
 
@@ -82,11 +82,32 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 
 #### Examples of usage
 * Add a lecture of module: `add -m AC5001 -n 1 -l lecture`
-* Add a tutorial of module: `add -m CS2100 -n 17 -l tutorial`
+* Add a tutorial of module: `add -m CS2100 -n 11 -l tutorial`
 
-**notice**
+#### How to find the correct `MODULECODE`, `CLASSNUMBER` and `LESSONTYPE`?
+* Head over to [NUSMods](www.nusmods.com)
+* Find the class and slot that you want
+* For example, user wants to take these 3 slots:
+![NUSModsEG.png](NUSModsEG.png)
+> `MODULECODE`: Module code
+> 
+>`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
+> 
+>`LESSONTYPE`: Either lecture, tutorial or laboratory and is stated before `CLASSNUMBER`
+* Commands used for this case are
+`add -m CS2100 -n 01 -l tutorial`, `add -m CS2100 -n 02 -l laboratory` and `add -m CS2100 -l lecture`
+* Please type out your commands and ensure your spelling is accurate
+* Copying and pasting commands from the user guide may cause some issues due to formatting
 
-> For LESSONTYPE field, only `lecture / tutorial / laboratory` are accepted
+**Notice**
+> For modules with 10 or more slots per lecture/tutorial/laboratory, please append a '0' infront of the `CLASSNUMBER`.
+> 
+> ~~**BAD** example~~: `add -m CS2100 -n 2 -l tutorial`
+> 
+> **GOOD** example: `add -m CS2100 -n 02 -l tutorial`
+> 
+> 
+> For `LESSONTYPE` field, only `lecture / tutorial / laboratory` are accepted
 
 Expected outcome:
 ~~~
