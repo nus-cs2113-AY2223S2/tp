@@ -61,7 +61,6 @@ public class Storage {
         try {
             File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file);
-            //fileWriter.write(GSON.toJson((user.getPasswordHash())));
             fileWriter.write(GSON.toJson(expenseList.getExpenseList()));
             fileWriter.close();
         } catch (IOException e) {
@@ -80,9 +79,9 @@ public class Storage {
             File f = new File(filePath);
             if (f.createNewFile()) {
                 // first time that the programme is being run, update welcome message later on
-                //System.out.println(INITIAL_WELCOME_MESSAGE);
+                System.out.println(INITIAL_WELCOME_MESSAGE);
             } else {
-                //System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
+                System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
             }
         } catch (IOException e) {
             System.out.println(CREATE_FILE_ERROR);

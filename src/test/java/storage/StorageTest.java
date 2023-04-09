@@ -59,7 +59,7 @@ class StorageTest {
         expenseList.setExpenseList(expenses);
         storage.saveExpenses("src/test/junit.json");
         ExpenseList testExpenses = storage.loadExpenses("src/test/junit.json");
-        assertEquals(expenses, testExpenses);
+        assertEquals(expenses, testExpenses.getExpenseList());
     }
 
     @Test

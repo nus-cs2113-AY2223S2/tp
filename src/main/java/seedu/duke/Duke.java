@@ -18,25 +18,16 @@ import data.ExpenseList;
 import data.Currency;
 
 import parser.Parser;
+import parser.ParserAccount;
 import storage.Storage;
 
 import java.util.Scanner;
-
-import static data.Account.autoSave;
-import static parser.ParserAccount.caseLogOut;
-import static parser.ParserAccount.initialize;
-import static parser.ParserAccount.caseExit;
-
-
 
 public class Duke {
     protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected Account currentUser;
-
-
     protected String filePath = "expenses.json";
 
 
@@ -48,9 +39,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        currentUser = new Account();
-        //this.filePath = filePath;
-        //expenseList.setExpenseList(storage.loadExpenses(filePath));
+
     }
 
     public void run() {
@@ -61,23 +50,23 @@ public class Duke {
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
-        initialize(in);
+        ParserAccount.initialize(in);
         WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
             if (input.equals("exit")) {
-                caseExit();
+                ParserAccount.caseExit();
                 break;
             }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
-                autoSave();
+                Account.autoSave();
                 break;
             case "delete":
                 new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
-                autoSave();
+                Account.autoSave();
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
@@ -92,7 +81,7 @@ public class Duke {
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "logout":
-                caseLogOut();
+                ParserAccount.caseLogOut(in);
                 break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),

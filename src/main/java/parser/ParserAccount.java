@@ -14,9 +14,8 @@ import static java.lang.System.exit;
 
 
 public class ParserAccount {
-    private static void caseLogIn() {
+    private static void caseLogIn(Scanner scanner) {
         System.out.println("username");
-        Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
         System.out.println("password");
         String password = scanner.nextLine();
@@ -33,26 +32,23 @@ public class ParserAccount {
         }
     }
 
-    private static void caseSignUp() {
+    public static void caseSignUp(Scanner scanner) {
         System.out.println("username");
-        Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
         System.out.println("password");
         String password = scanner.nextLine();
         Account newAccount = new Account(user, password);
-        newAccount.signup();
+        System.out.println(newAccount.signup());
     }
 
-    public static void caseLogOut() {
-        Scanner scanner = new Scanner(System.in);
-        saveLogOut();
+    public static void caseLogOut(Scanner scanner) {
+        System.out.println(saveLogOut());
         showToUser(LOGOUT_MESSAGE);
         initialize(scanner);
     }
 
     public static void caseExit() {
-        Scanner scanner = new Scanner(System.in);
-        saveLogOut();
+        System.out.println(saveLogOut());
         showToUser(EXIT_MESSAGE);
     }
 
@@ -62,11 +58,11 @@ public class ParserAccount {
             String input = in.nextLine();
             if (input.equals("login")) {
                 // get login details
-                caseLogIn();
+                caseLogIn(in);
                 break;
             } else if (input.equals("signup")) {
                 // get register details
-                caseSignUp();
+                caseSignUp(in);
             } else if (input.equals("exit")) {
                 exit(0);
             } else {

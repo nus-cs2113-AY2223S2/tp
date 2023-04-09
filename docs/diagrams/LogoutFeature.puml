@@ -15,7 +15,7 @@ Account -> Storage: saveExpenses(filePath)
 Activate Storage
 Storage --> Account
 Deactivate Storage
-Account --> ParserAccount
+Account --> ParserAccount: String
 Deactivate Account
 ParserAccount -> ExpenseList: showToUser(String)
 Activate ExpenseList

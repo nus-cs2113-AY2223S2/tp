@@ -20,7 +20,7 @@ Account -> Storage: createFile(filePath)
 Activate Storage
 Storage --> Account
 Deactivate Storage
-Account --> ParserAccount
+Account --> ParserAccount: String
 Deactivate Account
 ParserAccount --> Duke
 Deactivate ParserAccount
