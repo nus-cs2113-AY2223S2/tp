@@ -75,7 +75,7 @@ public class Parser {
      */
     public static Command parse(String line, Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
-        String instruction = lineParts.get(0);
+        String instruction = lineParts.get(0).trim();
         String instructionLowerCase = instruction.toLowerCase();
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
