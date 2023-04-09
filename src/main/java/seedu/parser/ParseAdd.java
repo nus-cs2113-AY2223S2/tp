@@ -9,20 +9,12 @@ import seedu.commands.OtherExpenditureCommand;
 import seedu.commands.TransportExpenditureCommand;
 import seedu.commands.TuitionExpenditureCommand;
 import seedu.commands.InvalidCommand;
-import seedu.exceptions.ExceptionChecker;
-import seedu.exceptions.SmallAmountException;
-import seedu.exceptions.InvalidCharacterInAmount;
-import seedu.exceptions.NotPositiveValueException;
-import seedu.exceptions.EmptyStringException;
-import seedu.exceptions.WrongPrecisionException;
+import seedu.exceptions.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import static seedu.ui.ErrorMessages.ERROR_AMOUNT_FORMAT_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_PRECISION;
+
+import static seedu.ui.ErrorMessages.*;
 
 
 public class ParseAdd {
@@ -46,6 +38,7 @@ public class ParseAdd {
             // Format: category d/date, a/amount, s/description
             LocalDate date = fetchDate();
             double amount = fetchDouble();
+
             String descriptionVal = fetchDescription();
             
             // Checks for the specific expenditure according to command
@@ -80,6 +73,8 @@ public class ParseAdd {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         } catch (WrongPrecisionException e) {
             return new InvalidCommand(ERROR_INVALID_AMOUNT_PRECISION.toString());
+        } catch (LargeValueException l) {
+            return new InvalidCommand(ERROR_INVALID_AMOUNT_TOO_LARGE.toString());
         }
     }
 
@@ -90,13 +85,14 @@ public class ParseAdd {
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
             StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException,
-            WrongPrecisionException {
+            WrongPrecisionException, LargeValueException {
         // Converts string to double for numerical addition functionalities
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, PSLASH);
         ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
         ExceptionChecker.checkValidDoubleInput(amountVal);
         double amount = Double.parseDouble(amountVal);
         ExceptionChecker.checkValidAmount(amount);
+        ExceptionChecker.checkLargeValue(amount);
         return Double.parseDouble(amountVal);
     }
 
@@ -106,4 +102,5 @@ public class ParseAdd {
         String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
         return LocalDate.parse(dateVal);
     }
+
 }
