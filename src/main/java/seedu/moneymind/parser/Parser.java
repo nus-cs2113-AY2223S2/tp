@@ -10,6 +10,7 @@ import seedu.moneymind.command.DeleteCommand;
 import seedu.moneymind.command.EditCommand;
 import seedu.moneymind.command.EventCommand;
 import seedu.moneymind.command.HelpCommand;
+import seedu.moneymind.command.SummaryCommand;
 import seedu.moneymind.command.SearchCommand;
 import seedu.moneymind.command.ViewCommand;
 import seedu.moneymind.exceptions.IntegerOverflowException;
@@ -19,45 +20,48 @@ import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.exceptions.NonPositiveNumberException;
 
 import static seedu.moneymind.UserDate.isValidDate;
-import static seedu.moneymind.string.Strings.EDIT;
-import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
-import static seedu.moneymind.string.Strings.WHITE_SPACE;
-import static seedu.moneymind.string.Strings.INVALID_INPUT;
 import static seedu.moneymind.string.Strings.BYE;
-import static seedu.moneymind.string.Strings.HELP;
-import static seedu.moneymind.string.Strings.VIEW;
-import static seedu.moneymind.string.Strings.DELETE;
-import static seedu.moneymind.string.Strings.EVENT;
 import static seedu.moneymind.string.Strings.CATEGORY;
+import static seedu.moneymind.string.Strings.DELETE;
+import static seedu.moneymind.string.Strings.EDIT;
+import static seedu.moneymind.string.Strings.EVENT;
+import static seedu.moneymind.string.Strings.HELP;
+import static seedu.moneymind.string.Strings.INVALID_INPUT;
+import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
 import static seedu.moneymind.string.Strings.SEARCH;
+import static seedu.moneymind.string.Strings.SUMMARY;
+import static seedu.moneymind.string.Strings.VIEW;
+import static seedu.moneymind.string.Strings.WHITE_SPACE;
 import static seedu.moneymind.string.Strings.EMPTY_STRING;
 import static seedu.moneymind.string.Strings.NO_DESCRIPTION_FOR_BYE;
 import static seedu.moneymind.string.Strings.NO_DESCRIPTION_FOR_HELP;
+import static seedu.moneymind.string.Strings.NO_DESCRIPTION_FOR_SUMMARY;
 import static seedu.moneymind.string.Strings.DELETE_REGEX;
-import static seedu.moneymind.string.Strings.EVENT_REGEX;
+import static seedu.moneymind.string.Strings.EDIT_REGEX;
 import static seedu.moneymind.string.Strings.CATEGORY_REGEX;
+import static seedu.moneymind.string.Strings.EVENT_REGEX;
+import static seedu.moneymind.string.Strings.NEGATIVE_INTEGER_DETECTING_REGEX;
+import static seedu.moneymind.string.Strings.INTEGER_DETECTING_REGEX;
+import static seedu.moneymind.string.Strings.ZERO_MATCHING_REGEX;
 import static seedu.moneymind.string.Strings.EMPTY_DELETION;
-import static seedu.moneymind.string.Strings.DELETE_FORMAT;
-import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
+import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.POSITIVE_INTEGER_FOR_EVENT_INDEX;
+import static seedu.moneymind.string.Strings.DELETE_FORMAT;
+import static seedu.moneymind.string.Strings.EDIT_FORMAT;
+import static seedu.moneymind.string.Strings.CATEGORY_FORMAT;
+import static seedu.moneymind.string.Strings.EVENT_FORMAT;
+import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
+import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_CATEGORY;
+import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_EVENT;
+import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_EDIT;
+import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
+import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.NON_NEGATIVE_INTEGER_FOR_BUDGET;
 import static seedu.moneymind.string.Strings.NON_NEGATIVE_INTEGER_FOR_EXPENSE;
-import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_EVENT;
-import static seedu.moneymind.string.Strings.EVENT_FORMAT;
-import static seedu.moneymind.string.Strings.EDIT_REGEX;
-import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_EDIT;
-import static seedu.moneymind.string.Strings.CATEGORY_FORMAT;
-import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_CATEGORY;
-import static seedu.moneymind.string.Strings.EDIT_FORMAT;
-import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
-import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
-import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
-import static seedu.moneymind.string.Strings.NO_SEARCH_KEYWORD_MESSAGE;
 import static seedu.moneymind.string.Strings.ENTERING_VALID_TIME_FORMAT_MESSAGE;
-import static seedu.moneymind.string.Strings.NEGATIVE_INTEGER_DETECTING_REGEX;
-import static seedu.moneymind.string.Strings.ZERO_MATCHING_REGEX;
-import static seedu.moneymind.string.Strings.INTEGER_DETECTING_REGEX;
+import static seedu.moneymind.string.Strings.NO_SEARCH_KEYWORD_MESSAGE;
+
 
 /**
  * Parses user input strings into corresponding command objects that can be executed by the MoneyMind application.
@@ -81,6 +85,8 @@ public class Parser {
             return prepareByeCommand(separatedKeywordAndDescription);
         case HELP:
             return prepareHelpCommand(separatedKeywordAndDescription);
+        case SUMMARY:
+            return prepareSummaryCommand(separatedKeywordAndDescription);
         case VIEW:
             return prepareViewCommand(separatedKeywordAndDescription);
         case DELETE:
@@ -133,6 +139,24 @@ public class Parser {
             return new HelpCommand();
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(NO_DESCRIPTION_FOR_HELP);
+        }
+    }
+
+    /**
+     * Constructs a summary command object if the user input is valid.
+     * @param separatedKeywordAndDescription an array of two strings: the first string should be the "summary" keyword,
+     *                                       and the second string should be empty or null.
+     * @return a summary command object.
+     * @throws InvalidCommandException
+     */
+    private Command prepareSummaryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        try {
+            if (separatedKeywordAndDescription.length > 1) {
+                throw new InvalidCommandException(EMPTY_STRING);
+            }
+            return new SummaryCommand();
+        } catch (InvalidCommandException error) {
+            throw new InvalidCommandException(NO_DESCRIPTION_FOR_SUMMARY);
         }
     }
 

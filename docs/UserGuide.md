@@ -146,15 +146,25 @@ upcoming events in the next 5 days.
 `Category_Name has an event: Event_Name in 2 days`<br>
 `Category_Name_2 has an event: Event_Name_2 in 3 days`<br>
 
-### Check the Instruction Menu: `help`
+### Check the Instruction Menu - 1: `help`
 
-This command allows the user to view the instruction menu.
+This command allows the user to view the **detailed** instruction menu.
 
 Format: `help`
 
 Example of usage:
 
 `help`
+
+### Check the Instruction Menu - 2: `summary`
+
+This command allows the user to view the **summary** of commands that they can use.
+
+Format: `summary`
+
+Example of usage:
+
+`summary`
 
 ### Exit the Program: `bye`
 
@@ -181,6 +191,7 @@ Example of usage:
 * `delete` - Delete an event or category from Moneymind
 * `edit` - Edit an event in Moneymind
 * `view` - View all events in a category or view all categories in Moneymind
-* `help` - Show the help message
+* `help` - Show the detailed instructions of commands
+* `summary` - Show the summary of commands
 * `search` - Search categories and events given a specific keyword
 * `bye` - Exit the program

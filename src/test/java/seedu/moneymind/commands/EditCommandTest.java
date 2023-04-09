@@ -101,7 +101,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_nonExistedCategory_expectCategoryDoesNotExistMessage() {
         setup();
         String terminalOutput = executeInput("edit c/travel e/1").toString();
-        assertEquals("Category does not exist" + System.lineSeparator(), terminalOutput);
+        assertEquals("Sorry, the category you are looking for does not exist" + System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
         clear();
     }
