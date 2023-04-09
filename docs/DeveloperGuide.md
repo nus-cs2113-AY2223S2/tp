@@ -543,7 +543,7 @@ interact with the computer.
 
 ## Instructions for manual testing
 ### **Startup and Termination of Program**
-  * #### Starting up MagusStock:
+  * #### Starting up MagusStock
   1. Ensure that you have Java `11` or above installed.
   2. Download the latest version of `MagusStock`from [here](https://github.com/AY2223S2-CS2113-W12-3/tp/releases).
   3. Move the .jar file to an **empty** folder.
@@ -571,7 +571,7 @@ INFO: Empty/No Session Alerts file found.
 __________________________________________________________________________
 ````
 
-  * #### Terminating MagusStock:
+  * #### Terminating MagusStock
   1. To terminate the program, simply type `bye` or `exit` in the command line.
   2. The expected result of the program is as followed:
 
@@ -776,16 +776,118 @@ __________________________________________________________________________
 #### Search Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+  * **Positive** Test Case Input: `search or`
+    * Expected Output: Return a table containing a list of items whose name starts with `or`. If it does not exist,
+      print a string that says item does not exist.
+    * Output Example (Found three items that starts with `or`):
+
+````
+__________________________________________________________________________
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | Orcas           | 2            | 1        | $1000.00 | Animal          |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | Oreo            | 1234         | 5        | $2.00    | Snacks          |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 2     | orange          | 1            | 1        | $1.00    | Uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `search` (Incomplete command format)
+    * Expected Output: A message informing the user of incorrect usage of the search command will be printed.
+    * Output Example:
+
+````
+Wrong/Incomplete Entry For Search by Keywords! Please refer to UG for more information
+Sample Format: "search [KEYWORDS]"
+__________________________________________________________________________
+````
 
 #### Filter Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+  * **Positive** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+  * **Negative** Test Case Input: `filter f/price p/lt one` (String as a price input)
+    * Expected Output: An error message informing the user to change the price input to a numerical input will be 
+      printed.
+    * Output Example:
+
+````
+Please enter a number for the price!
+````
+
 #### History Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+  * **Positive** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+  * **Negative** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+
 #### Alert Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+  * **Positive** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+  * **Negative** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
 #### Category Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+  * **Positive** Test Case Input: `cat list`
+    * Expected Output: Shows all categories that are currently in use to classify the items added.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Here is the list of categories you have:
+Fruit
+Uncategorized
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `cat` (Invalid command format)
+    * Expected Output: A message to inform the user of an incorrect `category` command format will be printed.
+    * Output Example: 
+
+````
+Wrong/Incomplete Entry For Category! Please refer to UG for more information
+Sample Format:
+List all categories: "cat list"
+List all items and all categories: "cat table"
+__________________________________________________________________________
+````
