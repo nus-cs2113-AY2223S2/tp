@@ -26,7 +26,7 @@ public class Messages {
     public static final String MESSAGE_INDEX_NOT_INTEGER = "Index is not an integer.";
     public static final String MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION = "Index is not specified.";
     public static final String MESSAGE_INCORRECT_TYPE = "Type specified is incorrect.";
-    public static final String MESSAGE_NEGATIVE_AMOUNT = "Negative amount is not allowed.";
+    public static final String MESSAGE_AMOUNT_LESS_THAN_OR_EQUALS_ZERO = "Amount cannot be less than or equals to 0.";
     public static final String MESSAGE_ARGUMENTS_NOT_SPECIFIED = "Arguments not specified.";
     public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
             "Please present your time as 'YYYY MM DD HH mm'\n" +
@@ -37,8 +37,16 @@ public class Messages {
     public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
     public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
 
-    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag. You can add category tags: " +
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag.\n|  You can add category tags: " +
             "FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, " +
-            "SALARY, INVESTMENT," +
+            "SALARY, INVESTMENT, " +
             "OTHERS";
+
+    public static final String MESSAGE_CONTAIN_DUPLICATED_FLAGS = "Duplicated flags are not allowed.";
+
+    public static final String MESSAGE_NEW_DESCRIPTION_CONTAIN_FLAGS = "Edited description cannot contain any flags" +
+            " such as 'a/', 'd/', and 'c/'.";
+
+    public static final String MESSAGE_EXCEED_MAXIMUM_LENGTH_FOR_AMOUNT = "The maximum amount that can be" +
+            " entered is $9999999999.99";
 }

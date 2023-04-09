@@ -1,6 +1,7 @@
 package seedu.brokeMan.ui;
 
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static seedu.brokeMan.common.Messages.MESSAGE_GOODBYE;
@@ -24,10 +25,12 @@ public class Ui {
      * Gets user command from the terminal
      * @return command entered by the user
      */
-    public static String getUserCommand() {
+    public static String getUserCommand() throws NoSuchElementException {
         showToUser("");
         out.print(LINE_PREFIX + "Enter command: ");
-        return in.nextLine().trim();
+        String userInput;
+        userInput = in.nextLine().trim();
+        return userInput;
     }
 
     public static void showWelcomeMessages() {

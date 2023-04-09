@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public class ViewBudgetCommand extends Command {
     public static final String COMMAND_WORD = "viewBudget";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": view your budget " +
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": view your budget for the current month " +
             "and how much of it is left remaining.\n" +
             "|  " + COMMAND_WORD +
             " t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month\n" +
             "|  Optional Parameter: t/ <date in YYYY/MM>\n" +
             "|  Example: " + COMMAND_WORD + "\n" +
-            "|  Example: " + COMMAND_WORD + " /t 2023/03";
+            "|  Example: " + COMMAND_WORD + " t/ 2023/03";
 
     private final Optional<String> date;
 

@@ -126,7 +126,7 @@ public abstract class EntryList {
     }
 
     /**
-     * Sorts entries using Entry comparator
+     * Sorts entries using Entry amount comparator
      * @param entryList LinkedList that contains the entries
      *
      */
@@ -135,11 +135,23 @@ public abstract class EntryList {
         listEntry(entryList);
     }
 
+    /**
+     * Sorts entries using Entry date comparator
+     * @param entryList LinkedList that contains the entries
+     *
+     */
     protected static void sortEntriesByDate(LinkedList<Entry> entryList) {
         entryList.sort(new EntryDateComparator());
         listEntry(entryList);
     }
 
+
+    /**
+     * Finds all entries that fit the specified category
+     *
+     * @param category      Category of interest
+     * @param entryList     List of entries that are registered under the category of interest
+     */
     protected static void findEntriesByCategory(Category category, LinkedList<Entry> entryList) {
         LinkedList<Entry> entriesByCategory = new LinkedList<Entry>();
         if (entryList.size() > 0) {
@@ -157,10 +169,25 @@ public abstract class EntryList {
         }
     }
 
+    /**
+     * Returns list of entries that are made in the specified month
+     *
+     * @param year          Year of interest
+     * @param month         Month of interest
+     * @param entryList     List of available entries
+     * @return              List of entries that are made in the month specified by the parameters
+     */
     protected static List<Entry> selectEntryForDate(int year, Month month, LinkedList<Entry> entryList) {
         return entryList.stream().filter(x -> x.isSameMonth(year, month)).collect(Collectors.toList());
     }
 
+
+    /**
+     * Returns the sum of the amount attribute of entries in the list
+     *
+     * @param entryList List of entries
+     * @return          Double representation of the sum of entry amounts
+     */
     public static double getEntryListSum(List<Entry> entryList) {
         double sum = 0;
         for (Entry entry : entryList) {

@@ -163,7 +163,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have not set your budget.
+|  Enter command: |  You have not set your budget for this month.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -174,7 +174,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Negative amount is not allowed.
+|  Enter command: |  Amount cannot be less than or equals to 0.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -190,7 +190,7 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Invalid Date Format!
-|  Years starting from 1 and months from 1 to 12 are accepted!
+|  Years starting from 0001 and months from 01 to 12 are accepted!
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -202,7 +202,7 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  The budget you have set is not a double.
-|  If you are trying to enter date information, please use t/.
+|  If you are trying to enter date information, please use the 't/' flag.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -224,27 +224,26 @@
 |
 |  Enter command: |  Invalid optional time flag format.
 |
-|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
-|  Example: viewBudget /t 2023/03
+|  Example: viewBudget t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
 |  Do not enter invalid dates, such as entering 14 for MM.
 |
-|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
-|  Example: viewBudget /t 2023/03
+|  Example: viewBudget t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $1600.00 for 2023/FEBRUARY.
-|  The amount of budget left is $1600.00
+|  Enter command: |  Budget information for the given month does not exist!
 |
 |  -----------------------------------------------------------------------
 |
