@@ -25,7 +25,24 @@
 ## Acknowledgements
 
 We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project. We would also like to acknowledge
-the NUSMods Team, whose NUSMods API we used to scrape module data from.
+the NUSMods Team, whose NUSMods API we used to scrape module data from. Additionally, the usage of GSON API was used to
+read JSON data for our project.
+
+### Duke:
+* [Duke Project IP](https://github.com/honglinshang/ip)
+* Author: Hong Lin Shang
+* Based on: [Duke Project](https://github.com/nus-cs2113-AY2223S2/ip)
+
+### NUSMods:
+* [NUSMods API](https://api.nusmods.com/v2/)
+* [NUSMods Repository](https://github.com/nusmodifications/nusmods)
+* License: [MIT License](https://github.com/nusmodifications/nusmods/blob/master/LICENSE)
+* Author: NUSMods Team
+
+### GSON:
+* [GSON API](https://github.com/honglinshang/ip)
+* License: [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE)
+* Author: Google
 
 ## Design
 
