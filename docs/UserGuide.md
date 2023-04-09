@@ -364,7 +364,7 @@ Here are the notes you are searching for:
 ### 13) Prioritize A Note
 Change the priority of a certain note in the notes list.
 
-Format: `<Priority Type>. Index`
+Format: `<Priority Type> Index`
 Example of usage: `High 1`
 
 * The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
