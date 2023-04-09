@@ -50,7 +50,9 @@ public class CategoryCommand extends Command {
     private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
         try {
             System.out.println("Try remove item");
-            removeItemFromCategory(item, oldCategory);
+            if (categoryHash.containsValue(item)) {
+                removeItemFromCategory(item, oldCategory);
+            }
             System.out.println("Set item cat");
             item.setCategory(newCategory);
             System.out.println("add item to new cat");
@@ -66,13 +68,15 @@ public class CategoryCommand extends Command {
      * @param item the item to be removed from the category hashmap.
      * @param oldCategory the category that the item currently belongs to.
      */
-    private static void removeItemFromCategory(Item item, String oldCategory) {
+    public static void removeItemFromCategory(Item item, String oldCategory) {
         oldCategory = oldCategory.toLowerCase();
         if (!categoryHash.containsKey(oldCategory)) {
             return;
         }
         if (categoryHash.get(oldCategory).size() == 1) {
+            System.out.println("Whats up here");
             categoryHash.get(oldCategory).remove(item);
+            System.out.println("Anything can remove?");
             categoryHash.remove(oldCategory);
         } else {
             categoryHash.get(oldCategory).remove(item);
@@ -85,12 +89,19 @@ public class CategoryCommand extends Command {
      * @param item the item to be added to a category.
      */
     private static void addItemToCategory(String categoryToAdd, Item item) {
-        if (!categoryHash.containsKey(categoryToAdd.toLowerCase())) {
-            categoryHash.put(categoryToAdd.toLowerCase(), new ArrayList<>());
+        categoryToAdd = categoryToAdd.toLowerCase();
+        System.out.println("does category exist? " + categoryHash.containsKey(categoryToAdd));
+        if (!categoryHash.containsKey(categoryToAdd)) {
+            System.out.println("contains key already? false");
+            System.out.println("category to b added is " + categoryToAdd);
+            categoryHash.put(categoryToAdd, new ArrayList<>());
         }
+       // System.out.println("Item in this category so far: " + categoryHash.get(categoryToAdd.toLowerCase()).get(0));
         System.out.println("Item to be added into list");
-        categoryHash.get(categoryToAdd.toLowerCase()).add(item);
-        System.out.println(categoryToAdd.toLowerCase() + "category has " + categoryHash.get(categoryToAdd.toLowerCase()).toString());
+//        Object[] arr = categoryHash.get(categoryToAdd.toLowerCase()).toArray();
+//        System.out.println(categoryToAdd.toLowerCase() + " category has " + Arrays.toString(arr));
+        categoryHash.get(categoryToAdd).add(item);
+        System.out.println(categoryToAdd + "category has " + categoryHash.get(categoryToAdd).toString());
     }
 
     /**
