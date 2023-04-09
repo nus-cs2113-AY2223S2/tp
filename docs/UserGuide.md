@@ -1,7 +1,7 @@
 # DinerDirector User Guide
 
 ## Table of Contents
-- [Introduction](#Introduction)
+- [Introduction](#introduction)
   - [Purpose of this Guide](#purpose-of-this-guide) 
 - [Quick Start](#quick-start)
   - [Installing DinerDirector](#installing-dinerdirector)
@@ -50,7 +50,7 @@ Meeting is a feature for the restaurant manager to manage meetings with
 boss or workers. MeetingManager supports add_meeting, view_meetings,
 delete_meeting and find_meeting. 
 
-#### Add Meetings:
+#### Add Meetings
 Add a meeting to the meeting list.  The name of the meeting is written after `n/`, followed by the time of the meeting written after `t/`.  
 
 **Note: `add_meeting` command will not handle extra parameters other than `n/` and `t/`.**  
@@ -70,7 +70,7 @@ Got it! You have successfully added a meeting:
 meeting with boss at Sunday, 3PM
 ```
 
-#### View meetings:
+#### View meetings
 View the meeting list.
 
 Format: `view_meetings`
@@ -81,7 +81,7 @@ Meeting list:
 meeting with boss at: Sunday, 3PM
 ```
 
-#### Find meeting:
+#### Find meeting
 Will return all the meetings if the name of the meeting contains the keyword.
 
 Format: `find_meeting <keyword>`
@@ -96,7 +96,7 @@ Here's the matching meeting list:
 1. meeting with boss at Sunday, 3PM
 ```
 
-#### Delete meeting:
+#### Delete meeting
 Will delete the meeting specified from the list.
 
 Format: `delete_meeting <meeting index>`
@@ -115,7 +115,7 @@ Meeting meeting with boss deleted!
 Deadline objects helps our user, the restaurant manager, to better keep track of and manage the many task that
 needs to be completed for the restaurant.
 
-#### Add a deadline to the deadline list:
+#### Add a deadline to the deadline list
 Format: `add_deadline n/<name> t/<time>`
 
 **Note: User is allowed to input the name in any format, and the time parameter in any time format they prefer.**
@@ -131,7 +131,7 @@ need to buy more potatoes by: 9 Apr 2PM
 Now you have 1 deadlines in the deadline list.
 ```
 
-#### View all deadlines:
+#### View all deadlines
 
 Format: `view_deadlines`
 
@@ -141,7 +141,7 @@ Here are the deadlines in your list:
 1. need to buy more potatoes by: 9 Apr 2PM
 ```
 
-#### Delete a deadline:
+#### Delete a deadline
 Format: `delete_deadline <deadline index>`
 
 Example:
@@ -156,7 +156,7 @@ need to buy more potatoes by: 9 Apr 2PM
 Now you have 0 deadlines in the deadline list.
 ```
 
-#### Find a deadline:
+#### Find a deadline
 Format: `find_deadline <keyword>`
 
 Example: 
@@ -176,7 +176,7 @@ Here are the matching deadlines in your list:
 
 This feature allows the restaurant manager to track the dishes that are sold in the restaurant, using commands that enables the manager to add, view, delete and find dishes.
 
-#### Add a Dish to the list of dishes:
+#### Add a Dish to the list of dishes
 Successfully adds Dish only if all the arguments are correct.
 
 Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]`
@@ -206,7 +206,7 @@ Outcome 2:
 Added dish: 2. McSpicy Burger; $10.99; []
 ```
 
-#### View the list of dishes added:
+#### View the list of dishes added
 
 It shows the list of dishes currently stored in the program in order.
 
@@ -214,7 +214,7 @@ It shows the list of dishes currently stored in the program in order.
 
 Format: `view_dish`
 
-#### Delete a dish from the list of dishes:
+#### Delete a dish from the list of dishes
 
 Deletes the dish in the list based on the index given, if a dish exists at that index.
 
@@ -275,7 +275,7 @@ Outcome 2:
 #### Purpose
 This feature allows the restaurant manager to record their staff members personal particulars and also what date they are working on. It allows the restaurant manager to keep track of their staff and what day they are working on.
 
-#### Add a staff:
+#### Add a staff
 Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
@@ -292,7 +292,7 @@ Outcome:
 John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123 added!
 ```
 
-#### View a staff:
+#### View a staff
 View the staffs list.
 
 Format: `view_staff`
@@ -302,7 +302,7 @@ Outcome:
 1. John Doe, working in Sunday. Date of birth: 2003-01-01, phoneNumber: 82802123
 ```
 
-#### Delete a staff:
+#### Delete a staff
 Delete a staff from the staffs list.
 
 Format: `delete_staff <staff index>`
