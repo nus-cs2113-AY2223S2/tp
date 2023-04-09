@@ -221,18 +221,27 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
 #### Adding staff to the list:
 
-It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
-the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
-`StaffManager` to add the `Staff` object to the list of `Staff` 
+Step 1: It first checks whether the parameter needed to add `Staff` is already given in the correct format. 
+
+Step 2: If it passes the format checking, the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `AddStaffCommand` redirect the task to `StaffManager` to add the `Staff` object to the list of `Staff` 
 
 #### Deleting staff on the list:
 
-It first finds the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
-If it is found, it will delete the correct corresponding `Staff`. 
+Step 1: It first finds the corresponding `Staff` object to be deleted using its index in the list in `StaffManager`. 
+
+Step 2: If it is a valid index, it will return `DeleteStaffCommand` to be executed by `DinerDirector`.
+
+Step 3: `DeleteStaffCommand` redirect the task to `StaffManager` to delete the `Staff` object at that index. 
 
 #### Viewing the list of staffs:
 
-It prints all of `Staff` objects in `StaffManager`'s staffs. 
+Step 1: It first checks whether there exists excessive parameter or not. 
+
+Step 2: If the command is valid, it will return `ViewStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `ViewStaffCommand` redirect the task to `StaffManager` to print all the `Staff` objects. 
 
 ### Dish Feature
 
@@ -240,28 +249,28 @@ The Dish feature consists of three functions:
 
 #### Add dish to list:
 
-![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)
-- When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
-- When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
-- It then prints out the dish that was added to the console.
+![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)  
+Step 1: When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.  
+Step 2: When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.  
+Step 3: It then prints out the dish that was added to the console.  
  
 #### Delete dish on the list:
 
-![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)
-- When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.
-- When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes
-- It then prints out the dish that was deleted to the console.
+![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)  
+Step 1: When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.  
+Step 2: When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes.  
+Step 3: It then prints out the dish that was deleted to the console.  
 
 #### View the list of dishes:
-![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)
-- When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
-- It then prints out the formatted string containing all the dishes to the console.
+![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)  
+Step 1: When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.  
+Step 2: It then prints out the formatted string containing all the dishes to the console.  
 
 #### Find a dish in the list of dishes
-![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)
-- When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.
-- When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.
-- It then prints out the formatted string containing all the dishes with the keyword to the console.
+![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)  
+Step 1: When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.  
+Step 2: When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.  
+Step 3: It then prints out the formatted string containing all the dishes with the keyword to the console.  
 
 ### Storage Feature 
 
