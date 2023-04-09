@@ -1,2 +1,248 @@
-Apr 07, 2023 10:15:01 PM seedu.logger.LogFileHandler logInfo
+Apr 09, 2023 8:00:48 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 1/1/2023
+Total Calories are: 69059.59999734163
+Here are the foods you ate:
+1) Black Pepper Chicken Chop from Western
+2) Chicken Cutlet from Western
+3) Grilled Dory Fish from Western
+4) Fish & Chip from Western
+5) Black Pepper Ribeye Steak from Western
+6) Combo Set 1: Ribeye Steak & Grilled Chicken from Western
+7) Combo Set 2: Ribeye Steak & Grilled Fish from Western
+8) Combo Set 3: Ribeye Steak & Grilled Salmon from Western
+9) Combo Set 4: Grilled Chicken Chop & Grilled Salmon from Western
+10) Combo Set 5: Grilled Chicken Chop & Grilled Dory Fish from Western
+11) Arrabiata from Western
+12) Pomodoro from Western
+13) Creamy Chicken Spaghetti (Small) from Western
+14) Creamy Chicken Spaghetti (Normal) from Western
+15) Creamy Chicken Spaghetti (Upsize) from Western
+16) Creamy Chicken Ham & Mushroom Spaghetti (Small) from Western
+17) Creamy Chicken Ham & Mushroom Spaghetti (Normal) from Western
+18) Creamy Chicken Ham & Mushroom Spaghetti (Upsize) from Western
+19) Prawns & Mushroom Spaghetti (Small) from Western
+20) Prawns & Mushroom Spaghetti (Normal) from Western
+21) Prawns & Mushroom Spaghetti (Upsize) from Western
+22) Hot Chicken Spaghetti (Small) from Western
+23) Hot Chicken Spaghetti (Normal) from Western
+24) Hot Chicken Spaghetti (Upsize) from Western
+25) Creamy Sausage & Mushroom Spaghetti (Small) from Western
+26) Creamy Sausage & Mushroom Spaghetti (Normal) from Western
+27) Creamy Sausage & Mushroom Spaghetti (Upsize) from Western
+28) Alfredo (Small) from Western
+29) Alfredo (Normal) from Western
+30) Alfredo (Upsize) from Western
+31) Chicken Patty Spaghetti from Western
+32) Chicken Cheese Ball Spaghetti from Western
+33) Salmon e Funghi Spaghetti (Small) from Western
+34) Salmon e Funghi Spaghetti (Normal) from Western
+35) Salmon e Funghi Spaghetti (Upsize) from Western
+36) Seafood Marinara (Small) from Western
+37) Seafood Marinara (Normal) from Western
+38) Seafood Marinara (Upsize) from Western
+39) Creamy Fish Pasta (Small) from Western
+40) Creamy Fish Pasta (Normal) from Western
+41) Creamy Fish Pasta (Upsize) from Western
+42) Baked Beans & Fries & Sausage from Western
+43) Baked Beans & Mashed Potato & Sausage from Western
+44) Mashed Potato from Western
+45) Sunny Side Up from Western
+46) French Fries from Western
+47) Hot Dog from Western
+48) Spaghetti from Western
+49) Tasty Rice from Western
+50) Chicken Ham from Western
+51) Coleslaw from Western
+52) Signature Trio Eggs Spinach Soup (Regular) from Ramen
+53) Signature Trio Eggs Spinach Soup (Small Portion) from Ramen
+54) Seafood Spinach Soup (Regular) from Ramen
+55) Seafood Spinach Soup (Small Portion) from Ramen
+56) Sliced Fish Spinach Soup (Regular) from Ramen
+57) Sliced Fish Spinach Soup (Small Portion) from Ramen
+58) Fried Fish Spinach Soup (Regular) from Ramen
+59) Fried Fish Spinach Soup (Small Portion) from Ramen
+60) Double Mixed Fish Spinach Soup (Regular) from Ramen
+61) Double Mixed Fish Spinach Soup (Small Portion) from Ramen
+62) Fresh Mushrooms with Ramen (Regular) from Ramen
+63) Fresh Mushrooms with Ramen (Small Portion) from Ramen
+64) Mala Dry Ramen w Chicken Cheeseballs from Ramen
+65) Mala Dry Ramen w Fuzhou Fishballs from Ramen
+66) Mala Beef Ramen Soup from Ramen
+67) Egg (side) from Ramen
+68) Century Egg (side) from Ramen
+69) Salted Egg (side) from Ramen
+70) Wolfberry (side) from Ramen
+71) Spinach (side) from Ramen
+72) Minced Pork (side) from Ramen
+73) Sliced Fish (side) from Ramen
+74) Fried Fish (side) from Ramen
+75) Prawns (side) from Ramen
+76) Chicken Cheeseballs (side) from Ramen
+77) Fuzhou Fishballs (side) from Ramen
+78) Sliced Beef (side) from Ramen
+79) White Rice (side) from Ramen
+80) Thick Bee Hoon (side) from Ramen
+81) Thin Bee Hoon (side) from Ramen
+82) Brown Rice (side) from Ramen
+83) Koka Noodle (side) from Ramen
+84) Ee Mee (side) from Ramen
+85) Ramen (side) from Ramen
+86) Mala Sauce (Non-Spicy Base) from Mala
+87) Coriander from Mala
+88) White Rice from Mala
+89) Sotong Ring from Mala
+90) Prawn from Mala
+91) Fish Slice from Mala
+92) Chicken Gizzard from Mala
+93) Beef Slice from Mala
+94) Shitake Mushroom from Mala
+95) King Oyster Mushroom from Mala
+96) Xiao Bai Cai from Mala
+97) Wintermelon from Mala
+98) Tomato from Mala
+99) Potato from Mala
+100) Lady's Finger from Mala
+101) Kang Kong from Mala
+102) Cucumber from Mala
+103) Cauliflower from Mala
+104) Cabbage from Mala
+105) Broccoli from Mala
+106) Brinjal from Mala
+107) Taugay from Mala
+108) Potato Starch Noodle from Mala
+109) Instant Noodle from Mala
+110) Taiwan Sausage from Mala
+111) Seaweed Chicken from Mala
+112) Saito Fish Cake from Mala
+113) Quail Egg from Mala
+114) Mushroom Ball from Mala
+115) Mini Fish Ball from Mala
+116) Luncheon Meat from Mala
+117) Mini Sausage from Mala
+118) Fish Ball (Fried) from Mala
+119) Fish Tau Foo from Mala
+120) Cuttlefish Ball from Mala
+121) Cuttlefish from Mala
+122) Crabstick from Mala
+123) Crab Claw from Mala
+124) Crab Ball from Mala
+125) Chickuwa from Mala
+126) Chicken Hotdog from Mala
+127) Cheese Tofu from Mala
+128) Bermuda Triangle Tofu (Taupok) from Mala
+129) White Radish from Mala
+130) Peanut from Mala
+131) Thick Beehoon from Mala
+132) Tau Kwa from Mala
+133) Lotus Root from Mala
+134) Kelp from Mala
+135) Enoki Mushroom from Mala
+136) Black Fungus from Mala
+137) Beancurd Skin (Non-Fried) from Mala
+138) Beancurd Skin (Fried) from Mala
+139) Mala Sauce (Very Spicy Base) from Mala
+140) Mala Sauce (Spicy Base) from Mala
+141) Mala Sauce (Slightly Spicy Base) from Mala
+142) White Chicken Rice from Chicken Rice
+143) Char Siew Rice from Chicken Rice
+144) Roasted Pork Rice from Chicken Rice
+145) Roasted Chicken Noodles (Egg Noodles) - Regular from Chicken Rice
+146) Roasted Chicken Noodles (Egg Noodles) - Large from Chicken Rice
+147) Roasted Chicken Noodles (Hor Fun) - Regular from Chicken Rice
+148) Roasted Chicken Noodles (Hor Fun) - Large from Chicken Rice
+149) White Chicken Noodles (Egg Noodles) - Regular from Chicken Rice
+150) White Chicken Noodles (Egg Noodles) - Large from Chicken Rice
+151) White Chicken Noodles (Hor Fun) - Regular from Chicken Rice
+152) White Chicken Noodles (Hor Fun) - Large from Chicken Rice
+153) Char Siew Noodles (Egg Noodles) - Regular from Chicken Rice
+154) Char Siew Noodles (Egg Noodles) - Large from Chicken Rice
+155) Char Siew Noodles (Hor Fun) - Regular from Chicken Rice
+156) Char Siew Noodles (Hor Fun) - Large from Chicken Rice
+157) Roasted Pork Noodles (Egg Noodles) - Regular from Chicken Rice
+158) Roasted Pork Noodles (Egg Noodles) - Large from Chicken Rice
+159) Roasted Pork Noodles (Hor Fun) - Regular from Chicken Rice
+160) Roasted Pork Noodles (Hor Fun) - Large from Chicken Rice
+161) Roasted Chicken Rice + Veg + Half Egg Set Meal from Chicken Rice
+162) White Chicken Rice + Veg + Half Egg Set Meal from Chicken Rice
+163) Char Siew Rice + Veg + Half Egg Set Meal from Chicken Rice
+164) Roasted Pork Rice + Veg + Half Egg Set Meal from Chicken Rice
+165) Curry Chicken Bee Hoon from Chicken Rice
+166) Curry Chicken Noodles from Chicken Rice
+167) Chicken Shredded Porridge from Chicken Rice
+168) Roasted Pork Rice Soup from Chicken Rice
+169) Roasted Chicken from Chicken Rice
+170) White Chicken from Chicken Rice
+171) Char Siew from Chicken Rice
+172) Roasted Pork from Chicken Rice
+173) Veg 1 (Cai Xin) from Chicken Rice
+174) Veg 2 (Nonya Chap Chye) from Chicken Rice
+175) Braised Egg from Chicken Rice
+176) Sausage from Chicken Rice
+177) Liver + Gizzards from Chicken Rice
+178) Roasted Chicken (1 Pax) from Chicken Rice
+179) Roasted Chicken (2 Pax) from Chicken Rice
+180) Roasted Chicken (3 Pax) from Chicken Rice
+181) White Chicken (1 Pax) from Chicken Rice
+182) White Chicken (2 Pax) from Chicken Rice
+183) White Chicken (3 Pax) from Chicken Rice
+184) Plain Chicken Rice from Chicken Rice
+185) White Rice from Chicken Rice
+186) Mee Rebus from Nasi Padang
+187) Mee Siam from Nasi Padang
+188) Mee Soto from Nasi Padang
+189) Mee Bundung from Nasi Padang
+190) Lotong from Nasi Padang
+191) Mee Goreng from Nasi Padang
+192) Fried Kway Teow from Nasi Padang
+193) Fried Been Hoon from Nasi Padang
+194) Mee Hong Kong from Nasi Padang
+195) Nasi Goreng Pattaya from Nasi Padang
+196) Chicken Briyani from Nasi Padang
+197) Nasi Lemak Set 1 (Chicken Wing + Egg) from Nasi Padang
+198) Nasi Lemak Set 2 (Fish Fillet + Hotdog + Ikan Bilis) from Nasi Padang
+199) Curry Puff (Potato) from Nasi Padang
+200) Curry Puff (Sardine) from Nasi Padang
+201) Curry Puff (Chicken) from Nasi Padang
+202) Spring Roll from Nasi Padang
+203) Samosa from Nasi Padang
+204) Tahu Goreng from Nasi Padang
+205) Malay Cake (Ma lai Go) from Nasi Padang
+206) Kuih Lopes from Nasi Padang
+207) Kuih Ongol Ubi (Ubi Kayu) from Nasi Padang
+208) Fried Chicken Wing from Nasi Padang
+209) Stir-Fried Beansprouts from Nasi Padang
+210) Kangkung Belacan from Nasi Padang
+211) Braised Egg and Chicken from Nasi Padang
+212) Beef Rendang from Nasi Padang
+213) Gulai Ayam (Chicken Curry) from Nasi Padang
+214) Sayur Lodeh (Vegetable Curry) from Nasi Padang
+215) Sambal Goreng Tempeh (Fried Spicy Tempeh) from Nasi Padang
+216) Chicken Porridge from Nasi Padang
+217) Nasi Goreng from Nasi Padang
+218) Assam Pedas from Nasi Padang
+219) Sotong from Nasi Padang
+220) Chicken Rendang from Nasi Padang
+221) Fish Cutlet from Nasi Padang
+222) Chicken Ngoyang from Nasi Padang
+223) Rissoles from Nasi Padang
+
+Apr 09, 2023 8:00:48 PM seedu.logger.LogFileHandler logInfo
+INFO: Breakfast was consumed on 1/11/2023
+Total Calories are: 530.0
+Here are the foods you ate:
+1) Grilled Dory Fish from Western
+
+Apr 09, 2023 8:00:48 PM seedu.logger.LogFileHandler logInfo
+INFO: Exercise: Running
+Description: 5km
+Calories Burnt: 400.0
+Date of Exercise: 2023-01-01
+
+Apr 09, 2023 8:00:48 PM seedu.logger.LogFileHandler logInfo
+INFO: Exercise: run
+Description: 3km
+Calories Burnt: 800.0
+Date of Exercise: 2023-01-01
+
+Apr 09, 2023 8:00:49 PM seedu.logger.LogFileHandler logInfo
 INFO: User exited the programme.
