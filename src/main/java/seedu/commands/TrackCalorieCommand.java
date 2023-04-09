@@ -38,7 +38,7 @@ public class TrackCalorieCommand extends Command {
         ArrayList<Exercise> exercises = exerciseStorage.getExercises();
         String[] userInputArgs = userInput.split("\\s+");
         if (userInputArgs.length == 1){
-            throw new MissingArgumentsException(commandWord, "[all] / [/from, /to]");
+            throw new MissingArgumentsException(commandWord, "[all] / [/start, /end]");
         } else if (userInputArgs[1].equals("all") && userInputArgs.length == 2){
             this.startDate = getStartingDate(meals, exercises);
             this.endDate = getEndingDate(meals, exercises);
@@ -55,8 +55,8 @@ public class TrackCalorieCommand extends Command {
         dtf = DateConstants.PARSE_DTF;
         int startDateIndex;
         int endDateIndex;
-        String startDateIdentifier = "/from";
-        String endDateIdentifier = "/to";
+        String startDateIdentifier = "/start";
+        String endDateIdentifier = "/end";
 
         startDateIndex = userInput.indexOf(startDateIdentifier);
         if (startDateIndex == -1) {
