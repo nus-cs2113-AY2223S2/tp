@@ -333,7 +333,7 @@ __________________________________________________________
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
 
 **Format**: `view INDEX` or `view NAME`<br>
-**Constraints**: 
+**Constraints**: <br>
 * INDEX: The index must be a positive integer within the range: `[1, total number of recipes in the list]`
 (Provided the list is not empty).
 * NAME: The **exact** full name of the recipe must be given as input, partial names will not be processed.
@@ -341,6 +341,7 @@ __________________________________________________________
 **Examples**:
 <br>
 * INDEX:
+  
   ```
   __________________________________________________________
   view 1
@@ -368,8 +369,9 @@ __________________________________________________________
   
   __________________________________________________________
   ```
-  <br/>
+
 * NAME:
+  
   ```
   __________________________________________________________
   view Hotpot
