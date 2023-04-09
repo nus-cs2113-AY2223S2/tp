@@ -152,6 +152,10 @@ Example:
 
 ### Dish
 
+#### Purpose
+
+This feature allows the restaurant manager to track the dishes that are sold in the restaurant, using commands that enables the manager to add, view, delete and find dishes.
+
 #### Add a Dish to the list of dishes:
 Successfully adds Dish only if all the arguments are correct.
 
