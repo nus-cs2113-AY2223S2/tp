@@ -29,7 +29,7 @@ The note will be saved when Duck is closed
 
 ### New Feature: Deleting notes under tasks
 
-- his feature allows the user to delete notes that have been created for whatever reason  
+- This feature allows the user to delete notes that have been created for whatever reason  
 - By following the steps outlined by the user guide, existing notes can be deleted under their respective tasks.
 
 ### New Feature: Editing notes under tasks
@@ -56,11 +56,14 @@ The note will be saved when Duck is closed
 ### Project Management:
 
 - Helped to host group meetings and organize them to ensure group was on task and on the same page
-- Liased with other groups to promote mutual stress-testing of each other's product 
+- Liased with other groups to carry out mutual stress-testing of each other's product 
+- Updated team of new merges and PRs whenever necessary
 
 ### Documentation:
 - User Guide:
     - Added documentation for the features ```print_priority```, ```low_priority```,```medium_priority```, ```high_priority```, ```add_notes```, ```edit_notes```, ```delete_notes```,and ```motivation```
+    - Helped to fix bugs with the hyperlink to enable easier navigation of the UG
 
 ### Community:
 - Reported bugs and suggestions for other teams (examples: [1](https://github.com/miahjerry/ped/issues/4), [2](https://github.com/miahjerry/ped/issues/7), [3](https://github.com/miahjerry/ped/issues/8))
+- Helped to connect to other teams for mutual stress testing of products (examples: [1](https://ginger-vicuna-3c7.notion.site/Duck-jar-62da4045517945f880b94392f6c0478e),[2](https://docs.google.com/document/d/1Um9IQ-UzBePFyVlHz3TH4wGpermMRMWOpBLmJe6c0IM/edit?usp=sharing))
