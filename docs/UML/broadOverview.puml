@@ -16,14 +16,11 @@ component Parser COLOR1
 
 component "textFile"
 
-[userInput]..>[Ui]
-[Ui]-->[main]
-[main]-->[Storage]
-[textFile]..>[Storage]
-[main]-->[Command]
-[main]->[Ui]
-[main]->[Parser]
-[Parser]-->[main]
-[Command]..>[main]
-[Storage]-->[textFile]
+[Ui]--[userInput]
+[main]--[Storage]
+[textFile]--[Storage]
+[main]--[Command]
+[main]--[Ui]
+[main]--[Parser]
+
 @enduml

@@ -30,9 +30,8 @@ Contributions to the project: [Reposense](https://nus-cs2113-ay2223s2.github.io/
   - Description of flow of programme
   - Architect diagram of main programme
   - Class diagram for event class 
-  ![img.png](img.png)
+  - ![event.png](..%2FUML%2FImage%2Fevent.png)
   - Sequence diagram for choosing venue
-  ![chooseVenueCommand.png](..%2FImage%2FchooseVenueCommand.png)
-
+![chooseVenueCommand.png](..%2FUML%2FImage%2FchooseVenueCommand.png)
 
     

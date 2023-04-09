@@ -108,7 +108,7 @@ public class Ui {
 
     public void showSuccessfulUnconfirmedMessage() {
         showLine();
-        System.out.println("This company has been successfully uncomfirmed!");
+        System.out.println("This company has been successfully unconfirmed!");
         showLine();
     }
 
