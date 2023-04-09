@@ -5,6 +5,7 @@ import static utils.storage.json.JsonStorage.logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -115,13 +116,14 @@ public class JsonToMemory {
         // obtain cardsSet
         JsonArray deckCardSetArray = deckObject.getAsJsonArray("cardsSet");
         HashSet<CardUUID> cardsSet = new HashSet<>();
+
         for (JsonElement deckListElement : deckCardSetArray) {
             JsonObject cardUuidObject = deckListElement.getAsJsonObject();
             String cardUuidString = cardUuidObject.get("uuid").getAsString();
             cardsSet.add(new CardUUID(UUID.fromString(cardUuidString)));
         }
-        deck.setCardsSet(cardsSet);
 
+        deck.setCardsSet(cardsSet);
         //obtain cardUUIDIntegerHashMap
         JsonObject cardUuidIntegerHashMapObject = deckObject.getAsJsonObject("cardUuidIntegerHashMap");
         HashMap<CardUUID, Integer> cardUuidIntegerHashMap = new HashMap<>();
@@ -132,9 +134,9 @@ public class JsonToMemory {
                 int value = entry.getValue().getAsInt();
                 cardUuidIntegerHashMap.put(new CardUUID(UUID.fromString(cardUuidString)), value);
             }
-        } catch (NullPointerException e) {
-            logger.log(Level.WARNING, "Invalid: hashmap", e);
+        } catch (NullPointerException e){
         }
+
         deck.setcardUUIDIntegerHashMap(cardUuidIntegerHashMap);
 
         //obtain cards from a jsonDeck
