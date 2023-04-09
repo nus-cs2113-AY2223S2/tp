@@ -49,7 +49,7 @@ The following sections will explain the architecture in more detail.
 
 **API**: `Storage.java`
 
-<img src="images\Storage.png" width="500">
+<img src="images\Storage.png" width="1000" height = "600">
 
 The `Storage` component,
 * can save category and event data in txt format, and read it back. (txt format is chosen because it is human readable)
@@ -58,7 +58,7 @@ The `Storage` component,
 When the user first starts the application:<br>
 <img src="images\StorageSequenceDiagram.png" width="500"><p>
 When the program is running:<br>
-<img src="images\StorageRunSequenceDiagram.png" width="500"><p>
+<img src="images\StorageRunSequenceDiagram.png" width="700"><p>
 
 ### Data component
 
@@ -79,7 +79,7 @@ in the [Glossary](#appendix-d--glossary) section.
 
 ### Commands component
   
-<img src="images\CommandParser.png">
+<img src="images\CommandParser.png" height = "400" width= "1400">
 
 **API**: `Command.java`
 
@@ -203,94 +203,180 @@ frequency is set to monthly.
 
 ## Appendix E: Instructions for Manual Testing
 
-First type 
+### Launch
+
+1. Download the latest MoneyMind.jar and save it to an empty folder.
+2. Open a command prompt in the folder and run the command java -jar MoneyMind.jar. The output should be similar to the below.
+
 ```
-category food b/200
+Loading file...
+Welcome to Moneymind
+  __  __                        __  __ _           _ 
+ |  \/  |                      |  \/  (_)         | |
+ | \  / | ___  _ __   ___ _   _| \  / |_ _ __   __| |
+ | |\/| |/ _ \| '_ \ / _ \ | | | |\/| | | '_ \ / _` |
+ | |  | | (_) | | | |  __/ |_| | |  | | | | | | (_| |
+ |_|  |_|\___/|_| |_|\___|\__, |_|  |_|_|_| |_|\__,_|
+                           __/ |                     
+                          |___/                      
+How may I help you?
+Type 'summary' to see the summary of all the commands you can use.
+Type 'help' to see the details of all the commands.
 ```
 
-Expected: 
+### View summary of commands
+
+Type summary and press enter. The output should be similar to the below.
+
 ```
-New category added: food
+Here are the commands you can use:
+1. help
+2. summary
+3. category
+4. event
+5. view
+6. edit
+7. delete
+8. search
+9. bye
 ```
 
-Then type 
+### View details of commands
+
+Type help and press enter. The output should be similar to the below.
+
 ```
-event buy salad e/12
+Here are the commands you can use:
+1. help - show detailed instructions on how to use the app
+Format: help
+Example: help
+
+2. summary - show a summary of the commands that you can use
+Format: summary
+Example: summary
+
+3. category - add a category to your list
+Format: category <name> [(optional) b/<budget number>]
+Example: category food b/2000
+
+4. event - add an event to a category
+Format: event <name> e/<expense number> [(optional) t/<time>]
+Example: event lunch e/10 t/01/01/2020 12:00
+(time is optional and the format is dd/mm/yyyy hh:mm)
+
+5. view - view all the events in a category or all the categories
+You can view all the events in a category by specifying the category name
+Format: view <category name>
+Example: view food
+(category name is optional and if you do not enter a category name, all the categories will be shown)
+
+6. edit - edit the expense for an event or budget for a category
+Format: edit c/<category name> [(optional) e/<event index>]
+Example: edit c/food e/1
+
+7. delete - delete an event or a category
+Format: delete c/<category name> [(optional) e/<event index>]
+Example: delete c/food e/1
+Example: delete c/food
+
+8. search - search for matching events and categories
+Format: search <keyword>
+Example: search bill
+
+9. bye - exit the app
+Format: bye
+Example: bye
 ```
 
-Expected: 
-```
-Please select the category you want to add the event to: 
-```
+The use of "/" is not allowed anywhere in the user input except for the time parameter in the event command or 
+when using in specifier in the command.
+### Add a category
 
-Then type 
-```
-1
-```
+| Cases                                | Example                       | Expected                                            |
+|--------------------------------------|-------------------------------|-----------------------------------------------------|
+| correct format without budget        | category food                 | category food with budget 0 is added                |
+| correct format with budget           | category food b/1000          | category food with budget 1000 is added             |
+| incorrect format or empty parameters | category food / b/            | show correct format message                         |
+| empty description                    | category                      | show empty description message                      |
+| not a natural integer for budget     | category food b/-1            | remind user to type non-negative integer for budget |
+| big number for budget                | category food b/9999999999999 | remind user to type value under limit               |
+| existed category                     | category food                 | remind user that the category already existed       |
 
-Expected: 
-```
-New event added: buy salad
-```
 
-Then type 
-```
-edit c/food e/1
-```
+### Add an event
 
-Expected: 
-```
-The current event expense for buy salad is: 12
-Your new expense would be: 
-```
+| Cases                                | Example                             | Expected                                             |
+|--------------------------------------|-------------------------------------|------------------------------------------------------|
+| correct format without time          | event sugar e/12                    | one time expense sugar is added                      |
+| correct format with time             | event sugar e/12 t/10/03/2020 12:00 | monthly recurring expense sugar is added             |
+| incorrect format or empty parameters | event e/12 t/10/03/2020 12:00       | show correct format message                          |
+| empty description                    | event                               | show empty description message                       |
+| not a natural integer for expense    | event sugar e/as                    | remind user to type non-negative integer for expense |
+| big number for expense               | event sugar e/9999999999999         | remind user to type value under limit                |
+| incorrect format for time            | event sugar e/12 t/August           | remind user to use correct format for time           |
 
-Then type 
-```
-100
-```
+Upon successfully pass the command input, the user will be prompted to select a category to add the event to. 
 
-Expected: 
-```
-Ok, the new expense is now changed to: 100
-```
+| Cases                 | Example | Expected                                                                                              |
+|-----------------------|---------|-------------------------------------------------------------------------------------------------------|
+| existing category     | food    | one time expense sugar is added to category food                                                      |
+| non-existing category | book    | notify the user the category does not exist and the user can type back to go back to the main program |
 
-Then type 
-```
-view
-```
+### View all the events in a category or all the categories
 
-Expected: 
-```
-1.food (budget: 200)
-buy salad [expense]100
-```
+| Cases                                 | Example   | Expected                                   |
+|---------------------------------------|-----------|--------------------------------------------|
+| the user only type view               | view      | every category and event are shown to user |
+| the user type view with category name | view book | show every events in category book to user | 
+| non-existing category                 | view car  | notify user the category does not exist    | 
 
-Then type 
-```
-delete c/food
-```
+### Edit the expense for an event or budget for a category
 
-Expected: 
-```
-Category deleted: food
-```
+| Cases                                  | Example                     | Expected                                                 |
+|----------------------------------------|-----------------------------|----------------------------------------------------------|
+| correct format without event index     | edit c/food                 | prepare to edit budget of food                           |
+| correct format with event index        | edit c/food e/1             | prepare to edit expense for first event in category food |
+| incorrect format or empty parameters   | edit e/1 c/food             | show correct format message                              |
+| empty description                      | edit                        | show empty description message                           |
+| not a positive integer for event index | edit c/food e/0             | remind user to type positive integer for event index     |
+| big number for event index             | edit c/food e/9999999999999 | remind user to type value under limit                    |
+| non-existing category                  | edit c/car                  | notify the user the category does not exist              |
+| non-existing event index               | edit c/food e/12            | notify the user the event does not exist                 |
 
-Then type 
-```
-view
-```
+Upon successfully pass the command input, the user will be prompted to enter the new expense or budget.
 
-Expected: 
-```
-There are no categories to view
-```
+| Cases                      | Example      | Expected                                                                                                |
+|----------------------------|--------------|---------------------------------------------------------------------------------------------------------|
+| non-negative integer       | 12           | the value is changed to 12                                                                              |
+| not a non-negative integer | as           | remind the user to enter a non-negative value and the user can type back to go back to the main program |
+| big positive integer       | 999999999999 | remind the user about the limit and the user can type back to go back to the main program               |
 
-Then type 
-```
-bye
-```
+### Delete an event or a category
 
-Expected: 
+| Cases                                  | Example                       | Expected                                             |
+|----------------------------------------|-------------------------------|------------------------------------------------------|
+| correct format without event index     | delete c/food                 | delete food category                                 |
+| correct format with event index        | delete c/food e/1             | delete first event in food category                  |
+| incorrect format or empty parameters   | delete e/1 c/food             | show correct format message                          |
+| empty description                      | delete                        | show empty description message                       |
+| not a positive integer for event index | delete c/food e/0             | remind user to type positive integer for event index |
+| big number for event index             | delete c/food e/9999999999999 | remind user to type value under limit                |
+| non-existing category                  | delete c/car                  | notify the user the category does not exist          |
+| non-existing event index               | delete c/food e/12            | notify the user the event does not exist             |
+
+
+### Search for matching events and categories
+
+| Cases                                | Example    | Expected                                                                                                                     |
+|--------------------------------------|------------|------------------------------------------------------------------------------------------------------------------------------|
+| empty description                    | search     | remind user to include keyword after search                                                                                  |
+| with keyword                         | search foo | show all matching categories and events which contain the keyword and show top 3 most similar matching categories and events |
+
+### Exit the app
+
+Type bye and press enter to exit the app. The output should be similar to the following:
+
 ```
 Bye. Hope to see you again soon!
 ```
+

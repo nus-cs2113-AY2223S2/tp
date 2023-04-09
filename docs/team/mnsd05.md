@@ -8,7 +8,8 @@ MoneyMind is a desktop app for managing your finances, optimized for use via a C
 * Feature implemented: Added the ability to parse user input
     * What it does: Ensure the user input is in correct format before executing the command
     * Justification: This feature is integral to the product because it is essential to perform any useful tasks. It enables the application to process and interpret user input accurately and efficiently, improving both the user experience and the functionality of the application.
-* Features implemented: Added the logic to execute every feature of the product except "Search" and "Bye" commands
+      * Why it is hard to implement: Because it requires me to handle all the possible exceptions that may occur when parsing the user input and define my own custom exceptions to handle the unexpected cases like integer overflow, dummy input, etc. Most importantly, I have to come up with complex and efficient regexes to parse the user input.
+* Features implemented: Added the logic to execute every feature of the product except "Search", "Bye" and "Summary" commands
     * What it does: Add, delete categories and view all the events in a category. Add, delete, edit events and view every event in the list. 
     * Justification: Those features are important because it contains the core functionality of the application.
 * Contributions to the UG:
@@ -16,7 +17,7 @@ MoneyMind is a desktop app for managing your finances, optimized for use via a C
   examples of using them
 * Contributions to the DG:
     * Added implementation details of the `command', 'parser', 'exception', 'category' and 'event' components.
-    * Added architecture diagram of the `command', 'parser' components.
     * Added manual testing instructions.
 * Review/mentoring contributions:
     * Find bugs for teammates
+    * Resolve merge conflicts
