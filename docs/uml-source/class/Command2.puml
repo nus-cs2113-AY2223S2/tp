@@ -5,8 +5,7 @@ skinparam classAttributeIconSize 0
 title for Module Commands
 
 class Parser {
-+ getCommand(userCommand: String, ui: Ui, size: int,
-moduleData: ModuleList): Command
++ getCommand(): Command
 }
 Parser --> Command : creates >
 
@@ -24,34 +23,27 @@ interface LoggerInterface {
 setUpLogger(logger: Logger): void
 }
 
-note right of Command::execute
-    All Command subclasses overwrite the execute() method
+note left of Command::execute
+    All Command subclasses
+    overwrite the execute() method
 end note
 LoggerInterface <|.. Command : sets up logger for >
 
 class AddModuleCommand {
 - module: ModuleList
 - args: String[]
-+ AddModuleCommand(param: String, allModules: ModuleList)
-- handleMultiCommand(moduleList: ModuleList, allModules: ModuleList,
-args: String[], ui: Ui, calendar: Calendar): void
-- addTimeTable(searchModule: Module, lessonType: LessonType,
-args: String, ui: Ui, calendar: Calendar): void
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- checkClashingLesson(calendar: Calendar, timetable: Timetable, ui: Ui): void
-- isLessonClashing(schedule: Timetable, timetable: Timetable): boolean
-- isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
-- isAdded(moduleList: ModuleList, module: Module): boolean
++ AddModuleCommand(param: String,
+allModules: ModuleList)
+- addTimeTable(searchModule: Module, lessonType:
+LessonType, args: String, ui: Ui, calendar: Calendar): void
 }
-AddModuleCommand -|> Command
+Command <|-- AddModuleCommand
 
 class DeleteModuleCommand{
 # args: String[]
 + DeleteModuleCommand(params: String)
-- isInteger(param: String): Boolean
-- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
-- deleteTimetable(module: Module, lessonType: LessonType,
-lessonNumber: String): void
+- deleteTimetable(module: Module, lessonType:
+LessonType, lessonNumber: String): void
 }
 Command <|-- DeleteModuleCommand
 
@@ -61,47 +53,32 @@ Command <|-- ListModuleCommand
 class ListModuleWithLessonCommand {
 - args: String[]
 - module: Module
-+ ListModuleWithLessonCommand(params: String, allModules: ModuleList)
-- handleSingleCommand(ui: Ui): void
-- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
-- copyModuleListData(moduleList: ModuleList): void
-- copyLessonTypeIntoTimetable(lessonType: LessonType): ArrayList<Timetable>
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
-- printTimetableLessonInformation(ui: Ui, lessonType: LessonType,
-timetableInModuleList: ArrayList<Timetable>): void
-- isInModuleList(moduleList: ModuleList, module: Module): boolean
-- isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
++ ListModuleWithLessonCommand(
+params: String, allModules: ModuleList)
 }
 Command <|-- ListModuleWithLessonCommand
 
 class ShowModuleCommand {
 - args: String[]
 - module: Module
-+ ShowModuleCommand(params: String, allModules: ModuleList)
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- handleMultiCommand(ui: Ui): void
-- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
-- printModuleInformationWithLesson(ui: Ui, lessonType: LessonType,
-copyList: ArrayList<Timetable>): void
-- copyLessonTypeIntoTimetable(lessonType: LessonType,
-copyList: ArrayList<Timetable>, timetableList: ArrayList<Timetable>): void
++ ShowModuleCommand(params: String,
+allModules: ModuleList)
 }
 Command <|-- ShowModuleCommand
 Storage <-- Command : updates <
 Ui <-- Command : calls for \nprinting <
 
-Calendar "1   " <-- Command : reads and writes to <
-class "ArrayList\n<CalendarModule>" as ALModules
-ALModules "         *" <--* "1 " Calendar : contains <
-ALModules "1" *-> "*" CalendarModule : contains >
-
 ModuleList "2" <-- Command : reads and writes to <
 Module "     *" <--* "1 " ModuleList : contains <
 
+Command -> "    1" Calendar : reads and writes to >
+class "ArrayList<CalendarModule>" as ALModules
+ALModules "         *" <--* "1 " Calendar : contains <
+CalendarModule "*" <--* "1" ALModules : contains <
+
 enum "<<enum>>\nLessonType" as LessonType
-CalendarModule -|> Module
-CalendarModule --> "1 " Timetable
-Timetable -> "1 " LessonType
+Module <|- CalendarModule
+CalendarModule -> "1 " Timetable
+Timetable --> "1 " LessonType
 
 @enduml
