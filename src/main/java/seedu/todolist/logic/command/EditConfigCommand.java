@@ -3,7 +3,6 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidFrequencyException;
-import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.model.Config;
 import seedu.todolist.model.TaskList;

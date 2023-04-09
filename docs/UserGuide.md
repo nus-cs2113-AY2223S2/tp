@@ -35,7 +35,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 
 Given below is list of task attributes and their restrictions.
 
-- `DESCRIPTION` The description of a task has no additional restrictions.
+- `DESCRIPTION` A task must have a non-empty description.
   - Examples: `Hello yah`, `pi is roughly 3`
 - `DEADLINE` The date-time format is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
   - When adding a task or editing a deadline, the `DEADLINE` cannot be in the past.
@@ -323,7 +323,7 @@ Format: `list [IDS] [-sort SORT_OPTION]` OR `list [FILTERS] [-sort SORT_OPTION]`
   - The description is shown after the priority, and is truncated with `...` if it is too long.
   - The deadline is shown after the description, if it exists.
   - Other attributes can be seen with the [`info`](#view-detailed-information-of-a-task-info) command.
-- Refer to the [Selecting tasks](#selecting-tasks) section for more information about about selecting targeted tasks.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
   - If no ids or filters are provided, all tasks will be displayed by default.
 - `SORT_OPTION` can be one of the following:
   - `due` sorts tasks by their deadline, with earlier deadlines first and no-deadline tasks last.

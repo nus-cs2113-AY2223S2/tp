@@ -66,7 +66,7 @@ The `getUserInput()` method is used by the `ToDoListManager` to get the user's i
 
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
+The code for this component is found [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -80,7 +80,7 @@ through the `Ui` component.
 
 ### Model component
 
-The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [here](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/model).
 
 ![ModelClassDiagram](images/ModelClassDiagram.png)
 

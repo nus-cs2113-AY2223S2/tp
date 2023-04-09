@@ -3,8 +3,6 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.constants.HelpMessages;
-import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.model.Config;
 import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
