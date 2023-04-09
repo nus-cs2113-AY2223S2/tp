@@ -1,11 +1,12 @@
 package seedu.brokeMan.entry.expense;
 
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
-import seedu.brokeMan.entry.Category;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.LinkedList;
@@ -37,7 +38,9 @@ public class ExpenseList extends EntryList {
 
         Ui.showToUser("Here are the expenses you have made for " + dateInString + ".");
         listEntry(expenseOfDate);
-        Ui.showToUser("Total expenses: $" + getEntryListSum(expenseOfDate));
+        double totalDoubleExpenses = getEntryListSum(expenseOfDate);
+        BigDecimal totalExpenses = new BigDecimal(totalDoubleExpenses);
+        Ui.showToUser(String.format("Total expenses: $%.2D", totalExpenses));
         Ui.showToUserWithLineBreak("");
     }
 
