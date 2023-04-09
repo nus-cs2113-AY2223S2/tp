@@ -20,7 +20,7 @@ request to `Manager` to assist the CRUD operations.
 
 ### Command Component
 
-##### The command component consists of the following:
+The command component consists of the following:
 
 ![](uml/images/CommandClassDiagramExitHelpIncorrect.png)
 
@@ -161,21 +161,21 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
 The Dish feature consists of three functions:
 
-##### Adding dish to list:
+##### Add dish to list:
 
 ![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)
 - When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
 - When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
 - It then prints out the dish that was added to the console.
  
-##### Deleting dish on the list:
+##### Delete dish on the list:
 
 ![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)
 - When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.
 - When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes
 - It then prints out the dish that was deleted to the console.
 
-##### Viewing the list of dishes:
+##### View the list of dishes:
 ![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)
 - When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
 - It then prints out the formatted string containing all the dishes to the console.
