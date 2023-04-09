@@ -89,8 +89,8 @@ public class SniffTasks {
         APPOINTMENTS.sort(new DateTimeComparator());
         int notMarkedAppointmentsIndex = 1;
         if (APPOINTMENTS.isEmpty()) {
-            assert false : "There are no appointments in the task list";
             Ui.showUserMessage(" No entries found!");
+            return;
         }
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment != null : "Appointment is not empty";
@@ -100,7 +100,6 @@ public class SniffTasks {
             }
         }
         if (notMarkedAppointmentsIndex == 1) {
-            assert false : "There are no unmarked appointments in the task list";
             Ui.showUserMessage(" No entries found!");
         }
     }
