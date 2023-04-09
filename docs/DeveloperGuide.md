@@ -136,6 +136,10 @@ In the diagram, the aforementioned expenditure categories inherit from the `Expe
 
 `Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
 
+#### 3.3.1 Repeat dates for Accommodation and Tuition Expenditures
+
+
+
 ### 3.4. Command Component
 
 The `Command` component is represented by the `command` package. The `command` package contains all the available user commands supported by the application. These commands are utilised by the user to interact with the expenditure types and the expenditure list. 
