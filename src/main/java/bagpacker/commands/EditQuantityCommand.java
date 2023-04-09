@@ -22,6 +22,8 @@ public class EditQuantityCommand extends Command{
     public EditQuantityCommand(int newTotalQuantity, int targetIndex) {
         super(targetIndex);
         totalQuantity = newTotalQuantity;
+        assert (targetIndex >= 1 && targetIndex <= PackingList.getItemList().size()) :
+                "EditQuantity Command Target Index is out of bounds";
     }
     /**
      * Changed the total quantity of an item and prints a successfully edited message when
