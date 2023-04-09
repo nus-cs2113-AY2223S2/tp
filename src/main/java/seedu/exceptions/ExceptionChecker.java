@@ -8,6 +8,7 @@ import seedu.expenditure.TuitionExpenditure;
 import seedu.parser.ParseIndividualValue;
 
 public class ExceptionChecker {
+    public static final int TWO_DECIMAL_PLACE = 2;
     public static void checkEmptyString(String string) throws EmptyStringException {
         if (string.isEmpty()) {
             throw new EmptyStringException();
@@ -77,7 +78,7 @@ public class ExceptionChecker {
             throws WrongPrecisionException, EmptyStringException {
         if (userInput.contains(DOT)) {
             String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,DOT,BLANK);
-            if (twoDecimalPlaces.length() > 2) {
+            if (twoDecimalPlaces.length() > TWO_DECIMAL_PLACE) {
                 throw new WrongPrecisionException();
             }
         }
