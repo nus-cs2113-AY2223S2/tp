@@ -9,35 +9,34 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Command to execute EditConsultation functionality
+ * Command to execute EditVaccination functionality
  */
-public class EditConsultationCommand extends Command {
-    public String uid;
 
+public class EditVaccinationCommand extends Command{
+    public String uid;
     private final Animal animal;
     private final Owner owner;
+    private final String vaccine;
     private final LocalDate date;
     private final LocalTime time;
 
-
-    public EditConsultationCommand(String uid,String animalType, String animalName,
-                                   String ownerName, String contactNumber, LocalDate date,
-                                   LocalTime time) throws SniffException {
+    public EditVaccinationCommand(String uid,String animalType, String animalName, String ownerName,
+                              String contactNumber, String vaccine, LocalDate date,
+                              LocalTime time) throws SniffException {
         this.uid = uid;
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
+        this.vaccine = vaccine;
         this.date = date;
         this.time = time;
     }
     /**
-     * Executes EditConsultation Command method located in SniffTasks class
+     * Executes EditVaccination Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */
-
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
-        //tasks.removeAppointment(uid);
-        tasks.editConsultation(uid,animal, owner, date, time);
+        tasks.editVaccination(uid, animal, owner, date, time, vaccine);
     }
 }
