@@ -1,4 +1,4 @@
-# Yu Sichen - Project Portfolio Page
+# Yu Sichen (Sistine) - Project Portfolio Page
 
 ## Overview
 
