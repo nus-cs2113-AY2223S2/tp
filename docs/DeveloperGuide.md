@@ -7,7 +7,8 @@
    - [Architecture](#architecture)
    - [UI component](#ui-component)
    - [Parser component](#parser-component)
-   - [Storage component](#storage-component)
+   - [Command component](#command-component)
+   - [Save component](#save-component)
    - [Common class](#common-class)
 3. [Implementation](#implementation)
    - [Entry](#entry)
@@ -56,15 +57,17 @@ The rest of the program consists of mainly 5 main components.
 - [`Ui`](#ui-component): The Ui of the program.
 - [`Parser`](#parser-component): The user input parser.
 - [`Command`](#command-component): The command executor.
-- [`Storage`](#storage-component): Reads data from, and writes data to hard disk.
+- [`Save`](#save-component): Reads data from, and writes data to hard disk.
 - [`EntryList`](#entrylist-component): Stores the list of entries when program is running.
 
 **How the architecture components interact with each other**
 
-The sequence diagram shows how the components interact with each other for the scenarios where the user issues
-the commands `deleteExpense 1` and `exit`.
-
-![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
+The program will first load the content of the .txt files in the `Data` folder if exists,
+and populate the `incomeList`, `expenseList`, and `budgetEachMonth`. The `user`'s interactions with
+the `Ui` will be parsed to the `Command` using the `Parser`, and the `parser` will then return the `Command` object
+specified, which the `Ui` can execute and format the output to the `user`. When the `user` exits the program, the `Save`
+command will be executed and the content in `incomeList`, `expenseList`, and `budgetEachMonth` will then be
+stored into their respective .txt files in the `Data` folder.
 
 [back to contents](#table-of-contents)
 
@@ -102,12 +105,30 @@ How the `Parser` component works:
 
 ### Command component
 
+The sequence diagram shows how the components interact with each other for the scenarios where the user
+issues the commands `deleteExpense 1` and `exit`.
+
+![DeleteCommandSequenceDiagram](./images/DeleteCommandSequenceDiagram.png)
+
+When the `Ui` reads `"deleteExpense 1"` from `User`, it calls the `parseCommand()` method from `Parser` class
+to help parse the user input to `Command` (more specifically, `DeleteExpenseCommand`).
+In the `parseCommand()` method, it calls the `prepareDeleteExpenseCommand()` method to help convert the `String` "1" to
+`int` 1, and handle the necessary `exceptions`. It then returns a newly constructed `DeleteExpenseCommand(1)` object to `parseCommand()`
+method and back to `Ui`. The `Ui` executes the `excute()` method in `DeleteExpenseCommand` object which will call the
+`deleteExpense()` method in `EntryList` which will delete the entry of expense in its entryList. The `Ui` will
+display successful deletion of expense entry upon completion of delete command.
+
+When the `Ui` reads "exit" from the `User`, it similarly calls the `parseCommand()` method from
+`Parser` class to help parse the user input to `Command` (more specifically, `ExitCommand`).
+The `Parser` class will return a newly constructed `ExitCommand()` object back to the `Ui`.
+The `Ui` executes the `execute()` method of the `ExitCommand` which will call writeFile method in the `SaveBudget`,
+`SaveExpense`, and `SaveIncome` classes, in the `Save` folder, and write the content to its respective `.txt`
+files in the `Data` folder. Upon completion of the save command, the `Ui` will print the good bye messages to the
+`User` and terminate the program.
+
 [back to contents](#table-of-contents)
 
 ---
-
-### Storage component
-
 
 ### Save component
 
@@ -149,7 +170,7 @@ The `Budget` component,
 
 Here is a UML diagram of the `Budget` component:
 
-![BudgetClassDiagram](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/images/BudgetClassUML.png)
+![BudgetClassDiagram](./images/BudgetClassUML.png)
 
 ### Common class
 

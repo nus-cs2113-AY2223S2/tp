@@ -1,4 +1,7 @@
 @startuml
+skinparam classAttributeIconSize 0
+hide circle
+
 class Budget {
   - budgetEachMonth: HashMap<Integer, HashMap<Month, Double>>
   + viewBudget(dateInString: Optional<String>): void
