@@ -34,7 +34,6 @@ This feature consists of a few subfeatures :
   one by one. This feature also
   allows users to better organize their cards as they can see what are the cards that fall under the tag.
 
-
 - ***Highlights :*** The most notable thing to keep in mind in this feature is on the importance on ensuring that all
   the data structures in `TagList`, `Tag`,`CardList` and `Card` are properly
   synchronized whenever user enters a tag-related command. This is because most of the classes hold a reference to one
@@ -51,7 +50,6 @@ More specifically, I contributed to the following features :
   A notable feature that comes with `card list` is its ***truncation*** feature which automatically truncates
   the `question` and `answer` strings in each card if they exceed 50 characters.
 
-
 - ***Justification :*** This feature is introduced as we foresee that there will be a lot of cards in the `cardList` and
   that it
   might not be user-friendly to overwhelm the users with detailed information at this stage.
@@ -66,8 +64,7 @@ With that in mind, another feature that I implemented is :
   reference to the `ArrayList` representing `tags` and `decks` inside the `Card` class to ensure that the
   appropriate `tags` and `decks` get displayed.
 
-
-- ***Justification :*** : This feature is introduced so that users can make sure that their cards already have the
+- ***Justification :*** This feature is introduced so that users can make sure that their cards already have the
   correct `tags` and `decks`. This is because
   information provided by `card list` does not include the `tags` and `decks` for brevity purposes,
   Additionally, `questions` and `answers` displayed here are no longer truncated
@@ -86,7 +83,7 @@ found [here.](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=g
   in [#150.](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/150)
 - Contributed to various exception checking and the unit test to ensure that the exception message is appropriate.
 - Contributed to the overall architecture of `Inka` such as all the `UUID` classes.
-- Contributed to the skeleton code in `Inka` so the `tp` can get started.
+- Set up and filled in the AboutUs.md and README.md of `Inka`
 - Set up the [AY2223-S2-CS21113-F10-1](https://github.com/AY2223S2-CS2113-F10-1) organization and
   the [tp](https://github.com/AY2223S2-CS2113-F10-1/tp) repository inside.
 - Helped create issues in `v1.0` and `v2.0` milestones and close the milestones in a timely manner.
