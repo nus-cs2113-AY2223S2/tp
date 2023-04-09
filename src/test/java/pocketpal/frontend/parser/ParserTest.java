@@ -477,5 +477,16 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    public void parseViewCommand_invalidAmount_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view 10 -sp 1000dd000");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
     // @@author
 }
