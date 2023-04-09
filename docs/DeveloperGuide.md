@@ -70,7 +70,7 @@ Here is the UML diagram of Ui class:
 
 ### Parser component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
+The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
 
 How the `Parser` component works:
 1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
