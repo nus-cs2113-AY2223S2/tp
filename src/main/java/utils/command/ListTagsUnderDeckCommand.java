@@ -21,7 +21,8 @@ public class ListTagsUnderDeckCommand extends Command {
 
     private TagList findTagsUnderDeck(TagList tagList, DeckList deckList) throws InkaException {
         Deck foundDeck = deckList.findDeckFromName(deckName);
-        if(foundDeck==null) {
+
+        if (foundDeck == null) {
             throw new DeckNotFoundException();
         }
         ArrayList<TagUUID> tagUUIDS = foundDeck.getTagsUUID();
@@ -36,6 +37,7 @@ public class ListTagsUnderDeckCommand extends Command {
         }
         return foundTagList;
     }
+
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {

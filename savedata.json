@@ -140,12 +140,6 @@
         },
         {
           "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
-        },
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        },
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
       ],
       "decks": []
@@ -170,7 +164,16 @@
       "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        },
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
+      },
+      "tagName": "chemm",
+      "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
@@ -270,7 +273,7 @@
           "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
         },
         {
-          "uuid": "1631221a-1b21-4481-8113-76b0b6ce6499"
+          "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
         }
       ],
       "decks": [
@@ -310,6 +313,13 @@
     },
     {
       "uuid": {
+<<<<<<< HEAD
+        "uuid": "29bea83e-d864-48c4-bb9a-7fa817114fe1"
+      },
+      "question": "how do i use this command?",
+      "answer": "by referring to this user guide",
+      "tags": [],
+=======
         "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
       },
       "question": "testing",
@@ -345,10 +355,18 @@
           "uuid": "22c0769d-f046-4ae1-b0aa-e9910e92a3d2"
         }
       ],
+>>>>>>> master
       "decks": []
     },
     {
       "uuid": {
+<<<<<<< HEAD
+        "uuid": "19d859b1-cede-467e-b384-7d6e690cdae6"
+      },
+      "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "answer": "ans",
+      "tags": [],
+=======
         "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
       },
       "question": "this might work",
@@ -361,6 +379,7 @@
           "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
         }
       ],
+>>>>>>> master
       "decks": []
     }
   ]

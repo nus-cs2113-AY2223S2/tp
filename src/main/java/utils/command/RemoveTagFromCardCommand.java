@@ -1,6 +1,7 @@
 
 package utils.command;
 
+import java.util.Optional;
 import model.Card;
 import model.CardList;
 import model.CardSelector;
@@ -12,6 +13,8 @@ import model.TagSelector;
 import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
+import utils.exceptions.TagNotFoundException;
 import utils.exceptions.TagNotInCardException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
@@ -36,9 +39,15 @@ public class RemoveTagFromCardCommand extends Command {
      * @param tagToDelete  The target tag that is to be deleted from the Card
      */
     private void removeTagFromCard(Card cardAffected, Tag tagToDelete)
-            throws TagNotInCardException {
+            throws TagNotInCardException, LongTagNameException, TagNotFoundException {
 
-        if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (tagToDelete == null) {
+            throw new TagNotFoundException();
+        } else if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
             throw new TagNotInCardException();
         }
 
@@ -58,7 +67,7 @@ public class RemoveTagFromCardCommand extends Command {
         Tag tagToDelete = tagList.findTag(tagSelector);
         removeTagFromCard(cardAffected, tagToDelete);
 
-        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getUUID());
+        ui.printRemoveTagFromCard(cardAffected.getUuid(), tagToDelete.getTagName());
     }
 }
 

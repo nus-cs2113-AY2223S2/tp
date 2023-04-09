@@ -13,6 +13,7 @@ import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.CardInTagException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNotFoundException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
@@ -38,12 +39,14 @@ public class AddCardToTagCommand extends Command {
      * @param ui        The userInterface to print the success of the tag creation
      */
     private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui)
-            throws CardInTagException, TagNotFoundException {
+            throws CardInTagException, TagNotFoundException, LongTagNameException {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTag(tagSelector);
         Optional<String> tagName = tagSelector.getTagName();
 
-        if (tagToAdd == null) {
+        if (tagName.isPresent() && tagName.get().length() > 50) {
+            throw new LongTagNameException();
+        } else if (tagToAdd == null) {
             ui.printTagCreationSuccess(tagName.get());
             tagToAdd = new Tag(tagName.get());
             tagList.addTag(tagToAdd);
@@ -55,7 +58,6 @@ public class AddCardToTagCommand extends Command {
         tagToAdd.addCard(cardUUID);
 
         //add the tag uuid to the card
-
         TagUUID tagUUID = tagToAdd.getUUID();
 
         cardToAdd.addTag(tagUUID);
@@ -70,6 +72,6 @@ public class AddCardToTagCommand extends Command {
         addCardToTag(tagList, cardToAdd, ui);
 
         Tag tagToBeAdded = tagList.findTag(tagSelector);
-        ui.printAddTagToCardSuccess(cardToAdd.getUuid(), tagToBeAdded.getUUID());
+        ui.printAddTagToCardSuccess(cardToAdd.getUuid(), tagToBeAdded.getTagName());
     }
 }

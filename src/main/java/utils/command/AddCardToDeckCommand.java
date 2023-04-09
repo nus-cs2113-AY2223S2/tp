@@ -11,6 +11,7 @@ import utils.UserInterface;
 import utils.exceptions.CardInDeckException;
 import utils.exceptions.CardInDeckUnderTagException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 
 public class AddCardToDeckCommand extends Command {
@@ -25,18 +26,20 @@ public class AddCardToDeckCommand extends Command {
     }
 
     private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws InkaException {
-        assert cardToAdd!=null;
+        assert cardToAdd != null;
         Deck deckToAdd = deckList.findDeckFromName(deckName);
-        if (deckToAdd == null) {
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, cardToAdd.getUuid());
             deckToAdd.addCardToSet(cardToAdd.getUuid());
             deckList.addDeck(deckToAdd);
         } else if (deckToAdd.cardIsInSet(cardToAdd.getUuid())) {
             throw new CardInDeckException();
-        } else if(deckToAdd.cardIsInMap(cardToAdd.getUuid())) {
+        } else if (deckToAdd.cardIsInMap(cardToAdd.getUuid())) {
             throw new CardInDeckUnderTagException();
-        } else{
+        } else {
             deckToAdd.addCard(cardToAdd.getUuid()); // add card to the array list
             deckToAdd.addCardToSet(cardToAdd.getUuid()); // add card to the set
         }
@@ -53,6 +56,6 @@ public class AddCardToDeckCommand extends Command {
         assert cardToAdd != null;
 
         addCardToDeck(deckList, cardToAdd, ui);
-        ui.printAddCardToDeckSuccess(cardToAdd.getUuid(), deckUUID);
+        ui.printAddCardToDeckSuccess(cardToAdd.getUuid(), deckName);
     }
 }

@@ -10,9 +10,10 @@ import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 
-public class ListCardsUnderDeckCommand extends Command{
+public class ListCardsUnderDeckCommand extends Command {
 
     private String deckName;
 
@@ -22,9 +23,13 @@ public class ListCardsUnderDeckCommand extends Command{
 
     private CardList findCardsUnderDeck(CardList cardList, DeckList deckList) throws InkaException {
         Deck foundDeck = deckList.findDeckFromName(deckName);
-        if(foundDeck==null) {
+
+        if (deckName.length() > 50) {
+            throw new LongDeckNameException();
+        } else if (foundDeck == null) {
             throw new DeckNotFoundException();
         }
+
         ArrayList<CardUUID> cardsUUID = foundDeck.getCardsUUID();
         CardList foundCardList = new CardList();
 
