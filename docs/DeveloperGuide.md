@@ -12,7 +12,8 @@
     * [[Added] Add Pet Stat Feature](#added-add-pet-stat-feature)
       * [Implementation](#implementation)
     * [Remove Pet Stat Command](#remove-pet-stat-command)
-* [Appendix: Requirements](#appendix--requirements)
+    * [Command Parser](#command-parser)
+* [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -70,8 +71,8 @@ displaying of the relevant information including error messages for the program.
 The `Main` class will call `getUserInput()` to read in user input. Commands may then
 call the methods to print relevant outputs.
 
-<p align="center">
-    <img src="images/UiClassDiagram.png">
+<p style="text-align:center">
+    <img src="images/UiClassDiagram.png" alt="Architecture Diagram">
     <br />
     <i>Figure 2: Class Diagram for Ui</i>
 </p>
@@ -110,8 +111,8 @@ the command via `ui.getUserInput()` and parses it through `commandParser.parseCo
 
 11. The program will now exit.
 
-<p align="center">
-    <img src="images/ExitCommandSequenceDiagram.png">
+<p style="text-align:center">
+    <img src="images/ExitCommandSequenceDiagram.png" alt="Sequence Diagram">
     <br />
     <i>Figure 3: Sequence Diagram for Bye Command</i>
 </p>
@@ -138,8 +139,8 @@ This is how the ListPetCommand works:
 
 7. The program is now ready to receive another command.
 
-<p align="center">
-    <img src="images/ListPetCommand.png">
+<p style="text-align:center">
+    <img src="images/ListPetCommand.png" alt="Sequence Diagram">
     <br />
     <i>Figure 4: Sequence Diagram for List Pet Command</i>
 </p>
@@ -157,8 +158,8 @@ The add pet stat mechanism is facilitated by the `Pet` class. It is stored inter
 
 These operations are exposed in the `PetList` class as `PetList#addStat()` and `AddStatCommand` class as `AddStatCommand#execute()`.
 
-<p align="center">
-    <img src="images/AddPetStatFeatureClassDiagram.png">
+<p style="text-align:center">
+    <img src="images/AddPetStatFeatureClassDiagram.png" alt="Class Diagram">
     <br />
     <i>Figure 5: Class Diagram for Add Pet Stat Feature</i>
 </p>
@@ -167,16 +168,16 @@ Given below is an example usage scenario and how the add pet stat mechanism beha
 
 Step 1. After the user launches the application and added a pet named "Bob", a `Pet` object will be initialised and saved in the `petList`.
 
-<p align="center">
-    <img src="images/AddPetStatFeatureObjectDiagram (1).png">
+<p style="text-align:center">
+    <img src="images/AddPetStatFeatureObjectDiagram (1).png" alt="Object Diagram">
     <br />
     <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 1</i>
 </p>
 
 Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. The `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
 
-<p align="center">
-    <img src="images/AddPetStatFeatureObjectDiagram (2).png">
+<p style="text-align:center">
+    <img src="images/AddPetStatFeatureObjectDiagram (2).png" alt="Object Diagram">
     <br />
     <i>Figure 7: Object Diagram for Add Pet Stat Feature After Step 2</i>
 </p>
@@ -205,10 +206,29 @@ It works like this:
 
 This feature was implemented like this in order to maximize use of the OOP paradigm. 
 
-<p align="center">
-    <img src="images/RemoveStatCommand.png">
+<p style="text-align:center">
+    <img src="images/RemoveStatCommand.png" alt="Sequence Diagram">
     <br />
     <i>Figure 8: Sequence Diagram for Remove Pet Stat Command</i>
+</p>
+
+### Command Parser
+
+The `CommandParser` class is responsible for parsing the user's input into a `Command` object. It does this by splitting
+the input into its keyword and arguments using Java's Regex Matcher, and then using a switch statement to identify the
+keyword and invoke the respective argument parser.
+
+How the Command Parser works:
+
+1. The user's input is passed into the `parseCommand()` method.
+2. The input is split into its keyword and arguments using Java's Regex Matcher.
+3. The keyword is used to identify the command, and the arguments are passed into the respective argument parser.
+4. The argument parser checks the validity of the arguments, and returns a `Command` object if the arguments are valid.
+
+<p style="text-align:center">
+    <img src="images/CommandParserSequence.png" alt="Sequence Diagram">
+    <br />
+    <i>Figure 9: Sequence Diagram for Add-Stat Command</i>
 </p>
 
 # Appendix: Requirements
@@ -227,23 +247,23 @@ add tasks for errands that even has a reminder feature so that users will not fo
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                           | So that I can ...                                        |
-|---------|------------------|---------------------------------------------------------|----------------------------------------------------------|
-| v1.0    | basic user       | add new pets                                            | track more pets                                          |
-| v1.0    | basic user       | record my pet's weight                                  | track if the weight is healthy                           |
-| v1.0    | basic user       | record my pet's age                                     | track how old my pet is                                  |
-| v1.0    | basic user       | remove a pet from my list                               | declutter the petlist from pets I no longer take care of |
-| v1.0    | large-scale user | see basic info on all my pets in one place              | get an overview of all my pets                           |
-| v2.0    | basic user       | save my pet list                                        | save my pet list data when i close the program           |
-| v2.0    | basic user       | load my saved pet list                                  | resume where i left off previously                       |
-| v2.0    | basic user       | add task                                                | remind myself to carry out a task                        |
-| v2.0    | basic user       | mark uncompleted tasks as done                          | check off tasks that i complete                          |
-| v2.0    | basic user       | unmark completed tasks                                  | uncheck off tasks that i did not complete                |
-| v2.0    | basic user       | see all my tasks in one place                           | get an overview of all my tasks                          |
-| v2.0    | basic user       | edit my pet information                                 | modify my pet information when i need to update it       |
-| v2.0    | basic user       | edit my task information                                | modify my task information when i need to update it      |
-| v2.0    | basic user       | get a schedule of what time tasks must be done          | better meet my pets need by carrying out the task        |
-| v2.0    | forgetful user   | receive reminders about what task should have been done | complete due tasks that i forgot to do                   |
+| Version | As a ...         | I want to ...                                           | So that I can ...                                           |
+|---------|------------------|---------------------------------------------------------|-------------------------------------------------------------|
+| v1.0    | basic user       | add new pets                                            | track more pets                                             |
+| v1.0    | basic user       | record my pet's weight                                  | track if the weight is healthy                              |
+| v1.0    | basic user       | record my pet's age                                     | track how old my pet is                                     |
+| v1.0    | basic user       | remove a pet from my list                               | de-clutter the pet-list from pets I no longer take care of  |
+| v1.0    | large-scale user | see basic info on all my pets in one place              | get an overview of all my pets                              |
+| v2.0    | basic user       | save my pet list                                        | save my pet list data when i close the program              |
+| v2.0    | basic user       | load my saved pet list                                  | resume where i left off previously                          |
+| v2.0    | basic user       | add task                                                | remind myself to carry out a task                           |
+| v2.0    | basic user       | mark uncompleted tasks as done                          | check off tasks that i complete                             |
+| v2.0    | basic user       | unmark completed tasks                                  | uncheck off tasks that i did not complete                   |
+| v2.0    | basic user       | see all my tasks in one place                           | get an overview of all my tasks                             |
+| v2.0    | basic user       | edit my pet information                                 | modify my pet information when i need to update it          |
+| v2.0    | basic user       | edit my task information                                | modify my task information when i need to update it         |
+| v2.0    | basic user       | get a schedule of what time tasks must be done          | better meet my pets need by carrying out the task           |
+| v2.0    | forgetful user   | receive reminders about what task should have been done | complete due tasks that i forgot to do                      |
 
 ## Non-Functional Requirements
 
@@ -296,7 +316,7 @@ state of the application as if it was never closed.
 2. In the event that the data file is missing, Pet Tracker will not see the former state of the application.
 3. Pet Tracker will run as if it is the first time launching this program.
 
-Expected Outcome: Pet Tracker runs with a empty data file.
+Expected Outcome: Pet Tracker runs with an empty data file.
 
 - Corrupted Data File
 1. Change pet age to be a non integer, or delete some pipes in the `petoutput.txt` or `taskoutput.txt` file.

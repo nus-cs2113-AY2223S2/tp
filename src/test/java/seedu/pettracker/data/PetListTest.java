@@ -3,6 +3,7 @@ package seedu.pettracker.data;
 import org.junit.jupiter.api.Test;
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -19,7 +20,7 @@ public class PetListTest {
     }
 
     @Test
-    void addPetToList() throws EmptyPetNameException, DuplicatePetException {
+    void addPetToList() throws EmptyPetNameException, DuplicatePetException, InvalidPetNameException {
         PetList.addPet("Bob");
         assertEquals(1, PetList.getNumberOfPets());
     }
@@ -47,7 +48,8 @@ public class PetListTest {
 
     @Test
     public void addStatToPet_correctStat_success() throws NonPositiveIntegerException,
-            InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException {
+            InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException,
+            InvalidPetNameException {
         PetList.addPet("Candy");
         PetList.addStat("Candy", "Weight", "10");
     }
@@ -87,7 +89,8 @@ public class PetListTest {
 
     @Test
     public void editStatToPet_correctStat_success() throws NonPositiveIntegerException,
-            InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException {
+            InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException,
+            InvalidPetNameException {
         PetList.addPet("EditStat1");
         PetList.addStat("EditStat1", "Weight", "10");
         PetList.editPetStats("EditStat1", "Weight", "20");
@@ -130,7 +133,7 @@ public class PetListTest {
     }
     @Test
     public void removePet_petFound_success() throws PetNotFoundException, DuplicatePetException,
-            EmptyPetNameException {
+            EmptyPetNameException, InvalidPetNameException {
         PetList.addPet("George");
         PetList.removePet("George");
     }

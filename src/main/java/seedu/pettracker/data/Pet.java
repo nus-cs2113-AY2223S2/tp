@@ -53,19 +53,22 @@ public class Pet {
      * @throws InvalidStatException When stat is not Type/Age/Weight
      */
     public void removeStat(String statName) throws InvalidStatException {
-        assert statName != null : "statName is null";
-        switch (statName.toLowerCase()) {
-        case "type":
-            setPetType("");
-            break;
-        case "age":
-            removeAge();
-            break;
-        case "weight":
-            removeWeight();
-            break;
-        default:
+        if (statName == null) {
             throw new InvalidStatException();
+        } else {
+            switch (statName.toLowerCase()) {
+            case "type":
+                setPetType("");
+                break;
+            case "age":
+                removeAge();
+                break;
+            case "weight":
+                removeWeight();
+                break;
+            default:
+                throw new InvalidStatException();
+            }
         }
     }
 

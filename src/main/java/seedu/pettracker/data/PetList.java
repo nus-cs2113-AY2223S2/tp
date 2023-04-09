@@ -2,6 +2,7 @@ package seedu.pettracker.data;
 
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -24,10 +25,16 @@ public class PetList {
      *
      * @param petName Name of pet to be added
      */
-    public static void addPet(String petName) throws EmptyPetNameException, DuplicatePetException {
+    public static void addPet(String petName) throws EmptyPetNameException, DuplicatePetException,
+            InvalidPetNameException {
         if (petName.trim().isEmpty()) {
             throw new EmptyPetNameException();
         }
+
+        if(petName.trim().contains("|")) {
+            throw new InvalidPetNameException();
+        }
+
         int index = PetList.find(petName);
         if (index != -1) {
             throw new DuplicatePetException();
@@ -108,10 +115,22 @@ public class PetList {
      */
     public static void list() {
         for (Pet pet : petList) {
+            String type = "-";
+            String age = "-";
+            String weight = "-";
+            if (!pet.getPetType().isEmpty()) {
+                type = pet.getPetType();
+            }
+            if (!pet.getAge().isEmpty()) {
+                age = pet.getAge();
+            }
+            if (!pet.getWeight().isEmpty()) {
+                weight = pet.getWeight();
+            }
             System.out.println("Name: " + pet.getPetName());
-            System.out.println("Type: " + pet.getPetType());
-            System.out.println("Age: " + pet.getAge());
-            System.out.println("Weight: " + pet.getWeight());
+            System.out.println("Type: " + type);
+            System.out.println("Age: " + age);
+            System.out.println("Weight: " + weight);
             System.out.println(LINE);
         }
         System.out.println("Number of pets: " + numberOfPets);

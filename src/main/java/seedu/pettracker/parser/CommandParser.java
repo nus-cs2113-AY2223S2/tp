@@ -1,14 +1,10 @@
 package seedu.pettracker.parser;
 
 import seedu.pettracker.commands.Command;
-import seedu.pettracker.commands.ExitCommand;
-import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.InvalidCommand;
-import seedu.pettracker.commands.ListPetCommand;
-import seedu.pettracker.commands.ListTasksCommand;
-import seedu.pettracker.commands.ScheduleCommand;
 
 import seedu.pettracker.exceptions.UnknownKeywordException;
+import seedu.pettracker.exceptions.EmptyArgException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,8 +26,8 @@ public class CommandParser {
     final String KEYWORD_UNMARK_TASK = "unmark-task";
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
     final String KEYWORD_HELP = "help";
-    final String COMMAND_STRING_BAD_FORMAT = "Command string is not in the correct format";
     final String UNKNOWN_KEYWORD_MESSAGE = "Please enter a valid command!";
+    final String EMPTY_CMD_MESSAGE = "Please enter a command!";
 
     public CommandParser() {
     }
@@ -53,21 +49,22 @@ public class CommandParser {
     public Command newCommand(String commandString) throws Exception {
         final Matcher matcher = COMMAND_FORMAT.matcher(commandString.trim());
         if (!matcher.matches()) {
-            return new InvalidCommand(COMMAND_STRING_BAD_FORMAT);
+            throw new EmptyArgException(EMPTY_CMD_MESSAGE);
         }
 
         final String keyword = matcher.group("keyword");
+        assert keyword != null;
         final String arguments = matcher.group("arguments").trim();
 
-        switch (keyword) {
+        switch (keyword.toLowerCase()) {
         case KEYWORD_EXIT:
-            return new ExitCommand();
+            return new ExitParser().parse(arguments);
         case KEYWORD_ADD_PET:
             return new AddPetParser().parse(arguments);
         case KEYWORD_REMOVE_PET:
             return new RemovePetParser().parse(arguments);
         case KEYWORD_LIST_PET:
-            return new ListPetCommand();
+            return new ListPetParser().parse(arguments);
         case KEYWORD_ADD_STAT:
             return new AddStatParser().parse(arguments);
         case KEYWORD_REMOVE_STAT:
@@ -81,15 +78,15 @@ public class CommandParser {
         case KEYWORD_REMOVE_TASK:
             return new RemoveTaskParser().parse(arguments);
         case KEYWORD_LIST_TASKS:
-            return new ListTasksCommand();
+            return new ListTasksParser().parse(arguments);
         case KEYWORD_MARK_TASK:
             return new MarkTaskParser().parse(arguments);
         case KEYWORD_UNMARK_TASK:
             return new UnMarkTaskParser().parse(arguments);
         case KEYWORD_SCHEDULE_TASKS: 
-            return new ScheduleCommand();
+            return new ScheduleParser().parse(arguments);
         case KEYWORD_HELP:
-            return new HelpCommand();
+            return new HelpParser().parse(arguments);
         default:
             throw new UnknownKeywordException(UNKNOWN_KEYWORD_MESSAGE);
         }

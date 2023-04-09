@@ -1,5 +1,7 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.InvalidTaskNameException;
+import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -29,13 +31,19 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        if (this.deadline != null) {
-            TaskList.addTask(todoDescription, deadline);
-        } else {
-            TaskList.addTask(todoDescription);
+        try {
+            if (this.deadline != null) {
+                TaskList.addTask(todoDescription, deadline);
+            } else {
+                TaskList.addTask(todoDescription);
+            }
+            TaskList.saveTasksToStorage(storage, ui);
+            ui.addTodoCommandMessage();
+        } catch (InvalidTaskNameException e) {
+            ui.printInvalidTaskNameMessage();
+        } catch (EmptyArgException e) {
+            ui.emptyTaskMessage();
         }
-        TaskList.saveTasksToStorage(storage, ui);
-        ui.addTodoCommandMessage();
     }
 
     /**
