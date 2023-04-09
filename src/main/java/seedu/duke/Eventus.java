@@ -79,6 +79,10 @@ public class Eventus {
                 ui.showLine();
                 System.out.println(err.getMessage());
                 ui.showLine();
+            } catch (NegativeNumberException err) {
+                ui.showLine();
+                System.out.println("Please input a value greater than or equal to zero.");
+                ui.showLine();
             }
         }
     }
