@@ -2,10 +2,38 @@
 
 ## Acknowledgements
 Credits to [Personbook](https://github.com/nus-cs2113-AY2223S2/personbook)
-for some reused skeleton code and inspiration on OOP implementation.
+for some reused skeleton code and inspiration on OOP implementation.  
+Credits to [addressbook-level3](https://github.com/se-edu/addressbook-level3) for providing a guide on how to write Developer and User Guide.
 
 ## Setting up
+### Prerequisite
+Ensure you have the following installed:
+1. [JDK 11](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html)
+2. [Intellij IDEA](https://www.jetbrains.com/idea/download)
 
+### Setting up the project in your computer
+1. **Fork** this repo, and **clone** the fork into your computer.
+2. Open the application `Intellij IDEA`.
+   1. On the top left of the navigation bar, select `File` > `Open...`.
+   2. Navigate to the folder, and select the folder containing the `DinerDirector` files that was cloned.
+   3. By default, if there is a `build.gradle` in the project root, Intellij treats it as a Gradle project by default. Just in case it didn't work follow the guide [Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+3. Once the project is opened, **Configure the JDK**: Follow the guide [JetBrains Intellij IDEA: Configure JDK](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) to ensure Intellij is configured to use **JDK 11**.
+4. Verify the setup
+   1. Once the above steps are completed, locate the file `src/main/java/dinerdirector/DinerDirector.java`, right-click and select `Run 'DinerDirector.main()'`
+   2. If setup is correctly done, this is what you should see:
+   ```
+   Hello from
+      _____  _                 _____  _               _
+    |  __ \(_)               |  __ \(_)             | |
+    | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __
+    | |  | | | '_ \ / _ \ '__| |  | | | '__/ _ \/ __| __/ _ \| '__|
+    | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |
+    |_____/|_|_| |_|\___|_|  |_____/|_|_|  \___|\___|\__\___/|_|
+    
+    Welcome to DinerDirector! Please type "help" for a list of valid commands.
+    What can I do for you?
+    >
+   ```
 ## Design 
 ### Architecture
 
@@ -230,14 +258,18 @@ The Dish feature consists of three functions:
 ### Non-Functional Requirements
 - The application should be able to run on any operating systems (OS) with `Java 11` installed.
 - The application should be responsive.
-- The application should be able to hold up to at least 1000 lines in the list without lagging.
+- The application should be able to hold up to at least 100 items in the different lists without lagging.
 - The application should be easy to learn and pick up by reading the User Guide.
 - When using the application, a user with above average typing speed should be able to complete tasks faster as compared to using a mouse.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Any Operating System* - Windows, Linux, Unix, OS-X
 
 ## Appendix B: Instructions for manual testing
 
+### Launch and shutdown
+1. Initial launch
+   1. Download the jar file and copy into an empty folder
+   2. 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
