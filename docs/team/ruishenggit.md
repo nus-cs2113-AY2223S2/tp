@@ -8,10 +8,10 @@ Given below are my contributions to the project.
 
 ### Summary of Contributions
 
-- **New Feature**: Created a delete command to allow users to delete tasks. 
-  - What it does: Allows the user to remove a task with the given id by the user from the To-Do list.
-  - Justification: This feature is essential to the program as users may make mistakes in commands or a task that may
-    be overdue. This feature provides a convenient way to rectify the mistakes or remove unwanted tasks.
+- **New Feature**: Created a delete command to allow users to delete tasks.
+    - What it does: Allows the user to remove a task with the given id by the user from the To-Do list.
+    - Justification: This feature is essential to the program as users may make mistakes in commands or a task that may
+      be overdue. This feature provides a convenient way to rectify the mistakes or remove unwanted tasks.
 
 - **New Feature**: Created a mark command to allow users to mark tasks.
     - What it does: Allows the user to mark a task with the given id by the user as completed.
@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 - **New Feature**: Created an unmark command to allow users to unmark tasks.
     - What it does: Allows the user to unmark a task with the given id by the user as completed.
     - Justification: This feature is essential to the program as users may want to remove a completed task from the list
-      without deleting it entirely. It is also helpful as users may make mistakes by marking an uncompleted task or for 
+      without deleting it entirely. It is also helpful as users may make mistakes by marking an uncompleted task or for
       recurring tasks that need to be completed on a regular basis.
 
 - **New Feature**: Created an email command to allow users to add/edit/delete email.
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 
 - **New Feature**: Created a priority command to allow users to edit priority level.
     - What it does: Allows the user to edit, or delete the priority level of a task with the given id in the To-Do List.
-    - Justification: This feature is essential to the program as different tasks have different urgency and the app 
+    - Justification: This feature is essential to the program as different tasks have different urgency and the app
       should provide a convenient way to shows the user which tasks should be prioritised and which task should be left later.
 
 - **New Feature**: Provide a help list.
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
 - [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=ruishenggit&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Enhancements Implemented:
-- Wrote some JUnit tests for the `delete`, `mark/unmark`, `edit priority level` and `edit email` commands.
+- Wrote JUnit tests for the `delete`, `mark/unmark`, `edit priority level` and `edit email` commands.
 
 #### Contributions to the UG:
 - Contributed to the `Command Summary` section.
@@ -52,9 +52,10 @@ Given below are my contributions to the project.
   `Add/Edit/Delete an email` components in the `Features` section.
 
 #### Contributions to the DG:
-- Added implementation details for the mark/unmark command.
-- Added implementation details for the delete command.
-- Created Sequence Diagrams using Plant UML for delete, mark, unmark commands.
+- Added implementation details for the `mark/unmark`, `delete`, `edit email`, `edit priority`, `reset` and `help`
+  commands.
+- Created Sequence Diagrams using Plant UML for `mark/unmark`, `delete`, `edit email`, `edit priority`, `reset` and
+  `help` commands.
 
 #### Contributions to team-based tasks:
 - Contributed to the planning of the product by coming up with features to implement.
