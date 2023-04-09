@@ -1185,6 +1185,7 @@ Priority Legend:
 * *Modular Credits* - Modular credits are the credits that students earn for each module they take. They are used to
   calculate the total number of credits a student has earned for the semester.
 
+<!--@@T-Wan-Lin, PoobalanAatmikaLakshmi -->
 ## Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
@@ -1212,126 +1213,140 @@ ____________________________________________________________
 ```
 
 ### Sample test cases
-#### Invalid Commands
-1. Type `hello` and press enter.
-2. Any commands Apollo cannot understand will be treated as invalid commands.
+For command testing, you have to be in Apollo's main CLI interface. 
+Do remember to hit `Enter` after typing the command so that Apollo registers it.
 
-Expected: Apollo should respond with an error message for invalid commands.
+In this section, there are various test cases for the many commands Apollo has. For negative testing,
+invalid commands are tested, where Apollo can handle invalid commands gracefully without crashing.
+For positive testing, valid commands are tested.
+#### Invalid Commands at any point of execution
+
+Any commands Apollo cannot understand will be treated as invalid commands. Apollo will respond with an error message.
+Note: Some commands have command-specific error messages. These are not covered in this sub-section for brevity.
+
+|  No.  |  Type of Testing  | Test Command | Expected Output                       |
+|:-----:|:-----------------:|:-------------|:--------------------------------------|
+|   1   |     Negative      | `hello`      | Exception thrown for invalid command. |
+
+The exception thrown in for this sub-section is: 
 ```
 Sorry, but I don't know what that means :(
 ```
 #### Help Command
-1. Make sure you are in the main interface.
 
-Test case 1: Type `help` and press enter.
+| No. | Type of Testing | Test Command                | Expected Output                                                                              |
+|:---:|:---------------:|:----------------------------|:---------------------------------------------------------------------------------------------|
+|  1  |    Positive     | `help`                      | The help menu should appear with the list of *all* commands available on Apollo with `help`. |
+|  2  |    Positive     | `help showmod`              | The *shorter* help menu for *only* the showmod command should appear.                        |
+|  3  |    Negative     | `help how to get a partner` | Exception thrown for non-existent command.                                                   |
 
-Test case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
 
-Expected of Test case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
-
-Expected of Test case 2: The help menu for that command should appear.
-
-<!--@@author PoobalanAatmikaLakshmi -->
 ### Adding a ToDo/Event/Deadline
-Prerequisite: Make sure you are in the main interface.
-#### Invalid Commands
-1.Test case for empty task description: `todo ` or `deadline` or `event`
+ The below table is a summary of the test cases.
 
-Expected: Exception thrown. Error details shown in status message
+| No. | Type of Testing | Test Command                                                | Expected Output                                                       |
+|:---:|:---------------:|:------------------------------------------------------------|:----------------------------------------------------------------------|
+|  1  |    Positive     | `todo Feed the fish`                                        | ToDo is added into TaskList. Details of ToDo shown in status message. |
+|  2  |    Positive     | `deadline return book -by 17-11-2023-11:23`                 | Deadline is added into the TaskList.                                  |
+|  3  |    Positive     | `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23` | Event is added into the TaskList.                                     |
+|  4  |    Negative     | `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23` | Exception thrown for dates outside calendar range.                    |
+|  5  |    Negative     | `deadline return book -by 40-11-2023-23:23`                 | Exception thrown for dates outside calendar range.                    |
+|  6  |    Negative     | `deadline return book -by 2023-10-11-11:23`                 | Exception thrown for invalid DateTime format.                         |
+|  7  |    Negative     | `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23` | Exception thrown for invalid DateTime format.                         |
+|  8  |    Negative     | `deadline return book 15-11-2023-11:23`                     | Exception thrown for missing parameters.                              |
+|  9  |    Negative     | `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`       | Exception thrown for missing parameters.                              |
+| 10  |    Negative     | `deadline return book -by 17-11-2023-11:23 blah blah`       | Exception thrown for extra parameters.                                |
+| 11  |    Negative     | `deadline return book 15-01-2022-11:23`                     | Exception thrown for date occurring before system DateTime.           |
+| 12  |    Negative     | `event wedding 16-01-2022-11:23 -to 20-01-2022-11:23`       | Exception thrown for date occuring before system DateTime.            |
+| 13  |    Negative     | `todo`                                                      | Exeption thrown for missing parameters.                               |
+| 14  |    Negative     | `event`                                                     | Exception thrown for missing parameters.                              |
+| 15  |    Negative     | `deadline`                                                  | Exception thrown for missing parameters.                              |
 
-2.Test cases for invalid formats
-   - Out of calendar range: `deadline return book -by 40-11-2023-23:23` or `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23`
-   - Invalid dateTime format `deadline return book -by 2023-10-11-11:23` or `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23`
-   - Missing parameters `deadline return book 15-11-2023-11:23` or `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`
-   - Extra parameters `deadline return book -by 17-11-2023-11:23 blah blah`
-   - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
-   
-   For all these cases expected: Exception thrown. Error details shown in status message. 
-   
-   For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
-   eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
-
-### Adding a ToDo
-
-1.Test case : `todo Feed the fish`
-
-Expected: ToDo is added into TasksList. Details shown in status message.
-
-2.Test case : `todo`
-
-Expected: Empty task description exception thrown. Error details shown in status message 
-
-### Adding a Deadline
-1.Test case : `deadline return book -by 17-11-2023-11:23`
-
-Expected: Deadline is added into TasksList. Details shown in status message.
-
-### Adding a Event
-1.Test case : `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23`
-
-Expected: Event is added into TasksList. Details shown in status message.
+Note: 
+* For brevity, the error messages for all forms of invalid inputs are not shown in the table. Each exception will have their own error message, detailing the errors occurred. 
+For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
+* System DateTime refers to the date and time on the computer Apollo is installed and run on.
 
 ### Deleting a Todo/Event/Deadline
-Prerequisites: Use command `list` to obtains task's index `[IDX]`
 
-1.Test case : `del [IDX]`
+Prerequisites: 
 
-Expected: Task is deleted from tasksList. Deletion confirmation message is shown.
+* Use command `list` to obtains task's index `[IDX]`.
+* List of tasks is not empty (at least one event/todo/deadline).
 
-2.Test case : `del [IDX not inside list]`
+| No. | Type of Testing | Test Command | Expected Outcome                                                        |
+|:---:|:---------------:|--------------|:------------------------------------------------------------------------|
+|  1  |    Positive     | `delete 1`   | Task is deleted from tasksList. Deletion confirmation message is shown. |
+|  2  |    Negative     | `delete 0`   | Exception thrown for index out of bounds.                               |
 
-Expected: Exception thrown. Error details shown in status message
+The index out of bounds exception is structured as follows:
+
+```
+Please enter [idx] in the form of an integer from <IDX_LOWERBOUND> to <IDX_UPPERBOUND>
+```
+### Unmarking/Marking a Todo/Event/Deadline
+Prerequisites:
+
+* Use command `list` to obtains task's index `[IDX]`.
+* List of tasks is not empty (at least one event/todo/deadline).
+
+The tests are similar to that of the `delete` command. The only difference is replacing `delete` with `mark` or `unmark`.
+Instead of confirming that the task is deleted, Apollo would confirm that a task is marked or unmarked respectively.
 
 ### Adding a Module
-1.Test case : `addmod cs2113`
 
-Expected: Module added into moduleList.Details shown in status message
+| No. | Type of Testing | Test Command    | Expected Outcome                                              |
+|:---:|:---------------:|:----------------|:--------------------------------------------------------------|
+|  1  |    Positive     | `addmod cs2113` | Module added into moduleList. Details shown in status message |
+|  2  |    Negative     | `addmod cs9999` | Exception thrown as module does not exist currently.          |
+|  3  |    Negative     | `addmod`        | Exception thrown due to empty description.                    |
 
-2.Test case : `addmod cs1111`
-
-Expected: Exception thrown as module does not exist currently. Error details shown in status message
-
-3.Test case : `addmod`
-
-Expected: Exception thrown due to empty description. Error details shown in status message
-
-### Adding a Lesson
-Prerequisites: Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
+### Adding a Module Lesson
+Prerequisites: 
+* Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
 or `showmod CS1010` which shows all the lesson types available for CS1010
 
-1.Test case : `addmod CS1010 -st 1`
+| No. | Type of Testing | Test Command           | Expected Outcome                                                                                                                                                                             |
+|:---:|:---------------:|:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  1  |    Positive     | `addmod CS1010 -st 1`  | First section teaching lesson of CS1010 to your module list. If this lesson clashes with any of your other lessons a warning message will be displayed,but you will still be able to add it. |
+|  2  |    Negative     | `addmod CS1010 -st 99` | Exception thrown as due to invalid arguments.                                                                                                                                                |
+|  3  |    Negative     | `addmod CS1010 -oo 1`  | Exception thrown as due to invalid arguments.                                                                                                                                                |
 
-Expected: first section teaching lesson of CS1010 to your module list. If this lesson clashes with any of your other lessons a warning message will be displayed,
-but you will still be able to add it.
-
-2.Test case `addmod CS1010 -st 99` or `addmod CS1010 -oo 1`
-
-Expected: Exception thrown as due to invalid arguments. Error details shown in status message
 
 ### Deleting a Module
-Prerequisites: Use command `listmod` to obtains module's index `[IDX]` for 1.
+Prerequisites:
 
-1.Test case: `delmod 1`
+Perform the following steps before running the test cases:
+* List should be populated as follows:
+  * Use `addmod ac5004` command to add AC5004 to your moduleList.
+  * Use `addmod cs1010` command to add CS1010 to your moduleList.
+  * Use command `listmod` to obtains module's index `[IDX]`.
+  
+Note: moduleList *should not* contain CS2040C, i.e. `addmod cs2040c` should not be run before this test.
 
-Expected: Module under index 1 is deleted from moduleList. Confirmation message is shown
 
-2.Test case: `delmod cs1010` assuming cs1010 is inside moduleList
+| No. | Type of Testing | Test Command     | Expected Outcome                                                                |
+|:---:|:---------------:|:-----------------|:--------------------------------------------------------------------------------|
+|  1  |    Positive     | `delmod 1`       | Module under index 1 is deleted from moduleList. Confirmation message is shown. |
+|  2  |    Negative     | `delmod cs1010`  | CS1010 is removed from moduleList. Confirmation message is printed              |
+|  3  |    Negative     | `delmod cs2040c` | Exception that module is not in moduleList thrown.                              |
 
-Expected: CS1010 is removed from moduleList. Confirmation message is printed 
 
-3.Test case: `delmod cs2040c` assuming cs2040c is not in your moduleList 
+### Deleting a Module Lesson
+Prerequisites:
 
-Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
-Total modular credits you have in this semester:`[Number of MCs in your moduleList]
+Perform the following steps before running the test cases:
+* List should be populated as follows:
+   * Use `addmod cs1010 -st 1` command to add CS1010 to your moduleList.
 
-### Deleting a Lesson
-1.Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
+Note: moduleList *should not* contain CS1010 -st 5, i.e. `addmod cs1010 -st 5` should not be run before this test.
 
-Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
+| No. | Type of Testing | Test Command          | Expected Outcome                                                         |
+|:---:|:---------------:|:----------------------|:-------------------------------------------------------------------------|
+|  1  |    Positive     | `delmod cs1010 -st 1` | Deletes SECTIONAL TEACHING - 1 of CS1010. Confirmation message is shown. |
+|  2  |    Negative     | `delmod cs1010 -st 5` | Exception thrown for lesson not in moduleList.                           |
 
-2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
-
-Expected: Exception thrown, error message printed 
 
 <!--@@T-Wan-Lin -->
 ### Saving Data
