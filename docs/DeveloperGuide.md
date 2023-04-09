@@ -290,4 +290,24 @@ The Dish feature consists of three functions:
    3. `delete_meeting -1` (Invalid index for delete)
 
 ### Deadline Feature
-1. User can 
+1. Users can `add_deadline`, `view_deadlines`, `delete_deadline`, `find_deadline`.
+2. Test case: `add_deadline n/Fix broken pipes t/6th April 6pm`
+
+   Expected: Deadline will be added to the list.
+3. Test case: `view_deadlines`
+
+   Expected: All deadlines will be displayed.
+4. Test case: `delete_deadline 1`
+
+   Expected: The deadline at index 1 will be deleted.
+5. Test case: `find_deadline Fix`
+
+   Expected: Deadline with `Fix` in the name will be displayed.
+6. Incorrect commands to try:
+    1. `add_deadline` (No meeting added)
+    2. `view_deadlines abc` (No meetings shown)
+    3. `delete_deadline -1` (Invalid index for delete)
+
+### Dish Feature
+1. Users can `add_dish`, `view_dish`, `delete_dish`, `find_dish`
+2. 
