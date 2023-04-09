@@ -43,36 +43,10 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         writer.beginObject();
         writer.name("description").value(event.getDescription());
         if (event.hasStartTime()){
-            writer.name("startTime");
-            writer.beginObject();
-            writer.name("date");
-            writer.beginObject();
-            writer.name("year").value(event.getStartTime().getYear());
-            writer.name("month").value(event.getStartTime().getMonthValue());
-            writer.name("day").value(event.getStartTime().getDayOfMonth());
-            writer.endObject();
-            writer.name("time");
-            writer.beginObject();
-            writer.name("hour").value(event.getStartTime().getHour());
-            writer.name("minute").value(event.getStartTime().getMinute());
-            writer.endObject();
-            writer.endObject();
+            writeStartTime(writer, event);
         }
         if (event.hasEndTime()) {
-            writer.name("endTime");
-            writer.beginObject();
-            writer.name("date");
-            writer.beginObject();
-            writer.name("year").value(event.getEndTime().getYear());
-            writer.name("month").value(event.getEndTime().getMonthValue());
-            writer.name("day").value(event.getEndTime().getDayOfMonth());
-            writer.endObject();
-            writer.name("time");
-            writer.beginObject();
-            writer.name("hour").value(event.getEndTime().getHour());
-            writer.name("minute").value(event.getEndTime().getMinute());
-            writer.endObject();
-            writer.endObject();
+            writeEndTime(writer, event);
         }
         if (event.hasLocation()){
             writer.name("location").value(event.getLocation());
@@ -85,6 +59,40 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         writer.name("hasEndInfo").value(event.hasEndInfo());
         writer.name("hasStartTime").value(event.hasStartTime());
         writer.name("hasEndTime").value(event.hasEndTime());
+        writer.endObject();
+    }
+
+    private static void writeEndTime(JsonWriter writer, Event event) throws IOException {
+        writer.name("endTime");
+        writer.beginObject();
+        writer.name("date");
+        writer.beginObject();
+        writer.name("year").value(event.getEndTime().getYear());
+        writer.name("month").value(event.getEndTime().getMonthValue());
+        writer.name("day").value(event.getEndTime().getDayOfMonth());
+        writer.endObject();
+        writer.name("time");
+        writer.beginObject();
+        writer.name("hour").value(event.getEndTime().getHour());
+        writer.name("minute").value(event.getEndTime().getMinute());
+        writer.endObject();
+        writer.endObject();
+    }
+
+    private static void writeStartTime(JsonWriter writer, Event event) throws IOException {
+        writer.name("startTime");
+        writer.beginObject();
+        writer.name("date");
+        writer.beginObject();
+        writer.name("year").value(event.getStartTime().getYear());
+        writer.name("month").value(event.getStartTime().getMonthValue());
+        writer.name("day").value(event.getStartTime().getDayOfMonth());
+        writer.endObject();
+        writer.name("time");
+        writer.beginObject();
+        writer.name("hour").value(event.getStartTime().getHour());
+        writer.name("minute").value(event.getStartTime().getMinute());
+        writer.endObject();
         writer.endObject();
     }
 
@@ -138,66 +146,70 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("description")) {
+            switch (name) {
+            case "description":
                 description = reader.nextString();
-            } else if (name.equals("startTime")) {
-                String date = null;
-                String time = null;
-                reader.beginObject();
-                while (reader.hasNext()) {
-                    String startName = reader.nextName();
-                    if (startName.equals("date")) {
-                        date = readDate(reader);
-                    } else if (startName.equals("time")) {
-                        time = readTime(reader);
-                    }
-                }
-                if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
-                    throw new NPExceptions("Event Corrupted");
-                }
-                reader.endObject();
-                String combination = date + " " + time;
-                startTime = LocalDateTime.parse(combination, dfWithTime);
-            } else if (name.equals("endTime")) {
-                String date = null;
-                String time = null;
-                reader.beginObject();
-                while (reader.hasNext()) {
-                    String startName = reader.nextName();
-                    if (startName.equals("date")) {
-                        date = readDate(reader);
-                    } else if (startName.equals("time")) {
-                        time = readTime(reader);
-                    }
-                }
-                if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
-                    throw new NPExceptions("Event Corrupted");
-                }
-                reader.endObject();
-                String combination = date + " " + time;
-                endTime = LocalDateTime.parse(combination, dfWithTime);
-            } else if (name.equals("hasEndInfo")) {
+                break;
+            case "startTime": {
+                startTime = readLocalDateTime(reader);
+                break;
+            }
+            case "endTime": {
+                endTime = readLocalDateTime(reader);
+                break;
+            }
+            case "hasEndInfo":
                 hasEndInfo = reader.nextBoolean();
-            } else if (name.equals("hasStartTime")) {
+                break;
+            case "hasStartTime":
                 hasStartTime = reader.nextBoolean();
-            } else if (name.equals("hasEndTime")) {
+                break;
+            case "hasEndTime":
                 hasEndTime = reader.nextBoolean();
-            } else if (name.equals("hasLocation")) {
+                break;
+            case "hasLocation":
                 hasLocation = reader.nextBoolean();
-            } else if (name.equals("isRecurring")) {
+                break;
+            case "isRecurring":
                 isRecurring = reader.nextBoolean();
-            } else if (name.equals("timeInterval")) {
+                break;
+            case "timeInterval":
                 timeInterval = reader.nextString();
-            } else if (name.equals("location")) {
+                break;
+            case "location":
                 location = reader.nextString();
-            } else {
+                break;
+            default:
                 throw new NPExceptions("File Corrupted"); //catches un-parsable modifications to fields.
+
             }
         }
         reader.endObject();
 
         return createEvent(description, startTime, endTime, hasStartTime, hasEndTime, hasLocation,
                 isRecurring, timeInterval, location);
+    }
+
+    private LocalDateTime readLocalDateTime(JsonReader reader) throws IOException, NPExceptions {
+        LocalDateTime dateTime;
+        String date = null;
+        String time = null;
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String startName = reader.nextName();
+            if (startName.equals("date")) {
+                date = readDate(reader);
+            } else if (startName.equals("time")) {
+                time = readTime(reader);
+            }
+        }
+        if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
+            throw new NPExceptions("Event Corrupted");
+        }
+        reader.endObject();
+        String combination = date + " " + time;
+        dateTime = LocalDateTime.parse(combination, dfWithTime);
+        return dateTime;
     }
 
     /**

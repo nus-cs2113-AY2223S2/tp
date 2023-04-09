@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class StorageManager implements Storage{
     private EventListStorage eventListStorage;
     private NusModuleLoader nusModuleLoader;
-    private boolean modulesLoaded = false;
+    private boolean hasLoadMods = false;
     private HashMap<String, NusModule> nusMods;
 
     public StorageManager(EventListStorage eventListStorage, NusModuleLoader nusModuleLoader) {
@@ -33,7 +33,7 @@ public class StorageManager implements Storage{
 
     @Override
     public HashMap<String, NusModule> loadModules() {
-        if (!modulesLoaded){
+        if (!hasLoadMods){
             nusMods = nusModuleLoader.loadModules(); //only load once.
         }
         return nusMods;

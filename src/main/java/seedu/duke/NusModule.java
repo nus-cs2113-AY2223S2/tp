@@ -9,7 +9,6 @@ public class NusModule {
     public String faculty;
     public String moduleCredit;
     public String moduleCode;
-    //public List<SemData> semesterData;
     public HashMap<Integer, SemData> semesterData;
 
     public NusModule(String description, String title, String faculty, String moduleCredit,
