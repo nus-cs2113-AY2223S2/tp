@@ -10,8 +10,8 @@ box "DishManager"
 participant ":DishManager" as DishManager
 endbox
 
--> ViewDishCommand ++ : ViewDishCommand()
 -> ViewDishCommand: execute()
+activate ViewDishCommand
 ViewDishCommand -> DishManager ++ : viewDish()
 ViewDishCommand <-- DishManager
 deactivate

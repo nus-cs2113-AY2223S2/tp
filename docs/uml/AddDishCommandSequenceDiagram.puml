@@ -14,8 +14,8 @@ box "Dish"
 participant ":Dish" as Dish
 endbox
 
--> AddDishCommand ++ : AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
 -> AddDishCommand: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
+activate AddDishCommand
 AddDishCommand -> DishManager ++ : addDish("dish name", price, ["ingredient 1", "ingredient 2", ...])
 
 create Dish

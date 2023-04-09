@@ -11,8 +11,8 @@ participant ":DishManager" as DishManager
 endbox
 
 
--> DeleteDishCommand ++ : DeleteDishCommand(index)
 -> DeleteDishCommand: execute(index)
+activate DeleteDishCommand
 DeleteDishCommand -> DishManager ++ : deleteDish(index)
 DeleteDishCommand <-- DishManager
 deactivate
