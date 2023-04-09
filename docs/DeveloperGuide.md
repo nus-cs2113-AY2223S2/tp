@@ -15,11 +15,11 @@
     + [Utility Commands](#utility-commands)
     + [Logging](#logging)
 4. [Appendix](#appendix)
-   + [Appendix A: Product Scope](#appendix-a--product-scope)
-   + [Appendix B: User Stories](#appendix-b--user-stories)
-   + [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements) 
-   + [Appendix D: Glossary](#appendix-d--glossary)
-   + [Appendix E: Instructions for manual testing](#appendix-e--instructions-for-manual-testing)
+   + [Appendix A: Product Scope](#appendix-a-product-scope)
+   + [Appendix B: User Stories](#appendix-b-user-stories)
+   + [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements) 
+   + [Appendix D: Glossary](#appendix-d-glossary)
+   + [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 
 ## Acknowledgements
@@ -775,58 +775,69 @@ Given below is an example usage scenario and how to delete mechanism behaves at 
 
 #### For when a user deletes only a module (e.g CS2113) from the module list:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
+
 When user executes the command `delmod cs2113` the Parser class calls the `DeleteModuleCommand()` method of the
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in a moduleCode `cs2113` as a 
 parameter. This moduleCode is
 used to find `cs2113`  from the ModuleList.
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
+
 The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
 FileHandler to handle logging.
 
-Step 3: Override the `execute()` method :
+**Step 3: Override the `execute()` method :**
+
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the ModuleList, Ui, Storage, and TaskList.
 
-Step 4: Find the module to delete :
+**Step 4: Find the module to delete :**
+
 The first step in the `execute()` method is to find the module using the module code parameter  `cs2113` by calling
 the `findModule()` method of the moduleList class.
 If the module `cs2113` is not found, a ModuleNotFoundException is thrown.
 
-Step 5: Remove the module from the ModuleList :
+**Step 5: Remove the module from the ModuleList :**
+
 If `cs2113` is found, it is removed from the ModuleList by calling `remove()` method of moduleList class.
 
-Step 6: Print the confirmation message :
+**Step 6: Print the confirmation message :**
+
 A confirmation message is printed to the user indicating that the `cs2113` has been successfully deleted.
 
-Step 7: Update the storage :
+**Step 7: Update the storage :**
+
 The storage is updated with the new ModuleList without `cs2113`
 
 #### For when a user deletes a specific lesson (e.g CS2113 -lec 1) from the module list:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
+
 When user executes the command `delmod cs2113 -lec 1` the Parser class calls the `DeleteModuleCommand()` method of the 
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in the string `cs2113 -lec 1` as a 
 parameter. The string is split into a moduleCode `cs2113`, lessonType `-lec` and `1` as class number and stored in the
 `args` array field of the `DeleteModule` class. 
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
 The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a 
 FileHandler to handle logging.
 
-Step 3: Override `execute()` method :
+**Step 3: Override `execute()` method :**
+
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the ModuleList, Ui, Storage, TaskList, AllModules and Calendar objects. The lesson type is determined by
 calling the `getLessonType()` method of the `LessonType` class and parsing in `arg[1]` while the lesson number is 
 set by `arg[2]`. If the lesson type is not valid, an`InvalidCommandException` is thrown.
 
-Step 4: Calls the `handleMultiCommand()` method:
+**Step 4: Calls the `handleMultiCommand()` method:**
+
 The `handleMultiCommand()` method is called to handle the command. It takes in `moduleList`, `lessonType` and `args` as
 parameters. It then searches for the module using the `findModule()` method of the `ModuleList` class. If the module
 is not found, a `ModuleNotFoundException` is thrown.
 
-Step 5: Remove the module lessons from the ModuleList :
+**Step 5: Remove the module lessons from the ModuleList :**
+
 If the module is found, the timetable of the classes are removed from the module by calling the `removeTimetable()` 
 method which takes in `searchModule` and `lessonType` as parameters. The `removeTimetable()` method of the `ModuleList`
 will create a copy of the module timetable array list and search for the lesson to be removed. If the lesson type and 
@@ -834,7 +845,8 @@ class number matches, the lesson is removed from the original timetable array li
 lesson is then marked as found by setting the `isFound` boolean to true. If the lesson is not found, a 
 `ClassNotFoundException` is thrown.
 
-Step 6: Print the confirmation message :
+**Step 6: Print the confirmation message :**
+
 A confirmation message is printed to the user indicating that the module lesson has been successfully deleted. It is
 is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` class. If the module is not found, 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
@@ -859,49 +871,71 @@ how the mechanism behaves at each step.
 
 #### For when a user request to show the module (e.g. CS2113):
 
-Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
 in a parameter of type `String`, which will be split into `moduleCode` and `-FLAG`. In this case, only `cs2113` is 
 parsed in as the parameter. This is then used to find `cs2113` from the module information. If the moduleCode, 
 `cs2113`, is not found, an `InvalidModule()` is thrown.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand 
+**Step 2. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand 
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the Show Module functionality.
 It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar.
 
-Step 4. Find the module to display information: The first step in the `execute()` method is to find the module from 
+**Step 4. Find the module to display information:**
+
+The first step in the `execute()` method is to find the module from 
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 
-Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the information
+**Step 5. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the information
 of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `ClassNumber` 
 of each `lessonTypes` and `Day` and `Time` of the existing `ClassNumber`.
 
 #### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
-Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
 in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-tut`. In this case, 
 `cs2113 -tut` is parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+**Step 2. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the Show Module functionality.
 It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar objects. The lesson 
 type is determined by calling the `getLessonType()` method of the `lessonType` class and parsing in `args[1]` while 
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
-Step 4. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command. 
+**Step 4. Calls the `handleMultiCommand()` method:**
+
+The `handleMultiCommand()` method is called to handle the command. 
 It takes in `moduleList`, `lessonType` and `args` as parameters.
 
-Step 5. Find the module to display information: The first step in the `execute()` method is to find the module from
+**Step 5. Find the module to display information:**
+
+The first step in the `execute()` method is to find the module from
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 To find the lessonType of the module, `getLessonType()` is called to return the lessonType for the Show Module
 functionality.
 
-Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the information
+**Step 6. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the information
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
@@ -919,11 +953,17 @@ This command allows the user to see how to use the `delete` command
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteHelpCommand-DeleteHelpCommand.png?raw=true)
 Given below is an example usage scenario and how the specific help mechanism behaves at each step.
 
-Step 1. The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
+**Step 1.**
 
-Step 2.The `execute()` method of `DeleteHelpCommand` is called.
+The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
 
-Step 3. The `printDeleteHelpMessage()` method of `Ui` class is called. 
+**Step 2.**
+
+The `execute()` method of `DeleteHelpCommand` is called.
+
+**Step 3.**
+
+The `printDeleteHelpMessage()` method of `Ui` class is called. 
 Instructions on how to use the `delete` command are printed out.
 <!--@@author honglinshang -->
 
@@ -981,17 +1021,27 @@ with no additional parameters (e.g `bye bye` would not exit the program).
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.
 
-Step 1. The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
+**Step 1.**
+
+The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
 then creates a new `ExitCommand`.
 
-Step 2. The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
+**Step 2.**
+
+The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
 to handle logging.
 
-Step 3. The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
+**Step 3.**
 
-Step 4. Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
 
-Step 5. The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
+**Step 4.** 
+
+Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+
+**Step 5.**
+
+The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
 program exceeds the loop in the `run()` method of `Apollo` class and the program terminates.
 
 Below is a sequence diagram of the `bye` command.
@@ -1125,7 +1175,7 @@ Priority Legend:
 * Apollo should respond to any user interaction within 3 seconds.
 * Module data for Apollo is limited to what is available on NUSMods, i.e. Apollo has module data for all modules offered
   by NUS in AY22/23 Semester 2.
-* 
+
 
 ## Appendix D: Glossary
 
