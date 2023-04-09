@@ -227,7 +227,13 @@ The implementation of the `card untag` feature is as follows:
 
 
 - After `cardAffected` and `tagToRemove` is ready, `RemoveCardFromTagCommand` will
-  call `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)` which will in turn remove the reference
+  call `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)` which will check if the `Tag` is
+  currently inside a deck,
+  if it is, we will loop through all the decks that the `Tag` is currently inside and remove the `cardAffected` from
+  each of the deck.
+
+
+- Afterwards, `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)`  will remove the reference
   to the tag from the card and remove the reference to the card from the tag
   by calling `Card#getUUID()`, `Tag#removeCard()`, `Tag#getUUID()`,`Card#RemoveTag()`.
 

@@ -56,7 +56,7 @@ More specifically, I contributed to the following features :
 
 With that in mind, another feature that I implemented is :
 
-`card view {-c CAR_DUUID | -i CARD_INDEX}`
+`card view {-c CARD_UUID | -i CARD_INDEX}`
 
 - ***What it does :***
   This feature allows users to view what are the `tags` and `decks` that the card is currently associated with. It makes
@@ -116,18 +116,18 @@ The Class Diagram for `TagList` can be found below :
 
 ![TagList Class Diagram](../img/TagListClass.svg)
 
-- Add Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}`, `card untag {-c CaRDUUID | -t TAGNAME}`
-  and `tag list {-c CARDUUID | -i CARDINDEX}`
+- Add Sequence Diagram for `card view {-c CARD_UUID | -i CARD_INDEX}`, `card untag {-c CARD_UUID | -t TAG_NAME}`
+  and `tag list {-c CARD_UUID | -i CARD_INDEX}`
 
-The Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}` can be found below :
+The Sequence Diagram for `card view {-c CARD_UUID | -i CARD_INDEX}` can be found below :
 
 ![Card View Sequence Diagram](../img/CardViewSequence.png)
 
-The Sequence Diagram for `card untag {-c CaRDUUID | -t TAGNAME}` can be found below :
+The Sequence Diagram for `card untag {-c CARD_UUID | -t TAG_NAME}` can be found below :
 
 ![Card Untag Sequence Diagram](../img/CardUntagSequence.png)
 
-The Sequence Diagram for `tag list {-c CARDUUID | -i CARDINDEX}` can be found below :
+The Sequence Diagram for `tag list {-c CARD_UUID | -i CARD_INDEX}` can be found below :
 
 ![List Card Under Tag Sequence Diagram](../img/ListCardsUnderTagSequence.png)
 
