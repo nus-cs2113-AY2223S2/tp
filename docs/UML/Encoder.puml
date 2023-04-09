@@ -54,23 +54,4 @@ hide footbox
             ":CompanyListEncoder" <-- "fw:FileWriter"
         deactivate "fw:FileWriter"
 
-
-
-'-> "AddCommand" <<create>>
-
-
-'activate ":AddCommand"
-'
-'    ":AddCommand" -> ":CompanyList": add()
-'    activate ":CompanyList"
-'        ":CompanyList"-> ":CompanyListEncoder": write()
-'        activate ":CompanyListEncoder"
-'            loop sessions in file times
-'                ":CompanyList" -> ":CompanyListEncoder" : addWorkoutSession()
-'            end
-'            ":CompanyListEncoder" --> ":CompanyList" : :dwdw
-'        ":CompanyList" --> ":AddCommand" : :UserCareerData
-'    deactivate ":CompanyListEncoder"
-'    deactivate ":CompanyList"
-'deactivate ":AddCommand"
 @enduml
