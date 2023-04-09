@@ -130,7 +130,7 @@ public class CardParserTest {
             assert cmd instanceof AddCardToDeckCommand;
             cmd.execute(cardList, tagList, deckList, ui, storage);
 
-            assert testDeck.cardIsInDeck(new CardUUID(UUID.fromString("00000000-0000-0000-0000-000000000000")));
+            assert testDeck.cardIsInSet(new CardUUID(UUID.fromString("00000000-0000-0000-0000-000000000000")));
         }
     }
 

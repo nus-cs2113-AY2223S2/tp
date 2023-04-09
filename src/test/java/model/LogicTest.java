@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -22,7 +21,7 @@ import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
 import utils.exceptions.CardInTagException;
 import utils.exceptions.CardNotFoundException;
-import utils.exceptions.CardNotInDeck;
+import utils.exceptions.CardInSetNotInList;
 import utils.exceptions.InkaException;
 import utils.exceptions.LongDeckNameException;
 import utils.exceptions.LongTagNameException;
@@ -88,7 +87,6 @@ public class LogicTest {
     /**
      * Card that is added through CardUUID and Tag should remain in Deck if only either is removed
      */
-    @Disabled
     @Test
     public void logic_noDoubleDelete_deleteByUuidFirst() throws InkaException {
         // Copy state
@@ -105,7 +103,6 @@ public class LogicTest {
         parseAndExecute("deck delete -d testDeck -t testTag", RemoveTagFromDeckCommand.class);
 
         // Card no longer added by CardUUID or Tag
-        // TODO: Failing!
         assert deckList.get(0).getCardsSet().size() == 0;
     }
 
@@ -170,7 +167,7 @@ public class LogicTest {
         // Remove card via CardUUID
         try {
             parseAndExecute("deck delete -d testDeck -c " + cardUUID, RemoveCardFromDeckCommand.class);
-        } catch (CardNotInDeck ex) {
+        } catch (CardInSetNotInList ex) {
             // TODO: This shows "The card is not in the deck" which might be misleading
         }
 

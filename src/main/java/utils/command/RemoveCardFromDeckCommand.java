@@ -9,6 +9,7 @@ import model.Deck;
 import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
+import utils.exceptions.CardInSetNotInList;
 import utils.exceptions.CardNotInDeck;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
@@ -44,7 +45,9 @@ public class RemoveCardFromDeckCommand extends Command {
         ArrayList<CardUUID> deckCardList = deck.getCardsUUID();
         HashSet<CardUUID> deckCardSet = deck.getCardsSet();
         boolean wasCardInDeck = deckCardList.removeIf(card -> card.equals(cardUUID));
-        if (wasCardInDeck == false) {
+        if (!wasCardInDeck && deck.cardIsInMap(cardUUID)) {
+            throw new CardInSetNotInList();
+        } else if(!wasCardInDeck) {
             throw new CardNotInDeck();
         } else if (!deck.cardIsInMap(cardUUID)) { // if the card does not exist under any tag
             deckCardSet.remove(cardUUID);
