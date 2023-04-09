@@ -18,8 +18,8 @@
   - [Dish Feature](#dish-feature)
   - [Storage Feature](#storage-feature)
 - [Glossary](#glossary)
-- [Appendix A: Requirements](#appendix-a--requirements)
-- [Appendix B: Instructions for manual testing](#appendix-b--instructions-for-manual-testing)
+- [Appendix A: Requirements](#appendix-a-requirements)
+- [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
 
 ## Acknowledgements
 Credits to [Personbook](https://github.com/nus-cs2113-AY2223S2/personbook)
