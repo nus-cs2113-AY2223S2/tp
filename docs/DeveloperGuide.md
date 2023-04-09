@@ -15,13 +15,13 @@ various features for note-taking.
     * [Solving Quadratic Equations](#solving-quadratic-equations)
     * [Notes](#notes)
     * [Storage](#storage)
-    * [Store class:](#store-class-)
-    * [List class:](#list-class-)
-    * [Delete class:](#delete-class-)
-    * [CommandHistory class:](#commandhistory-class-)
-    * [Command class:](#command-class-)
-    * [Ui class:](#ui-class-)
-    * [NotePriority class:](#notepriority-class-)
+    * [Store class](#store-class-)
+    * [List class](#list-class-)
+    * [Delete class](#delete-class-)
+    * [CommandHistory class](#commandhistory-class-)
+    * [Command class](#command-class-)
+    * [Ui class](#ui-class-)
+    * [NotePriority class](#notepriority-class-)
     * [Help](#help)
     * [Graph](#graph)
     * [Matrix](#matrix)
@@ -38,13 +38,27 @@ various features for note-taking.
 
 ## Design & implementation
 
-Architecture Diagram:
+The Architecture Diagram below showcases the high level design of BadMaths:
 
+<details>
+<summary>Architecture Diagram</summary>
+<div markdown="1">
 
+![img.png](Architecture_diagram.png)
+
+</div>
+</details>
 
 ### Handling Of User Input
 
-![img_1.png](img_1.png)
+<details>
+<summary>Class Diagram for handling of User Input</summary>
+<div markdown="1">
+
+![img_1.png](ClassDiagrams/BadMaths_class_diagram.png)
+
+</div>
+</details>
 
 The BadMaths class first reads the User's input and separates it into 2 parts, `command` and `toDo`. It does this by calling
 the Parser class via `getCommand()` and `getToDo()`. BadMaths then checks whether `command` is valid using `commandChecker()`.
@@ -57,7 +71,14 @@ The function is started when `solveQuadratic()` is called in the Command class.
 
 Class Diagram:
 
-![img.png](img.png)
+<details>
+<summary>Class Diagram for Quadratic</summary>
+<div markdown="1">
+
+![img.png](ClassDiagrams/Quadratic_class_diagram.png)
+
+</div>
+</details>
 
 Below is an  example of how it would be called.
 ```
