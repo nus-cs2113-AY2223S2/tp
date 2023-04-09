@@ -14,12 +14,12 @@ ChChing is a Command Line Interface (CLI) desktop app for tracking spending and 
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `ChChing` from [here](https://github.com/AY2223S2-CS2113-T12-1/tp/releases).
-3. Copy downloaded `tp.jar` file to the desired home folder of choice.
+3. Copy downloaded `[CS2113-T12-1][ChChing].jar` file to the desired home folder of choice.
 4. Open a command terminal and `cd` into the folder mentioned in step 3.
 5. Type in the following to run the application:
 
 ```
-java -jar tp.jar
+java -jar [CS2113-T12-1][ChChing].jar
 ```
 
 6. If successful, the following greetings should appear:
@@ -41,7 +41,8 @@ Unfortunately, expense list can't be found. I'll make a new one!
     ____________________________________________________________
 ```
 
-7. Type in desired command to start using the program! List of commands are listed below
+7. Type in desired command to start using the program! List of commands are listed below.
+8. Do not edit any program-created saved files (.json files, etc.), else the program may crash.
 
 ## Features
 
