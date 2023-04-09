@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class SurgeryCommandTest {
 
     @Test
-    void surgeryCommandNotNull() throws SniffException {
+    void surgeryCommand_normalInputs_expectNotNull() throws SniffException {
         String animalName = "lulu";
         String animalType = "cat";
         String ownerName = "jon";
