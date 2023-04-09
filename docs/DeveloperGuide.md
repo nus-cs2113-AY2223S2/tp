@@ -361,6 +361,7 @@ The sequence diagram below shows how this feature works:
 
 ![](./UML/Implementation/ListAvailableFunction/availableSequenceDiagram.drawio.png)
 
+<!-- @@author gurmankalkat -->
 ### Delete Recipes Feature
 
 The current implementation:
@@ -382,6 +383,7 @@ It is implemented through the following step:
 
 ![](./UML/Implementation/DeleteFunction/DeleteFunction.jpg)
 
+<!-- @@author gurmankalkat -->
 ### Add Recipes Feature
 
 The current implementation:
@@ -558,7 +560,7 @@ It is implemented through the following steps:
 - In `Ui`, `printUserIngredients()` first checks if the list is empty.
 - If the list is empty, the user will be alerted with a relevant message and the function exits.
 - If the list is not empty, the list of ingredients will be printed out, with information regarding
-  the names, quanntity, and expiry date of each ingredient displayed.
+  the names, quantity, and expiry date of each ingredient displayed.
 
 The sequence diagram below shows how this feature works:
 

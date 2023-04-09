@@ -153,6 +153,7 @@ Format: `delete INDEX/RANGE` or `delete /r NAME`
 * Deletes the recipe(s) specified by the user either through the recipe index or name.
 * The index refers to the index number shown in the displayed person list.
 * The name refers to the recipe name in the list.
+* 
 
 Example of usage:
 
