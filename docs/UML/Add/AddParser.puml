@@ -10,11 +10,11 @@ ParserHandler -> AddParser: run()
 activate AddParser
 participant "<<class>>\nUi"
 opt rawInput == null
-AddParser -> MissingParametersException:throw missingAddItemParameters
-activate MissingParametersException
-MissingParametersException --> ParserHandler:
-deactivate MissingParametersException
-destroy MissingParametersException
+AddParser -> ":MissingParametersException":throw missingAddItemParameters
+activate ":MissingParametersException"
+":MissingParametersException" --> ParserHandler:
+deactivate ":MissingParametersException"
+destroy ":MissingParametersException"
 end
 
 opt !matcher.matches

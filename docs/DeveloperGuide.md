@@ -112,10 +112,6 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 
 
-
-
-
-
 ### 2.4. Add
 The add feature is mainly handled by `AddParser` and `AddCommand`. 
 The `AddParser` class extends the `Parser` abstract class and the `AddCommand` class extends the `Command` abstract 
@@ -124,8 +120,8 @@ class.
 #### 2.4.1. AddParser Class
 ![AddParser.png](UML%2FAdd%2FAddParser.png)
 
-**Step 1.** User executes the `add` command in the following format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] 
-c/[category]`
+**Step 1.** User executes the `add` command in the following format: `add n/[Item_name] upc/[UPC] qty/[Quantity] p/[Price] 
+c/[Category]`
 
 **Step 2.** The input is handled by the `ParserHandler` class which creates a new `AddParser` and invokes its `run()` method.
 

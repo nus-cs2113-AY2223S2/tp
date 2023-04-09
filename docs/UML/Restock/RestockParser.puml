@@ -20,7 +20,7 @@ deactivate ":RestockCommand"
 alt Contains "upc/" and input length > 1
     ":RestockParser"->":RestockCommand": run()
     activate ":RestockCommand"
-    ref over ":RestockCommand","<<class>>\nUI": Increases quantity of the Item
+    ref over ":RestockCommand","<<class>>\nUi": Increases quantity of the Item
     ":RestockCommand"-->":RestockParser":
     deactivate ":RestockCommand"
     ":RestockParser"-->User:
@@ -30,10 +30,10 @@ alt Contains "upc/" and input length > 1
 else No "upc/" or input length <= 1
     ":RestockParser"->":RestockParser": EditErrorException()
     activate ":RestockParser" #Cyan
-    ":RestockParser"->"<<class>>\nUI":printInvalidSellCommand()
-    activate "<<class>>\nUI"
-    "<<class>>\nUI"-->":RestockParser":
-    deactivate "<<class>>\nUI"
+    ":RestockParser"->"<<class>>\nUi":printInvalidSellCommand()
+    activate "<<class>>\nUi"
+    "<<class>>\nUi"-->":RestockParser":
+    deactivate "<<class>>\nUi"
     ":RestockParser"-->":RestockParser":
     deactivate ":RestockParser"
     ":RestockParser"-->User:

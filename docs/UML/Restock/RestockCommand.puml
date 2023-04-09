@@ -46,29 +46,29 @@ deactivate ":RestockCommand"
 
 
 alt Valid Inputs
-":RestockCommand" -> "<<class>>\nUI": printRestockDetails()
-activate "<<class>>\nUI"
-ref over "<<class>>\nUI": Print Restock Message
-"<<class>>\nUI" -->":RestockCommand"
-deactivate "<<class>>\nUI"
+":RestockCommand" -> "<<class>>\nUi": printRestockDetails()
+activate "<<class>>\nUi"
+ref over "<<class>>\nUi": Print Restock Message
+"<<class>>\nUi" -->":RestockCommand"
+deactivate "<<class>>\nUi"
 else Item Does Not Exist
-":RestockCommand" -> "<<class>>\nUI": printItemNotFound()
-activate "<<class>>\nUI"
-ref over "<<class>>\nUI": Print Error Message
-"<<class>>\nUI"-->":RestockCommand"
-deactivate "<<class>>\nUI"
+":RestockCommand" -> "<<class>>\nUi": printItemNotFound()
+activate "<<class>>\nUi"
+ref over "<<class>>\nUi": Print Error Message
+"<<class>>\nUi"-->":RestockCommand"
+deactivate "<<class>>\nUi"
 else Missing Input Parameters
-":RestockCommand" -> "<<class>>\nUI": printInvalidRestockCommand()
-activate "<<class>>\nUI"
-ref over "<<class>>\nUI": Print Error Message
-"<<class>>\nUI"-->":RestockCommand"
-deactivate "<<class>>\nUI"
+":RestockCommand" -> "<<class>>\nUi": printInvalidRestockCommand()
+activate "<<class>>\nUi"
+ref over "<<class>>\nUi": Print Error Message
+"<<class>>\nUi"-->":RestockCommand"
+deactivate "<<class>>\nUi"
 else Invalid Input Parameters
-":RestockCommand" -> "<<class>>\nUI": printInvalidAddQuantityInput()
-activate "<<class>>\nUI"
-ref over "<<class>>\nUI": Print Error Message
-"<<class>>\nUI"-->":RestockCommand"
-deactivate "<<class>>\nUI"
+":RestockCommand" -> "<<class>>\nUi": printInvalidAddQuantityInput()
+activate "<<class>>\nUi"
+ref over "<<class>>\nUi": Print Error Message
+"<<class>>\nUi"-->":RestockCommand"
+deactivate "<<class>>\nUi"
 end
 ":RestockCommand" -> "<<class>>\nSessionManager": writeSession()
 activate "<<class>>\nSessionManager"

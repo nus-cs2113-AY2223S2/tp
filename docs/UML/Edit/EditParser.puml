@@ -29,11 +29,11 @@ alt Contains "upc/" && User input length > 1
 else else
     ":EditParser" -> ":EditParser": EditErrorException()
     activate ":EditParser" #Cyan
-    ":EditParser" -> "<<Class>>\nUI": printInvalidEditCommand()
-    activate "<<Class>>\nUI"
-    ref over "<<Class>>\nUI": Print Error Message
-    "<<Class>>\nUI" --> ":EditParser"
-    deactivate "<<Class>>\nUI"
+    ":EditParser" -> "<<class>>\nUi": printInvalidEditCommand()
+    activate "<<class>>\nUi"
+    ref over "<<class>>\nUi": Print Error Message
+    "<<class>>\nUi" --> ":EditParser"
+    deactivate "<<class>>\nUi"
     ":EditParser" --> ":EditParser"
     deactivate ":EditParser"
 end

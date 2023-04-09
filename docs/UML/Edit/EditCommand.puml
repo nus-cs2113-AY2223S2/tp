@@ -17,30 +17,30 @@ group sd [Process User Edit Input]
     ref over ":EditCommand": Update Item Attributes
     ":EditCommand"-->":EditCommand"
     deactivate ":EditCommand"
-    ":EditCommand" -> "<<Class>>\nCategoryCommand": updateItemCategory()
-    activate "<<Class>>\nCategoryCommand"
-    ref over "<<Class>>\nCategoryCommand": Update Category Data
-    "<<Class>>\nCategoryCommand" --> ":EditCommand"
-    deactivate "<<Class>>\nCategoryCommand"
+    ":EditCommand" -> "<<class>>\nCategoryCommand": updateItemCategory()
+    activate "<<class>>\nCategoryCommand"
+    ref over "<<class>>\nCategoryCommand": Update Category Data
+    "<<class>>\nCategoryCommand" --> ":EditCommand"
+    deactivate "<<class>>\nCategoryCommand"
     ":EditCommand"->":EditCommand": handleTrie()
     activate ":EditCommand" #Green
     ref over ":EditCommand": Update Inventory Data Structure
     ":EditCommand"-->":EditCommand"
     deactivate ":EditCommand"
     alt No Errors
-        ":EditCommand" -> "<<Class>>\nUI":printEditDetails()
-        activate "<<Class>>\nUI"
-        ref over "<<Class>>\nUI":Print Edit Details
-        "<<Class>>\nUI" --> ":EditCommand"
-        deactivate "<<Class>>\nUI"
+        ":EditCommand" -> "<<class>>\nUi":printEditDetails()
+        activate "<<class>>\nUi"
+        ref over "<<class>>\nUi":Print Edit Details
+        "<<class>>\nUi" --> ":EditCommand"
+        deactivate "<<class>>\nUi"
     else Caught Error Exceptions
-        ref over ":EditCommand","<<Class>>\nUI": Print Error Message
+        ref over ":EditCommand","<<class>>\nUi": Print Error Message
     end
-    ":EditCommand" -> "<<Class>>\nSessionManager": writeSession()
-    activate "<<Class>>\nSessionManager"
-    ref over "<<Class>>\nSessionManager": Update CSV File
-    "<<Class>>\nSessionManager" --> ":EditCommand"
-    deactivate "<<Class>>\nSessionManager"
+    ":EditCommand" -> "<<class>>\nSessionManager": writeSession()
+    activate "<<class>>\nSessionManager"
+    ref over "<<class>>\nSessionManager": Update CSV File
+    "<<class>>\nSessionManager" --> ":EditCommand"
+    deactivate "<<class>>\nSessionManager"
 
 end
 ":EditCommand" --> ":EditCommand"
