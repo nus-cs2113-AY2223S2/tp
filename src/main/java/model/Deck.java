@@ -43,8 +43,12 @@ public class Deck {
     public String getDeckName() {
         return deckName;
     }
-    public boolean cardIsInDeck(CardUUID cardUUID) {
+    public boolean cardIsInSet(CardUUID cardUUID) {
         return cardsSet.contains(cardUUID);
+    }
+
+    public boolean cardIsInList(CardUUID cardUUID) {
+        return cards.contains(cardUUID);
     }
 
     public boolean tagIsInDeck(TagUUID tagUUID) {
@@ -108,6 +112,10 @@ public class Deck {
 
         cardsSet.add(cardUUID);
     }
+
+    public void removeCardFromSet(CardUUID cardUUID) {
+        cardsSet.remove(cardUUID);
+    }
     public void addTag(TagUUID tagUUID) {
         this.tags.add(tagUUID);
     }
@@ -138,7 +146,7 @@ public class Deck {
         for(CardUUID cardUUID: cardUUIDArrayList) {
             if(cardUUIDIntegerHashMap.get(cardUUID)==1) {
                 cardUUIDIntegerHashMap.remove(cardUUID);
-                if(!this.cardIsInDeck(cardUUID)) {
+                if(!this.cardIsInList(cardUUID)) {
                     cardsSet.remove(cardUUID);
                 }
             } else {

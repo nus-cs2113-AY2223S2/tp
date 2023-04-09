@@ -48,6 +48,84 @@
         }
       ],
       "tags": []
+    },
+    {
+      "deckName": "new_deck",
+      "deckUUID": {
+        "uuid": "78e3dbe3-ab98-44a6-9e99-32a1b851e4a6"
+      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [
+        {
+          "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "deckName": "newnewdeck",
+      "deckUUID": {
+        "uuid": "3ea01172-566d-41cc-9537-c13d50b16a12"
+      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [],
+      "tags": []
+    },
+    {
+      "deckName": "testing_final",
+      "deckUUID": {
+        "uuid": "56dc8e36-2151-477a-85a0-301a4fbba26d"
+      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [],
+      "tags": []
+    },
+    {
+      "deckName": "testing_deck",
+      "deckUUID": {
+        "uuid": "20a2ef27-2047-4c3a-964c-2d7d93a244d7"
+      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [],
+      "tags": []
+    },
+    {
+      "deckName": "del_deck",
+      "deckUUID": {
+        "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
+      },
+      "cardsSet": [
+        {
+          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+        }
+      ],
+      "cardUUIDIntegerHashMap": {
+        "924119c1-a807-4df2-b311-080be9ee8522": 1
+      },
+      "cards": [],
+      "tags": [
+        {
+          "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
+        }
+      ]
+    },
+    {
+      "deckName": "del_tag",
+      "deckUUID": {
+        "uuid": "114b76fc-6ed9-46b6-99bd-623bed4046cb"
+      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
+      "cards": [],
+      "tags": [
+        {
+          "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
+        }
+      ]
     }
   ],
   "tags": [
@@ -98,6 +176,74 @@
         }
       ],
       "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "b0154090-c344-49b6-a8c7-1a4f5e98ddcc"
+      },
+      "tagName": "new_tag",
+      "cards": [
+        {
+          "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "834649e9-e0da-40aa-9a04-78877abf94bd"
+      },
+      "tagName": "test_tag",
+      "cards": [
+        {
+          "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "22c0769d-f046-4ae1-b0aa-e9910e92a3d2"
+      },
+      "tagName": "test_final_tag",
+      "cards": [
+        {
+          "uuid": "a8a9665b-88bd-4fe8-8970-5f5190bb968e"
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
+      },
+      "tagName": "del_tag",
+      "cards": [
+        {
+          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
+        }
+      ]
+    },
+    {
+      "uuid": {
+        "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
+      },
+      "tagName": "dup_tag",
+      "cards": [
+        {
+          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
+        }
+      ]
     }
   ],
   "cards": [
@@ -160,6 +306,61 @@
       "question": "fsjgfssurglhsughfdughfdlufghfdughfdghdfugihguidhgufgsgsgsgsg",
       "answer": "ans",
       "tags": [],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
+      },
+      "question": "testing",
+      "answer": "testing",
+      "tags": [
+        {
+          "uuid": "b0154090-c344-49b6-a8c7-1a4f5e98ddcc"
+        },
+        {
+          "uuid": "834649e9-e0da-40aa-9a04-78877abf94bd"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "845b2ac0-ccc9-4069-b885-6e651226510e"
+        },
+        {
+          "uuid": "78e3dbe3-ab98-44a6-9e99-32a1b851e4a6"
+        },
+        {
+          "uuid": "56dc8e36-2151-477a-85a0-301a4fbba26d"
+        }
+      ]
+    },
+    {
+      "uuid": {
+        "uuid": "a8a9665b-88bd-4fe8-8970-5f5190bb968e"
+      },
+      "question": "test",
+      "answer": "test",
+      "tags": [
+        {
+          "uuid": "22c0769d-f046-4ae1-b0aa-e9910e92a3d2"
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
+      },
+      "question": "this might work",
+      "answer": "finally",
+      "tags": [
+        {
+          "uuid": "b7b5bb62-6da4-4685-9559-2974cbc2b834"
+        },
+        {
+          "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
+        }
+      ],
       "decks": []
     }
   ]

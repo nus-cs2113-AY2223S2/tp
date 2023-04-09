@@ -32,7 +32,7 @@ public class AddCardToDeckCommand extends Command {
             deckToAdd = new Deck(deckName, cardToAdd.getUuid());
             deckToAdd.addCardToSet(cardToAdd.getUuid());
             deckList.addDeck(deckToAdd);
-        } else if (deckToAdd.cardIsInDeck(cardToAdd.getUuid())) {
+        } else if (deckToAdd.cardIsInSet(cardToAdd.getUuid())) {
             throw new CardInDeckException();
         } else if(deckToAdd.cardIsInMap(cardToAdd.getUuid())) {
             throw new CardInDeckUnderTagException();
