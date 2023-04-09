@@ -81,7 +81,7 @@ public class AlertParser extends Parser {
     @Override
     public void run() {
         try {
-            if (rawInput == "") {
+            if (rawInput.length() == EMPTY) {
                 throw new MissingParametersException();
             }
 

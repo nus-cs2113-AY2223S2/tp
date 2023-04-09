@@ -75,7 +75,7 @@ public class FilterParser extends Parser{
     @Override
     public void run(){
         try {
-            if (rawInput == null) {
+            if (rawInput.length() == EMPTY) {
                 throw new SearchFilterErrorException();
             }
             String[] commands = rawInput.split(" ");

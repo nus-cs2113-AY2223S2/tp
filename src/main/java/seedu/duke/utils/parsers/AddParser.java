@@ -27,7 +27,7 @@ public class AddParser extends Parser {
     @Override
     public void run() {
         try {
-            if (rawInput == null) {
+            if (rawInput.length() == EMPTY) {
                 throw new MissingParametersException();
             }
             Matcher matcher = Pattern.compile(ADD_REGEX).matcher(rawInput);
