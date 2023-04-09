@@ -64,15 +64,15 @@ class RemoveTest {
         Inventory inventory = new Inventory();
         SessionManager.setAutoSave(false);
         for(int i=0;i<1000;i++){
-            Command addCommand = new AddCommand(inventory, new Item("item1", "01",15,10.0));
+            Command addCommand = new AddCommand(inventory, new Item("item1", "01",15,10.0, "normal"));
             addCommand.run();
-            addCommand = new AddCommand(inventory, new Item("item2", "02",15,10.0));
+            addCommand = new AddCommand(inventory, new Item("item2", "02",15,10.0, "normal"));
             addCommand.run();
-            addCommand = new AddCommand(inventory, new Item("item3", "03",15,10.0));
+            addCommand = new AddCommand(inventory, new Item("item3", "03",15,10.0, "normal"));
             addCommand.run();
-            addCommand = new AddCommand(inventory, new Item("item4", "04",15,10.0));
+            addCommand = new AddCommand(inventory, new Item("item4", "04",15,10.0, "normal"));
             addCommand.run();
-            addCommand = new AddCommand(inventory, new Item("item5", "05",15,10.0));
+            addCommand = new AddCommand(inventory, new Item("item5", "05",15,10.0, "normal"));
             addCommand.run();
             Command removeCommand = new RemoveCommand(inventory, "01");
             removeCommand.run();
