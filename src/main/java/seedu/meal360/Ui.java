@@ -109,28 +109,34 @@ public class Ui {
     public void printHelp() {
         printMessage("These are the operations you can do. Please follow the proper input"
                 + " formats while typing.");
-        printMessage("1. Add Recipe: add /r {recipe name}");
-        printMessage("2. View Recipe: view {index number}");
-        printMessage("3. Edit Recipe: edit {recipe name}");
-        printMessage("4. Delete Recipe: delete {index number} or delete {starting index-ending index} or");
-        printMessage("delete /r {recipe name} or delete /r all");
+        printMessage("1. Add Recipe: add /r {RECIPE_NAME}");
+        printMessage("2. Edit Recipe: edit /r {RECIPE_NAME}");
+        printMessage("3. View Recipe: view {RECIPE_INDEX}");
+        printMessage("4. Delete Recipe: delete {RECIPE_INDEX} or delete {START_INDEX-END_INDEX} or");
+        printMessage("                  delete /r {RECIPE_INDEX} or delete /r all");
         printMessage("5. List All Recipes: list");
-        printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
-        printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
-        printMessage("   /r {recipe2 name} /q {quantity2}");
-        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
-        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
-        printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
+        printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {RECIPE_NAME} {QUANTITY}");
+        printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {RECIPE1_NAME} /q {QUANTITY1}");
+        printMessage("                                        /r {RECIPE2_NAME} /q {QUANTITY2}");
+        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {RECIPE_NAME} {QUANTITY}");
+        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {RECIPE1_NAME}");
+        printMessage("                                             /q {QUANTITY1} /r {RECIPE2_NAME} /q {QUANTITY2}");
         printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Marking recipe in weekly plan as done: weekly /done RECIPE_NAME");
-        printMessage("12. Clearing weekly plan: weekly /clear");
+        printMessage("11. Marking recipe in weekly plan as done: weekly /done {RECIPE_NAME}");
+        printMessage("12. Clear weekly plan: weekly /clear");
         printMessage("13. View Weekly Ingredients: weeklyingredients");
         printMessage("14. Give a random recipe: random");
-        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && "
-                + "...}");
-        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ."
-                + "..}");
-        printMessage("17. Exit: bye");
+        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("17. Add User Ingredient: add_i /n {INGREDIENT_NAME} /c {QUANTITY} /d {DATE}");
+        printMessage("18. Delete User Ingredient: del_i /n {INGREDIENT_NAME} /c {QUANTITY}");
+        printMessage("18. View User Ingredients: view_ingredients");
+        printMessage("19. Exit Recipe Manager: bye");
+        printMessage(" ");
+        printMessage("NOTE:");
+        printMessage("*Curly brackets {} are just to indicate what goes inside the command!");
+        printMessage("*No need to type them while entering commands!");
+        printSeparator();
         printMessage("HOW TO ADD INGREDIENTS?");
         printMessage("ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...");
     }
