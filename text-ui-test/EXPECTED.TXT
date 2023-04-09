@@ -33,7 +33,7 @@
 |  editExpense: edits the expense from the list.
 |  Parameter: i/ <index> t/ <type> n/ <newEntry>
 |  There are 3 type that can be changed, amount, info, time
-|  Example: editExpense i/ 1 t/ cost n/ 5
+|  Example: editExpense i/ 1 t/ amount n/ 5
 |
 |  -----------------------------------------------------------------------
 |
@@ -116,6 +116,8 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Invalid time information. Please present your time as 'YYYY MM DD HH mm'
+|  Do not enter invalid dates, such as entering 14 for MM.
+|  The earliest date available is 2000/01.
 |
 |  editIncome: edits the income from the list.
 |  Parameter: i/ <index> t/ <type> n/ <newEntry>
@@ -134,8 +136,12 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $1800.00 for 2023/MARCH.
-|  The amount of budget left is $1800.00
+|  Enter command: |  You have not set your budget.
+|
+|  setBudget: sets your budget.
+|  Parameter: <amount> [t/ YYYY/MM]
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
@@ -148,11 +154,13 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully set $500.00 as your budget for 2023/MARCH.
+|  Enter command: |  You have successfully set $500.00 as your budget for 2023/APRIL.
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Invalid Date Format!
+|  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
+|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.
+|  The earliest date available is 2000/01.
 |
 |  setBudget: sets your budget.
 |  Parameter: <amount> [t/ YYYY/MM]
@@ -175,8 +183,8 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $500.00 for 2023/MARCH.
-|  The amount of budget left is $500.00
+|  Enter command: |  You have set your budget as $2000.00 for 2023/APRIL.
+|  The amount of budget left is $2000.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -190,6 +198,8 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
+|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.
+|  The earliest date available is 2000/01.
 |
 |  viewBudget: view your budget and how much of it is left remaining.
 |  viewBudget [t/ YYYY/MM]: view your budget and how much of was left in the specified month

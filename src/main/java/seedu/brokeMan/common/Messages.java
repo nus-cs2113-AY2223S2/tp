@@ -29,9 +29,13 @@ public class Messages {
     public static final String MESSAGE_NEGATIVE_AMOUNT = "Negative amount is not allowed.";
     public static final String MESSAGE_ARGUMENTS_NOT_SPECIFIED = "Arguments not specified.";
     public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
-            "Please present your time as 'YYYY MM DD HH mm'";
+            "Please present your time as 'YYYY MM DD HH mm'\n" +
+            "|  Do not enter invalid dates, such as entering 14 for MM.\n" +
+            "|  The earliest date available is 2000/01.";
     public static final String MESSAGE_INVALID_MONTH = "Invalid time information. " +
-            "Please present your time as [YYYY/MM]";
+            "Please present your time as [YYYY/MM]\n" +
+            "|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.\n" +
+            "|  The earliest date available is 2000/01.";
     public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
     public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
 }

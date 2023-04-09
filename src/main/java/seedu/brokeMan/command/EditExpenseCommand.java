@@ -13,7 +13,7 @@ public class EditExpenseCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the expense from the list.\n" +
             "|  Parameter: i/ <index> t/ <type> n/ <newEntry>\n" +
             "|  There are 3 type that can be changed, amount, info, time\n" +
-            "|  Example: " + COMMAND_WORD + " i/ 1 t/ cost n/ 5";
+            "|  Example: " + COMMAND_WORD + " i/ 1 t/ amount n/ 5";
     private final int index;
     private final String type;
     private final String newEntry;
