@@ -11,7 +11,7 @@ public class SemData {
     public String examDate;
     public final int examDuration;
 
-    //Discard covidZone
+
     public SemData(int semester, List<Lesson> timetable, String examDate, int examDuration) {
         this.semester = semester;
         this.timetable = timetable;

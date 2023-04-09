@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-// import seedu.duke.Event;
 import seedu.duke.Schedule;
 import seedu.duke.EventList;
 import seedu.duke.Ui;
