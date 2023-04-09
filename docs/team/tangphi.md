@@ -3,6 +3,9 @@
 # Yinxuan (Sophie) Tang - Project Portfolio Page
 
 ## Overview
+BagPacker is a desktop packing list application used to manage a user's list of items to pack. The user interacts with it using a CLI to add, delete, edit, find, list out the items and many more. It is written in Java, and has about 2kLoC.
+
+My contributions of the projects are given below.
 
 ### Summary of Contributions
 
@@ -53,18 +56,11 @@ V2.1
 - Contributed to the planning of BagPacker by brainstorming features to implement
 - Labelled, assigned and set milestones for issues on Github [issues](https://github.com/AY2223S2-CS2113-T14-2/tp/issues?q=is%3Aissue+author%3Atangphi+is%3Aclosed)
 - Helped resolve bugs from the PE-Dry run
----
-##### Review/mentoring contributions
+- Documenting the target user profile in the developer doc
 
 ---
 ##### Contributions beyond the project team
 - Reported bugs in other teams' program and provided suggestions to improve: [CS2113-F10-2](https://github.com/tangphi/ped/issues)
 - Reviewed DG of other teams and provided suggestions to improve: [CS2113-W12-2](https://github.com/nus-cs2113-AY2223S2/tp/pull/5/files#r1152849879)
----
 
-##### Contributions to the Developer Guide (Extracts):
-
----
-
-##### Contributions to the User Guide (Extracts):
 
