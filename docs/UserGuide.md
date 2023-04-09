@@ -45,9 +45,16 @@ Allows the restaurant manager using the application to see the list of commands 
 Format: `help`
 
 ### Meetings
+Meeting is a feature for the restaurant manager to manage meetings with 
+boss or workers. MeetingManager supports add_meeting, view_meetings,
+delete_meeting and find_meeting. 
 
 #### Add Meetings:
-Add a meeting to the meeting list.
+Add a meeting to the meeting list. The name of the meeting is written after
+'n/', followed by the time of the meeting written after 't/'. Note that add_meeting
+command will not handle extra parameters other than 'n/' and 't/', which will be considered
+part of meeting name or meeting time. Besides, please do not contain 't/' inside your meeting
+name because the MeetingManager will consider what after 't/' as time.
 
 Format: `add_meeting n/<name> t/<time>`
 
@@ -155,15 +162,20 @@ Example:
 
 ### Dish
 
+#### Purpose
+
+This feature allows the restaurant manager to track the dishes that are sold in the restaurant, using commands that enables the manager to add, view, delete and find dishes.
+
 #### Add a Dish to the list of dishes:
 Successfully adds Dish only if all the arguments are correct.
 
 Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]`
 
-- Name of dish cannot be blank or start with spaces, it also cannot contain only spaces.
+- Name of dish cannot be blank or start with spaces, it also cannot contain only spaces. It also must be unique.
 - Price of dish must be a non-negative integer value and below 2,147,483,647 cents; i.e.: Price cannot be negative, in decimal, etc.
 - Ingredient list is encased between two square brackets and separated by a semicolon. The ingredient list can contain any non-negative number of items. 
-  - Note: Ingredients are read in as strings separated by ";", thus it can contain leading white spaces and numbers. However, it cannot be an empty string.
+  - Ingredients are read in as strings separated by ";", thus it can contain leading white spaces and numbers. However, it cannot be an empty string.
+  - Ingredients cannot be a number (i.e. "123", "-456", "+7.89", and "0.123"). However, it can be part of a word, like: "3 potatoes".
 
 Example 1: 
 ```
@@ -220,8 +232,8 @@ Format: `find_dish <keyword>`
 
 - The keyword cannot contain any spaces. 
 - Only 1 keyword can be entered per find_dish command.
-- The find dish command returns dishes that has words in its description matching the whole keyword, or has words that 
-that contains the keyword as a substring.
+- The find dish command returns dishes that has words in its description matching the whole keyword, or has words that contains the keyword as a substring.
+- Searching is also case insensitive: i.e.: Apple and apple are treated the same.
 
 Example 1:
 
@@ -241,7 +253,7 @@ Outcome 1:
 
 Example 2:
 
-When `find_dish Spicy` is entered in as a command:
+When `find_dish spicy` is entered in as a command:
 
 Outcome 2:
 
@@ -350,11 +362,12 @@ need to buy more potatoes deal~|~9 Apr 2PM
 ```
 
 #### Editing dish_list.txt
-Format: `<dish name>~|~<price>~|~<ingredient1>, <ingredient2>, ..., <ingredientn>`
+Format: `<dish name>~|~<price>~|~<ingredient1>;<ingredient2>;<ingredient3>`
+- You can add more ingredients by separating it with a semicolon.
 
 Outcome:
 ```
-Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+Chicken Burger~|~1099~|~tomatoes;chicken fillet;cheese;bread with sesame seeds
 ```
 
 #### Editing staff_list.txt

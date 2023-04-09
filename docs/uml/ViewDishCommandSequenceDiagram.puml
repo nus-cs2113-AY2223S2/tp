@@ -1,21 +1,23 @@
 @startuml
+!include Style.puml
 hide footbox
 title View Dish Sequence Diagram
 
 box "ViewDishCommand"
-participant ":ViewDishCommand" as ViewDishCommand
+participant ":ViewDishCommand" as ViewDishCommand COMMAND_COLOR
 endbox
 
 box "DishManager"
-participant ":DishManager" as DishManager
+participant ":DishManager" as DishManager MANAGER_COLOR
 endbox
 
--> ViewDishCommand ++ : ViewDishCommand()
 -> ViewDishCommand: execute()
+activate ViewDishCommand
 ViewDishCommand -> DishManager ++ : viewDish()
-
 ViewDishCommand <-- DishManager
-<-- ViewDishCommand: ui.printMessage()
+deactivate
+<-- ViewDishCommand:
 
 |||
+destroy ViewDishCommand
 @enduml

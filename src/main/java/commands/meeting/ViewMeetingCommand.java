@@ -16,6 +16,6 @@ public class ViewMeetingCommand extends Command {
     @Override
     public void execute(TextUi ui) {
         ui.printMessage(Messages.MESSAGE_MEETING_VIEW_LIST);
-        ui.printMessage(MeetingManager.printMeetings());
+        ui.printMessage(MeetingManager.viewMeetings());
     }
 }

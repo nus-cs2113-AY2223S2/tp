@@ -14,17 +14,35 @@ public class AddDishCommand extends Command {
     private Integer dishPrice;
     private ArrayList<String> ingredientsList;
 
+    /**
+     * Constructor of AddDishCommand that is going to be executed.
+     *
+     * @param dishName The name of the dish
+     * @param dishPrice The price of the dish in cents (Integer)
+     * @param ingredientsList An list of ingredients used to make the dish
+     */
     public AddDishCommand(String dishName, Integer dishPrice, ArrayList<String> ingredientsList) {
         this.dishName = dishName;
         this.dishPrice = dishPrice;
         this.ingredientsList = ingredientsList;
     }
 
+    /**
+     * Execute the command of adding dish.
+     *
+     * @param ui The Ui instance. Use to display messages to users.
+     */
     @Override
     public void execute(TextUi ui) {
         DishManager.addDish(this.dishName, this.dishPrice, this.ingredientsList, ui);
     }
 
+    /**
+     * Returns the exit value.
+     * If false, program continues to run.
+     *
+     * @return the exit value.
+     */
     @Override
     public boolean isExit() {
         return false;

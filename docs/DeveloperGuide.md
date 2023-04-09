@@ -64,17 +64,24 @@ request to `Manager` to assist the CRUD operations.
 
 ### Command Component
 
-##### The command component consists of the following:
+The command component consists of the following:
 
-![](uml/images/CommandPackageDiagram.png)
+![](uml/images/CommandClassDiagramExitHelpIncorrect.png)
 
 - 4 subcomponents: Command, HelpCommand, ExitCommand, IncorrectCommand
 
+The above commands are contained in the `commands` package.
+
+In addition to that, within the `commands` package, there are also 4 packages named `deadline`, `meeting`, `menu` and `staff`, all of which contains their own specific command classes as shown below:
+
+![](uml/images/CommandClassDiagramAddViewDeleteFind.png)
+
 - 4 sub packages with the following names: deadline, meeting, menu and staff
-    - Each package contains the 3 general commands:
-        - AddCommand
-        - DeleteCommand
-        - ViewCommand
+    - Each package contains the 4 general commands:
+        - AddXYZCommand
+        - DeleteXYZCommand
+        - ViewXYZCommand
+        - FindXYZCommand
     - The general commands have specific names depending on the package it is in.
 
 The command component consist of the Abstract `Command` class.
@@ -83,15 +90,21 @@ Each child `Command` class accepts arguments that are parsed from the `Parser` c
 An `execute` method will execute the operations needed for each individual commands.
 An `isExit` method will return a boolean value that decides whether the program should exit after this command is called.
 
-
 ### Manager Component
-The manager component consists of four different managers, 
-in which the list of entity is initialized and the methods implementing the entity are written inside.
-- DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines like addDeadline, printDeadline and deleteDeadline.
-- DishManager: This class contains an ArrayList of dishes and methods like addDish, deleteDish, viewDish and 
-stringOfDish which returns the dish information.
-- MeetingManager: This class contains an ArrayList of meetings and methods like addMeeting, printMeetings and deleteMeeting.
-- StaffManager: This class contains an ArrayList of staffs and methods like addStaff, deleteStaffByName, findStaffByName and getStaffString which print all the staffs' information.
+![](uml/images/Manager.png)
+
+The manager component consists of four different managers, in which the list 
+of entity is initialized and the methods implementing the entity are written inside.
+XYZ represents Meeting, Deadline, Staff and Dish.
+The Manager class diagram above omits methods that are unique to the individual manager classes
+for simplification.
+- DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines shown in the class diagram.
+- DishManager: This class contains an ArrayList of dishes and methods like isInsideDishes for judging whether a dish is inside the dish list,
+stringOfDish which returns the dish information,isInsideDishesWithIndex which returns the dish information
+with index and getDishesSize which returns the size of the dishes, apart from methods in the diagram.
+- MeetingManager: This class contains an ArrayList of meetings and methods implementing the meetings shown in the class diagram.
+- StaffManager: This class contains an ArrayList of staffs and methods like getStaffs with returns the staff list,
+apart from the methods in the diagram.
 
 ### Ui Component
 
@@ -144,8 +157,8 @@ The 'Meeting' class in the entity package shows the attributes that a meeting ob
 An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
 - addMeeting: Add a meeting to the meeting list.
   ![](uml/images/AddMeetingCommandSequenceDiagram-Add_Meeting_Sequence_Diagram.png)
-- deleteMeeting: Delete a meeting in the meeting list by its index.
-- printMeetings: Print all the meetings in the meeting list.
+- deleteMeeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
+- printMeetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
 
 When the user input a meeting command, the Parser will determine which command it is and return a command object.
 One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
@@ -160,6 +173,7 @@ The User will also be able to delete deadlines, view deadline list.
 
 When the user input a deadline command, it will be parsed into Parser to determine which deadline command will be called.
 Then, the deadline command will be executed, and the respective method in the DeadlineManager class will be called, which are:
+
 (XYZ stands for the respective command name.)
 
 #### Add deadline to deadline list
@@ -201,7 +215,9 @@ If any of the list is empty, a separate message notifying the user that the list
 
 ### Staff Feature 
 The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` objects in the list of staffs. 
-`Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are hot it works for each functionality: 
+`Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are how it works for each functionality: 
+
+![](uml/images/XYZStaffDiagram.png)
 
 #### Adding staff to the list:
 
@@ -222,24 +238,33 @@ It prints all of `Staff` objects in `StaffManager`'s staffs.
 
 The Dish feature consists of three functions:
 
-##### Adding dish to list:
+#### Add dish to list:
 
-![](uml/images/AddDishCommandSequenceDiagram-Add_Dish_Sequence_Diagram.png)
-
+![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)
 - When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
-- When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDishCommand()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
-- It then prints out a message to the console that informs the user that a dish has been added.
+- When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
+- It then prints out the dish that was added to the console.
+ 
+#### Delete dish on the list:
 
-##### Deleting dish on the list:
+![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)
 - When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.
-- When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```DeleteDishCommand()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes
-- It then prints out a message to the console that informs the user that a dish has been added.
+- When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes
+- It then prints out the dish that was deleted to the console.
 
-##### Viewing the list of dishes:
-- When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```ViewDishCommand()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
-- It then prints out the formatted string to the console.
+#### View the list of dishes:
+![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)
+- When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
+- It then prints out the formatted string containing all the dishes to the console.
+
+#### Find a dish in the list of dishes
+![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)
+- When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.
+- When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.
+- It then prints out the formatted string containing all the dishes with the keyword to the console.
 
 ### Storage Feature 
+
 #### Create directory, Read and load from XYZ file
 <img src="uml/images/CreateDirectorySequenceDiagram.png" width="400"/>  
 

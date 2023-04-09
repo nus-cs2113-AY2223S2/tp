@@ -75,10 +75,6 @@ public class Messages {
     public static final String ERROR_MEETING_INVALID_INDEX="Delete command must be followed by a valid index number!";
     public static final String ERROR_DISH_INVALID_INDEX = "Your index does not contain a valid dish!";
     public static final String ERROR_DISH_NOT_A_VALID_INTEGER = "Your index has to be an integer!";
-    public static final String ERROR_DISH_BLANK_DISH_NAME_COMMAND = "Name of dish cannot be empty!";
-    public static final String ERROR_DISH_NEGATIVE_PRICE_COMMAND = "Price of dish cannot be negative!";
-    public static final String ERROR_DISH_MISSING_INGREDIENT = "Ingredient list cannot be empty!";
-    public static final String ERROR_DISH_EMPTY_INDEX = "Index cannot be empty!";
     public static final String ERROR_DISH_MISSING_KEYWORD = "Please key in 1 keyword";
     public static final String ERROR_DISH_MULTIPLE_KEYWORDS = "Please key in only 1 keyword.";
     public static final String ERROR_CREATE_DIRECTORY = "Unable to create directory at\n%s\n" +
