@@ -290,14 +290,15 @@ public class Parser {
 
         double amount = Double.parseDouble(splitDescriptions[1]);
         String newDescription = splitDescriptions[2];
-        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
         Category category = null;
         try {
+
             category = convertStringToCategory(splitDescriptions[4]);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
 
+        LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[3]);
         return new AddIncomeCommand(amount, newDescription, time, category);
     }
 

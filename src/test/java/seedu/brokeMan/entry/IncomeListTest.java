@@ -2,6 +2,7 @@ package seedu.brokeMan.entry;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.entry.income.Income;
 import seedu.brokeMan.entry.income.IncomeList;
 import java.time.LocalDateTime;
@@ -42,5 +43,10 @@ public class IncomeListTest {
         IncomeList.deleteIncome(1);
         LinkedList<Income> expectedIncomeList = new LinkedList<>();
         assertEquals(expectedIncomeList, IncomeList.incomeList);
+    }
+
+    @Test
+    public void testFindIncomeByCategory_validCategory_success() {
+        IncomeList.findIncomeByCategory(Category.SALARY);
     }
 }
