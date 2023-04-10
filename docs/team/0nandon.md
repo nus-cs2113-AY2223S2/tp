@@ -1,11 +1,11 @@
-# Seungjun Lee, Project Portfolio Page
+# 🧑🏻‍💻 Seungjun Lee, Project Portfolio Page
 
-## Project BadMaths
+## 🤖 Project BadMaths
 
 BadMaths is a study tool focusing on mathematical help and note-taking. It supports
 a number of mathematical functions, including trigonemetric graphs, quadratic equations, and matrix calculations.
 
-## Summary of Contributions
+## 👊🏻 Summary of Contributions
 
 ### Code contributed
 
