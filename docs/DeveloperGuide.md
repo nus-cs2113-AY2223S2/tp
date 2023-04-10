@@ -879,7 +879,7 @@ Prerequisites: None
 ### Using a shortcut
 
 Prerequisites: You have added a shortcut which you will be using. For this section, we will require you to configure
-the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+the first shortcut in the [adding a shortcut](#adding-a-shortcut) section
 
 1. Test case: `a` <br>Expected: A message should indicate that a shortcut is being used. The `add -out noodles $5`
    command should also be successfully performed.
@@ -895,7 +895,7 @@ Prerequisites: None
 ### Deleting a shortcut
 
 Prerequisites: You have added a shortcut which you will be deleting. For this section, we will require you to
-configure only the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+configure only the first shortcut in the [adding a shortcut](#adding-a-shortcut) section
 
 1. Test case: `shortcut_delete a` <br>Expected: A success message should be displayed indicating that the shortcut has
    been successfully deleted.
