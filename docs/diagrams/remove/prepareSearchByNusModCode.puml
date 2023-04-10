@@ -23,5 +23,6 @@ else /mods
     ":Parser" --> ":Parser": ListMappableNusModsCommand:ListMappableNusModsCommand
     deactivate ":Parser"
 end
+":Parser" --> ":Parser": Command
 deactivate ":Parser"
 @enduml

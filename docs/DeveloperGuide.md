@@ -174,7 +174,7 @@ The `parseUserCommand()` is the main function of the Parser class where it first
 extracts the first two keywords of the input. The first keyword is used to determine the type of command that the user
 is executing, while the second keyword (if it exists) is used as an argument for the command. Afterwards, it uses a
 switch-case statement to execute the command corresponding to the first keyword in the user's input. if the user's input command does not
-match the specified command format., it will throw `InvalidCommandException` and `ExceptionHandleCommand` is returned
+match the specified command format, it will throw `InvalidCommandException` and `ExceptionHandleCommand` is returned
 instead.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
