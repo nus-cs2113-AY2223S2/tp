@@ -89,6 +89,9 @@ To search for a company, type:
  
 To filter according to industry, type:
                     find industry <INDUSTRY>
+                    
+To filter according to venue size, type:
+                    filter venues <SIZE>
  
 To choose a venue, type:
                     choose venue <INDEX>
