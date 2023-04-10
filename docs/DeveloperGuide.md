@@ -347,6 +347,9 @@ the `FilterParser` class, which extends the `Parser` class.
 ![FilterPrice.png](UML%2FFilter%2FFilterPrice.png)
 ![FilterTagCategory.png](UML%2FFilter%2FFilterTagCategory.png)
 
+
+<div class="page-break"></div>
+
 **Step 1**. When the user executes the command `filter f/[filtertype] p/[price type] [category/price/tag]`, the 
 `ParserHandler` will create a new `FilterParser` object and pass to it the appropriate `input` and the appropriate
 `Inventory` in which the items are stored.
