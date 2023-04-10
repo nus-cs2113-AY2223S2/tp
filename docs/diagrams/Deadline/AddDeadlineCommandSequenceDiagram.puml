@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+-> ":AddDeadlineCommand" : execute()
 activate ":AddDeadlineCommand"
 ":AddDeadlineCommand" -> ":DeadlineStorage" : addDeadlineToDeadlines(deadlineToAdd)
 activate ":DeadlineStorage"
@@ -32,10 +33,10 @@ create ":FileWriter"
 activate ":FileWriter"
 ":DeadlineStorage" <-- ":FileWriter"
 deactivate ":FileWriter"
-":DeadlineStorage" -> ":DatabaseInterface" : writeTaskPreparation(saveDeadlineString)
-activate ":DatabaseInterface"
-":DeadlineStorage" <-- ":DatabaseInterface" : tempString:String
-deactivate ":DatabaseInterface"
+":DeadlineStorage" -> ":DeadlineStorage" : writeTaskPreparation(saveDeadlineString)
+activate ":DeadlineStorage"
+":DeadlineStorage" --> ":DeadlineStorage" : tempString:String
+deactivate ":DeadlineStorage"
 ":DeadlineStorage" -> ":FileWriter" : fw.write(tempString)
 activate ":FileWriter"
 ":DeadlineStorage" <-- ":FileWriter"
@@ -58,7 +59,7 @@ activate PrintStream
 deactivate PrintStream
 ":AddDeadlineCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":Duke" <-- ":AddDeadlineCommand"
+<-- ":AddDeadlineCommand"
 
 deactivate ":DeadlineStorage"
 deactivate ":AddDeadlineCommand"

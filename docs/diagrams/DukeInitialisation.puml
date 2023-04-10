@@ -1,28 +1,28 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-":Duke" -> ":Duke" : initialisation
-activate ":Duke"
-":Duke" -> ":DataReader" : getUniversities()
+":SEPHelper" -> ":SEPHelper" : initialisation
+activate ":SEPHelper"
+":SEPHelper" -> ":DataReader" : getUniversities()
 activate ":DataReader"
-":Duke" <-- ":DataReader" : universities:ArrayList<University>
+":SEPHelper" <-- ":DataReader" : universities:ArrayList<University>
 deactivate ":DataReader"
-":Duke" -> ":DataReader" : getModules()
+":SEPHelper" -> ":DataReader" : getModules()
 activate ":DataReader"
-":Duke" <-- ":DataReader" : allModules:ArrayList<Module>
+":SEPHelper" <-- ":DataReader" : allModules:ArrayList<Module>
 deactivate ":DataReader"
-":Duke" -> ":ModuleStorage" : getModules()
+":SEPHelper" -> ":ModuleStorage" : getModules()
 activate ":ModuleStorage"
-":Duke" <-- ":ModuleStorage" : modules:ArrayList<Module>
+":SEPHelper" <-- ":ModuleStorage" : modules:ArrayList<Module>
 deactivate ":ModuleStorage"
-":Duke" -> ":DeadlineStorage" : getDeadlines()
+":SEPHelper" -> ":DeadlineStorage" : getDeadlines()
 activate ":DeadlineStorage"
-":Duke" <-- ":DeadlineStorage" : deadlines:ArrayList<Deadline>
+":SEPHelper" <-- ":DeadlineStorage" : deadlines:ArrayList<Deadline>
 deactivate ":DeadlineStorage"
-":Duke" -> "<<class>>\n:Parser" : getInstance();
+":SEPHelper" -> "<<class>>\n:Parser" : getInstance();
 activate "<<class>>\n:Parser"
-":Duke" <-- "<<class>>\n:Parser" : parser:Parser
+":SEPHelper" <-- "<<class>>\n:Parser" : parser:Parser
 deactivate "<<class>>\n:Parser"
-":Duke" --> ":Duke"
-deactivate ":Duke"
+":SEPHelper" --> ":SEPHelper"
+deactivate ":SEPHelper"
 
 @enduml

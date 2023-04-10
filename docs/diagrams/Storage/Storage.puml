@@ -3,9 +3,9 @@
 
 
 
-activate ":Duke"
+activate ":SEPHelper"
 create ":ModuleStorage"
-":Duke" -> ":ModuleStorage" : ModuleStorage()
+":SEPHelper" -> ":ModuleStorage" : ModuleStorage()
 activate ":ModuleStorage"
 ":ModuleStorage" -> ":ModuleStorage" : initialiseDatabase()
 activate ":ModuleStorage"
@@ -32,7 +32,7 @@ deactivate ":File"
 end
 ":ModuleStorage" -> ":ModuleStorage" : readModData(SAVED_MODULES_FILE_PATH, modules)
 activate ":ModuleStorage"
-ref over ":ModuleStorage" : [[readModData{diagrams%2FStorage%2FreadModData.png}]]
+ref over ":ModuleStorage" : readModData
 ":ModuleStorage" --> ":ModuleStorage"
 deactivate ":ModuleStorage"
 ":ModuleStorage" -> ":ModuleStorage" : checkDatabaseCorrupted()
@@ -51,10 +51,10 @@ activate ":ModuleStorage"
 deactivate ":ModuleStorage"
 ":ModuleStorage" --> ":ModuleStorage"
 deactivate ":ModuleStorage"
-":ModuleStorage" --> ":Duke"
+":ModuleStorage" --> ":SEPHelper"
 deactivate ":ModuleStorage"
 
-deactivate ":Duke"
+deactivate ":SEPHelper"
 
 
 @enduml
