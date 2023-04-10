@@ -251,63 +251,93 @@ public class Ui {
     }
 
     public void printFileNonIntegerMessage() {
+        System.out.println(DIVIDER);
         System.out.println(NON_INTEGER_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileIntegerNotPositiveMessage() {
+        System.out.println(DIVIDER);
         System.out.println(NON_POSITIVE_INTEGER_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileInvalidStatMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_STAT_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFilePetNotFoundMessage() {
+        System.out.println(DIVIDER);
         System.out.println(PET_NOT_FOUND_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFilePetNameEmptyMessage() {
+        System.out.println(DIVIDER);
         System.out.println(EMPTY_PET_NAME_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileDuplicatePetMessage() {
+        System.out.println(DIVIDER);
         System.out.println(DUPLICATE_PET_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printPetFileInvalidSeparatorMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_SEPARATOR_PET_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printTaskFileInvalidSeparatorMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_SEPARATOR_TASK_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileInvalidDateMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_DATE_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileEmptyTaskNameMessage() {
+        System.out.println(DIVIDER);
         System.out.println(EMPTY_TASK_NAME_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileInvalidMarkTaskSymbolMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_MARK_TASK_SYMBOL_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printInvalidPetNameMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_PET_NAME_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileInvalidPetNameMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_PET_NAME_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printInvalidTaskNameMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_TASK_NAME_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printFileInvalidTaskNameMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_TASK_NAME_FILE_ERROR);
+        System.out.println(DIVIDER);
     }
 
     /**
