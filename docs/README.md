@@ -8,6 +8,6 @@ Useful links:
 * [About Us](AboutUs.md)
   * [Koh Ming En](./team/mingen82.md)
   * [Koh Jing Jie Marcus](./team/koh-jing-jie-marcus.md)
-  * [Mustafa Anis Hussian](./team/mustafaah10.md)
+  * [Mustafa Anis Hussain](./team/mustafaah10.md)
   * [Hoo Teng Juan](./team/tj-hoo.md)
   * [Hamada Masahiro](./team/masahiro21.md)
