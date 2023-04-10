@@ -29,7 +29,7 @@ class ListExpenditureCommandTest {
     public void testViewExpenditureCommand_execute() throws WrongInputException {
 
         ListExpenditureCommand listExpenditure = new ListExpenditureCommand("SGD");
-        assertEquals("Here is your list of expenditures in SGD:\n" +
+        assertEquals("Here is your list of expenditures in SGD: \n" +
                 "1. [Academic] || Date: 1 Jan 2023 || Value: 2.10 || Description: pen\n" +
                 "2. [Food] || Date: 21 Mar 2023 || Value: 4.50 || Description: chicken rice\n"
                 +
