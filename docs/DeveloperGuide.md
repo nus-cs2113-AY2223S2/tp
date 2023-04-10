@@ -7,73 +7,75 @@ Command Line Interface (CLI). rainyDay provides a simple solution to track your 
 goals.
 
 <!-- TOC -->
+
 * [Developer Guide](#developer-guide)
-  * [Introduction](#introduction)
-    * [Acknowledgements](#acknowledgements)
-    * [Purpose and target reader](#purpose-and-target-reader)
-    * [How to use this guide](#how-to-use-this-guide)
-    * [Main functions](#main-functions)
-  * [Design](#design)
-    * [Architecture](#architecture)
-      * [Components of the architecture](#components-of-the-architecture)
-    * [Modules package](#modules-package)
-      * [Storage](#storage)
-      * [UI](#ui)
-    * [Data package](#data-package)
-      * [FinancialReport](#financialreport)
-      * [FinancialStatement](#financialstatement)
-      * [FlowDirection](#flowdirection)
-      * [MonthlyExpenditures](#monthlyexpenditures)
-      * [SavedData](#saveddata)
-      * [UserData](#userdata)
-      * [Design considerations](#design-considerations)
-    * [Command package](#command-package)
-    * [Exceptions package](#exceptions-package)
-  * [Implementation](#implementation)
-    * [Maintaining of Financial Report](#maintaining-of-financial-report)
-    * [Adding an entry `add`](#adding-an-entry-add)
-    * [Deleting an entry `delete`](#deleting-an-entry-delete)
-    * [Implementation of regex and parser](#implementation-of-regex-and-parser)
-      * [addStatement(String userInput)](#addstatement--string-userinput-)
-      * [Alternatives considered](#alternatives-considered)
-    * [Viewing your data `view`](#viewing-your-data-view)
-    * [Editing an entry `edit`](#editing-an-entry-edit)
-    * [Filtering your data `filter`](#filtering-your-data-filter)
-    * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
-    * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
-    * [Using a shortcut](#using-a-shortcut)
-    * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
-    * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
-    * [Saving Data](#saving-data)
-      * [Implementation of saving](#implementation-of-saving)
-      * [Type of file to save data into](#type-of-file-to-save-data-into)
-    * [Loading Data](#loading-data)
-      * [Type of file to load data into](#type-of-file-to-load-data-into)
-    * [Exporting to .csv](#exporting-to-csv)
-      * [Implementation of export to .csv](#implementation-of-export-to-csv)
-  * [Product scope](#product-scope)
-    * [Target user profile](#target-user-profile)
-    * [Value proposition](#value-proposition)
-  * [User Stories](#user-stories)
-  * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
-  * [Instructions for manual testing](#instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Viewing rainyDay's inbuilt help](#viewing-rainydays-inbuilt-help)
-    * [Adding a transaction](#adding-a-transaction)
-    * [Deleting a transaction](#deleting-a-transaction)
-    * [Viewing transactions](#viewing-transactions)
-    * [Editing a transaction](#editing-a-transaction)
-    * [Filtering transactions](#filtering-transactions)
-    * [Ignoring/Un-ignoring Transactions](#ignoringun-ignoring-transactions)
-    * [Set monthly budget goal](#set-monthly-budget-goal)
-    * [Adding a shortcut](#adding-a-shortcut)
-    * [Using a shortcut](#using-a-shortcut-1)
-    * [Viewing shortcuts](#viewing-shortcuts)
-    * [Deleting a shortcut](#deleting-a-shortcut)
-    * [Saving data](#saving-data-1)
-    * [Loading data](#loading-data-1)
-    * [Export to .csv](#export-to-csv)
+    * [Introduction](#introduction)
+        * [Acknowledgements](#acknowledgements)
+        * [Purpose and target reader](#purpose-and-target-reader)
+        * [How to use this guide](#how-to-use-this-guide)
+        * [Main functions](#main-functions)
+    * [Design](#design)
+        * [Architecture](#architecture)
+            * [Components of the architecture](#components-of-the-architecture)
+        * [Modules package](#modules-package)
+            * [Storage](#storage)
+            * [UI](#ui)
+        * [Data package](#data-package)
+            * [FinancialReport](#financialreport)
+            * [FinancialStatement](#financialstatement)
+            * [FlowDirection](#flowdirection)
+            * [MonthlyExpenditures](#monthlyexpenditures)
+            * [SavedData](#saveddata)
+            * [UserData](#userdata)
+            * [Design considerations](#design-considerations)
+        * [Command package](#command-package)
+        * [Exceptions package](#exceptions-package)
+    * [Implementation](#implementation)
+        * [Maintaining of Financial Report](#maintaining-of-financial-report)
+        * [Adding an entry `add`](#adding-an-entry-add)
+        * [Deleting an entry `delete`](#deleting-an-entry-delete)
+        * [Implementation of regex and parser](#implementation-of-regex-and-parser)
+            * [addStatement(String userInput)](#addstatement--string-userinput-)
+            * [Alternatives considered](#alternatives-considered)
+        * [Viewing your data `view`](#viewing-your-data-view)
+        * [Editing an entry `edit`](#editing-an-entry-edit)
+        * [Filtering your data `filter`](#filtering-your-data-filter)
+        * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
+        * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
+        * [Using a shortcut](#using-a-shortcut)
+        * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
+        * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
+        * [Saving Data](#saving-data)
+            * [Implementation of saving](#implementation-of-saving)
+            * [Type of file to save data into](#type-of-file-to-save-data-into)
+        * [Loading Data](#loading-data)
+            * [Type of file to load data into](#type-of-file-to-load-data-into)
+        * [Exporting to .csv](#exporting-to-csv)
+            * [Implementation of export to .csv](#implementation-of-export-to-csv)
+    * [Product scope](#product-scope)
+        * [Target user profile](#target-user-profile)
+        * [Value proposition](#value-proposition)
+    * [User Stories](#user-stories)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+    * [Instructions for manual testing](#instructions-for-manual-testing)
+        * [Launch and shutdown](#launch-and-shutdown)
+        * [Viewing rainyDay's inbuilt help](#viewing-rainydays-inbuilt-help)
+        * [Adding a transaction](#adding-a-transaction)
+        * [Deleting a transaction](#deleting-a-transaction)
+        * [Viewing transactions](#viewing-transactions)
+        * [Editing a transaction](#editing-a-transaction)
+        * [Filtering transactions](#filtering-transactions)
+        * [Ignoring/Un-ignoring Transactions](#ignoringun-ignoring-transactions)
+        * [Set monthly budget goal](#set-monthly-budget-goal)
+        * [Adding a shortcut](#adding-a-shortcut)
+        * [Using a shortcut](#using-a-shortcut-1)
+        * [Viewing shortcuts](#viewing-shortcuts)
+        * [Deleting a shortcut](#deleting-a-shortcut)
+        * [Saving data](#saving-data-1)
+        * [Loading data](#loading-data-1)
+        * [Export to .csv](#export-to-csv)
+
 <!-- TOC -->
 
 ### Acknowledgements
@@ -96,7 +98,7 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 * `inline code` format are related to commands, classes and methods in rainyDay
 * "double quotes" format are related to names
 * Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional e.g.
-  [DESCRIPTION] {TIME}
+  [DESCRIPTION] {TIMESPAN}
 * 💡 indicates helpful tips
 * ℹ️ indicates information to take note of
 
@@ -166,7 +168,7 @@ The UI class is also used when printing various outputs to the user after a comm
 
 ### Parser package
 
-The parser package consists of different classes to parse the different inputs from users. The following shows a partial 
+The parser package consists of different classes to parse the different inputs from users. The following shows a partial
 class diagram for the parser package.
 
 ![ParserClassDiagram.png](images%2FDeveloperGuide%2FParserClassDiagram.png)
@@ -278,9 +280,11 @@ expenditures for the month.
 The exceptions component consists of classes `RainyDayException` and `ErrorMessage`.
 
 #### RainyDayException
+
 - Extends the built-in "Exception" class and takes a string parameter "errorMessage".
 
 #### ErrorMessages
+
 - An enum class consisting of all the error messages thrown by `RainyDayException`
 
 ## Implementation
@@ -301,7 +305,8 @@ financial report containing a list of financial statements.
 ### Adding an entry `add`
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
-  add command: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DAY/MONTH/YEAR}` with the use of regex pattern
+  add command: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DAY/MONTH/YEAR}` with the use of regex
+  pattern
     - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
@@ -387,10 +392,10 @@ down the instructions.
    the mandatory fields are present. This is done through the following:
 
     - `-(in|out)\\s+(.+)\\s+\$([\d.]+)` checks for the corresponding structure: `(-IN/OUT) <whitepsace>
-      (DESCRIPTION) <whitepsace> ($AMOUNT) `. This will match when the optional flags are not included. An empty string 
+      (DESCRIPTION) <whitepsace> ($AMOUNT) `. This will match when the optional flags are not included. An empty string
       will then be returned
     - `-(in|out)\\s+(.+)\\s+\$([\d.]+)\\s+(.*)` checks for the corresponding structure `(-IN/OUT) <whitepsace>
-      (DESCRIPTION) <whitepsace> ($AMOUNT) <whitepsace> (remaining input)`. This will match when at least one of the 
+      (DESCRIPTION) <whitepsace> ($AMOUNT) <whitepsace> (remaining input)`. This will match when at least one of the
       optional flags are included, and a string corresponding to `(remaining input)` will be returned<br><br>
 
 2. If an empty string is returned, an `addCommand` object will be returned from the method `addStatement`. Otherwise,
@@ -401,9 +406,9 @@ down the instructions.
    Thus, it will be passed into the method `setCategory`. `setCategory` will then use the following regex to match
    `remainingInformation`:
     - `-c\\s+(.+)` checks for the corresponding structure `-c <whitespace> (CATEGORY)`
-    - `-c\\s+(.+)\\s+-date\\s+(.*)` checks for the same thing except whether it contains the `-date` flag followed by 
-       any input
-      - <br><br>
+    - `-c\\s+(.+)\\s+-date\\s+(.*)` checks for the same thing except whether it contains the `-date` flag followed by
+      any input
+        - <br><br>
 
 4. The last field to check is the `-date` field. If present, the `setDate` method will be called
    on `remainingInformation`. The setDate function will then use the following regex to match
@@ -438,7 +443,8 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 - Information is presented in a table format to help improve clarity for users
     - The table includes information in the summary such as whether it is sorted and the timespan of transactions shown
     - Sorting features also show the latest information at the bottom, as compared to a normal GUI-based application.
-      This is because in a CLI, users will always be redirected to the bottom after the output. Hence, by placing critical
+      This is because in a CLI, users will always be redirected to the bottom after the output. Hence, by placing
+      critical
       information at the bottom, it will make it easier for users to spot in case of a large table.
 - The limit for the timespans are deliberately set to cover commonly used timespans
     - One can view up to 31 days / 4 weeks, as they each make up a month
@@ -448,7 +454,6 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 - The setting of hiding the value of transactions that are ignored is deliberate, as it is the most prominent and
   direct way for users to see this.
     - Users can view the value via the export command, as elaborated below
-
 
 ### Editing an entry `edit`
 
@@ -460,7 +465,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   statement
   will be edited
 
-The sequence diagram for the implementation of edit is as shown below with the details of looping through 
+The sequence diagram for the implementation of edit is as shown below with the details of looping through
 editFlagAndField have been omitted from the diagram:
 
 ![EditCommand.png](images\DeveloperGuide\EditCommand.png)
@@ -491,7 +496,7 @@ The sequence diagram for the implementation of filter is as shown below:
 
 ![FilterCommand.png](images\DeveloperGuide\FilterCommand.png)
 
-The diagram above shows the sequence diagram for a `-c` flag, the details for the other flags are omitted to simplify 
+The diagram above shows the sequence diagram for a `-c` flag, the details for the other flags are omitted to simplify
 the diagram.
 
 #### Design considerations
@@ -696,7 +701,7 @@ Help people who are just starting out working and troubled by financial issues s
 ## Non-Functional Requirements
 
 1. rainyDay works on common operating systems (Windows, Mac OS, Linux, etc.), with Java 11 or above installed
-2. The target users should be able to execute all commands with reasonable descriptions in under 10 seconds. 
+2. The target users should be able to execute all commands with reasonable descriptions in under 10 seconds.
 3. Data of rainyDay can be moved and read in any other computers with rainyDay with no implications
 4. rainyDay should be responsive, with no noticeable delay for report sizes under 10,000.
 5. Commands should be straightforward, such that the name makes its function obvious to the user.
@@ -724,9 +729,9 @@ Help people who are just starting out working and troubled by financial issues s
 
 1. Initial launch
     1. Download the jar file and copy it into an empty folder
-   
+
     2. Open the terminal and `cd` into the file directory where you placed "rainyDay.jar"
-   
+
     3. Type the command `java -jar rainyDay.jar` and press Enter <br>Expected: rainyDay startup appears, prompting for
        your name
 
@@ -782,7 +787,7 @@ Help people who are just starting out working and troubled by financial issues s
 
 1. Prerequisites: There are no transactions in rainyDay that fit the provided timespan.
 
-2. Test case: `view`<br>Expected: A message indicating that there are no transactions in rainyDay in the time span will 
+2. Test case: `view`<br>Expected: A message indicating that there are no transactions in rainyDay in the time span will
    be shown
 
 3. Test case: `view -all`<br>Expected: A message indicating that rainyDay is completely empty will be shown<br><br>
@@ -809,23 +814,25 @@ Help people who are just starting out working and troubled by financial issues s
 2. Test case: `edit 1 -d Chicken rice` <br> Expected: The description of transaction with index 1 shown in `view -all`
    list will be changed to "Chicken Rice"
 
-3. Test case: `edit 1 -v $5 -c Food and Drinks -date 4/8/2023` <br> Expected: The value, category and date of transaction
+3. Test case: `edit 1 -v $5 -c Food and Drinks -date 4/8/2023` <br> Expected: The value, category and date of
+   transaction
    with index 1 will be changed to "$5", "Food and Drinks" and "04/08/2023" respectively
 
-4. Test case: `edit 1 -date 4/8/23 -d Noodles` <br> Expected: No transaction edited. Error message for "wrong edit 
+4. Test case: `edit 1 -date 4/8/23 -d Noodles` <br> Expected: No transaction edited. Error message for "wrong edit
    format" will be shown as flag is in incorrect order.
 
 ### Filtering transactions
 
 1. Prerequisites: There are multiple transactions in rainyDay.
 
-2. Test case: `filter -d rice` <br> Expected: Transactions that contain "rice" in the description field will be listed 
+2. Test case: `filter -d rice` <br> Expected: Transactions that contain "rice" in the description field will be listed
    out.
 
 3. Test case: `filter -c Shopping -date 2/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
-   field and dated "02/04/2023" will be listed out. 
+   field and dated "02/04/2023" will be listed out.
 
-4. Test case: `filter -c Shopping -date 2/4/2023 8/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
+4. Test case: `filter -c Shopping -date 2/4/2023 8/4/2023` <br> Expected: Transactions that contain "Shopping" in the
+   category
    field and dated between "02/04/2023" and "08/04/2023" will be listed out.
 
 5. Test case: `filter -c Food -d rice` <br> Expected: No transaction edited. Error message for "wrong filter
@@ -842,7 +849,8 @@ Help people who are just starting out working and troubled by financial issues s
 3. Test case: `ignore 1`<br>Expected: An error message should be displayed, indicating that the 1st transaction was
    already ignored from overview calculations
 
-4. Test case: `unignore 1`<br>Expected: A success message should be displayed, indicating that the 1st transaction is now
+4. Test case: `unignore 1`<br>Expected: A success message should be displayed, indicating that the 1st transaction is
+   now
    included in overview calculations
 
 5. Test case: `unignore 1`<br>Expected: An error message should be displayed, indicating that the 1st transaction was
@@ -860,7 +868,7 @@ Help people who are just starting out working and troubled by financial issues s
 
 3. Test case: `setbudget 0`<br>Expected: A success message should be displayed, indicating that the user's monthly
    budget goal has been removed successfully.
- 
+
 4. Test case: `setbudget -70`<br>Expected: An error message should be displayed, indicating that the command is
    input incorrectly.
 
