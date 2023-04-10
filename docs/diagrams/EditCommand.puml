@@ -9,7 +9,7 @@ activate EditCommand
 EditCommand -> UserData : getStatement()
 activate UserData
 
-UserData -> FinancialReport : getFinancialStatement
+UserData -> FinancialReport : getFinancialStatement()
 activate FinancialReport
 FinancialReport --> UserData: : FinancialStatement
 deactivate FinancialReport
