@@ -20,12 +20,18 @@ public class Vaccination extends Appointment {
     protected String vaccine;
     protected String description = "vaccination";
 
+    /**
+     * Constructs a new Vaccination object with the specified parameters.
+     * @param uid The unique identifier for the vaccination appointment.
+     * @param animal The animal being treated in the vaccination appointment.
+     * @param owner The owner of the animal being treated.
+     * @param date The date of the vaccination appointment.
+     * @param time The time of the vaccination appointment.
+     * @param vaccine The specific type of vaccine for the vaccination appointment.
+     */
     public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time,
                        String vaccine) throws SniffException {
         super(uid, animal, owner);
-        this.uid = uid;
-        this.animal = animal;
-        this.owner = owner;
         this.date = date;
         this.time = time;
         this.vaccine = setVaccine(vaccine);
@@ -33,10 +39,13 @@ public class Vaccination extends Appointment {
 
     @Override
     public String toString() {
-        return " UID: " + uid + " [" + getStatus() + "]" + " | vaccine: " + vaccine + '\n'
-                + " Date: " + date + " | Time: " + time + '\n'
-                + " Animal Name: " + animal.toString() + '\n'
-                + " Owner Name: " + owner.toString();
+        return " Vaccination   " + "[" + getStatus() + "]" + System.lineSeparator() +
+                " Date: " + date + System.lineSeparator() +
+                " Time: " + time + System.lineSeparator() +
+                " UID: " + uid + System.lineSeparator() +
+                " Vaccine: " + vaccine + System.lineSeparator() +
+                " Animal Name: " + animal.toString() + System.lineSeparator() +
+                " Owner Name: " + owner.toString();
     }
 
     @Override
@@ -75,7 +84,7 @@ public class Vaccination extends Appointment {
 
     public String setVaccine(String vaccine) throws SniffException {
         if (vaccine.isBlank()) {
-            throw new SniffException(" Vaccine cannot be empty!");
+            throw new SniffException(" Vaccine description cannot be empty!");
         }
         return vaccine;
     }
