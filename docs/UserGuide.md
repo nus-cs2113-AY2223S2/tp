@@ -216,6 +216,7 @@ Format: **`add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`**
 > ⚠️ Please avoid doing the following:
 > - Amount provided must be a positive value and cannot be more than $21,474,836.47!
 > - `DESCRIPTION` and `CATEGORY` cannot contain dash `-`
+> - `CATEGORY` cannot contain dollar symbol `$`
 > - Avoid using characters other than alphanumeric characters and space as it could lead to abnormal behaviour
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:

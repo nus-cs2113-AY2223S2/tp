@@ -118,6 +118,14 @@ public class ParseEdit extends Parser {
                     throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
                 }
             }
+            if (editFlagAndField.contains("-c")) {
+                int categoryToChangeIndex = editFlagAndField.indexOf("-c");
+                String categoryToChange = editFlagAndField.get(categoryToChangeIndex);
+                if (categoryToChange.contains("$")) {
+                    logger.warning("edit category contains $");
+                    throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+                }
+            }
             return editFlagAndField;
         } else {
             logger.warning("edit command given by user in the wrong format");
