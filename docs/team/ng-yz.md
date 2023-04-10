@@ -34,6 +34,7 @@ Contributions to the DG:
 * Added sequence diagrams and UML diagrams for `remove` and `category` commands
 * Check for any formatting difference and standardise across most, if not all, UML diagrams
 * Added title for sequence diagrams that did not include them
+* Added to manual testing information for some features
 
 Contributions to team-based tasks:
 * Maintaining issue tracker
