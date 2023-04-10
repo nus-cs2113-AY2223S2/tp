@@ -123,22 +123,22 @@ Shows a list of filters available and their description.
 The filters are shown here:
 
 
-| Filter   | Description                                   |
-|----------|-----------------------------------------------|
-| [gym]    | exercises that can be done with gym equipment |
-| [static] | exercises that do not require gym equipment   |
-| [easy]   | exercises of low intensity                    |
-| [medium] | exercises of medium intensity                 |
-| [hard]   | exercises of hard intensity                   |
-| [upper]  | exercises that train your upper body          |
-| [core]   | exercises that train your core                |
-| [legs]   | exercises that train your legs                |
+| Filter | Description                                   |
+|--------|-----------------------------------------------|
+| gym    | exercises that can be done with gym equipment |
+| static | exercises that do not require gym equipment   |
+| easy   | exercises of low intensity                    |
+| medium | exercises of medium intensity                 |
+| hard   | exercises of hard intensity                   |
+| upper  | exercises that train your upper body          |
+| core   | exercises that train your core                |
+| legs   | exercises that train your legs                |
 
 <div style="page-break-after: always;"></div>
 
 ## Generating a list of workouts according to filters: ```generate ARGUMENT... NUMBER```
 
-*Easter Egg: Having the [number] as 1337 would always generate the first 3 workouts no matter the filters*
+*Easter Egg: Having the NUMBER as 1337 would always generate the first 3 workouts no matter the filters*
 
 Shows a list containing *number* of _random_ workouts that suits the arguments filter.
 
@@ -267,9 +267,9 @@ Adds an IPPT exercise session and also takes in the input of the user's timing/r
 It returns the total points obtained by the user from the set of exercises.
 The user can view his history(via ```history``` command) to see the breakdown of the points too.
 
-* ```AGE``` should be a positive integer ranging from 16 to 60 years old.(We do not have scoring data for ages beyond 60 and under 16 years old)
+* ```AGE``` should be a positive integer ranging from 16 to 60 years old. (We do not have scoring data for ages beyond 60 and under 16 years old)
 * ```Runtime``` in format of ```mm:ss``` where mm is minute (positive integer) and ss is seconds (positive integer)
-* ```PUSHUPS``` Positive Integer of pushup repetitions in 1 minute (0 to 60(the max possible points that can be obtained)
+* ```PUSHUPS``` Positive Integer of pushup repetitions in 1 minute (0 to 60(the max possible points that can be obtained))
 * ```SITUPS```  Positive Integer of situps repetitions in 1 minute (0 to 60(the max possible points that can be obtained))
 
 For example, person is 23 years old, with his 2.4km run time of 10 minutes and 10 seconds.
@@ -322,6 +322,9 @@ ________________________________________
 
 Our workouts feature is designed to help you complete a workout and log your progress.
 
+**Note that users are brought into this feature upon the input of the ```start``` command, as described previously. 
+Hence, users are to note that the commands within the workout feature will NOT work unless they input the ```start``` command beforehand.
+In case you missed it out, learn more about the feature by clicking [here](#getting-into-a-workout--start).**
 
 ## Commands
 
