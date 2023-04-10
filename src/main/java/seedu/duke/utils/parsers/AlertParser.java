@@ -104,7 +104,7 @@ public class AlertParser extends Parser {
                 Ui.printInvalidAlertParameter();
             }
         } catch (MissingParametersException e) {
-            e.missingAlertParameters();
+            Ui.printInvalidAlertParameter();
         }
 
     }
