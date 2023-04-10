@@ -29,14 +29,12 @@ ___ LoC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/t
 
 ---
 ### Contributions to the [DG](../DeveloperGuide.md)
-1. Add Instructions for Manual Testing ([]())
+1. Add Instructions for Manual Testing
 2. 
 
 ---
 ### Contributions to team-based tasks
-
----
-### Review/Mentoring Contributions
+1. Helped with [shannentan](https://github.com/shannentan) to implement items with quantity feature ([#61](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/61/commits))
 
 ---
 

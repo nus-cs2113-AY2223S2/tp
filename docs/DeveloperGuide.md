@@ -101,14 +101,12 @@ For all valid commands, the mechanism of implementation are as follows:
 
 Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker---mechanism) for a visual aid of the above explanation.
 
----
 
 #### Command
 
 The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
 `targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. An `item` of that index will be extracted out using `getTargetItem()`.
 
----
 
 #### Add Command
 
@@ -137,15 +135,12 @@ If `PackingList.itemFinder()` returns false, the item will be added onto `packin
 
 In both scenarios, the relevant `ui.printToUser` messages (omitted in the sequence diagram for easier reading) will be called to print a message to the user.
 
----
 
 #### Delete Command
 
 Delete command is used to delete an item from the packing list.
 
 Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``` method from the ```PackingList``` class which executes the ```ArrayList.remove()``` method to remove the item from the ```PackingList``` ArrayList.
-
----
 
 #### Pack Command
 
@@ -166,7 +161,6 @@ Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to pri
 
 Sequence Diagram of Successful `PackCommand.execute()`
 
----
 
 #### PackAll Command
 
@@ -182,7 +176,6 @@ Execute Mechanism: ```PackAllCommand.execute()``` calls the ```Command.getTarget
 After which the ```PackingList.getUnpackedQuantity()``` method is called in ```PackingList``` and initialised as `packQuantity` which is added to the previous packed quantity using `packingList.packItem(item, packQuantity)` thus fully packing the item. 
 Lastly `Ui.printToUser(MSG_SUCCESS_PACKALL, item)` from `Ui` class is called to print a message to the user signifying that the `packall` command has been executed successfully.
 
-___
 
 #### Unpack Command
 
@@ -202,7 +195,6 @@ Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to p
 
 Sequence Diagram of Successful `UnpackCommand.execute()`
 
----
 
 #### UnpackAll Command
 
@@ -218,7 +210,6 @@ Execute Mechanism: ```UnpackAllCommand.execute()``` calls the ```Command.getTarg
 After which the ```PackingList.getPackedQuantity()``` method is called in ```PackingList``` and initialised as `unpackQuantity`. This value is taken away from the previous packed quantity using `packingList.unpackItem(item, unpackQuantity)` thus totally unpacking the item.
 Lastly `Ui.printToUser(MSG_SUCCESS_UNPACKALL, item)` from `Ui` class is called to print a message to the user signifying that the `unpackall` command has been executed successfully.
 
-___
 
 #### Edit Quantity Command
 
@@ -237,8 +228,6 @@ Next, the `PackingList.editTotalQuantity()` method is called in `PackingList`, w
 `Item.setTotalQuantity()` will set the `totalQuantity` attribute to the `QUANTITY` input given.
 Last, `Ui.printToUser()` from `Ui` class is called to print a message to the user signifying that the Edit Quantity command has been executed successfully.
 
-
----
 
 #### Help Command
 
@@ -282,7 +271,6 @@ All Commands:
 ____________________________________________________________
 ```
 
----
 
 #### List Command
 
@@ -304,8 +292,6 @@ Here are the items in your list
 4. [3/3] pairs of socks
 ____________________________________________________________
 ```
-
----
 
 #### List Unpacked Command
 
@@ -349,8 +335,6 @@ ________________________________________________________________________________
 
 ```
 
----
-
 #### Find Command
 
 `FindCommand` is used to find all items containing the keyword(s) provided.
@@ -358,7 +342,6 @@ ________________________________________________________________________________
 Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
 The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
 
----
 
 #### DeleteList Command
 
@@ -366,7 +349,6 @@ The `item`(s) that contain the keyword are placed into an ArrayList with their `
 
 Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
 
----
 
 #### Bye Command
 
@@ -376,16 +358,15 @@ Mechanism: `ByeCommand.execute()` updates the static boolean `isBagPackerRunning
 The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
 `isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
 
----
 
 #### Incorrect Command
 
 `IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
 These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
-Depending on the error, `IncorrectCommand` will be constructed with an `errorType` and `helpMessage`.
+
+Depending on the error, `IncorrectCommand` will be constructed with an `errorType` and `helpMessage` to be shown to the user with `errorMessage()`
 
 Mechanism: `IncorrectCommand.execute()` will print the relevant error message to the user by calling `Ui.errorMessage`.
-
 
 ---
 
@@ -741,6 +722,29 @@ You can run a few commands; refer to the [User Guide]() for the full list of com
     * Example: `listunpacked`
     * Expected: A list showing all items that are not fully packed.
     * This command will show different results if all items are fully packed, or if there are no items in your packing list.
+
+
+* Try fully packing an item using the `packall` command
+  * Example: `packall /of 1`
+  * Expected: A message showing that the first item has been fully packed.
+  * This command will work on other items.
+
+
+* Try fully unpacking an item using the `unpackall` command
+  * Example: `unpackall /of 1`
+  * Expected: A message showing that the first item has been fully unpacked.
+  * This command will work on other items.
+
+
+* Try deleting your entire list using the `deletelist` command
+  * Example: `deletelist`
+  * Expected: 
+    ```text
+    ________________________________________________________________________________________________________________________
+    Packing list deleted
+    ________________________________________________________________________________________________________________________
+    ```
+  * This command will replace your packing list with an empty one.
 
 
 * To exit `BagPacker`, use the `bye` command
