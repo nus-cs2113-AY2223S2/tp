@@ -12,7 +12,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
     1. [Architecture](#architecture)
     2. [ModuleStorage](#modulestorage)
     3. [Parser](#parser)
-    4. [UserInterface](#userinterface--ui-) 
+    4. [UserInterface](#userinterface-ui) 
     5. [Help Command](#help-command)
     6. [Module Commands](#module-commands)
        - [List Current Command](#list-current-command)
@@ -27,12 +27,12 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
        - [Delete Deadline Command](#delete-deadline-command)
     8. [Reference Block for Sorting Modules](#reference-block-for-sortmodulesaccording-to-printing-length-function)
     9. [Budget Commands](#budget-commands) 
-       - [View Budget Command](#view-budget-command--view-)
-       - [Edit Budget Command](#edit-budget-command--budget-)
-       - [Edit Accommodation Command](#edit-accommodation-command--cost-)
-       - [Edit Airplane Ticket Command](#edit-airplane-ticket-command--cost-)
-       - [Edit Food Command](#edit-food-command--cost-)
-       - [Edit Entertainment Command](#edit-entertainment-command--cost-)
+       - [View Budget Command](#view-budget-command-view)
+       - [Edit Budget Command](#edit-budget-command-budget)
+       - [Edit Accommodation Command](#edit-accommodation-command-cost)
+       - [Edit Airplane Ticket Command](#edit-airplane-ticket-command-cost)
+       - [Edit Food Command](#edit-food-command-cost)
+       - [Edit Entertainment Command](#edit-entertainment-command-cost)
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
     2. [Value Proposition](#value-proposition)
@@ -203,7 +203,7 @@ Reference BudgetCommandType Sequence Diagram:
 
 Reference listDeadlineCommand Sequence Diagram:
 
-![deadlinelistParser.png](diagrams%2Fremove%2FdeadlineListParser.png)
+![deadlinelistParser.png](diagrams%2Fremove%2FdeadlinelistParser.png)
 
 Reference prepareAddDeadlineCommand Sequence Diagram:
 
