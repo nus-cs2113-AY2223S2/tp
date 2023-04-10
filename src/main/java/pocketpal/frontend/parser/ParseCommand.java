@@ -124,11 +124,7 @@ public abstract class ParseCommand {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
         double priceDouble;
-        try {
-            priceDouble = Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
-        }
+        priceDouble = Double.parseDouble(price);
         if (priceDouble > ParserConstants.MAX_VALUE || priceDouble < ParserConstants.MIN_VALUE) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
@@ -142,10 +138,6 @@ public abstract class ParseCommand {
      */
     public void checkDateValidity(String dateString) throws InvalidDateException {
         logger.entering(ParseCommand.class.getName(), "checkDateValidity()");
-        if (dateString == null) {
-            logger.exiting(ParseCommand.class.getName(), "checkDateValidity()");
-            return;
-        }
         Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
         if (!matcher.matches()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);

@@ -119,6 +119,18 @@ public class ParserTest {
     }
 
     @Test
+    public void checkDateValidity_wrongDateFormat_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidDateException.class, () -> {
+            parser.parseUserInput("/view -sd 20/20/2023 -ed 30/12/2030");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_DATE;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
     public void parseUserInput_emptyCategory_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
