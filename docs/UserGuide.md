@@ -15,7 +15,9 @@
   University](#3215-listing-modules-user-has-selected-for-specific-partner-university)
        * [3.2.2 Add](#322-add-user-selected-modules-to-list)
        * [3.2.3 Remove](#323-remove-user-selected-modules-from-list)
-       * [3.2.4 Search](#324-search-by-nus-module-code)
+       * [3.2.4 Search](#324-search)
+         * [3.2.4.1 Search by Specific Nus Module Code](#3241-search-by-specific-nus-module-code)
+         * [3.2.4.2 List available Nus Modules to search by](#3242-list-available-nus-modules-to-search-by)
   * [3.3 Deadline](#33-deadlines)
     * [3.3.1 List the Deadlines](#331-list-all-the-deadlines-saved)
     * [3.3.2 Add Deadlines](#332-add-a-new-deadline)
@@ -68,33 +70,41 @@ Expected Outcome: A list of all the commands.
 Description of Outcome:
 ```
 Here are the list of commands:
-/LIST PU                          : Provides the list of Partner Universities available
-/LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
-/LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
-                                    by index of LIST PU
-/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
-                                    [FILTER] Format 1: mc == [num of MCs]
-                                    [FILTER] Format 2: [description] in name
-/LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
-/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list
-                                    of list of interest for the specified PU
-/ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules
-/REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list
-/SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
-/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
-/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
-                                    for his/her SEP trip
-/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
-                                    ticket cost for his/her SEP trip
-/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
-/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
-                                   cost for his/her SEP trip
-/budget /view                     : Provides an overview of the user's planned budget
-/deadline/list                    : Provides the list of deadlines the user has added
-/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own personalized deadlines
-                                    of the key dates for certain SEP requirements
-/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list
-/EXIT                             : Exits the program
+/LIST PU                                              : Provides the list of Partner Universities available
+/LIST [PU ABBRV]                                      : Provides the list of all modules available in the specified 
+                                                        Partner University
+/LIST [PU INDEX]                                      : Provides the list of all modules available in the specified 
+                                                        Partner University by index of LIST PU
+/LIST [PU ABBREVIATION/PU INDEX] /FILTER /MC [MC]     : Provides the list of filtered modules according to the Partner 
+                                                        University modular credits
+/LIST [PU ABBREVIATION/PU INDEX] /FILTER /NAME [NAME] : Provides the list of filtered modules according to the Partner 
+                                                        University module name
+/LIST CURRENT                                         : Provides the list of modules that the user has added to his/her 
+                                                        list of interest
+/LIST CURRENT [PU ABBRV]                              : Provides the list of modules that user has added to his/her list
+                                                        of interest for the specified PU
+/ADD [PU ABBRV]/[INDEX]                               : Adds the specified module into user's current list of modules
+/REMOVE [PU ABBRV]/[INDEX]                            : Removes the specified module by index from user's current list
+/SEARCH [NUS MOD CODE]                                : Search for PU modules that can map the user's targeted module
+/SEARCH /MODS                                         : Shows a list of available Nus Modules to search for mappable 
+                                                        PU's modules
+/budget /budget [AMOUNT]                              : Allows the user to input/edit the total amount of budget for 
+                                                        his/her SEP trip
+/budget /accommodation [AMOUNT]                       : Allows the user to input/edit the total amount of accommodation 
+                                                        cost for his/her SEP trip
+/budget /airplane [AMOUNT]                            : Allows the user to input/edit the total amount of airplane 
+                                                        ticket cost for his/her SEP trip
+/budget /food [AMOUNT]                                : Allows the user to input/edit the total amount of food cost for 
+                                                        his/her SEP trip
+/budget /entertainment [AMOUNT]                       : Allows the user to input/edit the total amount of entertainment 
+                                                        cost for his/her SEP trip
+/budget /view                                         : Provides an overview of the user's planned budget
+/deadline/list                                        : Provides the list of deadlines the user has added
+/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own personalized deadlines of 
+                                                        the key dates for certain SEP requirements
+/deadline/remove [DEADLINE INDEX]                     : Allows the user to remove the specific deadline from the list
+/EXIT                                                 : Exits the program
+
 ```
 ---
 ### 3.2 Modules
@@ -363,12 +373,13 @@ Tip: This command is best utilized by executing `/list current [PU Abbreviation]
 
 ****
 
-
-#### 3.2.4 Search by NUS Module Code
+#### 3.2.4 Search
+##### 3.2.4.1 Search by Specific NUS Module Code
 Search for PU modules that can be mapped to the user's specific NUS module code.
 
 Format: `/search [NUS MODULE CODE]`
 * The `NUS MODULE CODE` is the module that the user wants to map overseas.
+* The `NUS MODULE CODE` must be from the list as shown in [3.2.4.2](#3242-list-available-nus-modules-to-search-by)
 
 Example of usage: `/search ME4661`
 
@@ -396,14 +407,64 @@ ____________________________________________________________
 ____________________________________________________________
 SNU
 ____________________________________________________________
-1. [406.752][VEHICLE ERGONOMICS][3]
-2. [ZXX4582.503][FUNCTIONAL POLYMER NANOMATERIALS][0]
+1. [457.206][SOIL MECHANICS][0]
+2. [406.752][VEHICLE ERGONOMICS][3]
 3. [M2794.008600][INVISCID FLOW][0]
-4. [M2795.006500][AIR BREATHING PROPULSION THEORY][0]
-5. [457.206][SOIL MECHANICS][0]
+4. [ZXX4582.503][FUNCTIONAL POLYMER NANOMATERIALS][0]
+5. [M2795.006500][AIR BREATHING PROPULSION THEORY][0]
 6. [M2795.00400][HIGH ENERGY THERMOFLUID DYNAMICS][0]
+____________________________________________________________
+```
+
+##### 3.2.4.2 List available Nus Modules to search by
+
+List the available Nus Modules to search by for mappable Partner University modules.
+
+Format: `/search /mods`
+
+Example of usage: `/search /mods`
+
+Expected outcome:
+* A list of NUS modules that can be use for [3.2.4.1](#3241-search-by-specific-nus-module-code).
 
 ```
+____________________________________________________________
+This is the list of mappable NUS module codes
+____________________________________________________________
+1. [ME4246] Modern Control System, 4 MCs
+2. [ME2102] Engineering Innovation and Mod, 4 MCs
+3. [ME4227] Internal Combusion Engines, 4 MCs
+4. [ME3995] Technical Elective, 4 MCs
+5. [ME2162] Manufacturing Processes, 4 MCs
+6. [ME4661] Technical Elective, 4 MCs
+7. [EX4883] Exchange UEM, 4 MCs
+8. [ME2142] Feedback Control Systems, 4 MCs
+9. [ME4245] Robot Mechanics and Control, 4 MCs
+10. [ME4662] Technical Elective, 4 MCs
+11. [ME4291] Finite Element Analysis, 4 MCs
+12. [ME2134] Fluid Mechanics I, 4 MCs
+13. [ME2112] Strength of Materials, 4 MCs
+14. [ME3663] Technical Elective, 4 MCs
+15. [ME2135] Intermediate Fluid Mechanics, 4 MCs
+16. [ME2114] Mechanics of Materials, 4 MCs
+17. [ME2115] Mechanics of Machines, 4 MCs
+18. [ME5309] Aircraft Engines and Rocket Propulsion, 4 MCs
+19. [EX3887] Exchange UEM, 4 MCs
+20. [ME3281] Microsystems Design and Applications, 4 MCs
+21. [ME4231] Aerodynamics and Propulsion, 4 MCs
+22. [ME3241] Microprocessor Applications, 4 MCs
+23. [ME4253] Biomaterials Engineering, 4 MCs
+24. [ME3662] Technical Elective, 4 MCs
+25. [ME4212] Aircraft Structures, 4 MCs
+26. [ME3122] Heat Transfer, 4 MCs
+27. [ME3661] Technical Elective, 4 MCs
+28. [EX1000] Exchange UEM, 4 MCs
+29. [ME3221] Sustainable Energy Conversion, 4 MCs
+30. [ME4233] Computational Methods in Fluid Mechanics, 4 MCs
+31. [ME4255] Material Failure, 4 MCs
+____________________________________________________________
+```
+
 ---
 ### 3.3 Deadlines
 Deadlines are tasks added by the user. There will be a due date for the task.

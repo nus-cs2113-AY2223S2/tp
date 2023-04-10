@@ -183,7 +183,7 @@ public class UI {
                 String nusModuleName = m.getNusModuleName();
                 int nusModuleMc = m.getNusModuleMCs();
                 if (nusModuleCode.equalsIgnoreCase(nusModCode)) {
-                    System.out.println(listIndex + ". [" + nusModuleCode + "] " + nusModuleName + " "
+                    System.out.println(listIndex + ". [" + nusModuleCode + "] " + nusModuleName + ", "
                             + nusModuleMc + " MCs");
                     break;
                 }
