@@ -149,11 +149,8 @@ public class PetList {
 
     /**
      * Return the number of pets in the PetList.
-<<<<<<< HEAD
      * 
-=======
      *
->>>>>>> f5cbc4466ea465cc05fe8762622808983fa553b4
      * @return number of pets in the list.
      */
     public static int getNumberOfPets() {
