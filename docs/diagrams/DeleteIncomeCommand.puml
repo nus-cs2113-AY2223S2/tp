@@ -1,0 +1,53 @@
+@startuml
+
+participant ":System" as System
+participant ":Incomes" as Incomes
+participant ":UI" as UI
+participant ":DeleteIncomeCommand" as DeleteIncomeCommand
+participant ":ChChingException" as ChChingException
+
+activate UI
+UI -> UI:readCommand()
+UI -->DeleteIncomeCommand: input.nextLine()
+deactivate UI
+
+activate DeleteIncomeCommand
+DeleteIncomeCommand -> DeleteIncomeCommand: execute(income,expense,ui,storage,selector,converter,targetStorage)
+
+opt index <= 0
+
+DeleteIncomeCommand -> ChChingException: ChChingException("Zero/Negative Index")
+activate ChChingException
+ChChingException --> DeleteIncomeCommand
+deactivate ChChingException
+
+end
+
+opt index > incomes.size()
+
+DeleteIncomeCommand -> ChChingException: ChChingException("The number is too big")
+activate ChChingException
+ChChingException --> DeleteIncomeCommand
+deactivate ChChingException
+
+end
+
+
+
+DeleteIncomeCommand -> Incomes: incomes.deleteIncome(index)
+activate Incomes
+Incomes --> DeleteIncomeCommand
+deactivate Incomes
+DeleteIncomeCommand -> System: System.out.println("Income deleted, here is the updated list:")
+activate System
+System --> DeleteIncomeCommand
+deactivate System
+
+DeleteIncomeCommand -> Incomes: incomes.printIncomeList()
+activate Incomes
+Incomes --> DeleteIncomeCommand
+deactivate Incomes
+
+destroy ChChingException
+
+@enduml

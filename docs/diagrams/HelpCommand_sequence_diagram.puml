@@ -1,0 +1,33 @@
+@startuml
+
+participant ":ChChing" as ChChing
+participant "c:Parser" as Parser
+participant "c:HelpCommand" as HelpCommand
+
+[-> ChChing : run()
+activate ChChing
+
+ChChing -> Parser : parse(line, incomes, expenses, ui)
+activate Parser
+
+create HelpCommand
+Parser -> HelpCommand : HelpCommand()
+activate HelpCommand
+
+HelpCommand --> Parser
+deactivate HelpCommand
+
+Parser --> ChChing : command
+deactivate Parser
+
+ChChing -> HelpCommand : execute(incomes, expenses, ui, storage)
+activate HelpCommand
+
+
+HelpCommand --> ChChing
+deactivate HelpCommand
+
+[<--ChChing
+deactivate ChChing
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+start
+
+:User executes edit income command;
+
+:separate arguments to index and fields;
+
+if () then ([Missing/Incorrect Index])
+    :Alert user of missing/incorrect index;
+else if () then ([No fields to edit])
+    :Alert user of nothing to edit;
+else ([else])
+    :identify income record to update;
+    :identify the fields to update & update accordingly;
+endif
+
+stop
+@enduml

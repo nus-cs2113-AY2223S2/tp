@@ -1,0 +1,49 @@
+@startuml
+
+participant ":System" as System
+participant ":Selector" as Selector
+participant ":UI" as UI
+participant ":Parser" as Parser
+participant ":Currency" as Currency
+participant "UnsetCurrencyCommand" as UnsetCurrencyCommand
+participant "ChChingException" as ChChingException
+
+activate UI
+UI -> UI:readCommand()
+
+activate Parser
+UI -->Parser: input.nextLine()
+deactivate UI
+
+activate Currency
+Parser -> Currency: getCurrency(argumentsByField)
+Parser <-- Currency
+deactivate Currency
+
+Parser -> UnsetCurrencyCommand: new UnsetCurrencyCommand()
+deactivate Parser
+
+activate UnsetCurrencyCommand
+UnsetCurrencyCommand -> UnsetCurrencyCommand: execute(income,expense,ui,storage,selector,converter,targetStorage)
+activate Selector
+Selector <- UnsetCurrencyCommand: selector.containsCurrency(currency)
+Selector --> UnsetCurrencyCommand
+
+activate ChChingException
+UnsetCurrencyCommand ->ChChingException: ChChingException("currency not available")
+deactivate ChChingException
+
+Selector <- UnsetCurrencyCommand: selector.printSelector(converter)
+
+activate System
+System <- Selector: System.out.println([] + currency + converter.convert(currency, 1))
+deactivate Selector
+
+System <- UnsetCurrencyCommand: System.out.println("Not displaying" + currency + "now.")
+deactivate UnsetCurrencyCommand
+deactivate System
+
+deactivate Selector
+
+destroy ChChingException
+@enduml

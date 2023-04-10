@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class RecordList
+abstract Record
+
+IncomeList <|-- RecordList
+ExpenseList <|-- RecordList
+
+
+Income <|- Record
+Expense <|- Record
+
+class Record {
+# description: String
+# date: String
+# value: double
++ Record()
++ getCategory(): String
++ getDescription(): String
++ getDate(): String
++ setDescription():
++ setDate():
++ setValue():
++ toString(): String
+}
+
+abstract class RecordList {
+# recordList: ArrayList<Record>
+- balance: double
++ RecordList():
++ getRecordList(): ArrayList<Record>
++ getRecordCount():
++ getBalance(): double
++ addRecord(Record):
++ printRecordList():
++ get(int): Record
+}
+
+class Income {
+
+}
+
+class Expense {
++ category: String
+}
+
+class IncomeList {
+# incomeList: ArrayList<Income>
++ IncomeList():
++ size(): int
++ addIncome():
++ deleteIncome():
++ printIncomeList():
+}
+
+class ExpenseList {
+# expenseList: ArrayList<Expense>
++ ExpenseList():
++ size(): int
++ addExpense():
++ deleteExpense():
++ printExpenseList():
+}
+
+
+
+@enduml

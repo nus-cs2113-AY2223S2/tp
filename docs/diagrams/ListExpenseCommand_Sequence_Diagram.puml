@@ -1,0 +1,26 @@
+@startuml
+participant ":Parser" as Parser
+participant ":ListExpenseCommand" as ListExpenseCommand
+participant "expenses:ExpenseList" as ExpenseList
+
+[-> Parser : parse()
+activate Parser
+
+create ListExpenseCommand
+
+Parser -> ListExpenseCommand : ListExpenseCommand(args)
+
+activate ListExpenseCommand
+ListExpenseCommand -> ListExpenseCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
+
+activate ListExpenseCommand
+ListExpenseCommand -> ExpenseList : printExpenseList(selector, converter)
+
+activate ExpenseList
+ExpenseList --> ListExpenseCommand
+
+deactivate ExpenseList
+deactivate ListExpenseCommand
+deactivate Parser
+
+@enduml
