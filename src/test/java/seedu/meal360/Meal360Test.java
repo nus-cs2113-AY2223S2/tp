@@ -308,7 +308,8 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
-            assertEquals("Please enter a valid recipe number, name, or range in the correct format.", e.getMessage());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
         }
     }
 
@@ -410,7 +411,8 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
-            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
         }
 
         // Testing negative case (recipe name is not specified)
@@ -422,7 +424,8 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please enter the command in the correct format with all parameters provided.",
+                    e.getMessage());
         }
 
         // Testing negative case (quantity is not specified)
@@ -434,7 +437,8 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please enter the command in the correct format with all parameters provided.",
+                    e.getMessage());
         }
 
         // Testing negative case (quantity specified is not an integer)
@@ -446,7 +450,8 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
-            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
         }
 
         // Testing negative case (quantity specified causes integer overflow)
@@ -458,7 +463,34 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
-            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (missing all arguments)
+        try {
+            String userInput = "weekly";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please indicate if you would want to add to, delete from, clear weekly plan, or "
+                    + "mark as done.", e.getMessage());
+        }
+
+        // Testing negative case (arguments are not in the correct order)
+        try {
+            String userInput = "weekly /add 1 burger";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
         }
     }
 
@@ -578,7 +610,7 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please ensure the number of /r and /q are the same.", e.getMessage());
         }
 
         // Testing negative case (quantity is not specified)
@@ -590,7 +622,7 @@ class Meal360Test {
             assert false; // Not supposed to reach this line
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please ensure the number of /r and /q are the same.", e.getMessage());
         }
 
         // Testing negative case (quantity given results in integer overflow)
@@ -603,6 +635,19 @@ class Meal360Test {
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
             assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (arguments are not in the correct order)
+        try {
+            String userInput = "weekly /multiadd /q 1 /r burger";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please ensure that the /r and /q flags are entered in the correct order.",
                     e.getMessage());
         }
     }
@@ -716,7 +761,8 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
-            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
         }
 
         // Testing negative case (quantity is not specified)
@@ -728,7 +774,8 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please enter the command in the correct format with all parameters provided.",
+                    e.getMessage());
         }
 
         // Testing negative case (recipe name is not specified)
@@ -740,7 +787,8 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please enter the command in the correct format with all parameters provided.",
+                    e.getMessage());
         }
 
         // Testing negative case (quantity results in integer overflow)
@@ -752,7 +800,21 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
-            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (arguments are not in the correct order)
+        try {
+            String userInput = "weekly /delete 1 burger";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please ensure that you entered a valid quantity as the last argument.",
+                    e.getMessage());
         }
     }
 
@@ -820,7 +882,7 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please ensure the number of /r and /q are the same.", e.getMessage());
         }
 
         // Testing negative case (quantity is not specified)
@@ -832,7 +894,7 @@ class Meal360Test {
             assert false; // Not supposed to reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
-            assertEquals("Please enter the command in the correct format.", e.getMessage());
+            assertEquals("Please ensure the number of /r and /q are the same.", e.getMessage());
         }
 
         // Testing negative case (quantity is not a number)
@@ -910,6 +972,19 @@ class Meal360Test {
         } catch (Exception e) {
             assertEquals(InvalidRecipeNameException.class, e.getClass());
             assertEquals("Please indicate a valid recipe name.", e.getMessage());
+        }
+
+        // Testing negative case (arguments are not in the correct order)
+        try {
+            String userInput = "weekly /multidelete /q 1 /r burger";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please ensure that the /r and /q flags are entered in the correct order.",
+                    e.getMessage());
         }
     }
 
@@ -1251,7 +1326,7 @@ class Meal360Test {
             }
             assert false; // should not reach here
         } catch (Exception e) {
-            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals(IngredientNotFoundException.class, e.getClass());
             assertEquals("You do not have enough ingredients to mark this recipe as done.", e.getMessage());
         }
     }

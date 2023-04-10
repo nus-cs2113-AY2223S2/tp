@@ -644,8 +644,7 @@ driven app.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java 11 or above installed.
-2. The number of recipes and user ingredients is limited to only 1000 items each.
-3. A user with above average typing speed for regular English text (i.e. not code, not system
+2. A user with above average typing speed for regular English text (i.e. not code, not system
    admin commands) should be able to accomplish most of the tasks faster using commands than
    using the mouse, especially for the more advanced commands that allow for editing multiple items
    at once.
