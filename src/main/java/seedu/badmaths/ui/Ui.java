@@ -127,7 +127,7 @@ public class Ui {
     public static void printPriority(int index, ArrayList<Note> notes) {
         NotePriority.Priority priority = notes.get(index).getPriority();
         String priorityStr = priority.name();
-        System.out.println("You have changed its priority to" + priorityStr);
+        System.out.println("You have changed its priority to " + priorityStr);
         System.out.println((index + 1) + ": " + notes.get(index).toString());
     }
 
