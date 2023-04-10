@@ -596,9 +596,11 @@ The following are instructions for testers to manual test:
     An expenditure of type : `academic` will be added if all inputs are added in the correct format.
     Otherwise, error messages will be printed.
 
-   <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+    <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
 
-    </br>Test Case 2:
+    <br> <br/> 
+   
+    Test Case 2:
     ```
     food d/2023-03-03 a/5.30 p/Fish Soup
     ```
@@ -608,10 +610,11 @@ The following are instructions for testers to manual test:
     || Description: Fish Soup
     ```
     An expenditure of type `food` will be added
-    
-    </br>The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
-
-    </br>Test Case 3 (Wrong date-time input):
+    <br> <br/>
+    The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+    <br> <br/>
+   
+    Test Case 3 (Wrong date-time input):
     ```
     transport d/13-03-2023 a/2 p/Bus
     ```
@@ -626,9 +629,11 @@ The following are instructions for testers to manual test:
     ```
     Expected :
     ```
-    The amount you provided is not in the right format! Please enter a single number value
+    The amount you provided is not in the right format! 
+    Please enter a single number value
     ```
-
+    The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+   <br> <br/>
 2. Adding a lend/borrow spending
 
    - Important information: Our application does not support names with slash (/), thus input names should not have them.
@@ -643,10 +648,10 @@ The following are instructions for testers to manual test:
    || Value: 25.1 || Description: CS2113 || by: 2 Jun 2023
    ```
    Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. 
-   Details of all parameters will be shown to the user. </br>
-   </br>The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
-
-   <br> Test Case 2:
+   Details of all parameters will be shown to the user.
+   <br> <br/> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+   <br> <br/>
+   Test Case 2:
    
    ```
    borrow d/2023-02-02 n/Mandy a/25.10 b/2023-09-02 p/payment for notes
@@ -656,8 +661,8 @@ The following are instructions for testers to manual test:
    Added borrow expenditure: [Borrow] || Borrowed from: Mandy || Date: 2 Feb 2023 
    || Value: 25.1 || Description: payment for notes || By: 2 Sep 2023
    ```
-   Similar to previous, but with a different expenditure type : `borrow`. <br>
-   </br>The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+   Similar to previous, but with a different expenditure type : `borrow`.
+   <br> <br/>The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
 
    <br>Test Case 3 (Return date is earlier than current date):
    ```
@@ -695,8 +700,8 @@ The following are instructions for testers to manual test:
     TWD: 22.98
     USD: 0.75
     ```
-    Currency rates used are aimed to provide an estimate on their spending in SGD, and does not provide real-time conversion rates. <br> </br>
-
+    Currency rates used are aimed to provide an estimate on their spending in SGD, and does not provide real-time conversion rates.
+   <br> <br/>
 2. Displaying the list based on currency preferred.
 
      - Prerequisite: The currency must be 1 of the 14 currencies supported. User can view the available currencies using 
@@ -776,7 +781,8 @@ The following are instructions for testers to manual test:
      expenditures, input names should not have slashes.
   
      - Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
-     expenditures cannot to edit lend/borrow expenditures <br> </br>
+     expenditures cannot to edit lend/borrow expenditures 
+    <br></br>
     
     Test Case 1 (Editing `food` expenditure):
     ```
@@ -807,7 +813,7 @@ The following are instructions for testers to manual test:
     2. [Lend] || Lent to: Carl || Date: 2 Feb 2020 || Value: 22.2 || 
    Description: fishing || by: 3 Mar 2020
     ```
-    <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+    The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
     <br> <br/> 
    
     Test Case 3 (Editing expenditure with `lend` parameters):
@@ -864,15 +870,14 @@ The following are instructions for testers to manual test:
     Expected : Similar to previous, an invalid message with the error will be displayed for the user.
 
 #### Sorting the list
-  - Prerequisite : A list with more than 2 expenditures are saved, which can be checked with the `list` command
-    <br> </br>
+  - Prerequisite : A list with more than 2 expenditures are saved, which can be checked with the `list` command <br> <br/>
+
     Test case 1 (Sort amount in ascending order):
     ```
     sort ascend
     ```
     Expected : The new list will be shown, where the items are sorted by ascending amount with the smallest 
-    amount at index 1
-    <br> </br>
+    amount at index 1 <br> <br/>
     Test case 2 (Sort amount in descending order):
     ```
     sort descend
@@ -885,8 +890,8 @@ The following are instructions for testers to manual test:
     ```
     sort earliest
     ```
-    Expected : New list with the earliest date at index 1 
-    <br> </br>
+    Expected : New list with the earliest date at index 1 <br> <br/>
+
     Test case 4 (Sort amount from the latest date added):
     ```
     sort latest
@@ -925,37 +930,37 @@ The following are instructions for testers to manual test:
 1. Checking the total amount of spending and the intended budget.
      - Prerequisite :  A budget must be set prior to calling `check` and the budget set cannot be of value 0.
     For all `check` commands, it compares with expenditures that are unmarked. Marked expenditures will not be added
-    to total expenditure amount. <br> </br>
+    to total expenditure amount. <br>
 
     Test case 1 (Budget set is more than total expenditures in list):
     ```
     check
     ```
     Expected : The amount of money away from the set budget will be displayed with other information such as
-    the total spending, budget and borrowed money.
-   <br> </br>
+    the total spending, budget and borrowed money. <br> <br/>
+
     Test case 2 (Budget set is less than total expenditures in list):
     ```
     check
     ```
     Expected : Similar to previous test case, amount of money exceeded by and other information will be
-    displayed in the message.
-   <br> </br>
+    displayed in the message. <br><br/>
+
 2. Checking the expenditure on a certain day/year with the intended budget
-     - `check` compares the budget with the spending of a certain time period that the user wants to check with <br> </br>
+     - `check` compares the budget with the spending of a certain time period that the user wants to check with <br></br>
     
     Test case 1 (Check with year):
     ```
     check y/2023
     ```
     Expected : Returns the comparison result with the expenditures made in 2023.
-   <br> </br>
+   <br></br>
     Test case 2 (Check with day):
     ```
     check d/2023-01-12
     ```
     Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.
-   <br> </br>
+   <br></br>
     Test case 3:
     ```
     check m/2023-01-12
@@ -964,7 +969,7 @@ The following are instructions for testers to manual test:
     ```
     Failed to check! Please check the format and try again!
     ```
-    Error occurs due to wrong format for parameter. <br> </br>
+    Error occurs due to wrong format for parameter. <br></br>
 
 3. Checking the expenditure classified under a certain expenditure type and comparing with set budget
      - `check [expenditure type]` compares all the unmarked expenditures classified under that expenditure type with the set
@@ -991,9 +996,9 @@ The following are instructions for testers to manual test:
     Failed to check! Please check the format and try again!
     ```
 #### Mark/Unmark accommodation or tuition expenditures
-- Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
-The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
-following the `Adding a record` documentation.
+   - Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
+   The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
+   following the `Adding a record` documentation.
 
 1. Marking an expenditure
      - Mark indicates that the expenditure has been paid, otherwise the expenditure will be interpreted as unpaid.
@@ -1031,7 +1036,7 @@ following the `Adding a record` documentation.
     ```
 
 2. Unmarking an expenditure
-     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br> </br>
+     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br></br>
     
     Test Case 1:
     ```
@@ -1050,26 +1055,24 @@ following the `Adding a record` documentation.
     ```
     No paid field for this expenditure!
     ```
-2. 
+
 #### Find keyword
-1. Finding keywords under the descriptions column in their list of expenditures
-    <br> </br>
+1. Finding keywords under the descriptions column in their list of expenditures <br><br/>
+
     Test case 1:
     ```
     find bus
     ```
     Prerequisite : There are existing expenditures with the description : `bus`
     
-    Expected : List of items corresponding to the keyword will be displayed.
-    <br> </br>
+    Expected : List of items corresponding to the keyword will be displayed. <br></br>
     Test case 2:
     ```
     find taxi
     ```
     Prerequisite : There are no existing expenditures with the description : `taxi`
 
-    Expected : Message showing that no matching records are found in the list.
-    <br> </br>
+    Expected : Message showing that no matching records are found in the list.<br></br>
 2. View specific date expenditures under the date column
 
     Test case 1:
@@ -1079,8 +1082,7 @@ following the `Adding a record` documentation.
     Prerequisite : There are current expenditures dated 20 Feb 2023.
     
     Expected : List of all expenditures with the corresponding date value, as well as the total amount spent
-    on that specific date
-    <br> </br>
+    on that specific date <br></br>
     Test case 2:
     ```
     viewdate 2023-02-20
@@ -1088,8 +1090,7 @@ following the `Adding a record` documentation.
     Prerequisite : There are no current expenditures dated 20 Feb 2023.
     
     Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
-    be shown as 0.
-    <br> </br>
+    be shown as 0. <br></br>
     Test case 3:
     ```
     viewdate 12 Jan 2021
@@ -1102,10 +1103,8 @@ following the `Adding a record` documentation.
     ```
     viewdate
     ```
-    Expected : Similar to previous, an invalid message with the error will be displayed for the user.
-    <br> </br>
-3. View specific type of expenditure under the expenditure column
-    <br> </br>
+    Expected : Similar to previous, an invalid message with the error will be displayed for the user. <br></br>
+3. View specific type of expenditure under the expenditure column <br></br>
     Test case 1:
     ```
     viewtype transport
@@ -1113,8 +1112,7 @@ following the `Adding a record` documentation.
     Prerequisite : There are current expenditures with the `transport` type.
     
     Expected : List of all expenditures under transport expenditure, as well as the total amount spent
-      for that type of expenditure
-    <br> </br>
+      for that type of expenditure <br></br>
     Test case 2:
     ```
     viewtype transport
@@ -1122,8 +1120,7 @@ following the `Adding a record` documentation.
     Prerequisite : There are no current expenditures with the `transport` type.
     
     Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
-      be shown as 0.
-    <br> </br>
+      be shown as 0. <br></br>
     Test case 3:
     ```
     viewtype swimming
