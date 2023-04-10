@@ -54,5 +54,7 @@ deactivate ":Storage"
 ":Storage" --> ":Duke"
 deactivate ":Storage"
 
+deactivate ":Duke"
+
 
 @enduml

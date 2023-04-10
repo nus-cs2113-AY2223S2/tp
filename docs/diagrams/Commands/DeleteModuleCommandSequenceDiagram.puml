@@ -70,8 +70,11 @@ activate "<<class>>\nui:UI"
 
 "<<class>>\nui:UI" -> UserConsole : Print Delete Mod Message
 "<<class>>\nui:UI" <-- UserConsole
+":DeleteModuleCommand" <-- "<<class>>\nui:UI"
+deactivate "<<class>>\nui:UI"
 
 deactivate "<<class>>\nstorage:Storage"
+
 deactivate ":DeleteModuleCommand"
 @enduml
 
