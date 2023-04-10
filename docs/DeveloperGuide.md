@@ -99,7 +99,7 @@ standardized to remove any potential duplicated addition issues.
 
 ![Duplication_checker.png](UML%2FImage%2FDuplication_checker.png)
 
-Fig 5: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` during the startup of the application.
+Fig 8: Shows the sequence diagram for the Duplication Checker feature when the user adds a new company to the list
 
 ####  Delete feature
 The deleting company feature  is facilitated by <code>DeleteCommand</code>. It will delete the company at the specified 
@@ -140,7 +140,7 @@ details. If there is no text file, a text file will be created.
 
 ![chooseVenueCommand.png](UML%2FImage%2FchooseVenueCommand.png)
 
-Fig 8: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
+Fig 11: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
 ## Product scope

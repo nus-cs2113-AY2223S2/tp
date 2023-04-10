@@ -3,31 +3,31 @@
 
 hide footbox
 
--> ":ChooseVenueCommand": execute()
+-> "chooseVenueCommand: ChooseVenueCommand": execute(event, venueList)
 
-activate ":ChooseVenueCommand"
+activate "chooseVenueCommand: ChooseVenueCommand"
 
-":ChooseVenueCommand" -> ":Event": updateVenue()
-activate ":Event"
-":Event" -> ":VenueList": getVenue()
-activate ":VenueList"
-":VenueList" --> ":Event": Venue
-deactivate ":VenueList"
-":Event" -> ":Ui": showVenueSelectionMessage()
-activate ":Ui"
-":Ui" --> ":Event":
-deactivate ":Ui"
-":Event" --> ":ChooseVenueCommand":
-deactivate ":Event"
+"chooseVenueCommand: ChooseVenueCommand" -> "event: Event": updateVenue(venueList, venueNum)
+activate "event: Event"
+"event: Event" -> "venueList: VenueList": getVenue(venueNum)
+activate "venueList: VenueList"
+"venueList: VenueList" --> "event: Event": venue
+deactivate "venueList: VenueList"
+"event: Event" -> "ui: Ui": showVenueSelectionMessage(venueName)
+activate "ui: Ui"
+"ui: Ui" --> "event: Event":
+deactivate "ui: Ui"
+"event: Event" --> "chooseVenueCommand: ChooseVenueCommand":
+deactivate "event: Event"
 
-":ChooseVenueCommand" -> "<<class>>\nEventDetailsStorage": updateFile()
+"chooseVenueCommand: ChooseVenueCommand" -> "<<class>>\nEventDetailsStorage": updateFile(event, venueNum)
 activate "<<class>>\nEventDetailsStorage"
-"<<class>>\nEventDetailsStorage" --> ":ChooseVenueCommand":
+"<<class>>\nEventDetailsStorage" --> "chooseVenueCommand: ChooseVenueCommand":
 
 deactivate "<<class>>\nEventDetailsStorage"
-<-- ":ChooseVenueCommand"
+<-- "chooseVenueCommand: ChooseVenueCommand"
 
-deactivate ":ChooseVenueCommand"
+deactivate "chooseVenueCommand: ChooseVenueCommand"
 
-destroy ":ChooseVenueCommand"
+destroy "chooseVenueCommand: ChooseVenueCommand"
 @enduml

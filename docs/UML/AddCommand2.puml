@@ -3,24 +3,24 @@
 
 hide footbox
 
--> ":AddCommand": execute()
+-> "addCommand: AddCommand": execute(companyList)
 
-activate ":AddCommand"
+activate "addCommand: AddCommand"
 
-":AddCommand" -> ":CompanyList": add()
-activate ":CompanyList"
+"addCommand: AddCommand" -> "companyList: CompanyList": add(companyName, industry, contactNumber, contactEmail)
+activate "companyList: CompanyList"
 
-":CompanyList" --> ":AddCommand":
-deactivate ":CompanyList"
+"companyList: CompanyList" --> "addCommand: AddCommand":
+deactivate "companyList: CompanyList"
 
-":AddCommand" -> "<<class>>\nCompanyListEncoder": write()
+"addCommand: AddCommand" -> "<<class>>\nCompanyListEncoder": write()
 activate "<<class>>\nCompanyListEncoder"
-"<<class>>\nCompanyListEncoder" --> ":AddCommand":
+"<<class>>\nCompanyListEncoder" --> "addCommand: AddCommand":
 
 deactivate "<<class>>\nCompanyListEncoder"
-<-- ":AddCommand"
+<-- "addCommand: AddCommand"
 
-deactivate ":AddCommand"
+deactivate "addCommand: AddCommand"
 
-destroy ":AddCommand"
+destroy "addCommand: AddCommand"
 @enduml
