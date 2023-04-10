@@ -27,9 +27,9 @@ Given below are my contributions to the project.
 * Created a ShowTarget feature which allow users to see the target they have set.
 * Created a ClearTarget feature which allow users to clear the target they have set to the default value
 * Created tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, `ClearTargetCommand`,
-`IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
-* Created logging for `ChChing`, `ChChingException`, `UI`,`Parser`, `TargetParser`, `LiveCurrencyAPI`, `ParameterStringBuilder`.
-* Contributed to logging for `Storage`.
+`Income`, `Expense`, `IncomeList`, `ExpenseList`, `Parser`, `Exit` classes. 
+* Created logging for `ChChing`, `ChChingException`, `UI`,`Parser`, `TargetParser`, `LiveCurrencyAPI`, `ParameterStringBuilder` classes.
+* Contributed to logging for `Storage` class.
 
 <div style="page-break-after: always;"></div>
 
