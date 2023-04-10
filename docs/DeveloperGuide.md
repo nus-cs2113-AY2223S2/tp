@@ -865,6 +865,15 @@ Expected :
 No paid field for this expenditure!
 ```
 
+Test case 3:
+```
+mark 1
+```
+Expected :
+```
+Sorry! This expenditure is already marked!
+```
+
 2. Unmarking an expenditure
 - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances.
 
