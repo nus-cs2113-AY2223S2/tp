@@ -163,8 +163,8 @@ public class UI {
 
     /**
      * Retrieve a HashSet of  Nus modules available by looping through the all the Partner Universities modules
-     * @param allModules ArrayList containing all the Partner Universities modules
-     * @return nusModulesCodeList HashSet of string containing available Nus modules
+     * @param allModules ArrayList of Module containing all the Partner Universities modules
+     * @return nusModulesCodeList HashSet of String containing available Nus modules
      */
     public HashSet<String> removeDupeNusMods(ArrayList<Module> allModules) {
         HashSet<String> nusModulesCodeList = new HashSet<>();
@@ -178,7 +178,7 @@ public class UI {
     /**
      * Prints out the list of available Nus Module details that can be used to search for
      * mappable Partner Universities modules
-     * @param allModules ArrayList containing all the Partner Universities modules
+     * @param allModules ArrayList of Module containing all the Partner Universities modules
      */
     public void printNusMods(ArrayList<Module> allModules) {
         HashSet<String> nusModuleCodeList = removeDupeNusMods(allModules);
@@ -207,9 +207,9 @@ public class UI {
      * will loop through foundNusModList arraylist and print out the Partner University module if it can be mapped from
      * the specific nusModCode. The lists of mappable modules will be print out accordingly under their
      * respective Partner University.
-     * @param foundNusModList Arraylist containing all the mappable Partner Universities modules
-     * @param nusModCode String containing the specific Nus Module Code to search by inputted by user
-     * @param universities ArrayList containing all the Partner Universities details
+     * @param foundNusModList Arraylist of Module containing all the mappable Partner Universities modules.
+     * @param nusModCode String containing the specific Nus Module Code to search by inputted by user.
+     * @param universities ArrayList of University containing all the Partner Universities details.
      */
     public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
                                      ArrayList<University> universities) {
