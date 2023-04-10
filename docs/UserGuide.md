@@ -914,6 +914,18 @@ week.
       <td>Goes into the planner for editing</td>
     </tr>
     <tr>
+      <td><strong>add (planner mode)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">add PLAN_NAME FILTER1 FILTER2 ...</code>e.g., 
+<code class="language-plaintext highlighter-rouge">add monday home_leg_day static legs medium</code></td>
+      <td>Adds new workout plans based on the desired day of the week</td>
+    </tr>
+    <tr>
+      <td><strong>delete (planner mode)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">delete DAY PLAN_NAME</code>e.g., 
+<code class="language-plaintext highlighter-rouge">delete monday home_leg_day</code></td>
+      <td>Deleted a specified workout plans on the specified day of the week</td>
+    </tr>
+    <tr>
       <td><strong>history</strong></td>
       <td><code class="language-plaintext highlighter-rouge">history</code></td>
       <td>Shows the session history of a user's exercises</td>
