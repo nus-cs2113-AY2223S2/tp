@@ -4,7 +4,6 @@
 SecureNUS is a desktop CLI app for managing and storing passwords. Its features include adding, deleting, listing, revealing, searching, saving and loading passwords, and editing password details. The app is simple and efficient to use, and users can access a menu function for command summaries and syntax.
 
 
-
 ### Summary of Contributions
 
 #### Code contributed
@@ -29,10 +28,11 @@ SecureNUS is a desktop CLI app for managing and storing passwords. Its features 
 #### Contributions to the UG:
 
 - Contributed to initial draft of UG.
+- Contributed to FAQs segment.
 
 #### Contributions to the DG:
 - Created UML Sequence diagrams for Implementation segment (`add`, `delete` and `list` features)
-- Wrote Appendices A, B, C, D and E (Product Scope, User Stories, Non-Functional Requirements, Glossary and Instructions for manual testing)
+- Wrote Appendices: Product Scope, User Stories, Non-Functional Requirements, Glossary and Instructions for manual testing
 
 #### Contributions to team-based tasks:
 - Set up Team's GitHub organisation and `tP` repository.
@@ -42,11 +42,11 @@ SecureNUS is a desktop CLI app for managing and storing passwords. Its features 
 
 #### Review/mentoring contributions:
 - [See my team's PRs that I reviewed](https://github.com/AY2223S2-CS2113-T15-2/tp/pulls?q=reviewed-by%3Akairuler)
-                                             
+
 #### Contributions beyond the project team:
 - [See my review of another team's Developer Guide](https://github.com/nus-cs2113-AY2223S2/tp/pull/23/files)
 
 - [See my review of other teams' tP product](https://github.com/kairuler/ped/issues)
 
-#### Contributions to the Developer Guide (Extracts): 
-- Refer to Implementation segment and appendices A, B, C, D and E (Product Scope, User Stories, Non-Functional Requirements, Glossary and Instructions for manual testing) of our DG.
+#### Contributions to the Developer Guide (Extracts):
+- Refer to Implementation segment and appendices: Product Scope, User Stories, Non-Functional Requirements, Glossary and Instructions for manual testing of our DG.
