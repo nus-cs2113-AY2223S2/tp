@@ -19,8 +19,7 @@ Enjoy your revision!
 
 ### Use Case
 
-Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding *
-*individual cards** and/or multiple cards with the **same tag**.
+Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding **individual cards** and/or multiple cards with the **same tag**.
 
 For example, suppose you had the following cards:
 
@@ -46,29 +45,28 @@ This allows you to create the following decks easily:
 
 ## Usage of flags
 
-Inka's command makes substantial use of flags to indicate certain parameters that users enter. Listed below are the
-format specified :
+Inka's commands makes substantial use of flags to indicate certain parameters that users enter. In this guide, we will adopt the following syntax similar to many Unix CLI tools:
 
-- Required arguments are indicated by `-f ARG` format
+- Required arguments are indicated by `-f ARG`
 - Optional arguments are indicated by `[-f ARG]`
 - Mutually exclusive required arguments are `{-a ARG | -b ARG}`
 - Mutually exclusive optional arguments are `[-a ARG | -b ARG]`
 
-There will be many instances where users are allowed to choose how they want to identify a `Card`, `Tag` or a `Deck`.
+There will be many instances where users have to identify a card, tag or deck in a command. For ease of use, there are multiple ways to select a card or tag:
+- Selecting a card
+  - By UUID: `-c CARD_UUID`
+  - By index: `-i CARD_INDEX`:
+- Selecting a tag
+  - By tag name: `-t TAG_NAME`
+  - By index: `-x TAG_INDEX`
+- Selecting a deck
+  - Only by deck name: `-d DECK_NAME`
 
-Here are the list of flags that users can enter :
-
-- `-c CARD_UUID` to identify a `Card` with its UUID
-- `-i CARD_INDEX` to identify a `Card` with card index.
-- `-t TAG_NAME` to identify a `Tag` with its tag name.
-- `-x TAG_INDEX` to identify a `Tag` with its tag index.
-- `-d DECK_NAME` to identify a `Deck` with its deck name.
-
-For instance, in `card untag` command, since users are allowed to specify the `Card` with either its uuid or index,
-specify the
-`Tag` with either its tag name or index, the format of syntax in the documentation below will be written as :
+For instance, in `card untag` command, since users are required to specify a card and a tag, the format of syntax in the documentation below will be written as:
 
 `card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
+
+The user can then specify the card of their choice **either** via the card's UUID or index, and similarly for the tag. For more information, refer to `card list`, `tag list` or `deck list`.
 
 ## Features
 
@@ -125,9 +123,7 @@ Adds a new Card with its question and answer.
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
-While there is no restriction on how long the String that the user can enter,
-String with length greater than 50 characters will be truncated in the display of `card list` command. The full version
-can be viewed using the `card view` command below.
+While there is no restriction on then length of the question/answer that the user can enter, these will be truncated in the display of `card list` command if longer than 50 characters. The full version can be viewed using the `card view` command below.
 
 ***Example of usage:***
 
@@ -138,6 +134,16 @@ can be viewed using the `card view` command below.
 ```
 That's a good question for revision later!
 You now have 4 questions in the bank.
+```
+
+---
+**Note:** To avoid confusion, `card add` does not support the question/answer being "-q" or "-a". If the user so wishes to use such characters in their question/answer, it is recommended that they provide it as such:
+```
+# Do not do this!
+card add -q What is the flag for question? -a -q
+
+# Instead, do this
+card add -q What is the flag for question? -a "-q"
 ```
 
 ### Listing all cards :
