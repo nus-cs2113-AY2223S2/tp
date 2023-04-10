@@ -6,7 +6,7 @@ import java.util.Scanner;
 import static common.AccountMessage.INVALID_ACCOUNT_MESSAGE;
 import static common.AccountMessage.NON_EXISTING_ACCOUNT_MESSAGE;
 import static common.AccountMessage.FAIL_READING_USERNAME_MESSAGE;
-import static common.MessageList.COMMAND_LIST_MESSAGE;
+//import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.ACCOUNT_MESSAGE;
 import static common.MessageList.LOGOUT_MESSAGE;
@@ -29,8 +29,8 @@ public class ParserAccount {
             || res.equals(NON_EXISTING_ACCOUNT_MESSAGE)
             || res.equals(FAIL_READING_USERNAME_MESSAGE)) {
             initialize(scanner);
-        } else {
-            showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);
+        /*} else {
+            showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);*/
         }
     }
 

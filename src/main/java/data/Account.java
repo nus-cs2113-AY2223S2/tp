@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.regex.Pattern;
 
 import static common.AccountMessage.MIN_PASSWORD_LENGTH;
@@ -27,6 +29,7 @@ public class Account {
 
     public static ExpenseList account;
     public static final String SECURITY_STORAGE_FILE_PATH = "userList.txt";
+    public static final String DIRECTORY = "/user/userdata";
     protected static String expensesStorageFilePath;
     protected static String accountName;
     protected static Storage storage;
@@ -74,7 +77,8 @@ public class Account {
         } else {
             try {
                 storage.createFile(expensesStorageFilePath);
-                FileWriter pw = new FileWriter(SECURITY_STORAGE_FILE_PATH, true);
+                Files.createDirectories(Paths.get(DIRECTORY));
+                FileWriter pw = new FileWriter(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH, true);
                 pw.write(accountName + "," + passwordHash + "\n");
                 pw.close();
                 return ("User " + accountName + " has been created\n" + "Signup successfully.");
@@ -87,7 +91,8 @@ public class Account {
     public String login() {
         boolean found = false;
         try {
-            FileReader reader = new FileReader(SECURITY_STORAGE_FILE_PATH);
+            Files.createDirectories(Paths.get(DIRECTORY));
+            FileReader reader = new FileReader(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH);
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -114,7 +119,10 @@ public class Account {
     }
 
     private boolean isUsernameTaken() {
-        try (BufferedReader br = new BufferedReader(new FileReader(SECURITY_STORAGE_FILE_PATH))) {
+        try {
+            Files.createDirectories(Paths.get(DIRECTORY));
+            BufferedReader br =
+                     new BufferedReader(new FileReader(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
