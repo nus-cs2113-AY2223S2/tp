@@ -838,14 +838,14 @@ If certain attributes of the components have been deleted, such as "name", "pric
 
 | **Builder Menu Commands** |                   **Format**                   |                                              **Flags**                                              |
 | :-----------------------: | :--------------------------------------------: | :-------------------------------------------------------------------------------------------------: |
-|         List CPU          |     `list cpu [-COMPONENT_FLAG LIST_FLAG]`     | `-name`, `-brand`, `-price`,`-power`, `-socket`, `-core`, `-thread`, `-baseclock` and `-boostclock` |
-|         List GPU          |     `list gpu [-COMPONENT_FLAG LIST_FLAG]`     |                       `-name`, `-brand`, `-price`,`-power` and `-formfactor`                        |
-|      List CPU Cooler      | `list cpu-cooler [-COMPONENT_FLAG LIST_FLAG]`  |                     `-name`, `-brand`, `-price`, `-rpm`, `-noise` and `-power`                      |
-|     List Motherboard      | `list motherboard [-COMPONENT_FLAG LIST_FLAG]` |                   `-name`, `-brand`, `-price`,`-formfactor`,`-socket`and `-power`                   |
-|         List RAM          |     `list ram [-COMPONENT_FLAG LIST_FLAG]`     |               `-name`, `-brand`, `-price`,`-memory`, `-sticks`, `-speed` and`-power`                |
-|       List Storage        |   `list storage [-COMPONENT_FLAG LIST_FLAG]`   |                     `-name`, `-brand`, `-price`, `-type`, `-size` and `-power`                      |
-|         List PSU          |     `list psu [-COMPONENT_FLAG LIST_FLAG]`     |                `-name`, `-brand`, `-price`,`-efficiency`, `-formfactor` and `-power`                |
-|        List Chasis        |   `list chasis [-COMPONENT_FLAG LIST_FLAG]`    |                            `-name`, `-brand`, `-price` and `-formfactor`                            |
+|         List CPU          |     `list cpu [-COMPONENT_FLAG LIST_FLAG]`     | `-name`, `-brand`, `-price`,`-details`,`-power`, `-socket`, `-core`, `-thread`, `-baseclock` and `-boostclock` |
+|         List GPU          |     `list gpu [-COMPONENT_FLAG LIST_FLAG]`     |                       `-name`, `-brand`, `-price`,`-details`,`-power` and `-formfactor`                        |
+|      List CPU Cooler      | `list cpu-cooler [-COMPONENT_FLAG LIST_FLAG]`  |                     `-name`, `-brand`, `-price`,`-details`, `-rpm`, `-noise` and `-power`                      |
+|     List Motherboard      | `list motherboard [-COMPONENT_FLAG LIST_FLAG]` |                   `-name`, `-brand`, `-price`,`-details`,`-formfactor`,`-socket`and `-power`                   |
+|         List RAM          |     `list ram [-COMPONENT_FLAG LIST_FLAG]`     |               `-name`, `-brand`, `-price`,`-details`,`-memory`, `-sticks`, `-speed` and`-power`                |
+|       List Storage        |   `list storage [-COMPONENT_FLAG LIST_FLAG]`   |                     `-name`, `-brand`, `-price`,`-details`, `-type`, `-size` and `-power`                      |
+|         List PSU          |     `list psu [-COMPONENT_FLAG LIST_FLAG]`     |                `-name`, `-brand`, `-price`,`-details`,`-efficiency`, `-formfactor` and `-power`                |
+|        List Chasis        |   `list chasis [-COMPONENT_FLAG LIST_FLAG]`    |                            `-name`, `-brand`, `-price`,`-details` and `-formfactor`                            |
 |     Select Component      |    `select COMPONENT_TYPE COMPONENT_INDEX`     |                                                 nil                                                 |
 |    Unselect Component     |   `unselect COMPONENT_TYPE COMPONENT_INDEX`    |                                                 nil                                                 |
 |    Compare Components     |   `compare COMPONENT_TYPE INDEX_1 & INDEX_2`   |                                                 nil                                                 |
