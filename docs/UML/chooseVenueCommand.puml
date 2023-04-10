@@ -2,8 +2,10 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-activate ":ChooseVenueCommand"
+
 -> ":ChooseVenueCommand": execute()
+
+activate ":ChooseVenueCommand"
 
 ":ChooseVenueCommand" -> ":Event": updateVenue()
 activate ":Event"
@@ -18,11 +20,11 @@ deactivate ":Ui"
 ":Event" --> ":ChooseVenueCommand":
 deactivate ":Event"
 
-":ChooseVenueCommand" -> ":EventDetailsStorage": updateFile()
-activate ":EventDetailsStorage"
-":EventDetailsStorage" --> ":ChooseVenueCommand":
+":ChooseVenueCommand" -> "<<class>>\nEventDetailsStorage": updateFile()
+activate "<<class>>\nEventDetailsStorage"
+"<<class>>\nEventDetailsStorage" --> ":ChooseVenueCommand":
 
-deactivate ":EventDetailsStorage"
+deactivate "<<class>>\nEventDetailsStorage"
 <-- ":ChooseVenueCommand"
 
 deactivate ":ChooseVenueCommand"

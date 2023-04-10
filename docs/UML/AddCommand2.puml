@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+-> ":AddCommand": execute()
+
+activate ":AddCommand"
+
+":AddCommand" -> ":CompanyList": add()
+activate ":CompanyList"
+
+":CompanyList" --> ":AddCommand":
+deactivate ":CompanyList"
+
+":AddCommand" -> "<<class>>\nCompanyListEncoder": write()
+activate "<<class>>\nCompanyListEncoder"
+"<<class>>\nCompanyListEncoder" --> ":AddCommand":
+
+deactivate "<<class>>\nCompanyListEncoder"
+<-- ":AddCommand"
+
+deactivate ":AddCommand"
+
+destroy ":AddCommand"
+@enduml
