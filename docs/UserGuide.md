@@ -1,8 +1,7 @@
-[//]: # (@@author DeepanjaliDhawan)
+[//]: # (@@author ollayf)
 # **User Guide for SecureNUS**
 
 ## Introduction
-[//]: # (@@author ollayf)
 SecureNUS is a CLI application that provides secure secret management for NUS students. 
 It's designed to be efficient and user-friendly, allowing users to securely store and manage passwords using a 
 command-line interface.
@@ -16,7 +15,6 @@ In summary, SecureNUS offers a reliable and secure secret management solution fo
 challenge of managing multiple passwords for various sites and applications.
 <br>
 
-[//]: # (@@author DeepanjaliDhawan)
 ## Table of Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
@@ -25,8 +23,8 @@ challenge of managing multiple passwords for various sites and applications.
 - [Frequently Asked Questions (FAQ's)](#frequently-asked-questions)
 - [Command Summary](#command-summary)
 
+
 ## Quick Start
-[//]: # (@@author stevenantya)
 1. Ensure you have **Java 11** installed on your computer. If not so, you can download from
     [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
@@ -58,14 +56,13 @@ Some example commands:
    * `edit pname`: edit the secret to another in `pname`.
    * `exit`: exit from the program. 
 
-[//]: # (@@author DeepanjaliDhawan)
+[//]: # (@@author stevenantya)
 <table>
     <tr>
         <td> <a href="#table-of-contents">Click here for Table of Contents </a> </td>
     </tr>
 </table>
 
-[//]: # (@@author DeepanjaliDhawan)
 ## Feature List
 1. [Note about Command Formats](#note-about-the-command-format)
 2. [Add new Secret](#add-new-secret)
@@ -94,7 +91,6 @@ Some example commands:
     </tr>
 </table>
 
-[//]: # (@@author DeepanjaliDhawan)
 ## Feature Details
 
 ### Note about the command format
@@ -135,6 +131,7 @@ is stored in an `unnamed` folder.
 
 * Do not use `Ctrl-C` in the terminal while running the JAR file as it will cause the program to terminate.
 
+* [//]: # (@@author DeepanjaliDhawan)
                                                                  
 <table>                                                               
     <tr>                                                           
@@ -504,6 +501,7 @@ Examples and Outputs: <br>
     </tr>                                                          
 </table>
 
+[//]: # (@@author euzhengxi)
 ### Exit
 ##### Overview
 - In SecureNUS, the exit command is used to terminate the program and exit the command line interface.
@@ -562,7 +560,6 @@ they save their data frequently to avoid losing any unsaved changes.
 
 ## Frequently Asked Questions
 
-[//]: # (@@author euzhengxi)
 **Q:** How does SecureNUS store my secrets?<br>
 **A:** SecureNUS stores your secrets in a structured format in the `database.txt` file located in the `assets` folder. 
 The secrets are stored securely to ensure that your sensitive information is protected.
@@ -617,7 +614,6 @@ the `database.txt` file in the `asset` folder. But users are requested to keep s
 command.
 <br>
 
-[//]: # (@@author DeepanjaliDhawan)
 **Q:** How can I report a bug or issue with SecureNUS? <br>
 **A:** You can report a bug or issue with SecureNUS by raising an issue in the issue tracker of the team's
 [Github Repo](https://github.com/AY2223S2-CS2113-T15-2/tp/issues).
@@ -632,7 +628,7 @@ Alternatively, you can also contact the
     </tr>                                                          
 </table>
 
-[//]: # (@@author DeepanjaliDhawan)
+[//]: # (@@author ollayf)
 ## Command Summary
 <table>
     <tr>

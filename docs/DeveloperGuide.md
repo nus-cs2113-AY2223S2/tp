@@ -452,7 +452,7 @@ The complete sequence diagram is given below.
 
 This simplified sequence diagram shows what happens when a user lists all passwords in a folder called folderName:
 
-<img src="./DGimages/image26.png" width="90%" />
+<p style="text-align:center;"><img src="./DGimages/image26.png" width="90%" /></p>
 <p style="text-align:center;"><u>Sequence Diagram of List Command</u></p>
 
 <table>
