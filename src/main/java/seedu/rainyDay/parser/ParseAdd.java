@@ -44,12 +44,13 @@ public class ParseAdd extends Parser {
             }
             logger.info("returning new AddCommand object");
             return new AddCommand(description.trim(), direction, amount, category, date);
-        } catch (IndexOutOfBoundsException e) {
-            logger.warning("add command given by user in the wrong format");
-            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         } catch (RainyDayException e) {
             throw new RainyDayException(e.getMessage() + ErrorMessage.ADD_FORMAT);
+        } catch (Exception e) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString() + ErrorMessage.ADD_FORMAT);
         }
+
     }
 
     private String returnRemainingInformation(String input) throws RainyDayException {
@@ -85,6 +86,10 @@ public class ParseAdd extends Parser {
     }
 
     private void checkDescription() throws RainyDayException {
+        if (description.contains("$")) {
+            logger.warning("unsupported description name");
+            throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
+        }
         if (description.contains("-")) {
             logger.warning("unsupported description name");
             throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
