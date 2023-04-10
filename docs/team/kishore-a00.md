@@ -48,9 +48,9 @@ operation through the Command-Line Interface(CLI)
 ### Contributions to Developer Guide
 - Added table of contents in Developer Guide
 - UML diagrams
-    - [Sequence diagram for Encoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Encoder.puml)
-    - [Sequence diagram for Decoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Decoder.puml)
-    - [Class diagram of custom Exceptions](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Exceptions.puml)
+    - [Sequence diagram for Encoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Image/Encoder.png)
+    - [Sequence diagram for Decoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Image/Decoder.png)
+    - [Class diagram of custom Exceptions](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Image/Exceptions.png)
 
 
 ## Contributions to Team tasks
