@@ -15,7 +15,6 @@ import java.util.List;
 
 import static data.Account.SECURITY_STORAGE_FILE_PATH;
 import static data.Account.expensesStorageFilePath;
-import static data.Account.DIRECTORY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static common.AccountMessage.NO_SPECIAL_CHARACTERS_MESSAGE;
@@ -65,8 +64,7 @@ public class AccountTest {
     void deleteAccountAfterTest(Account newAccount) {
         boolean found = false;
         try {
-            Files.createDirectories(Paths.get(DIRECTORY));
-            FileReader reader = new FileReader(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH);
+            FileReader reader = new FileReader(SECURITY_STORAGE_FILE_PATH);
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             List<String> lines = new ArrayList<>();
@@ -82,7 +80,7 @@ public class AccountTest {
             bufferedReader.close();
             reader.close();
             if (found) {
-                FileWriter writer = new FileWriter(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH);
+                FileWriter writer = new FileWriter(SECURITY_STORAGE_FILE_PATH);
                 for (String l : lines) {
                     writer.write(l + "\n");
                 }
