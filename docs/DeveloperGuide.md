@@ -24,6 +24,7 @@
   * [4.8. Set a budget](#48-Set-Budget-Command)
   * [4.9. Show Currency Rates](#49-Show-Rates-Command)
 
+<div style="page-break-after: always;"></div>
 
 ## 1. Preface
 
@@ -379,6 +380,8 @@ The `mark` and `unmark` functions in the system are applicable only to the accom
 
 For other types of expenses, they will be marked as paid right after they are added by the user, and cannot be modified thereafter.
 
+<div style="page-break-after: always;"></div>
+
 ## Product scope
 ### Target user profile
 
@@ -416,6 +419,8 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 | v2.1    | user             | compare my budget with expenses made under a category          | have a clearer insight on my spending in that expenditure category |
 | v2.1    | user             | have my repeated expenses auto-check on its own                | reduce the hassle of having to input repeated expenditures         |
 
+
+<div style="page-break-after: always;"></div>
 
 ## Non-Functional Requirements
 
