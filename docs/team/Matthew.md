@@ -20,7 +20,10 @@
   * Highlights: Data was scraped from the [NUSMODS API](https://api.nusmods.com/v2/) to enable the application to run offline. As the data was not in a 
   directly-usable format, a custom Adapter was created using the GSON API, converting it into custom-classes usable for the purposes of our application. 
   The java-compatible module data is then stored in a HashMap for fast retrieval. 
-
+* **JUnit Tests**:
+  * Implemented most JUnit tests to ensure good branch coverage for at least the storage component.
+  * Overall Method coverage: 216/330, Storage Method coverage: 54/58
+  * Overall Line Coverage: 1462/2658, Storage Line Coverage: 764/906
 ### Contributions to User Guide:
 * Added documentation for Storage in the UG.
 * Update changes in commands and command summary
