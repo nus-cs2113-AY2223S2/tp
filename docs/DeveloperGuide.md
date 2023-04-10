@@ -18,6 +18,8 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
      - [Recipe Detail Command](#recipe-detail-command)
      - [Recipe Possible Command](#recipe-possible-command)
      - [Recipe All Command](#recipe-all-command)
+     - [Recipe Almost Command](#recipe-almost-command)
+     - [Recipe Need Command](#recipe-need-command)
    - [Storage Feature](#storage-feature)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
