@@ -9,6 +9,7 @@ import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
 import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.InvalidStatValueException;
 import seedu.pettracker.exceptions.InvalidTaskNameException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -85,6 +86,8 @@ public class Storage {
             ui.printPetFileInvalidSeparatorMessage();
         } catch (InvalidPetNameException e) {
             ui.printFileInvalidPetNameMessage();
+        } catch (InvalidStatValueException e) {
+            ui.printFileInvalidStatValueMessage();
         }
     }
 
@@ -198,18 +201,19 @@ public class Storage {
      * Parses data read from the pet output file and loads the parsed data into the pet list
      *
      * @param data ArrayList of data read from the pet output file
-     * @throws NumberFormatException Line of data contains non-integer values for age/weight
+     * @throws NumberFormatException       Line of data contains non-integer values for age/weight
      * @throws NonPositiveIntegerException Line of data contains non-positive values for age/weight
-     * @throws InvalidStatException Line of data contains invalid stats
-     * @throws PetNotFoundException Line of data contains a stat that belongs to a pet that does not exist
-     * @throws EmptyPetNameException Line of data contains empty pet name
-     * @throws DuplicatePetException Line of data contains pet name that already existed
-     * @throws InvalidSeparatorException Line of data contains invalid separator/invalid number of separator
-     * @throws InvalidPetNameException Line of data contains invalid pet name with pipes
+     * @throws InvalidStatException        Line of data contains invalid stats
+     * @throws PetNotFoundException        Line of data contains a stat that belongs to a pet that does not exist
+     * @throws EmptyPetNameException       Line of data contains empty pet name
+     * @throws DuplicatePetException       Line of data contains pet name that already existed
+     * @throws InvalidSeparatorException   Line of data contains invalid separator/invalid number of separator
+     * @throws InvalidPetNameException     Line of data contains invalid pet name with pipes
+     * @throws InvalidStatValueException   Line of data contains invalid stat value with pipes
      */
     private void parsePetFile(ArrayList<String> data) throws NumberFormatException, NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, EmptyPetNameException, DuplicatePetException,
-            InvalidSeparatorException, InvalidPetNameException {
+            InvalidSeparatorException, InvalidPetNameException, InvalidStatValueException {
         for (String line : data) {
             validatePetDataSep(line);
             String petName = getPetDetail(line, "petName");
@@ -237,11 +241,11 @@ public class Storage {
      * If line of data does not contain deadline, calls the method parseTaskWithoutDeadline
      *
      * @param data ArrayList of data read from the task output file
-     * @throws InvalidSeparatorException Line of data contains invalid separator/invalid number of separator
-     * @throws DateTimeParseException Line of data contains invalid date format
-     * @throws EmptyTaskNameException Line of data contains empty task description
+     * @throws InvalidSeparatorException      Line of data contains invalid separator/invalid number of separator
+     * @throws DateTimeParseException         Line of data contains invalid date format
+     * @throws EmptyTaskNameException         Line of data contains empty task description
      * @throws InvalidMarkTaskSymbolException Line of data contains invalid mark task symbol
-     * @throws InvalidTaskNameException Line of data contains invalid task name with pipes
+     * @throws InvalidTaskNameException       Line of data contains invalid task name with pipes
      */
     private void parseTaskFile(ArrayList<String> data) throws InvalidSeparatorException,
             DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException,
@@ -265,9 +269,9 @@ public class Storage {
      * Parses data excluding deadline read from the task output file and loads the parsed data into the task list
      *
      * @param line An entry in the ArrayList of data read from the task output file
-     * @throws EmptyTaskNameException Line of data contains empty task description
+     * @throws EmptyTaskNameException         Line of data contains empty task description
      * @throws InvalidMarkTaskSymbolException Line of data contains invalid mark task symbol
-     * @throws InvalidTaskNameException ine of data contains invalid task name with pipes
+     * @throws InvalidTaskNameException       ine of data contains invalid task name with pipes
      */
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
             InvalidMarkTaskSymbolException, InvalidTaskNameException {

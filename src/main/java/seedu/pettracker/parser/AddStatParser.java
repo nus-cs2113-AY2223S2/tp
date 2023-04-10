@@ -15,7 +15,7 @@ public class AddStatParser implements ArgParser<AddStatCommand>{
             throw new EmptyArgException(EMPTY_ARG_MESSAGE);
         }
         try {
-            String[] args = commandArgs.split(" ");
+            String[] args = commandArgs.split(" ", 3);
             String petName = args[0];
             String stat = args[1];
             String value = args[2];
