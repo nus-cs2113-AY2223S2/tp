@@ -38,5 +38,5 @@ My code contributions: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3Ahonglinshang+)
 - Created issues and assisted in maintaining issue tracker
 - Cleaned up most leftover warnings in project towards end of development
-- Edited tP Demo Video
+- Did voiceover and edited tP Demo Video
 - Most instances of helping team members were done offline during our weekly meetings
