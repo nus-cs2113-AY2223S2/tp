@@ -34,7 +34,11 @@ various features for note-taking.
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+[Files.createTempFile/Files.delete](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintWriter.html)
+[Redirecting System.in/System.Out](https://www.baeldung.com/java-testing-system-out-println)
+[JUnit testing with simulated user input](https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input/6416142)
+[Add resources files to JAR with gradle](https://stackoverflow.com/questions/24724383/add-resources-and-config-files-to-your-jar-using-gradle)
+[Exit Java program after a certain time](https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds)
 
 ## Design & implementation
 
