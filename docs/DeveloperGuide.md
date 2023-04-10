@@ -342,7 +342,7 @@ allowing them to take charge of their schedules and ensure that they have their 
 # Appendix E: Acknowledgements
 
 Special thanks to the following libraries and APIs for making the development of **NUSPlanner** possible
-1. GSON (Third Party Library) - [Documentation](https://sites.google.com/site/gson/gson-user-guide)
+1. GSON (Third Party Library) - [Documentation](https://github.com/google/gson/blob/master/UserGuide.md)
 2. NUSMods API - [Documentation](https://api.nusmods.com/v2/)
 
 <br>
