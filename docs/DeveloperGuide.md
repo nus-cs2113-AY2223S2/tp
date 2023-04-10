@@ -237,6 +237,13 @@ the step number in the list. It is further converted to the 0-based indexing in 
 ### Recipe Ingredients Edit Feature
 #### Implementation
 
+The recipe Ingredient edit feature is handled by the `command`, `recipe` and `ingredientList` classes. 
+<br>The following operations are implemented:
+
+* `RecipeList#getRecipe()` - Retrieves the recipe object to be edited.
+* `Recipe#getIngredientList()` - Retrieves the IngredientList of the recipe object to be edited.
+* `IngredientList#editIngredient()` - Takes in an ingredientIndex of the ingredient to edit, and the user's input, 
+then replaces the ingredient stored at ingredientIndex with a newly created one.
 #### Example Usage
 
 > The following sequence diagram shows how the recipe ingredients edit feature works:
