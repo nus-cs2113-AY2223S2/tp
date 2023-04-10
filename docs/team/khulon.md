@@ -28,7 +28,8 @@ Here are the contributions done by myself to FitnessDuke
 * Justification: This feature is a crucial part of fitness duke as it helps users efficiently and quickly start
   their desired workout without having to type in a long `generate` command each time. This feature is also crucial
   to the efficiency as users can easily create a weekly plan to follow, not having to waste time thinking of
-  exercises for each day of the week.
+  exercises for each day of the week. Furthermore, by having this planner mode, users will not be confused by the 
+  duplicate `add` command from a separate feature and have fewer parameters to type.
 * Highlights: This feature starts with an empty weekly calendar, and upon addition of plans, each plan name will
   appear on the workout plan on the day specified, together with the filters tied with the plan name.
 
