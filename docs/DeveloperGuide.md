@@ -4,9 +4,9 @@
 ## <span style="color:#00A36C">Table of contents</span>
 * [**Acknowledgements**](#acknowledgements)
 * [**Setting up, getting started**](#setting-up-getting-started)
-* [**Design**](#design)
+* [**Design**](#span-stylecolor00a36c-design-span)
   * [Architecture](#architecture)
-  * [*Commands component*](#commands-component)
+  * [*Commands Package*](#commands-package)
     * [*Command*](#command)
     * [*AddCommand*](#add-command)
       * [*Preventing duplicate items*](#preventing-duplicate-items)
@@ -439,7 +439,7 @@ all createCommandObj methods except for commands without input variables (i.e. e
 
 ---
 
-### IOHandler
+### IOHandler Package
 
 The `IOHandler` package contains three main classes, which are [Parser](#parser-class), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
 while managing the storage and retrieval of the associated `item`'s in the user's `packingList`.
@@ -470,33 +470,33 @@ All erroneous inputs will instead return `IncorrectCommand()` with respective er
 
 The following show the respective create methods for each command. The `command` object they return will be executed in `BagPacker()`
 
-`createAddObj()` - returns new `AddCommand(item)`
+- `createAddObj()` - returns new `AddCommand(item)`
 
-`createDeleteObj()` - returns new `DeleteCommand(itemIndex)`
+- `createDeleteObj()` - returns new `DeleteCommand(itemIndex)`
 
-`createPackObj()` - returns new `PackCommand(itemQuantity, itemIndex)`
+- `createPackObj()` - returns new `PackCommand(itemQuantity, itemIndex)`
 
-`createUnpackObj()` - returns new `UnpackCommand(itemQuantity, itemIndex)`
+- `createUnpackObj()` - returns new `UnpackCommand(itemQuantity, itemIndex)`
 
-`createListObj()` - returns new `ListCommand()`
+- `createListObj()` - returns new `ListCommand()`
 
-`createListUnpackedObj()` - returns new `ListUnpackedCommand()`
+- `createListUnpackedObj()` - returns new `ListUnpackedCommand()`
 
-`createHelpObj()` - returns new `HelpCommand()`
+- `createHelpObj()` - returns new `HelpCommand()`
 
-`createDeleteListObj()` - returns new `DeleteListCommand()`
+- `createDeleteListObj()` - returns new `DeleteListCommand()`
 
-`createPackAllObj()` - returns new `PackAllCommand(itemIndex)`
+- `createPackAllObj()` - returns new `PackAllCommand(itemIndex)`
 
-`createUnpackAllObj()` - returns new `UnpackAllCommand(itemIndex)`
+- `createUnpackAllObj()` - returns new `UnpackAllCommand(itemIndex)`
 
-`createEditQuantityObj()` - returns new `EditQuantityCommand(newTotalQuantity, itemIndex)`
+- `createEditQuantityObj()` - returns new `EditQuantityCommand(newTotalQuantity, itemIndex)`
 
-`createFindObj()` - returns new `FindCommand(keyword)`
+- `createFindObj()` - returns new `FindCommand(keyword)`
 
-`createByeObj()` - returns new `ByeCommand()`
+- `createByeObj()` - returns new `ByeCommand()`
 
-`IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
+- `IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
 
 
 
@@ -512,11 +512,11 @@ The constructor of this class, which is called in `BagPacker`, will set the `fil
 Each `item` is written on a newline with a format using `.toString()`, which is `[PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`. 
 
 Example:
-    ```
-    [0/4] jackets
-    [2/4] cats
-    [0/3] toothbrush
-    ```
+```
+[0/4] jackets
+[2/4] cats
+[0/3] toothbrush
+```
 
 `load()` is called at the start of `main()` in `BagPacker`.
 This method reads in the file in `file_path` and translates each line to construct an `item`. 
@@ -538,7 +538,7 @@ Some important methods are:
 `errorMessage()` - shows the error type and help message to the user in the case an error occurs
 
 ---
-### Packingfunc
+### Packingfunc Package
 The `Packingfunc` package consists of `Item` and `PackingList` classes, which are used to manage the main packing list of `BagPacker`, and its individual items.
 
 #### Item
@@ -562,7 +562,34 @@ It is used in multiple [commands](#commands-package) and [storage](#storage) to 
 
 
 #### PackingList
+`PackingList()` contains a `static ArrayList<Item> itemList` which is the user's packing list.
+The `PackingList()` class' methods are used to search through and manipulate this `itemList`.
 
+Methods:
+
+- `getItemList()` and `setItemList(ArrayList<Item> itemList)` - normal getter and setter for `itemList`
+
+- `itemFinder(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns true if found
+
+- `getItemByName(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns the pointer to item 
+
+- `keywordFinder(String keyword)` - checks if items contain keyword in their names in the current packing list, returns true if any item contains the keyword
+
+- `getExistingItem(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns true if found
+
+- `addToItemQuantity(String itemName, int addQty)` - adds `addQty` to the current total quantity of an item matching the `itemName` in the itemList
+
+- `editTotalQuantity(String itemName, int addQty)` - adds `addQty` to the current total quantity of an item matching the `itemName` in the itemList
+
+- `addItem(Item toAdd)` - adds `toAdd` of class `Item` to the packing list
+
+- `deleteItem(Item toDelete)` - deletes `toDelete` of class `Item` from the packing list
+
+- `packItem(Item toPack, int quantity)` - packs the item `toPack` by a certain `quantity` by increasing the packed quantity of `toPack` by `quantity`'s value 
+
+- `unpackItem(Item toPack, int quantity)` - unpacks the item `toUnpack` by a certain `quantity` by reducing the packed quantity of `toUnpack` by `quantity`'s value
+
+- `size()` - returns size of packing list
 
 
 ---

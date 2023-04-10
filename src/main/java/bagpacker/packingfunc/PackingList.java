@@ -8,10 +8,10 @@ public class PackingList {
     private static ArrayList<Item> itemList = new ArrayList<>();
 
     /**
-     * Checks if item of the same name as itemName is found in the current packing list and returns that item
+     * Checks if item of the same name as itemName is found in the current packing list and returns true
      *
      * @param itemName name of item to return
-     * @return the Item of same name as itemName if found, else null
+     * @return the true if found, else null
      */
     public static boolean itemFinder(String itemName) {
         for (Item item : itemList) {
@@ -66,7 +66,12 @@ public class PackingList {
         int totalQuantity = itemToAdd.getTotalQuantity();
         itemToAdd.setTotalQuantity(totalQuantity + addQty);
     }
-
+    /**
+     * Edits the itemToEdit's total quantity to the newTotalQuantity
+     *
+     * @param itemToEdit name of the item to edit total quantity
+     * @param newTotalQuantity the total quantity to change to
+     */
     public static void editTotalQuantity(Item itemToEdit, int newTotalQuantity) {
         itemToEdit.setTotalQuantity(newTotalQuantity);
     }
@@ -86,6 +91,7 @@ public class PackingList {
 
     /**
      * Adds an item to the list.
+     * @param toAdd item to be added to the packing list
      */
     public void addItem(Item toAdd) {
         itemList.add(toAdd);
@@ -93,13 +99,16 @@ public class PackingList {
 
     /**
      * Removes an item from the list.
+     * @param toDelete item to be deleted from the packing list
      */
     public void deleteItem(Item toDelete) {
         itemList.remove(toDelete);
     }
 
     /**
-     * Marks an item as packed in the list.
+     * Packs an item by a certain quantity
+     * @param toPack the item to pack
+     * @param quantity value to increase the packed quantity of the given item toPack by
      */
     public void packItem(Item toPack, int quantity) {
         toPack.setPacked(quantity);
@@ -107,9 +116,11 @@ public class PackingList {
 
     /**
      * Marks an item as unpacked in the list.
+     * @param toUnpack the item to unpack
+     * @param quantity value to decrease the packed quantity of the given item toPack by
      */
-    public void unpackItem(Item toPack, int quantity) {
-        toPack.setUnpacked(quantity);
+    public void unpackItem(Item toUnpack, int quantity) {
+        toUnpack.setUnpacked(quantity);
     }
 
     /**
