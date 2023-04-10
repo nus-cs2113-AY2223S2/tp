@@ -44,7 +44,7 @@ The class diagram below shows the overall structure of BagPacker application, ma
 ### BagPacker Command Mechanisms:
 For all valid commands, the mechanism of implementation are as follows:
 1. If `ByeCommand.isBagPackerRunning` is true, keep looping through steps 2-4
-2. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command using `Parser.parse()`
+2. Read input - `runBagPacker()` method in `BagPacker` calls the `Parser` class to read user input command using `Parser.parse()`
 3. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command (child class of the Command Class)
 4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
@@ -55,7 +55,7 @@ Below shows a sequence diagram of the above explanation
 ---
 #### Command
 The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
-`targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. This is done through the `getTargetItem()` method.
+`targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. An `item` of that index will be extracted out using `getTargetItem()`.
 #### Add Command
 
 Add command is used to add a quantity of item(s) to the packing list.
@@ -291,11 +291,16 @@ Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to
 ---
 
 #### Bye Command
-```ByeCommand``` is used to exit the BagPacker application.
+`ByeCommand` is used to exit the BagPacker application.
 
-Mechanism: ```ByeCommand.execute()``` updates the static boolean ```isBagPackerRunning``` to be false. 
-The ```runBagPacker()``` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until
-```isBagPackerRunning == false``` which occurs upon the execution of the ```byeCommand```.
+Mechanism: `ByeCommand.execute()`updates the static boolean `isBagPackerRunning` to be false. 
+The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
+`isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
+---
+#### Incorrect Command
+
+`IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
+These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
 
 ---
 
