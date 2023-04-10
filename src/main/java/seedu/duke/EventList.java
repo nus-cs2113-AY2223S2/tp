@@ -145,7 +145,7 @@ public class EventList {
                 if (breakFlag) {
                     break;
                 }
-            }
+            }   
         }
         return isOverlap;
     }
