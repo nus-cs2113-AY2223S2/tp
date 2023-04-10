@@ -39,8 +39,10 @@
 * Proofread Developer's Guide.
 
 ### Contributions to team-based tasks:
-* Create Github labels for issues as recommended on the CS2113 website.
-* Use Github Projects to create a task tracker for each milestone.
+* Create GitHub labels for issues as recommended on the CS2113 website.
+* Use GitHub Projects to create a task tracker for each milestone.
 * Create and assign Issues for each milestone
 * Maintain GitHub issue tracker by updating labels for issues.
-* Reviewed PRs for all team members
+* Reviewed PRs for all team members.
+* Ensure resolution & closure of issues before each release.
+* Coordinate `v2.0` release of `.jar` file and source code.
