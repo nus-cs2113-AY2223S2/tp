@@ -510,6 +510,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares to handle the List Current Pu Modules Commands.
+     * Serves to catch Invalid Pu Exception.
+     *
+     * @param univAbbName String input by user of Partner University Name in Abbreviation.
+     * @param universities ArrayList of all the Partner Universities as University objects.
+     * @param modules ArrayList of all modules user has added to his/her list.
+     * @return An object of command class by calling handleListCurrentPuModulesCommand.
+     */
     private Command prepareListCurrentPUModulesCommand(String univAbbName, ArrayList<University> universities,
                                                        ArrayList<Module> modules) {
         try {
@@ -519,6 +528,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if universityAbbName inputted by user is a valid Abbreviation. If yes, returns object of class
+     * ListCurrentPuCommand, otherwise throw an Invalid Pu Exception.
+     *
+     * @param universities ArrayList of all the Partner Universities as University objects.
+     * @param universityAbbName String input by user of Partner University Name in Abbreviation.
+     * @param modules ArrayList of all modules user has added to his/her list.
+     * @return An object of command class, ListCurrentPuCommand class.
+     * @throws InvalidPuException Thrown if universityAbbName is unable to be met to any of the Partner Universities.
+     */
     private Command handleListCurrentPuModulesCommand(ArrayList<University> universities, String universityAbbName,
                                                       ArrayList<Module> modules)
             throws InvalidPuException {
@@ -534,6 +553,20 @@ public class Parser {
         return new ListCurrentPuCommand(modules, univID);
     }
 
+    /**
+     * Handles User input for Remove function.
+     * Splits the string into two parts and matches PU Abbreviation to a specific PU and finds the Module corresponding
+     * to the Index inputted, relative to the user's module list of the PU selected, to delete.
+     *
+     * @param moduleStorage  moduleStorage Class that holds user added modules.
+     * @param abbreviationAndIndex String containing university abbreviation and Index of module to remove relative
+     *                             to the specific PU module list.
+     * @param universities  ArrayList of University that contains all the PUs University object.
+     * @return Returns DeleteModuleCommand to Duke to handle the removal of module from user selected modules
+     *         in moduleStorage.
+     * @throws InvalidCommandException Thrown when AbbreviationAndIndex does not split into two Strings.
+     * @throws InvalidPuException Thrown when Abbreviation given cannot be matched with any PUs.
+     */
     private Command handleRemoveModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                               ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException {
@@ -558,6 +591,16 @@ public class Parser {
         return new DeleteModuleCommand(moduleStorage, indexToDelete, univID);
     }
 
+    /**
+     *  Prepares to handle the List Current Pu Modules Commands.
+     *  Serves to catch Invalid Pu Exception, and Invalid Command Exception.
+     *
+     * @param moduleStorage moduleStorage Class that holds user added modules.
+     * @param abbreviationAndIndex String containing university abbreviation and Index of module to remove relative
+     *                             to the specific PU module list.
+     * @param universities ArrayList of University that contains all the PUs University object.
+     * @return An object of command class by calling handleRemoveModuleCommand
+     */
     private Command prepareRemoveModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                                ArrayList<University> universities) {
         try {
