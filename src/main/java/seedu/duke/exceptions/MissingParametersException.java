@@ -1,5 +1,6 @@
 package seedu.duke.exceptions;
 
+import seedu.duke.utils.Ui;
 
 public class MissingParametersException extends Exception {
     public static final String LINE = "____________________________________________________________";
