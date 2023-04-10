@@ -39,9 +39,7 @@
     - [Appendix E.2 - Deleting a recipe](#appendix-e2---deleting-a-recipe)
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
-original source as well}
+1. [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Setup and Prerequisites
 1. Ensure you have `Java 11` installed.
@@ -134,7 +132,8 @@ Each `Recipe` object stores the name of the dish, as well as lists storing `Ingr
 objects, to keep track of the ingredients and steps to create the dish respectively.
 
 While each `Recipe` object will have only one `IngredientList` and `StepList`, each of the lists 
-are not limited in how many `Ingredient` and `Step` objects they can store respectively.
+are not limited in how many `Ingredient` and `Step` objects they can store respectively, except that
+there must at least be one `Ingredient` at any time.
 
 ### Storage Component
 The **API** of this component is specified in 
@@ -229,7 +228,12 @@ parse the user input, which returns a `Command` object of type `EDITSTEP`. Under
 
 **Step 2.** Under the `EDITSTEP` case, the number of steps in the specified recipe is first checked.
 If there is at least one step in the recipe, a further user input `1` is parsed to an `int` to specify
-the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1.
+the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1,
+to create the required `stepIndex`.
+
+**Step 3.** The `editStep` method under `StepList` then takes in a user input for the description of the
+replacement step. It then creates a new `Step` object with this description, then replaces the `Step` object stored at 
+`stepIndex`with this new `Step` object.
 
 > The following sequence diagram shows how the recipe steps edit feature works:
 ![Sequence Diagram for Recipe Edit Step](./PlantUML/EditRecipeSteps.png)
@@ -237,10 +241,35 @@ the step number in the list. It is further converted to the 0-based indexing in 
 ### Recipe Ingredients Edit Feature
 #### Implementation
 
+The recipe Ingredient edit feature is handled by the `command`, `recipe` and `ingredientList` classes. 
+<br>The following operations are implemented:
+
+* `RecipeList#getRecipe()` - Retrieves the recipe object to be edited.
+* `Recipe#getIngredientList()` - Retrieves the IngredientList of the recipe object to be edited.
+* `IngredientList#editIngredient()` - Takes in an ingredientIndex of the ingredient to edit, and the user's input, 
+then replaces the ingredient stored at ingredientIndex with a newly created one.
+
 #### Example Usage
 
+The example usage is based on the assumption that there currently exists at least one ingredient in
+the recipe specified.
+
+**Step 1.** In the command line, user inputs `editingredient 1` to edit the ingredient in the first `Recipe`
+object in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
+parse the user input, which returns a `Command` object of type `EDITINGREDIENT`. Under
+`Command#execute()`, this object will be executed.
+
+**Step 2.** Under the `EDITINGREDIENT` case, the number of steps in the specified recipe is first checked.
+If there is at least one ingredient in the recipe, a further user input `1` is parsed to an `int` to specify
+the ingredient number in the list. It is further converted to the 0-based indexing in the `ingredientList` by subtracting 1,
+to create the required `ingredientIndex`.
+
+**Step 3.** The `editIngredient` method under `IngredientList` then takes in a user input for the description of the
+replacement ingredient. It then creates a new `Ingredient` object with this description, then replaces the `Ingredient` object stored at
+`ingredientIndex`with this new `Ingredient` object.
+
 > The following sequence diagram shows how the recipe ingredients edit feature works:
-![Sequence Diagram for Recipe Ingredients Step](./PlantUML/EditRecipeIngredients.png)
+![Sequence Diagram for Recipe Ingredients](./PlantUML/EditRecipeIngredients.png)
 
 
 ### Recipe View Feature
