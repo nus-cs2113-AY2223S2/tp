@@ -72,7 +72,6 @@ public class AlertParser extends Parser {
         } else {
             Ui.printInvalidRemoveAlertCommand();
         }
-
     }
 
     /**

@@ -201,20 +201,33 @@ public class Ui {
     private static final String STOCK_HEADING = "Stock";
 
 
+    /**
+     * Prints out line separator.
+     */
     public static void printLine() {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out a warning message that the price entered is not a number.
+     */
     public static void printDoubleNeeded() {
         System.out.println(MISSING_PRICE);
     }
 
+    /**
+     * Prints out a message informing that no search results can be found.
+     */
     public static void printEmptySearch() {
         printLine();
         System.out.println(NO_SEARCH_RESULTS);
         printLine();
     }
 
+    /**
+     * Prints out item that was searched for using UPC.
+     * @param item The item that was searched for using UPC.
+     */
     public static void printSearchUPCItem(Item item) {
         printLine();
         System.out.println(YOUR_ITEM);
@@ -224,18 +237,28 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out table of items that was filtered or searched for.
+     * @param items List of items to be filtered or searched.
+     */
     public static void printSearchItems(ArrayList<Item> items) {
         printLine();
         System.out.println(printTable(items));
         printLine();
     }
 
+    /**
+     * Prints out exit message when the user exits the program.
+     */
     public static void printExitMessage() {
         printLine();
         System.out.println(EXIT_MESSAGE);
         printLine();
     }
 
+    /**
+     * Prints out MagusStock logo and greeting message.
+     */
     public static void greetUser() {
         printLine();
         System.out.println(LOGO);
@@ -243,16 +266,25 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out a message informing that the session inventory file is corrupted.
+     */
     public static void printInvalidSessionFile() {
         System.out.println(INVALID_SESSION_FILE);
         printLine();
     }
 
+    /**
+     * Prints out a message informing that the session inventory file has been recovered.
+     */
     public static void printRecoveredSessionFile() {
         System.out.println(RECOVERED_SESSION_FILE);
         printLine();
     }
 
+    /**
+     * Prints out a message informing that the session inventory file is empty.
+     */
     public static void printEmptySessionFile() {
         System.out.println(EMPTY_SESSION_FILE);
         printLine();
@@ -282,48 +314,72 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out a warning message that the command is not understood.
+     */
     public static void printUnknownCommand() {
         printLine();
         System.out.println(UNKNOWN_COMMAND);
         printLine();
     }
 
+    /**
+     * Prints out a warning message that the format of the add command is invalid.
+     */
     public static void printInvalidAddCommand() {
         printLine();
         System.out.println(INVALID_ADD);
         printLine();
     }
 
+    /**
+     * Prints out a warning message that the format of the autosave commmand is invalid.
+     */
     public static void printInvalidAutoSaveInput() {
         printLine();
         System.out.println(INVALID_AUTO_SAVE_INPUT);
         printLine();
     }
 
+    /**
+     * Prints out a message informing the user that autosave has been enabled.
+     */
     public static void printAutoSaveEnabled() {
         printLine();
         System.out.println(AUTOSAVE_ON);
         printLine();
     }
 
+    /**
+     * Prints out a message informing the user that autosave has been disabled.
+     */
     public static void printAutoSaveDisabled() {
         printLine();
         System.out.println(AUTOSAVE_OFF);
         printLine();
     }
 
+    /**
+     * Prints out a message informing the user that an item with a duplicate UPC is being added.
+     */
     public static void printDuplicateAdd() {
         printLine();
         System.out.println(DUPLICATE_ADD);
         printLine();
     }
 
+    /**
+     * Prints out a message informing the user that item has been successfully added.
+     */
     public static void printSuccessAdd() {
         printLine();
         System.out.println(SUCCESS_ADD);
         printLine();
     }
 
+    /**
+     * Prints out a warning message when race condition occurs.
+     */
     public static void printRaceCondition() {
         printLine();
         System.out.println(RARE_RACE_CONDITION_OCCURRED);
@@ -358,6 +414,11 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Creates a string containing a table of all categories in the inventory and their associated items.
+     * @param categoryHash Hash map of categories and their associated items.
+     * @return String containing the table of categories and their associated items.
+     */
     public static String printTable(HashMap<String, ArrayList<Item>> categoryHash) {
         int[] columnWidths = {CATEGORY_COL_WIDTH, ITEMS_COL_WIDTH};
 
@@ -371,6 +432,10 @@ public class Ui {
         return table.toString();
     }
 
+    /**
+     * Creates a string containing a table of all commands in the program and the format for executing the commands.
+     * @return String containing a table of all commands and their format.
+     */
     public static String printTable() {
         HashMap<String, String> commandsHashMap = new HashMap<>();
         CommandFormat commandFormat = new CommandFormat(commandsHashMap);
@@ -495,6 +560,13 @@ public class Ui {
         return tableSeparator.toString();
     }
 
+    /**
+     * Prints out one row of a table when listing all possible commands.
+     * @param description The description of the command to be printed in the row.
+     * @param format The format of the command to be printed in the row.
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing one row of the table.
+     */
     private static String printRow(String description, String format, int[] columnWidths) {
         String[] descriptionLines = wrapText(description, COMMAND_COL_WIDTH);
         String[] formatLines = wrapText(format, FORMAT_COL_WIDTH);
@@ -517,6 +589,13 @@ public class Ui {
         return row.toString();
     }
 
+    /**
+     * Prints out one row of a table when listing all items sorted by their category.
+     * @param category The category to be printed in the row.
+     * @param items The list of items belonging to the category to be printed in the row.
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing one row of the table.
+     */
     private static String printRow(String category, ArrayList<Item> items, int[] columnWidths) {
         String[] categoryLines = wrapText(category, CATEGORY_COL_WIDTH);
         ArrayList<String> itemLines = new ArrayList<>();
@@ -921,6 +1000,11 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out message to inform the user that item has been successfully removed.
+     *
+     * @param itemToRemove The item to be removed.
+     */
     public static void printSuccessRemove(Item itemToRemove) {
         printLine();
         System.out.println(SUCCESS_REMOVE);
@@ -928,6 +1012,10 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out message to inform user that the index for removing items is invalid.
+     * @param inventory Inventory containing the item to be removed.
+     */
     public static void printInvalidIndex(Inventory inventory) {
         printLine();
         int listSize = inventory.getItemInventory().size();
@@ -946,6 +1034,10 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out message to inform user that the UPC of the item being removed is invalid.
+     * @param inventory Inventory containing the item to be removed.
+     */
     public static void printInvalidUpc(Inventory inventory) {
         printLine();
         int listSize = inventory.getItemInventory().size();
@@ -1108,6 +1200,12 @@ public class Ui {
         return alertTable.toString();
     }
 
+    /**
+     * Prints dashboard of information relating to inventory and system configurations.
+     *
+     * @param inventory The inventory containing all items.
+     * @param alertList The AlertList object containing the two hash maps that store minimum and maximum alerts.
+     */
     public static void printDashboard(Inventory inventory, AlertList alertList) {
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(true));
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(false));
@@ -1189,7 +1287,6 @@ public class Ui {
      *
      * @param results An ArrayList of instances of the item.
      */
-
     public static void printHistory(ArrayList<Item> results) {
         printLine();
         System.out.println(ITEM_ADDED_AT + results.get(ORIGINAL_ITEM_INDEX).getDateTimeString());
@@ -1241,36 +1338,57 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out a formatted table of categories.
+     * @param categoryHash Hash map of categories and their associated items.
+     */
     public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
         System.out.println(printTable(categoryHash));
         printLine();
     }
 
+    /**
+     * Prints out a formatted list of categories.
+     * @param categoryHash List of categories.
+     */
     public static void printCategory(ArrayList<Item> categoryHash) {
         printLine();
         System.out.println(printTable(categoryHash));
         printLine();
     }
 
+    /**
+     * Prints out a warning message that there are no categories to be printed.
+     */
     public static void printNoCategoryList() {
         printLine();
         System.out.println(NO_CATEGORY_LIST);
         printLine();
     }
 
+    /**
+     * Prints out error message that the category does not exist.
+     */
     public static void printInvalidCategory() {
         printLine();
         System.out.println(INVALID_CATEGORY_FIND);
         printLine();
     }
 
+    /**
+     * Prints warning message that the category being added is invalid.
+     */
     public static void printNewCategory() {
         printLine();
         System.out.println(INVALID_CATEGORY + " " + NEW_CATEGORY_ADDED);
         printLine();
     }
 
+    /**
+     * Prints out list of all categories.
+     * @param categoryHash Hash map of categories and their associated items.
+     */
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
         System.out.println(CATEGORY_LISTING);
