@@ -16,18 +16,9 @@ goals.
         * [Main functions](#main-functions)
     * [Design](#design)
         * [Architecture](#architecture)
-            * [Components of the architecture](#components-of-the-architecture)
         * [Modules package](#modules-package)
-            * [Storage](#storage)
-            * [UI](#ui)
+        * [Parser package](#parser-package)
         * [Data package](#data-package)
-            * [FinancialReport](#financialreport)
-            * [FinancialStatement](#financialstatement)
-            * [FlowDirection](#flowdirection)
-            * [MonthlyExpenditures](#monthlyexpenditures)
-            * [SavedData](#saveddata)
-            * [UserData](#userdata)
-            * [Design considerations](#design-considerations)
         * [Command package](#command-package)
         * [Exceptions package](#exceptions-package)
     * [Implementation](#implementation)
@@ -92,7 +83,7 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 * `inline code` format are related to commands, classes and methods in rainyDay
 * "double quotes" format are related to names
 * Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional e.g.
-  [DESCRIPTION] {TIME}
+  [DESCRIPTION] {TIMESPAN}
 * 💡 indicates helpful tips
 * ℹ️ indicates information to take note of
 
@@ -564,7 +555,8 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
 
 #### Design considerations
-- A hashmap is used to store the mapping between the shortcuts and the command that the shortcut maps to. 
+
+- A hashmap is used to store the mapping between the shortcuts and the command that the shortcut maps to.
 - A hashmap is an appropriate data structure as it provides a one to one mapping and allows shortcut access in O(1).
 
 ### Saving Data
@@ -727,12 +719,12 @@ Help people who are just starting out working and troubled by financial issues s
 ### Launch and shutdown
 
 1. Initial launch
-    1. Download the jar file and copy it into an empty folder.
+    1. Download the jar file and copy it into an empty folder
 
-    2. Open the terminal and `cd` into the file directory where you placed "rainyDay.jar".
+    2. Open the terminal and `cd` into the file directory where you placed "rainyDay.jar"
 
-    3. Type the command `java -jar rainyDay.jar` and press Enter.<br>Expected: rainyDay startup appears, prompting for
-       your name.
+    3. Type the command `java -jar rainyDay.jar` and press Enter <br>Expected: rainyDay startup appears, prompting for
+       your name
 
 2. Shutdown
     1. Type the command `bye` and press Enter.<br>Expected: rainyDay should output a goodbye message and shutdown
