@@ -6,10 +6,10 @@ import seedu.duke.command.Command;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Duke {
+public class SEPHelper {
 
     /**
-     * Main entry-point for the java.duke.Duke application.
+     * Main entry-point for the java.duke.SEPHelper application.
      */
     private static DataReader dataReader = DataReader.getDataReaderOneInstance();
     private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
