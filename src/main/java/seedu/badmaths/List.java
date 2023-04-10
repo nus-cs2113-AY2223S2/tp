@@ -16,18 +16,21 @@ import seedu.badmaths.ui.Ui;
 public class List {
 
     public NotesList notes;
-    protected  String toDo;
+    protected String toDo;
 
     public List(NotesList notes, String toDo) {
         this.notes = notes;
         this.toDo = toDo;
     }
+
     public boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
     }
+
     public boolean isInvalidTodo(String todo) {
         return todo.equals("Invalid todo");
     }
+
     public  boolean isAnInt(String todo) {
         try {
             Integer.parseInt(todo);
@@ -43,7 +46,6 @@ public class List {
             if ((!isInvalidTodo(toDo)) && (!isAnInt(toDo))) {
                 throw new IllegalTodoException();
             }
-
             if (isInvalidTodo(toDo)) {
                 Ui.printNotes(notes.getAll());
                 return;

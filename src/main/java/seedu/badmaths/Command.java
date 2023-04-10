@@ -22,11 +22,11 @@ import java.util.ArrayList;
 
 
 public class Command {
+
     private static final String filePath = "data/notes.txt";
     protected String command;
     protected String toDo;
     ArrayList<String> historyCommand = new ArrayList<>();
-
 
     public Command(String command, String toDo) {
         this.command = command;
