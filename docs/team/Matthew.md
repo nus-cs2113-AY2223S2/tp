@@ -21,7 +21,8 @@
   directly-usable format, a custom Adapter was created using the GSON API, converting it into custom-classes usable for the purposes of our application. 
   The java-compatible module data is then stored in a HashMap for fast retrieval. 
 * **JUnit Tests**:
-  * Implemented most JUnit tests to ensure good branch coverage for at least the storage component.
+  * Ensured overall functionality of application with JUnit tests.
+  * Implemented most JUnit tests to ensure good branch & line coverage for at least the storage component.
   * Overall Method coverage: 216/330, Storage Method coverage: 54/58
   * Overall Line Coverage: 1462/2658, Storage Line Coverage: 764/906
 ### Contributions to User Guide:
@@ -32,7 +33,7 @@
 ### Contributions to the Developer's Guide
 * Add documentation for the `Storage` component.
 * Add documentation for the overall architecture of project, including architecture diagram to provide readers with a bird's eye view of the architecture.
-* Add Instructions for manual testing to the DG
+* Add Instructions for manual testing to the DG.
 * Add User Stories to the DG.
 * Add Non-functional requirements to the DG. 
 * Proofread Developer's Guide.
