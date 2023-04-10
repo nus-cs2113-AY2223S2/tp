@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide footbox
+hide circle
+!include Style.puml
+
+class Ui{
+    + {static} line(): String
+    + {static} getUserInput(): String
+    + {static} getWorkoutHelpMessage(): String
+    + {static} getCaloriesHelpMessage(): String
+    + {static} showGreeting(): void
+    + {static} showLogo(): void
+    + {static} showOneLine(): void
+    + {static} showWelcomeMessage(): void
+    + {static} showErrorMessage(): void
+    + {static} showCommandResult(): void
+    + {static} showReadFileErrorMessage(): void
+    + {static} showCreatedNewFileMessage(): void
+    + {static} showNewFileNotCreatedMessage(): void
+    + {static} showCreateDirectoryMessage(): void
+    + {static} showDirectoryNotCreatedMessage(): void
+    + {static} showSaveUserDataErrorMessage(): void
+    + {static} showSuccessfulLoadDataMessage(): void
+}
+@enduml

@@ -13,7 +13,6 @@ import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.Exercise;
 
 import java.util.Date;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,9 +27,6 @@ public class WorkoutParser {
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
     private static final int ADD_ARGUMENT_COUNT = 3;
-    private static final int START_WORKOUT_ARGUMENT_COUNT = 2;
-    private static final int DATE_INDEX = 0;
-    private static final int WORKOUT_NAME_INDEX = 1;
 
     //@@author calebcjl
     /**
@@ -83,7 +79,7 @@ public class WorkoutParser {
      *
      * @param exerciseName Exercise name argument.
      * @return Exercise name.
-     * @throws InvalidSyntaxException If syntax is invalid.
+     * @throws InvalidArgumentException If syntax is invalid.
      */
     private static String parseExerciseName(String exerciseName) throws InvalidArgumentException {
         exerciseName = exerciseName.trim();
@@ -116,6 +112,7 @@ public class WorkoutParser {
         return true;
     }
 
+    //@@author calebcjl
     /**
      * Parses weight argument.
      *
@@ -180,6 +177,12 @@ public class WorkoutParser {
         return new StartWorkoutCommand(date, workoutName);
     }
 
+    /**
+     * Parses workout name for StartWorkoutCommand
+     * @param workoutName Name of workout.
+     * @return Name of workout.
+     * @throws InvalidArgumentException If workout name is invalid.
+     */
     static String parseWorkoutName(String workoutName) throws InvalidArgumentException {
         if (workoutName.isBlank()) {
             throw new InvalidArgumentException("workout name");
@@ -191,7 +194,7 @@ public class WorkoutParser {
      * This method is used to check the "/delete" command
      *
      * @param arguments Date input
-     * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
+     * @return DeleteWorkoutCommand.
      */
     static Command parseDeleteWorkoutCommand(String arguments) throws InvalidSyntaxException {
         arguments = arguments.trim();
@@ -231,9 +234,6 @@ public class WorkoutParser {
         Date date = parseDate(arguments);
         return new CountSetsRepsCommand(date);
     }
-
-
-
 
     //@@author calebcjl
     /**

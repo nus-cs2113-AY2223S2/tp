@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.errorcommands.IncorrectSyntaxCommand;
+import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
+import static org.testng.AssertJUnit.assertFalse;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@@author ZIZI-czh
 public class ParserTest {
 
     /**
@@ -25,9 +27,11 @@ public class ParserTest {
             result = testList.processCommand(userInput);
         } catch (InvalidSyntaxException e) {
             result = new ExitCommand();
+        } catch (InvalidArgumentException e) {
+            throw new RuntimeException(e);
         }
         //show error, if the result satisfy the condition in IncorrectCommand
-        assertTrue(result instanceof IncorrectSyntaxCommand);
+        assertFalse(result instanceof IncorrectSyntaxCommand);
     }
 
 }

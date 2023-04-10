@@ -12,6 +12,7 @@ import seedu.ui.Ui;
 import seedu.workout.WorkoutList;
 
 //@@author calebcjl
+
 /**
  * Main entry to the program
  */
@@ -21,8 +22,7 @@ public class Duke {
     private FoodDictionary foodDictionary;
     private Storage storage;
 
-
-    public Duke(){
+    public Duke() {
     }
 
     public static void main(String[] args) {
@@ -42,6 +42,7 @@ public class Duke {
     }
 
     //@@author calebcjl
+
     /**
      * Continuously receives and execute commands entered by user.
      * Stops when user enters exit command.

@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+ class Exercise{
+ - name: String
+ - weight: String
+ - repsPerSet: String
+ - Exercise(String, String, String)
+ + getName(): String
+ + getWeight(): String
+ + getRepsPerSet(): String
+ + toString(): toString
+ + getSetsCount(): int
+ + getRepsCount(): int
+ }
+
+ class Workout{
+ - date: Date
+ - workoutName: String
+ - exercises: ArrayList<Exercise>
+ + Workout()
+ + Workout(Date, String)
+ + getWorkoutName(): String
+ + getDate(): Date
+ + getExercises(): ArrayList<Exercise>
+ + addExercise(Exercise): void
+ + toString(): String
+ }
+
+ class WorkoutList{
+ {static} - EMPTY_WORKOUT: String
+ {static} - INFORMATION: String
+ {static} - NO_CURRENT_WORKOUT: int
+ - workouts:  ArrayList<Workout>
+ - currentWorkoutIndex: int
+ - isInlist(Workout): boolean
+ + WorkoutList()
+ + WorkoutList(Storage)
+ + getCurrentWorkoutIndex(): int
+ + getWorkouts(): ArrayList<Workout>
+ + countSetsReps(Date): String
+ + displayCountSetsReps(HashMap<String, ArrayList<Integer>>, Date): String
+ + getWorkoutsInSpecificWeek: ArrayList<Workout>
+ + startWorkout(Date, String)
+ + isEmptyList(): boolean
+ + getWorkout(int): Workout
+ + getCurrentWorkout(): Workout
+ }
+
+ Workout *--> "0..*" Exercise: list of exercises
+ WorkoutList *--> "0..*" Workout: list of workouts
+@enduml

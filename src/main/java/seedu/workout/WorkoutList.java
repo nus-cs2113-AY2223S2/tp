@@ -28,6 +28,15 @@ public class WorkoutList {
         currentWorkoutIndex = NO_CURRENT_WORKOUT;
     }
 
+
+    //@@author ZIZI-czh
+    //this method is used for JunitTest
+    public WorkoutList(ArrayList<Workout> workouts) {
+        this.workouts = workouts;
+        currentWorkoutIndex = NO_CURRENT_WORKOUT;
+    }
+
+
     public int getCurrentWorkoutIndex() {
         return currentWorkoutIndex;
     }
@@ -41,7 +50,6 @@ public class WorkoutList {
     }
 
     //@@ author guillaume-grn
-    //@@ author ZIZI-czh
     public String countSetsReps(Date dateInSpecificWeek) {
         ArrayList<Workout> workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dateInSpecificWeek);
         HashMap<String, ArrayList<Integer>> distinctExercises = new HashMap<>();
@@ -78,7 +86,7 @@ public class WorkoutList {
                     .append(exerciseName)
                     .append(", sets: ")
                     .append(distinctExercises.get(exerciseName).get(0))
-                    .append(", rps:")
+                    .append(", rps: ")
                     .append(distinctExercises.get(exerciseName).get(1))
                     .append(System.lineSeparator());
         }
@@ -86,8 +94,7 @@ public class WorkoutList {
     }
 
     //@@ author guillaume-grn
-    //@@ author ZIZI-czh
-    private ArrayList<Workout> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
+    public ArrayList<Workout> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
         ArrayList<Workout> workoutsInSpecificWeek = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);

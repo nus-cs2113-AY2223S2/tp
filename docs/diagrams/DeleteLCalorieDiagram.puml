@@ -1,0 +1,20 @@
+@startuml
+!include Style.puml
+'https://plantuml.com/sequence-diagram
+actor User
+participant DeleteCalorieCommand
+participant calorieTracker
+participant DailyFoodConsumption
+participant Food
+participant DateFormatter
+
+User -> DeleteCalorieCommand: deleteCalorie(date)
+DeleteCalorieCommand -> calorieTracker: getDailyFoodConsumption()
+calorieTracker -> DailyFoodConsumption: get(date)
+DeleteCalorieCommand -> DailyFoodConsumption: deleteFood(index)
+DailyFoodConsumption -> Food: getFood(index)
+Food -> DeleteCalorieCommand: deletedFood
+DeleteCalorieCommand -> DateFormatter: dateToString(date)
+DeleteCalorieCommand -> User: "Deleted (foodName) (calories) from (date)"
+
+@enduml

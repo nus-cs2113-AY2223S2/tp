@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+ class Storage {
+ - workoutListStorage: WorkoutListStorage
+ - foodDictionaryStorage: FoodDictionaryStorage
+ - calorieTrackerStorage: CalorieTrackerStorage
+ + Storage()
+ + readWorkoutListFile(): ArrayList<Workout>
+ + readFoodDictionaryFile(): HashMap<String, Integer>
+ + readCalorieTrackerFile(): HashMap<Date, FoodList>
+ + saveUserData(WorkoutList, FoodDictionary, CalorieTracker): void
+ }
+
+ class CaloriesTrackerStorage{
+ {static} - defaultCalorieTrackerFile: File
+ + calorieTrackerFile: File
+ + CalorieTrackerStorage()
+ + getUserData(): HashMap<Date, FoodList>
+ + readCalorieTrackerFile(String,  HashMap<Date, FoodList>): void
+ + createCalorieTrackerFile(): void
+ + saveUserData(HashMap<Date, FoodList>): void
+ }
+ class FoodDictionaryStorage{
+ {static} - defaultFoodDictionaryFile: File
+ - foodDictionaryFile: File
+ - readFoodDictionaryFileLine(String, HashMap<String, Integer>): void
+ - createFoodDictionaryFile(): void
+ + saveUserData(HashMap<String, Integer>): void
+ + FoodDictionaryStorage()
+ }
+ class WorkoutListStorage{
+ {static} - defaultWorkoutListFile: File
+ - workoutListFile: File
+ - readWorkoutListFileLine(String, ArrayList<Workout>): void
+ - createWorkoutListFile(): void
+ + WorkoutListStorage()
+ + getUserData(): ArrayList<Workout>
+ + saveUserData(ArrayList<Workout> workouts): void
+ }
+
+Storage --> "1" WorkoutListStorage: workoutListFile
+Storage --> "1" FoodDictionaryStorage: foodDictionaryStorage
+Storage --> "1" CaloriesTrackerStorage: caloriesTrackerStorage
+
+@enduml

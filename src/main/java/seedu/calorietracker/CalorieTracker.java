@@ -15,19 +15,34 @@ import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVE
  * Represents a calorie tracker.
  */
 public class CalorieTracker {
-    private HashMap<Date, FoodList> dailyFoodConsumption;
-    private FoodDictionary foodDictionary;
+    private final HashMap<Date, FoodList> dailyFoodConsumption;
+    private final FoodDictionary foodDictionary;
 
-    public CalorieTracker() {
-        dailyFoodConsumption = new HashMap<>();
-        foodDictionary = new FoodDictionary();
-    }
 
+    //@@author ZIZI-czh
+    /**
+     * Constructs a new CalorieTracker object with the given storage and food dictionary. The
+     * initial daily food consumption records are read from the storage, and the food dictionary
+     * is used to look up food items by their names.
+     *
+     * @param storage the storage object to use for reading and writing the daily food consumption
+     *                records
+     * @param foodDictionary the food dictionary object to use for looking up food items by their names
+     */
     public CalorieTracker(Storage storage, FoodDictionary foodDictionary) {
         dailyFoodConsumption = storage.readCalorieTrackerFile();
         this.foodDictionary = foodDictionary;
     }
 
+    //@@author ZIZI-czh
+    /**
+     * Returns a FoodList representing the list of foods consumed on the specified date. If no
+     * such list exists in the daily food consumption records, a new, empty list is created and
+     * added to the records for that date.
+     *
+     * @param date the date for which to retrieve the list of consumed foods
+     * @return a FoodList object representing the list of foods consumed on the specified date
+     */
     public FoodList getFoodList(Date date) {
         if (!dailyFoodConsumption.containsKey(date)) {
             FoodList foodList = new FoodList();
@@ -40,6 +55,15 @@ public class CalorieTracker {
         return dailyFoodConsumption;
     }
 
+    /**
+     * Add calorie consumption to CalorieTracker.
+     *
+     * @param date Date of consumption.
+     * @param foodName Name of food.
+     * @param foodCalories Calories of food.
+     * @return Output string.
+     * @throws InvalidSyntaxException If invalid syntax.
+     */
     public String addCalories(Date date, String foodName, int foodCalories) throws InvalidSyntaxException {
         FoodList foodList = getFoodList(date);
         Food foodToAdd;
@@ -55,7 +79,7 @@ public class CalorieTracker {
         }
         foodList.addFood(foodToAdd);
 
-        return "Added " + foodName + " (" + foodToAdd.getCalories() + "kcal) to "
+        return "Added " + foodName + "(" + foodToAdd.getCalories() + " kcal) to "
                 + DateFormatter.dateToString(date) + "." + System.lineSeparator() + Ui.line();
     }
 }

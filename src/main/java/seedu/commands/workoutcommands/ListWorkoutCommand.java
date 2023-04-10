@@ -4,12 +4,14 @@ import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
 import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 
+
+//@@ author ZIZI-czh
 /**
  * This is the class for executing the list command
  */
-//@@ author ZIZI-czh
 public class ListWorkoutCommand extends Command {
 
     private static final String EMPTY_LIST_MESSAGE = "Workout list is empty";
@@ -20,9 +22,19 @@ public class ListWorkoutCommand extends Command {
     public ListWorkoutCommand() {
     }
 
-    //@@author calebcjl
+    public ListWorkoutCommand(WorkoutList workoutListParameter) {
+        workoutList = workoutListParameter;
+    }
+
+    //@@author ZIZI-czh
+    /**
+     * Executes the command to display a list of all the workouts in the workout list.
+     * If the workout list is empty, returns a message indicating that the list is empty.
+     * @return a string representation of the list of workouts, including their respective dates and names
+     */
     @Override
     public String execute() {
+
         if (workoutList.isEmptyList()) {
             return EMPTY_LIST_MESSAGE;
         }

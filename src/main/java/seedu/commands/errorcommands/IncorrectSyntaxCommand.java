@@ -1,10 +1,9 @@
 package seedu.commands.errorcommands;
 
-//@@author calebcjl
-
 import seedu.commands.Command;
 import seedu.ui.Ui;
 
+//@@author calebcjl
 /**
  * Represents a command entered with incorrect syntax.
  */

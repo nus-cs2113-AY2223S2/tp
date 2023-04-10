@@ -1,9 +1,8 @@
 package seedu.commands;
 
-//@@author calebcjl
-
 import seedu.ui.Ui;
 
+//@@author calebcjl
 /**
  * Represents command to exit the program.
  */

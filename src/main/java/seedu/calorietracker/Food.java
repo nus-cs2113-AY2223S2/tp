@@ -1,11 +1,12 @@
 package seedu.calorietracker;
 
+//@@author calebcjl
 /**
  * Represents food consumed.
  */
 public class Food {
-    private String foodName;
-    private int calories;
+    private final String foodName;
+    private final int calories;
 
     public Food(String foodName, int calories) {
         this.foodName = foodName;
