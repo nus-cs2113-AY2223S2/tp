@@ -1,5 +1,0 @@
-
-## Overview
-
-
-### Summary of Contributions
