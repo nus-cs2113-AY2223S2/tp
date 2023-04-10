@@ -224,7 +224,7 @@ The class diagram below illustrates the structure of the EventList component.
 
 And below is a sequential diagram showing a event being added, revised, checked for information and finally deleted.
 
-<img src="UML\Images\EventListSD.png" style="zoom:80%;" />
+<img src="UML\Images\EventListSD.jpg" style="zoom:80%;" />
 
 
 

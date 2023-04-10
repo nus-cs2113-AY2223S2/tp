@@ -18,6 +18,13 @@ public class EventList {
     private static final String TIMEPLACEHOLDER = " 00:00";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
+    // exceptions information
+    private static final String WRONG_DATE_TIME_FORMAT_E = 
+        "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
+    private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
+    private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
+    private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";
+
     protected ArrayList<Schedule> taskList;
     protected int listSize;
 
@@ -83,8 +90,7 @@ public class EventList {
             TimeAndFlag result = new TimeAndFlag(hasTime, combinedTime);
             return result;
         } catch (Exception e) {
-            throw new NPExceptions(
-                    "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.");
+            throw new NPExceptions(WRONG_DATE_TIME_FORMAT_E);
         }
     }
 
@@ -95,6 +101,13 @@ public class EventList {
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
+    /**
+     * Check whether there is overlap between different events.
+     * @param newEvent the new event to be added.
+     * @param index newEvent will not check overlap with index event in event list.
+     * @param eventList list of ongoing events.
+     * @return true if there is no overlap.
+     */
     public static boolean canAddNewEvent(Event newEvent, int index, ArrayList<Schedule> eventList) {
         boolean isOverlap = true;
         for (int i = 0; i < eventList.size(); i++) {
@@ -145,11 +158,20 @@ public class EventList {
                 if (breakFlag) {
                     break;
                 }
-            }
+            }   
         }
         return isOverlap;
     }
 
+    /**
+     * Add an event.
+     * @param description Event description, describes what the Event is.
+     * @param startTime Start time of the Event. Format "HH:MM".
+     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
+     * @param endTime End time of the Event. Foramt "HH:MM".
+     * @param endDay End day of the Event. Format "YYYY/MM/DD".
+     * @throws NPExceptions when start time is after end time or new event has time conflict with events already exist.
+     */
     public static Event getInEventType(String description, String startTime, String startDay, String endTime,
             String endDay) throws NPExceptions {
 
@@ -159,19 +181,31 @@ public class EventList {
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
-            throw new NPExceptions("Starting time is after ending time!");
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
         }
 
         return newEvent;
+    }
+
+    private boolean checkRecurTime(String recur) {
+        String[] details = recur.split(" ");
+
+        if (details[0].trim().matches("^[0-9]*$")) {
+            if(Integer.parseInt(details[0].trim()) <=0 ) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
 
         Event newEvent = getInEventType(description, startTime, startDay, endTime, endDay);
-                
+
         if (!canAddNewEvent(newEvent, -1, taskList)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.add(newEvent);
@@ -192,26 +226,44 @@ public class EventList {
             throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
+        if(!checkRecurTime(recurTime)) {
+            throw new NPExceptions("recurring time should be a positive integer!");
+        }
+
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
         taskList.add(newEvent);
         listSize++;
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
+    /**
+     * Add an Event.
+     * @param description Event description, describes what the event is.
+     * @param startTime Start time of the Event. Format "HH:MM".
+     * @param startDay Start day of the Event. Format "YYYY/MM/DD".
+     * @param endTime End time of the Event. Foramt "HH:MM".
+     * @param endDay End day of the Event. Format "YYYY/MM/DD".
+     * @param recurTime Recur time of the Event. 
+     * @throws NPExceptions when start time is after end time or new event has time conflict with events already exist.
+     */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
             String recurTime) throws NPExceptions {
 
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
+        
+        if(!checkRecurTime(recurTime)) {
+            throw new NPExceptions("recurring time should be a positive integer!");
+        }
 
         Event newEvent = new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo,
                 endInfo.hasInfo, recurTime);
-
+        
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
-            throw new NPExceptions("Starting time is after ending time!");
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
         }
         if (!canAddNewEvent(newEvent, -1, taskList)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.add(newEvent);
@@ -219,22 +271,27 @@ public class EventList {
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
-    public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions{
-        for(int i =0; i <allClasses.size(); i++) {
+    public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions {
+        for (int i = 0; i < allClasses.size(); i++) {
             Event curClass = (Event) allClasses.get(i);
-            if(!canAddNewEvent(curClass, -1, taskList)){
+            if (!canAddNewEvent(curClass, -1, taskList)) {
                 throw new NPExceptions("class clashes with events/other modules!");
             }
         }
-        for(int i =0; i <allClasses.size(); i++) {
+        for (int i = 0; i < allClasses.size(); i++) {
             Event curClass = (Event) allClasses.get(i);
             taskList.add(curClass);
-            reviseLocation(taskList.size()-1, allVenues.get(i));
+            reviseLocation(taskList.size() - 1, allVenues.get(i));
         }
         listSize = taskList.size();
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
+    /**
+     * Change location(vanue) field of an event.
+     * @param index Index of the event to be changed in event list.
+     * @param location New location.
+     */
     public void reviseLocation(int index, String location) {
         taskList.get(index).changeLocation(location);
     }
@@ -247,42 +304,74 @@ public class EventList {
         Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
                 startInfo.hasInfo, endInfo.hasInfo);
         if (!canAddNewEvent(eventToCheck, index, taskList)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
     }
 
+    /**
+     * Change time field of an event.
+     * @param index Index of the event to be changed in event list.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(int index, String startTime, String startDay) throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
     }
-
-    // need handle exceptions when index = -1
+   
+    /**
+     * Change time field of an event.
+     * @param description Description of the event to be changed. 
+     *     This method will find the event from the event list according to description.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @param endTime New end time of the event. Format "HH:MM".
+     * @param endDay New end day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(String description, String startTime, String startDay, String endTime,
             String endDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if (index == -1) {
-            throw new NPExceptions("Event cannot be found!");
+            throw new NPExceptions(EVENT_NOT_EXIST_E);
         }
         reviseTimeInfo(index, startTime, startDay, endTime, endDay);
     }
 
-    // need handle exceptions when index = -1
+    /**
+     * Change time field of an event.
+     * @param description Description of the event to be changed. 
+     *     This method will find the event from the event list according to description.
+     * @param startTime New start time of the event. Format "HH:MM".
+     * @param startDay New start day of the event. Format "YYYY/MM/DD".
+     * @throws NPExceptions if Event does not exist.
+     */
     public void reviseTimeInfo(String description, String startTime, String startDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if (index == -1) {
-            throw new NPExceptions("Event cannot be found!");
+            throw new NPExceptions(EVENT_NOT_EXIST_E);
         }
         reviseTimeInfo(index, startTime, startDay);
     }
 
+    /**
+     * Get the full event list.
+     * @return Arraylist of the full event list.
+     */
     public ArrayList<Schedule> getFullList() {
         return this.taskList;
     }
 
+    /**
+     * Search an event according to its description in event list.
+     * @param description description of the task to search.
+     * @return index of the task in event list. Return -1 if it's not found.
+     */
     public int searchTaskIndex(String description) {
         int index = 0;
         for (Schedule cur : taskList) {
@@ -298,6 +387,9 @@ public class EventList {
         return taskList.get(listSize - 1).toString();
     }
 
+    /**
+     * Delete all tasks in event list.
+     */
     public void deleteAll() {
         if (this.listSize == 0) {
             Ui.deleteAllError();
