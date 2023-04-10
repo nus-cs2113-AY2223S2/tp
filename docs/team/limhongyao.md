@@ -65,20 +65,6 @@ Also contributed the DG and respective PlantUML diagrams for `editstep`, `editin
 16. [#91](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/91)
 17. [#104](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/104)
 
-### PR Reviews
-1. [#12](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/12)
-2. [#15](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/15)
-3. [#21](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/21)
-4. [#24](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/24)
-5. [#25](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/25)
-6. [#43](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/43)
-7. [#51](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/51)
-8. [#58](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/58)
-9. [#110](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/110)
-10. [#115](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/115)
-11. [#117](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/117)
-12. [#124](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/124)
-13. [#129](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/129)
-14. [#130](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/130)
-15. [#132](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/132)
-16. [#137](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/137)
+### Contributions Beyond the Project Team
+* PE Dry Run Tester for [AY2223S2-CS2113-T12-2](https://github.com/AY2223S2-CS2113-T12-2/tp/issues/)
+* PE Dry Run Tester for [AY2223S2-CS2113-W15-1](https://github.com/AY2223S2-CS2113-W15-1/tp/issues)
