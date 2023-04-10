@@ -12,7 +12,7 @@ operation through the Command-Line Interface(CLI).
 - Improved features: [Improved](#improved-features)
 - UG: [UG contributions](#ug-contribution)
 - DG: [DG contribution](#dg-contribution)
-- Team contribution: [Team contribution](#team-contribution-)
+- Team contribution: [Team contribution](#team-contribution)
 
 #### Added features:
   - Venue, Storage, Parser, Event and Command classes
