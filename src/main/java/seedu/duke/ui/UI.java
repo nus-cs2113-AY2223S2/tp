@@ -106,6 +106,8 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
+        } else if (e instanceof RecipeListEmptyException) {
+            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_ADDING_TO_DEFAULT_ERROR + e.getMessage());
         }
@@ -115,6 +117,8 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
+        } else if (e instanceof RecipeListEmptyException) {
+            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_DELETING_FROM_DEFAULT_ERROR + e.getMessage());
         }
@@ -238,7 +242,9 @@ public class UI {
         }
         while (!isValidIntegerInputToDelete(userInput, maxSteps)) {
             showInvalidIndexMessage();
-            System.out.println("Valid range: " + 1 + " to " + maxSteps);
+            if (maxSteps != 0) {
+                System.out.println("Valid range: " + 1 + " to " + maxSteps);
+            }
             requestIndexInput();
             userInput = in.nextLine();
             if (userInput.trim().toLowerCase().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
@@ -294,5 +300,8 @@ public class UI {
     }
     public void showDefaultElseConditionError() {
         System.out.println(StringLib.DEFAULT_ELSE_CONDITION_WARNING);
+    }
+    public void showMinimumIngredientError() {
+        System.out.println(StringLib.MIN_NUM_INGREDIENT_ERROR);
     }
 }

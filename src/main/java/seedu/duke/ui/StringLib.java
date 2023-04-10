@@ -172,7 +172,7 @@ public interface StringLib {
     String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
-    String INVALID_RANGE = "The range you have entered for the index is invalid!\n\n" +
+    String INVALID_RANGE = "The index you have entered is invalid!\n\n" +
             "Valid Range: ";
     String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names that exist. \nPlease use the " +
             "FIND feature to get the specific recipe index to be viewed instead.\n";
@@ -234,4 +234,5 @@ public interface StringLib {
     String EDIT_RECIPE_INGREDIENT_PROMPT = "Which ingredient do you want to edit?\nType 'quit' to exit the edit view";
     String EDIT_RECIPE_STEP_PROMPT = "Which step do you want to edit?\nType 'quit' to exit the edit view";
     String EDIT_NUMBERFORMATEXCEPTION_MESSAGE = "Error! Input should be a positive integer value!";
+    String MIN_NUM_INGREDIENT_ERROR = "There must be at least one ingredient in the recipe!";
 }
