@@ -11,6 +11,7 @@ public class Ui {
     private static final String LINE = "______________________________________________________________________";
 
     private static final String BLANK = "";
+
     public static void showUserMessage(String s) {
         System.out.println(s);
     }
@@ -18,6 +19,7 @@ public class Ui {
     public static void printBlankLine() {
         System.out.println(BLANK);
     }
+
     public static void printFileCreated(boolean b) {
         showLine();
         if (b) {
@@ -76,25 +78,27 @@ public class Ui {
     }
 
     public static void printAppointmentAlreadyMarkedMessage(String uid) {
-        System.out.println("The appointment with this Uid: "+ uid + " has already been marked successfully");
+        System.out.println("The appointment with this Uid: " + uid + " has already been marked successfully");
     }
 
     public static void printAppointmentUnMarkMessage() {
         System.out.println("The appointment has been unMarked successfully");
     }
+
     public static void printAppointmentAlreadyUnMarkedMessage(String uid) {
-        System.out.println("The appointment with this Uid: "+ uid + " has already been unMarked successfully");
+        System.out.println("The appointment with this Uid: " + uid + " has already been unMarked successfully");
     }
+
     public static void showHelpMessage() {
         System.out.println("These are the following Sniff commands available:\n"
                 + "Add consultation appointment:\n"
                 + " consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME\n"
                 + "Add vaccination appointment:\n"
                 + " vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE " +
-                "vt/TIME\n"
+                        "vt/TIME\n"
                 + "Add surgery appointment:\n"
                 + " surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE " +
-                "st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL\n"
+                        "st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL\n"
                 + "Listing all appointments:\n"
                 + " list\n"
                 + "Removing an appointment:\n"
@@ -103,9 +107,18 @@ public class Ui {
                 + " find a/ANIMAL_TYPE\n"
                 + " find t/APPOINTMENT_TYPE \n"
                 + " find uid/UID\n"
+                + " find d/DATE\n"
                 + "Mark or UnMark an appointment:\n"
                 + " mark uid/UID\n"
                 + " unMark uid/UID\n"
+                + "Editing an appointment:\n"
+                + " edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME\n"
+                + " edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE" +
+                        "vt/TIME\n"
+                + " edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE" +
+                        "st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL\n"
+                + "Archiving appointments:\n"
+                + " archive\n"
                 + "Exiting the program:\n"
                 + " bye\n"
                 + "Additional notes:\n"
