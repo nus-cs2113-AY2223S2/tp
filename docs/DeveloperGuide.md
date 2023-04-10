@@ -39,9 +39,7 @@
     - [Appendix E.2 - Deleting a recipe](#appendix-e2---deleting-a-recipe)
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
-original source as well}
+1. [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Setup and Prerequisites
 1. Ensure you have `Java 11` installed.
