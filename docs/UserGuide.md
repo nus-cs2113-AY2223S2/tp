@@ -469,12 +469,12 @@ ____________________________________________________________
 
 
 ### Filter Venues
-Filter the venues based on the capacity specified by the user.
+Filters and returns venues that have a capacity greater than or equal to the size specified by the user.
 
 * Format: `filter venues [SIZE]`
     * `[SIZE]` must be an integer greater than or equal to zero.
 
-* Example of usage: `filter venues 10`
+* Example of usage: `filter venues 80`
 
 * Expected outcome:
 
@@ -484,7 +484,6 @@ ____________________________________________________________
 2. Hon Sui Sen Auditorium 1 Hon Sui Sen Drive (S) 117588 100
 3. LT1 10 Kent Ridge Crescent (S) 119260 100
 4. LT6 1 Hon Sui Sen Drive (S) 119260 100
-5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
 
