@@ -87,7 +87,7 @@ Within the `code block` you may see segments of text wrapped in `<chevrons>`. Th
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
-    ![startup.png](images/startup.png)  
+    ![startup2.png](images/startup2.png)  
     <sub>Fig 2: Command to start using Meal Companion.</sub>
 
 7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
