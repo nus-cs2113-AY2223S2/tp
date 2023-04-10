@@ -18,7 +18,7 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /**
- * Contains operations to manipulate the task list
+ * Contains operations to make changes to the list of tasks or the class schedule
  */
 public class TaskList {
     private static final int DESCRIPTION_OFFSET = 12;
