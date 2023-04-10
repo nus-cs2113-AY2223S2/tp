@@ -1,16 +1,39 @@
 # BankWithUs User Guide
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Quick start guide
+## <span style="color:#CC0000">Table of contents:</span>
+* [Quick-start guide](#quick-start)
+* [Features](#features)
+    * [Help message](#help-message)
+    * [Add new account](#add-account)
+    * [Switch Account](#switch-current-account--switch-to)
+    * [Delete Account](#deleting-an-account--delete)
+    * [View Account](#view-accounts--view-account)
+    * [Deposit](#depositing-amount--deposit)
+    * [Withdraw](#withdraw--withdraw)
+    * [Transaction History](#list-all-transactions--view-transactions-all)
+    * [Save Goal](#add-a-savings-goal-to-the-current-account--set-save-goal)
+    * [Withdraw Limit](#set-a-withdrawal-limit--set-wl)
+    * [Check Withdraw Limit](#check-the-current-withdrawal-limit--check-wl)
+    * [Delete Transaction History](#delete-a-transaction-record--delete-transaction)
+    * [Exiting the program](#exiting-the-program--exit)
+* [Frequently Asked Questions (FAQ)](#FAQ)
+* [Command Summary](#command-summary)
+---
+<a id="quick-start"></a>
+## Quick-start guide 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+
 2. Download the latest `BankWithUs.jar` from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases).
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BankWithUs app.
 
+
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar BankWithUs.jar` command to run the application.<br>
+
 
 5. Follow the instruction as per the CLI and create your new account. e.g. typing **`help`** and pressing Enter will open the help option.<br>
    Some example commands you can try:
@@ -25,11 +48,16 @@
 
        * `exit` : Exits the application.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. For first-time user the program will ask you to create one account when launched.
+
+
+7. Refer to the [Features](#features) below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+
+## Features<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -38,17 +66,25 @@
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `deposit AMOUNT`, `AMOUNT` is a parameter. `deposit 300` is an example of a valid command syntax.
 
+
+* All `AMOUNT` parameter has to be less than three decimal places or it would not be taken in.<br>
+e.g. `deposit 100.111` will be treated as an input error
+
+
 * Parameters MUST be in the specified order for the command to take appropriate effect.<br>
 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `view-transactions-all`, `exit`, `add-account`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
+
+
 * We use `>>` to indicate the user input. <br>
   e.g. `>>help` means the user input "help" and press enter.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help`<a id="help-message"></a>
+
 
 Shows a list of all the commands available and what they do.
 
@@ -74,7 +110,7 @@ delete-transaction <transaction index>: deletes the transaction with the given t
 exit: quits program and saves
 ```
 
-### Adding an account: `add-account`
+### Adding an account: `add-account` <a id="add-account"></a>
 
 Initiates the process of adding a new account. The user is not required to input any parameters when calling the command.
 However, once the command starts, it will prompt the user for their name and initial balance.
@@ -329,11 +365,14 @@ Please keep in mind that this will result in irreversible data loss.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ <a id="FAQ"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+
+**Q**: Why was my recurring transactions not updated in the text file? <br>
+**A**: The text file is updated every time when user exit the program.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
