@@ -48,12 +48,14 @@ ___
 * [Exit Program](#exit-the-program)
 * [Add User Ingredient](#add-user-ingredient)
 * [Delete User Ingredient](#delete-user-ingredient)
+* [View Available Ingredients](#view-available-ingredients)
+* [Help Tab](#help-tab)
 
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
 * Please follow the below-mentioned format.
 
-Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
+Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
 
 Examples of usage:
 
@@ -62,6 +64,9 @@ Examples of usage:
 
 
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
+* There is no `and` between two separate ingredients.
+  * If user types, `meat=100 and chicken=200`, it will get stored as `meat=100`, `and chicken=200`.
+  * Use `and` only in cases like: `pepper and spices=100`, `meat and vegetables=200`.
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
     * **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient
       and the recipe
@@ -95,6 +100,8 @@ Format: `edit /r [RECIPE_NAME]`
 * Type the recipe name after typing `/r `.
 * If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
 * Follow the proper format while editing/adding ingredients.
+* **NOTE:** If you add the same ingredient while editing, then the quantity will be the only one
+that will be changed to avoid duplicates.
 
 Example of usage:
 
@@ -387,7 +394,19 @@ Example of usage:
 View user's ingredients from the ingredient list.
 Format : `view_ingredients`
 
----
+<br>
+
+### View available ingredients
+
+View the available ingredients.
+Format: `available`
+
+<br>
+
+### Help Tab
+
+View all the 21 proper commands used in the recipe manager.
+Format: `help`
 
 ## Command Summary
 
@@ -411,4 +430,6 @@ Format : `view_ingredients`
 | View user ingredients              | `view_ingredients`                                                                                          |
 | Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
 | Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |
+| Available ingredients              | `available`                                                                                                 |
 | Exit the program                   | `bye`                                                                                                       |
+| Help Tab                           | `help`                                                                                                      |

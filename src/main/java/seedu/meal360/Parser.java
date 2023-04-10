@@ -20,9 +20,10 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
-            "[eg:chicken=100] and \"done\" when finished entering ingredients!";
+    String recipeErrorMessage1 = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
+            "[eg:chicken=100]";
 
+    String recipeErrorMessage2 = "Enter \"done\" when finished entering ingredients!";
 
     /**
      * This method is designed to combine multiple words into a single sentence
@@ -101,6 +102,7 @@ public class Parser {
                     throw new IllegalArgumentException("Ingredient name cannot be empty");
                 }
                 ingredients.put(currentIngredient, quantity);
+                currentIngredient = null;
             }
         }
         return ingredients;
@@ -110,7 +112,6 @@ public class Parser {
     /**
      * This method is designed to add in a recipe to the user's
      * recipe list.
-     *
      * The method will also check if a recipe already exists or not
      * to prevent duplicate recipes.
      *
@@ -130,39 +131,34 @@ public class Parser {
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Please Enter The Ingredients & Quantity (enter \"done\" when complete): ");
+        ui.printMessage("Please Enter The Ingredients & Quantity (enter \"done\" when complete): ");
+        ui.printSeparator();
         while (true) {
             try {
                 String line = userInput.nextLine();
                 if (line.equals("done")) {
                     ui.printSeparator();
                     if (addedIngredient == 0 || ingredients.size() == 0) {
-                        ui.printMessage(
-                                "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                        ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                         ui.printSeparator();
                     } else {
                         break;
                     }
                 } else {
                     addedIngredient = 1;
-                    String[] command = line.trim().split(" and ");
+                    String[] command = line.trim().split(" ");
                     ingredients = parseIngredientName(command);
-                    boolean ingredientsInCorrectFormat = true;
-                    for (String s : command) {
-                        if (!s.contains("=")) {
-                            ingredientsInCorrectFormat = false;
-                            break;
-                        }
-                    }
-                    if (ingredients.size() == 0 || !ingredientsInCorrectFormat) {
+                    if (ingredients.size() == 0) {
                         ui.printSeparator();
-                        ui.printMessage(recipeErrorMessage);
+                        ui.printMessage(recipeErrorMessage1);
+                        ui.printMessage(recipeErrorMessage2);
                         ui.printSeparator();
                     }
                 }
             } catch (IllegalArgumentException e) {
                 ui.printSeparator();
-                ui.printMessage(recipeErrorMessage);
+                ui.printMessage(recipeErrorMessage1);
+                ui.printMessage(recipeErrorMessage2);
                 ui.printSeparator();
             }
         }
@@ -196,8 +192,10 @@ public class Parser {
             return null;
         }
         recipeToEdit = recipeList.findByName(recipeName);
-        System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        ui.printSeparator();
+        ui.printMessage("Do you want to edit recipe fully or partially or add new ingredients?");
+        ui.printMessage("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        ui.printSeparator();
         int index;
         Scanner getNum = new Scanner(System.in);
         while (true) {
@@ -217,13 +215,16 @@ public class Parser {
             }
         }
         if (index == 1) {
-            System.out.println("Please Enter New Ingredients & Quantity: ");
+            ui.printSeparator();
+            ui.printMessage("Please Enter New Ingredients & Quantity: ");
+            ui.printSeparator();
             while (true) {
                 try {
                     String line = userInput.nextLine();
                     if (line.equals("done")) {
                         ui.printSeparator();
                         if (addedIngredient == 0 || ingredients.size() == 0) {
+                            ui.printSeparator();
                             ui.printMessage(
                                     "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                             ui.printSeparator();
@@ -238,23 +239,27 @@ public class Parser {
                             recipeList.editRecipe(recipeToEdit, ingredients);
                         } else {
                             ui.printSeparator();
-                            ui.printMessage(recipeErrorMessage);
+                            ui.printMessage(recipeErrorMessage1);
+                            ui.printMessage(recipeErrorMessage2);
                             ui.printSeparator();
                         }
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage(recipeErrorMessage2);
                     ui.printSeparator();
                 }
             }
         } else if (index == 2) {
-            System.out.println("These are the ingredients for the recipe:");
+            ui.printSeparator();
+            ui.printMessage("These are the ingredients for the recipe:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println("Which ingredient do you want to change?");
+            ui.printMessage("Which ingredient do you want to change?");
+            ui.printSeparator();
             int ingredientIndex = 0;
             Scanner getIndex = new Scanner(System.in);
             while (true) {
@@ -279,7 +284,8 @@ public class Parser {
             for (String ingredient : recipeToEdit.getIngredients().keySet()) {
                 if (ingredientIndex == count) {
                     ingredientToRemove = ingredient;
-                    System.out.println("Ingredient to be changed:");
+                    ui.printSeparator();
+                    ui.printMessage("Ingredient to be changed:");
                     ui.printSeparator();
                     String toPrint = String.format("%s(%d)", ingredient,
                             recipeToEdit.getIngredients().get(ingredient));
@@ -289,7 +295,9 @@ public class Parser {
                 }
                 count++;
             }
-            System.out.println("Please enter the new ingredient:");
+            ui.printSeparator();
+            ui.printMessage("Please enter the new ingredient:");
+            ui.printSeparator();
 
             while (true) {
                 try {
@@ -310,24 +318,28 @@ public class Parser {
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage("Enter only 1 ingredient!");
                     ui.printSeparator();
                 }
             }
         } else {
             HashMap<String, Integer> newIngredientList = recipeToEdit.getIngredients();
-            System.out.println("These are the current ingredients:");
+            ui.printSeparator();
+            ui.printMessage("These are the current ingredients:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println("Please Enter Additional Ingredients & Quantity: ");
+            ui.printMessage("Please Enter Additional Ingredients & Quantity: ");
+            ui.printSeparator();
             while (true) {
                 try {
                     String line = userInput.nextLine();
                     if (line.equals("done")) {
                         ui.printSeparator();
                         if (addedIngredient == 0 || ingredients.size() == 0) {
+                            ui.printSeparator();
                             ui.printMessage(
                                     "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                             ui.printSeparator();
@@ -343,13 +355,15 @@ public class Parser {
                             recipeList.editRecipe(recipeToEdit, newIngredientList);
                         } else {
                             ui.printSeparator();
-                            ui.printMessage(recipeErrorMessage);
+                            ui.printMessage(recipeErrorMessage1);
+                            ui.printMessage(recipeErrorMessage2);
                             ui.printSeparator();
                         }
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage(recipeErrorMessage2);
                     ui.printSeparator();
                 }
             }
