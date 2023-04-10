@@ -159,8 +159,6 @@ How `Parser` works:
    from `Command` and
    have corresponding `execute()` that carry out their specific instructions.)
 
-[^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
-
 The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
 command: `/add -d McDonalds -c Food -p 10.50`
 
