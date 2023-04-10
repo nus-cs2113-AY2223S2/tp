@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+-> ":ListFoundNusModsCommand": command.execute()
+activate ":ListFoundNusModsCommand"
+":ListFoundNusModsCommand" -> "<<class>>\nui:UI" : printFoundNusModules(foundNusModList, nusModCode, universities)
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Start of Found List Message
+"<<class>>\nui:UI" <-- UserConsole
+
+"<<class>>\nui:UI" -> UserConsole : Print Start of Line String
+"<<class>>\nui:UI" <-- UserConsole
+
+    loop for each module in the foundNusModList
+    "<<class>>\nui:UI" -> "foundNusModList:ArrayList<Module>"
+    activate "foundNusModList:ArrayList<Module>"
+    create ":Module"
+    "foundNusModList:ArrayList<Module>" -> ":Module"
+    activate ":Module"
+    "foundNusModList:ArrayList<Module>" <-- ":Module"
+    deactivate ":Module"
+    "<<class>>\nui:UI" <-- "foundNusModList:ArrayList<Module>"
+    deactivate "foundNusModList:ArrayList<Module>"
+
+    "<<class>>\nui:UI" -> ":Module": getModuleCode()
+    "<<class>>\nui:UI" <-- ":Module":moduleCode
+
+    "<<class>>\nui:UI" -> ":Module": getModuleName()
+    "<<class>>\nui:UI" <-- ":Module": moduleName
+
+    "<<class>>\nui:UI" -> ":Module": getModuleMCs()
+    "<<class>>\nui:UI" <-- ":Module": moduleMCs
+
+    create "universities:ArrayList<University>"
+    "<<class>>\nui:UI" -> "universities:ArrayList<University>": get(puIndex).getUnivAbbName()
+    activate "universities:ArrayList<University>"
+    "<<class>>\nui:UI" <-- "universities:ArrayList<University>": currPuAbbr
+    deactivate "universities:ArrayList<University>"
+
+    alt currModulePuId == prevModulePuId
+        "<<class>>\nui:UI" -> UserConsole : Print out printIndex + moduleCode + moduleName + moduleMcs
+        "<<class>>\nui:UI" <-- UserConsole
+    else
+        "<<class>>\nui:UI" -> UserConsole : Println out Line + currPuAbbr + Line
+        "<<class>>\nui:UI" <-- UserConsole
+    end
+    end
+    deactivate ":ListFoundNusModsCommand"
+    deactivate "<<class>>\nui:UI"
+
+@enduml

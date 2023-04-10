@@ -558,6 +558,24 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 5. If entertainment cost has changed, EditEntertainmentCommand would call UI class to print a
    EditCostMessage and return.
 
+### List Found Nus Mods Command
+
+Allows the user to search for mappable PU's modules from the specific NUS module code inputted.
+> Syntax: /search [Specific Nus Module Code]
+
+Sequence Diagram of List Found Nus Mods Command.
+![ListFoundNusModsCommand.png](diagrams%2FCommands%2FListFoundNusModsCommand.png)
+
+**Explanation**
+1. ListFoundNusModsCommand object is initialized with ArrayList<Modules> foundNusModList containing all 
+mappable PU's modules, nusModCode containing the specific NUS module code inputted and the Arrayist universities.
+2. ListFoundNusModsCommand calls printFoundNusModules() of UI Class passing these three objects as arguments.
+3. printFoundNusModules() first filters out modules of the specific Partner University using uniID from the
+   ArrayList<Module> modules.
+4. printFoundNusModules() loops through the ArrayList<Modules> foundNusModList to get the corresponding PU's moduleCode,
+moduleName, moduleMCs and currPuAbbr.
+5. In the loop, it will print out to the User Control the list of mappable PU's module according to their PU university 
+index.
 
 ## Product scope
 
