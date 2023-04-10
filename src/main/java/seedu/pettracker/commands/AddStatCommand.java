@@ -38,7 +38,7 @@ public class AddStatCommand extends Command {
         } catch (InvalidStatException e) {
             ui.printInvalidStatMessage();
         } catch (PetNotFoundException e) {
-            ui.petNotFoundMessage();
+            ui.printPetNotFoundMessage();
         }
     }
 
