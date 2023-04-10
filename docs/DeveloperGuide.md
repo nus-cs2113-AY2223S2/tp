@@ -315,7 +315,9 @@ Similar to the process for `edit`, `MainInputParser` has recognized the command,
 
 ### 4.4. Find Command
 
+The ```FindCommand``` provides the search functionality for finding a specific or few transactions from the list of transactions by their respective descriptions. 
 
+The command is able to search for all characters matching the keyword in the expenditure descriptions and the keyword is case-sensitive
 
 ### 4.5. Duplicate Command
 
