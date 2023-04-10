@@ -63,12 +63,8 @@ Tests the saving and reading of data to and from the local hard disk and checks 
 * Helped maintain the issue tracker
   - Add and close issues that have been completed
   - Tagged issues with their appropriate tags
+* Developed the theme of project website ```_layouts/default.html```
 
 ### Review/mentoring contributions
 * Helped review PRs and made comments to them throughout the project
 * Helped debug code and issues faced by team members
-
-### Contributions beyond the project team:
-* Developed the ```_layouts/default.html```
-  - Add theming with bootstrap
-  - Night light mode toggle
