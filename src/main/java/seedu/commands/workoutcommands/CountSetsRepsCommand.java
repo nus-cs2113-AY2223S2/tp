@@ -4,7 +4,7 @@ import seedu.commands.Command;
 
 import java.util.Date;
 
-//@@ author guillaume-grn
+//@@author guillaume-grn
 public class CountSetsRepsCommand extends Command {
     private final Date dayInSpecificWeekDate;
 

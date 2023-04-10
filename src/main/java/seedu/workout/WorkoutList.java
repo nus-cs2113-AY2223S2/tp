@@ -49,7 +49,13 @@ public class WorkoutList {
         return workouts;
     }
 
-    //@@ author guillaume-grn
+    //@@author guillaume-grn
+    /**
+     * Counts the number of sets and reps for each exercise in a specific week.
+     *
+     * @param dateInSpecificWeek Date in the specific week.
+     * @return String representation of the number of sets and reps for each exercise in the specific week.
+     */
     public String countSetsReps(Date dateInSpecificWeek) {
         ArrayList<Workout> workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dateInSpecificWeek);
         HashMap<String, ArrayList<Integer>> distinctExercises = new HashMap<>();
@@ -70,6 +76,15 @@ public class WorkoutList {
         return displayCountSetsReps(distinctExercises, dateInSpecificWeek);
     }
 
+    /**
+     * Displays the count of sets and reps for each distinct exercise performed in a specific week.
+     *
+     * @param distinctExercises A HashMap containing distinct exercises names as keys and an ArrayList
+     *               of sets and reps as values.
+     * @param dateInSpecificWeek Date representing a specific week to display count of sets and reps.
+     * @return A String representation of the count of sets and reps for each distinct exercise performed
+     *               in the specific week.
+     */
     //@@ author ZIZI-czh
     public static String displayCountSetsReps(HashMap<String, ArrayList<Integer>> distinctExercises,
                                               Date dateInSpecificWeek) {
@@ -93,15 +108,21 @@ public class WorkoutList {
         return output + Ui.line();
     }
 
-    //@@ author guillaume-grn
+    //@@author guillaume-grn
+    /**
+     * Returns a list of workouts that occurred within a specific week.
+     *
+     * @param dayInSpecificWeekDate Date representing a specific day in a week to get workouts from.
+     * @return ArrayList of Workout objects that occurred within the specified week.
+     */
     public ArrayList<Workout> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
         ArrayList<Workout> workoutsInSpecificWeek = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
-        Date startOfWeekDate = calendar.getTime();
+        Date startOfWeekDate = calendar.getTime(); //Monday of the specific week
         calendar.add(Calendar.DAY_OF_WEEK, 6);
-        Date endOfWeekDate = calendar.getTime();
+        Date endOfWeekDate = calendar.getTime(); //Sunday of the specified week
         for (Workout workout : workouts) {
             if (workout.getDate().compareTo(startOfWeekDate) >= 0 && workout.getDate().compareTo(endOfWeekDate) <= 0 ) {
                 workoutsInSpecificWeek.add(workout);

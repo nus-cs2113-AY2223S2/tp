@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@@author guillaume-grn
 public class ExerciseTest {
 
     @Test

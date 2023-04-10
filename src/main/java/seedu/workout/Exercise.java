@@ -32,14 +32,24 @@ public class Exercise {
         return name + ' ' + weight + ' ' + repsPerSet;
     }
 
-    //@@ author guillaume-grn
+    //@@author guillaume-grn
+    /**
+     * Returns the number of sets for the exercise.
+     *
+     * @return the number of sets for the exercise
+     */
     public int getSetsCount() {
         String repsPerSet = this.repsPerSet;
         String[] sets = repsPerSet.split(" ");
         return sets.length;
     }
 
-    //@@ author guillaume-grn
+    //@@author guillaume-grn
+    /**
+     * Returns the total number of reps for the exercise.
+     *
+     * @return the total number of reps for the exercise
+     */
     public int getRepsCount() {
         String repsPerSet = this.repsPerSet;
         String[] sets = repsPerSet.split(" ");
