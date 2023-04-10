@@ -61,7 +61,7 @@ public class Ui {
      * @param index the index of the flashcard at the point of deletion
      */
     public void printSuccessfulDelete(int index) {
-        System.out.println("Understood. The card has been deleted. " + index);
+        System.out.println("Got it. Deleted the flashcard at index " + index);
     }
 
     /**
