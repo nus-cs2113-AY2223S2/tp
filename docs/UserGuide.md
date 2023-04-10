@@ -32,6 +32,7 @@
     * [Expense management command](#expense-management-command)
 <!-- TOC -->
 
+
 ## Introduction
 
 Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps
