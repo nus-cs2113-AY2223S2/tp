@@ -9,7 +9,7 @@
 ---
 
 ##### Code contributed
-1242 LOC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linuspuah&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
+2266 LOC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linuspuah&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
    - 71 lines documentation
    - 483 function-code
    - 534 test-code
@@ -23,15 +23,16 @@
 2. Enhance `AddCommand` function
    - Create feature to deal with adding of repeated items ([#137](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/137))
 3. Error catching and Bug Handling
-   - Added various Exceptions in `exception` package ([#37](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/37/commits/ed24adb50654c55001ebe477d860c36cb6a6b9d5))
+   - Added various Exceptions in `exception` package ([#37](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/37/commits/ed24adb50654c55001ebe477d860c36cb6a6b9d5), [#165](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/165/commits))
    - Added try-catch statements to deal with functional errors ([#79](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/79/commits))
-   - Bug Handling ([#36](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/36/files), )
+   - Bug Handling ([#36](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/36/files),[[#167](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/167/files))
 4. Refactor packing list to use `ArrayList<>` instead of `String[]` ([#23](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/23/files#diff-215cdbb994affff07183e82ab3ac790e169e38469c4ec7d920f6ede6d2957f45))
 5. Add J-unit Test for the majority of code base
    - Command Class J-unit tests ([#140](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/140), [#151](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/151))
 6. Create feature 
    - `listunpacked` ([#151](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/151))
    - `deletelist` ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
+7. Add JavaDocs ([#163](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/163/commits))
 ---
 
 ##### Contributions to the [UG](../UserGuide.md)
@@ -40,7 +41,13 @@
 ##### Contribution to the [DG](../DeveloperGuide.md)
 1. Update User Stories ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
 2. Add explanation of overall command mechanism for the whole application ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits)) 
-3. Add explanation and [sequence diagram](#contributions-to-the-developer-guide--extracts--) for feature of adding repeated items in `AddCommand` ([#138](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/138))
+3. Add explanation for Exceptions ([#179](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/179/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b))
+4. Add explanation for Parser Class ([#184](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/184/files))
+4. Add explanation and [sequence diagram](#contributions-to-the-developer-guide--extracts--) for feature of
+- adding repeated items in `AddCommand` ([#138](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/138),[#158](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/158/commits/6d154b8464ba4d57e8d19a958e8be0b554e73cd6#diff-60cb84c47c48c2d69d1f587d9c9ed3af7d99acf2c3b11cd94c8d86eb532e32e2))
+- `runBagPacker()` overall Sequence Diagram ([#176](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/176/commits/0ae5782514e02b5c755b689550d1c595449d1128))
+
+
 ---
 ##### Contributions to team-based tasks
 Plan and create the framework for BagPacker application
@@ -63,8 +70,8 @@ Managed internal deadlines for group tasking
 ---
 
 ##### Contributions to the Developer Guide (Extracts):
-
-![AddExistingItemDiagram.png](..%2FumlDiagrams%2FAddExistingItemDiagram.png)
+![AddExistingItemDiagram.png](..%2Fdiagrams%2FAddExistingItemDiagram.png)![BagPackerClassDiagram.png](..%2Fdiagrams%2FBagPackerClassDiagram.png)![BagPackerSequenceDiagram.png](..%2Fdiagrams%2FBagPackerSequenceDiagram.png)
+![ExceptionClassDiagram.png](..%2Fdiagrams%2FExceptionClassDiagram.png)![ExecutePackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecutePackCommandSequenceDiagram.png)![ExecuteUnpackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecuteUnpackCommandSequenceDiagram.png)
 ---
 
 ##### Contributions to the User Guide (Extracts):
