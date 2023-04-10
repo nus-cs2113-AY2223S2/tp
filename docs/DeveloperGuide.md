@@ -447,8 +447,8 @@ Reference Frames :
 
 The Deck Feature currently supports the following functionalities :
 
-- add a `Deck` to a `Card`
-- add a `Deck` to a `Tag`
+- add a `Card` to a `Deck`
+- add a `Tag` to a `Deck`
 - delete a `Deck` from the `DeckList`
 - delete a `Card` from a `Deck`
 - delete a `Tag` from a `Deck`
@@ -461,6 +461,107 @@ The Deck Feature currently supports the following functionalities :
 
 This guide will show two of the more complex implementation of the tag features, other tag-related features will be
 similar :
+
+#### Add Card to the Deck
+
+This is the implementation of adding a card to the deck in the following format 
+`card deck {-i INDEX_NUMBER | -c CARDUUID } -d {DECK_NAME}`. This command adds the card to a certain deck, if the 
+deck already exists, if it doesn't. then a new deck is created and the card is added to it. The points below roughly
+elucidate what happens internally when this command is run:
+
+- When a user enters the command above, the input is passed on to the `Parser` class, which calls its method
+  `Parser::parseCommand()`.
+
+
+- Upon detecting the `card` keyword, the input is passed to the
+  `CardKeywordParser::parseTokens()` method.
+
+
+- Based on this, the method returns a call to the method
+  `CardKeywordParser::handleAction()` which eventually leads to the `CardKeywordParser::handleDeck` method due to the
+  presence of the keyword `deck` in the input.
+
+
+- This method returns the constructor
+  `AddCardToDeckCommand::AddCardToDeckCommand(deckName, cardSelector)`.
+
+
+- This leads to the triggering of the `AddCardToDeckCommand::execute()` method, which then internally calls the
+`AddCardToDeckCommand::addCardToDeck()`, only after the card which needs to be added to the deck is identified by the
+`CardList::findCard(cardSelector)` method.
+
+
+- Next, the deck to which the card must be added is identified by using the `DeckList::findDeckFromName(deckName)`. The
+`cardUUID` of the card which needs to be added to the deck is obtained via `Card::getUuid()`.
+
+
+- Subsequently, we then check to see if the deck to which the card must be added to is null or not. If it null it means
+that the deck was never initialized to begin with. In order to initialize it, we first print a message tp the user
+using `UserInterface::printDeckCreationSuccess()`, followed by new `Deck` object creation using its constructor
+`Deck::deck(deckName, cardToAddUUID)`. Next, the card is added to the `HashSet` of the `Deck` object using 
+`Deck::addCardToSet(cardToAddUUID)` and the `Deck` object is added to the `deckList` by `DeckList::addDeck()`.
+
+
+- If the deck to which the card must be added is not null, then we simply add the card to the `Deck` object's
+`HashSet` and `ArrayList`. **The `HashSet` is an aggregation of all the cards in the `Deck` object, whereas the 
+`ArrayList` only contains `CardUUID` which were added separately to the `Deck`**.
+
+
+- Lastly, the `DeckUUID` is added to the `Card` object as well, this is to enable better deletion and adding
+algorithms.
+
+The sequence diagram is as such:
+![Add Cards to Deck](img/AddCardToDeck.png)
+
+Here is the reference frame that has been abstracted out:
+![Add Cards to Deck Reference Frame](img/AddCardToDeckRef.png)
+
+#### List Cards and Tags under a Deck
+
+This is the implementation of `deck list -d {DECK_NAME}`. The command lists the individual cards and tags under
+the `Deck` object.
+
+- When a user enters the command above, the input is passed on to the `Parser` class, which calls its method
+`Parser::parseCommand()`.
+
+
+- Upon detecting the `deck` keyword, the input is passed to the 
+`DeckKeywordParser::parseTokens()` method. 
+
+
+- Based on this, the method returns a call to the method 
+`DeckKeywordParser::handleAction()` which eventually leads to the `DeckKeywordParser::handleList` method due to the 
+presence of the keyword `list` in the input. 
+
+
+- This method returns the constructor 
+`ListItemsDeckCommand::ListItemsDeckCommand()` due to the presence of the `-d` flag.
+
+
+- Now, the `ListItemsDeckCommand::execute()` triggers the execution of the `ListItemsDeckCommand::
+findCardsUnderDeck(cardList, deckList)`. 
+
+
+- The sole purpose of this method is to gather a `CardList` of all cards that
+are under the `Deck` **directly**, this does not include the cards which are under the deck via tags. 
+
+
+- In order to
+accomplish this, the method uses `DeckList::findDeckFromName(deckName)` to obtain the revelant deck and 
+`Deck::getCardsUUID` to obtain an `ArrayList` of the `CardUUIDs` under the deck. Next, a perusal of the `CardList` is 
+done in order to match the `CardUUId` with the relevant `Card`, if matches are found, they are added to the 
+`foundCardList`.  
+
+
+- Next, the list of cards is printed using the `UserInterface::printCardList(foundCardList)`.
+
+A similar process is done to obtain the `TagList` containing the list of tags under the deck and is printed, it can be 
+observed in the sequence diagram below:
+
+![List Items under a Deck](img/ListItemDeckFinal.png)
+
+The reference frames provided are very similar to the ones provided above in the 
+[UnTag Cards section](#list-cards-under-a-tag)
 
 ---
 

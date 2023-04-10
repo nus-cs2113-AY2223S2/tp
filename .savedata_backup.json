@@ -1,27 +1,6 @@
 {
   "decks": [
     {
-      "deckName": "deck1",
-      "deckUUID": {
-        "uuid": "c83e08ad-e5b7-4812-9dd1-4b44504386ad"
-      },
-      "cardsSet": [],
-      "cardUUIDIntegerHashMap": {},
-      "cards": [
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        }
-      ],
-      "tags": [
-        {
-          "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
-        },
-        {
-          "uuid": "f0721ed3-f357-4a6d-9d35-cd436ec5d280"
-        }
-      ]
-    },
-    {
       "deckName": "decktag",
       "deckUUID": {
         "uuid": "46f82128-0ee7-4f8c-baa3-e4ca255eeb45"
@@ -137,10 +116,7 @@
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
       ],
-      "cardUUIDIntegerHashMap": {
-        "619c689d-395a-4bb8-ab00-6ae9972bb929": 1,
-        "1ddd9a67-f56c-4914-99c0-2f90c580f0e9": 1
-      },
+      "cardUUIDIntegerHashMap": {},
       "cards": [
         {
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
@@ -167,11 +143,7 @@
           "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
         }
       ],
-      "decks": [
-        {
-          "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
-        }
-      ]
+      "decks": []
     },
     {
       "uuid": {
@@ -268,7 +240,6 @@
         }
       ],
       "decks": []
-
     },
     {
       "uuid": {
@@ -281,7 +252,6 @@
         }
       ],
       "decks": []
-
     }
   ],
   "cards": [
@@ -314,11 +284,7 @@
           "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
         }
       ],
-      "decks": [
-        {
-          "uuid": "c83e08ad-e5b7-4812-9dd1-4b44504386ad"
-        }
-      ]
+      "decks": []
     },
     {
       "uuid": {
@@ -402,13 +368,11 @@
           "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
         }
       ],
-
       "decks": [
         {
           "uuid": "7f688a43-b13c-40ab-926d-72ae9acf8605"
         }
       ]
-
     }
   ]
 }
