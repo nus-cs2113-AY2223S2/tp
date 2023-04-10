@@ -302,7 +302,6 @@ Unmarks an existing accommodation or tuition expenditure in the expenditure list
 - Unmarking expenditures that are not accommodation or tuition expenditures are invalid.
 - Unmarking accommodation or tuition expenditures that is already marked is invalid.
 
-<div style="page-break-after: always;"></div>
 ### 4.9. Setting a budget
 
 Sets a budget amount that one would like to keep within.
