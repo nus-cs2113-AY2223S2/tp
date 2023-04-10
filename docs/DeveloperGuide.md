@@ -317,8 +317,21 @@ The process for viewtype is similar as viewdate with an additional step within V
 that converts the input string into a string recognisable for comparison in the opt block. 
 
 ### 4.8. Set Budget Command
+The set budget command allows the user to insert a temporary budget which they can use to compare their expenditures with.
+This provides an insight on their financial health when compared to their current budget for the month, day or even for the type of expenditure.
 
-### 4.9. Show Rates Command
+### 4.9. Check Command
+The check command allows the user to compare their expenditure with their budget.
+The user can either check with the total expenditure using the `check` command, or provide an optional field to filter their comparison.
+
+The sequence diagram for check can be observed as follows.
+<p align="center">
+    <img src="team/images/checkCommand.png">
+    <br/>
+    <i>Figure 9: UML diagram of check command </i>
+</p>
+
+### 4.10. Show Rates Command
 
 `showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
 `showrates` is a simple command that calls on the 
