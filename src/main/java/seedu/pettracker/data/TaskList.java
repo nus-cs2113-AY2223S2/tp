@@ -33,7 +33,7 @@ public class TaskList {
         if (todoDescription.trim().isEmpty()) {
             throw new EmptyTaskNameException();
         }
-
+        assert todoDescription.length() > 0;
         Task newTask = new Task(todoDescription, time);
         taskList.add(newTask);
         numberOfTasks += 1;
@@ -82,6 +82,7 @@ public class TaskList {
      * Prints the list of tasks
      */
     public static void listTasks() {
+        assert taskList != null;
         for (int i = 0; i < numberOfTasks; i++) {
             String number = Integer.toString(i + 1);
             String icon = taskList.get(i).getStatusIcon();
