@@ -49,6 +49,7 @@ Code Contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dash
 - Introduction
 - Getting Started
 - User Stories
+- Manual Testing
 
 ### Contributions to team tasks
 * Updated integer values of ingredients to double for decimals and fractional usage in an early iteration, then reverted to integer and subsequently updated it across all source files and all test files
