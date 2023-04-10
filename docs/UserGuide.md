@@ -518,7 +518,7 @@ Successfully removed deck deck1 from the deck list.
 
 ### Delete a card/tag from deck:
 
-`deck delete -d DECK_NAME {-c CARD_UUID | -t TAG_UUID}`
+`deck delete -d DECK_NAME {-c CARD_UUID | -t TAG_NAME}`
 
 Delete a card from an existing deck either by specifying the cardUUID or tagUUID to delete.
 
