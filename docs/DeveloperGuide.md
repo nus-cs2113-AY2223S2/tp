@@ -166,6 +166,35 @@ instead.
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
 ![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
+
+Reference prepareRemoveModuleCommand Sequence Diagram:
+
+![removeParser.png](diagrams%2Fremove%2FremoveParser.png)
+
+Reference prepareRemoveModuleCommand Sequence Diagram:
+
+![removeParser.png](diagrams%2Fremove%2FremoveParser.png)
+
+Reference HelpCommand Sequence Diagram:
+
+![helpParser.png](diagrams%2Fremove%2FhelpParser.png)
+
+Reference prepareBudgetCommand Sequence Diagram:
+
+![budgetParser.png](diagrams%2Fremove%2FbudgetParser.png)
+
+Reference listDeadlineCommand Sequence Diagram:
+
+![deadlinelistParser.png](diagrams%2Fremove%2FdeadlineListParser.png)
+
+Reference prepareAddDeadlineCommand Sequence Diagram:
+
+![deadlineaddParser.png](diagrams%2Fremove%2FdeadlineaddParser.png)
+
+Reference deleteDeadlineCommand Sequence Diagram:
+
+![deadlinedeleteParser.png](diagrams%2Fremove%2FdeadlinedeleteParser.png)
+
 ### UserInterface (UI)
 
 UI class main purpose is to be in charge of the majority of the print functions present in the program.
