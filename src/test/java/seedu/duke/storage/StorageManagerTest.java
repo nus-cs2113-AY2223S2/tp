@@ -49,7 +49,7 @@ class StorageManagerTest {
     }
 
     @Test
-    void loadModules() {
+    void loadModules() throws NPExceptions {
         HashMap<String, NusModule> nusmods = storage.loadModules();
         System.out.println("CS2113 Details:");
         NusModule cs2113 = nusmods.get("CS2113");

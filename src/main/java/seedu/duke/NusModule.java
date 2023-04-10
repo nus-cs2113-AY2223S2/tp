@@ -41,8 +41,11 @@ public class NusModule {
         return moduleCode;
     }
 
-    public List<Lesson> getLesson(int semesterNumber, String type, String classNum){
+    public List<Lesson> getLesson(int semesterNumber, String type, String classNum) throws NPExceptions {
         SemData semester = semesterData.get(semesterNumber);
+        if (semester == null) {
+            throw new NPExceptions("Module is not available in semester " + semesterNumber);
+        }
         return semester.getLesson(type, classNum);
     }
 }

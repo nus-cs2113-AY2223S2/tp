@@ -3,13 +3,14 @@ package seedu.duke.storage;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.NPExceptions;
 import seedu.duke.NusModule;
 
 class NusModuleStorageTest {
     private final JsonNusModuleLoader converter = new JsonNusModuleLoader();
 
     @Test
-    public void loadMods(){
+    public void loadMods() throws NPExceptions {
         HashMap<String, NusModule> nusmods = converter.loadModules();
         System.out.println("CS2113 Details:");
         NusModule cs2113 = nusmods.get("CS2113");
