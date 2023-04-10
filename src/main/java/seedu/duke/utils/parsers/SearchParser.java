@@ -8,7 +8,6 @@ import seedu.duke.types.Types;
 
 public class SearchParser extends Parser{
     protected static final int SEARCH_UPC_COMMAND_LENGTH = 1;
-    protected static final int EMPTY = 0;
     protected Types.SearchType searchType;
     public SearchParser(String rawInput, Inventory inventory, Types.SearchType searchType){
         super(rawInput, inventory);

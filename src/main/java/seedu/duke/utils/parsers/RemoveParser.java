@@ -68,7 +68,7 @@ public class RemoveParser extends Parser {
     @Override
     public void run() {
         try {
-            if (rawInput == null) {
+            if (rawInput.length() == EMPTY) {
                 throw new MissingParametersException();
             }
             String[] commands = rawInput.split(EMPTY_SPACE);

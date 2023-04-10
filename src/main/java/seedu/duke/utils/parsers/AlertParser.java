@@ -7,6 +7,7 @@ import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Alert;
 import seedu.duke.objects.Inventory;
+import seedu.duke.types.Types;
 import seedu.duke.utils.Ui;
 
 import java.math.BigInteger;
@@ -35,7 +36,7 @@ public class AlertParser extends Parser {
 
                 BigInteger stock = new BigInteger(matcher.group(STOCK_INDEX));
 
-                if (stock.compareTo(new BigInteger("99999999")) > 0) {
+                if (stock.compareTo(new BigInteger(String.valueOf(Types.MAX_QTY))) > 0) {
                     throw new OutOfRangeException();
                 }
 
@@ -81,7 +82,7 @@ public class AlertParser extends Parser {
     @Override
     public void run() {
         try {
-            if (rawInput == "") {
+            if (rawInput.length() == EMPTY) {
                 throw new MissingParametersException();
             }
 

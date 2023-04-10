@@ -3,8 +3,11 @@
 title ListCommand Sequence Diagram
 
 skinparam style strictuml
+actor User
 participant ":ListParser"
-group sd [ListCommand running]
+User -> ":ListParser": run()
+
+
         ":ListParser" -> ":ListCommand": run()
         ":ListCommand" -> ":ListCommand": listItems()
         activate ":ListCommand"
@@ -27,5 +30,5 @@ group sd [ListCommand running]
        ":ListCommand" --> ":ListParser"
        deactivate ":ListCommand"
        destroy ":ListCommand"
-end
+
 @enduml

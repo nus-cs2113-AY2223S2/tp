@@ -28,7 +28,7 @@ public class HistoryParser extends Parser{
      */
     private void parseHistory() {
         try{
-            if(rawInput.split(" ").length!= HISTORY_COMMAND_LENGTH || rawInput.length()<HISTORY_COMMAND_LENGTH){
+            if(rawInput.split(" ").length!= HISTORY_COMMAND_LENGTH || rawInput.length() < HISTORY_COMMAND_LENGTH){
                 throw new HistoryErrorException();
             }
         }catch(HistoryErrorException e){

@@ -302,7 +302,7 @@ public class Storage {
                 } catch (NumberFormatException e) {
                     return Types.FileHealth.CORRUPT;
                 }
-                if (qty > 99999999 || qty < 1) {
+                if (qty > Types.MAX_QTY || qty < 1){
                     return Types.FileHealth.CORRUPT;
                 }
                 if (!fields[ALERT_MINMAX_INDEX].equals("min") && !fields[ALERT_MINMAX_INDEX].equals("max")) {
@@ -352,7 +352,7 @@ public class Storage {
                 if (qty <= 0 || price <= 0) {
                     return Types.FileHealth.CORRUPT;
                 }
-                if (qty > 99999999 || price > 99999999) {
+                if(qty > Types.MAX_QTY || price > Types.MAX_QTY){
                     return Types.FileHealth.CORRUPT;
                 }
                 line = reader.readLine();
