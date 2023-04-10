@@ -13,11 +13,11 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Displaying upcoming class :](#displaying-upcoming-class--upcoming_class) `upcoming_class`
     * [Displaying upcoming deadline :](#displaying-upcoming-class--upcoming_deadline) `upcoming_deadline`
     * [Displaying upcoming event :](#displaying-upcoming-event--upcoming_event) `upcoming_event`
-    * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
+    * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number>`
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Edit a specific piece of information for a given task :](#editing-a-task--edit-task_number) `edit <task number>`
-    * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
-    * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
+    * [Deleting a task :](#deleting-a-task--delete) `delete <task number>`
+    * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) `priority <task number> <priority>` 
     * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--add_notes) `add_notes <task number>`
     * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--delete_notes) `delete_notes <task number>`
@@ -26,7 +26,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
-    * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
+    * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear`
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
     * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--todo-description)
 
@@ -132,7 +132,7 @@ Here is your next upcoming class:
     [TUESDAY][ ] cs2113 (from: 1600 to: 1700)
 
 ```
-## **Displaying upcoming class : `upcoming_deadline`**
+## **Displaying upcoming deadline : `upcoming_deadline`**
 
 Displays the next upcoming deadline stored in the application.
 
