@@ -85,13 +85,13 @@ public class Storage implements LoggerInterface {
             case "deadline":
                 Deadline tempDeadline = (Deadline) task;
                 String by = tempDeadline.getBy(Task.storePattern);
-                overwrite.write("D | " + stat + " | " + desc + " /by " + by + "\n");
+                overwrite.write("D | " + stat + " | " + desc + " -by " + by + "\n");
                 break;
             case "event":
                 Event tempEvent = (Event) task;
                 String from = tempEvent.getFrom(Task.storePattern);
                 String to = tempEvent.getTo(Task.storePattern);
-                overwrite.write("E | " + stat + " | " + desc + " /from " + from + " /to " + to + "\n");
+                overwrite.write("E | " + stat + " | " + desc + " -from " + from + " -to " + to + "\n");
                 break;
             default:
                 throw new IOException();
