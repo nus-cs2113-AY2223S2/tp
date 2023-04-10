@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
 
 public abstract class ParseCommand {
     private Logger logger = Logger.getLogger(ParseCommand.class.getName());
+
     public abstract Command parseArguments(String input) throws InvalidArgumentsException,
             InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException,
             UnknownOptionException, UnknownArgumentException;
@@ -26,7 +27,7 @@ public abstract class ParseCommand {
     /**
      * Returns arguments matching the specified pattern.
      *
-     * @param input User input after the command.
+     * @param input   User input after the command.
      * @param pattern Pattern to be matched in input.
      * @return Arguments specified after a particular option.
      * @throws MissingArgumentsException If option is specified but no arguments were specified.
@@ -55,7 +56,7 @@ public abstract class ParseCommand {
      * Returns the arguments that were specified before an option.
      * This method helps to check if any unknown arguments were specified.
      *
-     * @param input User input after command.
+     * @param input   User input after command.
      * @param pattern Pattern to be matched by input.
      * @return Arguments specified before option.
      */
@@ -71,8 +72,9 @@ public abstract class ParseCommand {
     }
 
     /**
-     * Checks if specified expense ID is valid
-     * @param id Expense id
+     * Checks if specified entry ID is valid
+     *
+     * @param id Entry id
      * @throws InvalidArgumentsException if id is not an integer
      */
     public void checkIdValidity(String id) throws InvalidArgumentsException {
@@ -122,11 +124,7 @@ public abstract class ParseCommand {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
         double priceDouble;
-        try {
-            priceDouble = Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
-        }
+        priceDouble = Double.parseDouble(price);
         if (priceDouble > ParserConstants.MAX_VALUE || priceDouble < ParserConstants.MIN_VALUE) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
@@ -140,10 +138,6 @@ public abstract class ParseCommand {
      */
     public void checkDateValidity(String dateString) throws InvalidDateException {
         logger.entering(ParseCommand.class.getName(), "checkDateValidity()");
-        if (dateString == null) {
-            logger.exiting(ParseCommand.class.getName(), "checkDateValidity()");
-            return;
-        }
         Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
         if (!matcher.matches()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
@@ -170,7 +164,7 @@ public abstract class ParseCommand {
     /**
      * Checks for existence of any unknown option being specified by user.
      *
-     * @param input User input after command.
+     * @param input            User input after command.
      * @param availableOptions Accepted options for the particular command.
      * @throws UnknownOptionException If unknown option is specified.
      */
