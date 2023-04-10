@@ -495,7 +495,7 @@ Expected: Error message for invalid recipe is shown.
    * To simulate a corrupted data file, modify the format of the data stored in `ingredients.txt` file. <br>
    Expected: MealCompanion to throw error message notifying users of corrupted data file, program still runs normally.
 
-### Command lists for testing
+### Command lists for testing  
 | Correct Command | Expected behaviour |
 | --------------- | ----------------- |
 | `add apple /qty 3` | Success message is printed, 3 apples added to ingredients list and `ingredients.txt` |
@@ -522,7 +522,7 @@ Expected: Error message for invalid recipe is shown.
 | `hello psle` | Outputs easter egg puzzle |
 | `hello <puzzle_answer>` | Solve the puzzle and input it in `<puzzle_answer>` in the format specified in the terminal, and it will output our first easter egg |
 | `hello world walt` | Outputs second easter egg |
-
+  
 For more detailed examples of commands, refer to our [User Guide](https://ay2223s2-cs2113t-t09-3.github.io/tp/UserGuide.html). 
 
 ###### [Back to the top](#developer-guide)
