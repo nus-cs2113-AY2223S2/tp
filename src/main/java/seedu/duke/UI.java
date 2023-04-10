@@ -1,16 +1,10 @@
 package seedu.duke;
 
-import seedu.duke.budget.Accommodation;
-import seedu.duke.budget.AirplaneTicket;
-import seedu.duke.budget.BudgetPlanner;
-import seedu.duke.budget.Entertainment;
-import seedu.duke.budget.Food;
-import seedu.duke.budget.GoodsAndServices;
+import seedu.duke.budget.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class UI {
     public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
@@ -162,7 +156,6 @@ public class UI {
 
     public void printNusMods(ArrayList<Module> allModules) {
         HashSet<String> nusModuleCodeList = removeDupeNusMods(allModules);
-        Iterator<String> i = nusModuleCodeList.iterator();
         System.out.println(LINE);
         System.out.println(MAPPABLE_NUS_MOD_CODE_MESSAGE);
         System.out.println(LINE);

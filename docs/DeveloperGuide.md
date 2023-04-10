@@ -574,8 +574,26 @@ mappable PU's modules, nusModCode containing the specific NUS module code inputt
    ArrayList<Module> modules.
 4. printFoundNusModules() loops through the ArrayList<Modules> foundNusModList to get the corresponding PU's moduleCode,
 moduleName, moduleMCs and currPuAbbr.
-5. In the loop, it will print out to the User Control the list of mappable PU's module according to their PU university 
-index.
+5. In the loop, it will print out to the User Control the list of mappable PU's module according to the user's specific
+Nus module code and the lists will be shown accordingly to their PU university.
+
+### List Mappable Nus Mods Command
+
+Shows the user the list of available Nus Module Code that they can use to search for mappable PU's module
+> Syntax: /search /mods
+
+Sequence Diagram of List Mappable Nus Mods Command.
+![ListMappableNusModsCommand.png](diagrams%2FCommands%2FListMappableNusModsCommand.png)
+
+**Explanation**
+1. ListMappableNusModsCommand object calls printNusMods() from the UI class
+2. To remove the duplicated Nus Module Codes in the ArrayList<Module> allModule, removeDupeNusMods() was called and
+return the HashSet<String> nusModuleCodeList.
+3. printNusMods() will then loop through for each String nusModCode in the nusModuleCodeList.
+4. At each nusModCode string, it will loop through all the PU modules in the allModules ArrayList<Module> to retrieve
+Nus module details such as nusModuleCode string, nusModuleName string and int nusModuleMc.
+5. Once a match is found for the nusModuleCode and nusModCode, it will print out the available Nus module details and
+break from the loop to print the next Nus module details.
 
 ## Product scope
 
