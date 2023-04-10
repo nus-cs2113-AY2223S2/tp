@@ -12,9 +12,9 @@
       * [*Preventing duplicate items*](#preventing-duplicate-items)
     * [*DeleteCommand*](#delete-command)
     * [*PackCommand*](#pack-command)
-    * [*PackAllCommand*]
+    * [*PackAllCommand*](#packall-command)
     * [*UnpackCommand*](#unpack-command)
-    * [*UnpackAllCommand*]
+    * [*UnpackAllCommand*](#unpackall-command)
     * [*EditQuantityCommand*]
     * [*HelpCommand*](#help-command)
     * [*ListCommand*](#list-command)
@@ -158,11 +158,9 @@ The following conditions will cause an `IncorrectCommand` to be returned instead
 3. Item index not a positive integer at most the size of the Packing List
 
 
-This new command created (either `PackCommand` OR `IncorrectCommand`) will then be executed by `BagPacker()`.
-
-Execute Mechanism: ```PackCommand.execute()``` calls the ```PackCommand.getTargetItem()``` method to retrieve the target item to pack. 
+Execute Mechanism: ```PackCommand.execute()``` calls the ```Command.getTargetItem()``` method to retrieve the target item to pack. 
 After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. `Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
-Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to print a message to the user signifying that the pack command has been executed successfully.
+Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to print a message to the user signifying that the `pack` command has been executed successfully.
 
 ![ExecutePackCommandSequenceDiagram.png](diagrams%2FExecutePackCommandSequenceDiagram.png)
 
@@ -170,7 +168,19 @@ Sequence Diagram of Successful `PackCommand.execute()`
 
 ---
 
-#### PackAllCommand
+#### PackAll Command
+
+PackAll command is used to set an item as fully packed (i.e. quantity packed = total quantity)
+
+Create Mechanism: Creating of `PackAllCommand` object is done in `Parser.CreatePackAllObj()`, which should return a new `PackAllCommand` object if there are no exceptions caught.
+The following conditions will cause an `IncorrectCommand` to be returned instead of a `PackAllCommand`, signalling an error has occurred.
+1. Empty PackingList
+2. Invalid Variables (non integer input for item index, or wrong format)
+3. Item index not a positive integer at most the size of the Packing List
+
+Execute Mechanism: ```PackAllCommand.execute()``` calls the ```Command.getTargetItem()``` method to retrieve the target item to pack.
+After which the ```PackingList.getUnpackedQuantity()``` method is called in ```PackingList``` and initialised as `packQuantity` which is added to the previous packed quantity using `packingList.packItem(item, packQuantity)` thus fully packing the item. 
+Lastly `Ui.printToUser(MSG_SUCCESS_PACKALL, item)` from `Ui` class is called to print a message to the user signifying that the `packall` command has been executed successfully.
 
 ___
 
@@ -184,17 +194,31 @@ The following conditions will cause an `IncorrectCommand` to be returned instead
 2. `QuantityUnpacked` less than 1 OR greater than 1,000,000 OR greater than the item's packed quantity
 3. Item index not a positive integer at most the size of the Packing List
 
-This new command created (either `UnpackCommand` OR `IncorrectCommand`) will then be executed by `BagPacker()`.
-
-Execute Mechanism: ```UnpackCommand.execute()``` calls the ```UnpackCommand.getTargetItem()``` method to retrieve the target item to pack.
+Execute Mechanism: ```UnpackCommand.execute()``` calls the ```UnpackCommand.getTargetItem()``` method to retrieve the target item to unpack.
 After which the ```PackingList.UnpackItem(item, quantity)``` method is called in ```PackingList``` which calls ```Item.setUnpacked(quantity)```in `Item` class. `Item.setUnpacked()` will remove the `quantity` from the current pack quantity of the item.
-Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to print a message to the user signifying that the unpack command has been executed successfully.
+Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to print a message to the user signifying that the `unpack` command has been executed successfully.
 
 ![ExecuteUnpackCommandSequenceDiagram.png](diagrams%2FExecuteUnpackCommandSequenceDiagram.png)
 
 Sequence Diagram of Successful `UnpackCommand.execute()`
 
 ---
+
+#### UnpackAll Command
+
+UnpackAll command is used to set an item as totally unpacked (i.e. quantity packed = 0)
+
+Create Mechanism: Creating of `UnpackAllCommand` object is done in `Parser.CreateUnpackAllObj()`, which should return a new `UnpackAllCommand` object if there are no exceptions caught.
+The following conditions will cause an `IncorrectCommand` to be returned instead of a `UnpackAllCommand`, signalling an error has occurred.
+1. Empty PackingList
+2. Invalid Variables (non integer input for item index, or wrong format)
+3. Item index not a positive integer at most the size of the Packing List
+
+Execute Mechanism: ```UnpackAllCommand.execute()``` calls the ```Command.getTargetItem()``` method to retrieve the target item to unpack.
+After which the ```PackingList.getPackedQuantity()``` method is called in ```PackingList``` and initialised as `unpackQuantity`. This value is taken away from the previous packed quantity using `packingList.unpackItem(item, unpackQuantity)` thus totally unpacking the item.
+Lastly `Ui.printToUser(MSG_SUCCESS_UNPACKALL, item)` from `Ui` class is called to print a message to the user signifying that the `unpackall` command has been executed successfully.
+
+___
 
 #### Help Command
 
