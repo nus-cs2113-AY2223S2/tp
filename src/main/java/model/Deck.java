@@ -13,7 +13,7 @@ public class Deck {
     private HashSet<CardUUID> cardsSet = new HashSet<>();
 
     // Contains only CardUUIDs that are added through Tag
-    private HashMap<CardUUID, Integer>  cardUUIDIntegerHashMap= new HashMap<>();
+    private HashMap<CardUUID, Integer> cardUUIDIntegerHashMap = new HashMap<>();
     private ArrayList<CardUUID> cards = new ArrayList<>();
     private ArrayList<TagUUID> tags = new ArrayList<>();
 
@@ -33,6 +33,7 @@ public class Deck {
         this.tags.add(tagUUID);
         this.deckUUID = new DeckUUID(UUID.randomUUID());
     }
+
     public Deck(String deckName, TagUUID tagUUID, CardUUID cardUUID) {
         this.deckName = deckName;
         this.tags.add(tagUUID);
@@ -43,6 +44,7 @@ public class Deck {
     public String getDeckName() {
         return deckName;
     }
+
     public boolean cardIsInSet(CardUUID cardUUID) {
         return cardsSet.contains(cardUUID);
     }
@@ -52,8 +54,8 @@ public class Deck {
     }
 
     public boolean tagIsInDeck(TagUUID tagUUID) {
-        for(TagUUID tagUUIDHolder : tags) {
-            if(tagUUIDHolder.equals(tagUUID)) {
+        for (TagUUID tagUUIDHolder : tags) {
+            if (tagUUIDHolder.equals(tagUUID)) {
                 return true;
             }
         }
@@ -64,7 +66,6 @@ public class Deck {
         return cardUUIDIntegerHashMap.containsKey(cardUUID);
     }
 
-
     public void setTags(ArrayList<TagUUID> tags) {
         this.tags = tags;
     }
@@ -73,10 +74,9 @@ public class Deck {
         return deckUUID;
     }
 
-    public void setDeckUUID(String uuidStr){
+    public void setDeckUUID(String uuidStr) {
         this.deckUUID = new DeckUUID(UUID.fromString(uuidStr));
     }
-
 
     public ArrayList<CardUUID> getCardsUUID() {
         return cards;
@@ -92,6 +92,7 @@ public class Deck {
 
     /**
      * Adds a single card through its CardUUID
+     *
      * @param cardUUID
      */
     public void addCard(CardUUID cardUUID) {
@@ -116,15 +117,16 @@ public class Deck {
     }
 
     public void removeCardFromMap(CardUUID cardUUID) {
-        if(cardUUIDIntegerHashMap.get(cardUUID)==1) {
+        if (cardUUIDIntegerHashMap.get(cardUUID) == 1) {
             cardUUIDIntegerHashMap.remove(cardUUID);
-            if(!this.cardIsInList(cardUUID)) {
+            if (!this.cardIsInList(cardUUID)) {
                 cardsSet.remove(cardUUID);
             }
         } else {
-            cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)-1);
+            cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID) - 1);
         }
     }
+
     public void addTag(TagUUID tagUUID) {
         this.tags.add(tagUUID);
     }
@@ -132,7 +134,7 @@ public class Deck {
     public void addCardsToSet(TagUUID tagUUID, TagList tagList) {
         Tag tagToCheck = tagList.findTagFromUUID(tagUUID);
         ArrayList<CardUUID> cardUUIDArrayList = tagToCheck.getCardsUUID();
-        for(CardUUID cardUUID: cardUUIDArrayList) {
+        for (CardUUID cardUUID : cardUUIDArrayList) {
             cardsSet.add(cardUUID);
         }
     }
@@ -140,37 +142,37 @@ public class Deck {
     public void addCardsToMap(TagUUID tagUUID, TagList tagList) {
         Tag tagToCheck = tagList.findTagFromUUID(tagUUID);
         ArrayList<CardUUID> cardUUIDArrayList = tagToCheck.getCardsUUID();
-        for(CardUUID cardUUID: cardUUIDArrayList) {
-            if(!this.cardIsInMap(cardUUID)) {
+        for (CardUUID cardUUID : cardUUIDArrayList) {
+            if (!this.cardIsInMap(cardUUID)) {
                 this.cardUUIDIntegerHashMap.put(cardUUID, 1);
             } else {
-                this.cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)+1);
+                this.cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID) + 1);
             }
         }
     }
 
     public void addCardToMap(CardUUID cardUUID) {
-        if(!this.cardUUIDIntegerHashMap.containsKey(cardUUID)) {
+        if (!this.cardUUIDIntegerHashMap.containsKey(cardUUID)) {
             this.cardUUIDIntegerHashMap.put(cardUUID, 1);
         } else {
-            this.cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID)+1);
+            this.cardUUIDIntegerHashMap.put(cardUUID, cardUUIDIntegerHashMap.get(cardUUID) + 1);
         }
-
     }
 
     public void removeTaggedCardsMap(TagUUID tagUUID, TagList tagList) {
         Tag tagToCheck = tagList.findTagFromUUID(tagUUID);
         ArrayList<CardUUID> cardUUIDArrayList = tagToCheck.getCardsUUID();
-        for(CardUUID cardUUID: cardUUIDArrayList) {
+        for (CardUUID cardUUID : cardUUIDArrayList) {
             this.removeCardFromMap(cardUUID);
         }
     }
+
     public void setCards(ArrayList<CardUUID> cards) {
         this.cards = cards;
     }
 
     @Override
     public String toString() {
-        return "Deck name : " + deckName + ", deck uuid : " + deckUUID;
+        return "Deck name : " + deckName;
     }
 }
