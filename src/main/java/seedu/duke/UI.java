@@ -1,6 +1,11 @@
 package seedu.duke;
 
-import seedu.duke.budget.*;
+import seedu.duke.budget.Accommodation;
+import seedu.duke.budget.AirplaneTicket;
+import seedu.duke.budget.BudgetPlanner;
+import seedu.duke.budget.Entertainment;
+import seedu.duke.budget.Food;
+import seedu.duke.budget.GoodsAndServices;
 
 import java.util.ArrayList;
 import java.util.Comparator;
