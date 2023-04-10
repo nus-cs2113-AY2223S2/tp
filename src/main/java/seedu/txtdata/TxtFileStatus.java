@@ -1,5 +1,6 @@
 package seedu.txtdata;
 
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.InvalidDateException;
@@ -99,6 +100,7 @@ public abstract class TxtFileStatus {
                 String saveString = s.nextLine();
                 String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
                 checkAmount(saveData[INDEX_VALUE]);
+                ExceptionChecker.checkDateLimit(LocalDate.parse(saveData[INDEX_DATE]));
                 switch (saveData[INDEX_TYPE]) {
                 case "Acad":
                     initializeAcademicExpenditure(saveData, expenditures);
@@ -134,7 +136,7 @@ public abstract class TxtFileStatus {
                 System.out.println(t.getMessage());
             } catch (DateTimeParseException | NumberFormatException | ArrayIndexOutOfBoundsException |
                      InvalidCharacterInAmount | LargeValueException | InvalidDeadlineException |
-                     InvalidDateException e) {
+                     InvalidDateException | DateLimitException e) {
                 System.out.println(
                         "TxtFile has been corrupted, the corrupted entry has been deleted");
             }
@@ -171,8 +173,10 @@ public abstract class TxtFileStatus {
     }
 
     public static void checkLendBorrowDate(LocalDate startDate, LocalDate endDate) throws InvalidDeadlineException,
-            InvalidDateException {
+            InvalidDateException, DateLimitException {
         ExceptionChecker.checkDate(startDate, endDate);
+        ExceptionChecker.checkDateLimit(startDate);
+        ExceptionChecker.checkDateLimit(endDate);
     }
 
     /**
@@ -230,7 +234,7 @@ public abstract class TxtFileStatus {
     }
 
     public static void initializeBorrowExpenditure(String[] saveData, ExpenditureList expenditures) throws
-            InvalidDeadlineException, InvalidDateException {
+            InvalidDeadlineException, InvalidDateException, DateLimitException {
         LocalDate startDate = LocalDate.parse(saveData[INDEX_DATE]);
         LocalDate endDate = LocalDate.parse(saveData[INDEX_DEADLINE]);
         checkLendBorrowDate(startDate, endDate);
@@ -260,7 +264,7 @@ public abstract class TxtFileStatus {
     }
 
     public static void initializeLendExpenditure(String[] saveData, ExpenditureList expenditures) throws
-            InvalidDeadlineException, InvalidDateException {
+            InvalidDeadlineException, InvalidDateException, DateLimitException {
         LocalDate startDate = LocalDate.parse(saveData[INDEX_DATE]);
         LocalDate endDate = LocalDate.parse(saveData[INDEX_DEADLINE]);
         checkLendBorrowDate(startDate, endDate);
