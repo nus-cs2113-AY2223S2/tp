@@ -38,7 +38,7 @@ public class EntertainmentExpenditureCommandTest {
                         + "|| Description: darts",
                 testEntertainmentExpenditureCommand.execute(testExpenditures).getCommandResult());
         assertEquals(
-                "1. [Academic] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n"
+                "1. [Entertainment] || Date: 1 Aug 2021 || Value: 1500.0 || Description: laptop\n"
                         + "2. [Entertainment] || Date: 1 Mar 2023 || Value: 10.0 || Description: darts",
                 testExpenditures.toString());
     }
