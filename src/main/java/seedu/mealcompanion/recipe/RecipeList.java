@@ -96,8 +96,9 @@ public class RecipeList {
 
     /**
      * Find the index (0-based) of a recipe by its specified name. Name search is non-case sensitive.
+     *
      * @param name the name of the recipe to look for
-     * @return index of recipe if recipe is found, else return -1
+     * @return index of recipe if recipe is found
      * @throws MealCompanionException if recipe name does not exist in the recipe list
      */
     public int findIndex(String name) throws MealCompanionException {
@@ -129,5 +130,21 @@ public class RecipeList {
      */
     public boolean isEmpty() {
         return recipes.isEmpty();
+    }
+
+    /**
+     * Get a formatted string of the list of recipe names.
+     *
+     * @return a formatted list of the recipe names
+     */
+    public String getRecipeNameList() {
+        int index = 1;
+        StringBuilder recipeNameList = new StringBuilder();
+        for (Recipe recipe : this.getRecipes()) {
+            recipeNameList.append(recipe.getFavStatus() + Integer.toString(index) + ". "
+                    + recipe.getName() + System.lineSeparator());
+            index++;
+        }
+        return String.valueOf(recipeNameList);
     }
 }

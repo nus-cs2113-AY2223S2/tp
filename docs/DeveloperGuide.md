@@ -13,7 +13,6 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Add and Remove Command](#add-and-remove-command)
    - [Clear Command](#clear-command)
    - [Make Command](#make-command)
-   - [Recipe Detail Command](#recipe-detail-command)
    - [Recipe Possible Command](#recipe-possible-command)
    - [Recipe All Command](#recipe-all-command)
    - [Storage Feature](#storage-feature)
@@ -116,7 +115,9 @@ Below shows the class diagram of how recipes are being stored in our program
 
 ![RecipeUML.png](images%2FRecipeUML.png)
 
-The current `MealCompanionSession` would keep track of the `RecipeList` which is an ArrayList of `Recipe` objects.
+The current `MealCompanionSession` would keep track of a `RecipeList` which is an ArrayList of `Recipe` objects.
+
+###### [Back to table of contents](#table-of-contents)
 
 ## Implementation
 
@@ -184,40 +185,6 @@ The following sequence diagram shows how the Make Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Storage Feature
-
-The proposed storage mechanism of ingredients is facilitated by `IngredientStorage`. 
-
-It requires `IngredientList` of `MealCompanionSession`.
-
-This features saves ingredient list data in json format and reads them back into ingredient objects.
-
-The following sequence diagram shows how data storage works:
-
-![StorageSequenceUML.png](images/StorageSequenceUML.png)
-
-The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
-
-![StoargeActivity.png](images/StorageActivity.png)
-
-###### [Back to table of contents](#table-of-contents)
-
-### Recipe Detail Command
-
-The recipe command is facilitated by `RecipeDetailCommand`. 
-
-It requires `RecipeList` of `MealCompanionSession`. 
-
-The recipe commands takes in either a recipe index or a recipe name as parameter. The latter is resolved into the recipe's corresponding index number.
-
-The `Recipe` is retrieved from `RecipeList` and its details are outputted.
-
-The following sequence diagram shows how the Recipe Detail Command works:
-
-![RecipeDetailCommandSequence.png](images%2FRecipeDetailCommandSequence.png)
-
-###### [Back to table of contents](#table-of-contents)
-
 ### Recipe Possible Command
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
@@ -257,6 +224,24 @@ Step 3: Every `Recipe` in `RecipeList` is outputted.
 The following sequence diagram shows how the Recipe All Command works:
 
 ![RecipeAllCommandSequence.png](images%2FRecipeAllCommandSequence.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Storage Feature
+
+The proposed storage mechanism of ingredients is facilitated by `IngredientStorage`.
+
+It requires `IngredientList` of `MealCompanionSession`.
+
+This features saves ingredient list data in json format and reads them back into ingredient objects.
+
+The following sequence diagram shows how data storage works:
+
+![StorageSequenceUML.png](images/StorageSequenceUML.png)
+
+The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
+
+![StoargeActivity.png](images/StorageActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
