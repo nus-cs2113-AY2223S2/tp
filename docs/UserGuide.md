@@ -92,7 +92,7 @@ Added academic expenditure: [Academic] || Date: 2 Feb 2023
 
 ```
 
-The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form. 
+The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 Adding a Other Expenditure
 
@@ -110,6 +110,7 @@ Added other expenditure: [Other] || Date: 31 Jan 2000
 || Value: 26.0 || Description: Eating lunch
 
 ```
+
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.2. Adding a lend/borrow record
@@ -159,6 +160,7 @@ Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2022
 || Value: 25.1 || Description: CS2113 || by: 14 Jul 2024
 
 ```
+
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.3. Editing an Expenditure
@@ -195,6 +197,8 @@ edit 2 d/2023-02-15 a/20.00 p/Eat Food
 Edited! Here is the updated list:
 
 ```
+
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
 
 ### 4.4. Editing a Lend/Borrow record
 
@@ -236,6 +240,8 @@ Edited! Here is the updated list:
 
 ```
 
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
+
 ### 4.5. Deleting an expenditure record
 
 Deletes an existing expenditure record from the expenditure list. After a successful delete, the updated list is shown.
@@ -262,6 +268,8 @@ Output:
 Entry has been deleted
 Here is your updated list:
 ```
+
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
 
 ### 4.6. Duplicating an expenditure record
 
@@ -333,7 +341,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 | `FILTER`<br/> [optional] | A filter that allows the user to compare budget with a certain category or time period. |
 
 | Filter types     | Description                                                                                                                                                         |
-|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Year             | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |
 | Day              | `d/YEAR-MONTH-DAY` filters the check to only compare budget with expenditures made on that specific day in that specific month and year.                            |
 | Expenditure type | `t/EXPENDITURE_TYPE` filters the check to only compare budget with expenditures made under that expenditure type. This does not include categories lent and borrow. |
