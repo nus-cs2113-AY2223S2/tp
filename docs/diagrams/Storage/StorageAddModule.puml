@@ -1,66 +1,80 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":AddModuleCommand" : command.execute()
+-> ":AddModuleCommand" : command.execute()
 activate ":AddModuleCommand"
-":AddModuleCommand" -> ":Storage" : addModuleToModuleList(moduleToAdd)
-activate ":Storage"
-opt moduleToAdd == null
-":Storage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
+":AddModuleCommand" -> ":ModuleStorage" : addModuleToModuleList(moduleToAdd)
+activate ":ModuleStorage"
+alt moduleToAdd == null
+":ModuleStorage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
 activate "<<class>>\n:UI"
-":Storage" <-- "<<class>>\n:UI"
+":ModuleStorage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":AddModuleCommand"<-- ":Storage"
-end
+":AddModuleCommand"<-- ":ModuleStorage" : false
 
-":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
+else doesModuleExist(moduleToAdd)
+":ModuleStorage" -> "<<class>>\n:UI" : UI.printModAlreadyExistMessage()
+activate "<<class>>\n:UI"
+":ModuleStorage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":AddModuleCommand"<-- ":ModuleStorage" : false
+
+else
+":ModuleStorage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
 activate ":ArrayList<Module>"
-":Storage" <-- ":ArrayList<Module>"
+":ModuleStorage" <-- ":ArrayList<Module>"
 deactivate ":ArrayList<Module>"
 
-":Storage" -> ":Storage": sortModulesAccordingToPrintingLength(modules)
-activate ":Storage"
-":Storage" --> ":Storage":
-deactivate ":Storage"
+":ModuleStorage" -> ":ModuleStorage": sortModulesAccordingToPrintingLength(modules)
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage":
+deactivate ":ModuleStorage"
 
-":Storage" -> ":Module" : moduleToAdd.toString()
+":ModuleStorage" -> ":Module" : moduleToAdd.toString()
 activate ":Module"
-":Storage" <-- ":Module" : tempString:String
+":ModuleStorage" <-- ":Module" : tempString:String
 deactivate ":Module"
-":Storage" -> ":Storage" : saveModuleToStorage(tempString)
-activate ":Storage"
+
+alt no exception
+":ModuleStorage" -> ":ModuleStorage" : saveModuleToStorage(tempString)
+activate ":ModuleStorage"
 create ":FileWriter"
-":Storage" -> ":FileWriter" : FileWriter(SAVED_MODULES_FILE_PATH, true)
+":ModuleStorage" -> ":FileWriter" : FileWriter(SAVED_MODULES_FILE_PATH, true)
 activate ":FileWriter"
-":Storage" <-- ":FileWriter"
+":ModuleStorage" <-- ":FileWriter"
 deactivate ":FileWriter"
-":Storage" -> ":DatabaseInterface" : writeTaskPreparation(saveModuleString)
-activate ":DatabaseInterface"
-":Storage" <-- ":DatabaseInterface" : tempString:String
-deactivate ":DatabaseInterface"
-":Storage" -> ":FileWriter" : fw.write(tempString)
+":ModuleStorage" -> ":ModuleStorage" : writeTaskPreparation(saveModuleString)
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage" : tempString:String
+deactivate ":ModuleStorage"
+":ModuleStorage" -> ":FileWriter" : fw.write(tempString)
 activate ":FileWriter"
-":Storage" <-- ":FileWriter"
+":ModuleStorage" <-- ":FileWriter"
 deactivate ":FileWriter"
-":Storage" -> ":FileWriter" : fw.close()
+":ModuleStorage" -> ":FileWriter" : fw.close()
 activate ":FileWriter"
-":Storage" <-- ":FileWriter"
+":ModuleStorage" <-- ":FileWriter"
 deactivate ":FileWriter"
-deactivate ":Storage"
-":AddModuleCommand" <-- ":Storage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+else exception
+":ModuleStorage" -> "<<class>>\n:UI" :  UI.printAddModuleFailureMessage()
+activate "<<class>>\n:UI"
+":ModuleStorage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+end
+":AddModuleCommand" <-- ":ModuleStorage" : true
+deactivate ":ModuleStorage"
+end
+alt isAddSuccessful == false
+<-- ":AddModuleCommand"
+else isAddSuccessful == true
 ":AddModuleCommand" -> "<<class>>\n:UI" : UI.printAddModMessage()
 activate "<<class>>\n:UI"
-"<<class>>\n:UI" -> PrintStream :  println(ADD_MOD_MESSAGE)
-activate PrintStream
-"<<class>>\n:UI" <-- PrintStream
-deactivate PrintStream
-"<<class>>\n:UI" -> PrintStream :  println(LINE)
-activate PrintStream
-"<<class>>\n:UI" <-- PrintStream
-deactivate PrintStream
 ":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":Duke" <-- ":AddModuleCommand"
+<-- ":AddModuleCommand"
+deactivate ":AddModuleCommand"
+end
 
 
 @enduml

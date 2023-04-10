@@ -1,55 +1,55 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-":Storage" -> ":Storage" : readModData(SAVED_MODULES_FILE_PATH, modules)
-activate ":Storage"
+":ModuleStorage" -> ":ModuleStorage" : readModData(SAVED_MODULES_FILE_PATH, modules)
+activate ":ModuleStorage"
 create ":FileReader"
-":Storage" -> ":FileReader" : FileReader(modulesFilePath)
+":ModuleStorage" -> ":FileReader" : FileReader(modulesFilePath)
 activate ":FileReader"
-":Storage" <-- ":FileReader" : FileReader
+":ModuleStorage" <-- ":FileReader" : FileReader
 deactivate ":FileReader"
 create ":BufferedReader"
-":Storage" -> ":BufferedReader" : BufferedReader(FileReader)
+":ModuleStorage" -> ":BufferedReader" : BufferedReader(FileReader)
 activate ":BufferedReader"
-":Storage" <-- ":BufferedReader" : br
+":ModuleStorage" <-- ":BufferedReader" : br
 deactivate ":BufferedReader"
-":Storage" -> ":BufferedReader" : br.readLine()
+":ModuleStorage" -> ":BufferedReader" : br.readLine()
 activate ":BufferedReader"
-":Storage" <-- ":BufferedReader" : line:String
+":ModuleStorage" <-- ":BufferedReader" : line:String
 deactivate ":BufferedReader"
 loop line != null
-":Storage" -> ":String" : line.split(",")
+":ModuleStorage" -> ":String" : line.split(",")
 activate ":String"
-":Storage" <-- ":String" : row:String[]
+":ModuleStorage" <-- ":String" : row:String[]
 deactivate ":String"
 opt row[3].equals("N/A")
-":Storage" -> ":Storage" : row[3] = "0";
+":ModuleStorage" -> ":ModuleStorage" : row[3] = "0";
 end
-":Storage" -> ":Integer" : Integer.parseInt(row[0])
+":ModuleStorage" -> ":Integer" : Integer.parseInt(row[0])
 activate ":Integer"
-":Storage" <-- ":Integer" : Integer0
+":ModuleStorage" <-- ":Integer" : Integer0
 deactivate ":Integer"
-":Storage" -> ":Integer" : Integer.parseInt(row[3])
+":ModuleStorage" -> ":Integer" : Integer.parseInt(row[3])
 activate ":Integer"
-":Storage" <-- ":Integer" : Integer3
+":ModuleStorage" <-- ":Integer" : Integer3
 deactivate ":Integer"
-":Storage" -> ":Integer" : Integer.parseInt(row[6])
+":ModuleStorage" -> ":Integer" : Integer.parseInt(row[6])
 activate ":Integer"
-":Storage" <-- ":Integer" : Integer6
+":ModuleStorage" <-- ":Integer" : Integer6
 deactivate ":Integer"
 create ":Module"
-":Storage" -> ":Module" : Module(Integer0, row[1], row[2], Integer3, row[4], row[5],Integer6)
+":ModuleStorage" -> ":Module" : Module(Integer0, row[1], row[2], Integer3, row[4], row[5],Integer6)
 activate ":Module"
-":Storage" <-- ":Module" : module:Module
+":ModuleStorage" <-- ":Module" : module:Module
 deactivate ":Module"
-":Storage" -> ":ArrayList<Module>" : modules.add(module)
+":ModuleStorage" -> ":ArrayList<Module>" : modules.add(module)
 activate ":ArrayList<Module>"
 deactivate ":ArrayList<Module>"
-":Storage" -> ":BufferedReader" : br.readLine()
+":ModuleStorage" -> ":BufferedReader" : br.readLine()
 activate ":BufferedReader"
-":Storage" <-- ":BufferedReader" : line:String
+":ModuleStorage" <-- ":BufferedReader" : line:String
 deactivate ":BufferedReader"
 end
-":Storage" --> ":Storage"
-deactivate ":Storage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
 @enduml

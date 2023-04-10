@@ -115,6 +115,7 @@ public class DeadlineStorage implements DatabaseInterface {
     }
 
     public void addDeadlineToDeadlines(Deadline deadlineToAdd) {
+        assert (deadlineToAdd != null) : "error line 118";
         if (deadlineToAdd == null) {
             UI.printAddDeadlineFailureMessage();
             return;

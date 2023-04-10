@@ -1,7 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-activate ":Duke"
-":Duke" -> ":EditFoodCommand" : command.execute()
+-> ":EditFoodCommand" : command.execute()
 activate ":EditFoodCommand"
 ":EditFoodCommand" -> ":BudgetPlanner" : budgetPlanner.getFoodTotalCost()
 activate ":BudgetPlanner"
@@ -20,8 +19,8 @@ opt initialCost == newCost
 activate "<<class>>\n:UI"
 ":EditFoodCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditFoodCommand" --> ":Duke"
-end
+<-- ":EditFoodCommand"
+else initialCost != newCost
 create ":Food"
 ":EditFoodCommand" -> ":Food" : new Food(cost)
 activate ":Food"
@@ -31,6 +30,7 @@ deactivate ":Food"
 activate "<<class>>\n:UI"
 ":EditFoodCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditFoodCommand" --> ":Duke"
+<-- ":EditFoodCommand"
 deactivate ":EditFoodCommand"
+end
 @enduml

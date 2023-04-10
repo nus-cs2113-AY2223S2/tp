@@ -1,0 +1,53 @@
+@startuml
+
+interface DatabaseInterface {
+  + initialiseDatabase(): void
+  + writeDeadlinesToFile(ArrayList<Deadline>): void
+  + checkDatabaseCorrupted(): boolean
+}
+
+class DeadlineStorage implements DatabaseInterface {
+  - instance: DeadlineStorage
+  - SAVED_DEADLINES_FILE_PATH: String
+  - deadlines: ArrayList<Deadline>
+    initialiseDatabase(): void
+    checkDatabaseCorrupted(): boolean
+  + DeadlineStorage()
+  + getInstance(): DeadlineStorage
+  + deleteDeadline(int, ArrayList<Deadline>, DeadlineStorage): boolean
+  + writeDeadlinesToFile(ArrayList<Deadline>): void
+  + getDeadlines(): ArrayList<Deadline>
+  + addDeadlineToDeadlines(Deadline): void
+  + compareDeadlines(ArrayList<Deadline>): void
+  - saveDeadlineToStorage(String): void
+  - readDeadlineData(String, ArrayList<Deadline>): void
+}
+
+class Deadline {
+  - task: String
+  - dueDate: String
+  + Deadline(String, String)
+  + getTask(): String
+  + setTask(String): void
+  + getDueDate(): String
+  + setDueDate(String): void
+  + toString(): String
+}
+
+class UI {
+  + printAddDeadlineFailureMessage(): void
+  + printDeadlineStorageCorruptedMessage(): void
+  + printDeleteNumError(): void
+  + printWriteToDatabaseFailureMessage(): void
+  + printReminderMessage(): void
+  + printReminderDeadline(Deadline, int): void
+  + printLine(): void
+}
+
+DeadlineStorage --> Deadline
+DeadlineStorage --> UI
+Deadline --> "*" DeadlineStorage
+Deadline --> "*" Task
+UI --> DeadlineStorage
+
+@enduml

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import seedu.duke.Module;
-import seedu.duke.Storage;
+import seedu.duke.ModuleStorage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -85,7 +85,7 @@ class ListCurrentPuCommandTest {
                 "2.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "____________________________________________________________", outContent.toString().trim());
         outContent.reset();
-        Storage.sortModulesAccordingToPrintingLength(modules);
+        ModuleStorage.sortModulesAccordingToPrintingLength(modules);
         ListCurrentPuCommand listCurrentPuCommand2 = new ListCurrentPuCommand(modules, 1);
         listCurrentPuCommand2.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +

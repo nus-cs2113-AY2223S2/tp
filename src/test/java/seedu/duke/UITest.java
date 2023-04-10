@@ -7,11 +7,13 @@ import org.junit.jupiter.api.TestInstance;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidModuleException;
 import seedu.duke.exceptions.InvalidPuException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UITest {
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
@@ -64,7 +66,7 @@ class UITest {
         UI ui = UI.getUiOneInstance();
         ui.printPUListMessage();
         assertEquals(LIST_PU_MESSAGE,
-                    outContent.toString().stripTrailing());
+                outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -83,9 +85,12 @@ class UITest {
     @Test
     void printAddModMessage_correctLines_success() {
         UI ui = UI.getUiOneInstance();
-        ui.printAddModMessage();
-        assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
-                , outContent.toString().stripTrailing());
+        Module module = new Module(1, "AE320", "Aerodynamics II", 3,
+                "ME4231", "Aerodynamics", 4);
+        ui.printAddModMessage(module);
+        String addModule = "[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]";
+        assertEquals(addModule + System.lineSeparator() + ADD_MOD_MESSAGE + System.lineSeparator() +
+                LINE.stripTrailing(), outContent.toString().stripTrailing());
         outContent.reset();
     }
 
@@ -93,7 +98,7 @@ class UITest {
     void printDeleteModMessage_correctLines_success() {
         UI ui = UI.getUiOneInstance();
         ui.printDeleteModMessage();
-        assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+        assertEquals(DELETE_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }
@@ -142,8 +147,8 @@ class UITest {
                         "  ___) | |___|  __/  |  _  |  __/ | |_) |  __/ |   \n" +
                         " |____/|_____|_|     |_| |_|\\___|_| .__/ \\___|_|   \n" +
                         "                                  |_|              \n" + System.lineSeparator() +
-                WELCOME_MESSAGE + System.lineSeparator() + READ_COMMAND_INPUT + System.lineSeparator()
-                + HELP_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
+                        WELCOME_MESSAGE + System.lineSeparator() + READ_COMMAND_INPUT + System.lineSeparator()
+                        + HELP_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }
@@ -574,8 +579,9 @@ class UITest {
                 + "in the specified Partner University\n"
                 + "                                    by index of LIST PU\n"
                 + "/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
-                + "                                    [FILTER] Format 1: mc == [num of MCs]\n"
-                + "                                    [FILTER] Format 2: [description] in name\n"
+                + "                                    Replace the [FILTER] with either of the format below\n"
+                + "                                    [FILTER] Format 1:/mc [num of Partner University MCs]\n"
+                + "                                    [FILTER] Format 2:/name [Partner University module name]\n"
                 + "/LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
                 + "/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list\n"

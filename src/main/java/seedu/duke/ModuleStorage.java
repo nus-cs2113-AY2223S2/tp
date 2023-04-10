@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Storage implements DatabaseInterface {
+public class ModuleStorage implements DatabaseInterface {
 
-    private static Storage instance = null;
+    private static ModuleStorage instance = null;
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
     private ArrayList<Module> modules;
 
@@ -18,7 +18,7 @@ public class Storage implements DatabaseInterface {
      * Constructor of the Storage class that initialises the Storage database.
      * Prints a failure message when there is an IOException when trying to initialise.
      */
-    private Storage() {
+    private ModuleStorage() {
         this.modules = new ArrayList<>();
         try {
             initialiseDatabase();
@@ -27,9 +27,9 @@ public class Storage implements DatabaseInterface {
         }
     }
 
-    public static Storage getInstance() {
+    public static ModuleStorage getInstance() {
         if (instance == null) {
-            instance = new Storage();
+            instance = new ModuleStorage();
         }
         return instance;
     }
@@ -151,7 +151,7 @@ public class Storage implements DatabaseInterface {
      *         list of modules.
      */
     public boolean addModuleToModuleList(Module moduleToAdd) {
-        assert (moduleToAdd != null) : "error line 111";
+        assert (moduleToAdd != null) : "error null moduleToAdd";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
             return false;
@@ -211,7 +211,8 @@ public class Storage implements DatabaseInterface {
      * @return True if successfully deleted the module, false if unsuccessful.
      */
     public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,
-                                       Storage database, int uniID) {
+                                       ModuleStorage database, int uniID) {
+        UI ui = UI.getUiOneInstance();
         int indexToDeletePuSpecificListToZeroBased = indexToDeletePuSpecificList - 1;
         int counterUpToIndexToDelete = 0;
         int indexToDelete = -1;
@@ -227,8 +228,9 @@ public class Storage implements DatabaseInterface {
                         + "should not be greater than indexToDeletePuSpecificListToZeroBased";
             }
         }
-
+        Module moduleToBeDeleted = null;
         try {
+            moduleToBeDeleted = modules.get(indexToDelete);
             modules.remove(indexToDelete);
         } catch (IndexOutOfBoundsException e) {
             UI.printDeleteNumError();
@@ -241,6 +243,7 @@ public class Storage implements DatabaseInterface {
             UI.printWriteToDatabaseFailureMessage();
             return false;
         }
+        ui.printModuleDeleted(moduleToBeDeleted);
         return true;
     }
 
