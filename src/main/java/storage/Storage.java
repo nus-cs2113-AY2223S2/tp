@@ -6,8 +6,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.MalformedJsonException;
 
-import common.WelcomeMessage;
-import data.Account;
 import data.Expense;
 import data.ExpenseList;
 import utils.GsonLocalDateAdaptor;
