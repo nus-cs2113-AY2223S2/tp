@@ -30,8 +30,8 @@ class EditCommandTest {
         EditCommand testEditZeroIndex = new EditCommand(0, "edit 1 d/2023-02-15 a/20 p/Eat Food");
         assertEquals("Edited! Here is the updated list:\n" +
                 "1. [Academic] || Date: 15 Feb 2023 || Value: 20.0 || Description: Eat Food\n" +
-                "2. [Food] || Date: 21 March 2023 || Value: 4.5 || Description: chicken rice\n" +
-                "3. [Transport] || Date: 21 March 2023 || Value: 2.1 || Description: circle line",
+                "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n" +
+                "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line",
                 testEditZeroIndex.execute(testExpenditures).getCommandResult());
     }
 
