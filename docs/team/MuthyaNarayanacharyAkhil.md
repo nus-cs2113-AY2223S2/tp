@@ -143,24 +143,24 @@ I also contributed by creating and formatting the **Command Summary**, which can
 | **Command**                      | **Format**                                                                 |
 |----------------------------------|----------------------------------------------------------------------------|
 | Create a card                    | `card add -q QUESTION -a ANSWER`                                           |
-| Create a tag                     | `card tag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \|  -x TAG_INDEX}`  |
-| Create a deck (using card)       | `card deck {-c CARD_UUID \| -i CARD_INDEX} -d DECK_NAME`                   |
-| Create a deck (using tag)        | `card deck {-t TAG_NAME \| -x TAG_INDEX} -d DECK_NAME`                     |
-| Add a tag to a card              | `card tag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}`   |
-| Untag a card                     | `card untag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}` |
-| Add a card to a deck             | `card deck {-c CARD_UUID \| -i CARD_INDEX} -d DECK_NAME`                   |
-| Add a tag to a deck              | `tag deck -d DECK_NAME {-t TAG_NAME \| -x TAG_INDEX}`                      |
-| Delete a card                    | `card delete {-c CARD_UUID \| -i CARD_INDEX}`                              |
-| Delete a tag                     | `tag delete {-t TAG_NAME \| -x TAG_INDEX}`                                 |
+| Create a tag                     | `card tag {-c CARD_UUID `&#124;` -i CARD_INDEX} {-t TAG_NAME `&#124;`  -x TAG_INDEX}`  |
+| Create a deck (using card)       | `card deck {-c CARD_UUID `&#124;` -i CARD_INDEX} -d DECK_NAME`                   |
+| Create a deck (using tag)        | `card deck {-t TAG_NAME `&#124;` -x TAG_INDEX} -d DECK_NAME`                     |
+| Add a tag to a card              | `card tag {-c CARD_UUID `&#124;` -i CARD_INDEX} {-t TAG_NAME `&#124;` -x TAG_INDEX}`   |
+| Untag a card                     | `card untag {-c CARD_UUID `&#124;` -i CARD_INDEX} {-t TAG_NAME `&#124;` -x TAG_INDEX}` |
+| Add a card to a deck             | `card deck {-c CARD_UUID `&#124;` -i CARD_INDEX} -d DECK_NAME`                   |
+| Add a tag to a deck              | `tag deck -d DECK_NAME {-t TAG_NAME `&#124;` -x TAG_INDEX}`                      |
+| Delete a card                    | `card delete {-c CARD_UUID `&#124;` -i CARD_INDEX}`                              |
+| Delete a tag                     | `tag delete {-t TAG_NAME `&#124;` -x TAG_INDEX}`                                 |
 | Delete a deck                    | `deck delete -d DECK_NAME`                                                 |
-| Delete a card from a deck        | `deck delete -d DECK_NAME {-c CARD_UUID \| -i CARD_INDEX}`                 |
-| Delete a tag from a deck         | `deck delete -d DECK_NAME {-t TAG_NAME \| -x TAG_INDEX}`                   |
+| Delete a card from a deck        | `deck delete -d DECK_NAME {-c CARD_UUID `&#124;` -i CARD_INDEX}`                 |
+| Delete a tag from a deck         | `deck delete -d DECK_NAME {-t TAG_NAME `&#124;` -x TAG_INDEX}`                   |
 | List cards                       | `card list`                                                                |
 | List tags                        | `tag list`                                                                 |
-| List cards under a tag           | `tag list {-t TAG_NAME \| -x TAG_INDEX}`                                   |
+| List cards under a tag           | `tag list {-t TAG_NAME `&#124;` -x TAG_INDEX}`                                   |
 | List decks                       | `deck list`                                                                |
 | List cards and tags under a deck | `deck list -d DECK_NAME`                                                   |
-| View a card                      | `card view {-c CARD_UUID \| -i CARD_INDEX}`                                |
+| View a card                      | `card view {-c CARD_UUID `&#124;` -i CARD_INDEX}`                                |
 | Run the `deck`                   | `deck run -d DECK_NAME`                                                    |
 | Edit a card                      | `card edit -n NEW_CARD_NAME -o OLD_CARD_NAME`                              |
 | Edit a tag                       | `tag edit -n NEW_TAG_NAME -o OLD_TAG_NAME`                                 |
