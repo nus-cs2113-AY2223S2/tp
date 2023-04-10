@@ -24,8 +24,7 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 ### New Feature: Adding notes to tasks
 
 - Allows the user to add a note to the specified task
-- By following the steps outlined by the user guide, a note can be added to a task. 
-The note will be saved when Duck is closed
+- By following the steps outlined by the user guide, a note can be added to a task.
 
 ### New Feature: Deleting notes under tasks
 
@@ -66,4 +65,5 @@ The note will be saved when Duck is closed
 
 ### Community:
 - Reported bugs and suggestions for other teams (examples: [1](https://github.com/miahjerry/ped/issues/4), [2](https://github.com/miahjerry/ped/issues/7), [3](https://github.com/miahjerry/ped/issues/8))
-- Helped to connect to other teams for mutual stress testing of products (examples: [1](https://ginger-vicuna-3c7.notion.site/Duck-jar-62da4045517945f880b94392f6c0478e),[2](https://docs.google.com/document/d/1Um9IQ-UzBePFyVlHz3TH4wGpermMRMWOpBLmJe6c0IM/edit?usp=sharing))
+- Helped to connect to other teams for more feedback on Duck (examples: [1](https://ginger-vicuna-3c7.notion.site/Duck-jar-62da4045517945f880b94392f6c0478e),[2](https://docs.google.com/document/d/1Um9IQ-UzBePFyVlHz3TH4wGpermMRMWOpBLmJe6c0IM/edit?usp=sharing))
+- Helped to give other teams feedback on their product (examples: [1](https://docs.google.com/document/d/1UVnMxMm19w6zJRVTrtQq-U1MtQGjcguNfLYa4f1Uh28/edit?usp=sharing),[2](https://docs.google.com/document/d/1JXlZDlqaf9X08aNsDAeK3y8I08eVEqsbz_Pqo6yOFTo/edit?usp=sharing))
