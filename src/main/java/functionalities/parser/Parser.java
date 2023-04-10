@@ -31,7 +31,7 @@ public class Parser {
     public static Command parse(String userCommand) throws SniffException {
         try {
             String command = getCommand(userCommand);
-            String[] task = userCommand.split(command);
+            String[] task = userCommand.split(command,2);
             if (command.equals("consultation")) {
                 parseConsultationCommand(task[1]);
             } else if (command.equals("vaccination")) {
