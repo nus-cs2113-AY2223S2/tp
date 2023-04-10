@@ -328,6 +328,12 @@ there will be records that could be loss when exiting. Saving all data in this s
 text file is not feasible due to the inability to enforce the relation between objects when the
 system is loaded again.
 
+**Q**: When I renew the book, nothing happens
+
+**A**: Do not worry, our application is time sensitive! `renew` will only work if you renew the book,
+not on the same day you borrowed the book. While you might not be able to test this during PE, it definitely
+works!
+
 ## Command Summary
 
 | Action                      | Format                                   | Example                                                                                      |
