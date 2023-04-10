@@ -1,0 +1,114 @@
+@startuml
+top to bottom direction
+skinparam linetype polyline
+skinparam classAttributeIconSize 0
+
+class ByeCommand {
+  + isExit(): boolean
+  + execute(Ui): void
+}
+class CategoryCommand {
+  + categoryMap: HashMap<String, Integer>
+  - name: String
+  - budget: int
+  + execute(Ui): void
+  + isExit(): boolean
+}
+interface Command << interface >> {
+  + execute(Ui): void
+  + isExit(): boolean
+}
+class DeleteCommand {
+  + NULL_CATEGORY_ASSERTION: String
+  + NO_CATEGORY_MESSAGE: String
+  - eventIndex: int
+  - categoryName: String
+  + CATEGORY_DELETION_MESSAGE: String
+  + NON_EXISTENT_EVENT: String
+  + EVENT_DELETION_MESSAGE: String
+  - isEvent: boolean
+  - deleteEvent(): void
+  - deleteCategory(): void
+  + execute(Ui): void
+  + isExit(): boolean
+}
+class EditCommand {
+  - isReady: boolean
+  - userInput: String
+  - categoryIndex: int
+  - eventIndex: int
+  - categoryName: String
+  + EXPENSE: String
+  - checkNegative(int): void
+  - isEditSuccessful(String): boolean
+  - prepareEditEvent(): void
+  - getUserInputUntilNonEmpty(): void
+  - checkExpenseUnderLimit(String): void
+  + execute(Ui): void
+  + isExit(): boolean
+}
+class EventCommand {
+  - eventName: String
+  - expense: int
+  - userInput: String
+  - time: String
+  - addEventToCategory(String, Event): void
+  - isAddEventSuccessful(String): boolean
+  + execute(Ui): void
+  - getUserInputUntilNonEmpty(): void
+  + isExit(): boolean
+}
+class HelpCommand {
+  + isExit(): boolean
+  + execute(Ui): void
+}
+class Parser {
+  - createByeCommand(String[]): Command
+  + parseNextCommand(String): Command
+  - createHelpCommand(String[]): Command
+  - checkNegative(int): void
+  - createEditCommand(String[]): Command
+  - checkBigNumber(String): void
+  - createCategoryCommand(String[]): Command
+  - createViewCommand(String[]): Command
+  - createSearchCommand(String[]): Command
+  - createDeleteCommand(String[]): Command
+  - createEventCommand(String[]): Command
+}
+class SearchCommand {
+  - query: String
+  + isExit(): boolean
+  + calculateLevenshteinDistance(String, String): int
+  + sortCategoryBySimilarity(ArrayList<Category>, HashMap<Category, Integer>): void
+  + assignItemsBySimilarity(Set<Category>, Set<Event>, HashMap<Category, Integer>, HashMap<Event, Integer>, String): void
+  + execute(Ui): void
+  + calculateSimilarityDistance(String, String): int
+  + sortEventBySimilarity(ArrayList<Event>, HashMap<Event, Integer>): void
+  + getCategoryOfEvent(Event): Category?
+}
+class ViewCommand {
+  - isCategorySpecified: boolean
+  - categoryName: String
+  + isExit(): boolean
+  - viewAll(): void
+  + execute(Ui): void
+  - viewOne(): void
+}
+
+ByeCommand       -[#008200,dashed]-^  Command         
+CategoryCommand  -[#008200,dashed]-^  Command         
+DeleteCommand    -[#008200,dashed]-^  Command         
+EditCommand      -[#008200,dashed]-^  Command         
+EventCommand     -[#008200,dashed]-^  Command         
+HelpCommand      -[#008200,dashed]-^  Command         
+Parser           -[#595959,dashed]->  ByeCommand      : "«create»"
+Parser           -[#595959,dashed]->  CategoryCommand : "«create»"
+Parser           -[#595959,dashed]->  DeleteCommand   : "«create»"
+Parser           -[#595959,dashed]->  EditCommand     : "«create»"
+Parser           -[#595959,dashed]->  EventCommand    : "«create»"
+Parser           -[#595959,dashed]->  HelpCommand     : "«create»"
+Parser           -[#595959,dashed]->  SearchCommand   : "«create»"
+Parser           -[#595959,dashed]->  ViewCommand     : "«create»"
+SearchCommand    -[#008200,dashed]-^  Command         
+ViewCommand      -[#008200,dashed]-^  Command
+@enduml

@@ -1,0 +1,41 @@
+@startuml StorageSequenceDiagram
+title Storage Constructor Sequence Diagram
+' create Moneymind
+-> Moneymind : MoneyMind()
+activate Moneymind
+create Storage
+Moneymind -> Storage : Storage("EventList.txt")
+activate Storage
+Storage -> File : File(filePath : String)
+activate File
+File --> Storage : textFile : File
+deactivate File
+' try block
+critical try
+Storage -> File : createNewFile()
+activate File
+File --> Storage : isFileCreated : Boolean
+deactivate File
+' if block
+alt !isFileCreated
+Storage -> System.out : println("Loading file...")
+activate System.out
+deactivate System.out
+' else block
+else isFileCreated
+Storage -> System.out : println("Creating file...")
+activate System.out
+deactivate System.out
+end
+' catch block
+opt catch (Exception e)
+Storage -> System.out : println("Error creating file...")
+activate System.out
+deactivate System.out
+end
+end
+Storage --> Moneymind : storage : Storage
+deactivate Storage
+<-- Moneymind : moneymind : MoneyMind
+deactivate Moneymind
+@enduml

@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+title Architecture Sequence Diagram
+
+Actor User as user #crimson
+participant MoneyMind as mm #lightblue
+participant UI as ui #lightpink
+participant Storage as storage #lightgrey
+
+
+
+user -[#crimson]> mm : EventCommand  buy lunch e/10
+activate mm #lightblue
+
+mm -> ps : parseNextCommand()
+activate ps #orange
+
+ps -> ps : createEventCommand()
+activate ps #orange
+create EventCommand
+ps -> EventCommand
+activate EventCommand
+EventCommand --> ps
+deactivate EventCommand
+ps --> ps
+deactivate ps #orange
+ps --> mm
+deactivate ps #orange
+
+mm -> EventCommand : isExit()
+activate EventCommand
+EventCommand --> mm
+deactivate EventCommand
+
+mm -> EventCommand : execute()
+activate EventCommand
+create Data
+EventCommand -> Data
+activate Data
+Data --> EventCommand
+deactivate Data
+EventCommand --> mm
+deactivate EventCommand
+
+mm -> storage : save()
+activate storage #lightgrey
+storage --> mm
+deactivate storage #lightgrey
+
+
+
+
+
+
+
+
+@enduml
