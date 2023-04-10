@@ -6,7 +6,7 @@ Reused iP to serve as base code from [jeraldgau/ip](https://github.com/jeraldgau
 
 ## Architecture
 
-![](https://lh3.googleusercontent.com/FwYOJJpyhNrHNAUjWo1grnsWCDHdKMosDWaJaI_3kqtVbfD8108yk0MeJaybK3ac0MOAL3EVKYYCUjSiAbBrwAT8wRBkPTj2UDfw3AdhPT0fB8twOxfRDfh3BGAawOUOUlt-rxSACvVOhvqRnFamqWM)
+![]![image](https://user-images.githubusercontent.com/1620654/230882687-7c5f75d1-9bba-4e3b-8aed-4dd432f165ea.png)
 
 The **Architecture Diagram** given above explains the high-level design of Duck.
 
