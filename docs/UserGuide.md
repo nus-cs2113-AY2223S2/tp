@@ -384,8 +384,8 @@ Format: `/search [NUS MODULE CODE]`
 Example of usage: `/search ME4661`
 
 Expected outcome:
-* A list of PU's modules that can be mapped to the user's specific NUS module code will appear under its respective PU
-heading
+* A list of PU's modules that can be mapped to the user's specific NUS module code and it will appear under its 
+respective PU heading
 
 Description of outcome:
 ```
