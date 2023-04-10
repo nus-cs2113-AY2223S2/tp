@@ -15,7 +15,9 @@ Consultation via uid, date, and appointment type to help vet clinics better mana
 3. Move the file to a location where you want to run Sniff from.
 4. Open a command terminal and navigate to the location where `sniff.jar` is.
 5. Use the following command to run the program: `java -jar sniff.jar`
-6. If Sniff runs successfully, you will see the following welcome message
+6. If Sniff runs successfully, you will see the following welcome message.
+
+
 ```
 ______________________________________________________________________
  Hello! I'm Sniff, your personal appointment manager.
@@ -361,14 +363,14 @@ Example : `mark uid/V14082745S`
 Example of Valid Command:
 
 ```
-mark uid/C26135173W
+mark uid/C67345117A
 ______________________________________________________________________
- 1.  UID: C67345117A [X]
- Date: 2023-12-12 | Time: 19:00
+ Consultation   [X]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C67345117A
  Animal Name: Oreo | Animal Type: Cat
  Owner Name: fred | Contact Number: 91919191
-
-
 The appointment has been marked successfully
 ______________________________________________________________________
 ```
@@ -397,10 +399,12 @@ Format : `mark uid/ `
 Example : `mark uid/V14082745S`
 ```
 
-unmark uid/C26135173W
+unmark uid/C80880043M
 ______________________________________________________________________
- 1.  UID: C67345117A [ ]
- Date: 2023-12-12 | Time: 19:00
+  1.  Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C80880043M
  Animal Name: Oreo | Animal Type: Cat
  Owner Name: fred | Contact Number: 91919191
 
