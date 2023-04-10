@@ -54,12 +54,16 @@ All the PRs I have made: [Wei Pin's PRs](https://github.com/AY2223S2-CS2113-W12-
 * Consistent checkstyle and code quality checks using Checkstyle, SpotBugs and SonarLint
 * Processed and added anchor links manually to DG & UG PDF(s) for final submission (due to some bugs with chrome print)
 
-Review/mentoring contributions:
+**Review/mentoring contributions:**
 * Reviewed team members' PRs and provided suggestions and feedbacks
-  (**All the PRs I have reviewed: [Wei Pin's PR Reviews](https://github.com/AY2223S2-CS2113-W12-3/tp/pulls?q=type%3Apr+reviewed-by%3Afirwer)**)
+  (All the PRs I have reviewed: **[Wei Pin's PR Reviews](https://github.com/AY2223S2-CS2113-W12-3/tp/pulls?q=type%3Apr+reviewed-by%3Afirwer)**)
 * Setting of discussion topics/agenda during team meetings
 
-Contribution DG Extracts:
+**Example Contribution that I have made to UG:** (Add Command)
+![img_4.png](img_4.png)
+
+
+**Contribution DG Extracts:**
 
 ![SequenceDiagram.png](..%2FSequenceDiagram.png)
 ![AddCommand.png](..%2FUML%2FAdd%2FAddCommand.png)
