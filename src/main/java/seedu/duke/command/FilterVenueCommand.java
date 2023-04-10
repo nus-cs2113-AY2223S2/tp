@@ -26,9 +26,9 @@ public class FilterVenueCommand extends Command {
                 numberOfSuitableVenues += 1;
             }
         }
-       if (numberOfSuitableVenues == 0) {
-           System.out.println("No suitable venues found.");
-       }
-       ui.showLine();
+        if (numberOfSuitableVenues == 0) {
+            System.out.println("No suitable venues found.");
+        }
+        ui.showLine();
     }
 }
