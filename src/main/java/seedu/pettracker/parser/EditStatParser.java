@@ -13,7 +13,7 @@ public class EditStatParser implements ArgParser<EditStatCommand>{
             throw new EmptyArgException(EMPTY_ARG_MESSAGE);
         }
         try {
-            String[] args = commandArgs.split(" ");
+            String[] args = commandArgs.split(" ", 3);
             String petName = args[0];
             String statName = args[1];
             String newStatName = args[2];

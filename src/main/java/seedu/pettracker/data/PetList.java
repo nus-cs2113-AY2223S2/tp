@@ -4,6 +4,7 @@ import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.InvalidStatValueException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.storage.Storage;
@@ -73,7 +74,13 @@ public class PetList {
      * @throws PetNotFoundException        When Pet is not in PetList
      */
     public static void addStat(String petName, String statName, String statValue)
-            throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException {
+            throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException,
+            InvalidStatValueException {
+
+        if (statValue.trim().contains("|")) {
+            throw new InvalidStatValueException();
+        }
+
         int index = PetList.find(petName);
         if (index == -1) {
             throw new PetNotFoundException();
@@ -142,7 +149,11 @@ public class PetList {
 
     /**
      * Return the number of pets in the PetList.
+<<<<<<< HEAD
      * 
+=======
+     *
+>>>>>>> f5cbc4466ea465cc05fe8762622808983fa553b4
      * @return number of pets in the list.
      */
     public static int getNumberOfPets() {
@@ -164,7 +175,13 @@ public class PetList {
      * @throws PetNotFoundException        When Pet is not in PetList
      */
     public static void editPetStats(String petName, String stat, String newValue)
-            throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException {
+            throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException,
+            InvalidStatValueException {
+
+        if (newValue.trim().contains("|")) {
+            throw new InvalidStatValueException();
+        }
+
         int index = PetList.find(petName);
         if (index == -1) {
             throw new PetNotFoundException();
