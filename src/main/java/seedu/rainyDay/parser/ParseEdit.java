@@ -101,6 +101,8 @@ public class ParseEdit extends Parser {
                     String dateString = date.format(formatters);
                     editFlagAndField.add("-date");
                     editFlagAndField.add(dateString);
+                } catch (NumberFormatException e) {
+                    throw new RainyDayException(ErrorMessage.EDIT_FORMAT.toString());
                 } catch (RainyDayException e) {
                     throw new RainyDayException(e.getMessage() + ErrorMessage.EDIT_FORMAT);
                 }
