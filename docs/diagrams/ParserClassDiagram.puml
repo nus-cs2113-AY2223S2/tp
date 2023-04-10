@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+hide circle
+hide empty methods
+
+package Parser {
+
+Class Parser{
++parseUserInput(String): Command
+}
+
+Class ParseAdd{
++addStatement(String): Command
+}
+Class ParseDelete{
++deleteStatement(String): Command
+}
+Class ParseEdit{
++editStatement(String): Command
+}
+Class ParseFilter{
++filterStatement(String): Command
+}
+Class ParseHelp{
++displayHelp(String): HelpCommand
+}
+Class ParseIgnore{
++ignoreStatement(String): Command
+}
+Class ParseSetBudget{
++setUserBudgetGoal(String): Command
+}
+Class ParseShortcut{
++generateShortcut(String): Command
+}
+Class ParseView{
++generateReport(String): Command
+}
+
+Parser <|-- ParseAdd
+Parser <|-- ParseDelete
+Parser <|-- ParseEdit
+Parser <|-- ParseFilter
+Parser <|-- ParseHelp
+Parser <|-- ParseIgnore
+Parser <|-- ParseSetBudget
+Parser <|-- ParseShortcut
+Parser <|-- ParseView
+
+}
+@enduml

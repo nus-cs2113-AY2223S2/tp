@@ -162,6 +162,16 @@ the user.
 
 The UI class is also used when a shortcut-command is being executed by the user.
 
+### Parser package
+
+The parser package consists of different classes to parse the different inputs from users. The following shows a partial 
+class diagram for the parser package.
+
+![ParserClassDiagram.png](images%2FDeveloperGuide%2FParserClassDiagram.png)
+
+There will be a main parser class that will identify the appropriate parser class to call based on the first word of the
+user's input. All the parser classes will inherit from the main parser class.
+
 ### Data package
 
 The data package consists of

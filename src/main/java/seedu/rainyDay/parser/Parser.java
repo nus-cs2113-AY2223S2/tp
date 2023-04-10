@@ -34,7 +34,7 @@ public class Parser {
                 return new ParseAdd().addStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
-                return new ParseDelete().parseDeleteStatement(userInput);
+                return new ParseDelete().deleteStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
                 logger.info("view command executing");
                 return new ParseView().generateReport(userInput);
