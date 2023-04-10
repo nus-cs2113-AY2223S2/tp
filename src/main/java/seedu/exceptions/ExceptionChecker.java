@@ -9,6 +9,9 @@ import seedu.parser.ParseIndividualValue;
 
 public class ExceptionChecker {
     public static final int TWO_DECIMAL_PLACE = 2;
+    public static final String START_DATE = "2000-01-01";
+    public static final double START_YEAR = 2000;
+
     public static void checkEmptyString(String string) throws EmptyStringException {
         if (string.isEmpty()) {
             throw new EmptyStringException();
@@ -32,6 +35,15 @@ public class ExceptionChecker {
         }
     }
 
+    public static void check(String amountVal) throws InvalidCharacterInAmount {
+        String lowerCaseAmountVal = amountVal.toLowerCase();
+        boolean containsSpecialCharacter = (lowerCaseAmountVal.contains("f") || lowerCaseAmountVal.contains("d") ||
+                lowerCaseAmountVal.contains("e"));
+        if (containsSpecialCharacter) {
+            throw new InvalidCharacterInAmount();
+        }
+    }
+
     public static void checkDate(LocalDate startDate, LocalDate endDate)
             throws InvalidDateException, InvalidDeadlineException {
         LocalDate currentDate = LocalDate.now();
@@ -40,6 +52,21 @@ public class ExceptionChecker {
         }
         if (endDate.isBefore(currentDate)) {
             throw new InvalidDeadlineException();
+        }
+    }
+
+    public static void checkDateLimit(LocalDate currentDate)
+            throws DateLimitException {
+        LocalDate firstdate = LocalDate.parse(START_DATE);
+        if (currentDate.isBefore(firstdate)) {
+            throw new DateLimitException();
+        }
+    }
+
+    public static void checkYearLimit(String currentDate)
+            throws YearLimitException {
+        if (Double.parseDouble(currentDate) < START_YEAR) {
+            throw new YearLimitException();
         }
     }
 
@@ -74,10 +101,10 @@ public class ExceptionChecker {
             }
         }
     }
-    public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String DOT, String BLANK)
+    public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String dot, String blank)
             throws WrongPrecisionException, EmptyStringException {
-        if (userInput.contains(DOT)) {
-            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,DOT,BLANK);
+        if (userInput.contains(dot)) {
+            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,dot,blank);
             if (twoDecimalPlaces.length() > TWO_DECIMAL_PLACE) {
                 throw new WrongPrecisionException();
             }

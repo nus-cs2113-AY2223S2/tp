@@ -414,6 +414,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 ### 4.17. Currency rates
 
 Displays list of the other currency available in MyLedger and their value against SGD.
+
 **Format:** `showrates`     |
 
 ## FAQ
