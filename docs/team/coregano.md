@@ -8,14 +8,12 @@ It is written in Java, and has about 4k LoC.
 
 ## Summary of Contributions
 
----
-
 ### Code contributed
 
-___ LoC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=t14&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=coregano&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
-- __ Documentation
-- __ functional-code
-- __ test-code
+543 LoC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=t14&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=coregano&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
+- 42 Documentation
+- 456 functional-code
+- 40 test-code
 
 ---
 ### Enhancements implemented
@@ -30,7 +28,7 @@ ___ LoC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/t
 ---
 ### Contributions to the [DG](../DeveloperGuide.md)
 1. Add Instructions for Manual Testing
-2. 
+2. Add explanation for `Storage`, `Item`, `Command`, `IncorrectCommand`, `Find command`
 
 ---
 ### Contributions to team-based tasks
