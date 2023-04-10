@@ -6,7 +6,7 @@
 
 * [**Acknowledgements**](#acknowledgements)
 * [**Setting up, getting started**](#setting-up-getting-started)
-* [**Design**](#span-stylecolor00a36c-design-span)
+* [**Design**](#design)
   * [Architecture](#architecture)
   * [*Commands Package*](#commands-package)
     * [*Command*](#command)
@@ -58,7 +58,7 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 Refer to the [UserGuide.md](UserGuide.md) for more details
 
 ---
-
+<div style="page-break-after: always;"></div>
 ## <span style="color:#00A36C">Design</span>
 
 ### Architecture
@@ -598,8 +598,9 @@ Methods:
 
 - `size()` - returns size of packing list
 
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Appendix A: Product scope</span>
 
@@ -614,6 +615,8 @@ Methods:
 BagPacker aims to help busy students simplify their packing process by allowing easy adding of items to pack and record of the items they have already packed so that they can be organised and aboard their travels with ease.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Appendix B: User Stories</span>
 
@@ -635,6 +638,8 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 | v2.1    | user     | fully pack or unpack an item                   | don't have to refer to how many of that item I need                          |
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Appendix C: Non-Functional Requirements</span>
 
