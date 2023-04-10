@@ -37,7 +37,7 @@ public class AddCommand extends ExecutableCommand {
         IngredientList ingredients = mealCompanionSession.getIngredients();
         int newQuantity = ingredients.get(index).getQuantity() + quantity;
         if (newQuantity > MAX_INGREDIENTS) {
-            throw new CommandRunException("OOPS, new total ingredient amount cannot exceed 10000");
+            throw new CommandRunException("OOPS, new total ingredient amount cannot exceed " + MAX_INGREDIENTS);
         }
         ingredients.get(index).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage("Here is the new quantity of the ingredient:");
