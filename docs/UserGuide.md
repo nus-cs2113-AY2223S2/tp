@@ -318,7 +318,7 @@ Format: **`edit [INDEX] [FLAG] {NEWFIELD}`**
 
 Example of Usage:
 
-Suppose you realised you forgot to add the "Category" for entry 1, and you would like to place it under
+Suppose you realised you forgot to add the "Category" for entry with index 1, and you would like to place it under
 "Food and Drinks". You can use the following command:
 
 ![editCategory.png](images/UserGuide/editCategory.png)
@@ -327,7 +327,7 @@ and use the `view` command afterwards to verify the edits are accurate:
 
 ![editCategoryView.png](images/UserGuide/editCategoryView.png)
 
-Perhaps you realised you made a mistake in the "Amount" for entry 2 and your allowance is $75 instead.
+Perhaps you realised you made a mistake in the "Amount" for entry with index 2 and your allowance is $75 instead.
 You can use the following command:
 
 ![editValue.png](images/UserGuide/editValue.png)
@@ -336,7 +336,7 @@ and use the `view` command afterwards to verify the edits are accurate:
 
 ![editValueView.png](images/UserGuide/editValueView.png)
 
-But what happens if you realised you made multiple mistakes in entry 3? Don't worry! You can edit multiple fields at the
+But what happens if you realised you made multiple mistakes in entry with index 3? Don't worry! You can edit multiple fields at the
 same time using multiple flags. However, do take note of the flag order as listed below.
 > ⚠️ Multiple flags may be used at once, but must be in the following order:
 >
@@ -418,7 +418,7 @@ not want to include it in your budget calculations. After adding it into rainyDa
 
 ![ignoreView.png](images/UserGuide/ignoreView.png)
 
-To ignore the entry, you can use the following command:
+To ignore the index, you can use the following command:
 
 ![ignoreGST.png](images/UserGuide/ignoreGST.png)
 
