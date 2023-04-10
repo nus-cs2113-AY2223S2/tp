@@ -9,23 +9,22 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Listing all tasks :](#listing-all-tasks--list) `list`
     * [Listing all tasks and classes happening today :](#listing-all-tasks--list) `list_today`
     * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
-    * [Displaying upcoming deadline](#displaying-upcoming-deadline)
-    * [Displaying class schedule :](#displaying-class-schedule--listclasses) `list_classes`
-    * [Displaying upcoming class :](#displaying-upcoming-class--upcomingclass) `upcoming_class`
-    * [Displaying upcoming deadline :](#displaying-upcoming-class--upcomingdeadline) `upcoming_deadline`
-    * [Displaying upcoming event :](#displaying-upcoming-event--upcomingevent) `upcoming_event`
-    * [Mark a specified task as done :](#marking-a-task--mark-tasknumber) `mark <task number> `
-    * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-tasknumber) `unmark <task number>`
-    * [Edit a specific piece information of a task :](#editing-a-task--editnotes) `edit <task number>`
+    * [Displaying class schedule :](#displaying-class-schedule--list_classes) `list_classes`
+    * [Displaying upcoming class :](#displaying-upcoming-class--upcoming_class) `upcoming_class`
+    * [Displaying upcoming deadline :](#displaying-upcoming-class--upcoming_deadline) `upcoming_deadline`
+    * [Displaying upcoming event :](#displaying-upcoming-event--upcoming_event) `upcoming_event`
+    * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
+    * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
+    * [Edit a specific piece of information for a given task :](#editing-a-task--edit-task_number) `edit <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
     * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
-    * [Designate a priority to a given task :](#designate-a-task-priority--priority-tasknumber-priority) `priority <task number> <priority>` 
-    * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--addnotes) `add_notes <task number>`
-    * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--deletenotes) `delete_notes <task number>`
-    * [Editing notes for a specific task :](#editing-notes-for-a-specific-task--editnotes) `edit_notes <task number> <note number>`
-    * [Viewing notes for a specific task :](#printing-notes-for-a-specific-task--viewnotes) `view_notes <task number>`
-    * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--lowpriority) `low_priority`/`medium_priority`/`high_priority`
-    * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--prioritylist) `priority_list`
+    * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) `priority <task number> <priority>` 
+    * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--add_notes) `add_notes <task number>`
+    * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--delete_notes) `delete_notes <task number>`
+    * [Editing notes for a specific task :](#editing-notes-for-a-specific-task--edit_notes) `edit_notes <task number> <note number>`
+    * [Viewing notes for a specific task :](#printing-notes-for-a-specific-task--view_notes) `view_notes <task number>`
+    * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
+    * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
@@ -100,16 +99,6 @@ Displays all deadlines, events and classes happening today.
 	 [E][ ] study (from: 2023-03-29 2100 to: 2023-04-23 2300) (Low priority.)
 	 [E][ ] study (from: 0800 to: 2300) (every WEDNESDAY) (Low priority.)
 	____________________________________________________________
-```
-## **Displaying upcoming deadline**
-
-Displays upcoming deadline stored in the application when starting the application. 
-
-**Output: The upcoming deadline with remaining time before the deadline**
-
-```
-Here are the upcoming deadline:  
-1.Eat bread (1 day 26 hours 50 minutes before the deadline)
 ```
 
 ## **Displaying class schedule : `list_classes`**
