@@ -22,11 +22,14 @@ apps.
       * [#34](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/34)
     * Added exception handler for `delete` feature
       * [#34](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/34)
+      * [#150](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/150)
     * Wrote tests for `delete`, `weeklyingredients` and `weekly /clear` features
       * [#50](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/50)
       * [#20](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/20/files)
-    * Updated `add` feature so users can input all ingredients in one line and processed accurately
-      * [137](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/137)
+      * [#150](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/150)
+    * Updated `add` feature so users can input all ingredients in one line with `and` between ingredients (code was 
+      not used in final implementation as we decided to take a different approach)
+      * [#137](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/137)
       
 
 * __Documentation__:
