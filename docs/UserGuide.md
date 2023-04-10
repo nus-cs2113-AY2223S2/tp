@@ -47,7 +47,7 @@ the steps to operate BadMaths for your study woes.
 Before you start using BadMaths, make sure you have the following ready!
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `BadMaths` from [here](https://github.com/AY2223S2-CS2113-F10-2/tp.git).
+2. Down the latest version of `BadMaths` from [here](https://github.com/AY2223S2-CS2113-F10-2/tp/releases).
 
 ## Features
 

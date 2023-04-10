@@ -549,9 +549,6 @@ The for loop will run from `xMin` to `xMax`, which are the negative frequency an
 After getting the y value from the output of the sin equation, both *x* and *y* are scaled to *xPixel* and *yPixel* respectively. A horizontal line is drawn at every pixel, which
 eventually forms the sine graph.
 
-//{Describe the design and implementation of the product. 
-//Use UML diagrams and short code snippets where applicable.}
-
 ### Matrix
 
 The Matrix feature supports various basic matrix calculations below:
