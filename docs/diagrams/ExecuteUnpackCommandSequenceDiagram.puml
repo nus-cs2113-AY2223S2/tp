@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+":BagPacker" -> ":UnpackCommand": currentCommand\n.execute()
+note left
+currentCommand is retrieved
+from Parser.Parse()
+end note
+activate ":UnpackCommand" #MediumSpringGreen
+":UnpackCommand" -> ":UnpackCommand" : getTargetItem()
+activate ":UnpackCommand" #DarkGreen
+":UnpackCommand" --> ":UnpackCommand" : item
+deactivate ":UnpackCommand"
+":UnpackCommand" -> "packingList:\nPackingList" : packingList\n.unpackItem(item, quantity)
+activate "packingList:\nPackingList" #ForestGreen
+"packingList:\nPackingList" -> ":Item" : item.setUnpacked\n(quantity)
+activate ":Item" #MediumSeaGreen
+":Item" --> "packingList:\nPackingList"
+deactivate ":Item"
+":UnpackCommand" <-- "packingList:\nPackingList"
+deactivate "packingList:\nPackingList"
+":UnpackCommand" -> ":Ui" : Ui.printToUser(MSG_SUCCESS_UNPACK, item)
+activate ":Ui" #ForestGreen
+":UnpackCommand" <-- ":Ui"
+deactivate ":Ui"
+":BagPacker" <-- ":UnpackCommand": UnpackCommand is \ndone executing
+deactivate ":UnpackCommand"
+@enduml
