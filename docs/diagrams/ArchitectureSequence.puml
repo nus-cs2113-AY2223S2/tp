@@ -36,10 +36,14 @@ userdata --> command
 deactivate userdata
 command --> main
 deactivate command
+command <-[hidden]- command
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy command
 
-main --> user
-
+activate ui UI_COLOR
+ui --> user
 main -> storage : writeToFile(savedData:SavedData, filePath:String)
+deactivate ui
 activate storage STORAGE_COLOR_T1
 storage --> main
 deactivate storage

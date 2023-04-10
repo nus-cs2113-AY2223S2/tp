@@ -19,6 +19,7 @@ goals.
     * [Modules package](#modules-package)
       * [Storage](#storage)
       * [UI](#ui)
+    * [Parser package](#parser-package)
     * [Data package](#data-package)
       * [FinancialReport](#financialreport)
       * [FinancialStatement](#financialstatement)
@@ -29,27 +30,37 @@ goals.
       * [Design considerations](#design-considerations)
     * [Command package](#command-package)
     * [Exceptions package](#exceptions-package)
+      * [RainyDayException](#rainydayexception)
+      * [ErrorMessages](#errormessages)
   * [Implementation](#implementation)
     * [Maintaining of Financial Report](#maintaining-of-financial-report)
     * [Adding an entry `add`](#adding-an-entry-add)
+      * [Design considerations](#design-considerations-1)
     * [Deleting an entry `delete`](#deleting-an-entry-delete)
+      * [Design considerations](#design-considerations-2)
     * [Implementation of regex and parser](#implementation-of-regex-and-parser)
       * [addStatement(String userInput)](#addstatement--string-userinput-)
       * [Alternatives considered](#alternatives-considered)
     * [Viewing your data `view`](#viewing-your-data-view)
+      * [Design considerations](#design-considerations-3)
     * [Editing an entry `edit`](#editing-an-entry-edit)
+      * [Design considerations](#design-considerations-4)
     * [Filtering your data `filter`](#filtering-your-data-filter)
+      * [Design considerations](#design-considerations-5)
     * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
     * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
     * [Using a shortcut](#using-a-shortcut)
     * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
     * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
     * [Saving Data](#saving-data)
+      * [Design considerations](#design-considerations-6)
       * [Implementation of saving](#implementation-of-saving)
       * [Type of file to save data into](#type-of-file-to-save-data-into)
     * [Loading Data](#loading-data)
+      * [Design Considerations](#design-considerations-7)
       * [Type of file to load data into](#type-of-file-to-load-data-into)
     * [Exporting to .csv](#exporting-to-csv)
+      * [Design considerations](#design-considerations-8)
       * [Implementation of export to .csv](#implementation-of-export-to-csv)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
@@ -170,7 +181,8 @@ class diagram for the parser package.
 ![ParserClassDiagram.png](images%2FDeveloperGuide%2FParserClassDiagram.png)
 
 There will be a main parser class that will identify the appropriate parser class to call based on the first word of the
-user's input. All the parser classes will inherit from the main parser class.
+user's input. All the parser classes will inherit from the main parser class. The corresponding parser class will then 
+execute the appropriate commands.
 
 ### Data package
 
