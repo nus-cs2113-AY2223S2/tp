@@ -470,7 +470,7 @@ is corrupted, `load()` is called to read a file `backup.json` instead.
 3. The memory object is returned to be read from by Inka.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/LoadSequence.PNG)
+![export feature](img/LoadSequence.png)
 
 Reference Frames :
 ![Add Cards to foundCardList](img/AddCardsToFoundCardListRef.png)
