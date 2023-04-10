@@ -192,4 +192,8 @@ public class Ui {
             }
         }
     }
+
+    public static void printLineBreak() {
+        System.out.println("----------------------------------------------------------------------");
+    }
 }
