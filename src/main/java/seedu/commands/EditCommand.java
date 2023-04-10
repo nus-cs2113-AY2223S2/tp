@@ -9,6 +9,7 @@ import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
 import seedu.expenditure.LendExpenditure;
 import seedu.parser.ParseIndividualValue;
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.EmptyStringException;
 import seedu.expenditure.BorrowExpenditure;
 
@@ -71,6 +72,8 @@ public class EditCommand extends Command {
             return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         }   catch (SmallAmountException | InvalidCharacterInAmount e) {
             return new CommandResult(e.getMessage());
+        } catch (DateLimitException l) {
+            return new CommandResult(l.getMessage());
         }
         
     }
@@ -85,10 +88,12 @@ public class EditCommand extends Command {
 
     public LocalDate fetchDate(boolean isLendOrBorrowExpenditure)
             throws EmptyStringException, StringIndexOutOfBoundsException,
-            DateTimeParseException {
+            DateTimeParseException, DateLimitException {
         String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH,
                 isLendOrBorrowExpenditure ? NSLASH : ASLASH);
-        return LocalDate.parse(dateVal);
+        LocalDate date = LocalDate.parse(dateVal);
+        ExceptionChecker.checkDateLimit(date);
+        return date;
     }
 
     public double fetchAmount(boolean isLendOrBorrowExpenditure)

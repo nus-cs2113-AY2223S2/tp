@@ -1,5 +1,7 @@
 package seedu.commands;
 
+import seedu.exceptions.DateLimitException;
+import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.WrongInputException;
 import seedu.expenditure.CurrencyValue;
 import seedu.expenditure.ExpenditureList;
@@ -11,14 +13,16 @@ public class ViewDateExpenditureCommand extends Command {
     private final LocalDate date;
     private final String currency;
 
-    public ViewDateExpenditureCommand(String userInput) throws WrongInputException {
+    public ViewDateExpenditureCommand(String userInput) throws WrongInputException, DateLimitException {
         String[] splitValues = userInput.split(" ");
         if (CurrencyValue.isValidCurrency(splitValues[1])) {
             currency = splitValues[1];
         } else {
             throw new WrongInputException();
         }
-        this.date = LocalDate.parse(splitValues[0]);
+        LocalDate currentDate = LocalDate.parse(splitValues[0]);
+        ExceptionChecker.checkDateLimit(currentDate);
+        this.date = currentDate;
     }
 
     @Override
