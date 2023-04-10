@@ -103,7 +103,7 @@ public class EventList {
         boolean conflictCase2 = eventA.getStartTime().compareTo(eventB.getStartTime()) <= 0
                 && eventA.getEndTime().compareTo(eventB.getEndTime()) >= 0;
 
-        return conflictCase1 && conflictCase2;
+        return conflictCase1 || conflictCase2;
     }
 
     /**
