@@ -2,21 +2,39 @@
 
 <!-- TOC -->
 
-- [Developer Guide](#developer-guide)
-  - [Acknowledgements](#acknowledgements)
-  - [Design & implementation](#design--implementation)
-    - [Add Flashcard Feature](#add-flashcard-feature)
-    - [Delete Flashcard Feature](#delete-flashcard-feature)
-    - [Update Flashcard Feature](#update-flashcard-feature)
-    - [Review Flashcard Feature](#review-flashcard-feature)
-    - [Parser](#parser)
-  - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+* [Developer Guide](#developer-guide)
+    * [Acknowledgements](#acknowledgements)
+    * [Design & Implementation](#design--implementation)
+        * [Add Flashcard Feature](#add-flashcard-feature)
+            * [Current Implementation](#current-implementation)
+            * [Reason for Current Implementation](#reason-for-current-implementation)
+            * [Alternative Implementation](#alternative-implementation)
+        * [Delete Flashcard Feature](#delete-flashcard-feature)
+            * [Current Implementation](#current-implementation-1)
+            * [Reason for Current Implementation](#reason-for-current-implementation-1)
+            * [Alternative Implementation](#alternative-implementation-1)
+        * [Update Flashcard Feature](#update-flashcard-feature)
+            * [Current Implementation](#current-implementation-2)
+            * [Reason for Current Implementation](#reason-for-current-implementation-2)
+            * [Alternative Implementation](#alternative-implementation-2)
+        * [Review Flashcard Feature](#review-flashcard-feature)
+            * [Current Implementation](#current-implementation-3)
+            * [Reason for Current Implementation](#reason-for-current-implementation-3)
+            * [Alternative Implementation](#alternative-implementation-3)
+        * [Parser](#parser)
+            * [Current Implementation](#current-implementation-4)
+                * [`ParsedInput`](#parsedinput)
+                * [`Parser`](#parser-1)
+            * [Reason for Current Implementation](#reason-for-current-implementation-4)
+            * [Alternative Implementation](#alternative-implementation-4)
+        * [Storage Feature](#storage-feature)
+            * [Current Implementation](#current-implementation-5)
+            * [Reason for Current Implementation](#reason-for-current-implementation-5)
+            * [Alternative Implementation](#alternative-implementation-5)
+    * [Product Scope](#product-scope)
+        * [Target User Profile](#target-user-profile)
+        * [Value Proposition](#value-proposition)
+    * [User Stories](#user-stories)
 
 <!-- TOC -->
 
@@ -77,16 +95,17 @@ flashcards.
 
 - Alternative 1: Have the add command function directly in `FlashcardList`
 
-  - Pros: Easy to implement
-  - Cons: Will require another function in another program to differentiate it
-    from other commands
+    - Pros: Easy to implement
+    - Cons: Will require another function in another program to differentiate it
+      from other commands
 
 - Alternative 2: Have the constructor of `Flashcard` include adding the card to
   list of flashcards
 
-  - Pros: Simplifies code
-  - Cons: Will cause trouble when temporary flashcard (that need not be stored)
-    are created
+    - Pros: Simplifies code
+    - Cons: Will cause trouble when temporary flashcard (that need not be
+      stored)
+      are created
 
 ### Delete Flashcard Feature
 
@@ -137,9 +156,10 @@ the user does not remember the index of the flashcard.
 
 - Alternative 1: Delete flashcard by index from the start
 
-  - Pros: Easy to implement and simplifies code
-  - Cons: Cumbersome to delete if user forgets the flashcard's index and has to
-    search through the whole list of flashcards.
+    - Pros: Easy to implement and simplifies code
+    - Cons: Cumbersome to delete if user forgets the flashcard's index and has
+      to
+      search through the whole list of flashcards.
 
 ### Update Flashcard Feature
 
@@ -186,11 +206,13 @@ of the methods and attributes are within this `UpdateCommand` class.
   store flashcards containing the `query` and then printing the list of
   flashcards, directly print the flashcards when there is a match with the query
 
-  - Pros: Easier to implement
-  - Cons: Harder to track the total number of flashcards that has `query` and
-    will need to have another way to track the index of the matching flashcards.
-    it will also be more confusing as the index of the user input is not aligned
-    with the index of the arrayList that contains all the flashcards
+    - Pros: Easier to implement
+    - Cons: Harder to track the total number of flashcards that has `query` and
+      will need to have another way to track the index of the matching
+      flashcards.
+      it will also be more confusing as the index of the user input is not
+      aligned
+      with the index of the arrayList that contains all the flashcards
 
 ### Review Flashcard Feature
 
@@ -255,15 +277,15 @@ and `Flashcard`.
 
 - Alternative 1: Have the review command function directly in `FlashcardList`
 
-  - Pros: Easy to implement
-  - Cons: Will require another function in another program to differentiate it
-    from other commands
+    - Pros: Easy to implement
+    - Cons: Will require another function in another program to differentiate it
+      from other commands
 
 - Alternative 2: After entering the `ReviewCommand`, go back to `Clanki.run()`
   and take further commands for review process
 
-  - Pros: Simplifies code in `ReviewCommand`
-  - Cons: Will have to pass around a lot of parameters and variables
+    - Pros: Simplifies code in `ReviewCommand`
+    - Cons: Will have to pass around a lot of parameters and variables
 
 ### Parser
 
@@ -354,8 +376,8 @@ functions if they deem necessary in future versions.
 
 - Alternative 1: Have all functions in one `Storage` class
 
-  - Pros: Exceptions can be handled in the same place
-  - Cons: Will cause the code be less organised and readable
+    - Pros: Exceptions can be handled in the same place
+    - Cons: Will cause the code be less organised and readable
 
 ## Product Scope
 
@@ -373,7 +395,7 @@ key learning points.
 ## User Stories
 
 | Version | As a ...                | I want to ...                                                                   | So that I can ...                                                                                   |
-| ------- | ----------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+|---------|-------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | v1.0    | user                    | add a card to my flashcard collection                                           | study it later on                                                                                   |
 | v1.0    | user                    | delete any of my cards                                                          | prevent getting asked to review that card later when I am confident I have truly memorised the card |
 | v1.0    | user                    | review the cards that are due today                                             | remember them better                                                                                |
