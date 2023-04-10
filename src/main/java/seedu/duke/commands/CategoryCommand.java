@@ -106,6 +106,7 @@ public class CategoryCommand extends Command {
 
     /**
      * Prints a table of categories and all items in the categories with their name and UPC.
+     * @throws NullPointerException if categoryHash is empty.
      */
     private void listCategoryAndItems() {
         if (categoryHash.isEmpty()) {
@@ -116,6 +117,7 @@ public class CategoryCommand extends Command {
 
     /**
      * Prints a list of all categories in the inventory.
+     * @throws NullPointerException if categoryHash is empty.
      */
     private void listAllCategories() {
         if (categoryHash.isEmpty()) {
