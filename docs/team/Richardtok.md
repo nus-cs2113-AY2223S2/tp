@@ -27,6 +27,7 @@ Contributions to the Developer Guide:[#86](https://github.com/AY2223S2-CS2113-T1
 - Created the sequence Diagrams and explanations of for all the CaloriesCommand, that includes AddCalories, ViewCalories, ListCalories
 and DeleteCalories.
 
-Other Contributions:[#86](https://github.com/AY2223S2-CS2113-T14-1/tp/pull/86)
+Other Contributions:
 - Cleanup the code, to make it standardized for the coding standard
-- Resolved several problems regarding pull requests
+- Resolved several problems regarding pull requests[#86](https://github.com/AY2223S2-CS2113-T14-1/tp/pull/86)
+- Review PR of other team members [#91](https://github.com/AY2223S2-CS2113-T14-1/tp/pull/91)
