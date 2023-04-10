@@ -417,7 +417,7 @@ Please keep in mind that this will result in irreversible data loss.
 **A**: The text file is updated every time when user exit the program.
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary <a id="command-summary"></a>
 
 | Action                           | Format, Examples           |
 |----------------------------------|----------------------------|
