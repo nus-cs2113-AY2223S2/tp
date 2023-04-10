@@ -196,7 +196,7 @@ public class UI {
             String moduleName = modToPrint.getModuleName();
             int moduleMCs = modToPrint.getModuleMCs();
             int currModulePuId = modToPrint.getUnivId();
-            int puIndex = currModulePuId - 1;
+            int puIndex = currModulePuId - 1; //zero indexing
             String currPuAbbr = universities.get(puIndex).getUnivAbbName();
             if (foundModIndex >= 1) {
                 prevModulePuId = foundNusModList.get(foundModIndex - 1).getUnivId();
