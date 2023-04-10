@@ -169,7 +169,7 @@ The clear commands clears all ingredients currently in inventory
 
 The following sequence diagram shows how the Clear Command works:
 
-![ClearSequenceUML.png](images\ClearSequenceUML.png)
+![ClearSequenceUML.png](images/ClearSequenceUML.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -178,7 +178,7 @@ The following sections will cover the implementation of features related to reci
 
 The activity diagram summarises how a user can use these features. 
 
-![RecipeActivity.png](images\RecipeActivity.png)
+![RecipeActivity.png](images/RecipeActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
