@@ -183,15 +183,37 @@ Example of usage: Displays the marked appointments from Sniff Task List.
 ______________________________________________________________________
 archive
 ______________________________________________________________________
-1.  UID: S67775112T [X] | Priority: HIGH
+ 1.  Consultation   [X]
+ Date: 2023-11-03
+ Time: 10:00
+ UID: C64016488E
+ Animal Name: Mona | Animal Type: Cat
+ Owner Name: Becks | Contact Number: 90199000
+
+ 2.  Consultation   [X]
+ Date: 2023-11-12
+ Time: 19:00
+ UID: C41606700F
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
+
+ 3.  Vaccination   [X]
+ Date: 2023-11-31
+ Time: 15:00
+ UID: V77751751P
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
+
+ 4.  Surgery  [X] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S44657158O
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
-2.  UID: V34624451A [X] | vaccine: covid
- Date: 2023-12-12 | Time: 19:00
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+
 ______________________________________________________________________
 ```
 
@@ -256,7 +278,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 ### Find by appointment UID / appointment type / animal type / date: <br>
-Format: `find a/dog`, `find t/surgery`, `find uid/123`, `find d/2023-12-12` <br>
+Format: `find a/dog`, `find t/surgery`, `find uid/S02547136Q`, `find d/2023-12-12` <br>
 Retrieves specific appointments requested by user <br>
 Can filter by appointment UID, appointment type, animal type, date of appointment<br>
 Example of usage: Displays the requested appointments <br>
