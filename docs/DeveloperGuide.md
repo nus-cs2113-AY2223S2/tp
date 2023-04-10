@@ -2,8 +2,10 @@
 
 ## Acknowledgements
 
-1) [x] Used IDE Sequence Diagram tool for Sequence Diagrams.
-2) [x] Used [Draw.io](https://www.draw.io/index.html) to draw our UML diagram.
+1) Used IDE Sequence Diagram tool for Sequence Diagrams.
+2) Used [Draw.io](https://www.draw.io/index.html) to draw our UML diagram.
+3) The CS2113 Team (Professor and Teaching Assistants) for their guidance in teaching us concepts of Software Engineering and OOP. 
+4) AddressBook3 Guidance and examples for OOP and project aspects were used from this repository.
 
 ## Design & implementation
 
