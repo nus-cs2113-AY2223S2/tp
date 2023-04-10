@@ -60,7 +60,7 @@ Format: `EXPENDITURE_CATEGORY d/DATE a/AMOUNT p/DESCRIPTION`
 - All parameters listed must be present in this command.
 - All parameters must not be empty.
 - The input date format must be in yyyy-MM-DD format
-
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 **Examples:**
 
 - `academic d/2023-02-02 a/25.10 p/NUS` <br> 
@@ -117,6 +117,7 @@ Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 - All parameters must be present in this command.
 - All parameters must not be empty.
 - The input date format must be in yyyy-MM-DD format.
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 - Our application does not support input names with a slash '/'.
 
 **Examples:**
@@ -156,6 +157,7 @@ Edits an existing expenditure transaction in the record. After a successful edit
 
 - The fields provided are the same as adding an expenditure in [4.1](#41-adding-an-expenditure)
 - Cannot change an expenditure type, e.g. cannot change an `Academic` expenditure to an `Accomodation` expenditure
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 
 **Examples:**
 
@@ -192,6 +194,7 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 - The fields provided are the same as adding an expenditure in [4.2](#42-adding-a-lendborrow-record)
 - Cannot change a `lend` record to a `borrow` record or vice versa.
 - Our application does not support input names with a slash '/'.
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 
 **Examples:**
 
@@ -315,6 +318,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 - Checking budget is compared with the latest stored value of the set budget. By default, the budget set is 0.
 - If budget set is 0, message will prompt user to `set` a value before calling `check` again. `check` will not work if budget is 0.
 - Borrowed expenditure amount owed is separated for a better view of expenditures.
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 
 ### 4.11. List out and display the expenditure list
 
@@ -394,6 +398,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The use of viewdate must follow with a valid date or the command would not be valid.
 - The date must be input in YYYY-MM-DD format.
 - If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
+- The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 
 ### 4.16. Currency rates
 
