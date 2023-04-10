@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import static seedu.badmaths.storage.NotesFileContentManager.fileContent;
 
 public class NotesFileWriter {
+    /**
+     * Saves the list of notes to a file.
+     *
+     * @param path the path to the file to save
+     * @param notes the list of notes to save
+     */
     public static void saveFile(String path, ArrayList<Note> notes) {
         File file = new File(path);
         if (!file.exists()) {

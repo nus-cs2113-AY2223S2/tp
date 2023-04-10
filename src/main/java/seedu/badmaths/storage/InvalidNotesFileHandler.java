@@ -12,6 +12,14 @@ import java.util.TimerTask;
 import static seedu.badmaths.storage.NotesFileParser.loadFile;
 
 public class InvalidNotesFileHandler {
+    /**
+     * Handles the response from user when an invalid format exception occurs while trying to load a notes file.
+     * Gives the user the option to reset the file and clears the note list,
+     * or exit the program if the user chooses not to reset the file.
+     *
+     * @param path the file path of the notes file
+     * @param notes the list of notes to clear if the user chooses to reset the file
+     */
     public static void responseHandler(String path, ArrayList<Note> notes) {
         try{
             Scanner inputScanner = new Scanner(System.in);

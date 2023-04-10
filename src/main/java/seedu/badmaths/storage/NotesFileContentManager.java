@@ -6,6 +6,12 @@ import seedu.badmaths.note.NotePriority;
 import java.util.ArrayList;
 
 public class NotesFileContentManager {
+    /**
+     * Returns a string representing the contents of a list of notes.
+     *
+     * @param notes the list of notes to be represented by a string
+     * @return a string representing the contents of the list of notes
+     */
     public static String fileContent(ArrayList<Note> notes) {
         StringBuilder content = new StringBuilder();
         for(Note note : notes) {

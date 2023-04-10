@@ -11,6 +11,13 @@ import java.util.Scanner;
 import static seedu.badmaths.storage.NoteParser.parseNoteString;
 
 public class NotesFileParser {
+    /**
+     * Loads the contents of a notes file at the specified path
+     * and returns a list of Note objects representing the file's contents.
+     *
+     * @param path the path of the notes file to be loaded
+     * @return a list of Note objects representing the contents of the specified file
+     */
     public static ArrayList<Note> loadFile(String path) {
         ArrayList<Note> notes = new ArrayList<>();
         try {
