@@ -23,9 +23,8 @@
         - [Class diagram of view command](#class-diagram-of-view-command)
         - [Implementation](#implementation-1)
       - [Help Command](#help-command)
-        - [Implementation](#implementation-2)
       - [Exit/Bye Command](#exitbye-command)
-        - [Implementation](#implementation-3)
+        - [Implementation](#implementation-2)
   - [Backend](#backend)
     - [Storage](#storage)
       - [Reading from Database](#reading-from-database)
@@ -44,30 +43,28 @@
         - [Modify an entry](#modify-an-entry)
   - [Data Structure](#data-structure)
   - [Communication](#communication)
-- [Implementation](#implementation-4)
+- [Implementation](#implementation-3)
 - [Testing](#testing)
+- [Appendix A: Product scope](#appendix-a-product-scope)
+  - [Target user profile](#target-user-profile)
+  - [Value proposition](#value-proposition)
+- [Appendix B: User Stories](#appendix-b-user-stories)
+- [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements)
+- [Appendix D: Glossary](#appendix-d-glossary)
+- [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
+  - [Feature Testing](#feature-testing)
+  - [Add entry: /add](#add-entry-add)
+  - [View entry: /view](#view-entry-view)
+  - [Delete entry: /delete](#delete-entry-delete)
+  - [Edit entry: /edit](#edit-entry-edit)
+  - [Show help menu: /help](#show-help-menu-help)
+  - [Terminate program: /bye](#terminate-program-bye)
+- [Appendix F: Testing with sample data (from file)](#appendix-f-testing-with-sample-data-from-file)
+  - [Exceptions](#exceptions)
+- [Acknowledgements](#acknowledgements)
+  - [Documentation](#documentation)
+  - [Storage](#storage-1)
   - [Unit Tests](#unit-tests)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Feature Testing](#feature-testing)
-    - [Add entry: /add](#add-entry-add)
-    - [View entry: /view](#view-entry-view)
-    - [Delete entry: /delete](#delete-entry-delete)
-    - [Edit entry: /edit](#edit-entry-edit)
-    - [Show help menu: /help](#show-help-menu-help)
-    - [Terminate program: /bye](#terminate-program-bye)
-  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-    - [Exceptions](#exceptions)
-- [Appendix: Requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Acknowledgements](#acknowledgements)
-    - [Documentation](#documentation)
-    - [Storage](#storage-1)
-    - [Unit Tests](#unit-tests-1)
 
 <!-- @@author jinxuan-owyong -->
 # Design
@@ -718,8 +715,6 @@ operations. The backend returns a `Response`, which is then processed by the fro
 <!-- @@author jinxuan-owyong -->
 # Testing
 
-## Unit Tests
-
 We adopt the Arrange, Act, Assert pattern for unit tests in this project.
 This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a
 clear separation of the setup, operations and results.
@@ -766,34 +761,96 @@ class TestEntriesGet extends EntryTestUtil {
 
   </details>
 
+<!-- @@author -->
+
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-<!-- @@author -->
+# Appendix A: Product scope
 
-<!-- ## Integration Testing
+## Target user profile
 
-Integration testing in our application is performed by testing `Frontend` and `Backend`, where we ensure that the relevant features 
-for each major component is working, before they are combined and tested through system testing
+PocketPal's main target users are individuals who are 
+- Looking for a simplified process of keeping track of their personal expenses.
+- Able to type fast
+- Comfortable with the use of CLI applications, and might even prefer CLI applications over GUIs
+- From all walks of life
+
+## Value proposition
+
+For individuals striving to save money for a vacation, a new car, or any other significant purchase, understanding their cash flow is crucial, yet often challenging and time-consuming.
+
+PocketPal revolutionizes the process by offering a seamless, user-friendly experience for tracking both income and expenses. PocketPal empowers users with valuable insights into their spending patterns, enabling them to make well-informed financial decisions and effectively reach their financial milestones.
+
+By delivering a comprehensive and automated overview of users' income and expenses, PocketPal puts financial control at their fingertips, making the journey towards financial success more attainable and enjoyable.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div> -->
+</div>
 
-<!-- ## System Testing
+# Appendix B: User Stories
+
+| Version | As a ...                         | I want to ...                                                | So that I can ...                                                      |
+| ------- | -------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| v1.0    | user                             | easily input my expenses                                     | add expenses quickly                                                   |
+| v1.0    | user                             | view my total expenditure at a glance                        | plan my finances well                                                  |
+| v1.0    | user                             | edit expenditures                                            | correct my mistakes and track my expenditures properly                 |
+| v1.0    | user                             | delete expenditures                                          | remove wrongly tracked expenditures                                    |
+| v1.0    | business owner                   | have different categories                                    | have better flexibility in planning my budget for different categories |
+| v1.0    | user                             | be able to add my income as well                             | track my net cash flow                                                 |
+| v1.0    | less tech savvy user             | have a help function                                         | get assistance whenever I'm not sure of how to do something in the app |
+| v1.0    | user with many expenses to track | limit the number of expenses displayed                       | see only a limited number of expenses at a time                        |
+| v2.0    | user with many expenses to track | filter an expense item by description                        | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by category                           | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by start and end date                 | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by minimum and maximum price          | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | delete multiple expenses at once                             | save time by not needing to delete expenses one by one                 |
+| v2.0    | careless user                    | get accurate feedback and errors when I enter wrong commands | intuitively know how to correct my command                             |
+
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
-</div> -->
+</div>
 
-<!-- D adenteo -->
+# Appendix C: Non-Functional Requirements
 
-## Instructions for manual testing
+1.The application should be compatible with various operating systems as long as Java `11` or above is installed.
+
+2.The CLI should have an intuitive user interface that is easy to navigate and understand.
+
+3.The application should be stable and not crash under heavy usage.
+
+4.The application should have clear, detailed documentation and code structure so that it is easy to maintain.
+
+5.The User Guide should be well-documented with multiple examples of usage so that it easy to understand.
+
+6.The application should be available at all times, with little dependencies on the internet or other APIs.
+
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+# Appendix D: Glossary
+
+- __Request Method__ - The action to be performed by the `Endpoint` requested
+  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods))
+- __Request Parameter__ - The details of the action to be performed (Edit category, filter by date, etc.)
+- __Response Code__ - The status of the response after a request is made
+  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
+
+<!-- @@author adenteo -->
+
+# Appendix E: Instructions for manual testing
 
 Refer to the [user guide](./UserGuide.md#getting-started) on launching PocketPal.
 
-### Feature Testing
+## Feature Testing
 
 The following section provides instructions and code snippets for the manual testing of all currently supported features
 in PocketPal.
@@ -804,7 +861,7 @@ in PocketPal.
 
 ---
 
-### Add entry: /add
+## Add entry: /add
 
 **Usage:** `/add -d <description> -c <category> -p <price>`
 
@@ -848,7 +905,7 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### View entry: /view
+## View entry: /view
 
 **Usage:** `/view [count] [filter_options]`
 
@@ -913,7 +970,7 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Delete entry: /delete
+## Delete entry: /delete
 
 **Usage:** `/delete <index> [additional_index...]`
 
@@ -986,7 +1043,7 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Edit entry: /edit
+## Edit entry: /edit
 
 **Usage:** `/edit <index> [options]`
 
@@ -1033,7 +1090,7 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Show help menu: /help
+## Show help menu: /help
 
 **Usage:** `/help`
 
@@ -1099,7 +1156,7 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Terminate program: /bye
+## Terminate program: /bye
 
 **Usage:** `/bye`
 
@@ -1128,7 +1185,7 @@ More test cases will be added as more features are introduced.
 <!-- @@author -->
 
 <!-- @@author hochi123 -->
-## Testing with sample data (from file)
+# Appendix F: Testing with sample data (from file)
 
 PocketPal stores data in a *storage.txt* file under the "*data/*" directory. Each row in the "*storage.txt*" file
 represents a single Entry. Each column in each row should have 3 columns, representing the *description* of the
@@ -1159,7 +1216,7 @@ As of the time of writing, the available categories are:
 
 An empty input for category is not allowed. If necessary, use the "Others" category.
 
-### Exceptions
+## Exceptions
 
 Exceptions are thrown for a couple of cases where files are being read. If you wish to test the exceptions, they can be
 replicated as follows:
@@ -1183,100 +1240,21 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-# Appendix: Requirements
+# Acknowledgements
 
-## Product scope
-
-### Target user profile
-
-PocketPal's main target users are individuals who are 
-- Looking for a simplified process of keeping track of their personal expenses.
-- Able to type fast
-- Comfortable with the use of CLI applications, and might even prefer CLI applications over GUIs
-- From all walks of life
-
-### Value proposition
-
-For individuals striving to save money for a vacation, a new car, or any other significant purchase, understanding their cash flow is crucial, yet often challenging and time-consuming.
-
-PocketPal revolutionizes the process by offering a seamless, user-friendly experience for tracking both income and expenses. PocketPal empowers users with valuable insights into their spending patterns, enabling them to make well-informed financial decisions and effectively reach their financial milestones.
-
-By delivering a comprehensive and automated overview of users' income and expenses, PocketPal puts financial control at their fingertips, making the journey towards financial success more attainable and enjoyable.
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-## User Stories
-
-| Version | As a ...                         | I want to ...                                                | So that I can ...                                                      |
-| ------- | -------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| v1.0    | user                             | easily input my expenses                                     | add expenses quickly                                                   |
-| v1.0    | user                             | view my total expenditure at a glance                        | plan my finances well                                                  |
-| v1.0    | user                             | edit expenditures                                            | correct my mistakes and track my expenditures properly                 |
-| v1.0    | user                             | delete expenditures                                          | remove wrongly tracked expenditures                                    |
-| v1.0    | business owner                   | have different categories                                    | have better flexibility in planning my budget for different categories |
-| v1.0    | user                             | be able to add my income as well                             | track my net cash flow                                                 |
-| v1.0    | less tech savvy user             | have a help function                                         | get assistance whenever I'm not sure of how to do something in the app |
-| v1.0    | user with many expenses to track | limit the number of expenses displayed                       | see only a limited number of expenses at a time                        |
-| v2.0    | user with many expenses to track | filter an expense item by description                        | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by category                           | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by start and end date                 | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by minimum and maximum price          | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | delete multiple expenses at once                             | save time by not needing to delete expenses one by one                 |
-| v2.0    | careless user                    | get accurate feedback and errors when I enter wrong commands | intuitively know how to correct my command                             |
-
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-## Non-Functional Requirements
-
-1.The application should be compatible with various operating systems as long as Java `11` or above is installed.
-
-2.The CLI should have an intuitive user interface that is easy to navigate and understand.
-
-3.The application should be stable and not crash under heavy usage.
-
-4.The application should have clear, detailed documentation and code structure so that it is easy to maintain.
-
-5.The User Guide should be well-documented with multiple examples of usage so that it easy to understand.
-
-6.The application should be available at all times, with little dependencies on the internet or other APIs.
-
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-## Glossary
-
-- __Request Method__ - The action to be performed by the `Endpoint` requested
-  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods))
-- __Request Parameter__ - The details of the action to be performed (Edit category, filter by date, etc.)
-- __Response Code__ - The status of the response after a request is made
-  ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-## Acknowledgements
-
-### Documentation
+## Documentation
 
 - [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
 - [Diagrams.net](https://app.diagrams.net/)
 - PlantUML
 
-### Storage
+## Storage
 
 - [Function `makeFileIfNotExists` - StackOverflow](https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists)
 - [Deleting files - w3Schools](https://www.w3schools.com/java/java_files_delete.asp)
 - [BufferedReader - Baeldung](https://www.baeldung.com/java-buffered-reader)
 
-### Unit Tests
+## Unit Tests
 
 - [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
 - [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
