@@ -275,10 +275,7 @@ public class Parser {
         String newDescription = splitDescriptions[1];
         Category category;
         try {
-//            checkSmallerThanMinTime(splitDescriptions[2]);
             category = convertStringToCategory(splitDescriptions[3]);
-//        } catch (DateSmallerThanMinimumException sme) {
-//            return new InvalidCommand(sme.getMessage(), AddExpenseCommand.MESSAGE_USAGE);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
@@ -473,7 +470,7 @@ public class Parser {
         try {
             splitDescriptions = checkEditCommandException(description);
             if (splitDescriptions[1].equals("time")) {
-                checkSmallerThanMinTime(splitDescriptions[3]);
+                checkSmallerThanMinTime(splitDescriptions[2]);
             }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
