@@ -21,8 +21,6 @@ expenses in the expenseList of the account. If the account is first logged in/ t
 - **Other Features** (some small add-on to fulfill the account's requirement)
   - `add` and `delete` command: After an expense is added or deleted via those commands, respectively, the json file 
 will auto-save that expense to avoid the program to be closed unexpectedly.
-  - CommandRes() and Command() functions, which are the based functions for all other commands to be called in when 
-  detect the user's input.
   
 #### Account Feature
 - **Feature:** `signup` command
