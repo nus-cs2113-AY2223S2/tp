@@ -12,10 +12,11 @@ public class DeleteCommandTest {
 
     @Test
     public void testDeleteCommand() {
-        DeleteCommand deleteCmd = new DeleteCommand(1);
+
         PackingList dummyPackingList = new PackingList();
         Item firstItem = new Item(4, "pairs of socks");
         dummyPackingList.addItem(firstItem);
+        DeleteCommand deleteCmd = new DeleteCommand(1);
         deleteCmd.execute(dummyPackingList);
         assertEquals(0, dummyPackingList.size());
 
