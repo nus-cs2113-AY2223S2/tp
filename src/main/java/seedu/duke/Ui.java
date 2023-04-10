@@ -50,7 +50,7 @@ public class Ui {
      * Prints a welcome message for users when application is launched
      */
     public static void showWelcome() {
-        final String LOGO = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
+        String logo = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
                 + "8888b     88  88        88  d8\"     \"8b  88      \"8b  88\n"
                 + "88 `8b    88  88        88  Y8,          88      ,8P  88\n"
                 + "88  `8b   88  88        88  `Y8aaaaa,    88aaaaaa8P'  88  ,"
@@ -63,8 +63,16 @@ public class Ui {
                 + "    ,88  88       88  88       88  \"8b,   ,aa  88          \n"
                 + "88      `888   `\"Y8888Y\"'    \"Y88888P\"   88           88 "
                 + " `\"8bbdP\"Y8  88       88  88       88   `\"Ybbd8\"'  88          \n" + "\n");
-        System.out.println(LOGO);
+        System.out.println(logo);
         printDash();
+    }
+
+    /**
+     * Prints user guide on command line when user
+     * requests for help
+     */
+    public static void helpCommand() {
+        System.out.println("~in prog~");
     }
 
     /**
@@ -261,7 +269,7 @@ public class Ui {
      * Retrieves semester that user is in
      */
     public static void getSemester() {
-        System.out.println("Before getting started, Please enter the semester you are in according to the below menu.");
+        System.out.println("Please enter the semester you are in according to the below menu.");
 
         System.out.println("Type \"1\" for Semester 1");
         System.out.println("Type \"2\" for Semester 2");
@@ -275,29 +283,23 @@ public class Ui {
         // trim user input to ignore all whitespaces
         String cmdTrim = cmd.replaceAll("\\s", "");
 
-        if (cmdTrim.equals("bye")) {
+        if (PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
+            User user = getUser();
+            user.setSemester(Integer.parseInt(cmdTrim));
+            System.out.println("Semester saved!");
+            printDash();
+            System.out.println("Hello there! What can we do for you today?");
+        } else if (cmdTrim.equals("bye")) {
             printExit();
             Duke.LOGGER.log(Level.INFO, "User input is 'bye', exiting NUSPlanner.");
             in.close();
             // force exit of application
             System.exit(0);
-        } else {
-            while (!PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
-                System.out.println("Not a valid semester, please provide a valid semester.");
-                System.out.println("Type \"1\" for Semester 1");
-                System.out.println("Type \"2\" for Semester 2");
-                System.out.println("Type \"3\" for Special Term 1");
-                System.out.println("Type \"4\" for Special Term 2");
-                System.out.println("Type \"bye\" to exit");
-            }
+        } else if (!PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
+            Duke.LOGGER.log(Level.INFO, "User input is invalid, requesting for valid input again.");
+            System.out.println("Your input is not a valid semester.");
+            getSemester();
         }
-
-        User user = getUser();
-        user.setSemester(Integer.parseInt(cmdTrim));
-
-        System.out.println("Semester saved!");
-        printDash();
-        System.out.println("Hello there! What can we do for you today?");
     }
 
     public static void printOverlapInfo(String info) {
