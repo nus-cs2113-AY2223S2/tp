@@ -2,10 +2,11 @@
 skinparam classAttributeIconSize 0
 hide circle
 
-class "Parser" as parser
-class "Command" as command
+class "{abstract}\nParser" as parser
+class "{abstract}\nCommand" as command
+class "{abstract}\nUserInput" as userInput
 
-class parser <<abstract>> {
+class parser {
     -prepareViewBudgetCommand(description: String): Command
     -prepareSetBudgetCommand(description: String): Command
     -prepareDeleteExpenseCommand(description: String): Command
@@ -31,11 +32,11 @@ class parser <<abstract>> {
     +parseCommand(userFullInput: String): Command
 }
 
-class command <<abstract>> {
+class command {
     {abstract} +execute(): void
 }
 
-class UserInput <<abstract>> {
+class userInput {
     #userCommand: String
     #userDescription: String
 
@@ -44,6 +45,6 @@ class UserInput <<abstract>> {
 }
 
 parser --> "1" command
-parser .> "1" UserInput : uses >
+parser .> "1" userInput : uses >
 
 @enduml

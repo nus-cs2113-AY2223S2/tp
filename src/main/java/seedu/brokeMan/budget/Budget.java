@@ -67,9 +67,4 @@ public class Budget {
         Ui.showToUserWithLineBreak(String.format("You have successfully set $%.2f as your budget for %s.",
                         budgetAmount, StringToTime.createDateString(year, month)), "");
     }
-
-
-
-
-
 }

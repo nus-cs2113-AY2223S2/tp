@@ -11,7 +11,11 @@ Package "BrokeMan"<<Rectangle>>{
     class Parser
     class Save
     class EntryList
-    class Common
+    class Budget
+    Package " " <<Rectangle>> {
+        class Exception
+        class Common
+    }
 }
 
 class "<$user>" as User
@@ -20,11 +24,15 @@ User <-> Ui
 Ui -> Parser
 Parser --> Command
 Command --> EntryList
+Command -left-> Budget
 Command -right-> Save
 Save <-> Data
 Save -left> EntryList
+Save --> Budget
 EntryList -> Ui
-EntryList -left[hidden]> Common
+Budget -> Ui
+Parser -[hidden]> Common
+Common -[hidden]> Exception
 
 
 @enduml
