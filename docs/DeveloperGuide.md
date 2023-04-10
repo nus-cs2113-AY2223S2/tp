@@ -13,7 +13,7 @@ Adapted from [AddressBook Level 3 Developer Guide](https://se-education.org/addr
 
 ### Setting up the project on your computer
 
-First, **fork** this repo, and **clone** the fork into your computer.
+First, **fork** [this repo](https://github.com/AY2223S2-CS2113-T11-4/tp.git), and **clone** the fork into your computer.
 
 If you plan to use Intellij IDEA (highly recommended):
 1. **Configure the JDK**: Follow the guide [_[se-edu/guides] IDEA: Configuring the JDK_](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure Intellij is configured to use **JDK 11**.
