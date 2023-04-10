@@ -78,7 +78,7 @@ public class BadMaths {
 
             inputCommand.executeCommand(notes, historyCommand);
             if (userInput.equals("Bye")) {
-                break;
+                System.exit(0);
             }
         }
     }

@@ -168,6 +168,7 @@ public class Command {
             Ui.printIncorrectFormatEntered();
         }
 
+        Ui.printLineBreak();
     }
 }
 
