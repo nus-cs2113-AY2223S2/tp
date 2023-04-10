@@ -78,7 +78,7 @@ public class Ui {
     }
 
     public static void printAppointmentAlreadyMarkedMessage(String uid) {
-        System.out.println("The appointment with this Uid: " + uid + " has already been marked successfully");
+        System.out.println("The appointment with this uid: " + uid + " has already been marked successfully");
     }
 
     public static void printAppointmentUnMarkMessage() {
@@ -86,7 +86,7 @@ public class Ui {
     }
 
     public static void printAppointmentAlreadyUnMarkedMessage(String uid) {
-        System.out.println("The appointment with this Uid: " + uid + " has already been unMarked successfully");
+        System.out.println("The appointment with this uid: " + uid + " has already been unMarked successfully");
     }
 
     public static void showHelpMessage() {

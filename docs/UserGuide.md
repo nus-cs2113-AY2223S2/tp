@@ -256,9 +256,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 ### Find by appointment UID / appointment type / animal type / date: <br>
-Format: `find a/dog` `find t/surgery` `find uID/123` `find d/2023-12-12` <br>
+Format: `find a/dog`, `find t/surgery`, `find uid/123`, `find d/2023-12-12` <br>
 Retrieves specific appointments requested by user <br>
-Can filter by appointment ID, appointment type, animal type, date of appointment<br>
+Can filter by appointment UID, appointment type, animal type, date of appointment<br>
 Example of usage: Displays the requested appointments <br>
 
 ```
@@ -293,7 +293,7 @@ ______________________________________________________________________
 ```
 ```
 ______________________________________________________________________
-find uID/S02547136Q
+find uid/S02547136Q
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
  Start Date: 2023-12-12
@@ -323,16 +323,16 @@ ______________________________________________________________________
 ### Mark Appointment : `mark ` <br>
 
 This feature marks the appointment as done and is denoted by an `[X]`.
-The tasks are marked depending on the uID input the by user.
-If the uID entry is not valid it displays a corresponding error message.<br>
+The tasks are marked depending on the UID input the by user.
+If the UID entry is not valid it displays a corresponding error message.<br>
 
-Format : `mark uID/ `
-Example : `mark uID/V14082745S`
+Format : `mark uid/ `
+Example : `mark uid/V14082745S`
 
 Example of Valid Command:
 
 ```
-mark uID/C26135173W
+mark uid/C26135173W
 ______________________________________________________________________
  1.  UID: C67345117A [X]
  Date: 2023-12-12 | Time: 19:00
@@ -345,7 +345,7 @@ ______________________________________________________________________
 ```
 Example of Invalid Command :
 ```
-mark uID/ggggg
+mark uid/ggggg
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
  Here are possible places where you could have gone wrong: 
@@ -360,15 +360,15 @@ ______________________________________________________________________
 ### UnMark Appointment : `unmark ` <br>
 
 This feature Unmarks the appointment as not done and is denoted by an `[ ]`.
-The tasks are Unmarked depending on the uID input the by user. 
-If the uID entry is not valid it displays a corresponding error message.<br>
+The tasks are Unmarked depending on the UID input the by user. 
+If the UID entry is not valid it displays a corresponding error message.<br>
 
 Example of Valid Command :
 Format : `mark uid/ `
 Example : `mark uid/V14082745S`
 ```
 
-unmark uID/C26135173W
+unmark uid/C26135173W
 ______________________________________________________________________
  1.  UID: C67345117A [ ]
  Date: 2023-12-12 | Time: 19:00
@@ -394,7 +394,7 @@ ______________________________________________________________________
 ### Editing a consultation appointment: `edit`
 Edits an already existing consultation appointment 
 
-Format: `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
+Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
 * The `UID` should be a valid already existing ID
 * The `ANIMAL_TYPE`, `ANIMAL_NAME` and `OWNER_NAME` must be in alphabetical format.
@@ -403,7 +403,7 @@ Format: `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-` edit uID/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
+` edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
 ```
 ______________________________________________________________________
 Consultation changed successfully!
@@ -413,7 +413,7 @@ ______________________________________________________________________
 ### Editing a surgery appointment: `edit`
 Edits an already existing consultation appointment
 
-Format: `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
+Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
 * The `UID` should be a valid already existing ID
 * The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
@@ -423,7 +423,7 @@ Format: `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
 
 Example:
-` edit uID/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+` edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
 ```
 ______________________________________________________________________
  Surgery changed successfully!
@@ -432,7 +432,7 @@ ______________________________________________________________________
 ### Editing a Vaccination appointment: `edit`
 Edits an already existing consultation appointment
 
-Format:   `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME`
+Format:   `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME`
 
 * The `UID` should be a valid already existing ID
 * The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
@@ -441,7 +441,7 @@ Format:   `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NU
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-`  edit V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+`  edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
 ```
 ______________________________________________________________________
 Vaccination changed successfully!
