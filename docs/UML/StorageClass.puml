@@ -15,8 +15,6 @@ package Storage{
             +loadEvents():ArrayList<Schedule>
         }
         class JsonEventListStorage {
-                +saveToFile(EventList):void
-                +loadEvents():ArrayList<Schedule>
         }
         class EventListAdapter{
         }
@@ -28,7 +26,6 @@ package Storage{
         }
 
         class JsonNusModuleLoader{
-            +loadModules():HashMap<String, NusModule>
         }
 
         class ModuleAdapter{
@@ -36,9 +33,7 @@ package Storage{
     }
 
     class StorageManager{
-    +saveToFile(EventList):void
-    +loadEvents():ArrayList<Schedule>
-    +loadModules():HashMap<String, NusModule>
+
     }
 
 
