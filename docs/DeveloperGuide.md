@@ -456,7 +456,7 @@ file.
 3. The Json is written into the filesystem.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/SaveSequence.png)
+![export feature](img/SaveSequence.PNG)
 
 ### Load
 
@@ -470,7 +470,7 @@ is corrupted, `load()` is called to read a file `backup.json` instead.
 3. The memory object is returned to be read from by Inka.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/LoadSequence.png)
+![export feature](img/LoadSequence.PNG)
 
 Reference Frames :
 ![Add Cards to foundCardList](img/AddCardsToFoundCardListRef.png)
