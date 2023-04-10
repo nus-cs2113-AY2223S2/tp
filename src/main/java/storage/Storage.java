@@ -5,9 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.MalformedJsonException;
-
-import common.WelcomeMessage;
-import data.Account;
 import data.Expense;
 import data.ExpenseList;
 import utils.GsonLocalDateAdaptor;
@@ -34,7 +31,7 @@ public class Storage {
     private static final String INITIAL_WELCOME_MESSAGE = "Welcome to ET!";
     private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
     private static final String DATA_CORRUPTED_ERROR = "Data file corrupted. " +
-            "Save the remaining data to another location before deleting the current data file. " +
+            "Save the remaining data to another location before deleting the current data file under your username. " +
             "Restart the programme after deleting the corrupted data file to proceed.";
     private static final String CREATE_FILE_ERROR = "Error creating file.";
     private static final String MORE_DP_ERROR = "More than 2 decimal places detected for Expense ";
@@ -47,8 +44,6 @@ public class Storage {
             .create();
 
     private ExpenseList expenseList;
-    private Account user;
-
 
     public Storage(ExpenseList expenseList) {
         this.expenseList = expenseList;
@@ -81,10 +76,8 @@ public class Storage {
             File f = new File(filePath);
             if (f.createNewFile()) {
                 // first time that the programme is being run, update welcome message later on
-                WelcomeMessage.printLogo();
                 System.out.println(INITIAL_WELCOME_MESSAGE);
             } else {
-                WelcomeMessage.printLogo();
                 System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
             }
         } catch (IOException e) {
@@ -153,7 +146,7 @@ public class Storage {
                 }
             } catch (NullPointerException e) {
                 System.out.println("Expense " + index + " corrupted.");
-                System.out.println("Edit Expense " + index + " in data file to fix this error. " +
+                System.out.println("Edit Expense " + index + " in data file under your username to fix this error. " +
                         "If problem persists, delete the current data file and restart the programme.");
                 System.exit(0);
             }

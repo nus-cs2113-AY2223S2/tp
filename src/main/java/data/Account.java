@@ -114,7 +114,9 @@ public class Account {
     }
 
     private boolean isUsernameTaken() {
-        try (BufferedReader br = new BufferedReader(new FileReader(SECURITY_STORAGE_FILE_PATH))) {
+        try {
+            BufferedReader br =
+                     new BufferedReader(new FileReader(SECURITY_STORAGE_FILE_PATH));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");

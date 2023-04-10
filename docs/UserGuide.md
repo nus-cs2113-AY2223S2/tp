@@ -4,36 +4,38 @@
 * [User Guide](#user-guide)
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
-  * [Account Instructions](#account-instructions)
-    * [Create Account: `signup`](#create-account-signup)
-    * [Note: Username and password rules:](#note-username-and-password-rules)
-    * [Log In To Your Account: `login`](#log-in-to-your-account-login)
-    * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense-logout)
-    * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
+  * [Account instructions](#account-instructions)
+    * [Create Account: `signup`](#create-account--signup)
+    * [Note: Username and password rules:](#note--username-and-password-rules-)
+    * [Log In To Your Account: `login`](#log-in-to-your-account--login)
+    * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense--logout)
+    * [Exiting the program (outside the account): `exit`](#exiting-the-program--outside-the-account---exit)
   * [Features](#features)
-    * [Get helpful instruction: `help`](#get-helpful-instruction-help)
-    * [Adding an expense: `add`](#adding-an-expense-add)
-    * [Listing all expenses: `list`](#listing-all-expenses-list)
-    * [Deleting an expense entry: `delete`](#deleting-an-expense-entry-delete)
-    * [Calculating total expenses: `total`](#calculating-total-expenses-total)
-    * [Sorting all current expenses: `sort`](#sorting-all-current-expenses-sort)
-    * [Obtaining expenses: `category`](#obtaining-expenses-category)
-    * [Finding expenses: `find`](#finding-expenses-find)
-    * [Generating overview: `overview`](#generating-overview-overview)
-    * [Exiting the program (inside the account): `exit`](#exiting-the-program-inside-the-account-exit)
-
+    * [Get helpful instruction: `help`](#get-helpful-instruction--help)
+    * [Adding an expense: `add`](#adding-an-expense--add)
+    * [Listing all expenses: `list`](#listing-all-expenses--list)
+    * [Deleting an expense entry: `delete`](#deleting-an-expense-entry--delete)
+    * [Calculating total expenses: `total`](#calculating-total-expenses--total)
+    * [Sorting all current expenses: `sort`](#sorting-all-current-expenses--sort)
+    * [Obtaining expenses: `category`](#obtaining-expenses--category)
+    * [Finding expenses: `find`](#finding-expenses--find)
+    * [Generating overview: `overview`](#generating-overview--overview)
+    * [Exiting the program (inside the account): `exit`](#exiting-the-program--inside-the-account---exit)
   * [FAQ](#faq)
     * [Do I require an internet connection to use ET?](#do-i-require-an-internet-connection-to-use-et)
     * [Why is my primary currency not available for use?](#why-is-my-primary-currency-not-available-for-use)
     * [Am I allowed to add my own currency and exchange rate to ET?](#am-i-allowed-to-add-my-own-currency-and-exchange-rate-to-et)
     * [I want to add a date beyond 1981, how do I do that?](#i-want-to-add-a-date-beyond-1981-how-do-i-do-that)
+    * [What will happen when other keys are added or when non-compulsory keys are removed from the JSON data file?](#what-will-happen-when-other-keys-are-added-or-when-non-compulsory-keys-are-removed-from-the-json-data-file)
   * [Command Summary](#command-summary)
+    * [Account-related command](#account-related-command)
+    * [Expense management command](#expense-management-command)
 <!-- TOC -->
 
 ## Introduction
 
 Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps
-them keep track of their expense based on category, time, amount, and currency.
+them keep track of their expense based on category, date, amount, and currency.
 
 ## Quick Start
 
@@ -407,7 +409,7 @@ Example of usage:
 Expected output:
 
 ```
-Overview for JUNE 2021
+-------------Monthly Overview for JUNE 2021-------------
 
     Total expenses: 80.55 SGD
 
@@ -419,6 +421,7 @@ Overview for JUNE 2021
     ----------------------------
      travel 10.00 SGD
     ----------------------------
+----------------------------END----------------------------
 ```
 
 **Yearly overview**
@@ -435,7 +438,7 @@ Example of usage:
 
 Expected output:
 ```
-Yearly Overview for 2022
+-------Yearly Overview for 2022-------
 
     Total expenses: 35.66 SGD
 
@@ -465,6 +468,7 @@ Yearly Overview for 2022
     ----------------------------
      DECEMBER 0.00 SGD
     ----------------------------
+-----------------END-----------------
 ```
 
 ### Exiting the program (inside the account): `exit`
@@ -499,6 +503,14 @@ your currency is not available for use.
 - Our API only contains exchange rate information starting from 1981. For ET to effectively track expenses in different
 currencies, we require a limit on how far back the date can be set.
 
+### What will happen when other keys are added or when non-compulsory keys are removed from the JSON data file?
+- Newly added keys by the user will be ignored upon initial loading of the expense list to prevent any potential
+  conflict with the other features. The new keys will be deleted subsequently when the JSON file is overwritten
+  with new changes.
+- Non-compulsory keys (rate, currencyType and description) removed from the JSON file will be restored using the 
+  default value.
+  
+
   
 ## Command Summary
 
@@ -509,7 +521,7 @@ currencies, we require a limit on how far back the date can be set.
 | Create a new account         | `signup`                                                                     |
 | Exit ET (inside the account) | `exit`                                                                       |
 | Log out of the account       | `logout`                                                                     |
-E
+
 ### Expense management command
 | Action                        | Command                                                                       |
 |-------------------------------|-------------------------------------------------------------------------------|

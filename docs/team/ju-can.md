@@ -1,6 +1,6 @@
 # Project: Expense Tracker
-The Expense Tracker Our software ("ET" for short) allows users to create their own bookmakers and helps
-them keep track of their expense based on category, time, amount, and currency.
+The Expense Tracker ("ET" for short) allows users to create their own bookmakers and helps
+them keep track of their expense based on category, date, amount, and currency.
 
 ## Summary of Contributions
 ### Code Contributed
@@ -28,6 +28,9 @@ Link to RepoSense Code for detailed code contribution:
       and a breakdown of sum of expenses by category. The list of sum by category is sorted in descending order.
     - The currency unit for total expenses and sum by category is SGD.
     - PR: [#91](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/91)
+    
+<div style="page-break-after: always;"></div>
+
   - Yearly Overview
     - Provides a summary of the yearly expenses of a specific year, including total amount of expenses and a monthly 
       breakdown.
@@ -49,7 +52,7 @@ Link to RepoSense Code for detailed code contribution:
 - Merged most of the Pull Requests after reviewing newly added code.
 - Some PR reviews that I have given: [PR Review 1](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/74),
   [PR Review 2](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/54).
-- Suggesting better logics on implementations and features of other teammates, including sorting and the usage of 
+- Suggestion on logics and implementations of features of other teammates, including sorting and the usage of 
   storage under the account functionality.
 - Setting of internal deadlines and checking on teammate's progress to ensure timely delivery of the end product.
 

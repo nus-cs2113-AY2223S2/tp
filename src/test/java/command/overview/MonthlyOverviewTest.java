@@ -20,7 +20,9 @@ class MonthlyOverviewTest {
 
     private static final String CATEGORY_DIVIDER = "----------------------------";
     private static final String CATEGORY_TITLE =
-            "Breakdown of expenses by category in descending order by category sum:";
+            "Breakdown of expenses by category in descending order\n    by category sum:";
+    private static final String END_OF_OVERVIEW = "----------------------------END----------------------------";
+
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -53,14 +55,16 @@ class MonthlyOverviewTest {
                 "food", "SGD", new BigDecimal(1)));
         MonthlyOverview monthlyOverview = new MonthlyOverview(testExpenses, "March", "2012");
         monthlyOverview.printOverview();
-        String expectedOutput = "Monthly Overview for MARCH 2012" + System.lineSeparator() + System.lineSeparator() +
+        String expectedOutput = "-------------Monthly Overview for MARCH 2012-------------"
+                + System.lineSeparator() + System.lineSeparator() +
                 TAB + "Total expenses: 20.00 SGD" + System.lineSeparator() + System.lineSeparator()  +
                 TAB + CATEGORY_TITLE + System.lineSeparator()  +
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
                 TAB + " food 12.50 SGD" + System.lineSeparator() +
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
                 TAB + " travel 7.50 SGD" + System.lineSeparator() +
-                TAB + CATEGORY_DIVIDER;
+                TAB + CATEGORY_DIVIDER + System.lineSeparator() +
+                END_OF_OVERVIEW;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
 
