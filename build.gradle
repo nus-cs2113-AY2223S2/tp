@@ -35,7 +35,7 @@ application {
 shadowJar {
     archiveBaseName.set('WellNus')
     archiveClassifier.set('')
-    archiveVersion.set('v2.0')
+    archiveVersion.set('v2.1')
 }
 
 jar {
