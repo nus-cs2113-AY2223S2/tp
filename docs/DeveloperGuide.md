@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-1. [Acknowledgements](#acknowledgements)
+1. [Acknowledgements](#acknowledgements) 
 
 2. [Design & Implementation](#design--implementation)
    
@@ -170,7 +170,7 @@ details. If there is no text file, a text file will be created.
 Fig 11: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
-#### Custom Exceptions
+### Custom Exceptions
 Custom exceptions are created to catch erroneous user inputs that might otherwise cause EveNtUS to crash. When these 
 exceptions are caught, specific error messages are displayed to the user to indicate why their input was unsuccessful.
 These custom exceptions inherit from the Exception Class.
@@ -191,19 +191,27 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## User Stories
 
-| Version | As a ...   | I want to ...                                                                                                                                                        | So that I can ...                                                                        |
-|---------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| v1.0    | new user   | see usage instructions                                                                                                                                               | refer to them when I forget how to use the application                                   |
-| v1.0    | basic user | be able to delete company information                                                                                                                                | keep track of only the companies who are attending the event                             |
-| v2.0    | basic user | load some sample data                                                                                                                                                | so that I can get familiar with the application                                          |
-| v2.0    | basic user | select a venue for the event                                                                                                                                         | keep track of the venue information                                                      |
-| v2.0    | basic user | purge the sample data                                                                                                                                                | start to input my data                                                     |
-| v2.0    | basic user | save and retrieve my data                                                                                                                                            | continue past sessions                                                     |
-| v2.0    | basic user | search for companies attending the career fair                                                                                                                       | easily confirm their attendance without having to manually look through the entire list. |
-| v2.0    | basic user | filter the companies based on the industries they belong                                                                                                             | easily look for a company in a specific industry                                         |
-| v2.0    | basic user | prevent me from adding the same company twice                   | prevent overlap of data                                        |
-| v2.0    | basic user | tag the companies attendance status as confirmed/unconfirmed | ensure there are sufficient companies and any further follow-up action can be taken accordingly                                                     |
+| Version | As a ...   | I want to ...                                                | So that I can ...                                                                               |
+|------|------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| v1.0 | new user   | see usage instructions                                       | refer to them when I forget how to use the application                                          |
+| v1.0 | basic user | be able to delete company information                        | delete wrongly added companies                                                                  |
+| v1.0 | basic user | add a company to the company list                            | add desired companies                                                                           |
+| v1.0 | basic user | list the companies that I have added                         | have a basic record of who is attending the event                                               |
+| v2.0 | basic user | load some sample data                                        | get familiar with the application                                                               |
+| v2.0 | basic user | select a venue for the event                                 | keep track of the venue information                                                             |
+| v2.0 | basic user | purge the sample data                                        | start to input my data                                                                          |
+| v2.0 | basic user | save and retrieve my data                                    | continue past sessions                                                                          |
+| v2.0 | basic user | search for companies attending the career fair               | easily confirm their attendance without having to manually look through the entire list         |
+| v2.0 | basic user | filter the companies based on the industries they belong     | easily look for a company in a specific industry                                                |
+| v2.0 | basic user | prevent me from adding the same company twice                | prevent overlap of data                                                                         |
+| v2.0 | basic user | tag the companies attendance status as confirmed/unconfirmed | ensure there are sufficient companies and any further follow-up action can be taken accordingly |
+| v2.1 | basic user | update the name of the event                                 | customise the event name                                                                        |
+| v2.1 | basic user | filter by venue size                                         | choose the correct venue                                                                        |
 
+## Future/Possible implementations
+1. Having more venues
+2. User can print out the event details on the interface
+3. Set dates for event
 
 ## Non-Functional Requirements
 
