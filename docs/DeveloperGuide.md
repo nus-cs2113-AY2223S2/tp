@@ -237,7 +237,9 @@ If the user enters an invalid input, the method prompts the user again until a v
 <summary>Sequence Diagram for File Loading</summary>
 <div markdown="1">
 
-![Notes_File_Parsing_Sequence.png](SequenceDiagrams/Notes_File_Parsing_Sequence.png)
+![load_sequence_diagram.png](SequenceDiagrams%2Fload_sequence_diagram.png)
+![note_parser_sequence_diagram.png](SequenceDiagrams%2Fnote_parser_sequence_diagram.png)
+![invalid_file_handler_sequence_diagram.png](SequenceDiagrams%2Finvalid_file_handler_sequence_diagram.png)
 
 </div>
 </details>
