@@ -34,15 +34,13 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 ### Code Contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=T11&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=skyanzy&tabRepo=AY2223S2-CS2113-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Project Management:
-- Updating the team when a new PR is merged to ensure everyone is on the same page.
 - Integration of different parts when a new feature is implemented.
 - Seting up milestone v2.1 and dividing issues among the team members.
 
 ### Documentation:
 - User Guide:
   - Added documentation for the features `edit <task_number>` , `list_today`, adding a `RecurringDeadline and RecurringEvnet`.
-  - cleared some issues regarding inconsistent format.
-  - Added some missing links to the table of contents.
+  - Added some missing links to the table of contents and cleared some issues regarding inconsistent format..
   
 - Developer Guide:
   - Added design and the implementation of RecurringDeadline and RecurringEvent
