@@ -1056,6 +1056,7 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 * **Payload**: An (optional) arbitrary sequence of characters immediately following a main command or argument.
   The payload will terminate when the user clicks `enter` or separates the payload with another argument
   with the `--` delimiter.
+<!-- @@author -->
 
 # Appendix - Instructions for manual testing
 
@@ -1069,8 +1070,7 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 
 ## Sample test cases
 
-<!-- @@author wenxin-c -->
-
+<!-- @@author BernardLesley -->
 ### Help command
 
 1. Make sure you are in the main interface, but individual features(i.e. hb, reflect and timer)
@@ -1112,44 +1112,11 @@ Note:
 ```
 
 4. To get a list of available commands, any command other than `help` is invalid
+<!-- @@author -->
 
-### Get reflection questions
-
-1. Make sure you are inside **Self Reflection** feature by enter `reflect` command after the launch of the program
-2. Test case: `get`<br>
-   Expected output: get a set of 5 random introspective questions<br>
-   Example:
-
-```
-
-============================================================
-    1.What is my personality type?
-    2.Did I make time for myself this week?
-    3.Am I making time for my social life?
-    4.What scares me the most right now?
-    5.What is something I find inspiring?
-============================================================
-
-```
-
-3. Test case: `get reflect`<br>
-   Expected output: introspective questions will not be generated as this is an invalid command. <br>
-   Example:
-
-```
-
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-Error Message:
-    Invalid payload given to 'get'!
-Note:
-    get command usage: get
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-
-```
-
-4. Any command other than `get` is invalid
-
-### Add atomic habits
+<!-- @@author YongbinWang -->
+### Atomic habits feature
+#### Add atomic habits
 
 1. Make sure you are inside **Atomic habit** feature by enter `hb` command after the launch of the program
 2. Test case: `add --name make bed every morning`<br>
@@ -1181,11 +1148,291 @@ Note:
 ```
 
 4. Any commands that does not follow the format of `add --name ATOMIC_HABIT_NAME` is invalid
+<!-- @@author -->
 
+<!-- @@author wenxin-c -->
+### Reflection feature
+#### Get reflection questions
+
+1. Make sure you are inside **Self Reflection** feature by enter `reflect` command after the launch of the program
+2. Test case: `get`<br>
+   Expected output: get a set of 5 random introspective questions<br>
+   Example:
+
+```
+
+============================================================
+    1.What is my purpose in life?
+    2.What is my personality type?
+    3.Did I make time for myself this week?
+    4.What scares me the most right now?
+    5.What is something that brings me joy?
+============================================================
+
+```
+
+3. Test case: `get reflect`<br>
+   Expected output: introspective questions will not be generated as this is an invalid command <br>
+   Example:
+
+```
+
+!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+Error Message:
+    Invalid payload given to 'get'!
+Note:
+    get command usage: get
+!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+
+```
+
+4. Any command other than `get` is invalid
+
+#### Favorite reflection questions
+1. Make sure you are inside **Self Reflection** feature by enter `reflect` command after the launch of the program
+2. Test case: `fav`<br>
+   Expected output: empty favorite reflection questions list is printed<br>
+   Example:
+
+```
+
+============================================================
+    There is nothing in favorite list, please get reflection questions first!
+============================================================
+
+```
+
+3. Test case: `get`<br>
+   Expected output: get a set of 5 random introspective questions<br>
+   Example:
+
+```
+
+============================================================
+    1.What is my purpose in life?
+    2.What is my personality type?
+    3.Did I make time for myself this week?
+    4.What scares me the most right now?
+    5.What is something that brings me joy?
+============================================================
+
+```
+
+4. Test case: `like 3`<br>
+   Expected output: "Did I make time for myself this week?" is added to your favorite reflection questions list<br>
+   Example:
+
+```
+
+============================================================
+    You have added question: "Did I make time for myself this week?" Into favorite list!!
+============================================================
+
+```
+
+5. Test case: `fav`<br>
+   Expected output: "Did I make time for myself this week?" is listed as a favorite reflection question<br>
+   Example:
+
+```
+
+============================================================
+    1.Did I make time for myself this week?
+============================================================
+
+```
+
+<!-- @@author nichyjt -->
+### Focus Timer feature
+#### Start Session
+
+1. Make sure you are inside **Focus Timer** feature by enter `ft` command after the launch of the program
+2. Test case: `start`<br>
+   Expected output: session begins and work timer counts down<br>
+   Example:
+
+```
+
+************************************************************
+    Your session has started. All the best!
+************************************************************
+************************************************************
+    Task Cycle: Do your task now!
+************************************************************
+
+```
+
+3. Test case: `check`<br>
+   Expected output: Time left in current timer will be printed<br>
+   Example:
+
+```
+
+************************************************************
+    Time left: 0:27
+************************************************************
+
+```
+
+4. Test case: `pause`<br>
+   Expected output: Timer will be paused and time left will be printed<br>
+   Example:
+
+```
+
+************************************************************
+    Timer paused at: 0:23
+************************************************************
+
+```
+
+5. Test case: `resume`<br>
+   Expected output: Timer will resume counting down and time left will be printed<br>
+   Example:
+
+```
+
+************************************************************
+    Timer resumed at: 0:23
+************************************************************
+
+```
+
+6. Test case: `stop`<br>
+   Expected output: Focus session will end and all timers will stop<br>
+   Example:
+
+```
+
+************************************************************
+    Your focus session has ended.
+    To start a new session, `start` it up!
+    You can also configure the session to your liking with `config`!
+************************************************************
+
+```
 <!-- @@author -->
 
 <!-- @@author haoyangw -->
+### Gamification feature
+#### Gain XP and level up
+1. Make sure you are inside **Gamification** feature by enter `gamif` command after the launch of the program
+2. Test case: `stats`<br>
+   Expected output: Default XP points and XP level is printed<br>
+   Example:
 
+```
+
+######################################################################
+#                 Current XP: Level 0 [>           ]                 #
+#                       10 more XP to Level 1                        #
+######################################################################
+
+```
+
+3. Test case: `home`<br>
+   Expected output: Goodbye message of gamification feature is printed<br>
+   Example:
+
+```
+
+######################################################################
+#    Thank you for using the gamification feature! Return anytime    #
+######################################################################
+
+```
+
+4. Test case: `hb`<br>
+   Expected output: Enters the atomic habit feature<br>
+   Example:
+
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    _  _             _      _  _      _    _ _      
+   /_\| |_ ___ _ __ (_)__  | || |__ _| |__(_) |_ ___
+  / _ \  _/ _ \ '  \| / _| | __ / _` | '_ \ |  _(_-<
+ /_/ \_\__\___/_|_|_|_\__| |_||_\__,_|_.__/_|\__/__/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Welcome to WellNUS++ Atomic Habits section!
+    Track and inculcate good habits into your life with us!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+
+5. Test case: `add --name My First Habit`<br>
+   Expected output: Adds a new atomic habit called "My First Habit"<br>
+   Example:
+
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Yay! You have added a new habit:
+    'My First Habit' was successfully added
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+
+6. Test case: `update --id 1 --by 10`<br>
+   Expected output: Completes the "My First Habit" 10 times, which leads to levelling up<br>
+   Example:
+
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    The following habit has been incremented! Keep up the good work!
+    1.My First Habit [10]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+######################################################################
+#                     Congratulations! Level up                      #
+######################################################################
+
+```
+
+7. Test case: `home`<br>
+   Expected output: Returns to main `WellNUS++` session<br>
+   Example:
+
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Thank you for using atomic habits. Do not forget about me!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
+
+8. Test case: `gamif`<br>
+   Expected output: Enters the gamification feature<br>
+   Example:
+
+```
+
+######################################################################
+    Welcome to
+    ______                _ _____            __  _           
+   / ____/___ _____ ___  (_) __(_)________ _/ /_(_)___  ____ 
+  / / __/ __ `/ __ `__ \/ / /_/ / ___/ __ `/ __/ / __ \/ __ \
+ / /_/ / /_/ / / / / / / / __/ / /__/ /_/ / /_/ / /_/ / / / /
+ \____/\__,_/_/ /_/ /_/_/_/ /_/\___/\__,_/\__/_/\____/_/ /_/ 
+######################################################################
+
+```
+
+9. Test case: `stats`<br>
+   Expected output: Prints the latest XP points and XP level<br>
+   Example:
+
+```
+
+######################################################################
+#                 Current XP: Level 1 [>           ]                 #
+#                       10 more XP to Level 2                        #
+######################################################################
+
+```
+<!-- @@author -->
+
+<!-- @@author haoyangw -->
 ## Saving data
 
 1. Dealing with missing data files
