@@ -95,7 +95,7 @@ public class Ui {
     private static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
     private static final String SUCCESS_SELL = "Successfully sold the following item:";
     private static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
-    private static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a POSITIVE WHOLE NUMBER/ZERO.";
+    private static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE A POSITIVE WHOLE NUMBER/ZERO.";
     private static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE A POSITIVE WHOLE " +
             "NUMBER/DECIMAL NUMBER/ZERO.";
     private static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Entry For Restock! Please refer to UG for " +
