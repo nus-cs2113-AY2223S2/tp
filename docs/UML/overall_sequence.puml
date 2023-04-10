@@ -13,7 +13,7 @@ session --> commandHandler --  : Session
 commandHandler --> main -- : Session
 
 main -> commandHandler ++ LOGIC_COLOUR : endWorkout()
-commandHandler -> ":achievementListHandler" : saveAchievementList
+commandHandler -> ":achievementListHandler" : saveAchievementList()
 activate ":achievementListHandler"
 ":achievementListHandler" --> commandHandler
 deactivate ":achievementListHandler"

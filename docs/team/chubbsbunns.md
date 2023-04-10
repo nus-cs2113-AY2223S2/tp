@@ -4,7 +4,6 @@ title: Dylan's Project Portfolio Page
 ---
 ## Dylan- Project Portfolio Page
 
-
 ## Overview
 Our AY22/23 Sem 2 CS2113 (Software Engineering) Team Project
 A CLI based fitness tracker intended to give users a way to manage and learn new workouts. We hope to be able to 
@@ -18,7 +17,6 @@ Here is the contributed done by me:
 
 ## Features Implemented
 
-
 ### Feature: ```easy```, ```medium```, ```hard``` filters
 * What it does: Implemented the parameters/filters used when generating a list of exercises of a specific difficulty level and the 
 corresponding error checks. <br>
@@ -29,7 +27,7 @@ workout or a ```hard``` one, which is a reflection of the exercise, not the user
 * Highlights: The feature parses the ```easy```, ```medium```, ```hard``` inputs and returns a ```Beginner```, 
 ```Intermediate``` or ```Expert``` output that is given to the 
 [GenerateExercise](..%2F..%2Fsrc%2Fmain%2Fjava%2Fseedu%2Fduke%2Fdata%2Fexercisegenerator%2FGenerateExercise.java) 
-class for filtering.
+class for filtering. The "easy", "medium" and "hard" strings are then returned as output when printing.
 
 ### Feature: ```start```
 * What it does: Starts a workout session, logging the last generated exercise session using the 
@@ -68,3 +66,53 @@ to continue using FitnessDuke to exercise.
 * Highlights: Different achievements have different difficulties, with an increasing number of exercises required. 
 Higher difficulties have a higher number of "stars" (i.e. asterisks *) attached to them, hopefully enticing users to 
 want to achieve them.
+
+### Enhancements to existing features
+* Wrote JUnit tests for our Storage.java API ```UserDataStorageTest.java```(excluding achievements)
+  Tests the saving and reading of data to and from the local hard disk and checks the handling of missing files.
+* Wrote JUnit tests for generating hybrid exercises from resources file ```GenerateMixtureExerciseTest.java```.
+* Wrote JUnit tests for the achievements use cases in the resources folder ```test/java/seedu.duke/achievemets```.
+* Help source and organise commands across the entire program by implementing the ```CommandList```. This was due to 
+the many command handlers that we had, I was able to streamline common commands this way.
+* Helped implement the ```ErrorMessages``` enumeration, allowing easy access to error messages. This allows for the same
+error message to be accessed and displayed easily for similar errors.
+
+
+
+### Contributions to the DG
+* Wrote how the ```AchievementListHandler.java API``` in the DG alongside how it is stored and used. This includes the UML diagrams used as well.
+* Some examples of UMLs used are here:
+<div align="center">
+<img src="UML/Images/AchievementUpdate.png"/>
+</div>
+
+<div align="center">
+<img src="UML/Images/AchievementHandling.png"/>
+</div>
+* Added test cases for achievement related areas.
+* Added user stories.
+
+### Contributions to the UG
+* Added HTML and CSS styling to ensure that the users were more aware of very specific interactions with our system and
+how specific interactions with certain files might cause unwanted consequences.
+![img.png](img.png)
+![img_1.png](img_1.png)
+This allows for better user readability in terms of recognizing *Tips* and *Caution* related messaged. 
+* Added ```achievements``` and ```clear_achievements``` commands and use cases.
+* Added example inputs and outputs for most of the commands.
+* Contributed to the explanations of the usage of certain commands (i.e. achievements).
+
+### Contributions to team tasks
+* Release management
+ - Made the Finish Group Deliverables milestone for FitnessDuke, ensuring that everyone has submitted and 
+completed what they wanted to contribute for the tema tasks.
+* Helped maintain the issue tracker in the projects folder
+ - Tagged and assigned certain issues to different people
+ - Tagged issues with their respective tags (i.e. severity, type)
+
+
+### Review/mentoring contributions
+* Helped review PRs and made comments to them throughout the project
+* Reviewed multiple PRs and made comments to all of them throughout the project.
+* Helped debug code and guided team members on how to fix them. 
+* Taught people how to use git for those that were less experienced in it. 
