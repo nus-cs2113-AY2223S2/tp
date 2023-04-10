@@ -667,3 +667,61 @@ Korea in the following areas.
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+**Setting up SEP Helper**
+
+Follow Quick Start Instructions in User Guide. 
+
+1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
+   https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
+2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
+4. Enlarge to fullscreen mode.
+
+**Overview of Manual Testing**
+
+There are 3 main features to be tested in "SEP Helper" programme, which are
+1. Module Mapping features
+2. Budget features
+3. Deadline features
+
+Manual Testing instructions are split into these 3 different sections.
+
+
+**1. Testing of Module Mapping Features**
+
+Start off with the command `/list pu`. 
+This function lists out the Partner Universities and their name abbreviations which will be utilized in a lot of 
+other commands.
+
+There are 3 essential commands to our SEP Helper Programme which are
+
+Essential Commands: 
+1. /LIST [PU ABBRV]
+2. /LIST CURRENT [PU ABBRV]
+3. /ADD [PU ABBRV]/[INDEX]  
+4. /REMOVE [PU ABBRV]/[INDEX] 
+
+Example of Test case:
+
+`/list ku` -> `/add ku/1` -> `/add ku/2` -> `/list current ku` -> `/remove ku/1` -> `/list current ku`
+
+Other features and aid in module mapping are
+
+1. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /MC [MC]
+2. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /NAME [NAME]
+3. /SEARCH /MODS  
+4. /SEARCH [NUS MOD CODE]
+
+Example of Test cases:
+
+1. `/list POSTECH` -> `/list POSTECH /filter /mc 0`
+2. `/list SNU` -> `/list SNU /filter /name Intro`
+3. `/search /mods`
+4. `/search ME3122`
+
+
+**2. Testing of Budget Features**
+
+
+**3. Testing of Deadline Features**
