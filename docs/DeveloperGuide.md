@@ -82,8 +82,12 @@
 
 # Acknowledgements
 
-1. Reference to AB-3 Developer Guide: https://se-education.org/addressbook-level3/DeveloperGuide.html
-2. Reference to AB-3 diagrams code: https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams
+1. Reference to AB-3 Developer Guide
+* [Source URL](https://se-education.org/addressbook-level3/DeveloperGuide.html)
+* Used as template to structure this DeveloperGuide
+2. Reference to AB-3 diagrams code
+* [Source URL](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams)
+* Used as reference to understand PlantUML syntax
 
 # Setting up, getting started
 
