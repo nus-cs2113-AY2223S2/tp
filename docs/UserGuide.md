@@ -246,18 +246,19 @@ in the *Workout Session's* feature guide below.
 ## IPPT Calculator and session: ```ippt AGE RUNTIME PUSHUPS SITUPS```
 
 **DISCLAIMER** This feature is accurate only for males in SAF (excluding special forces i.e. commandos and guards)
+Current scoring data does not apply for female personnel.
 
 Adds an IPPT exercise session and also takes in the input of the user's timing/repetitions for the exercises.
 It returns the total points obtained by the user from the set of exercises.
 The user can view his history(via ```history``` command) to see the breakdown of the points too.
 
-* ```AGE``` should be an integer ranging 16-60
-* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
-* ```PUSHUPS``` Integer number of pushups in 1 minute
-* ```SITUPS``` Integer number of situps in 1 minute
+* ```AGE``` should be a positive integer ranging from 16 to 60 years old.(We do not have scoring data for ages beyond 60 and under 16 years old)
+* ```Runtime``` in format of ```mm:ss``` where mm is minute (positive integer) and ss is seconds (positive integer)
+* ```PUSHUPS``` Positive Integer of pushup repetitions in 1 minute (0 to 60(the max possible points that can be obtained)
+* ```SITUPS```  Positive Integer of situps repetitions in 1 minute (0 to 60(the max possible points that can be obtained))
 
-For example, person is 23 years old, with 2.4 run time of 10 minutes and 10 seconds.
-Completed 30 pushups and 30 situps, the input would be:
+For example, person is 23 years old, with his 2.4km run time of 10 minutes and 10 seconds.
+He has also completed 30 pushups and 30 situps, thus the input would be:
 
 Example of input: ```ippt 23 10:10 30 30```
 Output:
@@ -330,7 +331,7 @@ To begin, lie down on the floor or an exercise mat with your back pressed agains
 ```
 
 Typing the input ```current``` would correspond to the following output, which just lists out the current workout's details:
-````agsl
+````
 Exercise ID: 0. 
 Name: 3/4 Sit-Up
 Difficulty Level: beginner
