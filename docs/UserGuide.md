@@ -43,7 +43,7 @@ The main features of Pet Tracker includes:
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `Pet Tracker` 
-from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV2.0/pettracker.jar).
+from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV2.1/pettracker.jar).
 3. Launch a terminal in the folder that the jar file is located in
 4. Run the command `java -jar pettracker.jar`
 
@@ -206,6 +206,7 @@ Format: `add-task TASKNAME` or `add-task TASKNAME /by DATE`
 
 * The `TASKNAME` must not be empty.
 * The `DATE` must be in the format `yyyy-mm-dd`.
+* The `DATE` can be a date that is already over, in the event that the user is adding an overdue task.
 
 Example of usage:
 
