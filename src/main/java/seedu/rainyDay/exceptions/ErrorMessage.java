@@ -51,6 +51,7 @@ public enum ErrorMessage {
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
     SHORTCUT_DOES_NOT_EXIST("The shortcut does not exist."),
+    MAPPED_SHORTCUT_START_SPACE("The mapped command should not start with a space."),
     INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47\n\n"),
     INVALID_GOAL("Unsupported amount provided, note that amount has to be a number >= 0 and <= 21,474,836.47"),
     INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
