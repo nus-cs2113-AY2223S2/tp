@@ -53,30 +53,32 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 
 ## Architecture
 
-![Architecture Diagram.png](diagrams%2FArchitecture%20Diagram.png)
+![Architecture Diagram.png](diagrams%2FMiscellaneous%2FArchitecture%20Diagram.png)
 
 The above _**Architecture**_ diagram gives a high-level overall of the program.
 
 **Main Components of system**
 
-1. Duke : Taking user inputs
-2. Parser : Processes and Executes User Commands
-3. UI : Prints out messages to user
-4. ModuleStorage : Processes and stores module mappings
-5. DataReader
+1. SEPHelper : Taking user inputs
+2. Parser : Processes user inputs and creates Command Class objects accordingly
+3. Command : Executes functionalities  
+4. UI : Prints out messages to user
+5. ModuleStorage : Processes and stores module mappings
+6. DataReader : Reads and provides module mapping information and partner universities information
+7. Budget Storage : Processes and stores budget information
+8. Deadline Storage: Processes and stores deadline information
 
-**1. Duke**
+**1. SEPHelper**
 
-Duke holds an instance of each of the component mentioned above.
-It is the starting point of our program and takes in user inputs.
-Duke executes commands based on an object of class "Command" after Parser processes user inputs and
-returns a Command object back to Duke.
+SEPHelper is the starting point of our program and takes in user inputs.
+SEPHelper executes commands based on an object of class "Command" passed to it after Parser processes user inputs and
+returns a Command object back to SEPHelper.
 
-Sequence Diagram for Duke:
+Sequence Diagram for SEPHelper:
 
 ![DukeHighLevel.png](diagrams%2FDukeHighLevel.png)
 
-Reference Diagram for Duke initialisation:
+Reference Diagram for SEPHelper initialisation:
 
 ![DukeInitialisation.png](diagrams%2FDukeInitialisation.png)
 
@@ -84,27 +86,34 @@ Reference Diagram for Duke initialisation:
 **2. Parser**
 
 Parser class serves to process raw user input and map it to one of the various commands.
-Parser class will return an object of class "Command", which will be used by Duke to execute the user's commands.
+Parser class will return an object of class "Command", which will be used by SEPHelper to execute the user's commands.
 
-**3. UI** (**outdated**)
+**3. Command**
+
+Command class serves to execute the functionalities of the program.
+It is an abstract class inherited by other various commands, where each of those commands have their
+own functionality to execute.
+
+**4. UI** 
 
 UI class is in charge of the majority of the print functions present in the program.
-It is instantiated once in both Parser and Duke classes, where it's print functions are utilized
-to print outputs to the User.
+It's print functions are utilized by many other components in order to print outputs to the user.
 
-
-**4. ModuleStorage**
+**5. Module Storage**
 
 ModuleStorage class holds an ArrayList of modules that the user has selected.
 It saves the user's modules to an external .txt file every time the module list is altered,
 and reads from the same .txt file when the program is first booted up.
 
-**5. DataReader**
+**6. DataReader**
 
 DataReader class reads two external .txt files to acquire the list of Partner Universities and list
 of Modules available in the PUs, and provides this information to other components.
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+**7. Budget Storage**
+
+**8. Deadline Storage**
+
 
 ### ModuleStorage
 
@@ -333,7 +342,7 @@ Sequence Diagram of Add Module Command.
 according to the correct printing length. _Refer to Reference Block for SortModulesAccording for more info._
 [SortModulesAccordingToPrintingLength](#reference-block-for-sortmodulesaccording-to-printing-length-function)
 5. ModuleStorage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
-6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
+6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to SEPHelper
    
 
 **Future Development**
@@ -433,7 +442,7 @@ called.
 3. DeadlineStorage class will then add the deadline to its ArrayList of saved deadlines.
 4. DeadlineStorage class will then initialise an instance of FileWriter to append the newly added deadline to the txt
    file.
-5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to Duke.
+5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to SEPHelper.
 
 ### Delete Deadline Command
 The delete deadline command removes a deadline from the user's list of deadlines that is specified by the user.
@@ -633,7 +642,6 @@ over surfing the web for information on the student exchange program.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 
 The Student Exchange Programme can be overwhelming due to the number of Partner Universities available, 
 each offering different module combinations, 
@@ -654,19 +662,21 @@ Korea in the following areas.
 
 ## User Stories
 
-| Version | As a ...                                 | I want to ...                                          | So that I can ...                                             |
-|---------|------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
-| v1.0    | mech eng student who is going for SEP    | access the list of pre-mapped modules                  | make better choices on which modules to map                   |
-| v1.0    | mech eng student who is going for SEP    | add the modules that I want to map into a list         |                                                               |
-| v1.0    | mech eng student who is going for SEP    | look up for the PU’s information                       | better planning of SEP                                        |
-| v1.0    | mech eng student who is going for SEP    | delete module mapping plans to change my schedule      | as I receive feedbacks from my academic advisor along the way |
-| v1.0    | mech eng student who is going for SEP    |                                                        |                                                               |
-|         |                                          |                                                        |                                                               |
-| v2.0    | forgetful mech eng student going for SEP | set and view important deadlines                       | not miss anything that would impact my SEP process            |
-| v2.0    | forgetful mech eng student going for SEP | be able to get notifications for urgent submissions    | not miss any important submissions for SEP                    |
-| v2.0    | SEP student                              | plan what areas I will be spending on in the SEP trip  | understand how much money I have for leisure                  |
-| v2.0    | SEP student                              | see the total cost I would be spending on the SEP trip | save enough money to go on the trip                           |
-| v2.0    | user                                     | find a to-do item by name                              | locate a to-do without having to go through the entire list   |
+| Version | As a ...                                           | I want to ...                                                    | So that I can ...                                         |
+|---------|----------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------|
+| v1.0    | Mechanical Engineering student who is going for SEP | access the list of pre-mapped modules                            | make better choices on which modules to map               |
+| v1.0    | Mechanical Engineering student who is going for SEP | add the modules that I want to map into a list                   | keep track of my choices/options                          |
+| v1.0    | Mechanical Engineering student who is going for SEP | look up for the PU’s information                                 | better planning of SEP                                    |
+| v1.0    | Mechanical Engineering student who is going for SEP | delete module mapping plans to change my schedule                | as I receive feedbacks from my academic advisor along the way |
+| v1.0    | Mechanical Engineering student who is going for SEP |                                                                  |                                                           |
+| v2.0    | Mechanical Engineering student who is going for SEP     | keep a separate list of  modules I am interested in for each PUs | compare modules between different PUs                     |
+| v2.0    | Mechanical Engineering student who is going for SEP  | search mappable NUS modules by their NUS module code             | see which NUS modules I can map                           |
+|         |                                                    |                                                  |                                                           |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | set and view important deadlines                                 | not miss anything that would impact my SEP process        |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | be able to get notifications for urgent submissions              | not miss any important submissions for SEP                |
+| v2.0    | SEP student                                        | plan what areas I will be spending on in the SEP trip            | understand how much money I have for leisure              |
+| v2.0    | SEP student                                        | see the total cost I would be spending on the SEP trip           | save enough money to go on the trip                       |
+| v2.0    | user                                               | find a to-do item by name                                        | locate a to-do without having to go through the entire list |
 
 ## Non-Functional Requirements
 
@@ -681,8 +691,66 @@ Korea in the following areas.
 * *CLI* - Command-Line interface is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
 * *NUS* - National University of Singapore
 * *PU* - Partner University is the university that NUS is working with for Student Exchange Programmes.
-
+* *SEP* - Student Exchange Programme
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+**Setting up SEP Helper**
+
+Follow Quick Start Instructions in User Guide. 
+
+1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
+   https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
+2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
+4. Enlarge to fullscreen mode.
+
+**Overview of Manual Testing**
+
+There are 3 main features to be tested in "SEP Helper" programme, which are
+1. Module Mapping features
+2. Budget features
+3. Deadline features
+
+Manual Testing instructions are split into these 3 different sections.
+
+
+**1. Testing of Module Mapping Features**
+
+Start off with the command `/list pu`. 
+This function lists out the Partner Universities and their name abbreviations which will be utilized in a lot of 
+other commands.
+
+There are 3 essential commands to our SEP Helper Programme which are
+
+Essential Commands: 
+1. /LIST [PU ABBRV]
+2. /LIST CURRENT [PU ABBRV]
+3. /ADD [PU ABBRV]/[INDEX]  
+4. /REMOVE [PU ABBRV]/[INDEX] 
+
+Example of Test case:
+
+`/list ku` -> `/add ku/1` -> `/add ku/2` -> `/list current ku` -> `/remove ku/1` -> `/list current ku`
+
+Other features and aid in module mapping are
+
+1. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /MC [MC]
+2. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /NAME [NAME]
+3. /SEARCH /MODS  
+4. /SEARCH [NUS MOD CODE]
+
+Example of Test cases:
+
+1. `/list POSTECH` -> `/list POSTECH /filter /mc 0`
+2. `/list SNU` -> `/list SNU /filter /name Intro`
+3. `/search /mods`
+4. `/search ME3122`
+
+
+**2. Testing of Budget Features**
+
+
+**3. Testing of Deadline Features**
