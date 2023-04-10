@@ -1,6 +1,5 @@
 @startuml
 participant ":FilterCommand" as FilterCommand
-participant ":ArrayList" as ArrayList
 participant ":UserData" as UserData
 participant ":FinancialStatement" as FinancialStatement
 
