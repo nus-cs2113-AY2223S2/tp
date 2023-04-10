@@ -187,7 +187,8 @@ and the last value for the key will be taken as the accurate value.
 ### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
 
-When any component requires reading the NUS module files, the loadModules() method is called. Data from nusmods.json
+When any component requires information from a module offered by NUS, the loadModules() method is called. 
+loadModules() extracts Data from nusmods.json which is a web-scrapped version of the NUSMods API. The data on the file 
 is correct as of March 17, 2023. 
 
 It should be noted that Modules that are **Mini Projects** or **Workshops** are not supported by this application as they
