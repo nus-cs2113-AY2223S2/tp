@@ -26,6 +26,8 @@ Project management
 * Created GitHub organisation for the team
 * Set up GitHub team repository
 
+<div style="page-break-after: always;"></div>
+
 Enhancements to existing features
 * Enhanced the `add`, `pack` and `unpack` commands to support multiple quantities
   * Involved changing the `Item` constructor, and the respective methods used to parse inputs and execute the commands

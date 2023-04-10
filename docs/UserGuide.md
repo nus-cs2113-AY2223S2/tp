@@ -27,7 +27,7 @@ is unpacked and travel with an ease of mind.
 * [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 * [Command Summary](#command-summary)
 
----
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Quick Start</span>
 
@@ -53,8 +53,8 @@ is unpacked and travel with an ease of mind.
                  |___/
     
     Enter "help" to find out how to use BagPacker
-    ________________________________________________________________________________________________________________________
-    ________________________________________________________________________________________________________________________
+    _________________________________________________________________________________
+    _________________________________________________________________________________
     Welcome back, User!
     ```
    
@@ -63,7 +63,7 @@ To start off, typing `help` and pressing Enter will display a help message.
 
 7. Refer to the [Features section](#features) below for details of each command.
 
----
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Features</span>
 > **Notes about command format**
@@ -89,40 +89,41 @@ Example:
 `help`
 * Expected outcome:
 
-  ```
-  All Commands:
-  1. add: Adds quantity and name of item to the packing list.
-    Example: add 3 /of toothbrush
-    Meaning: Add quantity of 3 toothbrushes to the packing list
-  2. delete: Deletes an item from the packing list.
-    Example: delete 1
-    Meaning: Removes the first item in the packing list
-  3. pack: Adds to the current quantity of items packed in the packing list.
-    Example: pack 2 /of 3
-    Meaning: Packs 2 more quantities of the third item in the packing list
-  4. packall: Fully pack an item of choice from the packing list.
-    Example: packall /of 3
-    Meaning: Set the third item in the packing list as fully packed
-  5. unpack: Deducts from the current quantity of items packed in the packing list.
-    Example: unpack 1 /of 2
-    Meaning: Unpacks 1 quantity of the second item in the packing list
-  6. unpackall: Fully unpacks an item of choice from the packing list.
-    Example: unpackall /of 3
-    Meaning: Set the third item in the packing list as totally not packed yet
-  7. editquantity: Edit the total quantity of an item to be packed.
-    Example: editquantity 3 /of 2
-    Meaning: Change the total quantity of the second item to 3
-  8. list: List all items and their total quantities packed in packing list.
-    Example: list
-  9. listunpacked: List all items and their total quantities if they are not fully packed yet.
-    Example: listunpacked
-  10. deletelist: Deletes all items in the packing list.
-    Example: deletelist
-  11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
-    Example: find jacket
-  12. bye: Stops the BagPacker Application
-    Example: bye
-  ```
+```
+All Commands:
+1. add: Adds quantity and name of item to the packing list.
+  Example: add 3 /of toothbrush
+  Meaning: Add quantity of 3 toothbrushes to the packing list
+2. delete: Deletes an item from the packing list.
+  Example: delete 1
+  Meaning: Removes the first item in the packing list
+3. pack: Adds to the current quantity of items packed in the packing list.
+  Example: pack 2 /of 3
+  Meaning: Packs 2 more quantities of the third item in the packing list
+4. packall: Fully pack an item of choice from the packing list.
+  Example: packall /of 3
+  Meaning: Set the third item in the packing list as fully packed
+5. unpack: Deducts from the current quantity of items packed in the packing list.
+  Example: unpack 1 /of 2
+  Meaning: Unpacks 1 quantity of the second item in the packing list
+6. unpackall: Fully unpacks an item of choice from the packing list.
+  Example: unpackall /of 3
+  Meaning: Set the third item in the packing list as totally not packed yet
+7. editquantity: Edit the total quantity of an item to be packed.
+  Example: editquantity 3 /of 2
+  Meaning: Change the total quantity of the second item to 3
+8. list: List all items and their total quantities packed in packing list.
+  Example: list
+9. listunpacked: List all items and their total quantities if they are not fully packed yet.
+  Example: listunpacked
+10. deletelist: Deletes all items in the packing list.
+  Example: deletelist
+11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
+  Example: find jacket
+12. bye: Stops the BagPacker Application
+  Example: bye
+ ```
+
 
 ### <span style="color:#6495ED">Adding a new item:</span> `add`
 Adds a new item and its quantity to the packing list.
@@ -398,7 +399,7 @@ Example:
 
 [⏫ Go to Table of Contents](#table-of-contents) | [⏫ Go to Features](#features)
 
----
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Frequently Asked Questions (FAQ)</span>
 
@@ -434,7 +435,7 @@ Example:
 
 [⏫ Go to Table of Contents](#table-of-contents) |
 
----
+<div style="page-break-after: always;"></div>
 
 ## <span style="color:#00A36C">Command Summary</span>
 
