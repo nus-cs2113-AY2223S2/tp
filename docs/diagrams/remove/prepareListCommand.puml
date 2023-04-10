@@ -26,6 +26,8 @@ else current
     deactivate ":ListCurrentPuCommand"
     ":Parser" --> ":Parser": ListCurrentPuCommand
     deactivate ":Parser"
+    ":Parser" --> ":Parser": ListCurrentPuCommand
+    deactivate ":Parser"
 else
     ":Parser" -> ":Parser":prepareListPuModulesCommand(userCommandSecondKeyword, universities)
     activate ":Parser"
@@ -38,9 +40,12 @@ else
     deactivate ":ListPuModulesCommand"
     ":Parser" --> ":Parser": ListPuModulesCommand
     deactivate ":Parser"
+    ":Parser" --> ":Parser": ListPuModulesCommand
+    deactivate ":Parser"
 end
+":Parser" --> ":Parser": Command
 deactivate ":Parser"
+":Parser" --> ":Parser": Command
 deactivate ":Parser"
-deactivate ":Parser"
-deactivate ":Parser"
+
 @enduml
