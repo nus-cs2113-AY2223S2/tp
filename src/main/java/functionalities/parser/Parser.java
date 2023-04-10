@@ -269,7 +269,7 @@ public class Parser {
             // find a/dog or find t/surgery or find aID/123
             int animalIndex = task.indexOf("a/");
             int typeIndex = task.indexOf("t/");
-            int aIDIndex = task.indexOf("aID/");
+            int aIDIndex = task.indexOf("uID/");
             int dateIndex = task.indexOf("d/");
             if (animalIndex != -1) {
                 String details = task.substring(animalIndex + 2);
@@ -306,7 +306,7 @@ public class Parser {
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
-            String uid = task.split(" ", 2)[1];
+            String uid = splitInputBy(task, "uid/");
             assert uid != null;
             command = new RemoveCommand(uid);
         } catch (ArrayIndexOutOfBoundsException e) {

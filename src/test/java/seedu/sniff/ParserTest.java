@@ -99,7 +99,7 @@ public class ParserTest {
     public void findTest() {
         String findCommand = "find a/dog";
         String findCommand1 = "find t/surgery";
-        String findCommand2 = "find aID/123";
+        String findCommand2 = "find uID/123";
         Command findParsedCommand = null;
         try {
             findParsedCommand = Parser.parse(findCommand);
@@ -127,7 +127,7 @@ public class ParserTest {
 
     @Test
     public void removeTest() {
-        String removeCommand = "remove a/1";
+        String removeCommand = "remove uid/C12345678A";
         Command removeParsedCommand = null;
         try {
             removeParsedCommand = Parser.parse(removeCommand);
