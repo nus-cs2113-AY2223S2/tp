@@ -284,6 +284,39 @@ class ParserTest {
         assertNull(newCommand);
     }
 
-    
+    @Test
+    void parseShowMod_invalidModuleCode_expectsNoException() {
+        String userCommand = "showmod";
+        Ui ui = new Ui();
+        int size = 0;
+        assertDoesNotThrow(() -> Parser.getCommand(userCommand, ui, size, null));
+    }
+
+    @Test
+    void parseListModWithLesson_extraWord_expectNull() throws UnexpectedException {
+        String userCommand = "listmod cs2113 -tut hello";
+        Ui ui = new Ui();
+        int size = 0;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+    @Test
+    void parseListMod_normalInput_expectsNoException() {
+        String userCommand = "listmod";
+        Ui ui = new Ui();
+        int size = 0;
+        assertDoesNotThrow(() -> Parser.getCommand(userCommand, ui, size, null));
+    }
+
+    @Test
+    void getCommand_emptyCommand_expectNull() throws UnexpectedException {
+        String userCommand = " ";
+        Ui ui = new Ui();
+        int size = 0;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
 }
 

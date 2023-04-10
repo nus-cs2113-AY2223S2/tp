@@ -67,19 +67,9 @@ public class AddModuleCommand extends Command {
         try {
             if (args.length == 3) {
                 handleMultiCommand(moduleList, allModules, args, ui, calendar);
-                ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
+                ui.printClassAddedMessage(args[0].toUpperCase(), getLessonType(args[1]), args[2]);
             } else {
-                if (isAdded(moduleList, module)) {
-                    throw new DuplicateModuleException();
-                }
-
-                if (module != null) {
-                    moduleList.add(module);
-                    moduleList.sortModules();
-                    Module referenceModule = allModules.findModule(module.getCode());
-                    ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
-
-                }
+                handleSingleCommand(moduleList, allModules, ui);
             }
 
             storage.updateModule(moduleList, calendar);
@@ -100,6 +90,28 @@ public class AddModuleCommand extends Command {
     }
 
     /**
+     * Handles the case where the user wants to add a module.
+     *
+     * @param moduleList The list of modules.
+     * @param allModules Module backend data.
+     * @param ui The user interface.
+     * @throws DuplicateModuleException If the module already exists.
+     */
+    private void handleSingleCommand(ModuleList moduleList, ModuleList allModules, Ui ui)
+            throws DuplicateModuleException {
+        if (isAdded(moduleList, module)) {
+            throw new DuplicateModuleException();
+        }
+
+        if (module != null) {
+            moduleList.add(module);
+            moduleList.sortModules();
+            Module referenceModule = allModules.findModule(module.getCode());
+            ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
+        }
+    }
+
+    /**
      * Handles the case where the user wants to add a class to a module.
      *
      * @param moduleList The list of modules.
@@ -113,7 +125,7 @@ public class AddModuleCommand extends Command {
                                     Calendar calendar) throws IllegalCommandException, ClassNotFoundException,
             LessonAddedException {
 
-        LessonType lessonType = this.getCommand(args[1]);
+        LessonType lessonType = this.getLessonType(args[1]);
         Module searchModule = null;
         for (Module module: allModules){
             if (module.getCode().equalsIgnoreCase(this.module.getCode())){

@@ -15,17 +15,34 @@
     + [Utility Commands](#utility-commands)
     + [Logging](#logging)
 4. [Appendix](#appendix)
-   + [Appendix A: Product Scope](#appendix-a--product-scope)
-   + [Appendix B: User Stories](#appendix-b--user-stories)
-   + [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements) 
-   + [Appendix D: Glossary](#appendix-d--glossary)
-   + [Appendix E: Instructions for manual testing](#appendix-e--instructions-for-manual-testing)
+   + [Appendix A: Product Scope](#appendix-a-product-scope)
+   + [Appendix B: User Stories](#appendix-b-user-stories)
+   + [Appendix C: Non-Functional Requirements](#appendix-c-non-functional-requirements) 
+   + [Appendix D: Glossary](#appendix-d-glossary)
+   + [Appendix E: Instructions for manual testing](#appendix-e-instructions-for-manual-testing)
 
 
 ## Acknowledgements
 
 We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project. We would also like to acknowledge
-the NUSMods Team, whose NUSMods API we used to scrape module data from.
+the NUSMods Team, whose NUSMods API we used to scrape module data from. Additionally, the usage of GSON API was used to
+read JSON data for our project.
+
+### Duke:
+* [Duke Project IP](https://github.com/honglinshang/ip)
+* Author: Hong Lin Shang
+* Based on: [Duke Project](https://github.com/nus-cs2113-AY2223S2/ip)
+
+### NUSMods:
+* [NUSMods API](https://api.nusmods.com/v2/)
+* [NUSMods Repository](https://github.com/nusmodifications/nusmods)
+* License: [MIT License](https://github.com/nusmodifications/nusmods/blob/master/LICENSE)
+* Author: NUSMods Team
+
+### GSON:
+* [GSON API](https://github.com/google/gson)
+* License: [Apache License 2.0](https://github.com/google/gson/blob/master/LICENSE)
+* Author: Google
 
 ## Design
 
@@ -55,18 +72,34 @@ and eventually update the UI which is displayed back to the user. This would con
 which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
+**API** `Ui.java`
+Here's a class diagram of the `Ui` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
+
+How the `Ui` component works:
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`
+2. If the command is invalid, `Ui` will be called to print an error message.
+3. On the other hand, `Ui` will print a confirmation/success message after the execution of a task.
 
 ### Parser Component
 **API:** `Parser.java`
 Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
 
+How the `Parser` component works:
+1. When a command is entered by the user, `Parser` split the inputs from user accordingly and create the relevant
+subclass of `Command`.
+2. `Parser` will check for the number of arguments after splitting the inputs from user. 
+3. If the parameter is empty, `Parser` will throw `Exceptions` according to the input commands. 
+4. Otherwise, `Parser` will then create the subclass of `Command` according to the user input.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
+
 ### Command Component
 **API:** `Command.java`    
 Here's two class diagrams of the `Command` component, 
 one for Task and Util related Commands, and one for Module related Commands   
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png?raw=true)
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)    
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command2-for_Module_Commands.png?raw=true)
@@ -89,6 +122,15 @@ Further elaboration on how the individual `Command` subclasses work can be found
 Here is a class diagram of the 'Storage component'
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
 
+How the `Storage` component works:
+1. When the user first launches `Apollo`, the `Storage` will look for the storage text files (`save.txt` and
+`moduleData.txt`). 
+2. If these text files do not exist, `Storage` will create new text files.
+3. If these text files exist, `Storage` will read from the text files and write into `Apollo` for the user to use.
+4. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
+files if there are changes.
+
+[*Return to TOC*](#table-of-contents)
 
 ## Implementation
 
@@ -170,8 +212,8 @@ This is to add a `Task` with the description "concert" on Jun 5 2023 from 8-10pm
 Within `Parser`, an `AddCommand` is initialised and a logger for the command is set up. 
 Variables within the `AddCommand` are then assigned. The String `command` is set to "event".
 The rest of the user's command are further parsed into Strings: `desc` "concert" (description), `from`
-"2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to".
-- For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by".
+"05-06-2023-20:00" (start date), and `to` "05-06-2023-22:00" (end date) based on the delimiters "`-from`" and "`-to`".
+- For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "`-by`".
 - For `command` "todo", all remaining params are parsed into `desc`.
 
 **Step 3.**
@@ -189,8 +231,9 @@ This in turn calls `AddCommand#addTask()`.
 **Step 5.**
 `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into `LocalDateTime`s.
 - For `Deadline`, the String `by` will be parsed into a `LocalDateTime`.
-- For `Todo`, no dates need to be parsed.
-In the event of the following, an error message is printed and no more steps are executed.
+- For `Todo`, no dates need to be parsed.   
+
+In the event of the following, an error message is printed and no more steps are executed.   
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
@@ -202,7 +245,7 @@ In the event of the following, an error message is printed and no more steps are
 
 **Step 7.**
 
-Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so,
+Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so, 
 `Ui#printClashingEventModuleMessage()` is called to print a warning message.
 
 **Step 8.**
@@ -218,6 +261,7 @@ then calls `Ui#printAddMessage()` which prints a success message.
 
 `execute()` calls `Storage#updateTask()` to update the local save file `save.txt` to reflect the changes.
 
+Here is a Sequence Diagram illustrating the adding of an `Event`: 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
@@ -274,6 +318,15 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 
 The storage is updated with the new TaskList without the deleted task.
 
+The below diagram shows the sequence diagram for the DeleteTask functionality.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommand-ModifyCommand__Delete_Tasks_.png?raw=true)
+
+
+The below diagram shows the activity diagram for DeleteCommand for tasks 
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteCommandActivityDiagram.png?raw=true)
+
 [*Return to TOC*](#table-of-contents)
 
 #### Mark Task As Done
@@ -327,7 +380,10 @@ command will stop here.
 
 The storage is updated with the new TaskList with the task marked with a cross next to it.
 
+The sequence diagram for marking of tasks is similar to that of the unmark task command. The only difference is that the
+Ui message formats. The activity diagram for marking of tasks is shown below.
 
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/MarkCommandActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -387,6 +443,7 @@ command will stop here.
 The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
+The below sequence and activity diagram summarises the above steps for the unmark task command.
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png?raw=true)
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/UnmarkCommandActivityDiagram.png?raw=true)
 
@@ -537,6 +594,10 @@ UML Sequence Diagram for ListModuleCommand
 The following sequence diagram shows how the list module command works when the user inputs the command `listmod`:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
+
+The following activity diagram shows how the list module command works when the user inputs the command `listmod`:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleCommandActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -721,6 +782,11 @@ the module list.:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
 
+The following activity diagram shows how the AddModCommand class works for both adding modules and adding lessons to
+the module list:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModuleActivityDiagram.png?raw=true)
+
 [*Return to TOC*](#table-of-contents)
 
 <!--@@author PoobalanAatmikaLakshmi -->
@@ -733,58 +799,69 @@ Given below is an example usage scenario and how to delete mechanism behaves at 
 
 #### For when a user deletes only a module (e.g CS2113) from the module list:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
+
 When user executes the command `delmod cs2113` the Parser class calls the `DeleteModuleCommand()` method of the
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in a moduleCode `cs2113` as a 
 parameter. This moduleCode is
 used to find `cs2113`  from the ModuleList.
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
+
 The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
 FileHandler to handle logging.
 
-Step 3: Override the `execute()` method :
+**Step 3: Override the `execute()` method :**
+
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the ModuleList, Ui, Storage, and TaskList.
 
-Step 4: Find the module to delete :
+**Step 4: Find the module to delete :**
+
 The first step in the `execute()` method is to find the module using the module code parameter  `cs2113` by calling
 the `findModule()` method of the moduleList class.
 If the module `cs2113` is not found, a ModuleNotFoundException is thrown.
 
-Step 5: Remove the module from the ModuleList :
+**Step 5: Remove the module from the ModuleList :**
+
 If `cs2113` is found, it is removed from the ModuleList by calling `remove()` method of moduleList class.
 
-Step 6: Print the confirmation message :
+**Step 6: Print the confirmation message :**
+
 A confirmation message is printed to the user indicating that the `cs2113` has been successfully deleted.
 
-Step 7: Update the storage :
+**Step 7: Update the storage :**
+
 The storage is updated with the new ModuleList without `cs2113`
 
 #### For when a user deletes a specific lesson (e.g CS2113 -lec 1) from the module list:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
+
 When user executes the command `delmod cs2113 -lec 1` the Parser class calls the `DeleteModuleCommand()` method of the 
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in the string `cs2113 -lec 1` as a 
 parameter. The string is split into a moduleCode `cs2113`, lessonType `-lec` and `1` as class number and stored in the
 `args` array field of the `DeleteModule` class. 
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
 The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a 
 FileHandler to handle logging.
 
-Step 3: Override `execute()` method :
+**Step 3: Override `execute()` method :**
+
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the ModuleList, Ui, Storage, TaskList, AllModules and Calendar objects. The lesson type is determined by
 calling the `getLessonType()` method of the `LessonType` class and parsing in `arg[1]` while the lesson number is 
 set by `arg[2]`. If the lesson type is not valid, an`InvalidCommandException` is thrown.
 
-Step 4: Calls the `handleMultiCommand()` method:
+**Step 4: Calls the `handleMultiCommand()` method:**
+
 The `handleMultiCommand()` method is called to handle the command. It takes in `moduleList`, `lessonType` and `args` as
 parameters. It then searches for the module using the `findModule()` method of the `ModuleList` class. If the module
 is not found, a `ModuleNotFoundException` is thrown.
 
-Step 5: Remove the module lessons from the ModuleList :
+**Step 5: Remove the module lessons from the ModuleList :**
+
 If the module is found, the timetable of the classes are removed from the module by calling the `removeTimetable()` 
 method which takes in `searchModule` and `lessonType` as parameters. The `removeTimetable()` method of the `ModuleList`
 will create a copy of the module timetable array list and search for the lesson to be removed. If the lesson type and 
@@ -792,7 +869,8 @@ class number matches, the lesson is removed from the original timetable array li
 lesson is then marked as found by setting the `isFound` boolean to true. If the lesson is not found, a 
 `ClassNotFoundException` is thrown.
 
-Step 6: Print the confirmation message :
+**Step 6: Print the confirmation message :**
+
 A confirmation message is printed to the user indicating that the module lesson has been successfully deleted. It is
 is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` class. If the module is not found, 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
@@ -817,49 +895,71 @@ how the mechanism behaves at each step.
 
 #### For when a user request to show the module (e.g. CS2113):
 
-Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
 in a parameter of type `String`, which will be split into `moduleCode` and `-FLAG`. In this case, only `cs2113` is 
 parsed in as the parameter. This is then used to find `cs2113` from the module information. If the moduleCode, 
 `cs2113`, is not found, an `InvalidModule()` is thrown.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand 
+**Step 2. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand 
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the Show Module functionality.
 It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar.
 
-Step 4. Find the module to display information: The first step in the `execute()` method is to find the module from 
+**Step 4. Find the module to display information:**
+
+The first step in the `execute()` method is to find the module from 
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 
-Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the information
+**Step 5. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the information
 of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `ClassNumber` 
 of each `lessonTypes` and `Day` and `Time` of the existing `ClassNumber`.
 
 #### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
-Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
 in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-tut`. In this case, 
 `cs2113 -tut` is parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+**Step 2. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the Show Module functionality.
 It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar objects. The lesson 
 type is determined by calling the `getLessonType()` method of the `lessonType` class and parsing in `args[1]` while 
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
-Step 4. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command. 
+**Step 4. Calls the `handleMultiCommand()` method:**
+
+The `handleMultiCommand()` method is called to handle the command. 
 It takes in `moduleList`, `lessonType` and `args` as parameters.
 
-Step 5. Find the module to display information: The first step in the `execute()` method is to find the module from
+**Step 5. Find the module to display information:**
+
+The first step in the `execute()` method is to find the module from
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 To find the lessonType of the module, `getLessonType()` is called to return the lessonType for the Show Module
 functionality.
 
-Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the information
+**Step 6. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the information
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
@@ -877,11 +977,17 @@ This command allows the user to see how to use the `delete` command
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteHelpCommand-DeleteHelpCommand.png?raw=true)
 Given below is an example usage scenario and how the specific help mechanism behaves at each step.
 
-Step 1. The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
+**Step 1.**
 
-Step 2.The `execute()` method of `DeleteHelpCommand` is called.
+The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
 
-Step 3. The `printDeleteHelpMessage()` method of `Ui` class is called. 
+**Step 2.**
+
+The `execute()` method of `DeleteHelpCommand` is called.
+
+**Step 3.**
+
+The `printDeleteHelpMessage()` method of `Ui` class is called. 
 Instructions on how to use the `delete` command are printed out.
 <!--@@author honglinshang -->
 
@@ -923,7 +1029,7 @@ which prints out the lessons and tasks occurring on each day of the current week
    If no tasks occur on that day, the next step is skipped.
 5. `tasksOnDay` is passed into the method `Ui#printTasksOnDay()`. Each task is printed out. 
 6. The current day is increased to the following day. 
-7. Go back to the first step, stop after all lessons and tasks on Sunday have been printed. 
+7. Go back to `1.`, stop after all lessons and tasks on Sunday have been printed. 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Week-WeekCommand.png?raw=true)
 
@@ -939,17 +1045,27 @@ with no additional parameters (e.g `bye bye` would not exit the program).
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.
 
-Step 1. The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
+**Step 1.**
+
+The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
 then creates a new `ExitCommand`.
 
-Step 2. The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
+**Step 2.**
+
+The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
 to handle logging.
 
-Step 3. The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
+**Step 3.**
 
-Step 4. Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
 
-Step 5. The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
+**Step 4.** 
+
+Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+
+**Step 5.**
+
+The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
 program exceeds the loop in the `run()` method of `Apollo` class and the program terminates.
 
 Below is a sequence diagram of the `bye` command.
@@ -974,6 +1090,10 @@ Below is a sequence diagram of the `bye` command.
 
 
 ### *The `LoggerInterface` Interface*
+
+API: `LoggerInterface.java`
+
+
 The `LoggerInterface` interface is used to implement the `setUpLogger()` method in the command classes. This design choice
 was made to reduce code duplication and to improve the maintainability of the code. It also allows for multi-level inheritance
 amongst different command classes. The implementation of the `setUpLogger()` method is shown below.
@@ -1000,10 +1120,10 @@ is then added to the logger using the `addHandler()` method.
 If the file cannot be created, a `SecurityException` is thrown. The `IOException` is caught and logged using the ConsoleHandler.
 Subsequently, the only logging will be through the ConsoleHandler.
 
-
+[*Return to TOC*](#table-of-contents)
 
 # Appendix
-
+<!--@@T-Wan-Lin -->
 ## Appendix A: Product Scope
 
 #### Target user profile
@@ -1027,40 +1147,43 @@ Priority Legend:
 `**` - Medium priority  (Should-haves)
 `*` - Lowest priority (Could-haves)
 
+
 ## Appendix B: User Stories
 
-| Priority | Version |           As a/an ...           | I want to ...                                              | So that I can ...                                                             |
-|:--------:|:-------:|:-------------------------------:|:-----------------------------------------------------------|-------------------------------------------------------------------------------|
-|   ***    |  v1.0   |           expert user           | be able to quickly interface with the program using a CLI  | issue commands to the bot.                                                    |
-|   ***    |  v1.0   |            new user             | see usage instructions                                     | refer to them when I forget how to use the application.                       |
-|   ***    |  v1.0   |              user               | find a to-do item by name                                  | locate a to-do without having to go through the entire list.                  |
-|   ***    |  v1.0   |              user               | delete a to-do item                                        | remove items that I no longer need to keep track of.                          |
-|   ***    |  v1.0   |              user               | add a to-do item                                           | keep track of things that I need to do.                                       |
-|   ***    |  v1.0   |              user               | add an event item                                          | keep track of events that I need to attend.                                   |
-|   ***    |  v1.0   |          busy student           | add a deadline item                                        | keep track of deadlines that I need to meet.                                  |
-|   ***    |  v1.0   |              user               | list all items                                             | view all items that I have added.                                             |
-|   ***    |  v1.0   |              user               | mark a to-do item as done                                  | keep track of which to-do items I have completed.                             |
-|   ***    |  v1.0   |              user               | unmark a to-do item as not done                            | keep track of which to-do items I have not completed yet.                     |
-|   ***    |  v1.0   |              user               | view task count                                            | see how much I have to do.                                                    |
-|   ***    |  v1.0   |          undergraduate          | add modules                                                | keep track of the modules I am taking for the semester.                       |
-|   ***    |  v1.0   |          undergraduate          | list all modules                                           | see all the modules I am taking for the semester.                             |
-|    **    |  v1.0   |          undergraduate          | view module count                                          | keep how many modules I have for the semester.                                |
-|   ***    |  v1.0   |          undergraduate          | delete modules                                             | remove modules that I am no longer taking.                                    |
-|    **    |  v2.0   |          undergraduate          | keep track of the total modular credits                    | plan my academic year.                                                        |
-|   ***    |  v2.0   |             student             | add specific lesson types lessons for each module          | go to the correct classes at the right time.                                  |
-|   ***    |  v2.0   |             student             | delete specific lesson types for each module               | avoid going to a class I never signed up for.                                 |
-|   ***    |  v2.0   |             student             | see my lesson timetable                                    | see the timings of my lessons for the week.                                   |
-|    **    |  v2.0   |     over-committed student      | be alerted to clashes between events and module lessons    | rearrange conflicting events.                                                 |
-|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and events         | avoid missing out on important deadlines.                                     |
-|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and module lessons | avoid missing out on important deadlines during lessons.                      |
-|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to type          | be able to read the tasklist more easily.                                     |
-|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to date          | prioritise deadlines and events correctly.                                    |
-|    **    |  v2.0   |             student             | see my overall timetable                                   | see all lessons, events and module lessons at the same time.                  |
-|    **    |  v2.0   |         curious student         | view module information                                    | see what a module is about without adding it to my module list.               |
-|    **    |  v2.0   | prospective student of a module | view module lesson information                             | see which lessons I am able to fit into my timetable.                         |
-|    **    |  v2.0   |             student             | list all lessons I have for a module                       | see if I registered for the right lessons.                                    |
-|    **    |  v2.1   |        forgetful student        | view which weeks my lessons occur                          | turn up for lesson on the correct weeks.                                      |
-|    **    |  v2.1   |         forgetful user          | view help menu for specific commands                       | get formatting options for each command without viewing the entire help menu. |
+| Priority | Version |           As a/an ...            | I want to ...                                                | So that I can ...                                                             |
+|:--------:|:-------:|:--------------------------------:|:-------------------------------------------------------------|-------------------------------------------------------------------------------|
+|   ***    |  v1.0   |           expert user            | be able to quickly interface with the program using a CLI    | issue commands to the bot.                                                    |
+|   ***    |  v1.0   |             new user             | see usage instructions                                       | refer to them when I forget how to use the application.                       |
+|   ***    |  v1.0   |               user               | find a to-do item by name                                    | locate a to-do without having to go through the entire list.                  |
+|   ***    |  v1.0   |               user               | delete a to-do item                                          | remove items that I no longer need to keep track of.                          |
+|   ***    |  v1.0   |               user               | add a to-do item                                             | keep track of things that I need to do.                                       |
+|   ***    |  v1.0   |               user               | add an event item                                            | keep track of events that I need to attend.                                   |
+|   ***    |  v1.0   |           busy student           | add a deadline item                                          | keep track of deadlines that I need to meet.                                  |
+|   ***    |  v1.0   |               user               | list all items                                               | view all items that I have added.                                             |
+|   ***    |  v1.0   |               user               | mark a to-do item as done                                    | keep track of which to-do items I have completed.                             |
+|   ***    |  v1.0   |               user               | unmark a to-do item as not done                              | keep track of which to-do items I have not completed yet.                     |
+|   ***    |  v1.0   |               user               | view task count                                              | see how much I have to do.                                                    |
+|   ***    |  v1.0   |          undergraduate           | add modules                                                  | keep track of the modules I am taking for the semester.                       |
+|   ***    |  v1.0   |          undergraduate           | list all modules                                             | see all the modules I am taking for the semester.                             |
+|    **    |  v1.0   |          undergraduate           | view module count                                            | keep how many modules I have for the semester.                                |
+|   ***    |  v1.0   |          undergraduate           | delete modules                                               | remove modules that I am no longer taking.                                    |
+|    **    |  v2.0   |          undergraduate           | keep track of the total modular credits                      | plan my academic year.                                                        |
+|   ***    |  v2.0   |             student              | add specific lesson types lessons for each module            | go to the correct classes at the right time.                                  |
+|   ***    |  v2.0   |             student              | delete specific lesson types for each module                 | avoid going to a class I never signed up for.                                 |
+|   ***    |  v2.0   |             student              | see my lesson timetable                                      | see the timings of my lessons for the week.                                   |
+|    **    |  v2.0   |      over-committed student      | be alerted to clashes between events and module lessons      | rearrange conflicting events.                                                 |
+|    **    |  v2.0   |           busy student           | be alerted to clashes between deadlines and events           | avoid missing out on important deadlines.                                     |
+|    **    |  v2.0   |           busy student           | be alerted to clashes between deadlines and module lessons   | avoid missing out on important deadlines during lessons.                      |
+|    **    |  v2.0   | student planning their timetable | be alerted to clashes between module lessons                 | avoid registering for the wrong lessons.                                      |
+|    **    |  v2.0   |        organised student         | be able to organise my tasklist according to type            | be able to read the tasklist more easily.                                     |
+|    **    |  v2.0   |        organised student         | be able to organise my tasklist according to date            | prioritise deadlines and events correctly.                                    |
+|    **    |  v2.0   |             student              | see my overall timetable                                     | see all lessons, events and module lessons at the same time.                  |
+|    **    |  v2.0   |         curious student          | view module information                                      | see what a module is about without adding it to my module list.               |
+|    **    |  v2.0   | prospective student of a module  | view module lesson information                               | see which lessons I am able to fit into my timetable.                         |
+|    **    |  v2.0   |             student              | list all lessons I have for a module                         | see if I registered for the right lessons.                                    |
+|    **    |  v2.1   |        forgetful student         | view which weeks my lessons occur                            | turn up for lesson on the correct weeks.                                      |
+|    **    |  v2.1   |          forgetful user          | view help menu for specific commands                         | get formatting options for each command without viewing the entire help menu. |
+|    *     |  v2.1   |             new user             | be guided to the more appropriate way of recording deadlines | better organise my deadlines.                                                 |
 
 
 ## Appendix C: Non-Functional Requirements
@@ -1075,7 +1198,8 @@ Priority Legend:
 * The user interface should be intuitive enough for users who are new to the application.
 * Apollo should respond to any user interaction within 3 seconds.
 * Module data for Apollo is limited to what is available on NUSMods, i.e. Apollo has module data for all modules offered
-  by NUS in AY22/23 Semester 1 and 2.
+  by NUS in AY22/23 Semester 2.
+
 
 ## Appendix D: Glossary
 
@@ -1085,6 +1209,7 @@ Priority Legend:
 * *Modular Credits* - Modular credits are the credits that students earn for each module they take. They are used to
   calculate the total number of credits a student has earned for the semester.
 
+<!--@@T-Wan-Lin, PoobalanAatmikaLakshmi -->
 ## Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
@@ -1093,9 +1218,10 @@ Given below are instructions to test the app manually.
 
 ### Launch
 * Download the .jar file from the latest release here and copy it into an empty folder. 
-* Open a terminal in the folder and run the command `java -jar apollo.jar`. The CLI should appear in a few seconds.
+* Open a terminal in the folder and run the command `java -jar Apollo.jar`. The CLI should appear in a few seconds.
 * Expected: The CLI should appear with a welcome message and a prompt to enter a command. Resize the CLI window size
     for optimal text wrapping.
+
 ```
 ____________________________________________________________
 Hello from
@@ -1109,107 +1235,144 @@ Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ```
-### Sample test cases
-#### Invalid Commands
-1. Type `hello` and press enter.
-2. Any commands Apollo cannot understand will be treated as invalid commands.
 
-Expected: Apollo should respond with an error message for invalid commands.
+### Sample test cases
+For command testing, you have to be in Apollo's main CLI interface. 
+Do remember to hit `Enter` after typing the command so that Apollo registers it.
+
+In this section, there are various test cases for the many commands Apollo has. For negative testing,
+invalid commands are tested, where Apollo can handle invalid commands gracefully without crashing.
+For positive testing, valid commands are tested.
+#### Invalid Commands at any point of execution
+
+Any commands Apollo cannot understand will be treated as invalid commands. Apollo will respond with an error message.
+Note: Some commands have command-specific error messages. These are not covered in this sub-section for brevity.
+
+|  No.  |  Type of Testing  | Test Command | Expected Output                       |
+|:-----:|:-----------------:|:-------------|:--------------------------------------|
+|   1   |     Negative      | `hello`      | Exception thrown for invalid command. |
+
+The exception thrown in for this sub-section is: 
 ```
 Sorry, but I don't know what that means :(
 ```
 #### Help Command
-1. Make sure you are in the main interface.
-2. Test case 1: Type `help` and press enter.
-3. Test case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
 
-Expected of Test case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
-Expected of Test case 2: The help menu for that command should appear.
+| No. | Type of Testing | Test Command                | Expected Output                                                                              |
+|:---:|:---------------:|:----------------------------|:---------------------------------------------------------------------------------------------|
+|  1  |    Positive     | `help`                      | The help menu should appear with the list of *all* commands available on Apollo with `help`. |
+|  2  |    Positive     | `help showmod`              | The *shorter* help menu for *only* the showmod command should appear.                        |
+|  3  |    Negative     | `help how to get a partner` | Exception thrown for non-existent command.                                                   |
 
-#### Adding a ToDo/Event/Deadline
-Prerequisite: Make sure you are in the main interface.
-#### Invalid Commands
-1. Test case for empty task description: `todo ` or `deadline` or `event`
-Expected: Exception thrown. Error details shown in status message
-2. Test case for invalid formats
-   - Out of calendar range: `deadline return book -by 40-11-2023-23:23` or `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23`
-   - Invalid dateTime format `deadline return book -by 2023-10-11-11:23` or `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23`
-   - Missing parameters `deadline return book 15-11-2023-11:23` or `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`
-   - Extra parameters `deadline return book -by 17-11-2023-11:23 blah blah`
-   - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
-   
-   For all these cases Expected: Exception thrown. Error details shown in status message. 
-   For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
-   eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
-### Adding a ToDo
-1. Test case : `todo Feed the fish`
 
-Expected: ToDo is added into TasksList. Details shown in status message.
-2. Test case : `todo`
+### Adding a ToDo/Event/Deadline
+ The below table is a summary of the test cases.
 
-Expected: Empty task description exception thrown. Error details shown in status message 
-### Adding a Deadline
-1. Test case : `deadline return book -by 17-11-2023-11:23`
+| No. | Type of Testing | Test Command                                                | Expected Output                                                       |
+|:---:|:---------------:|:------------------------------------------------------------|:----------------------------------------------------------------------|
+|  1  |    Positive     | `todo Feed the fish`                                        | ToDo is added into TaskList. Details of ToDo shown in status message. |
+|  2  |    Positive     | `deadline return book -by 17-11-2023-11:23`                 | Deadline is added into the TaskList.                                  |
+|  3  |    Positive     | `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23` | Event is added into the TaskList.                                     |
+|  4  |    Negative     | `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23` | Exception thrown for dates outside calendar range.                    |
+|  5  |    Negative     | `deadline return book -by 40-11-2023-23:23`                 | Exception thrown for dates outside calendar range.                    |
+|  6  |    Negative     | `deadline return book -by 2023-10-11-11:23`                 | Exception thrown for invalid DateTime format.                         |
+|  7  |    Negative     | `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23` | Exception thrown for invalid DateTime format.                         |
+|  8  |    Negative     | `deadline return book 15-11-2023-11:23`                     | Exception thrown for missing parameters.                              |
+|  9  |    Negative     | `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`       | Exception thrown for missing parameters.                              |
+| 10  |    Negative     | `deadline return book -by 17-11-2023-11:23 blah blah`       | Exception thrown for extra parameters.                                |
+| 11  |    Negative     | `deadline return book 15-01-2022-11:23`                     | Exception thrown for date occurring before system DateTime.           |
+| 12  |    Negative     | `event wedding 16-01-2022-11:23 -to 20-01-2022-11:23`       | Exception thrown for date occuring before system DateTime.            |
+| 13  |    Negative     | `todo`                                                      | Exception thrown for missing parameters.                              |
+| 14  |    Negative     | `event`                                                     | Exception thrown for missing parameters.                              |
+| 15  |    Negative     | `deadline`                                                  | Exception thrown for missing parameters.                              |
 
-Expected: Deadline is added into TasksList. Details shown in status message.
-### Adding a Event
-1. Test case : `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23`
-
-Expected: Event is added into TasksList. Details shown in status message.
+Note: 
+* For brevity, the error messages for all forms of invalid inputs are not shown in the table. Each exception will have their own error message, detailing the errors occurred. 
+For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
+* System DateTime refers to the date and time on the computer Apollo is installed and run on.
 
 ### Deleting a Todo/Event/Deadline
-Prerequisites: Use command `list` to obtains task's index `[IDX]`
-1. Test case : `del [IDX]`
 
-Expected: Task is deleted from tasksList. Deletion confirmation message is shown. 
-2. Test case : `del [IDX not inside list]`
+Prerequisites: 
 
-Expected: Exception thrown. Error details shown in status message
+* Use command `list` to obtains task's index `[IDX]`.
+* List of tasks is not empty (at least one event/todo/deadline).
 
-#### Adding a Module
-1. Test case : `addmod cs2113`
+| No. | Type of Testing | Test Command | Expected Outcome                                                        |
+|:---:|:---------------:|--------------|:------------------------------------------------------------------------|
+|  1  |    Positive     | `delete 1`   | Task is deleted from tasksList. Deletion confirmation message is shown. |
+|  2  |    Negative     | `delete 0`   | Exception thrown for index out of bounds.                               |
 
-Expected: Module added into moduleList.Details shown in status message
-2. Test case : `addmod cs1111`
+The index out of bounds exception is structured as follows:
 
-Expected: Exception thrown as module does not exist currently. Error details shown in status message
+```
+Please enter [idx] in the form of an integer from <IDX_LOWERBOUND> to <IDX_UPPERBOUND>
+```
+### Unmarking/Marking a Todo/Event/Deadline
+Prerequisites:
 
-3. Test case : `addmod`
+* Use command `list` to obtains task's index `[IDX]`.
+* List of tasks is not empty (at least one event/todo/deadline).
 
-Expected: Exception thrown due to empty description. Error details shown in status message
+The tests are similar to that of the `delete` command. The only difference is replacing `delete` with `mark` or `unmark`.
+Instead of confirming that the task is deleted, Apollo would confirm that a task is marked or unmarked respectively.
 
-#### Adding a Lesson
-Prerequisites: Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
-or `showmod CS1010` which shows all the lesson types available for CS1010 
+### Adding a Module
 
-1.Test case : `addmod CS1010 -st 1`
+| No. | Type of Testing | Test Command    | Expected Outcome                                              |
+|:---:|:---------------:|:----------------|:--------------------------------------------------------------|
+|  1  |    Positive     | `addmod cs2113` | Module added into moduleList. Details shown in status message |
+|  2  |    Negative     | `addmod cs9999` | Exception thrown as module does not exist currently.          |
+|  3  |    Negative     | `addmod`        | Exception thrown due to empty description.                    |
 
-Expected: first section teaching lesson of CS1010 to your module list. If this lesson clashes with any of your other lessons a warning message will be displayed,
-but you will still be able to add it.
+### Adding a Module Lesson
+Prerequisites: 
+* Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
+or `showmod CS1010` which shows all the lesson types available for CS1010
 
-2.Test case `addmod CS1010 -st 99` or `addmod CS1010 -oo 1`
+| No. | Type of Testing | Test Command           | Expected Outcome                                                                                                                                                                             |
+|:---:|:---------------:|:-----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  1  |    Positive     | `addmod CS1010 -st 1`  | First section teaching lesson of CS1010 to your module list. If this lesson clashes with any of your other lessons a warning message will be displayed,but you will still be able to add it. |
+|  2  |    Negative     | `addmod CS1010 -st 99` | Exception thrown as due to invalid arguments.                                                                                                                                                |
+|  3  |    Negative     | `addmod CS1010 -oo 1`  | Exception thrown as due to invalid arguments.                                                                                                                                                |
 
-Expected: Exception thrown as due to invalid arguments. Error details shown in status message
-#### Deleting a Module
-Prerequisites: Use command `listmod` to obtains module's index `[IDX]` for 1.
-1. Test case: `delmod 1`
 
-Expected: Module under index 1 is deleted from moduleList. Confirmation message is shown
-2. Test case: `delmod cs1010` assuming cs1010 is inside moduleList
+### Deleting a Module
+Prerequisites:
 
-Expected: CS1010 is removed from moduleList. Confirmation message is printed 
-3. Test case: `delmod cs2040c` assuming cs2040c is not in your moduleList 
+Perform the following steps before running the test cases:
+* List should be populated as follows:
+  * Use `addmod ac5004` command to add AC5004 to your moduleList.
+  * Use `addmod cs1010` command to add CS1010 to your moduleList.
+  * Use command `listmod` to obtains module's index `[IDX]`.
+  
+Note: moduleList *should not* contain CS2040C, i.e. `addmod cs2040c` should not be run before this test.
 
-Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
-Total modular credits you have in this semester:`[Number of MCs in your moduleList]
 
-#### Deleting a Lesson
-1. Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
+| No. | Type of Testing | Test Command     | Expected Outcome                                                                |
+|:---:|:---------------:|:-----------------|:--------------------------------------------------------------------------------|
+|  1  |    Positive     | `delmod 1`       | Module under index 1 is deleted from moduleList. Confirmation message is shown. |
+|  2  |    Positive     | `delmod cs1010`  | CS1010 is removed from moduleList. Confirmation message is printed              |
+|  3  |    Negative     | `delmod cs2040c` | Exception that module is not in moduleList thrown.                              |
 
-Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
-2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
 
-Expected: Exception thrown, error message printed 
+### Deleting a Module Lesson
+Prerequisites:
+
+Perform the following steps before running the test cases:
+* List should be populated as follows:
+   * Use `addmod cs1010 -st 1` command to add CS1010 to your moduleList.
+
+Note: moduleList *should not* contain CS1010 -st 5, i.e. `addmod cs1010 -st 5` should not be run before this test.
+
+| No. | Type of Testing | Test Command          | Expected Outcome                                                         |
+|:---:|:---------------:|:----------------------|:-------------------------------------------------------------------------|
+|  1  |    Positive     | `delmod cs1010 -st 1` | Deletes SECTIONAL TEACHING - 1 of CS1010. Confirmation message is shown. |
+|  2  |    Negative     | `delmod cs1010 -st 5` | Exception thrown for lesson not in moduleList.                           |
+
+
+<!--@@T-Wan-Lin -->
 ### Saving Data
 
 1. Dealing with save files with erroneous data.

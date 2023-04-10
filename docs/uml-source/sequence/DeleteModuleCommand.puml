@@ -54,6 +54,8 @@ alt args.length == 3
     deactivate delmod
 
 else
+    delmod -> delmod : handleSingleCommand()
+    activate delmod
     delmod -> ModuleList : remove(module)
     activate ModuleList
     ModuleList --> delmod
@@ -63,6 +65,7 @@ else
     delmod -> Ui : printModuleDeleteMessage
     activate Ui
     Ui --> delmod
+    deactivate delmod
     deactivate Ui
 
 end

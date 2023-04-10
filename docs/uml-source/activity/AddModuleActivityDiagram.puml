@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User executes add module command;
+
+if () then ([params.length is 1 or 3])
+
+  :Create new AddModuleCommand Object;
+  :Execute AddModuleCommand;
+
+  if () then ([params.length == 1])
+  :Check if module is already in ModuleList;
+  :Add module to ModuleList;
+  :Sort ModuleList by module code;
+  :Print success message;
+
+  else ([params.length == 3])
+    :Check if module is already in ModuleList;
+        :Add Module to ModuleList if not in ModuleList;
+        :Iterate through AllModules;
+        :Iterate through all lessons of module;
+        :Add relevant lessons to ModuleList;
+        :Add relevant lessons to Calendar;
+        :Print success message;
+  endif
+else if([invalid params length])
+    :Print error message;
+
+else if([invalid module code])
+    :Print error message;
+endif
+stop
+
+@enduml

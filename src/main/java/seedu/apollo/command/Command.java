@@ -17,8 +17,8 @@ import java.util.logging.Logger;
  */
 public abstract class Command implements LoggerInterface {
 
-    protected static Logger logger;
     public Boolean isExit = false;
+    protected Logger logger;
 
     public Command(String commandName) {
         logger = Logger.getLogger(commandName);
@@ -48,7 +48,7 @@ public abstract class Command implements LoggerInterface {
      * @return LessonType of the command.
      * @throws IllegalCommandException If the command is invalid.
      */
-    protected LessonType getCommand(String arg) throws IllegalCommandException {
+    protected LessonType getLessonType(String arg) throws IllegalCommandException {
         switch (arg) {
         case "-lec":
             return LessonType.LECTURE;

@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 public class ListModuleWithLessonCommandTest {
     Storage storage = new Storage("test.txt", "testModuleData.txt");
@@ -35,6 +37,16 @@ public class ListModuleWithLessonCommandTest {
     void testConstructor_invalidModule_expectsInvalidModuleException() {
         assertThrows(InvalidModule.class,
                 () -> new ListModuleWithLessonCommand("CS22222", allModules));
+    }
+
+    @Test
+    void testConstructor_validModule_expectNotNull() throws FileNotFoundException,
+            IllegalCommandException, InvalidModule {
+        Storage storage = new Storage("test.txt", "testModuleData.txt" );
+        ModuleList allModules = storage.loadModuleData();
+        moduleList.add(allModules.findModule("CS2113"));
+        ListModuleWithLessonCommand newListModWL = new ListModuleWithLessonCommand("CS2113", moduleList);
+        assertNotNull(newListModWL);
     }
 
     @Test

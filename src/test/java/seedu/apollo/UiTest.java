@@ -62,5 +62,12 @@ class UiTest {
         assertDoesNotThrow(() -> ui.printModuleList(moduleList));
     }
 
+    @Test
+    void printTotalModularCredits_normalInput_noExceptionThrown() {
+        Ui ui = new Ui();
+        ModuleList moduleList = new ModuleList();
+        moduleList.add(new Module("CS1010", "Programming Methodology", "4"));
+        assertDoesNotThrow(() -> ui.printTotalModularCredits(moduleList));
+    }
 
 }

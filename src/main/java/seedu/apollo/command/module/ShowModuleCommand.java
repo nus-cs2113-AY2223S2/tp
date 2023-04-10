@@ -104,7 +104,7 @@ public class ShowModuleCommand extends Command {
     private void handleMultiCommand(Ui ui) throws IllegalCommandException {
         String type = args[1];
 
-        LessonType lessonType = getCommand(type);
+        LessonType lessonType = getLessonType(type);
         if (lessonType == null) {
             throw new IllegalCommandException();
         }
