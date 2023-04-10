@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+    --> InvalidNotesFileHandler: responseHandler(path, notes)
+    activate InvalidNotesFileHandler
+    InvalidNotesFileHandler -> Scanner: Scanner()
+    activate Scanner
+    Scanner -> Scanner: nextLine()
+    alt userInput is "y"
+        InvalidNotesFileHandler -> PrintWriter: PrintWriter(path)
+        activate PrintWriter
+        PrintWriter -> PrintWriter: print("")
+        PrintWriter -> PrintWriter: close()
+        PrintWriter --> InvalidNotesFileHandler
+        deactivate PrintWriter
+        InvalidNotesFileHandler -> ArrayList: clear()
+        activate ArrayList
+        ArrayList --> InvalidNotesFileHandler
+        deactivate ArrayList
+    else userInput is "n"
+        InvalidNotesFileHandler -> Timer: Timer()
+        activate Timer
+        InvalidNotesFileHandler -> TimerTask: TimerTask()
+        activate TimerTask
+        InvalidNotesFileHandler -> Timer: schedule(TimerTask, delay)
+        Timer -> TimerTask: run()
+        TimerTask -> :exit(0)
+        deactivate Timer
+        deactivate TimerTask
+    end
+    deactivate Scanner
+    deactivate InvalidNotesFileHandler
+@enduml

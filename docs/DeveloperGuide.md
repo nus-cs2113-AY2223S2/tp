@@ -233,6 +233,17 @@ If the user chooses to reset the file (`y`), the method clears the file contents
 If the user chooses not to reset the file (`n`), the method prints a message informing the user that the program will exit in 10 seconds and schedules a timer task to exit the program after the timeout. 
 If the user enters an invalid input, the method prompts the user again until a valid input is entered.
 
+<details>
+<summary>Sequence Diagram for File Loading</summary>
+<div markdown="1">
+
+![load_sequence_diagram.png](SequenceDiagrams%2Fload_sequence_diagram.png)
+![note_parser_sequence_diagram.png](SequenceDiagrams%2Fnote_parser_sequence_diagram.png)
+![invalid_file_handler_sequence_diagram.png](SequenceDiagrams%2Finvalid_file_handler_sequence_diagram.png)
+
+</div>
+</details>
+
 #### NotesFileWriter Class
 
 The `NotesFileWriter` contains a single public static method called `saveFile`, which takes in two arguments: 
