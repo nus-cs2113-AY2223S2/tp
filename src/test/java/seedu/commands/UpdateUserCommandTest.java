@@ -2,12 +2,7 @@ package seedu.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.entities.CaloricIntake;
-import seedu.exceptions.LifeTrackerException;
-import seedu.exceptions.MissingArgumentsException;
-import seedu.exceptions.NegativeFieldInfoException;
-import seedu.exceptions.InvalidFieldNameException;
-import seedu.exceptions.InvalidFieldInfoFormatException;
-import seedu.exceptions.ExtraArgumentsException;
+import seedu.exceptions.*;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
@@ -78,6 +73,17 @@ public class UpdateUserCommandTest {
         assertEquals(expectedMessage,thrown.getMessage());
     }
     @Test
+    void updateUser_updateNameAsSpecialCharacters_expectInvalidFieldInfoFormatException() throws LifeTrackerException{
+        String commandWord = "update";
+        String userInput = "update /name @#!%&$^3";
+        UpdateUserCommand command = new UpdateUserCommand(commandWord, userInput);
+        InvalidFieldInfoFormatException thrown = assertThrows(InvalidFieldInfoFormatException.class, () -> {
+            command.execute(ui,null,mealStorage,userStorage,null);
+        });
+        String expectedMessage = "@#!%&$^3 is not of valid format for /name please try again!";
+        assertEquals(expectedMessage,thrown.getMessage());
+    }
+    @Test
     void updateUser_updateName_expectSuccessfullyUpdatedMessage() throws LifeTrackerException{
         String commandWord = "update";
         String userInput = "update /name test";
@@ -112,6 +118,18 @@ public class UpdateUserCommandTest {
             command.execute(ui,null,mealStorage,userStorage,null);
         });
         String expectedMessage = "Oops! You cannot enter a negative value for /weight in command update";
+        assertEquals(expectedMessage,thrown.getMessage());
+    }
+
+    @Test
+    void updateUser_updateWeightAsAbsurdValue_expectImpossibleValueException() throws LifeTrackerException{
+        String commandWord = "update";
+        String userInput = "update /weight 800";
+        UpdateUserCommand command = new UpdateUserCommand(commandWord, userInput);
+        ImpossibleValueException thrown = assertThrows(ImpossibleValueException.class, () -> {
+            command.execute(ui,null,mealStorage,userStorage,null);
+        });
+        String expectedMessage = "800 kg is an impossible value for /weight please enter a valid one!";
         assertEquals(expectedMessage,thrown.getMessage());
     }
     @Test
@@ -152,6 +170,18 @@ public class UpdateUserCommandTest {
     }
 
     @Test
+    void updateUser_updateHeightAsAbsurdValue_expectImpossibleValueException() throws LifeTrackerException{
+        String commandWord = "update";
+        String userInput = "update /height 800";
+        UpdateUserCommand command = new UpdateUserCommand(commandWord, userInput);
+        ImpossibleValueException thrown = assertThrows(ImpossibleValueException.class, () -> {
+            command.execute(ui,null,mealStorage,userStorage,null);
+        });
+        String expectedMessage = "800 cm is an impossible value for /height please enter a valid one!";
+        assertEquals(expectedMessage,thrown.getMessage());
+    }
+
+    @Test
     void updateUser_updateHeight_expectSuccessfullyUpdatedMessage() throws LifeTrackerException{
         String commandWord = "update";
         String userInput = "update /height 178";
@@ -185,6 +215,18 @@ public class UpdateUserCommandTest {
             command.execute(ui,null,mealStorage,userStorage,null);
         });
         String expectedMessage = "Oops! You cannot enter a negative value for /age in command update";
+        assertEquals(expectedMessage,thrown.getMessage());
+    }
+
+    @Test
+    void updateUser_updateAgeAsAbsurdValue_expectImpossibleValueException() throws LifeTrackerException{
+        String commandWord = "update";
+        String userInput = "update /age 800";
+        UpdateUserCommand command = new UpdateUserCommand(commandWord, userInput);
+        ImpossibleValueException thrown = assertThrows(ImpossibleValueException.class, () -> {
+            command.execute(ui,null,mealStorage,userStorage,null);
+        });
+        String expectedMessage = "800 years old is an impossible value for /age please enter a valid one!";
         assertEquals(expectedMessage,thrown.getMessage());
     }
     @Test
@@ -262,5 +304,16 @@ public class UpdateUserCommandTest {
         String output = new String(stream.toByteArray());
         String expectedMessage = "Successfully updated user settings!";
         assertTrue(output.contains(expectedMessage));
+    }
+    @Test
+    void updateUser_updateTargetWeightAsAbsurdValue_expectImpossibleValueException() throws LifeTrackerException{
+        String commandWord = "update";
+        String userInput = "update /targetWeight 800";
+        UpdateUserCommand command = new UpdateUserCommand(commandWord, userInput);
+        ImpossibleValueException thrown = assertThrows(ImpossibleValueException.class, () -> {
+            command.execute(ui,null,mealStorage,userStorage,null);
+        });
+        String expectedMessage = "800 kg is an impossible value for /targetWeight please enter a valid one!";
+        assertEquals(expectedMessage,thrown.getMessage());
     }
 }
