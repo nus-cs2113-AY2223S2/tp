@@ -539,9 +539,13 @@ handles the main mathematical logic to make sense of the BudgetStorage data.
 BudgetStorage saves data in this format of the txt file.
 
 `amount` - Budget
+
 `amount` - Accommodation cost
+
 `amount` - Airplane Ticket cost
+
 `amount` - Food cost
+
 `amount` - Entertainment cost
 
 Preventive measures would be done to check if the amount entered is valid or that is some tampering of the data out of
