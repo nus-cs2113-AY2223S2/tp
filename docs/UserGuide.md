@@ -50,10 +50,12 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 
 **Notice:** 
 
-> date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
+> - Date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
 >
-> the app will omit possible negative recurring time that users might input and consider the current event non-recurring.
-
+> - App will omit possible negative recurring time that users might input and consider the current event non-recurring.
+> 
+> - Users are able to add events that are not within the semester boundaries, however it will not be shown in the timetable user interface and will only be listed out.
+>
 
 Expected outcome:
 
@@ -101,9 +103,9 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 > 
 >`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
 > 
->`LESSONTYPE`: Refer to table Below:
+>`LESSONTYPE`: Refer to table below.
 * Commands used for this case are
-`add -m CS2100 -n 01 -l TUT`, `add -m CS2100 -n 02 -l LAB` and `add -m CS2100 -l LEC`
+`add -m CS2100 -n 01 -l TUT`, `add -m CS2100 -n 02 -l LAB` and `add -m CS2100 -n 1 -l LEC`
 * Please type out your commands and ensure your spelling is accurate
 * Copying and pasting commands from the user guide may cause some issues due to formatting
 
@@ -126,7 +128,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 events should you need to have them.
 
 **Notice**
-> For the lesson number and lesson type, follow the format as displayed on NUSMods. 
+> For the lesson number and lesson type, follow the EXACT format as displayed on NUSMods. 
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
@@ -313,7 +315,7 @@ Expected outcome:
 
 ### Saving Data
 NusPlanner data are saved to the hard drive automatically after the `bye` command to quit it. There is no need to save manually.
-
+Please note that data will only be saved if application closes as per normal (not crashed or closed with Cntrl + C).
 ### Editing the data file
 Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
 
@@ -328,6 +330,17 @@ NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored i
 
 **A**: Java ARchive, also known as JAR, is a container that groups multiple small files to enable efficient execution, which is similar to a ZIP file.
 
+**Q**: How can I force quit the application?
+
+**A**: We have intentionally left in Cntrl + C command in this event of emergencies like this. 
+
+**Q**: Why doesn't the application save the semester I am in?
+
+**A**: We have intentionally made NUSPlanner to work this way so that users will not be restricted in planning the semester they are currently in only. For example, students may want to plan for their future timetable in semester 2, while currently in semester 1.
+
+**Q**: Why doesn't the application stop me from adding events to dates that has already passed?
+
+**A**: NUSPlanner provides users with the flexibility and full control over the timetable and does not stop users from adding events on dates that have passed.
 
 **Q**: Where can I report bugs I found while using NUSPlanner?
 
