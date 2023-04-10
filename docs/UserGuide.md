@@ -29,6 +29,7 @@ categories. Subsequently, users can monitor their expenses within a specified ti
 monitor expenses in certain categories. This makes it easier for users to plan their budgets and make better financial
 decisions.
 
+<!-- @@author jinxuan-owyong -->
 ## Getting Started
 
 1. Ensure that you have Java `11` and above
@@ -53,6 +54,7 @@ decisions.
    ```
 5. To enter an entry, you may use [`/add`](#adding-an-entry-add-add),
    or enter [`/help`](#show-help-menu-help-help) to view the help menu.
+<!-- @@author -->
 
 <!-- @@author adenteo -->
 > The table below provides a summary of all the currently supported features in PocketPal.
@@ -79,7 +81,7 @@ This user guide adopts the following conventions for the command-line syntax:
 If you face any problems, do visit the [FAQ](#frequently-asked-questions) segment!
 
 | Command                              |                     Function                      |
-|--------------------------------------|:-------------------------------------------------:|
+| ------------------------------------ | :-----------------------------------------------: |
 | [/add](#adding-an-entry-add)         |                   Adds an entry                   |
 | [/delete](#deleting-an-entry-delete) |                 Deletes an entry                  |
 | [/edit](#edit-an-entry-edit)         |                  Edits an entry                   |
@@ -293,7 +295,7 @@ Format: `/bye`
 ## Command Summary
 
 | Command | Format                                                                                                                                                                                                                     |
-|--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |    /add | /add -d &lt;description&gt; -c &lt;category&gt;<br/>-p &lt;price&gt;<br/>e.g. <code>/add -d Gucci Bag -c Others -p 2000</code>                                                                                             |
 |   /view | /view [count] [-c &lt;category&gt;] <br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;] <br/>e.g. <code>/view -c food</code><br/>e.g.<code>/view -sp 100 -ep 200</code> |
 |   /edit | /edit &lt;index&gt; [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-d &lt;description&gt;]<br/>e.g. <code>/edit 1 -d Gucci Wallet -p 3000</code>                                                                            |
@@ -307,6 +309,7 @@ Format: `/bye`
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author jinxuan-owyong -->
 ## Frequently Asked Questions
 
 > __Q:__ I am facing trouble starting the application. Do you know what might be the issue?
@@ -335,9 +338,8 @@ Format: `/bye`
 > __Q:__ I am a developer. How can I find the source code and contribute to PocketPal?
 >
 > __A:__ PocketPal is an open-source application, and we welcome developers to share their ideas.
-
 >        You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
->
+<!-- @@author -->
 > __Q:__ I accidentally touched the data in my `storage.txt` file - what do I do?
 >
 > __A:__ The data in the `storage.txt` file is saved in the format `DESCRIPTION,PRICE,CATEGORY,DATE`. Make sure the data
