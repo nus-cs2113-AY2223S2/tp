@@ -192,7 +192,7 @@ The Company object is then printed out with
 an integer denoting its index, and four parameters, <code>companyName</code>, <code>industry</code>,
 <code>contactNumber</code>, and <code>contactEmail </code>, and its confirmation status.
 
-####  Store/Load Company information to text file feature
+####  Store/Load Company information to/from text file feature
 The Storing company list feature will allow the user to save the information of companies to disk. A text file will be
 created to store all the company information the user wishes to save. This text file will be overwritten everytime the
 user makes changes to the stored information. 
