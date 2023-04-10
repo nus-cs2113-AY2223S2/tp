@@ -27,6 +27,8 @@ __Code Contributed:__
     <img width="60%" src="img/contributions_jinxuan-owyong.png" alt="Reposense Contributions (jinxuan-owyong)" />
 </a>
 
+<div style="page-break-after: always;"></div>
+
 __Documentation__
 - User Guide
   - Frequently Asked Questions
