@@ -2,7 +2,6 @@
 # Developer Guide
 
 ## Table of Contents
-
 * [**Acknowledgements**](#acknowledgements)
 * [**Setting up, getting started**](#setting-up-getting-started)
 * [**Design**](#design)
@@ -30,13 +29,12 @@
     * [*InvalidQuantityException*](#invalidquantityexception)
     * [*InvalidVariablesException*](#invalidvariablesexception)
   * [**iohandler Package**](#iohandler-package)
-    * [*Parser*]
-    * [*Storage*]
-    * [*Ui*]
-  * [*packingfunc Package*](#packingfunc-package)
-    * [*Item*]
-    * [*PackingList*]
-* [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+    * [*Parser*](#parser-class)
+    * [*Storage*](#storage)
+    * [*Ui*](#ui)
+  * [**packingfunc Package**](#packingfunc-package)
+    * [*Item*](#item)
+    * [*PackingList*](#packinglist)
 * [**Appendix A: Product Scope**](#appendix-a--product-scope)
 * [**Appendix B: User Stories**](#appendix-b--user-stories)
 * [**Appendix C: Non-Functional Requirements**](#appendix-c--non-functional-requirements)
@@ -498,20 +496,52 @@ Example:
 `load()` is called at the start of `main()` in `BagPacker`.
 This method reads in the file in `file_path` and translates each line to construct an `item`. 
 
-This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses the overloaded constructor method in `Item` class to form an item. 
+This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses a constructor method in `Item` class to form an item. 
 
 Each `item` is returned to `load()` and added to the packingList.
 
 ---
 
 #### Ui
+The `Ui` class is the main component of `BagPacker`'s Command Line Interface (CLI) interface. 
+It is responsible for handling most of start-up and farewell messages, the CLI output, including error messages, information messages, and confirmation prompts after every `command.execute()`.
 
+Some important methods are:
+
+`printToUser()` - takes variable arity parameter of type `String` to print to the user
+`helpMessage()` - prints out the list of available commands and the respective formats
+`errorMessage()` - shows the error type and help message to the user in the case an error occurs
+
+---
+### Packingfunc
+The `Packingfunc` package consists of `Item` and `PackingList` classes, which are used to manage the main packing list of `BagPacker`, and its individual items.
+
+#### Item
+The `Item` class contains methods used to manage and manipulate the variables `packedQuantity` and `totalQuantity`.
+
+There are two constructors of `Item`:
+
+1. `public Item(int quantity, String description)`
+2. `public Item(int totalQuantity, int packedQuantity, String description)`
+
+The first constructor is used to create `item` objects during an `add` command in `Parser.parse()`.
+The latter is used in [storage](#storage) to create `item` objects from the packing list save file during `load()`.
+
+The `toString()` method returns a `String` containing the packed quantity, total quantity and item name in a specific format. 
+
+It is used in multiple [commands](#commands-package) and [storage](#storage) to save the packing list onto a save file.  
+
+`checkFullyPacked()` is used in [listunpacked](#list-unpacked-command) to return whether the item is fully packed by comparing packedQuantity to totalQuantity. 
+
+`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser-class)) to change the packed quantity of the item.
+
+
+#### PackingList
 
 
 ---
 
-## Documentation, logging, testing, configuration, dev-ops
-
+### Appendix: Requirements
 
 ## Appendix A: Product scope
 
@@ -528,6 +558,7 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 ---
 
 ## Appendix B: User Stories
+
 
 | Version | As a ... | I want to ...                                  | So that I can ...                                                            |
 |---------|----------|------------------------------------------------|------------------------------------------------------------------------------|
@@ -562,4 +593,100 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 
 ## Appendix E: Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Download the jar file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases/tag/v2.1) and run `BagPacker` in a terminal with the command 
+```
+java -jar bagpacker.jar
+```
+
+You will see a greeting screen: 
+```text
+________________________________________________________________________________________________________________________
+Hi this is,
+ ____              _____           _
+|  _ \            |  __ \         | |
+| |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __
+|  _ < / _` |/ _` |  ___/ _` |/ __| |/ / _ \ '__|
+| |_) | (_| | (_| | |  | (_| | (__|   <  __/ |
+|____/ \__,_|\__, |_|   \__,_|\___|_|\_\___|_|
+              __/ |
+             |___/
+
+Enter "help" to find out how to use BagPacker
+________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________
+No save files detected. Hello new user!
+________________________________________________________________________________________________________________________
+
+```
+You can run a few commands; refer to the [User Guide]() for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
+
+* Try adding a few items using the `add` command 
+  * Example:  `add 4 /of jackets`
+  * Expected:
+    ```text
+    ________________________________________________________________________________________________________________________
+    New item added: [0/4] jackets
+    ________________________________________________________________________________________________________________________
+    ```
+  * You may add in as many items you want to test with varying quantity and item names
+  
+
+* Try packing the items added using the `pack` command
+  * Example: `pack 2 /of 1`
+  * Expected: A message showing that the first item has been packed with quantity of 2.
+  * You may pack other items with different quantities.
+
+
+* Try to see your current packing list with the `list` command
+    * Example: `list`
+    * Expected: A list showing every item in the packing list with the respective item index, packed quantity, total quantity and item name.
+    * You may use this command everytime you wish to see your packing list.
+
+
+* Try deleting some items using the `delete` command
+    * Example: `delete 1`
+    * Expected: A message showing the removal of the item with its packed quantity and total quantity.
+    * You may delete any item added to the list at any time.
+
+
+* Try unpacking an item using the `unpack` command
+    * Example: `unpack 1 /of 1`
+    * Expected: A message showing the first item has been unpacked with quantity of 1, assuming that it had a packed quantity of 1 or more.
+    * You may unpack other items with different quantities given that they are packed to a certain amount beforehand.
+
+
+* Try editing the total quantity of an item using the `editquantity` command
+    * Example: `editquantity 3 /of 1`
+    * Expected: A message showing the first item has changed its total quantity to 3.
+    * You may change the total quantity of other items with different total quantity values.
+
+
+* Try searching an item containing a certain keyword or keyphrase using the `find` command
+    * Example: `find jac`
+    * Expected: A message showing all the items containing "jac" in their item names, with their item index, packed quantity and total quantity.
+    * You may search using other keyword(s)
+
+
+* Try seeing all not fully packed items added using the `listunpacked` command
+    * Example: `listunpacked`
+    * Expected: A list showing all items that are not fully packed.
+    * This command will show different results if all items are fully packed, or if there are no items in your packing list.
+
+
+* To exit `BagPacker`, use the `bye` command
+    * Example: `bye`
+    * Expected: 
+    ```
+    ________________________________________________________________________________________________________________________
+    Bye thanks for using,
+     ____              _____           _
+    |  _ \            |  __ \         | |
+    | |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __
+    |  _ < / _` |/ _` |  ___/ _` |/ __| |/ / _ \ '__|
+    | |_) | (_| | (_| | |  | (_| | (__|   <  __/ |
+    |____/ \__,_|\__, |_|   \__,_|\___|_|\_\___|_|
+                  __/ |
+                 |___/
+    
+    ________________________________________________________________________________________________________________________
+    ```

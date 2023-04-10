@@ -17,3 +17,4 @@ bin/
 packList.txt
 packingList.txt
 packing_list.txt
+text-ui-test/EXPECTED-UNIX.TXT
