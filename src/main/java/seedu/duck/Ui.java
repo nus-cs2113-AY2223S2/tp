@@ -1,13 +1,24 @@
 package seedu.duck;
 
-import seedu.duck.task.*;
+import seedu.duck.task.Deadline;
+import seedu.duck.task.Event;
+import seedu.duck.task.RecurringDeadline;
+import seedu.duck.task.RecurringEvent;
+import seedu.duck.task.SchoolClass;
+import seedu.duck.task.Task;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Random;
+import java.util.Scanner;
 
 
 /**
