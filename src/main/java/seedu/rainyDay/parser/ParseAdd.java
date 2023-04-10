@@ -141,7 +141,7 @@ public class ParseAdd extends Parser {
             logger.warning("-date flag provided but no date provided");
             throw new RainyDayException(ErrorMessage.NO_DATE_PROVIDED.toString());
         }
-        if (category.contains("-")) {
+        if (category.contains("-") || category.contains("$")) {
             logger.warning("unsupported category name");
             throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
         }
