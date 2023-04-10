@@ -15,7 +15,8 @@ Consultation via uid, date, and appointment type to help vet clinics better mana
 3. Move the file to a location where you want to run Sniff from.
 4. Open a command terminal and navigate to the location where `sniff.jar` is.
 5. Use the following command to run the program: `java -jar sniff.jar`
-6. If Sniff runs successfully, you will see the following welcome message
+6. If Sniff runs successfully, you will see the following welcome message.
+<br>
 ```
 ______________________________________________________________________
  Hello! I'm Sniff, your personal appointment manager.
