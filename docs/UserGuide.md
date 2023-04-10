@@ -128,8 +128,8 @@ Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
   - The input date format must be in yyyy-MM-DD format.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 - Our application does not support input names with a slash '/'.
-- Return date should be equal to or later than the present date
-- Borrow date must be before the return date
+- Return date should be equal to or later than the present date.
+- Borrow date must be before the return date.
 
 **Examples:**
 
@@ -172,8 +172,7 @@ Edits an existing expenditure transaction in the record. After a successful edit
 - The fields provided are the same as adding an expenditure in [4.1](#41-adding-an-expenditure)
 - Cannot change an expenditure type, e.g. cannot change an `Academic` expenditure to an `Accomodation` expenditure
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
-- Return date should be equal to or later than the present date
-- Borrow date must be before the return date
+- All parameters must be present in this command.
 
 **Examples:**
 
@@ -211,17 +210,20 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 - Cannot change a `lend` record to a `borrow` record or vice versa.
 - Our application does not support input names with a slash '/'.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
+- Return date should be equal to or later than the present date.
+- Borrow date must be before the return date.
+- All parameters must be present in this command.
 
 **Examples:**
 
-- `edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040`
+- `edit d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040
+edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 
 Edited! Here is the updated list:
 
