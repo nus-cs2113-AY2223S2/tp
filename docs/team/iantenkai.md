@@ -56,13 +56,16 @@ experience.
 - Add Class Diagram for `storage`
 
 The Sequence Diagram for `load()` is shown here:
-![load sequence diagram](../img/LoadSequence.png)
+
+![load sequence diagram](../img/LoadSequenceDiagram.PNG)
 
 The Sequence Diagram for `save()` is shown here:
-![save sequence diagram](../img/SaveSequence.png)
+
+![save sequence diagram](../img/SaveSequenceDiagram.PNG)
 
 The class diagram for storage is shown here:
-![Storage Class Diagram](../img/StorageClass.png)
+
+![Storage Class Diagram](../img/NewStorageClassDiagram.PNG)
 
 #### UG contribution
 
