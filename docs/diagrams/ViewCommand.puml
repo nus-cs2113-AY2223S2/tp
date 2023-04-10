@@ -14,7 +14,7 @@ loop sizeOfFinancialReport
     end
         alt sortingRequired
         ViewCommand -> ViewCommand : sortByValue
-        else
+        else else
         ViewCommand -> ViewCommand : sortByDate
     end
 
