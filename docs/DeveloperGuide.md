@@ -1172,10 +1172,6 @@ replicated as follows:
 
 ## Product scope
 
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
 ### Target user profile
 
 PocketPal's main target users are individuals who are 
@@ -1191,6 +1187,10 @@ For individuals striving to save money for a vacation, a new car, or any other s
 PocketPal revolutionizes the process by offering a seamless, user-friendly experience for tracking both income and expenses. PocketPal empowers users with valuable insights into their spending patterns, enabling them to make well-informed financial decisions and effectively reach their financial milestones.
 
 By delivering a comprehensive and automated overview of users' income and expenses, PocketPal puts financial control at their fingertips, making the journey towards financial success more attainable and enjoyable.
+
+<div style="text-align: right;">
+   <a href="#table-of-contents"> Back to Table of Contents </a>
+</div>
 
 ## User Stories
 
