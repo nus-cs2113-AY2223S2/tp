@@ -196,6 +196,14 @@ details. If there is no text file, a text file will be created.
 Fig 8: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
+#### Custom Exceptions
+Custom exceptions are created to catch erroneous user inputs that might otherwise cause EveNtUS to crash. When these 
+exceptions are caught, specific error messages are displayed to the user to indicate why their input was unsuccessful.
+These custom exceptions inherit from the Exception Class.
+
+[Exceptions.puml](UML%2FExceptions.puml)
+Fig 9: Shows the class diagram of custom Exceptions used in EveNtUS
+
 ## Product scope
 ### Target user profile
 
