@@ -6,6 +6,7 @@ making it a user-friendly option for anyone who wants to keep their fitness and 
 
 ### Contributions
 Code Contributions:[RepoCode](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Richardtok&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=coregano&zR=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&zACS=156.78342687355564&zS=2023-02-17&zFS=&zU=2023-04-10&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+
 Implemented Features: Viewing a specific day exercises Workout [#9](https://github.com/AY2223S2-CS2113-T14-1/tp/pull/9)
 - What it does: It enables the user to view the exercises done in a specific day.
 - Justification: It allows users to see what exercises they have done on that day
