@@ -460,6 +460,8 @@ If you decide to stop selling a particular item, you can remove it from the menu
 
 To view more about listitem, [click here](#list-all-items).
 
+<div style="page-break-after: always;"></div>
+
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  As per the previous example, John currently plans to sell Fried Rice. However, after asking his friends, he realized that no one wants to buy Fried Rice from a Chicken Rice stall. The menu currently looks like this: 
 
