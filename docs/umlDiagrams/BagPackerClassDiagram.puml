@@ -45,15 +45,13 @@ namespace commands #AAAAAA {
     note right
     Omitted some child commands to avoid clutter
     (DeleteList, Help, UnpackAll, ListUnpacked,
-    and Incorrect Command)
+    EditQuantity, Bye and Incorrect Command)
     end note
 
 
     class AddCommand extends Command
     class DeleteCommand extends Command
     class ListCommand extends Command
-    class ByeCommand extends Command
-    class EditQuantityCommand extends Command
     class FindCommand extends Command
     class HelpCommand extends Command
     class PackCommand extends Command
