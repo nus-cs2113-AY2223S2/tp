@@ -1,0 +1,27 @@
+@startuml
+!include Style.puml
+skinparam classAttributeIconSize 0
+
+class PetList {
+    + addStat()
+}
+
+note bottom: Not all methods are included here
+
+class Pet {
+    - petName: String
+    - petType: String
+    - age: String
+    - weight: String
+    + addStat()
+    + setAge()
+    + setPetType()
+    + setWeight()
+
+}
+
+note bottom: Not all methods are included here
+
+PetList -> "*" Pet
+
+@enduml
