@@ -9,19 +9,19 @@ activate ":Eventus"
 ":Eventus" -> ":Eventus" : run()
 activate ":Eventus"
 
-":Eventus" -> ":Ui" : showWelcome()
+":Eventus" -> "ui: Ui" : showWelcome()
 
-activate ":Ui"
+activate "ui: Ui"
 
-    ":Ui" -> ":Ui": showLine()
-    activate ":Ui"
+    "ui: Ui" -> "ui: Ui": showLine()
+    activate "ui: Ui"
 
-    ":Ui" --> ":Ui":
-    deactivate ":Ui"
+    "ui: Ui" --> "ui: Ui":
+    deactivate "ui: Ui"
 
-    ":Eventus" <-- ":Ui"
+    ":Eventus" <-- "ui: Ui"
 
-deactivate ":Ui"
+deactivate "ui: Ui"
 
 ":Eventus" --> ":Eventus"
 
