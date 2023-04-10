@@ -88,4 +88,8 @@ public class IngredientList {
         }
         return String.valueOf(ingredientListDetails);
     }
+
+    public boolean isEmpty() {
+        return ingredients.isEmpty();
+    }
 }
