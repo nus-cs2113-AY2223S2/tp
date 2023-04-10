@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Parser"
+create ":HelpCommand"
+":Parser" -> ":HelpCommand": HelpCommand()
+activate ":HelpCommand"
+":Parser" <-- ":HelpCommand": helpCommand:HelpCommand
+deactivate ":HelpCommand"
+":Parser" --> ":Parser": helpCommand:HelpCommand
+deactivate ":Parser"
+@enduml

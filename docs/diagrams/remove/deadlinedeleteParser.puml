@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+create ":DeleteDeadlineCommand"
+":Parser" -> ":DeleteDeadlineCommand": DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines)
+activate ":DeleteDeadlineCommand"
+":Parser" <-- ":DeleteDeadlineCommand": deleteDeadlineCommand:DeleteDeadlineCommand
+deactivate ":DeleteDeadlineCommand"
+":Parser" --> ":Parser": deleteDeadlineCommand:DeleteDeadlineCommand
+deactivate ":Parser"
+@enduml
