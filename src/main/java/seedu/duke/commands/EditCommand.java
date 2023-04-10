@@ -1,6 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.CategoryFormatException;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Inventory;
