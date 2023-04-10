@@ -157,7 +157,7 @@ It implements the following operations:
 - `RecipeList#getRecipeList()` - Get the recipe list.
 - `RecipeList#removeRecipe()` - Delete a recipe from the recipe list.
 - `RecipeList#clearRecipeList()` - Clear all recipes from the recipe list.
-- 
+
 #### Example Usage
 Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
 
