@@ -119,6 +119,8 @@ public class UI {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
         } else if (e instanceof RecipeListEmptyException) {
             System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+        } else if (e instanceof NumberFormatException) {
+            System.out.println(StringLib.EDIT_NUMBERFORMATEXCEPTION_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_DELETING_FROM_DEFAULT_ERROR + e.getMessage());
         }
@@ -137,6 +139,8 @@ public class UI {
             System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
                     type +
                     StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
+        }  else if (e instanceof NumberFormatException) {
+            System.out.println(StringLib.EDIT_NUMBERFORMATEXCEPTION_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_DELETING_DEFAULT_ERROR + e.getMessage());
         }
