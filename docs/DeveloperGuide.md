@@ -836,43 +836,94 @@ __________________________________________________________________________
 Please enter a number for the price!
 ````
 
+* **Positive** Test Case Input: `filter f/category fruit`
+    * Expected Output: Generates a table containing a list of items that are in the specified category. If there is
+      no such item, print a string to inform the user that no results can be found.
+    * Output Example (Assuming there are items in this category):
+````
+__________________________________________________________________________
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | apples          | 12345678910  | 1        | $1.00    | fruit           |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | watermelon      | 103437378374 | 10       | $40.00   | fruit           |
+|       |                 | 2            |          |          |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
+
+__________________________________________________________________________
+````
+
+* **Negative** Test Case Input: `filter f/category ` (with no keywords)
+    * Expected Output: An error message informing the user of wrong or incorrect input will be
+      printed.
+    * Output Example:
+
+````
+Wrong/Incomplete Entry For Filter! Please refer to UG for more information
+Sample Format:
+ For price filter: "filter f/price p/{gt/get/lt/let} [Price]"
+ For category filter: "filter f/category [Keywords]"
+````
+
+
 #### History Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input:
-    * Expected Output:
+  * **Positive** Test Case Input: `history 12345678910`
+    * Expected Output: Prints the historical information of the item of specified UPC. If the UPC code is not found in 
+      the inventory, prints a string to inform user that item is not found.  
+    * Output Example: (Assuming the UPC is valid)
+
+````
+__________________________________________________________________________
+Item added at: 6:49 PM, SUNDAY, APRIL 9, 2023
+Name: apples
+UPC: 12345678910
+Price: 1.0
+Quantity: 1
+Category: fruit
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `history`
+    * Expected Output: An error message informing the user of wrong or incorrect input printed.
     * Output Example:
 
 ````
-
-````
-
-  * **Negative** Test Case Input:
-    * Expected Output:
-    * Output Example:
-
-````
-
+Wrong/Incomplete Entry For History! Please refer to UG for more information
+Sample Format: "history [UPC]"
 ````
 
 
 #### Alert Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input:
-    * Expected Output:
+  * **Positive** Test Case Input: `alert add upc/12345678910 min/20`
+    * Expected Output: Prints message on successful addition of new alert, as well as notify user if current quantity is 
+      above or below threshold (for max and min alerts respectively). If item UPC is not found in inventory, prints message
+      to inform user to add item into inventory first.
+    * Output Example: (Assuming item UPC is in inventory and current quantity is below minimum set)
+
+````
+__________________________________________________________________________
+Successfully added a new alert.
+__________________________________________________________________________
+ALERT: The quantity of apples is below the minimum level of 20.
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `alert add upc/`
+    * Expected Output: Prints error message for wrong or incomplete entry, and sample format
     * Output Example:
 
 ````
-
-````
-
-  * **Negative** Test Case Input:
-    * Expected Output:
-    * Output Example:
-
-````
-
+__________________________________________________________________________
+Wrong/Incomplete Entry For Add Alert! Please refer to UG for more information 
+Sample Format:
+"alert add upc/[UPC] min/[integer]" OR
+"alert add upc/[UPC] max/[integer]"
+__________________________________________________________________________
 ````
 
 #### Category Testing
