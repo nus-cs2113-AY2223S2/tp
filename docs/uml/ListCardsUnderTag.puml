@@ -1,6 +1,8 @@
-@startuml
+@startuml ListCardsInTagCommand
+
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":ListCardsInTagCommand" as ListCardsInTagCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
@@ -13,18 +15,20 @@ participant ":Tag" as Tag
 participant ":UserInterface" as UserInterface
 participant ":TagKeywordParser" as TagKeywordParser
 
-
-Create ListCardsInTagCommand
-TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand()
-activate ListCardsInTagCommand
+Inka -> TagKeywordParser : parseCommand()
 
 Create TagSelector
-ListCardsInTagCommand -> TagSelector : TagSelector()
+TagKeywordParser -> TagSelector : create tagSelector to identify tag
+return tagSelector
+
+Create ListCardsInTagCommand
+TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand(tagSelector)
 return
 
+return ListCardsInTagCommand
 
-ListCardsInTagCommand -> ListCardsInTagCommand: execute()
-ListCardsInTagCommand -> TagList : findTag(TagSelector)
+Inka -> ListCardsInTagCommand: execute()
+ListCardsInTagCommand -> TagList : findTag(tagSelector)
 return foundTag
 
 ListCardsInTagCommand -> ListCardsInTagCommand : findCardsUnderTag(foundTag)
@@ -48,6 +52,8 @@ end ref
 return foundCardList
 
 ListCardsInTagCommand -> UserInterface : printCardList(foundCardList)
+return
+
 return
 
 @enduml

@@ -1,0 +1,31 @@
+@startuml CardListSequence
+
+autoactivate on
+
+participant ":Inka" as Inka
+participant ":ListCardCommand" as ListCardCommand
+participant ":CardList" as CardList
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+Inka -> CardKeywordParser : parseCommand()
+
+Create ListCardCommand
+CardKeywordParser -> ListCardCommand : ListCardCommand()
+
+return
+
+return ListCardCommand
+
+
+Inka -> ListCardCommand : execute()
+ListCardCommand -> UserInterface : printCardList()
+
+UserInterface -> CardList : print all cards
+return
+
+return
+
+return
+
+@enduml

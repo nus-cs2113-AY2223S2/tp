@@ -1,0 +1,32 @@
+@startuml CardAddSequence
+
+autoactivate on
+
+participant ":Inka" as Inka
+participant ":AddCardCommand" as AddCardCommand
+participant ":Card" as Card
+participant ":CardList" as CardList
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+Inka -> CardKeywordParser : parseCommand()
+Create Card
+CardKeywordParser -> Card : create card to add
+return cardToAdd
+
+Create AddCardCommand
+CardKeywordParser -> AddCardCommand : AddCardCommand(cardToAdd)
+return
+
+return AddCardCommand
+
+Inka -> AddCardCommand : execute()
+AddCardCommand -> CardList : addCard(cardToAdd)
+return
+
+AddCardCommand -> UserInterface : print success message and number of cards
+return
+
+return
+
+@enduml
