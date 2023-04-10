@@ -1,0 +1,44 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+hide circle
+
+class Exception {
+}
+
+class EmptyFieldException {
++EmptyFieldException(message: String)
+}
+
+class EmptyListException {
+}
+
+class IntegerSizeExceededException {
+}
+
+class InvalidIndexException {
+}
+
+class NegativeNumberException {
+}
+
+class NoSavedInformationException {
+}
+
+class RepeatedFieldsException {
+}
+
+class WrongFormatException {
+}
+
+Exception <|-u- EmptyFieldException
+Exception <|-u- EmptyListException
+Exception <|-r- IntegerSizeExceededException
+Exception <|-l- InvalidIndexException
+Exception <|-- NegativeNumberException
+Exception <|-- NoSavedInformationException
+Exception <|-u- RepeatedFieldsException
+Exception <|-- WrongFormatException
+
+@enduml
+
