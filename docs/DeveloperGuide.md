@@ -3,7 +3,7 @@ Welcome to the NUSPlanner Developer Guide!
 We hope this documents serves useful to understand the behind-the-scenes working of our product. 
 
 ## Table of Contents
-* [1. Introduction](#1-introduction-)
+* [1. Introduction](#1-introduction)
    * [1.1 About this Document](#11-about-this-document)
    * [1.2 Getting Started](#12-getting-started)
 * [2. Design & Implementation](#2-design-and-implementation)
