@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
-// import seedu.duke.Event;
 import seedu.duke.Schedule;
 import seedu.duke.EventList;
 import seedu.duke.Ui;
@@ -66,8 +65,12 @@ public class JsonEventListStorage implements EventListStorage{
         try {
             fileReader = new InputStreamReader(new FileInputStream(saveFile), StandardCharsets.UTF_8);
             savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
+            if (savedList.equals(null)){
+                savedList = new ArrayList<>();
+            }
         } catch (Exception e) {
             Ui.printErrorMsg("IOException occured while reading from save.json. It is likely corrupted");
+            savedList = new ArrayList<>();
             JsonEventListStorage.wipeFile();
         }
         return savedList;
