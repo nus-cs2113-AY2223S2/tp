@@ -245,19 +245,22 @@ Output:
 
 ## Command Summary
 
-| Action    | Format, Examples                                                                                         |
-|-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view /[fieldName]                                                                                        |
-| Update    | update /[fieldName]                                                                                      |
-| Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list [foods/meals/exercises]                                                                             |
-| Delete    | delete INDEX e.g delete 3                                                                                |
-| Filter    | filter [lower_bound] [upper_bound]                                                                       |
-| Nutrition | nutrition                                                                                                |
-| Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
-| Track     | track                                                                                                    |
-| Examples  | examples [meal/exercise]                                                                                 |
-| Help      | help
-| Exit      | bye                                                                                                      |
+Note: 
+1) Fields within square brackets are variable and are to be changed according to user needs.
+2) Fields with a comma inside the square brackets indicate that any of the multiple options can be input according to user needs.
 
+| Action    | Format, Examples                                                                                           |
+|-----------|----------------------------------------------------------------------------------------------------------  |
+| View      | `view /[fieldName]`                                                                                        |
+| Update    | `update /[fieldName]`                                                                                      |
+| Add       | `add /on [date] /type [MealType] /foods [foods]` OR `add`                                                  |
+| List      | `list [foods, meals, exercises]`                                                                           |
+| Delete    | `delete /[meal, exercise] [index]`                                                                         |
+| Filter    | `filter [lower_bound] [upper_bound]`                                                                       |
+| Nutrition | `nutrition`                                                                                                |
+| Exercise  | `exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]` |
+| Track     | `track all` OR `track /start [start_date] /end [end_date]`                                                 |
+| Examples  | `examples [meal, exercise]`                                                                                |
+| Help      | `help`                                                                                                     |
+| Exit      | `bye`                                                                                                      |
 
