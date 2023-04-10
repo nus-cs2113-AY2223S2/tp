@@ -146,7 +146,7 @@ standardized to remove any potential duplicated addition issues.
 
 ![Duplication_checker.png](UML%2FImage%2FDuplication_checker.png)
 
-Fig 5: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` during the startup of the application.
+Fig 8: Shows the sequence diagram for the Duplication Checker feature when the user adds a new company to the list
 
 ####  Add feature
 The adding to company list feature  is facilitated by <code>AddCommand</code>. It will add new <code>Company</code> to existing 
