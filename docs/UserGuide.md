@@ -143,7 +143,7 @@ install rainyDay on your device and start using it. Please refer to the steps be
     * [Exporting to CSV](#exporting-to-csv)
         * [Where to locate exported CSV file?](#where-to-locate-the-exported-csv-file)
         * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-* [Exiting the application](#exiting-the-application)
+* [Exiting rainyDay](#exiting-rainyday)
 
 ## Features
 
