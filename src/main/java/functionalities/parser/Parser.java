@@ -75,7 +75,7 @@ public class Parser {
     private static String getCommand(String input) throws SniffException {
         try {
             String[] firstSplit = input.split("(at/|an/|on/|cn/|cd/|ct/|vd/|vn/|v/|" +
-                    "sd/|st/|ed/|et/|p/|a/|t/|aID/|d/)", 2);
+                    "sd/|st/|ed/|et/|p/|a/|t/|uID/|d/|uid/)", 2);
             return firstSplit[0].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException("  Not a recognized Sniff command!");
