@@ -456,7 +456,7 @@ file.
 3. The Json is written into the filesystem.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/SaveSequence.PNG)
+![export feature](img/SaveSequence.png)
 
 ### Load
 
