@@ -8,6 +8,15 @@
         ],
         "planName": "home_leg_day",
         "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs",
+          "static",
+          "medium"
+        ],
+        "planName": "home",
+        "noOfExercise": 0
       }
     ],
     [],
