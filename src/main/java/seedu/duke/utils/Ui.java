@@ -95,7 +95,7 @@ public class Ui {
     private static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
     private static final String SUCCESS_SELL = "Successfully sold the following item:";
     private static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
-    private static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a POSITIVE WHOLE NUMBER/ZERO.";
+    private static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE A POSITIVE WHOLE NUMBER/ZERO.";
     private static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE A POSITIVE WHOLE " +
             "NUMBER/DECIMAL NUMBER/ZERO.";
     private static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Entry For Restock! Please refer to UG for " +
@@ -145,7 +145,14 @@ public class Ui {
     private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" ";
 
     private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
-            " for the correct alert parameters.";
+            " for the correct alert parameters." + "\nSample Format: \n To add alert: " +
+            "\"alert add upc/[UPC] min/[integer]\"" +
+            " OR " +
+            "\"alert add upc/[UPC] max/[integer]\"" +
+            "\n To remove alert: " +
+            "\"alert remove upc/[UPC] level/min\"" +
+            " OR " +
+            "\"alert remove upc/[UPC] level/max\"";
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Entry For Add Alert! Please refer to UG for more information \nSample Format:\n" +
                     "\"alert add upc/[UPC] min/[integer]\"" +
