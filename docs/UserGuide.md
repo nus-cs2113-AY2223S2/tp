@@ -219,7 +219,7 @@ Start workout! You got this, all the best!
 ```
 <div style="page-break-after: always;"></div>
 
-## Achievements: ```achievements``` ```clear_achievements```
+## Achievements: ```achievements``` 
 A list of achievements exist to provide motivation upon the completion of a workout.
 Each achievement consists of:<br>
 1) A name <br>
@@ -235,6 +235,8 @@ Difficulty: **
 Not Achieved :(
 Current Count: 0
 ```
+
+## Clear Achievements:```clear_achievements```
 
 For testing purposes, there is also a ```clear_achievements``` command that allows a tester to 
 clear all the data for a user. This means that all the exercises logged by the achievements is erased, and all completed
@@ -769,6 +771,8 @@ These are some commands available:
 
 <div style="page-break-after: always;"></div>
 
+<div style="font-size:30px"><strong> Back in Main Menu </strong>  </div>
+
 ## Generating a list of planned exercises: ```quick PLAN_NAME NUMBER```
 
 
@@ -936,7 +940,7 @@ week.
     <tr>
       <td><strong>find</strong></td>
       <td>
-<code class="language-plaintext highlighter-rouge">find KEYWORD</code> <br> e.g., <code class="language-plaintext highlighter-rouge">find arms</code>
+<code class="language-plaintext highlighter-rouge">find KEYWORD</code> <br> e.g., <code class="language-plaintext highlighter-rouge">find cat</code>
 </td>
     <td>Finds all exercises that contain a certain keyword  </td>
     </tr>

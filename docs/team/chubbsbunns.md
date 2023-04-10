@@ -9,7 +9,6 @@ Our AY22/23 Sem 2 CS2113 (Software Engineering) Team Project
 A CLI based fitness tracker intended to give users a way to manage and learn new workouts. We hope to be able to 
 encourage individuals who are interested in keeping fit so that they can live a healthy lifestyle.
 
-
 ### Summary of Contributions
 Below lists the contributions that I have provided to FitnessDuke.
 Here is the contributed done by me:
@@ -29,7 +28,7 @@ workout or a ```hard``` one, which is a reflection of the exercise, not the user
 [GenerateExercise](..%2F..%2Fsrc%2Fmain%2Fjava%2Fseedu%2Fduke%2Fdata%2Fexercisegenerator%2FGenerateExercise.java) 
 class for filtering. The "easy", "medium" and "hard" strings are then returned as output when printing.
 
-### Feature: ```start```
+### Feature: ```start``` ```current```
 * What it does: Starts a workout session, logging the last generated exercise session using the 
 [GenerateExercise](..%2F..%2Fsrc%2Fmain%2Fjava%2Fseedu%2Fduke%2Fdata%2Fexercisegenerator%2FGenerateExercise.java)
 class.
@@ -38,15 +37,8 @@ reason why we are developing FitnessDuke, creating a feature that provides an in
  start exercising is essential to FitnessDuke.
 * Highlights: Switches the command handler to a different state, where the focus is on completing one's workout.
 Commands after using the start command are limited to a few commands. This is meant to emphasize the importance 
-of completing one's workout. More details of this can be seen below. 
-
-### Feature: ```current```
-* What it does: Lists the current workout session's exercises. 
-* Justification: During a workout session, the user might forget what their next workout is. Listing the
-workouts of the current session allow one to see all the workouts for the current session.
-* Highlights: This command is only available during an exercise session, as it would only make sense for there to be
-a "current" exercise when there is an exercise ongoing. Trying to access this method in other states 
-(i.e. not during a workout session) will result in an error message popping up.
+of completing one's workout. More details of this can be seen below.
+* Able to print all current workouts in a sessions as well
 
 ### Feature: ```finish``` ```cancel```
 * What it does: Finishes or cancels the current workout session. If using the ```finish``` command, it will save 
@@ -77,18 +69,8 @@ the many command handlers that we had, I was able to streamline common commands 
 * Helped implement the ```ErrorMessages``` enumeration, allowing easy access to error messages. This allows for the same
 error message to be accessed and displayed easily for similar errors.
 
-
-
 ### Contributions to the DG
 * Wrote how the ```AchievementListHandler.java API``` in the DG alongside how it is stored and used. This includes the UML diagrams used as well.
-* Some examples of UMLs used are here:
-<div align="center">
-<img src="UML/Images/AchievementUpdate.png"/>
-</div>
-
-<div align="center">
-<img src="UML/Images/AchievementHandling.png"/>
-</div>
 * Added test cases for achievement related areas.
 * Added user stories.
 
@@ -104,11 +86,11 @@ This allows for better user readability in terms of recognizing *Tips* and *Caut
 
 ### Contributions to team tasks
 * Release management
- - Made the Finish Group Deliverables milestone for FitnessDuke, ensuring that everyone has submitted and 
+* - Made the Finish Group Deliverables milestone for FitnessDuke, ensuring that everyone has submitted and 
 completed what they wanted to contribute for the tema tasks.
 * Helped maintain the issue tracker in the projects folder
- - Tagged and assigned certain issues to different people
- - Tagged issues with their respective tags (i.e. severity, type)
+* - Tagged and assigned certain issues to different people
+* - Tagged issues with their respective tags (i.e. severity, type)
 
 
 ### Review/mentoring contributions
