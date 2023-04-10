@@ -8,17 +8,17 @@ helps you to keep track of anything finance related. One of the key features is 
 ### Summary of Contributions
 
 #### Contributions to code
-[Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=SaiChaitanya13)
+[Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=saichaitanya13&breakdown=true
+)
 to my tP Code dashboard
 
 ##### Main features worked on
 1. `Stats` feature: The Stats feature is key to the application as a user would want to know how much of their budget has been spent 
 in a certain month.
 2. Stats classes, such as the StatsCommand, StatsAction and StatsUIResponse.
-3. Assisted in displaying budget progress everytime an expense is added.
-4. Assisted in brainstorming of new ideas for features to include in our application.
-5. Assisted in testing of application and fixing of bugs. 
-6. Added JUnit Testing for `StatsCommand` and `HelpCommand`
+3. Assisted in brainstorming of new ideas for features to include in our application.
+4. Assisted in testing of application and fixing of bugs. 
+5. Added JUnit Testing for `StatsCommand` and `HelpCommand`,
 
 #### Contributions to the User Guide
 

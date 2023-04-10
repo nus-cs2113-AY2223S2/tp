@@ -17,11 +17,9 @@ to my tP Code Dashboard
 1. `Deposit` class: The deposit class is the implementation of the deposit feature in Budget Buddy. It serves as a core component where
     users can log all their deposits and find how much money they've saved.
 
-2. The backend implmentation of deposit classes, such as the DepositParser, DepositClass and DepositUIResponse classes
-
+2. The backend implementation of deposit classes, such as the DepositParser, DepositClass and DepositUIResponse classes
 
 3. Assist in the skeleton code and brainstorming new ideas for features to include for our app
-
 
 4. Testing of deposit commands and fixing bugs relating to the deposit class.
 
