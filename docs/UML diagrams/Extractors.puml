@@ -1,0 +1,35 @@
+@startuml
+!include Style.puml
+abstract class Extractor {
++   {abstract} void extractFrom(MealCompanionSession session, CommandArguments arguments)
+}
+class FlagArgumentExtractor {
+-   String flag
++   void extractFrom(...)
+}
+class PositionalArgumentExtractor {
++   void extractFrom(...)
+}
+abstract class ArgumentExtractor {
++   {abstract} extractFrom(MealCompanionSession session, String argument)
++   {abstract} Object getExtractedValue()
+}
+class IngredientNameExtractor {
++   extractFrom(...)
++   IngredientMetadata getExtractedValue()
+}
+class RecipeIndexExtractor {
++   extractFrom(...)
++   Recipe getExtractedValue()
+}
+
+FlagArgumentExtractor -up-|> Extractor
+PositionalArgumentExtractor -up-|> Extractor
+
+FlagArgumentExtractor "1" -up-> "1" ArgumentExtractor : extracts using >
+PositionalArgumentExtractor "1" -up-> "1" ArgumentExtractor : extracts using >
+
+IngredientNameExtractor -up-|> ArgumentExtractor
+RecipeIndexExtractor -up-|> ArgumentExtractor
+
+@enduml

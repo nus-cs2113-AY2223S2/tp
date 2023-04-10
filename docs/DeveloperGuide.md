@@ -106,6 +106,31 @@ The sequence diagram below illustrates the process for resolving the "recipe all
 
 ![RouterSequenceUML.png](images/RouterSequenceUML.png)
 
+#### Command Tokens and Recursive Matching
+
+The `CommandTokens` class represents a rewindable queue of words in the user's input
+which allows for performant matching of nested commands. As the `CommandTokens` instance gets passed to the 
+`CommandRouterNode`, it will check if the word at the head matches its name. If it does, the queue is advanced and the
+tokens are passed recursively deeper into the routing tree, and if not the queue is rewound and passed back up the 
+routing tree.
+
+#### Argument Extractors
+
+![Extractors.png](images/Extractors.png)
+
+This is a class diagram representing the `Extractors` system for extracting values from passed arguments. Note that not
+all implementations of `ArgumentExtractor` is included.
+`Extractors` provide validated inputs to the `ExecutableCommand` that is built by the factory.
+
+The `ExecutableCommandFactory` may provide a list of `Extractors` to be run via the `getExtractors()` method.
+The `runExtractors()` function should be called when building the command.
+
+If extraction is run successfully, the factory may pull the validated
+value out of the `ArgumentExtractor` using the `getExtractedValue()` method, and pass it to the `ExecutableCommand`
+constructor.
+
+If extraction yields an exception, the exception will be passed up to the caller of `buildCommand()`.
+
 ### Ingredient Class
 
 Below shows the class diagram of how ingredients are being stored in our program
