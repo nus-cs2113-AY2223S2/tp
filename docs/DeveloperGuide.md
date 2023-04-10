@@ -51,6 +51,7 @@ Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/
 <br>
 [Back to contents page](#table-of-contents)
 ---
+---
 # 2. Design and Implementation
 ## 2.1 Architecture
 ![Architecture Diagram](UML/Images/ArchitectureDesign.png)
