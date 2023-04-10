@@ -59,6 +59,7 @@ public class ViewUserCommand extends Command {
         if(!isValidFieldName(fieldName)){
             throw new InvalidFieldNameException(command, fieldName);
         }
+
     }
 
     @Override

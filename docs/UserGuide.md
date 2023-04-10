@@ -83,14 +83,14 @@ Format: `update /[fieldName] [newInfo]`
 
 Here is a table of the information that the user can choose to update alongside the field name of it:
 
-| Information   | /[fieldName]  |
-|---------------|---------------|
-| Name          | /name         |
-| Weight        | /weight       |
-| Height        | /height       |
-| Age           | /age          |
-| Gender        | /gender       |
-| Target weight | /targetWeight | 
+| Information   | /[fieldName]  | Comments                                                                    |
+|---------------|---------------|-----------------------------------------------------------------------------|
+| Name          | /name         | For more than one name, separate with an underscore. E.g Firstname_LastName |
+| Weight        | /weight       | Weight can only take in numbers between 0 and 700 kg.                       |
+| Height        | /height       | Height can only take in numbers between 0 and 300 cm.                       |
+| Age           | /age          | Age can only take in numbers between 0 and 120 years old.                   |
+| Gender        | /gender       | Gender can only take in male or female as arguments.                        |
+| Target weight | /targetWeight | TargetWeight can only take in numbers between 0 and 700 kg.                 | 
 
 Example:
 
