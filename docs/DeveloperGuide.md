@@ -472,10 +472,25 @@ called.
 ---
 
 ### Budget Commands
+
 Class Diagram of Budget Commands
+
 ![budgetClassDiagram.png](diagrams%2Fbudget%2FbudgetClassDiagram.png)
 
-The 
+The BudgetPlanner class is the main control centre for all budget commands. It helps facilitate commands being called
+to edit Budget data of the BudgetStorage. It handles exception handling for invalid budget and cost values. It also
+handles the main mathematical logic to make sense of the BudgetStorage data.
+
+BudgetStorage saves data in this format of the txt file.
+
+`amount` - Budget
+`amount` - Accommodation cost
+`amount` - Airplane Ticket cost
+`amount` - Food cost
+`amount` - Entertainment cost
+
+Preventive measures would be done to check if the amount entered is valid or that is some tampering of the data out of
+the usual format through the checkDatabaseCorrupted() function.
 
 #### View Budget Command (View)
 
