@@ -1,6 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.exceptions.IllegalArgException;
+import seedu.pettracker.exceptions.TaskAlreadyCompleteException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -25,12 +26,15 @@ public class MarkTaskCommand extends Command{
     @Override
     public void execute(Ui ui, Storage storage) {
         try {
+            checkIfComplete(taskNumber);
             TaskList.markTask(taskNumber, true);
             TaskList.saveTasksToStorage(storage, ui);
             String markTaskDescription = TaskList.getSpecificTaskDescription(taskNumber);
             ui.markTaskCommandMessage(markTaskDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
+        } catch (TaskAlreadyCompleteException e) {
+            ui.taskAlreadyCompleteMessage();
         }
     }
 
@@ -42,5 +46,16 @@ public class MarkTaskCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    /**
+     * Checks if a task being marked as complete is already completed
+     * @param taskId
+     * @throws TaskAlreadyCompleteException
+     */
+    public static void checkIfComplete(int taskId) throws TaskAlreadyCompleteException {
+        if (TaskList.getTaskStatus(taskId)) {
+            throw new TaskAlreadyCompleteException();
+        }
     }
 }

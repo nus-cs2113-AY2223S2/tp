@@ -164,4 +164,8 @@ public class TaskList {
     public static String getSpecificTaskDescription(int taskNumber) {
         return taskList.get(taskNumber - 1).description;
     }
+
+    public static boolean getTaskStatus(int taskNumber) {
+        return taskList.get(taskNumber - 1).isDone;
+    }
 }
