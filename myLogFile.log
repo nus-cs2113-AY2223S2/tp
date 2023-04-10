@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+Apr 10, 2023 1:57:27 PM seedu.logger.LogFileHandler logInfo
+=======
+Apr 10, 2023 12:51:42 PM seedu.logger.LogFileHandler logInfo
+>>>>>>> master
+INFO: User exited the programme.

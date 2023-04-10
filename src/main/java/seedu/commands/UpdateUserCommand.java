@@ -7,11 +7,14 @@ import seedu.exceptions.InvalidFieldInfoFormatException;
 import seedu.exceptions.NegativeFieldInfoException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.exceptions.ExtraArgumentsException;
+import seedu.exceptions.ImpossibleValueException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
+
+import java.util.regex.Pattern;
 
 public class UpdateUserCommand extends Command {
     private String fieldName;
@@ -102,19 +105,14 @@ public class UpdateUserCommand extends Command {
     }
 
     public String updateName() throws LifeTrackerException{
-        String nameString = null;
-        boolean containsNum = false;
-        nameString = updatedInfo;
-        for (int i = 0; i < nameString.length(); ++i) {
-            if (Character.isDigit(nameString.charAt(i))) {
-                containsNum = true;
-                break;
-            }
-        }
-        if (nameString.isBlank() || containsNum) {
+        String nameString = updatedInfo;
+        Pattern p = Pattern.compile("[^a-zA-Z_]");
+        String replaced = nameString.replace("_", " ");
+        boolean hasSpecialChar = p.matcher(nameString).find();
+        if (hasSpecialChar || replaced.isBlank()) {
             throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }else {
-            return nameString;
+            return replaced;
         }
     }
     public float updateWeight() throws LifeTrackerException {
@@ -127,6 +125,8 @@ public class UpdateUserCommand extends Command {
         float weight = Float.parseFloat(weightString);
         if(weight < 0){
             throw new NegativeFieldInfoException(command, fieldName);
+        }else if(weight > 700){
+            throw new ImpossibleValueException(fieldName,weightString + " kg");
         }
         return weight;
     }
@@ -139,8 +139,10 @@ public class UpdateUserCommand extends Command {
         }
 
         float height = Float.parseFloat(heightString);
-        if(height < 0){
+        if(height < 0 ){
             throw new NegativeFieldInfoException(command, fieldName);
+        }else if(height > 300){
+            throw new ImpossibleValueException(fieldName,heightString + " cm");
         }
         return height;
     }
@@ -156,6 +158,8 @@ public class UpdateUserCommand extends Command {
         int age = Integer.parseInt(ageString);
         if(age < 0){
             throw new NegativeFieldInfoException(command, fieldName);
+        }else if(age > 120){
+            throw new ImpossibleValueException(fieldName,ageString + " years old");
         }
         return age;
     }
@@ -183,6 +187,8 @@ public class UpdateUserCommand extends Command {
         float targetWeight = Float.parseFloat(targetWeightString);
         if(targetWeight < 0){
             throw new NegativeFieldInfoException(command, fieldName);
+        }else if(targetWeight > 700){
+            throw new ImpossibleValueException(fieldName,targetWeightString + " kg");
         }
         return targetWeight;
     }
