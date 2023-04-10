@@ -2,8 +2,8 @@
 
 ## Acknowledgements
 
-1) [x] Used IDE Sequence Diagram tool for Sequence Diagrams.
-2) [x] Used [Draw.io](https://www.draw.io/index.html) to draw our UML diagram.
+1. [x] Used IDE Sequence Diagram tool for Sequence Diagrams.
+2. [x] Used [Draw.io](https://www.draw.io/index.html) to draw our UML diagram.
 
 ## Design & implementation
 
@@ -30,17 +30,6 @@
 
 ![img_37.png](img_37.png)<br>
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the EditSurgery Command**
-
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
-![img_10.png](img_10.png) <br>
-**Figure 6: Sequence Diagram showing the logical implementation of executeCommand() for the Remove Command** <br>
-
-The remove command is facilitated by `SniffTasks` which stores all the current appointments as `APPOINTMENTS`. It then implements the following operation:
-* `Snifftasks.removeAppointment()` -- Removes the appointment with the specified UID.
-
-Given below is an example usage scenario and how the remove mechanism behaves.
-1. The user had already launched and added a few appointments to `Snifftasks`.
-2. The user executes `remove C123` command to remove the appointment with that specific UID. The remove command is then executed and calls `SniffTask#removeAppointment()`, causing the appointment with that UID to be removed. It then calls the `Ui#printAppointmentRemovedMessage()` that then calls `Appointment#toString`  that prints to the output the details of the appointment that had been removed. Lastly, it calls `Ui#showUserMessage()` to tell the user that the remove appointment mechanism is successful.
 
 ### Parser - Class Implementation
 1. The Parser class takes in a user command and generates a corresponding Command object for veterinary management system tasks such as **add consultation, vaccination or surgery, find, remove, list, and exit**. This implementation makes use of the Command design pattern to encapsulate the behavior of different types of commands, and the parser serves as a factory for creating these commands based on the user input.
@@ -157,11 +146,16 @@ Other alternatives that was considered are:
      this process will reduce potential errors.
 
 
-### List appointments
+### List appointments - Implementation
 Apart from only each appointment in the appointment list, it also sorts the list by date and time in ascending order.
 This is done using the inbuilt `.sort()` function, while a custom comparator class named `DateTimeComparator` is made to 
 for comparison between dates and times of appointments of different types. Currently `DateTimeComparator` only supports
 the existing appointment classes, namely: `Consultation`, `Vaccination` and `Surgery`.
+
+### Remove appointments - Implementation
+The implementation of the `remove` feature is similar to `mark` and `unmark`. The difference is that the `remove` feature
+will remove the appointment from the `ArrayList` that it is store in.
+
 
 ## Product scope
 ### Target user profile
@@ -254,6 +248,8 @@ ______________________________________________________________________
 2. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
    Expected output: A consultation appointment has been added successfully, details shown in the status message.
    Example:
+
+
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
