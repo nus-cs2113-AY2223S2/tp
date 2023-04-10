@@ -13,7 +13,7 @@ alt /list
     ":Parser" -> ":Parser"
     activate ":Parser"
     ref over ":Parser"
-    prepareListPuModulesCommand
+    prepareListCommand
     end
     ":Parser" --> ":Parser"
     deactivate ":Parser"
@@ -29,7 +29,7 @@ else /exit
     ":Parser" -> ":Parser"
     activate ":Parser"
     ref over ":Parser"
-    exitCommand
+    ExitCommand
     end
     ":Parser" --> ":Parser"
     deactivate ":Parser"

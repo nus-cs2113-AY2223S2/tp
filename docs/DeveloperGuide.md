@@ -173,8 +173,24 @@ match the specified command format., it will throw `InvalidCommandException` and
 instead.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
+
 ![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
+Reference prepareListCommands Sequence Diagram:
+
+![prepareListCommand.png](diagrams%2Fremove%2FprepareListCommand.png)
+
+Reference prepareSearchByNusModCode Sequence Diagram:
+
+![prepareSearchByNusModCode.png](diagrams%2Fremove%2FprepareSearchByNusModCode.png)
+
+Reference ExitCommand Sequence Diagram:
+
+![ExitCommand.png](diagrams%2Fremove%2FExitCommand.png)
+
+Reference prepareAddModuleCommand Sequence Diagram:
+
+![prepareAddModuleCommand.png](diagrams%2Fremove%2FprepareAddModuleCommand.png)
 
 Reference prepareRemoveModuleCommand Sequence Diagram:
 
