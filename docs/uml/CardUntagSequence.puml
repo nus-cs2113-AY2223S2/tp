@@ -13,23 +13,6 @@ participant ":Tag" as Tag
 participant ":Card" as Card
 participant ":Deck" as Deck
 participant ":UserInterface" as UserInterface
-participant ":CardKeywordParser" as CardKeywordParser
-
-Inka -> CardKeywordParser : parseCommand()
-
-Create CardSelector
-CardKeywordParser -> CardSelector : create cardSelector to identify card
-return cardSelector
-
-Create TagSelector
-CardKeywordParser -> TagSelector : create tagSelector to identify tag
-return tagSelector
-
-Create RemoveTagFromCardCommand
-CardKeywordParser -> RemoveTagFromCardCommand : RemoveTagFromCardCommand(cardSelector, tagSelector)
-return
-
-return RemoveTagFromCardCommand
 
 Inka -> RemoveTagFromCardCommand: execute()
 RemoveTagFromCardCommand -> CardList : findCard(cardSelector)

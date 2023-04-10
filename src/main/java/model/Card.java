@@ -88,14 +88,6 @@ public class Card {
         decks.remove(deckUUID);
     }
 
-    public boolean deckEmpty() {
-        return this.decks.isEmpty();
-    }
-
-    public boolean tagEmpty() {
-        return this.tags.isEmpty();
-    }
-
     @Override
     public String toString() {
         return "\t[" + this.uuid + "]\n" +

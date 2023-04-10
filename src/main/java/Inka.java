@@ -41,13 +41,11 @@ public class Inka {
      * @return CardList containing all saved cards
      */
     private Memory loadSaveFile() {
-        // Notify user of no previously saved file
         if (!storage.saveFileExists()) {
             ui.printNoSaveFile();
             return new Memory();
         }
 
-        // File exists; try to load from it
         Memory memory = new Memory();
         try {
             memory = storage.load();

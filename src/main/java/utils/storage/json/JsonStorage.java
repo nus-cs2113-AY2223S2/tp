@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.PosixFilePermission;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -61,6 +65,22 @@ public class JsonStorage extends Storage {
         //Add custom adapters
         gsonBuilder.registerTypeAdapter(CardUUID.class, new CardUuidJsonAdapter());
         gsonBuilder.registerTypeAdapter(TagUUID.class, new TagUuidJsonAdapter());
+
+        try {
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                backupFile.setReadOnly();
+                saveFile.setReadOnly();
+            } else {
+                Set<PosixFilePermission> permissions = new HashSet<>();
+                permissions.add(PosixFilePermission.OWNER_READ);
+                permissions.add(PosixFilePermission.GROUP_READ);
+                permissions.add(PosixFilePermission.OTHERS_READ);
+                Files.setPosixFilePermissions(backupFile.toPath(), permissions);
+                Files.setPosixFilePermissions(saveFile.toPath(), permissions);
+            }
+        } catch (IOException e) {
+            logger.log(Level.WARNING, "Failed to set permissions to read-only for " + filePath, e);
+        }
     }
 
     /**
@@ -145,13 +165,29 @@ public class JsonStorage extends Storage {
      * @throws IOException if an I/O error occurs while writing to the file
      */
     private void saveDataToFile(File file, JsonObject data) throws IOException {
-        try (FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        boolean wasReadOnly = file.canWrite();
 
-            Gson gson = gsonBuilder.setPrettyPrinting().create();
-            String serialized = gson.toJson(data);
+        try {
+            if (!wasReadOnly) {
+                file.setWritable(true);
+            }
+            try (FileWriter fileWriter = new FileWriter(file);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
-            bufferedWriter.write(serialized);
+                Gson gson = gsonBuilder.setPrettyPrinting().create();
+                String serialized = gson.toJson(data);
+
+                bufferedWriter.write(serialized);
+            }
+
+            if (!wasReadOnly) {
+                file.setWritable(false);
+            }
+        } catch (IOException e) {
+            if (!wasReadOnly) {
+                file.setWritable(false);
+            }
+            throw e;
         }
     }
 }

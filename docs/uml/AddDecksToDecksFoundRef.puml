@@ -2,6 +2,8 @@
 
 
 mainframe sd Add all Decks with decksUUID to decksFound
+
+participant ":Inka" as Inka
 participant ":ViewCardCommand" as ViewCardCommand
 participant ":CardList" as CardList
 participant ":CardSelector" as CardSelector
@@ -13,7 +15,7 @@ participant ":Deck" as Deck
 participant ":TagUUID" as TagUUID
 participant ":DeckUUID" as DeckUUID
 participant ":UserInterface" as UserInterface
-participant ":CardKeywordParser" as CardKeywordParser
+
 
 loop current uuid of tagsUUID != null
 

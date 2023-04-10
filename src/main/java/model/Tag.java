@@ -53,6 +53,7 @@ public class Tag {
         }
         return false;
     }
+
     public boolean isDeckEmpty() {
         return decks.isEmpty();
     }
@@ -66,9 +67,9 @@ public class Tag {
     }
 
     public void addCardIntoDeckHashSet(DeckList deckList, CardUUID cardUUID) {
-        for(DeckUUID deckUUID: this.decks) {
+        for (DeckUUID deckUUID : this.decks) {
             Deck deck = deckList.findDeckFromUUID(deckUUID);
-            if(!deck.cardIsInList(cardUUID) && !deck.cardIsInMap(cardUUID)) {
+            if (!deck.cardIsInList(cardUUID) && !deck.cardIsInMap(cardUUID)) {
                 deck.addCardToMap(cardUUID);
             }
             deck.addCardToSet(cardUUID);
@@ -89,6 +90,6 @@ public class Tag {
 
     @Override
     public String toString() {
-        return "Tag name : " + tagName + ", tag uuid : " + uuid;
+        return "Tag name : " + tagName;
     }
 }

@@ -1,21 +1,21 @@
 @startuml
 
 
-participant "JsonStorage" as JsonStorage
-participant ":load" as load
-
-participant "JsonObject:saveDataObject" as saveDataObject
-participant GsonBuilder
-participant JsonElement
-participant "JsonToMemory" as jtm
+participant ":JsonStorage" as JsonStorage
 
 
-create load
-JsonStorage -> load : load()
-activate load
+participant "saveDataObject:JsonObject" as saveDataObject
+participant "<<class>> \nGsonBuilder" as GsonBuilder
+participant ":JsonElement" as JsonElement
+participant "<<class>> \n JsonToMemory" as jtm
+participant ":Memory" as memory
+-> JsonStorage : load()
+activate JsonStorage
 
 
-load -> GsonBuilder : create().fromJson()
+
+
+JsonStorage -> GsonBuilder : create().fromJson()
 activate GsonBuilder
 create JsonElement
 
@@ -26,12 +26,12 @@ deactivate GsonBuilder
 JsonElement -> saveDataObject : getAsJsonObject()
 deactivate JsonElement
 activate saveDataObject
-saveDataObject --> load
+saveDataObject --> JsonStorage
 deactivate saveDataObject
 
 alt valid save file
 
-load -> jtm :JsonToMemory.convert(saveDataObject)
+JsonStorage -> jtm :JsonToMemory.convert(saveDataObject)
 activate jtm
 
 
@@ -47,16 +47,16 @@ create memory
 jtm -> memory
 deactivate jtm
 activate memory
- memory -> load
+ memory --> JsonStorage
 deactivate memory
 
 else benis
 
 
 
-load --> JsonStorage
 
-deactivate load
+
+
 
 
 
@@ -64,9 +64,10 @@ deactivate load
 
 
 participant "Memory:memory" as memory
-<-- JsonStorage
+<-- JsonStorage : memory
 
 note right : memory object returned
+deactivate JsonStorage
 
 
 

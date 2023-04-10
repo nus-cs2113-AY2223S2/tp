@@ -99,7 +99,7 @@ public class UserInterface {
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + "." + cardList.get(i).toTruncatedString()); // 1. question  answer
+                System.out.println("\t" + (i + 1) + ".\t" + cardList.get(i).toTruncatedString()); // 1. question  answer
             }
         }
     }
@@ -110,7 +110,7 @@ public class UserInterface {
         } else {
             System.out.println("Here is your current list of tags:");
             for (int i = 0; i < tagList.size(); ++i) {
-                System.out.println((i + 1) + "." + tagList.get(i));
+                System.out.println((i + 1) + ".\t" + tagList.get(i));
             }
         }
     }
@@ -121,7 +121,7 @@ public class UserInterface {
         } else {
             System.out.println("\tHere are your tags:");
             for (int i = 0; i < tagList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + "." + tagList.get(i));
+                System.out.println("\t" + (i + 1) + ".\t" + tagList.get(i));
             }
         }
         System.out.println("");
@@ -133,7 +133,7 @@ public class UserInterface {
         } else {
             System.out.println("Here is your current list of decks:");
             for (int i = 0; i < deckList.size(); ++i) {
-                System.out.println((i + 1) + "." + deckList.get(i));
+                System.out.println((i + 1) + ".\t" + deckList.get(i));
             }
         }
     }
@@ -144,7 +144,7 @@ public class UserInterface {
         } else {
             System.out.println("\tHere are your decks:");
             for (int i = 0; i < deckList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + "." + deckList.get(i));
+                System.out.println("\t" + (i + 1) + ".\t" + deckList.get(i));
             }
         }
     }
@@ -199,12 +199,12 @@ public class UserInterface {
 
     public void printEditTagName(String oldTagName, Tag tag) {
         System.out.println(
-                "Tag " + tag.getUUID() + " name has been changed from " + oldTagName + " to " + tag.getTagName());
+                "Tag name has been changed from " + oldTagName + " to " + tag.getTagName());
     }
 
     public void printEditDeckNameSuccess(String oldDeckName, Deck deck) {
         System.out.println(
-                "Deck " + deck.getDeckUUID() + "deck name has been changed from " + oldDeckName
+                "Deck name has been changed from " + oldDeckName
                         + " to " + deck.getDeckName());
     }
 
