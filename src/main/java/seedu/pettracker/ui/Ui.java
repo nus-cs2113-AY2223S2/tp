@@ -44,6 +44,8 @@ public class Ui {
     private static final String INVALID_TASK_NAME_ERROR = "ERROR: Invalid task name. Task name cannot contain pipes.";
     private static final String INVALID_TASK_NAME_FILE_ERROR = "ERROR: Task save file has invalid task name. " +
             "Task name cannot contain pipes. File Loading aborted";
+    private static final String TASK_ALREADY_COMPLETE = "ERROR: This task is already complete.";
+    private static final String TASK_ALREADY_INCOMPLETE = "ERROR: This task is already incomplete";
 
 
     private Scanner in;
@@ -528,6 +530,18 @@ public class Ui {
     public void invalidTaskNumber() {
         System.out.println(DIVIDER);
         System.out.println("Invalid task number.");
+        System.out.println(DIVIDER);
+    }
+
+    public void taskAlreadyCompleteMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(TASK_ALREADY_COMPLETE);
+        System.out.println(DIVIDER);
+    }
+
+    public void taskAlreadyIncompleteMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(TASK_ALREADY_INCOMPLETE);
         System.out.println(DIVIDER);
     }
 }
