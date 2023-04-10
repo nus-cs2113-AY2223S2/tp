@@ -73,7 +73,7 @@ public class Ui {
      */
     public static void helpCommand() {
         printDash();
-        System.out.println("Please view our user guide at this link for a better overview: https://ay2223s2-cs2113-f13-3.github.io/tp/UserGuide.html");
+        System.out.println("Please view our user guide at this link for a more in depth version: https://ay2223s2-cs2113-f13-3.github.io/tp/UserGuide.html");
         System.out.println("Continue reading for quick help:");
         printDash();
         System.out.println("Add an event:\n" +
@@ -82,28 +82,36 @@ public class Ui {
                 "• e, sd and st are compulsory fields\n" +
                 "• ed and et are optional, but they must be written together if you use them\n" +
                 "• v is optional\n" +
-                "• r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.");
+                "• r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.\n\n" +
+                "EXAMPLE -> add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11");
         printDash();
         System.out.println("Add a module:\n" +
                 "add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE\n" +
-                "• For the lesson number and lesson type, follow the format as displayed on NUSMods.");
+                "• For the lesson number and lesson type, follow the format as displayed on NUSMods.\n\n" +
+                "EXAMPLE -> add -m CS2100 -n 02 -l LAB");
         printDash();
         System.out.println("Delete a single event:\n" +
-                "delete –s 1\n" +
+                "delete –s INDEX_OF_EVENT\n\n" +
+                "EXAMPLE -> delete -s 1\n\n" +
                 "Delete all events:\n" +
                 "delete –all");
         printDash();
         System.out.println("List all events:\n" +
-                "list\n" +
+                "list\n\n" +
                 "List timetable of specific week:\n" +
-                "list -w WEEKNUM");
+                "list -w WEEKNUM\n\n" +
+                "EXAMPLE -> list -w 7");
         printDash();
         System.out.println("Edit an event:\n" +
                 "edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W\n" +
                 "• sd and ed must be of the format YYYY/MM/DD\n" +
                 "• e, sd and st are compulsory fields\n" +
                 "• ed and et are optional, but they must be written together if you use them\n" +
-                "• other fields are optional");
+                "• other fields are optional\n\n" +
+                "EXAMPLE -> edit –i 1 -sd 2023/04/01 –st 16:00");
+        printDash();
+        System.out.println("WARNING! Please do not copy/paste commands.\n" +
+                "Type them out to ensure there are no formatting issues.");
         printDash();
     }
 
