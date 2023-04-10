@@ -46,6 +46,7 @@ public class PetList {
     }
 
     private static int find(String petName) {
+        assert petList != null;
         for (int i = 0; i < petList.size(); i++) {
             if (petList.get(i).getPetName().equals(petName)) {
                 return i;
@@ -55,6 +56,7 @@ public class PetList {
     }
 
     private static Pet get(int index) {
+        assert index > -1;
         return petList.get(index);
     }
 
@@ -64,8 +66,10 @@ public class PetList {
      * @param petName   Name of pet to edit
      * @param statName  Name of stat to add
      * @param statValue New stat Value
-     * @throws NumberFormatException       When stat is Age/Weight and is not a number
-     * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
+     * @throws NumberFormatException       When stat is Age/Weight and is not a
+     *                                     number
+     * @throws NonPositiveIntegerException When stat is Age/Weight and is
+     *                                     non-positive
      * @throws InvalidStatException        When stat is not Type/Age/Weight
      * @throws PetNotFoundException        When Pet is not in PetList
      */
@@ -145,6 +149,7 @@ public class PetList {
 
     /**
      * Return the number of pets in the PetList.
+     * 
      *
      * @return number of pets in the list.
      */
@@ -153,13 +158,16 @@ public class PetList {
     }
 
     /**
-     * Edit pet stats of a pet in the PetList to change the previous value to a new value
+     * Edit pet stats of a pet in the PetList to change the previous value to a new
+     * value
      *
      * @param petName  Name of pet to edit
      * @param stat     Name of stat to edit
      * @param newValue New stat Value
-     * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
-     * @throws NumberFormatException       When stat is Age/Weight and is not a number
+     * @throws NonPositiveIntegerException When stat is Age/Weight and is
+     *                                     non-positive
+     * @throws NumberFormatException       When stat is Age/Weight and is not a
+     *                                     number
      * @throws InvalidStatException        When stat is not Type/Age/Weight
      * @throws PetNotFoundException        When Pet is not in PetList
      */
