@@ -15,27 +15,27 @@ year: String, semester: String): Module
 (+) findModuleByCode(keyword: String): ArrayList<Module>
 (+) findModuleByType(type: String): ArrayList<Module>
 (+) deleteModule(moduleCode: String): Module
-(+) listModules(): void
+(+) listModules()
 (+) addModulesToLists(year: String, moduleListByYear: ArrayList<Module>,
 moduleListSemOne: ArrayList<String>, moduleListSpecialTermOne: ArrayList<String>,
-moduleListSemTwo: ArrayList<String>, moduleListSpecialTermTwo: ArrayList<String>): void
-(+) listModulesByYear(year: String): void
-(+) editModularCredits(moduleCode: String, newModularCredits: String): void
-(+) editYear(moduleCode: String, newYear: String): void
-(+) editYear(moduleCode: String , newYear: String): void
-(+) editSemester(moduleCode: String, newSemester: String): void
-(+) editModuleGrade(moduleCode: String, newGrade: String): void
-(+) editModuleType(moduleCode: String, moduleType: String): void
-(+) editModuleCode(oldModuleCode: String, newModuleCode: String): void
-(+) addExistingModule(line: String): void
+moduleListSemTwo: ArrayList<String>, moduleListSpecialTermTwo: ArrayList<String>)
+(+) listModulesByYear(year: String)
+(+) editModularCredits(moduleCode: String, newModularCredits: String)
+(+) editYear(moduleCode: String, newYear: String)
+(+) editYear(moduleCode: String , newYear: String)
+(+) editSemester(moduleCode: String, newSemester: String)
+(+) editModuleGrade(moduleCode: String, newGrade: String)
+(+) editModuleType(moduleCode: String, moduleType: String)
+(+) editModuleCode(oldModuleCode: String, newModuleCode: String)
+(+) addExistingModule(line: String)
 (+) checkIfTampered(moduleGrade: String, moduleCode: String, modularCredits: String,
-moduleYear: String, String moduleSemester: String): void
+moduleYear: String, String moduleSemester: String)
 (+) updateModuleGrade(moduleCode: String, moduleGrade: String, command: String): Module
-(-) validateSetModuleGrade(module: Module, command: String): void
-(+) calculateCAP(): void
+(-) validateSetModuleGrade(module: Module, command: String)
+(+) calculateCAP()
 (+) shouldCountModuleGrade(moduleGrade: String): boolean
 (+) getGradeValue(moduleGrade: String): double
-(+) trackModules(moduleList: ArrayList<Module>, moduleType: String, requiredMCs: int): void
+(+) trackModules(moduleList: ArrayList<Module>, moduleType: String, requiredMCs: int)
 }
 
 
