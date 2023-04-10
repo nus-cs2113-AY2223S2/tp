@@ -179,16 +179,12 @@ The UI class is also used when printing various outputs to the user after a comm
 ### Parser package
 
 The parser package consists of different classes to parse the different inputs from users. The following shows a partial
-class diagram for the parser package.
+class diagram for the Parser package, irrelevant details are omitted.
 
 ![ParserClassDiagram.png](images%2FDeveloperGuide%2FParserClassDiagram.png)
 
 There will be a main parser class that will identify the appropriate parser class to call based on the first word of the
-<<<<<<< HEAD
-user's input. All the parser classes will inherit from the main parser class. The corresponding parser class will then 
-=======
 user's input. All the parser classes will inherit from the main parser class. The corresponding parser class will then
->>>>>>> 4d82e123810fa19a548a7ee2fc2fa42231f3649d
 execute the appropriate commands.
 
 ### Data package
@@ -196,7 +192,7 @@ execute the appropriate commands.
 The data package consists of
 classes `FinancialReport`, `FinancialStatement`, `FlowDirection`, `MonthlyExpenditures`, `SavedData` and `UserData`.
 
-The class diagram representing the data component is as shown below.
+The following shows a partial class diagram for the Data package with irrelevant details omitted.
 
 ![DataClassDiagram.png](images\DeveloperGuide\DataClassDiagram.png)
 
@@ -278,6 +274,8 @@ expenditures for the month.
 
 ### Command package
 
+The following shows a partial class diagram for the Command package, with irrelevant details omitted.
+
 ![CommandClassDiagram.png](images\DeveloperGuide\CommandClassDiagram.png)
 
 1. When a command is parsed, a command object specific to the command given will be created, with the necessary
@@ -296,7 +294,7 @@ The exceptions component consists of classes `RainyDayException` and `ErrorMessa
 
 #### RainyDayException
 
-- Extends the built-in `Exception` class and takes a string parameter "errorMessage".
+- Extends the built-in Exception class and takes a string parameter "errorMessage".
 
 #### ErrorMessages
 
@@ -315,7 +313,7 @@ financial report containing a list of financial statements.
       "OUTFLOW"
     - "value": represents the amount tagged with the transaction, stored as a double
     - "category": represents the type of transaction, stored as a string
-    - "date": represents the date to be tagged of transaction, stored as LocalDate object
+    - "date": represents the date to be tagged of transaction, stored as `LocalDate` object
 
 ### Adding an entry `add`
 
@@ -390,33 +388,33 @@ variations of inputs. The following shows the format of input we expect from a u
 
 Adds a new transaction to the financial report.
 
-Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DD/MM/YYYY}`
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DAY/MONTH/YEAR}`
 
 * The `DIRECTION` to be `in` signifying an inflow type of transaction, or `out` signifying an outflow type of
   transaction. This is a required field
 * `DESCRIPTION` is a required field
 * The `$AMOUNT` takes in a number, is also a required field.
 * `-c CATEGORY` is an optional field that takes in a user-defined category of the product
-* `-date DD/MM/YYYY` is an optional field that takes in the date of a transaction
+* `-date DAY/MONTH/YEAR` is an optional field that takes in the date of a transaction
 
 As this is quite a long command to parse, we will use regular expressions in the following steps to match and break
 down the instructions.
 
-1. function addStatement will call function returnRemainingInformation which will check whether the input contains the
+1. Function `addStatement` will call function `returnRemainingInformation` which will check whether the input contains the
    mandatory fields are present. This is done through the following:
 
-    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)` checks for the corresponding structure: `(-IN/OUT) <whitepsace>
-      (DESCRIPTION) <whitepsace> ($AMOUNT) `. This will match when the optional flags are not included. An empty string
+    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)` checks for the corresponding structure: `(-IN/OUT) <whitespace>
+      (DESCRIPTION) <whitespace> ($AMOUNT) `. This will match when the optional flags are not included. An empty string
       will then be returned
-    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)\\s+(.*)` checks for the corresponding structure `(-IN/OUT) <whitepsace>
-      (DESCRIPTION) <whitepsace> ($AMOUNT) <whitepsace> (remaining input)`. This will match when at least one of the
+    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)\\s+(.*)` checks for the corresponding structure `(-IN/OUT) <whitespace>
+      (DESCRIPTION) <whitespace> ($AMOUNT) <whitespace> (remaining input)`. This will match when at least one of the
       optional flags are included, and a string corresponding to `(remaining input)` will be returned<br><br>
 
 2. If an empty string is returned, an `addCommand` object will be returned from the method `addStatement`. Otherwise,
    a variable `String remainingInformation` will correspond to `(remaining input)` above. `remainingInformation` will
    then be checked for if it contains `-c` or `-date` flags<br><br>
 
-3. if `remainingInformation` contains a `-c` flag, it means that the user has provided a category for the item.
+3. If `remainingInformation` contains a `-c` flag, it means that the user has provided a category for the item.
    Thus, it will be passed into the method `setCategory`. `setCategory` will then use the following regex to match
    `remainingInformation`:
     - `-c\\s+(.+)` checks for the corresponding structure `-c <whitespace> (CATEGORY)`
@@ -451,7 +449,7 @@ our parser will throw a `RainyDayException` indicating the wrong input format.
 - The relevant details will then be extracted out and passed as a `ViewCommand` object. Details include the start date,
   the end date, if sorting is required, and if `-all` is passed in the `TIMESPAN` field
     - If `-all` is passed, a boolean value will be set to true to indicate this. The start date and end date will be
-      set to the earliest and latest possible date of Java's `LocalDate`
+      set to the earliest and latest possible date of Java's LocalDate
     - The boolean value is only used during formatting of the summary table
 
 ![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommand.png)
@@ -585,8 +583,8 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 
 #### Design considerations
 
-- A hashmap is used to store the mapping between the shortcuts and the command that the shortcut maps to.
-- A hashmap is an appropriate data structure as it provides a one to one mapping and allows shortcut access in O(1).
+- A hashmap is used to store the mapping between the shortcuts and the command that the shortcut maps to
+- A hashmap is an appropriate data structure as it provides a one to one mapping and allows shortcut access in O(1)
 
 ### Saving Data
 
@@ -602,7 +600,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 ##### Implementation of saving
 
 - Alternative 1 (current choice): Save the "savedData" automatically whenever there is a change to its
-  data.
+  data
     - Pros:
         - User will never forget to save data
         - Process is done automatically and invisible to the user
@@ -612,7 +610,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
         - May have performance issue in terms of speed. Since a save is done with every change rather than after all
           changes are already done
         - Less flexibility if a user wants to perform changes without saving
-- Alternative 2: Perform save automatically on normal exit, such as after `bye` command.
+- Alternative 2: Perform save automatically on normal exit, such as after `bye` command
     - Pros:
         - Save will only be performed once user is done with all changes and ready to exit. Better performance than
           alternative 1
@@ -630,7 +628,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 ##### Type of file to save data into
 
 - Alternative 1 (current choice): Make use of serialization in the gson library to serialize "savedData" object before
-  writing to file.
+  writing to file
     - Pros:
         - Easier to implement. Minimal changes to the code required as new attributes are added to "savedData" as
           we develop the app incrementally
@@ -642,7 +640,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
               detected
 - Alternative 2: Make use of plaintext to save the relevant data in the "savedData" object.
     - Pros:
-        - Data will be more readable and user can get information about the `FinancialReport` by viewing the text file
+        - Data will be more readable and user can get clearer information about the "savedData" by viewing the text file
     - Cons:
         - Difficult to implement and parse, changes in implementation will be necessary when new attributes are added
           to "savedData" as we develop the app incrementally
