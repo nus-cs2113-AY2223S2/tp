@@ -3,13 +3,26 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.logic.commands.QuickStartCommand;
+import seedu.duke.logic.commands.Command;
+
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
-import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
-import seedu.duke.logic.commands.GenerateFilterCommand;
-import seedu.duke.logic.commands.ExerciseSearchCommand;
+
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
+import seedu.duke.storage.JsonUserPlansStorage;
+import seedu.duke.storage.JsonUserCareerStorage;
+import seedu.duke.storage.UserCareerStorage;
+import seedu.duke.storage.UserPlansStorage;
+import seedu.duke.storage.StorageManager;
+import seedu.duke.storage.Storage;
+
 import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
@@ -86,6 +99,32 @@ public class TestCommands {
         assertDoesNotThrow(() -> {
             UserPlan.deletePlan(validCommands);
         });
+    }
+
+    //@@author Khulon
+    @Test
+    public void testQuickStartCommand () throws DukeError {
+        new UserPlan();
+        String[] dummyCommand = {"add", "monday", "home", "static"};
+        UserPlan.addPlan(dummyCommand);
+
+        Ui ui = new Ui();
+        GenerateExercise generateExercise = new GenerateExercise();
+        UserPlansStorage userPlansStorage = new JsonUserPlansStorage("userData.json");
+        UserCareerStorage userCareerStorage = new JsonUserCareerStorage("plansData.json");
+        Storage storage = new StorageManager(userCareerStorage, userPlansStorage);
+        ExerciseStateHandler exerciseHandler = new ExerciseStateHandler(storage);
+
+        String[] invalidCommands = {"quick", "house", "3"};
+        assertThrows(DukeError.class, () -> {
+            Command command = new QuickStartCommand(invalidCommands, ui, generateExercise, exerciseHandler);
+        });
+
+        String[] validCommands = {"quick", "home", "3"};
+        assertDoesNotThrow(() -> {
+            Command command = new QuickStartCommand(validCommands, ui, generateExercise, exerciseHandler);
+        });
+
     }
 
     //@@author ghzr0

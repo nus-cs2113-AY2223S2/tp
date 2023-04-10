@@ -1,6 +1,5 @@
 package seedu.duke.logic.commandhandler;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 import seedu.duke.achievements.AchievementListHandler;
@@ -68,8 +67,7 @@ public class GeneralCommandHandler implements CommandList {
                     }
                     exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
                 } catch (NumberFormatException e) {
-                    System.out.println("You did not key in a session number. " +
-                            "Please key in a valid session number and try again!");
+                    throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_SESSION_NUMBER.toString());
                 }
                 break;
             case GENERATE_COMMAND:
@@ -117,8 +115,12 @@ public class GeneralCommandHandler implements CommandList {
                 }
                 break;
             case IPPT_COMMAND:
-                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands, 1, 5));
-                generateIPPT.addIPPTSession(exerciseGenerator, userCareerData, storage);
+                if (additionalDescription.length() < 13) {
+                    throw new DukeError(ErrorMessages.ERROR_IPPT_ARGUMENTS_INPUT.toString());
+                }else {
+                    IPPTCmd generateIPPT = new IPPTCmd(userCommands);
+                    generateIPPT.addIPPTSession(exerciseGenerator, userCareerData, storage);
+                }
                 break;
             case QUICK_START_COMMAND:
                 if (additionalDescription.length() == 0) {

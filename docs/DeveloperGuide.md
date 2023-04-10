@@ -278,6 +278,29 @@ Figure 7.1
 </div>
 
 
+### Commands
+To interact with FitnessDuke, users have to input commands specified with parameters to perform operations which will 
+be passed to the Command Handler to generate a corresponding Command according to their input. There are a total of 3 
+command handlers for the handling of user inputs, and the CommandList implements each of these command handlers. The 
+general command handler is in use while the user is currently not in a workout session or in the midst of creating a
+fitness plan. 
+
+Upon the starting of a workout session from within the GeneralCommandHandler, the user is then directed to the ExerciseSessionCommandHandler. While within
+the handler, the user has access to ```current```, ```finish``` and ```cancel``` commands.
+
+When the user enters the ```planner``` feature, they are redirected to the PlannerCommandHandler. Within the handler, 
+they then have access to the ```add PLAN_NAME```, ```delete PLAN_NAME```, ```help``` as well as ```exit``` commands.
+
+
+<div align="center">
+<img src="UML/Images/CommandList.png"/>
+<p>
+Figure 8.1
+</p>
+</div>
+
+
+
 ### Additional features to be added
 
 1. A workout planner for the user to add and customise their desired sequence or schedule of workouts.
@@ -354,7 +377,7 @@ Expected: Error details will be shown in the terminal
 
 ### ```find``` command
 
-1. Find a set of exercises based on a specified keyword : ```find [keyword]```
+1. Find a set of exercises based on a specified keyword : ```find KEYWORD```
 2.  Test case: ```find```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
 3. Test case :```find arm```
@@ -370,7 +393,7 @@ Expected: A list of 2 random exercises will be shown, alongside their respective
 4. Test case: ```generate easy```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
 
-### ```quick``` command
+### ```quick PLAN_NAME NUMBER``` command
 
 1. Prerequisites : An existing plan under ```plans``` 
 2. Test case: ```quick```
@@ -378,3 +401,104 @@ Expected: The list of exercises will not be shown. Error details will be shown i
 3. Test case: ```quick home_legs_day 3```
 If plan ```home_legs_day``` is not in ```plans``` , error details will be shown in the terminal.
 Otherwise, list of 3 exercises will be shown related to the workout type.
+
+### ```ippt AGE RUNTIME PUSHUPs SITUPs``` command
+1. Takes in user's inputs of the user's age and the respective scores for the 3 exercises, and returns the total points the user obtains , as well as adding as a new exercise session.
+2. Test case: ```ippt```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+3. Test case: ```ippt 9 10:00 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+4. Test case: ```ippt 20 -10:00 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+5. Test case: ```ippt 20 10:00 -10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+6. Test case: ```ippt 20 10:00 10 -10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+7. Test case: ```ippt a b c d```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+8. Test case: ```ippt ! @ # $ ```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+9. Test case: ```ippt 16```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+10. Test case: ```ippt 16 12:00```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+11. Test case: ```ippt 16 12:00 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+12. Test case: ```ippt 16 12:00 10 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+
+### ```achievements``` and ```clear_achievements``` commands
+1.Calling the ```achievements``` command will list out all the details of all the available achievements.
+2. Test case: ```achievements```
+Expected: List of the details of all achievements will be shown in the terminal.
+3. For testing purposes, calling the ```clear_achievements``` command will clear all the data for a user. This means that all the exercises logged by the achievements is erased, and all completed achievements are removed.
+4. Test case: ```clear_achievements```
+Expected: Pre-existing achievements and data will be removed, details are shown in the terminal.
+
+### ```current ``` command
+1. Displays a list of the user's current workout exercises.
+2. Test case : ```current``` with no current workout session
+Expected: There will not be an output of a list of current exercises, details will be shown in the terminal.
+3. Test case: ```current ``` with a current workout session
+Expected: There will be an output of a list of current exercises, details will be shown in the terminal.
+
+### ```cancel``` command
+1. Cancels the user's current workout session, and the workout session is registered as incomplete.
+2. Test case: ```cancel``` with no current workout session
+Expected: There will not be any workout session cancelled, details will be shown in the terminal.
+3. Test case: ```cancel``` with a current workout session
+Expected: The current workout session will be cancelled, details will be shown in the terminal.
+
+### ```finish``` command
+1.Finishes the current workout session, and it is recognised as a complete session.
+2. Test case: ```finish``` with no current workout session
+Expected: There will not be any workout session finished, details will be shown in the terminal.
+3. Test case: ```finish``` with a current workout session
+Expected: The current workout session will be finished, details will be shown in the terminal.
+
+### ```history``` command
+1.Displays the user's entire career history in using Fitness Duke. 
+It provides details on the sessions completed with the date and time as well as the exercises completed.
+
+2.Test case: ```history``` with no existing completed workout sessions or exercises.
+Expected: Error message will be output to the user, details will be shown in the terminal.
+3. Test case: ```history``` with an existing completed workout session.
+Expected: Details of the workout session and the completed exercises will show, details will be shown in the terminal.
+
+### ```data``` command
+1.Displays the list of completed exercises, along with the number of times of completion for each exercise.
+Apart from providing the list of completed exercises, it also outputs the total number of unique
+as well as non-unique exercises completed at the end of the list.
+
+2.Test case: ```data``` with no existing completed workout sessions or exercises.
+Expected: Error message will be output to the user, details will be shown in the terminal.
+3. Test case: ```data``` with an existing completed workout session.
+   Expected: Details of list of completed exercises along with the total number of exercises completed will show, details will be shown in the terminal.
+
+### ```delete NUMBER``` command
+1.Deletes a completed workout session according to the session number which the user specifies.
+
+2.Test case: ```delete 1``` with 2 existing completed workout sessions.
+Expected: Workout session 1 will be deleted, details will be shown in the terminal.
+3. Test case: ```delete -1``` with existing completed workout sessions.
+   Expected: Error message will be output to the user, details will be shown in the terminal.
+4. Test case: ```delete 10``` with only 5 existing completed workout sessions. Expected:
+   message will be output to the user, details will be shown in the terminal.
+4. Test case: ```delete ``` with existing completed workout sessions.
+   Expected: Error message will be output to the user, details will be shown in the terminal.
+
+### ```search KEYWORD``` command
+1. Finds exercises from the user's list of completed exercises
+   which names contain the input keyword. The found exercises contain additional details
+   such as id number, difficulty level, workout type as well as the description of the exercise.
+2. Test case: ```search calf ``` with existing workout sessions having exercises with keyword 'calf' in it.
+   Expected: All exercises within the user's completed list of exercises containing "calf" will appear. Details will be shown in the terminal.
+3. Test case: ```search calf ``` with existing workout sessions having no exercises with keyword 'calf' in it.
+   Expected: Error message will be output stating no matching exercises found.
+
+### ```plans``` command
+1.Displays all workout plans which have been created by the user.
+2. Test case: ```plans ``` with no existing plans created.
+Expected: Outputs an empty plan in the terminal to the user.
+3. Test case: ```plans``` with existing plans created.
+Expected: Outputs the existing plans in the terminal to the user.

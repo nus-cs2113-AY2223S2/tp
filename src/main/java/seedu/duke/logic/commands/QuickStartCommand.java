@@ -3,6 +3,7 @@ package seedu.duke.logic.commands;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.userplan.UserPlan;
 
@@ -13,15 +14,13 @@ public class QuickStartCommand extends Command {
     public QuickStartCommand (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                               ExerciseStateHandler exerciseStateHandler) throws DukeError {
         if (userCommands.length != 3) {
-            System.out.println("invalid quick start command");
-            return;
+            throw new DukeError(ErrorMessages.ERROR_INVALID_QUICK_START.toString());
         }
         String planName = userCommands[1];
         UserPlan.getPlan();
-        ArrayList<String> exercisePlans = (ArrayList<String>) UserPlan.getExercisePlan(planName);
+        ArrayList<String> exercisePlans = UserPlan.getExercisePlan(planName);
         if (exercisePlans == null) {
-            System.out.println("no such plan");
-            return;
+            throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN.toString());
         } else {
             System.out.println("Generating workout for: \n" + planName);
             System.out.println();
@@ -44,9 +43,7 @@ public class QuickStartCommand extends Command {
 
     @Override
     //test
-    /*public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
 
-    }*/
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
 
     }

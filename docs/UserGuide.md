@@ -106,7 +106,7 @@ The filters are shown here:
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
 | [gym]    | exercises that can be done with gym equipment |
-| [static] | exercises that only require your body         |
+| [static] | exercises that do not require gym equipment   |
 | [easy]   | exercises of low intensity                    |
 | [medium] | exercises of medium intensity                 |
 | [hard]   | exercises of hard intensity                   |
@@ -246,18 +246,19 @@ in the *Workout Session's* feature guide below.
 ## IPPT Calculator and session: ```ippt AGE RUNTIME PUSHUPS SITUPS```
 
 **DISCLAIMER** This feature is accurate only for males in SAF (excluding special forces i.e. commandos and guards)
+Current scoring data does not apply for female personnel.
 
 Adds an IPPT exercise session and also takes in the input of the user's timing/repetitions for the exercises.
 It returns the total points obtained by the user from the set of exercises.
 The user can view his history(via ```history``` command) to see the breakdown of the points too.
 
-* ```AGE``` should be an integer ranging 16-60
-* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
-* ```PUSHUPS``` Integer number of pushups in 1 minute
-* ```SITUPS``` Integer number of situps in 1 minute
+* ```AGE``` should be a positive integer ranging from 16 to 60 years old.(We do not have scoring data for ages beyond 60 and under 16 years old)
+* ```Runtime``` in format of ```mm:ss``` where mm is minute (positive integer) and ss is seconds (positive integer)
+* ```PUSHUPS``` Positive Integer of pushup repetitions in 1 minute (0 to 60(the max possible points that can be obtained)
+* ```SITUPS```  Positive Integer of situps repetitions in 1 minute (0 to 60(the max possible points that can be obtained))
 
-For example, person is 23 years old, with 2.4 run time of 10 minutes and 10 seconds.
-Completed 30 pushups and 30 situps, the input would be:
+For example, person is 23 years old, with his 2.4km run time of 10 minutes and 10 seconds.
+He has also completed 30 pushups and 30 situps, thus the input would be:
 
 Example of input: ```ippt 23 10:10 30 30```
 Output:
@@ -330,7 +331,7 @@ To begin, lie down on the floor or an exercise mat with your back pressed agains
 ```
 
 Typing the input ```current``` would correspond to the following output, which just lists out the current workout's details:
-````agsl
+````
 Exercise ID: 0. 
 Name: 3/4 Sit-Up
 Difficulty Level: easy
@@ -639,18 +640,9 @@ delete monday Home_Leg_Day
 ===>Planner Mode<===
 ```
 
-# Within your fitness planner
+## Viewing plans ```plans```
 
-<div class="alert alert-info">
-
-**Click **[here](UG_features/planner.md)** to learn more about using our planner feature.
-
-</div>
-
-
-## Viewing plans: ```plans```
-
-Displays all workout plans which have been created by the user.
+Displays all workout plans created by the user from Monday to Sunday. (Also usable within planner)
 
 ```
 YOUR WORKOUT PLAN:
@@ -679,7 +671,83 @@ SUNDAY
 ________________________________________
 ```
 
-Example Command: ```plans```
+Format: ```plans```
+
+# Within your fitness planner
+
+<div class="alert alert-info">
+
+## About
+
+Our planner feature is designed to help you plan your weekly workout schedule in order to achieve your workout goals.
+
+## Commands
+
+
+
+### Adding a plan ```add DAY PLAN_NAME ARGUMENT... ```
+
+Creates a new workout plan using existing filters specified by the user, for a specific day of the week.
+
+Format: ```add monday home_legs_day easy static legs```
+```
+===>Planner Mode<===
+add monday home_legs_day easy static legs
+[home_legs_day] added to MONDAY
+
+===>Planner Mode<===
+```
+
+### Deleting a plan ```delete```
+
+Deletes an existing workout plan on a specified day of the week.
+
+Format: ```delete monday home_legs_day```
+```
+===>Planner Mode<===
+delete monday home_legs_day
+[home_legs_day] deleted from MONDAY
+
+===>Planner Mode<===
+```
+
+### Exiting the planner ```exit```
+
+Exits the workout planner and returns to main program.
+
+Format: ```exit```
+```
+===>Planner Mode<===
+exit
+Exited planner editor!
+________________________________________
+```
+### Viewing help ```help ```
+
+Shows a list of commands that the user can input while in the workout planner feature
+
+Format: ```help```
+```
+===>Planner Mode<===
+help
+These are some commands available: 
+[add]
+	Create a new plan on a day of the week: add monday plan_name FILTER1 FILTER2 ... x
+	FILTER stands for a specific requirement you want to include in your exercise
+[delete]
+	delete a plan on a day of the week: delete monday plan_name
+[plans]
+	Show all plans
+[filters]
+	View all available filters
+[exit]
+	Exit workout plan editor
+
+===>Planner Mode<===
+```
+
+</div>
+
 
 
 ## Generating a list of planned exercises: ```quick PLAN_NAME NUMBER```
@@ -771,9 +839,22 @@ tampered with, the data will not be loaded in, and the achievement will not be l
 if a specific line of data is corrupt, that specific achievement is not loaded, but the rest will work.)
 
 # FAQ
+**Q**: I am facing trouble starting the application. Do you know what might be the issue?
+
+**A**: Please ensure that you have Java 11 and above installed on your machine. You may find more instructions at the 
+[Getting Started](#getting-started) section.
+
 **Q**: Can I add my own workouts to the program?
 
-**A**: This is a very intuitive feature, but we have not implemented it yet.
+**A**: Our ```planner``` feature has made it possible to create your own customised workout plans, which can be carried 
+out through the ```quick``` feature, allowing users to pre-set their desired type of exercises on different days of the
+week.
+
+**Q**: I am a developer. How can I find the source code and contribute to FitnessDuke?
+
+**A**: FitnessDuke is an open-source application, and we welcome developers to share their ideas.
+
+> You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W13-2/tp).
 
 # Command Summary
 
