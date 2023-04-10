@@ -15,28 +15,24 @@ Our app will help users through the process of cooking their favourite dishes st
 
 ### Enhancements Implemented to Taste of Mom's
 * **Saving Recipe List**<br>
-Implemented the logic to save recipes in recipe list automatically after changes are made to the recipe list.
+Implemented the methods and functions to save recipes in recipe list automatically after changes are made to the recipe list.
 The app saves recipes in the `/data` directory as individual `.txt` files.
 <br>
 This is one of the basic features of the application.
 * **Loading Saved Data**<br>
-Implemented the logic to load recipes saved from previous sessions.
+Implemented the methods and functions to load recipes saved from previous sessions.
 The app scans the `/data` directory for `.txt` files, 
 and reads files individually to generate stored recipes.
 <br>
 This is one of the basic features of the application.
 * **Searching Recipe List by Name**<br>
-`findname`<br>
-Implemented the command and methods to search the recipe list for items with names that contain the searched term.
+Implemented the methods and functions behind the command to search the recipe list for items with names that contain the searched term.
 * **Searching Recipe List by Tag**<br>
-`findtag`<br>
-Implemented the command and methods to search the recipe list for items with tags that contain the searched term.
+Implemented the methods and functions behind the command to search the recipe list for items with tags that contain the searched term.
 * **Adding an Element to Recipe**<br>
-`addtorecipe`<br>
 Implemented the command and logic to add step and ingredients to an existing recipe on the recipe list.
 * **Deleting an Element from Recipe**<br>
-`deletefromrecipe`<br>
-  Implemented the command and logic to delete step and ingredients to an existing recipe on the recipe list.
+Implemented the methods and functions behind the command to delete step and ingredients to an existing recipe on the recipe list.
 
 ### Contributions to UG
 Added user documentation to explain how to use the following commands:
