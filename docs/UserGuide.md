@@ -53,8 +53,8 @@ Adds an expenditure to the record
 Format: `EXPENDITURE_CATEGORY d/DATE a/AMOUNT p/DESCRIPTION`
 
 | Parameter              | Description                                                                                                                            |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `EXPENDITURE_CATEGORY` | The type of transaction. There are 7 types, `Academic`, `Accomodation`, `Entertainment` , `Food` , `Transport` , `Tuition` and `Other` |     |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `EXPENDITURE_CATEGORY` | The type of transaction. There are 7 types, `Academic`, `Accomodation`, `Entertainment` , `Food` , `Transport` , `Tuition` and `Other` |
 | `AMOUNT`               | The amount of the transaction. It is a positive whole number ranging from 1 to 10000000 (Ten Million).                                 |
 | `DATE`                 | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02                                          |
 | `DESCRIPTION`          | More information regarding the transaction. Special symbols and length are not restricted.                                             |
@@ -113,8 +113,8 @@ Adds a lending or borrowing transaction to the record
 Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 | Parameter     | Description                                                                                             |
-| ------------- | ------------------------------------------------------------------------------------------------------- | --- |
-| `CATEGORY`    | The category of record of `lend` or `borrow`. It should either be `lend` or `borrow`.                   |     |
+| ------------- | ------------------------------------------------------------------------------------------------------- |
+| `CATEGORY`    | The category of record of `lend` or `borrow`. It should either be `lend` or `borrow`.                   |
 | `DATE`        | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02.          |
 | `NAME`        | The name of the other party involved in the transaction. Input name should not have a slash.            |
 | `AMOUNT`      | The amount of the transaction. It can a positive whole number ranging from 1 to 10000000 (Ten Million). |
@@ -125,7 +125,7 @@ Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 - All parameters must be present in this command.
 - All parameters must not be empty.
-  - The input date format must be in yyyy-MM-DD format.
+- The input date format must be in yyyy-MM-DD format.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 - Our application does not support input names with a slash '/'.
 
@@ -320,8 +320,8 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 | `FILTER`<br/> [optional] | A filter that allows the user to compare budget with a certain category or time period. |
 
 | Filter types     | Description                                                                                                                                                         |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| Year             | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |     |
+|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Year             | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |
 | Day              | `d/YEAR-MONTH-DAY` filters the check to only compare budget with expenditures made on that specific day in that specific month and year.                            |
 | Expenditure type | `t/EXPENDITURE_TYPE` filters the check to only compare budget with expenditures made under that expenditure type. This does not include categories lent and borrow. |
 

@@ -4,31 +4,55 @@
     <img src="team/images/MyLedger.jpeg" width="30%">
 </p>
 
-- [1. Preface](#1-preface)
-- [2. Acknowledgements](#2-acknowledgements)
-- [3. Design & implementation](#3-design--implementation)
-  * [3.1. Architecture](#31-architecture)
-  * [3.2. Parser Component](#32-parser)
-  * [3.3. Expenditures Component](#33-expenditure-categories)
-    * [3.3.1. Repeat dates for Accommodation and Tuition Expenditures](#331-repeat-dates-for-accommodation-and-tuition-expenditures)
-  * [3.4 Command Component](#34-command-component)
-  * [3.5. Storage Component](#35-storage)
-    * [3.5.1. Saving expenditures after each command](#351-saving-expenditures-after-each-input)
-    * [3.5.2. Loading the expenditure list from the save file on application launch](#352-loading-the-expenditure-list-from-the-save-file-on-application-launch)
-    * [3.5.3. Corruption of saved expenditures](#353-corruption-of-saved-expenditures) 
-  * [3.6. UI Component](#36-ui)
-- [4. Command List](#4-command-list)
-  * [4.1. Add a transaction](#41-Add-Expenditure-Command)
-    * [4.1.1. Add regular and lump sum expenditure valud inputs](#411-add-regular-and-lump-sum-expenditure-valid-inputs)
-    * [4.1.2. Add lend borrow expenditure valid inputs](#412-add-lend-borrow-expenditure-valid-inputs)
-  * [4.2. Edit a transaction](#42-Edit-Command)
-  * [4.3. Delete a transaction](#43-Delete-Command)
-  * [4.4. Find transactions](#44-Find-Command)
-  * [4.5. Duplicate a transaction](#45-Duplicate-Command)
-  * [4.6. Sort transactions](#46-Sort-Command)
-  * [4.7. View Command](#47-View-Command)
-  * [4.8. Set a budget](#48-Set-Budget-Command)
-  * [4.9. Show Currency Rates](#49-Show-Rates-Command)
+<!-- TOC -->
+* [MyLedger - Developer Guide](#myledger---developer-guide)
+  * [1. Preface](#1-preface)
+  * [2. Acknowledgements](#2-acknowledgements)
+  * [3. Design & implementation](#3-design--implementation)
+    * [3.1. Architecture](#31-architecture)
+    * [Main Components of MyLedger](#main-components-of-myledger)
+    * [3.2. Parser](#32-parser)
+      * [Processing an input](#processing-an-input)
+    * [3.3. Expenditure Categories](#33-expenditure-categories)
+      * [3.3.1 Repeat dates for Accommodation and Tuition Expenditures](#331-repeat-dates-for-accommodation-and-tuition-expenditures)
+    * [3.4. Command Component](#34-command-component)
+    * [3.5. Storage](#35-storage)
+      * [3.5.1 Saving expenditures after each input](#351-saving-expenditures-after-each-input)
+      * [3.5.2 Loading the expenditure list from the save file on application launch](#352-loading-the-expenditure-list-from-the-save-file-on-application-launch)
+      * [3.5.3 Corruption of saved expenditures](#353-corruption-of-saved-expenditures)
+  * [4. Command List](#4-command-list)
+    * [4.1. Add Expenditure Command](#41-add-expenditure-command)
+      * [4.1.1 Add regular and lump sum expenditure valid inputs](#411-add-regular-and-lump-sum-expenditure-valid-inputs)
+      * [4.1.2 Add lend borrow expenditure valid inputs](#412-add-lend-borrow-expenditure-valid-inputs)
+    * [4.2. Edit Command](#42-edit-command)
+    * [4.3. Delete Command](#43-delete-command)
+    * [4.4. Find Command](#44-find-command)
+    * [4.5. Duplicate Command](#45-duplicate-command)
+    * [4.6. Sort Command](#46-sort-command)
+    * [4.7. View Command](#47-view-command)
+    * [4.8. Set Budget Command](#48-set-budget-command)
+    * [4.9. Check Command](#49-check-command)
+    * [4.10. Show Rates Command](#410-show-rates-command)
+    * [4.11. Mark/Unmark Command](#411-markunmark-command)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+      * [Initial Launch](#initial-launch)
+      * [Adding a record](#adding-a-record)
+      * [Displaying the list of inputs and conversion rates](#displaying-the-list-of-inputs-and-conversion-rates)
+      * [Deleting an expenditure](#deleting-an-expenditure)
+      * [Editing an expenditure](#editing-an-expenditure)
+      * [Duplicate an expenditure](#duplicate-an-expenditure)
+      * [Sorting the list](#sorting-the-list)
+      * [Set budget](#set-budget)
+      * [Check budget](#check-budget)
+      * [Mark/Unmark accommodation or tuition expenditures](#markunmark-accommodation-or-tuition-expenditures)
+      * [Find keyword](#find-keyword)
+<!-- TOC -->
 
 <div style="page-break-after: always;"></div>
 
@@ -240,19 +264,17 @@ Below shows the sequence diagram for the reading of the save file upon launch.
 
 Expenditures in the saved file are deemed as corrupted when one of the following conditions are met:
 
-| Condition     | Justification                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| i. Missing delimiters or inputs that are not able to be parsed      | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.      |
-| ii. Invalid amounts  | As described in the next section [4.1.1](#411-add-regular-and-lump-sum-expenditure-valid-inputs), invalid amount inputs are deemed corrupted as MyLedger does not support them.             |
-| iii. Invalid dates for Lend and Borrow Expenditures  | As described in the next section [4.1](#41-add-expenditure-command), deadlines cannot occur before the date of expenditure and current date, and hence is abided when reading the save file.                    |
-| iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates  | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed.                   |
+| Condition                                                                                                        | Justification                                                                                                                                                                                         |
+|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| i. Missing delimiters or inputs that are not able to be parsed                                                   | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.                                                           |
+| ii. Invalid amounts                                                                                              | As described in the next section [4.1.1](#411-add-regular-and-lump-sum-expenditure-valid-inputs), invalid amount inputs are deemed corrupted as MyLedger does not support them.                       |
+| iii. Invalid dates for Lend and Borrow Expenditures                                                              | As described in the next section [4.1](#41-add-expenditure-command), deadlines cannot occur before the date of expenditure and current date, and hence is abided when reading the save file.          |
+| iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed. |
 
 **Note of iv:**
 - `repeatDate`, as all other dates, is stored in `yyyy-MM-DD` format.
 - Corruption for the year segment is **not** deemed as a corruption, as MyLedger's repeating date feature   will automatically set it forward to the correct year it is supposed to repeat on. 
 - Corruption for the day and month implies the difference between the first user-initialised date and repeat dates. Thus, **is** deemed as a corruption.
-
-### 3.6. UI 
 
 ## 4. Command List
 
