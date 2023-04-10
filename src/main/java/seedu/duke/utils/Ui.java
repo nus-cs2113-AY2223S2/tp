@@ -145,7 +145,7 @@ public class Ui {
     private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" ";
 
     private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
-            " for the correct alert parameters." + "Sample Format: \n To add alert: " +
+            " for the correct alert parameters." + "\nSample Format: \n To add alert: " +
             "\"alert add upc/[UPC] min/[integer]\"" +
             " OR " +
             "\"alert add upc/[UPC] max/[integer]\"" +
