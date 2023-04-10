@@ -47,8 +47,9 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
 2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
 3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
-4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
-5. Enlarge to fullscreen mode.
+4. Enlarge to fullscreen mode. 
+5. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
+
 
 ---
 ## 3 Features Overview

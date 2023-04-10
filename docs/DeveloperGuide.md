@@ -613,7 +613,6 @@ over surfing the web for information on the student exchange program.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
 
 The Student Exchange Programme can be overwhelming due to the number of Partner Universities available, 
 each offering different module combinations, 
@@ -634,19 +633,21 @@ Korea in the following areas.
 
 ## User Stories
 
-| Version | As a ...                                 | I want to ...                                          | So that I can ...                                             |
-|---------|------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
-| v1.0    | mech eng student who is going for SEP    | access the list of pre-mapped modules                  | make better choices on which modules to map                   |
-| v1.0    | mech eng student who is going for SEP    | add the modules that I want to map into a list         |                                                               |
-| v1.0    | mech eng student who is going for SEP    | look up for the PU’s information                       | better planning of SEP                                        |
-| v1.0    | mech eng student who is going for SEP    | delete module mapping plans to change my schedule      | as I receive feedbacks from my academic advisor along the way |
-| v1.0    | mech eng student who is going for SEP    |                                                        |                                                               |
-|         |                                          |                                                        |                                                               |
-| v2.0    | forgetful mech eng student going for SEP | set and view important deadlines                       | not miss anything that would impact my SEP process            |
-| v2.0    | forgetful mech eng student going for SEP | be able to get notifications for urgent submissions    | not miss any important submissions for SEP                    |
-| v2.0    | SEP student                              | plan what areas I will be spending on in the SEP trip  | understand how much money I have for leisure                  |
-| v2.0    | SEP student                              | see the total cost I would be spending on the SEP trip | save enough money to go on the trip                           |
-| v2.0    | user                                     | find a to-do item by name                              | locate a to-do without having to go through the entire list   |
+| Version | As a ...                                           | I want to ...                                                    | So that I can ...                                         |
+|---------|----------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------|
+| v1.0    | Mechanical Engineering student who is going for SEP | access the list of pre-mapped modules                            | make better choices on which modules to map               |
+| v1.0    | Mechanical Engineering student who is going for SEP | add the modules that I want to map into a list                   | keep track of my choices/options                          |
+| v1.0    | Mechanical Engineering student who is going for SEP | look up for the PU’s information                                 | better planning of SEP                                    |
+| v1.0    | Mechanical Engineering student who is going for SEP | delete module mapping plans to change my schedule                | as I receive feedbacks from my academic advisor along the way |
+| v1.0    | Mechanical Engineering student who is going for SEP |                                                                  |                                                           |
+| v2.0    | Mechanical Engineering student who is going for SEP     | keep a separate list of  modules I am interested in for each PUs | compare modules between different PUs                     |
+| v2.0    | Mechanical Engineering student who is going for SEP  | search mappable NUS modules by their NUS module code             | see which NUS modules I can map                           |
+|         |                                                    |                                                  |                                                           |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | set and view important deadlines                                 | not miss anything that would impact my SEP process        |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | be able to get notifications for urgent submissions              | not miss any important submissions for SEP                |
+| v2.0    | SEP student                                        | plan what areas I will be spending on in the SEP trip            | understand how much money I have for leisure              |
+| v2.0    | SEP student                                        | see the total cost I would be spending on the SEP trip           | save enough money to go on the trip                       |
+| v2.0    | user                                               | find a to-do item by name                                        | locate a to-do without having to go through the entire list |
 
 ## Non-Functional Requirements
 
@@ -661,8 +662,66 @@ Korea in the following areas.
 * *CLI* - Command-Line interface is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
 * *NUS* - National University of Singapore
 * *PU* - Partner University is the university that NUS is working with for Student Exchange Programmes.
-
+* *SEP* - Student Exchange Programme
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+**Setting up SEP Helper**
+
+Follow Quick Start Instructions in User Guide. 
+
+1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
+   https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
+2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
+4. Enlarge to fullscreen mode.
+
+**Overview of Manual Testing**
+
+There are 3 main features to be tested in "SEP Helper" programme, which are
+1. Module Mapping features
+2. Budget features
+3. Deadline features
+
+Manual Testing instructions are split into these 3 different sections.
+
+
+**1. Testing of Module Mapping Features**
+
+Start off with the command `/list pu`. 
+This function lists out the Partner Universities and their name abbreviations which will be utilized in a lot of 
+other commands.
+
+There are 3 essential commands to our SEP Helper Programme which are
+
+Essential Commands: 
+1. /LIST [PU ABBRV]
+2. /LIST CURRENT [PU ABBRV]
+3. /ADD [PU ABBRV]/[INDEX]  
+4. /REMOVE [PU ABBRV]/[INDEX] 
+
+Example of Test case:
+
+`/list ku` -> `/add ku/1` -> `/add ku/2` -> `/list current ku` -> `/remove ku/1` -> `/list current ku`
+
+Other features and aid in module mapping are
+
+1. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /MC [MC]
+2. /LIST [PU ABBREVIATION/PU INDEX] /FILTER /NAME [NAME]
+3. /SEARCH /MODS  
+4. /SEARCH [NUS MOD CODE]
+
+Example of Test cases:
+
+1. `/list POSTECH` -> `/list POSTECH /filter /mc 0`
+2. `/list SNU` -> `/list SNU /filter /name Intro`
+3. `/search /mods`
+4. `/search ME3122`
+
+
+**2. Testing of Budget Features**
+
+
+**3. Testing of Deadline Features**
