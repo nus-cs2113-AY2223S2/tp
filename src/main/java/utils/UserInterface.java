@@ -118,14 +118,13 @@ public class UserInterface {
     public void printTags(TagList tagList) {
         if (tagList.isEmpty()) {
             System.out.println("\tThere is no tag.");
-            System.out.println("\tThere is no tag.");
         } else {
             System.out.println("\tHere are your tags:");
             for (int i = 0; i < tagList.size(); ++i) {
                 System.out.println("\t" + (i + 1) + ".\t" + tagList.get(i));
             }
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public void printDeckList(DeckList deckList) {

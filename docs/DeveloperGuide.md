@@ -67,6 +67,8 @@ The following diagram describes the architecture of Inka:
 
 API: `UserInterface.java`
 
+The `UserInterface` is a simple class that handles interactions with the user, such as getting input to be passed to the parser, or formatting output (e.g., custom messages and conversion of custom objects like `CardList` to string representations). 
+
 ### Parser Component
 
 API: `Parser.java`
