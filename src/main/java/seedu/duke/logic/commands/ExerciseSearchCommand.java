@@ -39,21 +39,23 @@ public class ExerciseSearchCommand extends Command {
      * @param ui Prints out the respective exercises for a given keyword
      * @param exerciseGenerator Generates Exercise List with the relevant keyword
      */
-    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
+    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercisesList = new GenerateExercise().generateSetAll();
+        ArrayList<String> matchingList = new ArrayList<>();
         assert exercisesList != null : "exercisesList should not be null.";
         int index = 1;
 
-        System.out.println("Here are the exercises matching your keyword:");
         for (ExerciseData exercise : exercisesList) {
             if (exercise.getName().toLowerCase().contains(userQuery) || exercise.getName().contains(userQuery)) {
-                System.out.println(index + "." + exercise.getName());
-                index++;
+                matchingList.add(exercise.getName());
             }
         }
-        if (index == 1) {
-            System.out.println("There are no exercises found matching your keyword!");
+        for (String exName : matchingList){
+            System.out.println(index + "." + exName);
+            index++;
+        }
+        if (matchingList.isEmpty()){
+            throw new DukeError(ErrorMessages.ERROR_NO_MATCHING_KEYWORD.toString());
         }
     }
-
 }

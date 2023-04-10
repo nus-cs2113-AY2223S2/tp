@@ -54,7 +54,6 @@ public class Ui {
         System.out.println(System.lineSeparator() + "===>Workout Mode<===");
     }
 
-    //public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory) {
     public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory,
                                           int overallCount, int uniqueCount) {
         PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory,
