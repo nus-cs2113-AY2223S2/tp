@@ -15,7 +15,7 @@ activate ":Storage"
     ":EventListAdapter" --> ":EventListStorage" : String
     deactivate ":EventListAdapter"
     opt File does not exist
-        ":EventListStorage" -> ":File" : <<create>>
+        ":EventListStorage" -> ":File" : new File()
         activate ":File"
         ":File" --> ":EventListStorage"
         deactivate ":File"
