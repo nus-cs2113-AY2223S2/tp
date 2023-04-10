@@ -29,17 +29,19 @@ operation through the Command-Line Interface(CLI).
 - Improved feature: Duplication checker for each field
     - Enhancement: The Duplication checker now checks each field to make sure that the company name, contact email, or
       contact email are not the same for any 2 entries in the `CompanyList` arraylist. If such a scenario exists, the
-      program will inform the user of the duplication error.
+      program will inform the user of the duplication error. ([#125](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/125))
 - Improved feature: Formatting for input fields
     - Enhancement: For the `add` feature, the fields that are filled in by the user get formatted before being passed as
       parameters to be added into the `CompanyList` arraylist. The formatting includes capitalisation and removing
-      trailing and leading whitespaces.
-- Test feature: 
+      trailing and leading whitespaces. ([#37](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/37))
+- Improved feature: Tests for `CompanyList` methods
+  - Enhancement: Wrote additional tests for `CompanyList` to increase coverage ([#136](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/136))
 
 ### Documentation
 
 - UG contribution
     - Added documentation for `help` command
+    - Resolved PE-D bugs ([#124](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/124))
 
 - DG contribution
     - Added documentation for `Ui`
@@ -52,5 +54,5 @@ operation through the Command-Line Interface(CLI).
 
 ### Contributions to team-based tasks
 - Created milestones for each release
-- Reviewed and merged PRs
+- Reviewed PRs (with non-trivial comments): [#17](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/17), [#20](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/20), [#35](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/35)
 
