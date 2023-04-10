@@ -106,7 +106,7 @@ public class ModuleStorage implements DatabaseInterface {
     }
 
     /**
-     * Reads module information from the txt file line by line and adding it into the module list
+     * Reads module information from the txt file line by line and adding it into the module list.
      *
      * @param modulesFilePath is the moduleFilePath to read data from.
      * @param modules         is the ArrayList of modules to add the txt file module data into.

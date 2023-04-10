@@ -54,5 +54,7 @@ deactivate ":ModuleStorage"
 ":ModuleStorage" --> ":Duke"
 deactivate ":ModuleStorage"
 
+deactivate ":Duke"
+
 
 @enduml

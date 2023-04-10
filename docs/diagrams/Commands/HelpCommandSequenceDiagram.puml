@@ -8,4 +8,8 @@ activate "<<class>>\nui:UI"
 
 "<<class>>\nui:UI" -> UserConsole : Print Help Message
 "<<class>>\nui:UI" <-- UserConsole
+
+deactivate "<<class>>\nui:UI"
+
+deactivate ":HelpModuleCommand"
 @enduml
