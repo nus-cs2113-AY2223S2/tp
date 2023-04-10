@@ -14,7 +14,8 @@ import seedu.mealcompanion.recipe.IngredientMetadata;
  */
 public class AddCommand extends ExecutableCommand {
 
-    private static final int MAX_INGREDIENTS = 10000;
+    public static final int MAX_INGREDIENTS = 10000;
+    public static final int MIN_INGREDIENTS = 0;
     IngredientMetadata ingredient;
     int amount;
 
@@ -61,7 +62,6 @@ public class AddCommand extends ExecutableCommand {
         mealCompanionSession.getIngredientStorage().writeIngredientToFile(ingredient);
     }
 
-
     /**
      * Add an ingredient of specified quantity to ingredients list.
      *
@@ -69,7 +69,7 @@ public class AddCommand extends ExecutableCommand {
      */
 
     public void execute(MealCompanionSession mealCompanionSession) throws CommandRunException {
-        if (amount <= 0 || amount > MAX_INGREDIENTS) {
+        if (amount <= MIN_INGREDIENTS || amount > MAX_INGREDIENTS) {
             throw new CommandRunException("OOPS, quantity provided must be greater than 0 and not exceed 10000");
         }
         int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(ingredient.getName());
