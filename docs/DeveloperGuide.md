@@ -106,7 +106,8 @@ How the `Parser` component works:
 1. When the `BrokeMan` class calls the `Parser` class to execute a command using the `parseCommand` method. 
 2. The `parseCommand` method uses `UserInput` class to split the user input in two, command input and description of command.
 3. Depending on the command input, the `parseCommand` method will call its respective `prepareXCommand` (i.e, `prepareDeleteExpenseCommand`).
-4. The `prepareXCommand` will then return the respective Command object (i.e, `deleteExpenseCommand`) back to the `parseCommand` method and then to the `BrokeMan` class.
+4. Whenever invalid inputs are given by the user, parser will throw appropriate exceptions, where it will catch itself and return a `InvalidCommand`.
+5. The `prepareXCommand` will then return the respective Command object (i.e, `deleteExpenseCommand`) back to the `parseCommand` method and then to the `BrokeMan` class.
 
 [back to contents](#table-of-contents)
 
@@ -216,7 +217,7 @@ to maximize code reusability and increase maintainability.
 
 **Methods**
 
-Getters can be used to provide the private attributes to other classes
+The entry class implements getters for its attributes, as other classes may need to access information of the entry (ex. getTime())
 
 editDescription(), editAmount(), editTime(), editCategory()
 
@@ -294,7 +295,7 @@ listExpense() / listIncome()
 ### Budget
 
 The Budget class represents the user’s monthly budget. The class utilize class-level hashmaps to represent the monthly
-budget, using outer key year and inner key month. It provides a method to set and view budget for different months.
+budget, using outer key year and inner key month. It provides a methods setBudget and viewBudget to set and view budget for different months.
 
 It makes use of a static HashMap<Integer, HashMap<Month, Double>> to keep track of monthly budget. If the user tries to
 access budget using keys that are not entered in the HashMap, it will return a warning mentioning that the inquired
