@@ -13,10 +13,10 @@ public class LendExpenditureCommand extends Command {
     private final LocalDate lendExpenditureDate;
     private final LocalDate lendDeadline;
 
-    public LendExpenditureCommand(String description, String borrowerName, double value, LocalDate date,
+    public LendExpenditureCommand(String description, String lenderName, double value, LocalDate date,
                                   LocalDate borrowDeadline) {
         this.lendExpenditureDescription = description;
-        this.lendExpenditureName = borrowerName;
+        this.lendExpenditureName = lenderName;
         this.lendExpenditureValue = value;
         this.lendExpenditureDate = date;
         this.lendDeadline = borrowDeadline;
