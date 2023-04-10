@@ -19,6 +19,8 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
        - [List Current PU Command](#list-current-pu-command)
        - [List PU Command](#list-pu-command)
        - [List PU Modules Command](#list-pu-modules-command)
+       - [List Found NUS Modules Command](#list-found-nus-mods-command)
+       - [List Mappable NUS Modules Command](#list-mappable-nus-mods-command)
        - [Add Module Command](#add-module-command)
        - [Delete Module Command](#delete-module-command)
     7. [Deadline Commands](#deadline-commands)
@@ -705,21 +707,20 @@ Korea in the following areas.
 
 ## User Stories
 
-| Version | As a ...                                           | I want to ...                                                    | So that I can ...                                         |
-|---------|----------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------|
-| v1.0    | Mechanical Engineering student who is going for SEP | access the list of pre-mapped modules                            | make better choices on which modules to map               |
-| v1.0    | Mechanical Engineering student who is going for SEP | add the modules that I want to map into a list                   | keep track of my choices/options                          |
-| v1.0    | Mechanical Engineering student who is going for SEP | look up for the PU’s information                                 | better planning of SEP                                    |
-| v1.0    | Mechanical Engineering student who is going for SEP | delete module mapping plans to change my schedule                | as I receive feedbacks from my academic advisor along the way |
-| v1.0    | Mechanical Engineering student who is going for SEP |                                                                  |                                                           |
-| v2.0    | Mechanical Engineering student who is going for SEP     | keep a separate list of  modules I am interested in for each PUs | compare modules between different PUs                     |
-| v2.0    | Mechanical Engineering student who is going for SEP  | search mappable NUS modules by their NUS module code             | see which NUS modules I can map                           |
-|         |                                                    |                                                  |                                                           |
-| v2.0    | forgetful Mechanical Engineering student going for SEP | set and view important deadlines                                 | not miss anything that would impact my SEP process        |
-| v2.0    | forgetful Mechanical Engineering student going for SEP | be able to get notifications for urgent submissions              | not miss any important submissions for SEP                |
-| v2.0    | SEP student                                        | plan what areas I will be spending on in the SEP trip            | understand how much money I have for leisure              |
-| v2.0    | SEP student                                        | see the total cost I would be spending on the SEP trip           | save enough money to go on the trip                       |
-| v2.0    | user                                               | find a to-do item by name                                        | locate a to-do without having to go through the entire list |
+| Version | As a ...                                               | I want to ...                                                    | So that I can ...                                                 |
+|---------|--------------------------------------------------------|------------------------------------------------------------------|-------------------------------------------------------------------|
+| v1.0    | Mechanical Engineering student who is going for SEP    | access the list of pre-mapped modules                            | make better choices on which modules to map                       |
+| v1.0    | Mechanical Engineering student who is going for SEP    | add the modules that I want to map into a list                   | keep track of my choices/options                                  |
+| v1.0    | Mechanical Engineering student who is going for SEP    | look up for the PU’s information                                 | better planning of SEP                                            |
+| v1.0    | Mechanical Engineering student who is going for SEP    | delete module mapping plans to change my schedule                | as I receive feedbacks from my academic advisor along the way     |
+| v2.0    | Mechanical Engineering student who is going for SEP    | keep a separate list of  modules I am interested in for each PUs | compare modules between different PUs                             |
+| v2.0    | Mechanical Engineering student who is going for SEP    | search mappable PU modules by the NUS module code                | see the mappable PU modules according to the specific NUS modules |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | set and view important deadlines                                 | not miss anything that would impact my SEP process                |
+| v2.0    | forgetful Mechanical Engineering student going for SEP | be able to get notifications for urgent submissions              | not miss any important submissions for SEP                        |
+| v2.0    | SEP student                                            | plan what areas I will be spending on in the SEP trip            | understand how much money I have for leisure                      |
+| v2.0    | SEP student                                            | see the total cost I would be spending on the SEP trip           | save enough money to go on the trip                               |
+| v2.1    | SEP student                                            | see all the available NUS modules that can be mapped to PU modules | see which NUS modules I can map                                   |
+
 
 ## Non-Functional Requirements
 
@@ -746,7 +747,7 @@ Follow Quick Start Instructions in User Guide.
 
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
-2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+2. Download the latest version of `SEPHelper.jar` from [here](https://github.com/AY2223S2-CS2113-T12-3/tp/releases/tag/v2.1).
 3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
 4. Enlarge to fullscreen mode.
 
@@ -820,15 +821,22 @@ Essential Commands:
 Example of Test case:
 
 Step 1: `/deadline/list`
+
 Step 2: `/deadline/add task1 /by 01-01-2023`
+
 Step 3: `/deadline/add task2 /by 02-01-2023`
+
 Step 4: `/deadline/list`
+
 Step 5: `/deadline/remove 1`
+
 Step 6: `/deadline/list`
 
 Example : Todays date is 10-04-2023, you will receive a notification if the deadline is between
-10-04-2023 - 17/04-2023
+10-04-2023 to 17-04-2023
+
 Step 7: `/deadline/add task3 /by 15-04-2023`
+
 Step 8: reboot the application to see notification
 
 
