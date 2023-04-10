@@ -8,11 +8,11 @@ operation through the Command-Line Interface(CLI).
 ### Summary of Contributions
 
 - Contributions to the project: [Reposense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=wuzhzn&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
-- Added features: [New](#added-features)
-- Improved features: [Improved](#improved-features)
-- UG: [UG contributions](#ug-contribution)
-- DG: [DG contribution](#dg-contribution)
-- Team contribution: [Team contribution](#team-contribution)
+- Added features
+- Improved features
+- UG
+- DG
+- Team contribution
 
 #### Added features:
   - Venue, Storage, Parser, Event and Command classes
