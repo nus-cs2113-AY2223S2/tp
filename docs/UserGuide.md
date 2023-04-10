@@ -22,12 +22,13 @@ memorisation by using a technique called
 5. Type the command in the command box and press Enter to execute it. Some
    example commands you can try:
 
-   - `add /q what is the worst fruit? /a durian`: Add a flashcard with Question:
-     What is the worst fruit? and Answer: Durian to the list of flashcards.
+    - `add /q what is the worst fruit? /a durian`: Add a flashcard with
+      Question:
+      What is the worst fruit? and Answer: Durian to the list of flashcards.
 
-   - `review`: Go through the flashcards that are due today.
+    - `review`: Go through the flashcards that are due today.
 
-   - `bye`: Exit the app.
+    - `bye`: Exit the app.
 
 6. Refer to the Features below for details of each command.
 
@@ -48,8 +49,9 @@ add /q QUESTION /a ANSWER
   `QUESTION` and `ANSWER` must not include (`/`). (In some of the times, `/`
   might still work normally, that's just you being lucky.)
 
-  - We might fix this in a future version. A far, far future version that might
-    never come...
+    - We might fix this in a future version. A far, far future version that
+      might
+      never come...
 
 - `/q QUESTION` and `/a ANSWER` can be arranged in any order.
 
@@ -95,13 +97,16 @@ review
   can then type `y`/`n` to indicate that they remembered the answer correctly,
   or they couldn't remember the correct answer, respectively.
 
-  - If `y` is indicated, the card is then set to a new due date in the future.
-
-  - Otherwise, the card is pushed back to the today's queue for reviewing later,
-    until the user can get it correct. When the user has got it correct, the new
-    date is set to a future date according to a top-secret
-    [Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
-    schedule that you can try to figure out if you want to explore mysteries.
+    - If `y` is indicated, the card is then set to a new due date in the
+      future.When the user has got it correct, the new date is set to a future
+      date according to a top-secret
+      [Spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition)
+      schedule that you can try to figure out if you want to explore mysteries.
+    - If `n` is indicated, the card is pushed back to the today's queue for
+      reviewing later, until the user can get it correct.
+    - If a command other than `y` or `n` is indicated, it will be regarded as an
+      invalid command, and then the user will be prompted again to enter a valid
+      answer.
 
 - Then the review session continues with the next card in the queue.
 
