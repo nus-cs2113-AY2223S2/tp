@@ -149,6 +149,7 @@ The following conditions will cause an `IncorrectCommand` to be returned instead
 2. `QuantityPacked` less than 1 OR greater than 1,000,000 OR greater than the item's unpacked quantity 
 3. Item index not a positive integer at most the size of the Packing List
 
+
 This new command created (either `PackCommand` OR `IncorrectCommand`) will then be executed by `BagPacker()`.
 
 Execute Mechanism: ```PackCommand.execute()``` calls the ```PackCommand.getTargetItem()``` method to retrieve the target item to pack. 
@@ -180,6 +181,7 @@ Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to p
 
 Sequence Diagram of Successful `UnpackCommand.execute()`
 
+---
 
 #### Help Command
 Help command is used to display all the possible commands in the BagPacker application for the user.
@@ -221,7 +223,7 @@ All Commands:
 	Example: bye
 ____________________________________________________________
 ```
-
+---
 
 #### List Command
 
@@ -244,6 +246,7 @@ Here are the items in your list
 ____________________________________________________________
 ```
 
+---
 
 #### List Unpacked Command
 
@@ -287,37 +290,7 @@ ________________________________________________________________________________
 
 ```
 
-
-#### Pack Command
-`PackCommand` is used to increase the quantity packed of a certain item in the `packingList`.
-Mechanism: PackCommand.execute() calls packingList.packItem() with a certain `item` and `itemQuantity`, which then calls the `.setPacked()` method. This method will increase the `packedQuantity` of that specific item by `itemQuantity`.
-
-Example:
-```
-________________________________________________________________________________________________________________________
-add 3 /of jackets
-________________________________________________________________________________________________________________________
-New item added: [0/3] jackets
-________________________________________________________________________________________________________________________
-pack 2 /of 1
-________________________________________________________________________________________________________________________
-Item packed: [2/3] jackets
-________________________________________________________________________________________________________________________
-```
-
-In the case where the user tries to pack an item over its limit, i.e. have an item's `packedQuantity` > `totalQuantity`, there are checks put in place to prevent the command from going through.
-During `createPackObj`, `quantityNotPacked` is compared to `itemQuantity`. If `quantityNotPacked` < `itemQuantity`, an `IncorrectCommand` will be returned that prints an error message to the user about the invalid command.
-
-Example:
-```
-________________________________________________________________________________________________________________________
-pack 5 /of 1
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Error Invalid Item Quantity:
-Can only pack a positive quantity that is less than or equal to the unpacked quantity (Max integer supported is 1,000,000)
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-```
-
+---
 
 #### Find Command
 `FindCommand` is used to find all items containing the keyword(s) provided.
@@ -325,13 +298,14 @@ Can only pack a positive quantity that is less than or equal to the unpacked qua
 Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
 The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
 
+---
 
 #### DeleteList Command
 `DeleteListCommand` is used to delete all items inside `packingList`.
 
 Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
 
-
+---
 
 #### Bye Command
 `ByeCommand` is used to exit the BagPacker application.
@@ -340,12 +314,15 @@ Mechanism: `ByeCommand.execute()` updates the static boolean `isBagPackerRunning
 The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
 `isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
 
-
+---
 
 #### Incorrect Command
 
 `IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
 These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
+Depending on the error, `IncorrectCommand` will be constructed with an `errorType` and `helpMessage`.
+
+Mechanism: `IncorrectCommand.execute()` will print the relevant error message to the user by calling `Ui.errorMessage`.
 
 
 ---
@@ -413,7 +390,11 @@ Caught by:
 all createCommandObj methods except for commands without input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
 
 ---
-### iohandler package
+
+
+### IOHandler
+The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+while managing the storage and retrieval of the associated `item`s in the user's `packingList`.
 
 ### parser class
 The Parser class has 2 main functions:
@@ -470,14 +451,43 @@ The following show the respective create methods for each command. The `command`
 
 
 ---
-### packingfunc package
+#### Parser
+
 
 ---
-### Documentation, logging, testing, configuration, dev-ops
+#### Storage
+The `Storage` class consists of two main methods: `save()` and `load()`.
+The constructor of this class, which is called in `BagPacker`, will set the `file_path` of storage, which is default at "packingList.txt".
+
+`save()` calls the method `writeToFile`, which loops through the `packingList` to write every `item` to a file in the `file_path` using a `FileWriter`.
+
+Each `item` is written on a newline with a format using `.toString()`, which is `[PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`. 
+Example:
+```text
+[0/4] jackets
+[2/4] cats
+[0/3] toothbrush
+```
+
+`load()` is called at the start of `main()` in `BagPacker`.
+This method reads in the file in `file_path` and translates each line to construct an `item`. 
+
+This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses the overloaded constructor method in `Item` class to form an item. 
+
+Each `item` is returned to `load()` and added to the packingList.
 
 ---
+#### Ui
+
+
+
+---
+
+## Documentation, logging, testing, configuration, dev-ops
+
+
 ### Appendix: Requirements
-##### Product scope
+#### Product scope
 
 **Target user profile**
 * Has a need to pack items for travel purposes
@@ -513,13 +523,13 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 
 ---
 
-##### Non-Functional Requirements
+#### Non-Functional Requirements
 
 - be able to retrieve the user's packing list quickly and accurately
 - the quantity of each item to be packed should not be unreasonably large
 
 
-##### Glossary
+#### Glossary
 
 * *CLI* - Command Line Interface
 
