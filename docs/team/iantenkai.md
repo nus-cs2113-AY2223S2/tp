@@ -34,7 +34,6 @@ experience.
 - ***Value :***
   - Inka can now extract the relevant fields within the json to reconstruct the `CardList`, `TagList` and `DeckList` objects that store user data.
   - If `savedata.json` is found to be corrupted, the hidden `savedata_backup.json` is loaded instead, letting the programme be more reliable.
-  - 
 #### 3. Abstracted conversion with `MemoryToJson` and `JsonToMemory`
 
 - ***What it is :***
@@ -57,13 +56,13 @@ experience.
 - Add Class Diagram for `storage`
 
 The Sequence Diagram for `load()` is shown here:
-![load sequence diagram](../img/LoadSequence.png)
+![load sequence diagram](../img/LoadSequence.PNG)
 
 The Sequence Diagram for `save()` is shown here:
-![load sequence diagram](../img/SaveSequence.png)
+![save sequence diagram](../img/SaveSequence.PNG)
 
 The class diagram for storage is shown here:
-![Storage Class Diagram](img/StorageClass.png)
+![Storage Class Diagram](../img/StorageClass.png)
 
 #### UG contribution
 
