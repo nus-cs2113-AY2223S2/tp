@@ -97,11 +97,19 @@ public class DeckKeywordParser extends KeywordParser {
         Options deleteOptions = new OptionsBuilder(Parser.DECK_KEYWORD, DELETE_ACTION).buildOptions();
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         // Combine all actions
-        String[] actionList = {EDIT_ACTION, DELETE_ACTION, LIST_ACTION};
-        String[] headerList = {"Edit existing decks", "Delete decks", "List decks"};
+        String[] syntaxList = {
+            EDIT_ACTION,
+            DELETE_ACTION,
+            LIST_ACTION
+        };
+        String[] headerList = {
+            "Edit existing decks",
+            "Delete decks",
+            "List decks"
+        };
         Options[] optionsList = {editOptions, deleteOptions, listOptions};
 
-        String helpMessage = formatHelpMessage("deck", actionList, headerList, optionsList);
+        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
     }
 

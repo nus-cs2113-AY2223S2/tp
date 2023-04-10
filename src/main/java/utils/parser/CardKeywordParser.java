@@ -90,14 +90,34 @@ public class CardKeywordParser extends KeywordParser {
         Options viewOptions = new OptionsBuilder(Parser.CARD_KEYWORD, VIEW_ACTION).buildOptions();
         Options deckOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DECK_ACTION).buildOptions();
         // Combine all action
-        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, UNTAG_ACTION, VIEW_ACTION,
-                               DECK_ACTION};
-        String[] headerList = new String[]{"Adding cards", "Deleting cards", "List all cards", "Tagging cards",
-                                           "Untagging cards",
-                                           "View" + " cards", "Adding cards to Deck"};
-        Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, untagOptions, viewOptions,
-                                 deckOptions};
-        String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
+        String[] syntaxList = {
+            "card add -q QUESTION -a ANSWER",
+            "card list",
+            "card delete {-c CARD_UUID | -i CARD_INDEX}",
+            "card tag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}",
+            "card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}",
+            "card deck {-c CARD_UUID | -i CARD_INDEX} -d DECK_NAME",
+            "card view {-c CARD_UUID | -i CARD_INDEX}"
+        };
+        String[] headerList = {
+            "Adding cards",
+            "List all cards",
+            "Deleting cards",
+            "Tagging cards",
+            "Untagging cards",
+            "Adding cards to deck",
+            "View cards"
+        };
+        Options[] optionsList = {
+            addOptions,
+            new Options(),
+            deleteOptions,
+            tagOptions,
+            untagOptions,
+            deckOptions,
+            viewOptions
+        };
+        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
 
         return new PrintHelpCommand(helpMessage);
     }

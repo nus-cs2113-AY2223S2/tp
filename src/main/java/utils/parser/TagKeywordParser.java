@@ -73,11 +73,21 @@ public class TagKeywordParser extends KeywordParser {
         Options deckOption = new OptionsBuilder(Parser.TAG_KEYWORD, DECK_ACTION).buildOptions();
 
         // Combine all actions
-        String[] actionList = {EDIT_ACTION, DELETE_ACTION, LIST_ACTION, DECK_ACTION};
-        String[] headerList = {"Edit existing tags", "Delete tags", "List tags", "Adding tag to deck"};
+        String[] syntaxList = {
+            EDIT_ACTION,
+            DELETE_ACTION,
+            LIST_ACTION,
+            DECK_ACTION
+        };
+        String[] headerList = {
+            "Edit existing tags",
+            "Delete tags",
+            "List tags",
+            "Adding tag to deck"
+        };
         Options[] optionsList = {editOption, deleteOption, listOption, deckOption};
 
-        String helpMessage = formatHelpMessage("tag", actionList, headerList, optionsList);
+        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
     }
 

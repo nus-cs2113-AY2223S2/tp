@@ -213,7 +213,7 @@ You now have 2 questions in the bank.
 
 ### Tagging a card :
 
-`card tag {-c CARD_UUID | -i CARD_INDEX} -t TAG_NAME`
+`card tag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
 
 Tags a card by its UUID or card index with a specific tag name. If the tag does not exist, Inka will create a new one.
 Otherwise, Inka will just tag the card.
@@ -223,6 +223,7 @@ Otherwise, Inka will just tag the card.
 - `-c` the UUID of the card to be tagged
 - `-i` the index of the card to be tagged
 - `-t` the name of the tag ***(no whitespaces allowed), must not*** exceed 50 characters
+- `-x` the index of the tag to be removed
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
