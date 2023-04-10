@@ -131,7 +131,7 @@ The Sequence Diagram for `tag list {-c CARD_UUID | -i CARD_INDEX}` can be found 
 
 ![List Card Under Tag Sequence Diagram](../img/ListCardsUnderTagSequence.png)
 
-The Reference Frames (if needed) created for the Sequence Diagrams can be found [here.](mitch-reference-frames.md)
+The Reference Frames contributed (if needed) for the Sequence Diagrams can be found [here.](mitch-reference-frames.md)
 
 
 
