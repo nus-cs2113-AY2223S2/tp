@@ -10,4 +10,4 @@ Useful links:
   * [Koh JIng Jie Marcus](./team/koh-jing-jie-marcus.md)
   * [Mustafa Anis Hussian](./team/mustafaah10.md)
   * [Hoo Teng Juan](./team/tj-hoo.md)
-  * Hamada Masahiro
+  * [Hamada Masahiro](./team/masahiro21.md)
