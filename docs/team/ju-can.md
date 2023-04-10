@@ -37,16 +37,17 @@ Link to RepoSense Code for detailed code contribution:
 ### Contributions to the UG
 - Expected output for `add`, `list` and `delete`.
 - User instruction, sample input and expected output for `overview`.
+- Command summary.
 
 ### Contributions to the DG
 - Detailed explanation and supporting diagrams on the mechanism of 
   - delete: PR [#67](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/67)
   - monthly overview: PR [#100](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/100)
-  - yearly overview: PR []()
+  - yearly overview: PR [#167](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/167)
 
 ### Review/mentoring contributions
 - Merged most of the Pull Requests after reviewing newly added code.
-- Some PR reviews that I have given: [PR Review 1](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/74)
+- Some PR reviews that I have given: [PR Review 1](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/74),
   [PR Review 2](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/54).
 - Suggesting better logics on implementations and features of other teammates, including sorting and the usage of 
   storage under the account functionality.
