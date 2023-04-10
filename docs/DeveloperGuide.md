@@ -835,7 +835,56 @@ Expected :
 ```
 Failed to check! Please check the format and try again!
 ```
+#### Mark/Unmark accommodation or tuition expenditures
+- Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
+The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
+following the `Adding a record` documentation.
 
+1. Marking an expenditure
+- Mark indicates that the expenditure has been paid, otherwise the expenditure will be interpreted as unpaid.
+- Prerequisite: Accommodation expenditure of such is stored at the first index of the list:
+```
+1. [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.00 || Description: NUS
+```
+
+Test case 1:
+```
+mark 1
+```
+Expected : 
+```
+Marked your expenditure!
+```
+
+Test case 2 (Attempt to mark other expenditures that are not accommodation or tuition):
+```
+mark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+
+2. Unmarking an expenditure
+- Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances.
+
+Test Case 1:
+```
+unmark 1
+```
+Expected :
+```
+Unmarked your expenditure!
+```
+Test case 2 (Attempt to unmark other expenditures that are not accommodation or tuition):
+```
+unmark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+2. 
 #### Find keyword
 1. Finding keywords under the descriptions column in their list of expenditures
 
