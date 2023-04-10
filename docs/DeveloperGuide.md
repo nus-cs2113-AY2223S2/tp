@@ -270,9 +270,10 @@ to a method in the EntryEndpoint class.
 **Step 5.** The EntryEndpoint class then finds and modifies the entry as specified by the user.
 
 **Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the
-Backend class. The Response object contains the updated fields of the entry. 
+Backend class. The Response object contains the updated fields of the entry.
 
-However, if the edit operation fails, the response object will contain the relevant exception message which would be printed to the user.
+However, if the edit operation fails, the response object will contain the relevant exception message which would be
+printed to the user.
 
 **Step 7.** The Backend class calls the save() method to update the Storage class with the edited entry.It then returns
 the Response object to the execute function in the EditCommand object.
@@ -338,7 +339,6 @@ constructor.
 
 Step 3. When execute() method is called, printHelpAdd() method is called from the `UI`. This method prints out 
 instructions on how the `add` command should be used.
-
 
 #### Exit/Bye Command
 
@@ -1221,7 +1221,18 @@ By delivering a comprehensive and automated overview of users' income and expens
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1.The application should be compatible with various operating systems as long as Java `11` or above is installed.
+
+2.The CLI should have an intuitive user interface that is easy to navigate and understand.
+
+3.The application should be stable and not crash under heavy usage.
+
+4.The application should have clear, detailed documentation and code structure so that it is easy to maintain.
+
+5.The User Guide should be well-documented with multiple examples of usage so that it easy to understand.
+
+6.The application should be available at all times, with little dependencies on the internet or other APIs.
+
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
