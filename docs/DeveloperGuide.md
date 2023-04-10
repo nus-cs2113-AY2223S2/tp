@@ -6,22 +6,22 @@
   * [Design & implementation](#design--implementation)
   * [Design](#design)
   * [Account Implementation](#account-implementation)
-    * ['Login' Feature](#-login-feature)
-    * ['Signup' Feature](#-signup-feature)
-    * ['Logout' Feature](#-logout-feature)
-    * ['Exit' Feature (Outside the Account)](#-exit-feature--outside-the-account-)
+    * ['Login' Feature](#login-feature)
+    * ['Signup' Feature](#signup-feature)
+    * ['Logout' Feature](#logout-feature)
+    * ['Exit' Feature (Outside the Account)](#exit-feature-outside-the-account)
   * [Implementation](#implementation)
-    * ['List' Feature](#-list-feature)
-    * ['Add' Feature](#-add-feature)
-    * ['Delete' Feature](#-delete-feature)
-    * ['Overview' Feature](#-overview-feature)
+    * ['List' Feature](#list-feature)
+    * ['Add' Feature](#add-feature)
+    * ['Delete' Feature](#delete-feature)
+    * ['Overview' Feature](#overview-feature)
       * [Monthly Overview](#monthly-overview)
       * [Yearly Overview](#yearly-overview)
-    * ['Sort' Feature](#-sort-feature)
-    * ['Category' Feature](#-category-feature)
-    * ['Total' Feature](#-total-feature)
-    * ['Storage' Feature](#-storage-feature)
-    * ['Exit' Feature (Inside the Account)](#-exit-feature--inside-the-account-)
+    * ['Sort' Feature](#sort-feature)
+    * ['Category' Feature](#category-feature)
+    * ['Total' Feature](#total-feature)
+    * ['Storage' Feature](#storage-feature)
+    * ['Exit' Feature (Inside the Account)](#exit-feature-inside-the-account)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -180,7 +180,7 @@ This mechanism is facilitated by `ParserAccount`, with just a simple task - exit
 - `ParserAccount#initialize()` -- Call the `exit(0)` function to exit the program immediately when the user typed `exit`
 before logged in or after logged out.
 
-  Given below is an example usage of the feature. //TODO: img
+  Given below is an example usage of the feature. 
 
 ## Implementation
 
