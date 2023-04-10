@@ -60,10 +60,11 @@ The above _**Architecture**_ diagram gives a high-level overall of the program.
 **Main Components of system**
 
 1. Duke : Taking user inputs
-2. Parser : Processes and Executes User Commands
-3. UI : Prints out messages to user
-4. ModuleStorage : Processes and stores module mappings
-5. DataReader
+2. Parser : Processes user inputs and creates Command Class objects
+3. Command : Executes functionalities 
+4. UI : Prints out messages to user
+5. ModuleStorage : Processes and stores module mappings
+6. DataReader
 
 **1. Duke**
 
