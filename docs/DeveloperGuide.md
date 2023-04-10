@@ -555,23 +555,7 @@ the user to keep track of their net calorie gain on a daily basis.
   <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
   <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search based on a filter</p>
   <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">have results that better suit my needs</p>
-
 </div>
-
-| Version | As a ... | I want to ...                                            | So that I can ...                                           |
-|---------|----------|----------------------------------------------------------|-------------------------------------------------------------|
-| v1.0    | new user | see usage instructions                                   | refer to them when I forget how to use the application      |
-| v1.0    | user     | calculate my caloric needs based on my height and weight | lead a healthy lifestyle within my caloric needs            |
-| v1.0    | user     | add a meal                                               | keep track of the food I have eaten on a particular day     |
-| v1.0    | user     | delete a meal                                            | remove a meal if I entered it in wrongly                    |
-| v1.0    | user     | view my previous meals                                   | track the calories of each meal                             |
-| v1.0    | user     | key in my weight on a daily basis                        | keep track of my weight loss/gain                           |
-| v1.0    | user     | see the amount of calories left I have in the day        | not exceed my daily caloric limit                           |
-| v2.0    | user     | search for a type of food and view its nutritional contents | make a more informed choice about what to eat            |
-| v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
-| v2.0    | user     | enter the type and duration of exercise I have completed | keep better track of my physical activies                   |
-| v2.1    | user     | be inspired to work out                                  | stay in shape                                               |
-| v2.1    | user     | search based on a filter                                 | have results that better suit my needs                      |
 
 ## Non-Functional Requirements
 
