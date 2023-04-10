@@ -16,6 +16,7 @@
         * [Forex component](#forex-component)
         * [Open Exchange Rates API](#open-exchange-rates-api)
         * [Transactions Component](#transactions-component)
+        * [Storage Component](#storage-component)
     * [Implementation](#implementation)
         * [Create/Delete account feature](#createdelete-account-feature)
         * [Add/Withdraw money feature](#addwithdraw-money-feature)
