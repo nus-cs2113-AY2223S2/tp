@@ -68,15 +68,26 @@
   * [Launch](#launch)
   * [Sample test cases](#sample-test-cases)
     * [Help command](#help-command)
-    * [Get reflection questions](#get-reflection-questions)
-    * [Add atomic habits](#add-atomic-habits)
+    * [Atomic habits feature](#atomic-habits-feature)
+      * [Add atomic habits](#add-atomic-habits)
+    * [Reflection feature](#reflection-feature)
+      * [Get reflection questions](#get-reflection-questions)
+      * [Favorite reflection questions](#favorite-reflection-questions)
+    * [Focus Timer feature](#focus-timer-feature)
+      * [Start Session](#start-session)
+    * [Gamification feature](#gamification-feature)
+      * [Gain XP and level up](#gain-xp-and-level-up)
   * [Saving data](#saving-data)
 <!-- TOC -->
 
 # Acknowledgements
 
-1. Reference to AB-3 Developer Guide: https://se-education.org/addressbook-level3/DeveloperGuide.html
-2. Reference to AB-3 diagrams code: https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams
+1. Reference to AB-3 Developer Guide
+* [Source URL](https://se-education.org/addressbook-level3/DeveloperGuide.html)
+* Used as template to structure this DeveloperGuide
+2. Reference to AB-3 diagrams code
+* [Source URL](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams)
+* Used as reference to understand PlantUML syntax
 
 # Setting up, getting started
 
@@ -1083,7 +1094,7 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 
 1. Make sure you are in the main interface, but individual features(i.e. hb, reflect and timer)
 2. Test case: `help`<br>
-   Expected output: a list of commands with their usage
+   Expected output: A list of commands with their usage
    Example:
 
 ```
@@ -1105,7 +1116,7 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 ```
 
 3. Test case: `help me`<br>
-   Expected output: the list of commands will not be generated as it is an invalid command<br>
+   Expected output: The list of commands will not be generated as it is an invalid command<br>
    Example:
 
 ```
@@ -1128,7 +1139,7 @@ Note:
 
 1. Make sure you are inside **Atomic habit** feature by enter `hb` command after the launch of the program
 2. Test case: `add --name make bed every morning`<br>
-   Expected output: a new atomic habit is successfully added<br>
+   Expected output: A new atomic habit is successfully added<br>
    Example:
 
 ```
@@ -1141,7 +1152,7 @@ Note:
 ```
 
 3. Test case: `add name make bed every morning`<br>
-   Expected output: the atomic habit will not be added in as this is an invalid command<br>
+   Expected output: The atomic habit will not be added in as this is an invalid command<br>
    Example:
 
 ```
@@ -1164,7 +1175,7 @@ Note:
 
 1. Make sure you are inside **Self Reflection** feature by enter `reflect` command after the launch of the program
 2. Test case: `get`<br>
-   Expected output: get a set of 5 random introspective questions<br>
+   Expected output: Get a set of 5 random introspective questions<br>
    Example:
 
 ```
@@ -1180,7 +1191,7 @@ Note:
 ```
 
 3. Test case: `get reflect`<br>
-   Expected output: introspective questions will not be generated as this is an invalid command <br>
+   Expected output: Introspective questions will not be generated as this is an invalid command <br>
    Example:
 
 ```
@@ -1199,7 +1210,7 @@ Note:
 #### Favorite reflection questions
 1. Make sure you are inside **Self Reflection** feature by enter `reflect` command after the launch of the program
 2. Test case: `fav`<br>
-   Expected output: empty favorite reflection questions list is printed<br>
+   Expected output: Empty favorite reflection questions list is printed<br>
    Example:
 
 ```
@@ -1211,7 +1222,7 @@ Note:
 ```
 
 3. Test case: `get`<br>
-   Expected output: get a set of 5 random introspective questions<br>
+   Expected output: Get a set of 5 random introspective questions<br>
    Example:
 
 ```
@@ -1256,7 +1267,7 @@ Note:
 
 1. Make sure you are inside **Focus Timer** feature by enter `ft` command after the launch of the program
 2. Test case: `start`<br>
-   Expected output: session begins and work timer counts down<br>
+   Expected output: Session begins and work timer counts down<br>
    Example:
 
 ```
