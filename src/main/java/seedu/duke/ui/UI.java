@@ -142,7 +142,7 @@ public class UI {
         }
     }
     public void showRecipeViewed(Recipe recipe, UI ui) {
-        System.out.println("Here is the recipe you requested, which is "+ recipe.getTag() + " flavour:");
+        System.out.println("\nHere is the recipe you requested, which is "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
         showLine();
         IngredientList ingredients = recipe.getIngredientList();
