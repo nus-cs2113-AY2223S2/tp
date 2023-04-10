@@ -61,7 +61,7 @@ public class TestUi {
         if (os.contains("Windows")) {
             expectedOutput = "By place:\r\n" +
                 "\t[gym] exercises that can be done with gym equipment\r\n" +
-                "\t[static]: exercises that only require your body\r\n" +
+                "\t[static]: exercises that do not require gym equipment \r\n" +
                 "By difficulty:\r\n" +
                 "\t[easy] exercises of low intensity\r\n" +
                 "\t[medium] exercises of medium intensity\r\n" +
@@ -73,7 +73,7 @@ public class TestUi {
         } else {
             expectedOutput = "By place:\n" +
                 "\t[gym] exercises that can be done with gym equipment\n" +
-                "\t[static]: exercises that only require your body\n" +
+                "\t[static]: exercises that do not require gym equipment \n" +
                 "By difficulty:\n" +
                 "\t[easy] exercises of low intensity\n" +
                 "\t[medium] exercises of medium intensity\n" +

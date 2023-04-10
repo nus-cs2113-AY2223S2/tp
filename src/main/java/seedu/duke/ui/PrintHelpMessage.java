@@ -56,7 +56,7 @@ public class PrintHelpMessage {
         String newline = System.lineSeparator();
         System.out.println("By place:" + newline +
                 "\t[gym] exercises that can be done with gym equipment" + newline +
-                "\t[static]: exercises that only require your body" + newline +
+                "\t[static]: exercises that do not require gym equipment " + newline +
                 "By difficulty:" + newline +
                 "\t[easy] exercises of low intensity" + newline +
                 "\t[medium] exercises of medium intensity" + newline +

@@ -106,7 +106,7 @@ The filters are shown here:
 | Filter   | Description                                   |
 |----------|-----------------------------------------------|
 | [gym]    | exercises that can be done with gym equipment |
-| [static] | exercises that only require your body         |
+| [static] | exercises that do not require gym equipment   |
 | [easy]   | exercises of low intensity                    |
 | [medium] | exercises of medium intensity                 |
 | [hard]   | exercises of hard intensity                   |
