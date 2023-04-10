@@ -30,7 +30,7 @@ challenge of managing multiple passwords for various sites and applications.
 1. Ensure you have **Java 11** installed on your computer. If not so, you can download from
     [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-2. Download the latest `[CS2113-T15-2][SecureNUS].jar` from 
+2. Download the latest `SecureNUS.jar` from 
     [here](https://github.com/AY2223S2-CS2113-T15-2/tp/releases).
                                                                  
 3. Open a Command Prompt in your system which contains the JAR File.
@@ -38,9 +38,9 @@ challenge of managing multiple passwords for various sites and applications.
 4. Verify if the Java Version you are using is *Java 11* (recommended and tested version) by using `java -version`
    <p style="text-align:center;"><img src="./UGImages/QuickStart/CheckJavaVersion.jpg" width="60%" /> </p>                                                                      
 
-5. Using `cd`, navigate to the folder where `[CS2113-T15-2][SecureNUS].jar` is stored in your system. 
+5. Using `cd`, navigate to the folder where `SecureNUS.jar` is stored in your system. 
 
-6. Launch the application in the terminal after running `java -jar [CS2113-T15-2][SecureNUS].jar` in the terminal. 
+6. Launch the application in the terminal after running `java -jar SecureNUS.jar` in the terminal. 
 
     If the program is launched correctly, you can see the following.<br>
    <p style="text-align:center;"><img src="./UGImages/QuickStart/UI.jpg" width="60%" ></p> <br>
@@ -249,6 +249,7 @@ for more details on the `save` command.
 
 ##### Examples and Outputs:
 <p style="text-align:center;"><img src="./UGImages/AddPassword/Addbasicpassword.jpg" width="65%" /></p>.<br>
+
 <p style="text-align:center;"><img src="./UGImages/AddPassword/Addccpassword.jpg" width="65%" /></p>
 
 <table>                                                               
@@ -391,7 +392,7 @@ command.
 - The secrets will be saved even after exiting the program using the `exit` command. 
 
 - In SecureNUS, if the `database.txt` file is not corrupted, users can view their saved secrets even after 
-reloading the JAR file by running `java -jar [CS2113-T15-2][SecureNUS].jar` in the terminal.
+reloading the JAR file by running `java -jar SecureNUS.jar` in the terminal.
 
 - The `database.txt` file is used to store all secrets in a structured manner for easy retrieval and management.
 - Each time a new secret is created using `new` command, delete a secret using `delete` command and edit a secret using
@@ -403,16 +404,24 @@ the `edit` command, the changes are automatically saved in the `database.txt` fi
 - Please refrain from manually editing or tampering the `database.txt` file as it may lead to data corruption. 
 
 - To know if the database.txt is corrupted, exit from the current program run using the `exit` command and rerun the 
-JAR file using `java -jar [CS2113-T15-2][SecureNUS].jar` and observe the following in the UI: 
+JAR file using `java -jar SecureNUS.jar` and observe the following in the UI: 
 
 <table>
     <tr>
-        <td> S.no</td>
-        <td> UI on re-running the JAR file </td>
-        <td> Description </td>
+        <td> 
+            S.no
+        </td>
+        <td> 
+            UI on re-running the JAR file 
+        </td>
+        <td> 
+            Description 
+        </td>
     </tr>
     <tr>
-        <td> 1. </td>
+        <td> 
+            1. 
+        </td>
         <td> <img src="./UGImages/SavePassword/UserReload.png"> </td>
         <td>
             <ul>
@@ -422,7 +431,9 @@ JAR file using `java -jar [CS2113-T15-2][SecureNUS].jar` and observe the followi
         </td>
     </tr>
     <tr>
-        <td> 2. </td>
+        <td> 
+            2. 
+        </td>
         <td>
             <img src="./UGImages/SavePassword/DataCorrupt.png">
         </td>
@@ -446,7 +457,8 @@ previous data on next load.
 ##### General Format: `save`
 
 ##### Examples and Outputs: <br>
-<p style="text-align:center;"><img src="./UGImages/SavePassword/Savecommand.jpg" width="80%"/></p>
+<p style="text-align:center;">
+<img src="./UGImages/SavePassword/Savecommand.jpg" width="80%"/></p>
 
 <br>
 
@@ -473,7 +485,8 @@ associated secret.
 ##### General Format: `edit SECRET_NAME`
 
 ##### Examples and Outputs: 
-<p style="text-align:center;"><img src="./UGImages/EditPassword/edit.jpg" width="65%" /></p>
+<p style="text-align:center;">
+<img src="./UGImages/EditPassword/edit.jpg" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -500,7 +513,8 @@ without having to remember their syntax or name.
 ##### General Format: `menu`
 
 Examples and Outputs: <br>
-<p style="text-align:center;"><img src="./UGImages/Menu.png" width="65%" /></p>
+<p style="text-align:center;">
+<img src="./UGImages/Menu.png" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -525,7 +539,8 @@ the entire command prompt or terminal.
 ##### General Format: `exit`
 
 ##### Examples and Outputs: <br>
-<p style="text-align:center;"><img src="./UGImages/exitcommand.jpg" width="65%" /></p>
+<p style="text-align:center;">
+<img src="./UGImages/exitcommand.jpg" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -556,7 +571,8 @@ they save their data frequently to avoid losing any unsaved changes.
 ##### General Format: `c/`
 
 ##### Examples and Outputs: <br>
-<p style="text-align:center;"><img src="./UGImages/Cancelop.jpg" width="65%" /></p>
+<p style="text-align:center;">
+<img src="./UGImages/Cancelop.jpg" width="65%" /></p>
 <br>
 <table>                                                               
     <tr>                                                           
