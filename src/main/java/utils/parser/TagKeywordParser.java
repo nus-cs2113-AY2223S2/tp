@@ -66,29 +66,13 @@ public class TagKeywordParser extends KeywordParser {
         if (tokens.size() != 0) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
-
         Options deleteOption = new OptionsBuilder(Parser.TAG_KEYWORD, DELETE_ACTION).buildOptions();
         Options editOption = new OptionsBuilder(Parser.TAG_KEYWORD, EDIT_ACTION).buildOptions();
         Options listOption = new OptionsBuilder(Parser.TAG_KEYWORD, LIST_ACTION).buildOptions();
         Options deckOption = new OptionsBuilder(Parser.TAG_KEYWORD, DECK_ACTION).buildOptions();
+        Options[] helpDetails = {editOption, deleteOption, listOption, deckOption};
 
-        // Combine all actions
-        String[] syntaxList = {
-            "tag edit -o OLD_TAG_NAME -n NEW_TAG_NAME",
-            "tag delete {-t TAG_NAME | -x TAG_INDEX}",
-            "tag list [-t TAG_NAME | -x TAG_INDEX]",
-            "tag deck -d DECK_NAME {-t TAG_NAME | -x TAG_INDEX}"
-        };
-        String[] headerList = {
-            "Edit existing tags",
-            "Delete tags",
-            "List tags",
-            "Adding tag to deck"
-        };
-        Options[] optionsList = {editOption, deleteOption, listOption, deckOption};
-
-        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
-        return new PrintHelpCommand(helpMessage);
+        return new PrintHelpCommand(Parser.TAG_KEYWORD, helpDetails);
     }
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {

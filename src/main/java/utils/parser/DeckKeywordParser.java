@@ -93,23 +93,9 @@ public class DeckKeywordParser extends KeywordParser {
         Options deleteOptions = new OptionsBuilder(Parser.DECK_KEYWORD, DELETE_ACTION).buildOptions();
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         Options runOptions = new OptionsBuilder(Parser.DECK_KEYWORD, RUN_ACTION).buildOptions();
-        // Combine all actions
-        String[] syntaxList = {
-            "deck edit -o OLD_DECK_NAME -n NEW_DECK_NAME",
-            "deck delete -d DECK_NAME [{-c CARD_UUID | -i CARD_INDEX} | {-t TAG_NAME | -x TAG_INDEX}]",
-            "deck list [-d DECK_NAME]",
-            "deck run"
-        };
-        String[] headerList = {
-            "Edit existing decks",
-            "Delete decks",
-            "List decks",
-            "Run a deck"
-        };
-        Options[] optionsList = {editOptions, deleteOptions, listOptions, runOptions};
+        Options[] helpDetails = {editOptions, deleteOptions, listOptions, runOptions};
 
-        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
-        return new PrintHelpCommand(helpMessage);
+        return new PrintHelpCommand(Parser.DECK_KEYWORD, helpDetails);
     }
 
     private Command handleRun(List<String> tokens) throws ParseException, InvalidSyntaxException {

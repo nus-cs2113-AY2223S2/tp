@@ -14,6 +14,7 @@ public class Parser {
     public static final String CARD_KEYWORD = "card";
     public static final String TAG_KEYWORD = "tag";
     public static final String DECK_KEYWORD = "deck";
+    public static final String GENERAL_KEYWORD = "general";
     public static final String EXPORT_KEYWORD = "export";
     public static final String EXIT_KEYWORD = "bye";
     public static final String HELP_KEYWORD = "help";
@@ -64,7 +65,7 @@ public class Parser {
             return tagKeywordParser.parseTokens(optionTokens);
 
         case HELP_KEYWORD:
-            return new PrintHelpCommand(getTopLevelHelpMessage());
+            return new PrintHelpCommand(Parser.GENERAL_KEYWORD, null);
 
         case EXPORT_KEYWORD:
             return new ExportCommand();
@@ -76,38 +77,5 @@ public class Parser {
         default:
             throw new UnrecognizedCommandException();
         }
-    }
-
-    /**
-     * Gets top-level help message for Inka
-     *
-     * @return Formatted help message
-     */
-    private String getTopLevelHelpMessage() {
-        String helpMessage = "";
-
-        helpMessage +=
-                "Welcome to Inka! Type " + HELP_KEYWORD + " at any time to show this message" + System.lineSeparator();
-        helpMessage += "== Deck Management (run `<keyword> help` for more info) ===" + System.lineSeparator();
-        helpMessage += formatHelpLine(CARD_KEYWORD, "Card-related functionality");
-        helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality");
-        helpMessage += formatHelpLine(DECK_KEYWORD, "Deck-related functionality");
-        helpMessage += "================== Miscellaneous Commands =================" + System.lineSeparator();
-        helpMessage += formatHelpLine(EXIT_KEYWORD, "Exits Inka");
-
-        return helpMessage;
-    }
-
-    private String formatHelpLine(String keyword, String description) {
-        final int padLength = 12;
-
-        String formatted = keyword;
-        // Right-pad to PAD_LENGTH
-        formatted += " ".repeat(padLength - formatted.length());
-        formatted += " - ";
-        formatted += description;
-        formatted += System.lineSeparator();
-
-        return formatted;
     }
 }
