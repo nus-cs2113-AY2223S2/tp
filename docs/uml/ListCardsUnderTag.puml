@@ -13,19 +13,19 @@ participant ":DeckList" as DeckList
 participant ":Tag" as Tag
 
 participant ":UserInterface" as UserInterface
-participant ":TagKeywordParser" as TagKeywordParser
+'participant ":TagKeywordParser" as TagKeywordParser
 
-Inka -> TagKeywordParser : parseCommand()
-
-Create TagSelector
-TagKeywordParser -> TagSelector : create tagSelector to identify tag
-return tagSelector
-
-Create ListCardsInTagCommand
-TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand(tagSelector)
-return
-
-return ListCardsInTagCommand
+'Inka -> TagKeywordParser : parseCommand()
+'
+'Create TagSelector
+'TagKeywordParser -> TagSelector : create tagSelector to identify tag
+'return tagSelector
+'
+'Create ListCardsInTagCommand
+'TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand(tagSelector)
+'return
+'
+'return ListCardsInTagCommand
 
 Inka -> ListCardsInTagCommand: execute()
 ListCardsInTagCommand -> TagList : findTag(tagSelector)

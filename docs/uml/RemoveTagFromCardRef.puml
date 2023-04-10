@@ -3,6 +3,7 @@ autoactivate on
 
 mainframe sd Remove Tag from Card and vice versa
 
+participant ":Inka" as  Inka
 participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
@@ -14,7 +15,7 @@ participant ":Tag" as Tag
 participant ":Card" as Card
 participant ":Deck" as Deck
 participant ":UserInterface" as UserInterface
-participant ":CardKeywordParser" as CardKeywordParser
+
 
 opt cardAffected.getUUID() != null
 RemoveTagFromCardCommand -> Card : getUUID()
