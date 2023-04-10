@@ -51,3 +51,10 @@ operation through the Command-Line Interface(CLI).
 - Created milestones for each release: [v1.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/1), [v2.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/2), [v2.1](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/3)
 - Reviewed PRs (with non-trivial comments): [#17](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/17), [#20](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/20), [#35](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/35)
 
+### Diagrams contributed to DG
+- Class diagram for `Ui` class
+  - ![Ui_class.png](..%2FUML%2FImage%2FUi_class.png)
+- Sequence diagram for the `showWelcome` method in `Ui` class
+  - ![Ui_sequence_diagram.png](..%2FUML%2FImage%2FUi_sequence_diagram.png)
+- Sequence diagram for Duplication Checker feature 
+  - ![Duplication_checker.png](..%2FUML%2FImage%2FDuplication_checker.png)
