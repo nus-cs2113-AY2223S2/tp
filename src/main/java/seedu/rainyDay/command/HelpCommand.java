@@ -33,10 +33,10 @@ public class HelpCommand extends Command {
             "| Details       | Requirement | Description                                                          |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
-            "| <DESCRIPTION> | Mandatory   | Used to describe the entry. Description will be left blank if omitted|\n" +
+            "| <DESCRIPTION> | Mandatory   | Used to describe the entry.                                          |\n" +
             "| $<VALUE>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
-            "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
-            "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
+            "| -c <CATEGORY> | Optional    | Used to denote the entry's category. Set to miscellaneous if omitted |\n" +
+            "| -date <DATE>  | Optional    | Used to denote the entry's date. Set to present date if omitted      |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
             + //Note: the \ is used as an escape character for " in this case. The table will seem misaligned here only.
@@ -44,9 +44,11 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| add -in Salary $2113.09     | Adds entry with description: Salary and value: $2113.09 as inflow    |\n" +
+            "| add -in Salary $2113.09     | Adds entry with description: Salary and value: $2113.09 as inflow,   |\n" +
+            "|                             | with its category set to miscellaneous and date set to present date  |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Noodles $5         | Adds entry with description: Noodles and value: $5 as outflow        |\n" +
+            "|                             | with its category set to miscellaneous and date set to present date  |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow, with   |\n" +
             "| Transport                   | its category set to Transport and date set to present date           |\n" +
