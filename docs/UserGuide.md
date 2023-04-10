@@ -353,6 +353,7 @@ Format: `/bye`
 > __A:__ PocketPal is an open-source application, and we welcome developers to share their ideas.
 >        You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
 <!-- @@author -->
+
 > __Q:__ I accidentally touched the data in my `storage.txt` file - what do I do?
 >
 > __A:__ The data in the `storage.txt` file is saved in the format `DESCRIPTION,PRICE,CATEGORY,DATE`. Make sure the data
