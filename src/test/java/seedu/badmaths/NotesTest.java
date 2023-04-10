@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 class NotesTest {
+
     ArrayList<String> cache = new ArrayList<>();
     @Test
     public void handleCache() {
