@@ -138,6 +138,16 @@ In the diagram, the aforementioned expenditure categories inherit from the `Expe
 
 #### 3.3.1 Repeat dates for Accommodation and Tuition Expenditures
 
+It must be noted that the date input field for `AccommodationExpenditure` and `TuitionExpenditure` is the `date` of repeat. This is due to the fact that they are lump sum expenditure types as explained in the section [before](#33-expenditure-categories).
+
+Upon instantiating the `AccommodationExpenditure` or `TuitionExpenditure`, the user input date is entered similarly via the `d/DATE` field. Subsequently, the input date will be incremented to the subsequent year, where the expenditure is expected to require payment again, **unmarking** itself. This is known as the `repeatDate`.
+
+After a full year has passed, and when the system date is **on**, or has **passed** `repeatDate`, the program enters the **optional path**, and expenditure will be unmarked. This is irregardless of whether the user has marked it previously. In the **optional path**, the `repeatDate` is incremented again to the subsequent year. This is so that the **optional path** will not be ran again until another full year has passed.
+
+For example, taking the current date as `2023-04-10`, the user can instantiate the `TuitionExpenditure` with `tuition d/2023-04-20 a/5000 p/Semester 1 payment`. In this instance, the user has identified the `date` of repeat to be on 20th April. Thus, this input date once entered will be incremented to `2024-04-20`; the `repeatDate` is now `2024-04-20`, where the next *Semester 1* payment is expected to be due again. Launching MyLedger on 20th April 2024, or after that date will cause the expenditure to be unmarked. It will also set the next `repeatDate` to `2025-04-20`.
+
+It must be noted that to be able to store the `repeatDate` separetely to trigger the aforementioned events, it is saved in the txtfile as part of the `AccommodationExpenditure` or `TuitionExpenditure` information. The `repeatDate` is given a delimiter of `r/` for the txtfile.
+
 ### 3.4. Command Component
 
 The `Command` component is represented by the `command` package. The `command` package contains all the available user commands supported by the application. These commands are utilised by the user to interact with the expenditure types and the expenditure list. 
@@ -204,9 +214,9 @@ Expenditures in the saved file are deemed as corrupted when one of the following
 
 | Condition     | Justification                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
-| i. Missing delimiters       | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.      |
-| ii. Amounts less than $0.01 SGD   | As MyLedger supports a minimum amount of $0.01 SGD, changes that violate the amount will be deemed as corrupted and removed.                  |
-| iii. Amounts that exceed the `double` data size   | As this will result in an overflow regardless, it will be removed to prevent inaccurate information to be displayed.                    |
+| i. Missing delimiters or inputs that are not able to be parsed      | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.      |
+| ii. Invalid amounts  | As described in the next section [4.1](#41-add-expenditure-command), invalid amount inputs are deemed corrupted as MyLedger does not support them.             |
+| iii. Invalid dates for Lend and Borrow Expenditures  | As described in the next section [4.1](#41-add-expenditure-command), deadlines cannot occur before the date of expenditure and current date, and hence is abided when reading the save file.                    |
 | iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates  | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed.                   |
 
 **Note of iv:**

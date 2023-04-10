@@ -43,10 +43,10 @@ public class MyLedger {
 
     public static boolean hasProcessedAllInputs(String line, ExpenditureList expenditures) {
         // Parses the input
-        ExpenditureList.queryLumpSumDates();
         Command finalCommand = MainInputParser.parseInputs(line);
         CommandResult result = finalCommand.execute(expenditures);
         String textOutput = result.getCommandResult();
+        ExpenditureList.queryLumpSumDates();
         ExpenditureList.saveList();
         System.out.println(textOutput);
         return finalCommand.isExit();

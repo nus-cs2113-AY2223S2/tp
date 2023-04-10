@@ -101,10 +101,10 @@ public class ExceptionChecker {
             }
         }
     }
-    public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String DOT, String BLANK)
+    public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String dot, String blank)
             throws WrongPrecisionException, EmptyStringException {
-        if (userInput.contains(DOT)) {
-            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,DOT,BLANK);
+        if (userInput.contains(dot)) {
+            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,dot,blank);
             if (twoDecimalPlaces.length() > TWO_DECIMAL_PLACE) {
                 throw new WrongPrecisionException();
             }
