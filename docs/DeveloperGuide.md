@@ -449,7 +449,7 @@ list that store the account data inside the 'account process'.
 |   v2.1    |  user in Singapore  |         see an overview of my expenses in a particular year          |                                my monthly spending pattern.                                |
 |   v2.1    |        user         |           create my unique account with a strong password            |                         manage my expenses separately from others.                         | 
 |   v2.1    |        user         |                     log in to my account easily                      |                                    access my expenses.                                     | 
-|   v2.1    |        user         |           log out from my account when I finished using it           |                       be sure that others cannot access my expenses.                       | 
+|   v2.1    |        user         |           log out from my account when I finished using it           |                      | 
 |   v2.1    |        user         |  save my expense easily in case I close the program unintentionally  |                          be sure that I haven't lost my expenses.                          | 
 
 ## Non-Functional Requirements
