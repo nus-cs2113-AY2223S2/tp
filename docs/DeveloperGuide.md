@@ -238,11 +238,11 @@ Given below is the only example usage scenario and how the recipe possible comma
 
 Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
 
-Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList` and `IngredientList` of `MealCompanionSession`.
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`,`IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
 
 Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
 
-Step 4: `Recipe` that can be made are outputted.
+Step 4: `Recipe` that can be made are returned from getPossibleRecipes function.
 
 The following sequence diagram shows how the Recipe Possible Command works:
 
@@ -262,7 +262,7 @@ Step 1: User wants to get the full list of recipes stored in the program. User c
 
 Step 2: `RecipeAllCommand` executes by retrieving the `RecipeList` of `MealCompanionSession`.
 
-Step 3: Every `Recipe` in `RecipeList` is outputted.
+Step 3: Every `Recipe` in `RecipeList` is formatted then outputted.
 
 The following sequence diagram shows how the Recipe All Command works:
 
