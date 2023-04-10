@@ -162,6 +162,11 @@ public class Parser {
             boolean isModuleFlag) throws NPExceptions {
 
         for (int i = 1; i < details.length; i++) {
+            if(i == 1){
+                if (details[i].length()<2){
+                    throw new NPExceptions(INCORRECT_CMD_FORMAT_E);
+                }
+            }
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
             switch (field) {
@@ -376,7 +381,9 @@ public class Parser {
     private static void parseEditCommand(String remainder, EventList eventList) throws NPExceptions {
         String[] details = remainder.split("-");
         String[] information = new String[6];
-
+        if (details[1].length() < 2){
+            throw new NPExceptions(INCORRECT_CMD_FORMAT_E);
+        }
         if (!(details[1].substring(0, 2).trim().equalsIgnoreCase(INDEX_OF_EVENT_F)
                 || details[1].substring(0, 2).trim().equalsIgnoreCase(EVENT_NAME_F))) {
             throw new NPExceptions(UNDEFINED_FLAG_E);
