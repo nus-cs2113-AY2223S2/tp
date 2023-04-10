@@ -6,6 +6,7 @@ import seedu.duke.event.Event;
 import seedu.duke.exception.EmptyFieldException;
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.exception.RepeatedFieldsException;
+import seedu.duke.exception.NegativeNumberException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.EventDetailsStorage;
@@ -49,7 +50,7 @@ public class Eventus {
             input = in.nextLine();
             try {
                 Command c = Parser.parse(input);
-                if (c.getCommandType().equals("list venues")) {
+                if (c.getCommandType().equals("list venues") || c.getCommandType().equals("filter venues")) {
                     c.execute(venueList);
                 } else if (c.getCommandType().equals("choose venue")) {
                     c.execute(event, venueList);
@@ -78,6 +79,10 @@ public class Eventus {
             } catch (EmptyFieldException err) {
                 ui.showLine();
                 System.out.println(err.getMessage());
+                ui.showLine();
+            } catch (NegativeNumberException err) {
+                ui.showLine();
+                System.out.println("Please input a value greater than or equal to zero.");
                 ui.showLine();
             }
         }

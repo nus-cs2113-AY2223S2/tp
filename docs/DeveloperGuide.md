@@ -34,7 +34,6 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
-
 ![Ui_class.png](UML%2FImage%2FUi_class.png)
 
 Fig 3: Shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
@@ -58,12 +57,12 @@ Parser involves dealing with parsing user input to understand what the user want
 Command classes are executed after the parser class has processed the user input. The figure below shows a typical class 
 diagram, AddCommand, which inherits from Command.
 
-![CommandClassDiagram.png](UML%2FCommandClassDiagram.png)
+![AddCommand_Class.png](UML%2FImage%2FAddCommand_Class.png)
 
 
 We also have an example of a sequence diagram for the AddCommand as shown in the figure below.
 
-![img.png](img.png)!
+![AddCommand.png](UML%2FImage%2FAddCommand.png)
 
 The following <code>Command</code> classes inherits from the main <code>Command</code> class and 
 executes different code.
