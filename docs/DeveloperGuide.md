@@ -144,26 +144,26 @@ its priority level, its review count, and whether the note has been marked as co
 ##### Class Structure:
 The Note class is defined with the following instance variables:
 
-`text` (String): the note information
-`reviewCount` (int): the number of times the note has been reviewed
-`isDone` (boolean): whether the note is marked as complete or incomplete
-`priority` (NotePriority.Priority): the priority level of the note
+- `text` (String): the note information
+- `reviewCount` (int): the number of times the note has been reviewed
+- `isDone` (boolean): whether the note is marked as complete or incomplete
+- `priority` (NotePriority.Priority): the priority level of the note
 
 The class contains the following methods:
 
-`Note`: constructor that initializes the instance variables with the given parameters
-`getText`: returns the note's text
-`setText`: sets the note's text to the given value
-`getReviewCount`: returns the number of times the note has been reviewed
-`incrementReviewCount`: increments the review count by 1
-`getIsDone`: returns whether the note is marked as done or not
-`getIsDoneIcon`: returns a string representation of the completion status ("Y" for done, "N" for not done)
-`markAsDone`: marks the note as done
-`markAsNotDone`: marks the note as not done
-`getPriority`: returns the priority of the note
-`setPriority`: sets the priority of the note to the given value
-`setReviewCount`: sets the review count to the given value
-`toString`: returns a string representation of the note in the format `[priority][completion status][review count]text`.
+- `Note`: constructor that initializes the instance variables with the given parameters
+- `getText`: returns the note's text
+- `setText`: sets the note's text to the given value
+- `getReviewCount`: returns the number of times the note has been reviewed
+- `incrementReviewCount`: increments the review count by 1
+- `getIsDone`: returns whether the note is marked as done or not
+- `getIsDoneIcon`: returns a string representation of the completion status ("Y" for done, "N" for not done)
+- `markAsDone`: marks the note as done
+- `markAsNotDone`: marks the note as not done
+- `getPriority`: returns the priority of the note
+- `setPriority`: sets the priority of the note to the given value
+- `setReviewCount`: sets the review count to the given value
+- `toString`: returns a string representation of the note in the format `[priority][completion status][review count]text`.
 
 #### Notes Text:
 The `notes.txt` file is a text file that contains the list of Notes stored by users using `BadMaths`.
