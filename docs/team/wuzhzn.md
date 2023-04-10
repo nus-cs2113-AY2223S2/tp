@@ -8,10 +8,10 @@ operation through the Command-Line Interface(CLI).
 ### Summary of Contributions
 
 - Contributions to the project: [Reposense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=wuzhzn&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other).
-- Added features: [New](#added-features-)
+- Added features: [New](#added-features)
 - Improved features: [Improved](#improved-features)
-- UG: [UG contributions](#ug-contribution-)
-- DG: [DG contribution](#dg-contribution-)
+- UG: [UG contributions](#ug-contribution)
+- DG: [DG contribution](#dg-contribution)
 - Team contribution: [Team contribution](#team-contribution-)
 
 #### Added features:
@@ -49,6 +49,8 @@ operation through the Command-Line Interface(CLI).
   - Architect diagram of main programme
 
 ![broadOverview.png](..%2FUML%2FImage%2FbroadOverview.png)
+
+
 
   - Event class diagram
 
