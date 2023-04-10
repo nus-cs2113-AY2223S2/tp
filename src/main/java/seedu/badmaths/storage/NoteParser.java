@@ -7,6 +7,13 @@ import seedu.badmaths.note.NotePriority;
 import java.util.Set;
 
 public class NoteParser {
+    /**
+     * Parses a string representation of a note into a Note object.
+     *
+     * @param noteString the string representation of the note in the format "Priority \t Status \t Count \t Note"
+     * @return a Note object corresponding to the parsed string representation
+     * @throws InvalidFormatException if the input string is not in the expected format or contains invalid values
+     */
     public static Note parseNoteString(String noteString) throws InvalidFormatException{
 
         //text format: Priority \\t Status \\t Count \\t Note
