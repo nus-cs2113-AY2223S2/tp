@@ -105,7 +105,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * For example, user wants to take these 3 slots:
 
 <p align = "center">
-<img src="NUSModsEG.png" style="zoom:40%;" >
+<img src="NUSModsEG.png" style="zoom:30%;" >
 </p>
 
 > `MODULECODE`: Module code
@@ -120,18 +120,18 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 
 **`LessonTypes` Recognized by NUSPlanner**
 
-| Lesson name                | Name on NUSMODS | Lesson type to input into Command line |
-|----------------------------|-----------------|----------------------------------------|
-| Lecture                    | LEC             | `LEC`                                  |
-| Sectional Teaching         | SEC             | `SEC`                                  |
-| Design Lecture             | DLEC            | `DLEC`                                 |
-| Recitation                 | REC             | `REC`                                  |
-| Packaged Lecture           | PLEC            | `PLEC`                                 |
-| Seminar-Style Module Class | SEM             | `SEM`                                  |
-| Tutorial                   | TUT             | `TUT`                                  |
-| Tutorial Type 2            | TUT2            | `TUT2`                                 |
-| Packaged Tutorial          | PTUT            | `PTUT`                                 |
-| Laboratory                 | LAB             | `LAB`                                  |
+| Lesson name                | Name on NUSMODS | LessonType input |
+|----------------------------|-----------------|------------------|
+| Lecture                    | LEC             | `LEC`            |
+| Sectional Teaching         | SEC             | `SEC`            |
+| Design Lecture             | DLEC            | `DLEC`           |
+| Recitation                 | REC             | `REC`            |
+| Packaged Lecture           | PLEC            | `PLEC`           |
+| Seminar-Style Module Class | SEM             | `SEM`            |
+| Tutorial                   | TUT             | `TUT`            |
+| Tutorial Type 2            | TUT2            | `TUT2`           |
+| Packaged Tutorial          | PTUT            | `PTUT`           |
+| Laboratory                 | LAB             | `LAB`            |
 
 **Workshops** and **Mini Projects** are excluded from the lesson types as they do not have specific timings. Do add them as individual/recurring
 events should you need to have them.
@@ -141,7 +141,7 @@ events should you need to have them.
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
-> **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m HSI2016 -n L1 -l SEC`
+> **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m AC5001 -l LEC -n 1`
 > 
 > 
 > For `LESSONTYPE` field, only `lecture / tutorial / laboratory` or any of the fields specified in the table above are accepted
@@ -256,6 +256,9 @@ ____________________________________________________________
          @ COM1-0114
 ____________________________________________________________
 ~~~
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 ~~~
 Showing schedule for semester 1 and week 7
 ____________________________________________________________
@@ -340,7 +343,7 @@ Edit an event that has been added to the schedule. Use –x to specify the attri
 
 Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`
 
-**notice: **
+**notice:**
 
 > when Editing the event, User need to rewrite the complete time information including the parts that they do not what to change
 >
@@ -360,7 +363,7 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 
 2. Edit the start date, start time and end time of an event: `edit -i 1 –sd 2023/02/11 –st 08:00 –et 10:00 `
 
-**notice: ** 
+**notice:** 
 
 > Similar to add command, the app will also check whether there is any confliction between the new revised time and other events/classes with **full details of time information** if and only if the revised time information also have **starting date & time and ending date & time**
 >
@@ -393,6 +396,8 @@ Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[
 
 ### NUSMods Data
 NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored in NUSPlanner is correct as of **March 17, 2023**. 
+
+<p style="page-break-after: always;">&nbsp;</p>
 
 ## FAQ
 
