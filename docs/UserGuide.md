@@ -6,7 +6,7 @@
   * [Features](#features)
     * [Tracking multiple pets at once](#tracking-multiple-pets-at-once)
     * [Add Tasks with deadlines](#add-tasks-with-deadlines)
-    * [Reminder feature for expired tasks](#reminder-feature-for-expired-tasks)
+    * [Reminder feature for tasks due today](#reminder-feature-for-tasks-due-today)
     * [Viewing the full list of pets and tasks](#viewing-the-full-list-of-pets-and-tasks)
   * [Command Summary](#command-summary)
     * [Adding a pet: `add-pet`](#adding-a-pet-add-pet)
