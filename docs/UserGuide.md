@@ -311,7 +311,7 @@ item's
 name and price.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖John wants to run a Chicken Rice store.  Currently, he only has two things to sell and has already set the cost: <strong>White Chicken Rice ($4.50)</strong> and <strong>Egg ($0.80)</strong>. He will need to use the <code>additem</code> <a href="#glossary"><i>command</i></a> to add these two items.
+📖 John wants to run a Chicken Rice store.  Currently, he only has two things to sell and has already set the cost: <strong>White Chicken Rice ($4.50)</strong> and <strong>Egg ($0.80)</strong>. He will need to use the <code>additem</code> <a href="#glossary"><i>command</i></a> to add these two items.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -352,6 +352,7 @@ This example will show you how to add an item step-by-step.
 </blockquote>
 
 **[*Command*](#glossary) Format**
+
 These are the different [*command*](#glossary) formats that are accepted when adding a new item into the menu.
 
 ```text
@@ -466,7 +467,7 @@ To view more about listitem, [click here](#list-all-items).
 
  <img src="https://i.imgur.com/V30OtYU.png">
 
-So, he has decided to delete Fried Rice, which has an <a href="#glossary"><i>index</i></a>) of <strong>8</strong> from his menu using
+So, he has decided to delete Fried Rice, which has an <a href="#glossary"><i>index</i></a> of <strong>8</strong> from his menu using
 the <code>deleteitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
@@ -475,9 +476,9 @@ the <code>deleteitem</code> <a href="#glossary"><i>command</i></a>.
 
 </blockquote>
 
-| Option  | Description                           | Restrictions                                                                                                                                               |
-|---------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Index` | The position of the item in the menu. | The entered number must be a valid <a href="#glossary"><i>index</i></a> number from `listitem`. </br></br> The entered number cannot be a negative number. |
+| Option  | Description                           | Restrictions                                                                                                                                         |
+|---------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Index` | The position of the item in the menu. | The entered number must be a valid <a href="#glossary"><i>index</i></a> number from `listitem`. <br> The entered number cannot be a negative number. |
 
 <h3> For New Users </h3>
 
@@ -526,7 +527,7 @@ In other words, you cannot remove something that does not exist!
 
 ## Update an Item
 
-Realised you entered the wrong name or price? You can update your items with this [*command*](#glossary)!
+Realised you entered the wrong name or price? You can update your items with this [*command*](#glossary) !
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖 John has been happily using MoneyGoWhere to input all his items. However, he is a bit clumsy and entered a few wrong things. This is what the menu currently looks like: 
@@ -543,11 +544,11 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 💡 There are restrictions for the <a href="#glossary"><i>index</i></a>, name, and price of items, as shown below:
 </blockquote>
 
-| Option  | Description                                                  | Restrictions                                                                                                                                                            |
-|---------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Index` | The <a href="#glossary"><i>index</i></a> number of the item. | Must be a valid <a href="#glossary"><i>index</i></a> from `listitem`, cannot be a negative number. </br></br> This <a href="#glossary"><i>option</i></a> is compulsory. |
-| `Name`  | The new name of the item.                                    | It cannot already exist in the menu. </br></br> This <a href="#glossary"><i>option</i></a> is not compulsory.                                                           |
-| `Price` | The new price of the item.                                   | It can have at most two <a href="#glossary"><i>decimal places</i></a>.  </br></br> This <a href="#glossary"><i>option</i></a> is not compulsory.                        |
+| Option  | Description                                                  | Restrictions                                                                                                                                                      |
+|---------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Index` | The <a href="#glossary"><i>index</i></a> number of the item. | Must be a valid <a href="#glossary"><i>index</i></a> from `listitem`, cannot be a negative number. <br> This <a href="#glossary"><i>option</i></a> is compulsory. |
+| `Name`  | The new name of the item.                                    | It cannot already exist in the menu. <br> This <a href="#glossary"><i>option</i></a> is not compulsory.                                                           |
+| `Price` | The new price of the item.                                   | It can have at most two <a href="#glossary"><i>decimal places</i></a>. <br> This <a href="#glossary"><i>option</i></a> is not compulsory.                         |
 
 <h3> For New Users </h3>
 
@@ -850,9 +851,9 @@ This feature allows you to view the cost, order IDs, the items included in each 
 were made.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖  John's first day is a huge success! He has fed so many hungry students and could see them enjoying his delicious food. At the end of the day, he wants to take a look at all the orders he has taken over the day. He will use the <code>listorder</code> command. </br></br>
+📖 John's first day is a huge success! He has fed so many hungry students and could see them enjoying his delicious food. At the end of the day, he wants to take a look at all the orders he has taken over the day. He will use the <code>listorder</code> command. 
 
-**Note: Only the first two orders will be shown to reduce the length of the user guide.**
+<strong>Note: Only the first two orders will be shown to reduce the length of the user guide.</strong>
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -875,7 +876,6 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ![](https://i.imgur.com/taGiKBr.png)
 
- </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -888,16 +888,16 @@ refunded.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  After using MoneyGoWhere for a few days, John has encountered his worst nightmare: an indecisive customer! This customer wanted Curry Chicken Rice with Vegetables, but has now changed his mind. 
- </br></br> 
+
 Not wanting to receive bad reviews about his newly opened stall, John decides to give in to his demands for a refund.
- </br></br>
-John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>. </br></br>
+
+John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>. 
 
 John needs to refund the order, and can do so with the <code>refundorder</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the name and price of items, as shown below: </br></br>
+💡 There are restrictions for the name and price of items, as shown below:
 
 </blockquote>
 
@@ -930,7 +930,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 </blockquote>
 
 1. John uses `/listorder` to look through the list of orders and gets the ID as `9a382d0f-81ee-4855-b29e-547e8e164f9a`.
-   He copies the order ID from the CLI.
+   He copies the order ID from the [*CLI*](#glossary).
 2. Next, he uses the [*command*](#glossary) `/refundorder` and inputs the copied order ID from earlier.
 
 ![](https://i.imgur.com/HYRlOwu.png)
@@ -981,18 +981,18 @@ to generate reports.
 ```
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 We understand that these <a href="#glossary"><i>command</i></a> formats may be complicated. Here is a refesher on how such formats can be more easily understood.
-
-1. Any words surrounded by <code><></code>,. 
-
+💡 We understand that these <a href="#glossary"><i>command</i></a> formats may be complicated. Here is a refresher on how such formats can be more easily understood.
+<br>
+1. Any words surrounded by <code><></code>. 
+<br>
 2. <a href="#glossary"><i>Options</i></a> that are surrounded by <code>{}</code> are optional. 
-
+<br>
 3. All values have to be accompanied by <a href="#glossary"><i>options</i></a> (begins with <code>-</code>, such as <code>-n</code> or <code>--price</code>). <a href="#glossary"><i>Commands</i></a> such as <code>/deleteitem delete -i 10</code> will be an invalid <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the name and price of items, as shown below:
+💡 There are restrictions for <a href="#glossary"><i>options</i></a>, as shown below:
 
 </blockquote>
 
@@ -1007,6 +1007,7 @@ to generate reports.
 Don't worry if you find yourself still confused by the format. We admit, it is pretty complex. So, let's break it down:
 
 **Rank vs Sale**
+
 Of the two, only one can be present in your [*command*](#glossary).
 
 * When generating your report, you can choose between the [*options*](#glossary) `rank` or `sale`.
@@ -1014,6 +1015,7 @@ Of the two, only one can be present in your [*command*](#glossary).
     * Meanwhile, Sale shows your income, either on a `daily` basis or `monthly` basis.
 
 **Year vs From/To**
+
 Of the two, only one can be present in your [*command*](#glossary).
 
 * You can choose which dates to generate the report.
