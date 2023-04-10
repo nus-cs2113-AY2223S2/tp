@@ -86,7 +86,8 @@ academic d/2023-02-02 a/25.10 p/NUS
 Output:
 
 ```
-Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS
+Added academic expenditure: [Academic] || Date: 2 Feb 2023
+|| Value: 25.1 || Description: NUS
 ```
 
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form. 
@@ -102,11 +103,10 @@ other d/2000-01-31 a/26 p/Eating lunch
 Output:
 
 ```
-Added other expenditure: [Other] || Date: 31 Jan 2000 || Value: 26.0 || Description: Eating lunch
+Added other expenditure: [Other] || Date: 31 Jan 2000
+|| Value: 26.0 || Description: Eating lunch
 ```
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.2. Adding a lend/borrow record
 
@@ -186,7 +186,8 @@ Editing an expenditure
 ```
 edit 2 d/2023-02-15 a/20.00 p/Eat Food
 Edited! Here is the updated list:
-The list is printed subsequent to the command but is omitted as different users will have different expenditures
+The list is printed subsequent to the command but is omitted as
+different users will have different expenditures
 ```
 
 ### 4.4. Editing a Lend/Borrow record
@@ -227,10 +228,9 @@ edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 
 Edited! Here is the updated list:
 
-The list is printed subsequent to the command but is omitted as different users will have different expenditures
+The list is printed subsequent to the command but is omitted as
+different users will have different expenditures
 ```
-
-<div style="page-break-after: always;"></div>
 
 ### 4.5. Deleting an expenditure record
 
@@ -354,8 +354,6 @@ Displays all expenditures in the expenditure list. Expenditure value shown can b
 **Important Information:**
 
 - It reads saved expenditures from a save file upon launch of MyLedger. Else, the expenditure list is empty by default.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.12. Finding expenditure records by keyword
 
