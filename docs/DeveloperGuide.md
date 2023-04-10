@@ -74,7 +74,10 @@ The rest of the app consists of four components:
 * `Parser`: The command executor
 *  `EventList`: Holds the data of the app in memory
 * `Storage`: Reads data from and writes data to the hard disk
+
+
 <br>
+
 [Back to contents page](#table-of-contents)
 
 <p style="page-break-after: always;">&nbsp;</p>
@@ -180,12 +183,18 @@ When any component requires reading the NUS module files, the loadModules() is c
 
 Similarly, the state of the user's event list is saved when the user exits the application by calling saveToFile().
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 #### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
 
 [Back to contents page](#table-of-contents)
+
 ---
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### 2.4 EventList component
 
 API: `EventList.java`
@@ -206,6 +215,9 @@ The class diagram below illustrates the structure of the EventList component.
 
 <img src="UML\Images\EventListUML.png" />
 
+<p style="page-break-after: always;">&nbsp;</p>
+
+
 And below is a sequential diagram showing a event being added, revised, checked for information and finally deleted.
 
 <img src="UML\Images\EventListSD.png" style="zoom:80%;" />
@@ -217,6 +229,10 @@ And below is a sequential diagram showing a event being added, revised, checked 
 It is necessary to have a list which contains all the current event/class so that we can show/ batch process events more efficiently. Moreover, this component serves intermediary functions and avoids other classes access deep into the functionality of classes (Event, Schedule e.t.c) inside the ArrayList, thus reduces the coupling of the code base. Additionally, this component also converted all the String parameters parsed by Parser into various Types that required by other classes that the EventList contains, further reducing the coupling.
 
 [Back to contents page](#table-of-contents)
+
+---
+
+<p style="page-break-after: always;">&nbsp;</p>
 
 # 3 Testing the application
 ## 3.1 Instructions for manual testing
@@ -248,6 +264,10 @@ Expected behaviour: Error details are shown on the terminal
 3. Test Case: `list -w X` where X is the week in question. Expected Behaviour: The terminal displays a timetable with
    events of the week in question accurately reflected.
 
+---
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 
 ## Appendix A: Product Scope
 
@@ -262,6 +282,9 @@ NUSPlanner aims to help students who are studying in the National University of 
 allowing them to take charge of their schedules and ensure that they have their upcoming events well-planned out. 
 
 [Back to contents page](#table-of-contents)
+
+---
+
 # Appendix B:
 ## User Stories
 
@@ -274,6 +297,9 @@ allowing them to take charge of their schedules and ensure that they have their 
 | v2.0    | As a user    | Save the location of an event                                       | Remember where I need to go for the next event                                     |
 
 [Back to contents page](#table-of-contents)
+
+---
+
 # Appendix C: 
 ## Non-Functional Requirements
 1. The program should be able to run on any computer regardless of OS.
@@ -282,6 +308,9 @@ allowing them to take charge of their schedules and ensure that they have their 
 4. The program should be lightweight and fast.
 
 [Back to contents page](#table-of-contents)
+
+---
+
 # Appendix D: 
 ## Glossary
 
@@ -292,6 +321,11 @@ allowing them to take charge of their schedules and ensure that they have their 
 * *NUSMods* - NUSMods is a module manager and organiser tool used by NUS Students.
 
 [Back to contents page](#table-of-contents)
+
+---
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 # Appendix E: Acknowledgements
 
 Special thanks to the following libraries and APIs for making the development of **NUSPlanner** possible
