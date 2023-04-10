@@ -7,7 +7,7 @@
 
 ## Design & implementation
 
-![img_26.png](img_26.png) <br>
+![img_31.png](img_31.png) <br>
 **Figure 1: High Level UML Diagram of Sniff Appointment Manager** <br>
 
 ![img_27.png](img_27.png) <br>
