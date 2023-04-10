@@ -16,6 +16,7 @@
         * [Forex component](#forex-component)
         * [Open Exchange Rates API](#open-exchange-rates-api)
         * [Transactions Component](#transactions-component)
+        * [Storage Component](#storage-component)
     * [Implementation](#implementation)
         * [Create/Delete account feature](#createdelete-account-feature)
         * [Add/Withdraw money feature](#addwithdraw-money-feature)
@@ -23,14 +24,14 @@
         * [Show-rate feature](#show-rate-feature)
         * [Money exchange feature](#money-exchange-feature)
         * [Show transactions feature](#show-transactions-feature)
-    * [Appendix&#58; Requirements](#appendix58-requirements)
+    * [Appendix - Requirements](#appendix---requirements)
         * [Product scope](#product-scope)
             * [Target user profile](#target-user-profile)
             * [Value proposition](#value-proposition)
         * [User Stories](#user-stories)
         * [Non-Functional Requirements](#non-functional-requirements)
         * [Glossary](#glossary)
-    * [Appendix&#58; Instructions for Manual Testing](#appendix58-instructions-for-manual-testing)
+    * [Appendix - Instructions for Manual Testing](#appendix---instructions-for-manual-testing)
         * [Initial Launch](#initial-launch)
         * [Help Command](#help-command)
         * [Creating an account](#creating-an-account)
@@ -38,7 +39,7 @@
         * [Viewing exchange rates](#viewing-exchange-rates)
         * [Exchanging money between different currencies](#exchanging-money-between-different-currencies)
         * [Deleting accounts](#deleting-accounts)
-    * [Appendix: Instructions for updating the API Key](#appendix--instructions-for-updating-the-api-key)
+    * [Appendix - Instructions for updating the API Key](#appendix---instructions-for-updating-the-api-key)
 
 <!-- TOC -->
 
@@ -204,6 +205,17 @@ The `Transactions` component
 - `Transactions` are only accessed through the `TransactionManager`
 - `Transactions` associated to an account are deleted if and only if the account is deleted
 
+### Storage Component
+
+The following is a class diagram of the `Storage` component
+![StoreClassDiagram](images/StoreClassDiagram.png)
+
+- The `Storage` component is responsible for saving and loading data from disk.
+- It stores the account and transaction data in JSON format using the Gson library.
+- The `Storage` component makes use of dependency injection with the `StoreInterface` so that a stub (`TestStore`) can
+  be injected when running automated tests. This prevents the automated tests from modifying the actual data stored on
+  disk or having to consider potential side effects from previous tests.
+
 ## Implementation
 
 ### Create/Delete account feature
@@ -347,7 +359,7 @@ The following sequence diagram shows how the **Transaction command** works
 
 ![TransactionSeqDiagram](images/ShowTransactionsSeqDiagram.png)
 
-## Appendix&#58; Requirements
+## Appendix - Requirements
 
 ### Product scope
 
@@ -390,7 +402,7 @@ Command Line Interface (CLI) while still having the features of other money mana
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-## Appendix&#58; Instructions for Manual Testing
+## Appendix - Instructions for Manual Testing
 
 Given below are some instructions for testing the app manually. Note that they are meant to provide a starting point
 and are not an exhaustive list of test cases.
@@ -432,7 +444,7 @@ and are not an exhaustive list of test cases.
    another currency or withdrawing all the money.
 2. You can then delete an account using the `delete-account` command.
 
-## Appendix: Instructions for updating the API Key
+## Appendix - Instructions for updating the API Key
 
 - The API Key for retrieving exchange rates is stored in the `src/main/java/com/moneymoover/api/ExchangeRates.java` file
   as the `APP_ID` property.
