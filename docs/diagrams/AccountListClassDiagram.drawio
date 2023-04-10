@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" modified="2023-04-10T13:10:40.582Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="d1I9RGa2BNUrHXaDQqCQ" version="21.1.5" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="2190" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-1" value="Account" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="35" y="530" width="260" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-2" value="- balance: long" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="dsbA1eekSPSx_6IA9cFN-1" vertex="1">
+          <mxGeometry y="26" width="260" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="dsbA1eekSPSx_6IA9cFN-1" vertex="1">
+          <mxGeometry y="50" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-4" value="+ getBalance(): float&lt;br&gt;+ getCurrencyType(): Currency&lt;br&gt;+ updateBalance(&lt;br&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;changeInBalance: BigDecimal,&amp;nbsp;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;action: String&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;): void&lt;br&gt;+ currencyToString(): String&lt;br&gt;+ toString() : String&lt;br&gt;+ Account(&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;initialBalance: long, &lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;currency: Currency&lt;br&gt;)&lt;br&gt;+ Account(&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;initialBalance: float,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;currency: Currency&lt;br&gt;)&lt;br&gt;+ getLongBalance(): long" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="dsbA1eekSPSx_6IA9cFN-1" vertex="1">
+          <mxGeometry y="58" width="260" height="262" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-20" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;Currency&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;SGD&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;USD&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;EUR&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;GBP&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;THB&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;MYR&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;IDR&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;VND&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;CNY&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;JPY&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;KRW&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="448" y="500" width="190" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-22" value="currency" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="370" y="570" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-23" value="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="388" y="550" width="60" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="dTihvwjY7Ts53fyvmRjP-29" value="AccountList" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-413" y="540" width="250" height="320" as="geometry">
+            <mxRectangle x="-413" y="540" width="110" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AeTZVSez2ALwSCZFMwim-3" value="- store: StoreInterface&lt;br&gt;- logger: Logger" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="dTihvwjY7Ts53fyvmRjP-29">
+          <mxGeometry y="26" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dTihvwjY7Ts53fyvmRjP-31" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="dTihvwjY7Ts53fyvmRjP-29" vertex="1">
+          <mxGeometry y="66" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="dTihvwjY7Ts53fyvmRjP-32" value="+ addAccount(&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;currency: Currency,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;initialBalance: float&lt;br&gt;)&lt;br&gt;+ deleteAccount(currency:Currency)&lt;br&gt;+ getAllAccounts(): ArrayList&amp;lt;Account&amp;gt;&lt;br&gt;+ getAccount(currency:Currency): Account&lt;br&gt;+ save(): void&lt;br&gt;+ addAccountWithLong(&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;currency: Currency,&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;initialBalance: long&lt;br&gt;)&lt;br&gt;+ AccountList(store: StoreInterface)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="dTihvwjY7Ts53fyvmRjP-29" vertex="1">
+          <mxGeometry y="110" width="250" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="dTihvwjY7Ts53fyvmRjP-34" value="accountHashMap" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="-50" y="520" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dTihvwjY7Ts53fyvmRjP-48" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.999;exitY=0.635;exitDx=0;exitDy=0;entryX=0.377;entryY=1.003;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dTihvwjY7Ts53fyvmRjP-32" target="dsbA1eekSPSx_6IA9cFN-20" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="30" y="620" as="sourcePoint" />
+            <mxPoint x="190" y="620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-80" y="783" />
+              <mxPoint x="-80" y="940" />
+              <mxPoint x="220" y="940" />
+              <mxPoint x="520" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GGbGsox17pMzHfBHLfQN-1" value="*" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dTihvwjY7Ts53fyvmRjP-32" edge="1">
+          <mxGeometry x="0.8029" y="-27" relative="1" as="geometry">
+            <mxPoint x="-140" y="820" as="sourcePoint" />
+            <mxPoint x="30" y="560" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-50" y="650" />
+              <mxPoint x="-50" y="560" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dsbA1eekSPSx_6IA9cFN-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.323;entryDx=0;entryDy=0;entryPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="dsbA1eekSPSx_6IA9cFN-2" edge="1" target="dsbA1eekSPSx_6IA9cFN-20">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="583" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

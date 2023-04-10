@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2023-04-10T13:32:00.918Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" etag="9H1DxxQ0S-IubvCR3oss" version="21.1.5" type="device">
+  <diagram name="Page-1" id="vAl6ECt_cNf6O5D6-D3h">
+    <mxGraphModel dx="954" dy="507" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-1" value="Forex" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="110" y="250" width="320" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-2" value="&lt;u&gt;- exchangeRates:HashMap&amp;lt;Currency, BigDecimal&amp;gt;&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h44oGfwBhWr0qdJ2aVvA-1" vertex="1">
+          <mxGeometry y="26" width="320" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="h44oGfwBhWr0qdJ2aVvA-1" vertex="1">
+          <mxGeometry y="52" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-4" value="+ toString(): String&lt;br&gt;+ convert(amount: BigDecimal): BigDecimal&lt;br&gt;+ getInitial(): Currency&lt;br&gt;+ getTarget(): Currency&lt;br&gt;+ Forex(from: Currency, to: Currency)&lt;br&gt;&lt;u&gt;+ initializeRates()&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h44oGfwBhWr0qdJ2aVvA-1" vertex="1">
+          <mxGeometry y="60" width="320" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-5" value="&amp;lt;&amp;lt; enumeration &amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;Currency&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="580" y="215" width="140" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-8" value="SGD&lt;br&gt;USD&lt;br&gt;EUR&lt;br&gt;GBP&lt;br&gt;THB&lt;br&gt;MYR&lt;br&gt;IDR&lt;br&gt;VND&lt;br&gt;CNY&lt;br&gt;JPY&lt;br&gt;KRW" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="h44oGfwBhWr0qdJ2aVvA-5" vertex="1">
+          <mxGeometry y="40" width="140" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.361;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="h44oGfwBhWr0qdJ2aVvA-2" target="h44oGfwBhWr0qdJ2aVvA-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="410" as="sourcePoint" />
+            <mxPoint x="570" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490" y="289" />
+              <mxPoint x="490" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-11" value="currencies" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="500" y="325" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="h44oGfwBhWr0qdJ2aVvA-12" value="2" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="540" y="290" width="30" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
