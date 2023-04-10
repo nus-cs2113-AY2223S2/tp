@@ -27,6 +27,8 @@
 
 The documentation and organisation of our project follows the recommended format as shown in [SE-Education](http://se-education.org/addressbook-level3/DeveloperGuide.html)
 
+<div style="height: 420px;"></div>
+
 ## 1. Design
 
 ### 1.1. Architecture Design Diagram
@@ -47,6 +49,8 @@ Breakdown of each component and its role in the application:
 `Ui`: This component is responsible for displaying information to the user. It receives messages and data from the other components and displays them to the user.
 
 Overall, the architecture diagram shows how the different components of the MagusStock application work together to provide the user with a command-line interface for managing an inventory of items. The components are designed to be modular and loosely coupled, allowing for easy modification and extension of the application.
+
+<div style="height: 190px;"></div>
 
 ### 1.2. UML Sequence Diagram
 
@@ -69,6 +73,8 @@ from the `Command` class.
 object which will parse the user input and create a new `AddCommand` object which is responsible for
 the execution of the `add` command by performing the necessary operations
 
+<div style="height: 150px;"></div>
+
 ### 2.1. Parser Component
 The class diagram below illustrates the abstract relationship between the different parser for each command. 
 The `ParserHandler` class is responsible for handling the user input and determining which parser to execute 
@@ -90,6 +96,8 @@ that is abstracted from the `Command` class as shown in the diagram below.
 
 ---
 
+<div style="height: 130px;"></div>
+
 ### 2.3. List
 The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
 
@@ -110,6 +118,7 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 **Step 4.**. If the `printTable` method is called, it takes in an `ArrayList<Item> items` as a parameter and prints out a table showing the name, UPC, quantity and price of all items in the inventory.
 
+<div style="height: 300px;"></div>
 
 
 ### 2.4. Add
@@ -139,7 +148,10 @@ perform the necessary operations to add the item to the inventory.
 **Step 7.** Once the `AddCommand` object has finished executing, `Command` and `AddCommand` is destroyed
 and the `AddParser` object is returned to the `ParserHandler` object with itself being destroyed as well.
 
+<div style="height: 380px;"></div>
+
 #### 2.4.2. AddCommand Class
+
 ![AddCommand.png](UML%2FAdd%2FAddCommand.png)
 
 The `AddCommand` class represents the command to add an item to the inventory. It takes in an `Inventory` object and 
@@ -192,6 +204,7 @@ Included below are UML Sequence Diagrams for `EditParser` and `EditCommand`. The
 more detailed reference frame for `Process User Edit Input` found in the first diagram.
 
 ![EditParser.png](UML/Edit/EditParser.png)
+
 ![EditCommand.png](UML/Edit/EditCommand.png)
 
 ### 2.6. Restock
@@ -228,8 +241,10 @@ Included below are UML Sequence Diagrams for the `RestockParser` and `RestockCom
 detailed version of what happens in the reference frame of `Increase Quantity of the Item`.
 
 ![RestockParser.png](UML/Restock/RestockParser.png)
+
 ![RestockCommand.png](UML/Restock/RestockCommand.png)
 
+<div style="height: 250px;"></div>
 
 ### 2.7. Sell
 The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. It is parsed
@@ -264,6 +279,7 @@ Included below are UML Sequence Diagrams for `SellParser` and `SellCommand`. The
 version of what happens in the reference frame 'Deduct Quantity of the Item'.
 
 ![SellParser.png](UML/Sell/SellParser.png)
+
 ![SellCommand.png](UML/Sell/SellCommand.png)
 
 
@@ -273,6 +289,7 @@ The remove command is mainly handled by the `RemoveCommand` class, which extends
 `RemoveParser` class, which extends the `Parser` class.
 
 ![RemoveParser.png](UML/Remove/RemoveParser.png)
+
 ![RemoveCommand.png](UML/Remove/RemoveCommand.png)
 
 **Step 1**. When the user executes the command `remove f/index [Index]` or `remove f/item upc/[UPC]`, the `ParserHandler` will
@@ -304,6 +321,7 @@ The search command is mainly handled by the `SearchCommand` class, which extends
 the `SearchParser` class, which extends the `Parser` class.
 
 ![SearchSequence.png](UML%2FSearch%2FSearchSequence.png)
+
 ![SearchCommand.png](UML%2FSearch%2FSearchCommand.png)
 
 **Step 1**. When the user executes the command `search [keyword]` or `searchupc [keyword]`, the `ParserHandler` will create a 
@@ -333,6 +351,7 @@ will inform the user that no search results were found. Otherwise, the `printSea
 `Types.SearchType.KEYWORD` or `Types.SearchType.UPC` respectively.
 
 ![SearchStep5.png](UML%2FSearch%2FSearchStep5.png)
+
 ![SearchStep5UPC.png](UML%2FSearch%2FSearchStep5UPC.png)
 
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
@@ -344,7 +363,9 @@ The filter command is mainly handled by the `FilterCommand` class, which extends
 the `FilterParser` class, which extends the `Parser` class.
 
 ![FilterSequence.png](UML%2FFilter%2FFilterSequence.png)
+
 ![FilterPrice.png](UML%2FFilter%2FFilterPrice.png)
+
 ![FilterTagCategory.png](UML%2FFilter%2FFilterTagCategory.png)
 
 
@@ -368,6 +389,7 @@ printed out and execution of the method will halt. Otherwise, a new `FilterComma
 `Inventory`, `Price`, and `FilterPriceMode`.
 
 ![FilterStep3.png](UML%2FFilter%2FFilterStep3.png)
+
 ![FilterStep3Tag.png](UML%2FFilter%2FFilterStep3Tag.png)
 
 **Step 4**. The `run` method in the `FilterCommand` object is called which overrides the `run` method in the
@@ -424,7 +446,9 @@ the details of the last and most current instant of the item.
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
 ![AlertParser.png](UML%2FAlert%2FAlertParser.png)
+
 ![AddAlertCommand.png](UML%2FAlert%2FAddAlertCommand.png)
+
 ![AddAlertCommand.png](UML%2FAlert%2FRemoveAlertCommand.png)
 
 **Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
@@ -446,6 +470,7 @@ The `Alert` object is constructed using the `input` string.
 Note that both the `AddAlertCommand` and `RemoveAlertCommand` classes have an `AlertList` as part of their constructors, and that this `AlertList` is obtained from the inventory.
 
 ![AlertStep3Add.png](UML%2FAlert%2FAlertStep3Add.png)
+
 ![AlertStep3Remove.png](UML%2FAlert%2FAlertStep3Remove.png)
 
 
@@ -466,6 +491,7 @@ The category command is mainly handled by the `CategoryCommand` class, which ext
 the `CategoryParser` class, which extends the `Parser` class.
 
 ![CategoryParser.png](UML/Category/CategoryParser.png)
+
 ![CategoryCommand.png](UML/Category/CategoryCommand.png)
 
 **Step 1** When the user executes the command `cat list` or `cat table`, the `ParserHandler` will create a new 
