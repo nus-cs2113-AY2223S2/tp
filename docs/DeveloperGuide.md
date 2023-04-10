@@ -4,7 +4,6 @@
 1. [Acknowledgements](#acknowledgements) 
 
 2. [Design & Implementation](#design--implementation)
-   
     * [Main overview of the system](#main-overview-of-the-system-)
     * [Event Class](#event-class)
     * [Ui](#ui)
