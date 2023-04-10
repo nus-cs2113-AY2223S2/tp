@@ -35,7 +35,7 @@ operation through the Command-Line Interface(CLI).
 - Improved feature: Tests for `CompanyList` methods
   - Enhancement: Wrote additional tests for `CompanyList` to increase coverage ([#136](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/136))
 
-### Documentation
+#### Documentation
 - UG contribution
     - Added documentation for `help` command
     - Resolved PE-D bugs ([#124](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/124))
@@ -47,7 +47,7 @@ operation through the Command-Line Interface(CLI).
     - Added documentation for Duplication Checker feature
     - Sequence diagram for Duplication Checker feature
 
-### Contributions to team-based tasks
+#### Contributions to team-based tasks
 - Created milestones for each release: [v1.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/1), [v2.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/2), [v2.1](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/3)
 - Reviewed PRs (with non-trivial comments): [#17](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/17), [#20](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/20), [#35](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/35)
 
