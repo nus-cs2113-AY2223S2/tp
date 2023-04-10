@@ -44,29 +44,9 @@ them keep track of their expense based on category, date, amount, and currency.
 2. Download the latest version of `ET` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run
    the application.
-4. Enter your name when prompted in the command box and press enter.
-5. Log in to your account by typing `login` if you have already got one. Else, typing `signup` to create your account,
-   and then press Enter to proceed. After signing up successfully, you should log in to experience the app. More instructions
-   about the account and password are stated in the "Account Instructions" part.
-6. Once you have logged in successfully, you will see a message `Login successful`, and you are ready to experience our
-   application! You will see a command box for command instructions.
-7. Type the command in the command box and press Enter to execute it.
-
-   Some example commands you can try:
-
-    * `add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the
-      expense list.
-    * `list`: List all expenses in the expense list.
-    * `delete 1`: Delete the first entry in the expense list.
-    * `sort D`: Sort the expenses by date.
-    * `category food`: Find all expenses with food category.
-    * `find 2.5`: Find all expenses with information of 2.5.
-   
-8. When you want to log out and save your expense list, type `logout`.
-9. If you have already logged in, and want to close the application, type `exit`. Your expense list will be saved
-   automatically.
-10. Else, if you haven't logged in, or have already logged out, and you want to close the application, typing `exit`
-    will end the application immediately.
+4. Signup for an account using the `signup` option and then log in to proceed.
+5. Once logged in, use the `help` command to see the list of available commands.
+6. Once you are done, `exit` to quit the program or `logout` to switch accounts.
 
 <div style="page-break-after: always;"></div>
 
