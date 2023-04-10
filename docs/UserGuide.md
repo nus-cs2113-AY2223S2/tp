@@ -87,8 +87,8 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * All fields are compulsory
 
 #### Examples of usage
-* Add a lecture of module: `add -m AC5001 -n 1 -l lecture`
-* Add a tutorial of module: `add -m CS2100 -n 11 -l tutorial`
+* Add a lecture of module: `add -m AC5001 -n 1 -l LEC`
+* Add a tutorial of module: `add -m CS2100 -n 11 -l TUT`
 
 #### How to find the correct `MODULECODE`, `CLASSNUMBER` and `LESSONTYPE`?
 * Head over to [NUSMods](www.nusmods.com)
@@ -99,13 +99,13 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 > 
 >`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
 > 
->`LESSONTYPE`: Either lecture, tutorial or laboratory and is stated before `CLASSNUMBER`
+>`LESSONTYPE`: Refer to table Below:
 * Commands used for this case are
-`add -m CS2100 -n 01 -l tutorial`, `add -m CS2100 -n 02 -l laboratory` and `add -m CS2100 -l lecture`
+`add -m CS2100 -n 01 -l TUT`, `add -m CS2100 -n 02 -l LAB` and `add -m CS2100 -l LEC`
 * Please type out your commands and ensure your spelling is accurate
 * Copying and pasting commands from the user guide may cause some issues due to formatting
 
-**Lesson Types Recognized by NUSPlanner**
+**`LessonTypes` Recognized by NUSPlanner**
 
 | Lesson name                | Name on NUSMODS | Lesson type to input into Command line |
 |----------------------------|-----------------|----------------------------------------|
@@ -126,9 +126,9 @@ events should you need to have them.
 **Notice**
 > For the lesson number and lesson type, follow the format as displayed on NUSMods. 
 > 
-> ~~**BAD** example~~: `add -m CS2100 -n 2 -l tutorial`
+> ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
-> **GOOD** example: `add -m CS2100 -n 02 -l tutorial` or `add -m HSI2016 -n L1 -l Sectional Teaching`
+> **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m HSI2016 -n L1 -l SEC`
 > 
 > 
 > For `LESSONTYPE` field, only `lecture / tutorial / laboratory` or any of the fields specified in the table above are accepted
