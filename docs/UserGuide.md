@@ -52,8 +52,8 @@ decisions.
    Enter a command or /help to see the list of commands available.
    > 
    ```
-5. To enter an entry, you may use [`/add`](#adding-an-entry-add-add),
-   or enter [`/help`](#show-help-menu-help-help) to view the help menu.
+5. To enter an entry, you may use [`/add`](#adding-an-entry-add),
+   or enter [`/help`](#show-help-menu-help) to view the help menu.
 <!-- @@author -->
 
 <!-- @@author adenteo -->
