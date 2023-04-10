@@ -1,12 +1,15 @@
 package seedu.duke;
 
-// import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Schedule {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
+    private static final String RECUR_DAILY = "D";
+    private static final String RECUR_WEEKLY = "W";
+    private static final String RECUR_MONTHLY = "M";
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -21,95 +24,126 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
-
-
     public Schedule(LocalDateTime start, boolean hasSt) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = false;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            "", 
+            "",
+            hasSt,
+            false,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, boolean hasSt, String recurringTime) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            "",
+            recurringTime,
+            hasSt,
+            false,
+            true
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd) {
-        this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
-        this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = false;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            end,
+            "",
+            "",
+            hasSt,
+            hasEd,
+            false,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, boolean hasSt, boolean hasEd,
             String recurringTime) {
-        this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
-        this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = false;
-        this.location = "";
+        this(
+            start,
+            end,
+            "",
+            recurringTime,
+            hasSt,
+            hasEd,
+            false,
+            true
+        );
     }
 
     public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = false;
-        this.hasLocation = hasLocation;
-        this.location = location;
-    }
-
-    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation,
-            String recurringTime) {
-        this.startTime = start;
-        this.hasEndTime = false;
-        this.hasStartTime = hasSt;
-        this.hasEndInfo = false;
-        this.isRecurring = true;
-        this.timeInterval = recurringTime;
-        this.hasLocation = hasLocation;
-        this.location = location;
+        this(
+            start,
+            location,
+            "",
+            hasSt,
+            hasLocation,
+            false
+        );
     }
 
     public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
             boolean hasLocation) {
+        this(
+            start,
+            end,
+            location,
+            "",
+            hasSt,
+            hasEd,
+            hasLocation,
+            false
+        );
+    }
+    
+    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation,
+            String recurringTime) {
+        this(
+            start,
+            location,
+            recurringTime,
+            hasSt,
+            hasLocation,
+            true
+        );
+    }
+    
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
+            boolean hasLocation, String recurringTime) {
+        this(
+            start,
+            end,
+            location,
+            recurringTime,
+            hasSt,
+            hasEd,
+            hasLocation,
+            true
+        );
+    }
+
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, String recurringTime, boolean hasSt,
+        boolean hasEd, boolean hasLocation, boolean isRecurring) {
         this.startTime = start;
         this.endTime = end;
         this.hasEndInfo = true;
         this.hasStartTime = hasSt;
         this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.isRecurring = isRecurring;
+        this.timeInterval = recurringTime;
         this.hasLocation = hasLocation;
         this.location = location;
     }
 
-    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
-            boolean hasLocation, String recurringTime) {
+    public Schedule(LocalDateTime start, String location, String recurringTime, boolean hasSt,
+            boolean hasLocation, boolean isRecurring) {
         this.startTime = start;
-        this.endTime = end;
-        this.hasEndInfo = true;
+        this.hasEndInfo = false;
         this.hasStartTime = hasSt;
-        this.hasEndTime = hasEd;
-        this.isRecurring = false;
+        this.hasEndTime = false;
+        this.isRecurring = isRecurring;
         this.timeInterval = recurringTime;
         this.hasLocation = hasLocation;
         this.location = location;
@@ -127,17 +161,24 @@ public class Schedule {
         return isRecurring;
     }
 
+    /**
+     * Get a String describing time information.
+     * @return String containing time information, [start time] to [end time] [recur and time interval]
+     */
     public String getTime() {
         String recur = " not recurring";
         if (isRecurring) {
             String[] details = timeInterval.split(" ");
             String interval = "";
             switch (details[1].trim()) {
-            case ("D"):
+            case RECUR_DAILY:
                 interval = "Day(s)";
                 break;
-            case ("W"):
+            case RECUR_WEEKLY:
                 interval = "Week(s)";
+                break;
+            case RECUR_MONTHLY:
+                interval = "Month(s)";
                 break;
             default:
                 break;
@@ -168,15 +209,19 @@ public class Schedule {
         this.hasEndInfo = false;
     }
 
+    /**
+     * Calculate time interval in days.
+     * @return time interval in days.
+     */
     public int getActualInterval() {
         String[] details = this.timeInterval.split(" ");
 
         int actualDays = 0;
         switch (details[1].trim()) {
-        case ("D"):
+        case RECUR_DAILY:
             actualDays = Integer.parseInt(details[0].trim());
             break;
-        case ("W"):
+        case RECUR_WEEKLY:
             actualDays = Integer.parseInt(details[0].trim()) * 7;
             break;
         default:
@@ -185,7 +230,9 @@ public class Schedule {
         return actualDays;
     }
 
-    // fuinction mayhbe useful in arlarm?
+    /**
+     * Add recurring events to event list.
+     */
     public ArrayList<Schedule> getNextNTimes(int n) {
         ArrayList<Schedule> list = new ArrayList<>();
         int actualDays = getActualInterval();
