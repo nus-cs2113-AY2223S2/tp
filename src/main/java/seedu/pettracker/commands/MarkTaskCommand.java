@@ -50,8 +50,8 @@ public class MarkTaskCommand extends Command{
 
     /**
      * Checks if a task being marked as complete is already completed
-     * @param taskId
-     * @throws TaskAlreadyCompleteException
+     * @param taskId id of the task to check
+     * @throws TaskAlreadyCompleteException if the task is already complete
      */
     public static void checkIfComplete(int taskId) throws TaskAlreadyCompleteException {
         if (TaskList.getTaskStatus(taskId)) {

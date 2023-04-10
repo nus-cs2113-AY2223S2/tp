@@ -1,6 +1,7 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.exceptions.IllegalArgException;
+import seedu.pettracker.exceptions.TaskAlreadyIncompleteException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -25,12 +26,15 @@ public class UnMarkTaskCommand extends Command{
     @Override
     public void execute(Ui ui, Storage storage) {
         try {
+            checkIfIncomplete(taskNumber);
             TaskList.markTask(taskNumber, false);
             TaskList.saveTasksToStorage(storage, ui);
             String unmarkTaskDescription = TaskList.getSpecificTaskDescription(taskNumber);
             ui.unmarkTaskCommandMessage(unmarkTaskDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
+        } catch (TaskAlreadyIncompleteException e) {
+            ui.taskAlreadyIncompleteMessage();
         }
     }
 
@@ -42,5 +46,16 @@ public class UnMarkTaskCommand extends Command{
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    /**
+     * Checks if a task being marked as incomplete is already incomplete
+     * @param taskId id of task to check
+     * @throws TaskAlreadyIncompleteException if the task is already incomplete
+     */
+    public static void checkIfIncomplete(int taskId) throws TaskAlreadyIncompleteException {
+        if (!TaskList.getTaskStatus(taskId)) {
+            throw new TaskAlreadyIncompleteException();
+        }
     }
 }
