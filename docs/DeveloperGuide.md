@@ -44,12 +44,8 @@ goals.
         * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
         * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
         * [Saving Data](#saving-data)
-            * [Implementation of saving](#implementation-of-saving)
-            * [Type of file to save data into](#type-of-file-to-save-data-into)
         * [Loading Data](#loading-data)
-            * [Type of file to load data into](#type-of-file-to-load-data-into)
         * [Exporting to .csv](#exporting-to-csv)
-            * [Implementation of export to .csv](#implementation-of-export-to-csv)
     * [Product scope](#product-scope)
         * [Target user profile](#target-user-profile)
         * [Value proposition](#value-proposition)
@@ -172,7 +168,8 @@ class diagram for the parser package.
 ![ParserClassDiagram.png](images%2FDeveloperGuide%2FParserClassDiagram.png)
 
 There will be a main parser class that will identify the appropriate parser class to call based on the first word of the
-user's input. All the parser classes will inherit from the main parser class.
+user's input. All the parser classes will inherit from the main parser class. The corresponding parser class will then
+execute the appropriate commands.
 
 ### Data package
 
@@ -208,8 +205,8 @@ Represents the details of a real world transaction
 
 An enum class consisting of:
 
-- INFLOW, representing a transaction direction towards the user, such as a deposit
-- OUTFLOW, representing a transaction direction away from the user, such as a purchase
+- "INFLOW", representing a transaction direction towards the user, such as a deposit
+- "OUTFLOW", representing a transaction direction away from the user, such as a purchase
 
 Represents the flow direction of a transaction
 
@@ -217,7 +214,7 @@ Represents the flow direction of a transaction
 
 Consists of the attribute:
 
-- monthlyExpenditures of object HashMap<integer, double>
+- "monthlyExpenditures" of object HashMap<integer, double>
 
 Maps the year and month to the expenditures
 
@@ -279,7 +276,7 @@ The exceptions component consists of classes `RainyDayException` and `ErrorMessa
 
 #### RainyDayException
 
-- Extends the built-in "Exception" class and takes a string parameter "errorMessage".
+- Extends the built-in `Exception` class and takes a string parameter "errorMessage".
 
 #### ErrorMessages
 
