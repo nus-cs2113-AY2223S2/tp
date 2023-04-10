@@ -29,6 +29,11 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 - This feature allows the user to change an existing note under a specified task  
 - By following the steps outlined by the user guide, existing notes can be edited.
 
+### New Feature: Implementation of ```motivation``` feature
+- Prints a motivational quote for the user
+- Also prints on start up when greeting the user
+
+### New Feature: Printing Duck
 ### Cleaning up of code
 
 - Helped to make the code more defensive to prevent bad inputs from crashing Duck, specifically indexes that accessed out of bounds
