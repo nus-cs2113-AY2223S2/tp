@@ -150,11 +150,11 @@ Format `list exercises`
 Example:
 ![list-exercises-example](./UG-images/list-exercises-example.PNG)
 
-### Deleting meals: `delete`
+### Deleting meals and exercises: `delete`
 
 For users to remove previously added meals and exercises
 
-Format: `delete [/meal, /exercise] [index]`
+Format: `delete /[meal, exercise] [index]`
 
 * The `index` should be a positive integer and must be less than number of meals/exercises added
 * It is recommended to run `list meals/exercises` beforehand to get the index of the meal/exercise you want to delete
@@ -193,7 +193,7 @@ Example:
 
 For user to input the exercise done previously.
 
-Format: `exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]`
+Format: `exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]`
 
 * The `exercise name` and `exercise description` accepts any input
 * The `calories` should be in `float` format
@@ -206,12 +206,15 @@ Example:
 
 For user to track their previous net calorie intake.
 
-Format: `track /start [start date] /end [end date]`
+There are 2 options to run this command:
 
-* `/start` and `/end` arguments are optional
+1) For user to view all their calorie history from past meals and exercises input
+Format: `track all`
+
+2) For user to view calorie history within a specified time-frame
+Format: `track /start [start_date] /end [end_date]`
+
 * The dates should be in `d/M/yyyy` format
-* If `/start` command is not provided, defaults to earliest date with meal/exercise added
-* If `/end` command is not provided, defaults to latest date with meal/exercise added
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
