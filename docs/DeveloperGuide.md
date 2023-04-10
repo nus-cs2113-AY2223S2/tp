@@ -839,16 +839,16 @@ Prerequisites: There is at least 1 transaction in rainyDay. Assume test cases ar
 begins un-ignored
 
 1. Test case: `ignore 1`<br>Expected: A success message should be displayed, indicating that the 1st transaction is now
-   ignored from overview calculations.
+   ignored from all calculations.
 
 2. Test case: `ignore 1`<br>Expected: An error message should be displayed, indicating that the 1st transaction was
-   already ignored from overview calculations.
+   already ignored from all calculations.
 
 3. Test case: `unignore 1`<br>Expected: A success message should be displayed, indicating that the 1st transaction is
-   now included in overview calculations.
+   now included in all calculations.
 
 4. Test case: `unignore 1`<br>Expected: An error message should be displayed, indicating that the 1st transaction was
-   already included in overview calculations.
+   already included in all calculations.
 
 5. Test case: `ignore 2`<br>Expected: An error message should be displayed, indicating the range of values allowed for
    the `INDEX` field.

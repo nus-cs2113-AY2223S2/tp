@@ -222,7 +222,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| INDEX      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
+            "| INDEX      | Mandatory      | Entry at the given index will be ignored in all calculations         |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
