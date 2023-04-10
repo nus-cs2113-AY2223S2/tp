@@ -7,10 +7,9 @@ operation through the Command-Line Interface(CLI).
 
 ### Summary of Contributions
 
-- Code contributed: [Reposense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=manoj364&breakdown=true)
+#### Code contributed: [Reposense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=manoj364&breakdown=true)
 
 #### Enhancements Implemented:
-
 - New Feature: Ui
     - What it does: Allows the user to interact with the program by receiving messages from the program, triggered by
       their inputs.
@@ -25,7 +24,6 @@ operation through the Command-Line Interface(CLI).
       checker is used to check if samples have already been added by the user
 
 #### Enhancements to existing features:
-
 - Improved feature: Duplication checker for each field
     - Enhancement: The Duplication checker now checks each field to make sure that the company name, contact email, or
       contact email are not the same for any 2 entries in the `CompanyList` arraylist. If such a scenario exists, the
@@ -37,8 +35,7 @@ operation through the Command-Line Interface(CLI).
 - Improved feature: Tests for `CompanyList` methods
   - Enhancement: Wrote additional tests for `CompanyList` to increase coverage ([#136](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/136))
 
-### Documentation
-
+#### Documentation
 - UG contribution
     - Added documentation for `help` command
     - Resolved PE-D bugs ([#124](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/124))
@@ -46,14 +43,19 @@ operation through the Command-Line Interface(CLI).
 - DG contribution
     - Added documentation for `Ui`
     - Class diagram for `Ui` class
-      - ![Ui_class.png](..%2FUML%2FImage%2FUi_class.png)
     - Sequence diagram for the `showWelcome` method in `Ui` class
-        - ![Ui_sequence_diagram.png](..%2FUML%2FImage%2FUi_sequence_diagram.png)
     - Added documentation for Duplication Checker feature
     - Sequence diagram for Duplication Checker feature
-        - ![Duplication_checker.png](..%2FUML%2FImage%2FDuplication_checker.png)
 
-### Contributions to team-based tasks
+#### Contributions to team-based tasks
 - Created milestones for each release: [v1.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/1), [v2.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/2), [v2.1](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/3)
 - Reviewed PRs (with non-trivial comments): [#17](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/17), [#20](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/20), [#35](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/35)
+- Maintained Issue tracker by closing resolved issues that were not marked as resolved by assignee: [#113](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/113), [#105](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/105), [#91](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/91), [#83](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/83) etc.
 
+### Diagrams contributed to DG
+- Class diagram for `Ui` class
+  - ![Ui_class.png](..%2FUML%2FImage%2FUi_class.png)
+- Sequence diagram for the `showWelcome` method in `Ui` class
+  - ![Ui_sequence_diagram.png](..%2FUML%2FImage%2FUi_sequence_diagram.png)
+- Sequence diagram for Duplication Checker feature 
+  - ![Duplication_checker.png](..%2FUML%2FImage%2FDuplication_checker.png)
