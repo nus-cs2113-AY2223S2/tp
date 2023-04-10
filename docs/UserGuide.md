@@ -1,4 +1,4 @@
-# ***LifeTracker user guide***
+# ***LifeTracker User Guide***
 
 ## Introduction
 
