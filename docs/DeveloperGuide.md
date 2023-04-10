@@ -177,7 +177,11 @@ stored will be parsed and added to a local ArrayList. If the text file does not 
 
 ![Encoder.png](UML%2FImage%2FEncoder.png)
 
-Fig 6: Shows how the <code>CompanyListEncoder</code> deals with storing the data to the text file.
+Fig 6: Shows how the <code>CompanyListEncoder</code> deals with saving the data to the text file.
+
+![Decoder.png](UML%2FImage%2FDecoder.png)
+
+Fig 7: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
 
 ####  Storing event details feature
 The eventDetailStorage feature will allow users to save the event details of the current session to hard disk.
@@ -189,7 +193,7 @@ details. If there is no text file, a text file will be created.
 
 ![chooseVenueCommand.png](UML%2FImage%2FchooseVenueCommand.png)
 
-Fig 7: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
+Fig 8: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
 ## Product scope
