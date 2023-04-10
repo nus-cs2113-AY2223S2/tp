@@ -234,8 +234,13 @@ public class Command {
                         ui.showEmptyIngredientList();
                         break;
                     }
-                    ingredientListToDeleteFrom.showList();
                     int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();
+                    if (maxCount == 1) {
+                        ui.showMinimumIngredientError();
+                        break;
+                    }
+                    ingredientListToDeleteFrom.showList();
+
                     index = ui.getIndexToDelete(maxCount);
                     if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
                         ui.showIngredientQuitMessage();
