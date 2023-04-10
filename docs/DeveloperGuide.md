@@ -204,9 +204,16 @@ and the WorkoutList consists of list of Workout.
 ###### [Back to table of contents](#table-of-contents)
 
 
+## Implementation
 
+### Calories Record
 
-The add mechanism is facilitated by `AddCommand`. 
+###### [Back to table of contents](#table-of-contents)
+
+### Workout Record
+
+#### Add Command
+The add mechanism is facilitated by `AddCommand`.
 It extends `Command` and modifies the execute function to add an exercise.
 
 <img src="images/AddExerciseDiagram.png" width="450" />
@@ -215,7 +222,7 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 
 Step 1. The user enters the add command with the necessary arguments.
 
-Step 2. The input is processed by the `Parser` to separate out the arguments and creates the exercise to be added, 
+Step 2. The input is processed by the `Parser` to separate out the arguments and creates the exercise to be added,
 `toAdd`.
 
 Step 3. The `AddCommand` calls `execute()` which calls `WorkList#getCurrentWorkout()` to return `currentWorkout`.
@@ -224,23 +231,24 @@ Step 4. Finally, `addExercise()` is called and `toAdd` is added to `currentWorko
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Storage Component
-The deletion mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
+#### List Command
+
+The list mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
 <img src="images/ListWorkoutDiagram.png" width="450" />
 
 Below is an example usage scenario and how the List mechanism behaves at each step:
 
 Step 1: Assume that the user has already added a workout on 21/03/23 into the WorkoutList using the following command, /start 21/03/23
-        Assume the user add another workout on 22/03/23 by entering /start 22/03/23
+Assume the user add another workout on 22/03/23 by entering /start 22/03/23
 
 Step 2: The user input of /list will be taken in for the parser and an object of class ListCommand will be returned.
 
 Step 3: The execute method in the ListWorkoutCommand class that is overrides will be called and print out all the dates that while iterating the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
-### Calories Component
-The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
+#### View Command
+The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will
 enter a specific workout date and the number of exercises on that date will be displayed
 
 Below are the specific steps on how to use the view function and how the mechanism will flow:
@@ -254,7 +262,7 @@ Below are the specific steps on how to use the view function and how the mechani
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Workout Component
+#### Delete Command
 The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
 <img src="images/DeleteWorkoutDiagram.png" width="450" />
@@ -268,9 +276,6 @@ Step 2: The user input of /delete 21/03/23 will be taken in for the parser and a
 Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
-### Exit component
-
-###### [Back to table of contents](#table-of-contents)
 
 
 ## User Stories
