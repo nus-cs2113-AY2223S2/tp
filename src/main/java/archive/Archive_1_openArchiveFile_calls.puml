@@ -1,0 +1,285 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "archive.Archive#openArchiveFile(String)",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "archive.Archive",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_109586094 { 
+   	label=sniff
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1041190780 { 
+   	label=Sniff
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Sniff655660956XXXmain1859653459[
+	label="+ main()"
+	style=filled
+	fillcolor=white
+	tooltip="Sniff
+
+&#10;  Main entry-point for the java.sniff.Sniff application.&#10; "
+	fontcolor=darkgreen
+];
+
+Sniff655660956XXXrun0[
+	label="+ run()"
+	style=filled
+	fillcolor=white
+	tooltip="Sniff
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_3732 { 
+   	label=ui
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1595519031 { 
+   	label=Ui
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Ui1037788935XXXprintArchiveFileCreated64711720[
+	label="+ printArchiveFileCreated()"
+	style=filled
+	fillcolor=white
+	tooltip="Ui
+
+null"
+	fontcolor=darkgreen
+];
+
+Ui1037788935XXXshowLine0[
+	label="+ showLine()"
+	style=filled
+	fillcolor=white
+	tooltip="Ui
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_579021399 { 
+   	label=functionalities
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_203723525 { 
+   	label=SniffTasks
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   SniffTasks579021399XXXaddAppointment192873343[
+	label="+ addAppointment()"
+	style=filled
+	fillcolor=white
+	tooltip="SniffTasks
+
+null"
+	fontcolor=darkgreen
+];
+
+SniffTasks579021399XXXaddAppointmentUID1808118735[
+	label="+ addAppointmentUID()"
+	style=filled
+	fillcolor=white
+	tooltip="SniffTasks
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_748101438 { 
+   	label=archive
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_159156086 { 
+   	label=Archive
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Archive748101438XXXextractArchiveData2189724[
+	label="+ extractArchiveData()"
+	style=filled
+	fillcolor=white
+	tooltip="Archive
+
+&#10;  Calls ArchiveParser to parse Archived task contents&#10; &#10;  @param archiveFile The SniffArchive file&#10;  @throws SniffException if errors are encountered while parsing&#10;  @throws FileNotFoundException if Archive file is not found&#10;  "
+	fontcolor=darkgreen
+];
+
+Archive748101438XXXopenArchiveFile1808118735[
+	label="+ openArchiveFile()"
+	style=filled
+	fillcolor=white
+	tooltip="Archive
+
+&#10;  Reads and adds the Archived task contents into the Appointments task list&#10; &#10;  @param filePath The path of the SniffArchive file&#10;  @throws SniffException if Archive file is not found&#10;  "
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_995410913 { 
+   	label=parser
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1925837065 { 
+   	label=ArchiveParser
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ArchiveParser1930038276XXXaddConsult1808118735[
+	label="+ addConsult()"
+	style=filled
+	fillcolor=white
+	tooltip="ArchiveParser
+
+&#10;  Parser to add Consultation Type Appointments&#10; &#10;  @param content the consultation type task to add to the Appointment task list&#10;  @throws SniffException when incorrect date and time format is stored&#10;  "
+	fontcolor=darkgreen
+];
+
+ArchiveParser1930038276XXXaddSurgery1808118735[
+	label="+ addSurgery()"
+	style=filled
+	fillcolor=white
+	tooltip="ArchiveParser
+
+&#10;  Parser to add Surgery Type Appointments&#10; &#10;  @param content the surgery type task to add to the Appointment task list&#10;  @throws SniffException when incorrect date and time format is stored&#10;  "
+	fontcolor=darkgreen
+];
+
+ArchiveParser1930038276XXXaddVaccine1808118735[
+	label="+ addVaccine()"
+	style=filled
+	fillcolor=white
+	tooltip="ArchiveParser
+
+&#10;  Parser to add Vaccination Type Appointments&#10; &#10;  @param content the vaccination type task to add to the Appointment task list&#10;  @throws SniffException when incorrect date and time format is stored&#10;  "
+	fontcolor=darkgreen
+];
+} 
+} 
+
+'edges    
+Archive748101438XXXextractArchiveData2189724 -> ArchiveParser1930038276XXXaddConsult1808118735;
+Archive748101438XXXextractArchiveData2189724 -> ArchiveParser1930038276XXXaddSurgery1808118735;
+Archive748101438XXXextractArchiveData2189724 -> ArchiveParser1930038276XXXaddVaccine1808118735;
+Archive748101438XXXopenArchiveFile1808118735 -> Archive748101438XXXextractArchiveData2189724;
+Archive748101438XXXopenArchiveFile1808118735 -> Ui1037788935XXXprintArchiveFileCreated64711720;
+ArchiveParser1930038276XXXaddConsult1808118735 -> SniffTasks579021399XXXaddAppointment192873343;
+ArchiveParser1930038276XXXaddConsult1808118735 -> SniffTasks579021399XXXaddAppointmentUID1808118735;
+ArchiveParser1930038276XXXaddSurgery1808118735 -> SniffTasks579021399XXXaddAppointment192873343;
+ArchiveParser1930038276XXXaddSurgery1808118735 -> SniffTasks579021399XXXaddAppointmentUID1808118735;
+ArchiveParser1930038276XXXaddVaccine1808118735 -> SniffTasks579021399XXXaddAppointment192873343;
+ArchiveParser1930038276XXXaddVaccine1808118735 -> SniffTasks579021399XXXaddAppointmentUID1808118735;
+Sniff655660956XXXmain1859653459 -> Sniff655660956XXXrun0;
+Sniff655660956XXXrun0 -> Archive748101438XXXopenArchiveFile1808118735;
+Ui1037788935XXXprintArchiveFileCreated64711720 -> Ui1037788935XXXshowLine0;
+    
+}
+@enduml
