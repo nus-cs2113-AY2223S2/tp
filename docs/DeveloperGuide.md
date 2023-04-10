@@ -110,8 +110,6 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
 
 ##### UID Generation
-![img_20.png](img_20.png)<br>
-**Figure 10: UML Diagram of Uid Class**
 
 The UID is generated to produce a 10 character string representing the Appointment ID tagged to each appointment.
 The UID string generated consists of 3 substrings that are concatenated together:
@@ -140,11 +138,19 @@ Other alternatives that was considered are:
    - Cons: We felt that this is counter-intuitive as it increases workload and human error. Automating
      this process will reduce potential errors.
 
+
+### List appointments
+Apart from only each appointment in the appointment list, it also sorts the list by date and time in ascending order.
+This is done using the inbuilt `.sort()` function, while a custom comparator class named `DateTimeComparator` is made to 
+for comparison between dates and times of appointments of different types. Currently `DateTimeComparator` only supports
+the existing appointment classes, namely: `Consultation`, `Vaccination` and `Surgery`.
+
 ## Product scope
 ### Target user profile
 
 Veterinarians in Vet Clinics around Singapore who
 * prefer typing over using a mouse.
+* are using a US keyboard.
 * need to keep track a large number of appointments.
 * prefer Command Line Interface(CLI) over other interfaces.
 
@@ -170,7 +176,8 @@ and helps improve efficiency in running a Vet clinic, while reducing human error
 | v2.0    |user| unmark appointments                         | retrieve appointments marked accidently                  |
 | v2.0    |user| track appointment dates                     | prioritize the upcoming appointments                     |
 | v2.0    |user| track locations                             | inform the doctor                                        |
-| v2.0    |user| track contact information of owner          | contact the owner of the pet                             |
+| v2.1    |user| view all appointments by date               | look at upcoming appointments for the clinic             |
+
 
 ## Non-Functional Requirements
 

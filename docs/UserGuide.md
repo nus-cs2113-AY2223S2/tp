@@ -2,9 +2,10 @@
 
 ## Introduction
 
-Sniff is an appointment manager that helps clinic deal with handling appointments of different types.
-Features such as appointment tracking via uid, date, and appointment type help improve efficiency in the workplace 
-and reduce human errors.
+Sniff is a `Command Line Interface (CLI) Appointment Tracker` designed specifically for veterinary clinics in Singapore.
+Its main functions are to track various appointments of types: Surgery, Vaccination, & 
+Consultation via uid, date, and appointment type to help vet clinics better manage their working staff.
+<br>
 
 
 ## Quick Start
@@ -21,6 +22,16 @@ ______________________________________________________________________
  What can I do for you?
 ______________________________________________________________________
 ```
+## Overview of Features
+
+1. Adding appointments: `consultation`, `vaccination`, `surgery`.
+2. Removing appointments: `remove`
+3. List out all appointments: `list`
+4. Mark/Unmark appointments: `mark`, `unmark`
+5. View archived appointments (those marked done): `archive`
+6. Find appointments: `find`
+7. Edit appointments: `edit`
+8. Exit the program: `bye`
 
 ## Features
 
@@ -29,6 +40,8 @@ Adds a new consultation appointment to the appointment manager.
 
 Format: `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME` and `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `DATE` must be in *YYYY-MM-DD* format.
 * The `TIME` must be in *HH:MM* format.
 
@@ -37,11 +50,26 @@ Example of usage:
 * `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`
 * `consultation at/Dog an/Russ on/Sarah cn/92929292 cd/2023-10-15 ct/09:00`
 
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C74584428I
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Consultation added successfully!
+______________________________________________________________________
+```
+
 ### Adding a vaccination appointment: `vaccination`
 Adds a new vaccination appointment to the appointment manager.
 
 Format: `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE vt/TIME`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `DATE` must be in *YYYY-MM-DD* format.
 * The `TIME` must be in *HH:MM* format.
 
@@ -50,11 +78,27 @@ Example of usage:
 * `vaccination at/Cat an/Lulu on/Jon cn/91919191 v/Covid vd/2023-12-12 vt/19:00`
 * `vaccination at/Dog an/Russ on/Sarah cn/92929292 v/Rabies vd/2023-10-15 vt/09:00`
 
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V47278232N
+ Vaccine: Covid
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Vaccination added successfully!
+______________________________________________________________________
+```
+
 ### Adding a surgery appointment: `surgery`
 Adds a new surgery appointment to the appointment manager.
 
 Format: `surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `START_DATE` and `END_DATE` must be in *YYYY-MM-DD* format.
 * The `START_TIME` and `END_TIME` must be in *HH:MM* format.
 * The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
@@ -64,9 +108,25 @@ Example of usage:
 * `surgery at/Cat an/Lulu on/Jon cn/91919191 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/L`
 * `surgery at/Dog an/Russ on/Sarah cn/92929292 sd/2023-10-15 st/09:00 ed/2023-12-15 et/20:00 p/M`
 
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Surgery  [ ] | Priority: LOW
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S88228101H
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Surgery added successfully!
+______________________________________________________________________
+```
+
 ### Listing appointments: `list`
 Retrieves all unmarked tasks from Sniff Appointments ArrayList and displays it to the user.
-Unmarked tasks are reflected on the list immediately.
+Unmarked tasks are reflected on the list immediately. List is displayed sorted by date and time.
+Earlier appointments will appear at the top of the list.
 
 Format: `list`
 
@@ -76,15 +136,37 @@ Example of usage: Displays the unmarked appointments from Sniff Task List.
 ______________________________________________________________________
 list
 ______________________________________________________________________
-1.  UID: S67775112T [ ] | Priority: HIGH
+ 1.  Consultation   [ ]
+ Date: 2023-11-03
+ Time: 10:00
+ UID: C64016488E
+ Animal Name: Mona | Animal Type: Cat
+ Owner Name: Becks | Contact Number: 90199000
+
+ 2.  Consultation   [ ]
+ Date: 2023-11-12
+ Time: 19:00
+ UID: C41606700F
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
+
+ 3.  Vaccination   [ ]
+ Date: 2023-11-31
+ Time: 15:00
+ UID: V77751751P
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
+
+ 4.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S44657158O
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
-2.  UID: V34624451A [ ] | vaccine: covid
- Date: 2023-12-12 | Time: 19:00
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+
 ______________________________________________________________________
 ```
 
@@ -115,56 +197,127 @@ ______________________________________________________________________
 ### Removing an appointment: `remove`
 Removes an appointment with a specific UID from the appointment manager.
 
-Format: `remove uid`
+Format: `remove uid/<uid>`
 
+Example of usage: Using the appointment list below,
 
-Example of usage: (with reference to the above appointment list)
+```
+______________________________________________________________________
+list
+______________________________________________________________________
+ 1.  Consultation   [ ]
+ Date: 2023-11-03
+ Time: 10:00
+ UID: C64016488E
+ Animal Name: Mona | Animal Type: Cat
+ Owner Name: Becks | Contact Number: 90199000
 
-* `remove S67775112T` to remove the first appointment.
-* `remove V34624451A` to remove the second appointment.
+ 2.  Consultation   [ ]
+ Date: 2023-11-12
+ Time: 19:00
+ UID: C41606700F
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
 
-### Find by appointment UID / appointment type / animal type: <br>
-Format: `find a/dog` `find t/surgery` `find aID/123` <br>
+ 3.  Vaccination   [ ]
+ Date: 2023-11-31
+ Time: 15:00
+ UID: V77751751P
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
+
+ 4.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S44657158O
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+
+______________________________________________________________________
+```
+Calling `remove uid/C41606700F` will remove the second appointment.
+```
+______________________________________________________________________
+remove uid/C41606700F
+______________________________________________________________________
+ This appointment has been removed your appointment manager: 
+ Consultation   [ ]
+ Date: 2023-11-12
+ Time: 19:00
+ UID: C41606700F
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
+
+ Task removed successfully!
+______________________________________________________________________
+```
+### Find by appointment UID / appointment type / animal type / date: <br>
+Format: `find a/dog` `find t/surgery` `find aID/123` `find d/2023-12-12` <br>
 Retrieves specific appointments requested by user <br>
-Can filter by appointment ID, appointment type, animal type <br>
+Can filter by appointment ID, appointment type, animal type, date of appointment<br>
 Example of usage: Displays the requested appointments <br>
 
 ```
 ______________________________________________________________________
-find a/cat
+find a/dog
 ______________________________________________________________________
-1.  UID: C31245737A [ ]
- Date: 2023-12-12 | Time: 19:00
- Animal Name: lulu | Animal Type: cat
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S02547136Q
+ Animal Name: lulu | Animal Type: dog
  Owner Name: jon | Contact Number: 91919191
-2.  UID: S52117007D [ ] | Priority: HIGH
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
+
 ______________________________________________________________________
 ```
 ```
 ______________________________________________________________________
-find t/consultation
+find t/surgery
 ______________________________________________________________________
-1.  UID: C31245737A [ ]
- Date: 2023-12-12 | Time: 19:00
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S01534766O
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
+
 ______________________________________________________________________
 ```
 ```
 ______________________________________________________________________
-find aID/V14082745S
+find uID/S02547136Q
 ______________________________________________________________________
-1.  UID: V14082745S [ ] | vaccine: covid
- Date: 2023-12-12 | Time: 19:00
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S02547136Q
+ Animal Name: lulu | Animal Type: dog
+ Owner Name: jon | Contact Number: 91919191
+
+______________________________________________________________________
+```
+```
+______________________________________________________________________
+find d/2023-12-12
+______________________________________________________________________
+ 1.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V17511055M
+ Vaccine: covid
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
- Sorry, an error was encountered! Here is the error description:
- Appointment ID must consist of integers!
-______________________________________________________________________
+ 
+ ______________________________________________________________________
 ```
 ### Mark Appointment : `mark ` <br>
 
@@ -184,9 +337,9 @@ The appointment has been marked successfully
 Task marked successfully!
 ______________________________________________________________________
 ```
-Example of InValid Command :
+Example of Invalid Command :
 ```
-mark uID/C26135173W_
+mark uID/C26135173W
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
  There are no appointments with this ID.

@@ -31,19 +31,19 @@ public class ArchiveParser {
     static LocalTime endTime;
 
     /**
-     * Parser to add Consultation
+     * Parser to add Consultation Type Appointments
      *
      * @param content the consultation type task to add to the Appointment task list
      * @throws SniffException when incorrect date and time format is stored
      * */
     public static void addConsult(String content) throws SniffException {
         try {
-            String[] Consult = content.split(" \\| ");
-            uID = Consult[0];
-            date = LocalDate.parse(Consult[1]);
-            time = LocalTime.parse(Consult[2]);
-            animal = new Animal(Consult[4], Consult[3]);
-            owner = new Owner(Consult[5], Consult[6]);
+            String[] consultationAppointment = content.split(" \\| ");
+            uID = consultationAppointment[0];
+            date = LocalDate.parse(consultationAppointment[1]);
+            time = LocalTime.parse(consultationAppointment[2]);
+            animal = new Animal(consultationAppointment[4], consultationAppointment[3]);
+            owner = new Owner(consultationAppointment[5], consultationAppointment[6]);
         } catch (DateTimeException e) {
             throw new SniffException(" Incorrect Date and Time Format!");
         }
@@ -54,20 +54,20 @@ public class ArchiveParser {
     }
 
     /**
-     * Parser to add Vaccination
+     * Parser to add Vaccination Type Appointments
      *
      * @param content the vaccination type task to add to the Appointment task list
      * @throws SniffException when incorrect date and time format is stored
      * */
     public static void addVaccine(String content) throws SniffException {
         try {
-            String[] Vaccine = content.split(" \\| ");
-            uID = Vaccine[0];
-            date = LocalDate.parse(Vaccine[2]);
-            time = LocalTime.parse(Vaccine[3]);
-            animal = new Animal(Vaccine[5], Vaccine[4]);
-            owner = new Owner(Vaccine[6], Vaccine[7]);
-            vaccine = Vaccine[1];
+            String[] vaccinationAppointment = content.split(" \\| ");
+            uID = vaccinationAppointment[0];
+            date = LocalDate.parse(vaccinationAppointment[2]);
+            time = LocalTime.parse(vaccinationAppointment[3]);
+            animal = new Animal(vaccinationAppointment[5], vaccinationAppointment[4]);
+            owner = new Owner(vaccinationAppointment[6], vaccinationAppointment[7]);
+            vaccine = vaccinationAppointment[1];
         } catch (DateTimeException e) {
             throw new SniffException(" Incorrect Date and Time Format!");
         }
@@ -78,22 +78,22 @@ public class ArchiveParser {
     }
 
     /**
-     * Parser to add Surgery
+     * Parser to add Surgery Type Appointments
      *
      * @param content the surgery type task to add to the Appointment task list
      * @throws SniffException when incorrect date and time format is stored
      * */
     public static void addSurgery(String content) throws SniffException {
         try {
-            String[] Surgery = content.split(" \\| ");
-            uID = Surgery[0];
-            startDate = LocalDate.parse(Surgery[6]);
-            endDate = LocalDate.parse(Surgery[8]);
-            startTime = LocalTime.parse(Surgery[7]);
-            endTime = LocalTime.parse(Surgery[9]);
-            animal = new Animal(Surgery[3], Surgery[2]);
-            owner = new Owner(Surgery[4], Surgery[5]);
-            priority = Surgery[1];
+            String[] surgeryAppointment = content.split(" \\| ");
+            uID = surgeryAppointment[0];
+            startDate = LocalDate.parse(surgeryAppointment[6]);
+            endDate = LocalDate.parse(surgeryAppointment[8]);
+            startTime = LocalTime.parse(surgeryAppointment[7]);
+            endTime = LocalTime.parse(surgeryAppointment[9]);
+            animal = new Animal(surgeryAppointment[3], surgeryAppointment[2]);
+            owner = new Owner(surgeryAppointment[4], surgeryAppointment[5]);
+            priority = surgeryAppointment[1];
         } catch (DateTimeException e) {
             throw new SniffException(" Incorrect Date and Time Format!");
         }
