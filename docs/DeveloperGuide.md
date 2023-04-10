@@ -10,7 +10,7 @@
 ![img_31.png](img_31.png) <br>
 **Figure 1: High Level UML Diagram of Sniff Appointment Manager** <br>
 
-![img_27.png](img_27.png) <br>
+![img_38.png](img_38.png) <br>
 **Figure 2: Sequence Diagram for .run() method of Sniff Appointment Manager** <br>
 
 ### User Interface (UI) - Class Implementation
@@ -22,22 +22,13 @@
 1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **`ListCommand`** and **`ConsultationCommand`**.
 2. The **`Command class`** has a boolean isExit field that can be set to true to exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands.
 
-![img_12.png](img_12.png) <br>
-**Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the Consultation Command**
-
-![img_14.png](img_14.png) <br>
-**Figure 4: Sequence Diagram showing the logical implementation of executeCommand() for the Vaccination Command**
-
-![img_13.png](img_13.png) <br>
-**Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the Surgery Command**
-
-![img_26.png](img_26.png)<br>
+![img_35.png](img_35.png)<br>
 **Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the EditConsultation Command**
 
-![img_27.png](img_27.png)<br>
+![img_36.png](img_36.png)<br>
 **Figure 4: Sequence Diagram showing the logical implementation of executeCommand() for the EditVaccination Command**
 
-![img_28.png](img_28.png)<br>
+![img_37.png](img_37.png)<br>
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the EditSurgery Command**
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
@@ -51,15 +42,6 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 1. The user had already launched and added a few appointments to `Snifftasks`.
 2. The user executes `remove C123` command to remove the appointment with that specific UID. The remove command is then executed and calls `SniffTask#removeAppointment()`, causing the appointment with that UID to be removed. It then calls the `Ui#printAppointmentRemovedMessage()` that then calls `Appointment#toString`  that prints to the output the details of the appointment that had been removed. Lastly, it calls `Ui#showUserMessage()` to tell the user that the remove appointment mechanism is successful.
 
-![img_11.png](img_11.png) <br>
-**Figure 7: Sequence Diagram showing the logical implementation of executeCommand() for the List Command**
-
-**Mark Command**
-1. The Mark command will mark the appointment input by the user as done. It will set isDone as true and will be used in the Storage class.
-
-**UnMark Command**
-1. The UnMark command will unmark the appointment input by the user as not done or pending. It will set isDone as false and will be updated accordingly in the Storage class.
-
 ### Parser - Class Implementation
 1. The Parser class takes in a user command and generates a corresponding Command object for veterinary management system tasks such as **add consultation, vaccination or surgery, find, remove, list, and exit**. This implementation makes use of the Command design pattern to encapsulate the behavior of different types of commands, and the parser serves as a factory for creating these commands based on the user input.
 2. The Parser class contains several static methods that parse different types of commands, such as **`ConsultationCommand`**, **`VaccinationCommand`**, **`SurgeryCommand`**, **`FindCommand`**, **`RemoveCommand`**, **`ListCommand`**, and **`ExitCommand`**.
@@ -69,10 +51,10 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 ### Storage - Class Implementation 
 ![img_23.png](img_23.png) <br>
-**Figure 8.1: Sequence Diagram of Storage class** 
+**Figure 7.1: Sequence Diagram of Storage class** 
 
 ![img_24.png](img_24.png) <br>
-**Figure 8.2: Sequence Diagram of Storage class**
+**Figure 7.2: Sequence Diagram of Storage class**
 1. The Storage class takes in the path of the Sniff storage file.
 2. **`openFile(String filePath)`** method reads and adds the SniffAppointments contents into the Appointments task list.
 3. **`saveAppointments(String filePath)`** method saves the Archived task contents into the SniffArchive File.
@@ -82,10 +64,10 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 ### Archive - Class Implementation
 ![img_30.png](img_30.png) <br>
-**Figure 9.1: Sequence Diagram of Archive Class**
+**Figure 8.1: Sequence Diagram of Archive Class**
 
 ![img_29.png](img_29.png) <br>
-**Figure 9.2: Sequence Diagram of Archive Class**
+**Figure 8.2: Sequence Diagram of Archive Class**
 1. The Archive class takes in the path of the SniffArchive storage file.
 2. **`openArchiveFile(String filePath)`** method reads and adds the Archived task contents into the Appointments task list.
 3. **`saveArchivedAppointments(String filePath)`** method saves the Archived task contents into the SniffArchive File.
@@ -95,7 +77,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 ### Find - Find Implementation
 ![img_25.png](img_25.png)<br>
-**Figure 10: Sequence Diagram showing the logical implementation of executeCommand() for the Find Command**
+**Figure 9: Sequence Diagram showing the logical implementation of executeCommand() for the Find Command**
 
 - Find command can be used by the user to find up to 4 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**, **`Date of Appointment`**.
 - If user input is not supported by these three find commands, a **`SniffException`** is thrown.
@@ -139,7 +121,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
 
 #### Adding Appointments
-![AddAppintmentSequenceDiargram.png](AddAppintmentSequenceDiargram.png)<br>
+![AddAppointmentSequenceDiagram.png](AddAppointmentSequenceDiagram.png)<br>
 **Figure 10: Generic Sequence Diagram for adding an appointment**
 1. The `UI` class reads in the input from the user and then parses all the inputs in the `Parser` for each appointment. 
 2. If the inputs are valid, an `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
@@ -451,7 +433,7 @@ ______________________________________________________________________
  Owner Name: jon | Contact Number: 91919191
 ______________________________________________________________________
 ```
-4. Test case: `find uID/S02547136Q`
+4. Test case: `find uid/S02547136Q`
    Expected output: A list of all previously added appointment with the appointment uID.
    Example:
 ```
@@ -547,7 +529,7 @@ ______________________________________________________________________
 
 #### Editing appointments
 1. Prerequisites : The UID of the appointment that you want to should already exist. You can find the appointment using `list` or `find` command. 
-2. Test case: `edit uID/C67345117A at/Mouse an/freddy on/muthu cn/91917777 cd/2023-12-12 ct/19:00` <br>
+2. Test case: `edit uid/C67345117A at/Mouse an/freddy on/muthu cn/91917777 cd/2023-12-12 ct/19:00` <br>
    Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the 
                                             appointment exists then the appointment is changed. If it does not exist it gives an error message.
 
@@ -557,7 +539,7 @@ ______________________________________________________________________
 Consultation changed successfully!
 ______________________________________________________________________
 ```
-3. Test case: `edit uID/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+3. Test case: `edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
    Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
                                             appointment exists then the appointment is changed. If it does not exist it gives an error message.
 
@@ -567,7 +549,7 @@ ______________________________________________________________________
  Surgery changed successfully!
 ______________________________________________________________________
 ```
-4. Test case: `edit uID/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+4. Test case: `edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
    Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
                                             appointment exists then the appointment is changed. If it does not exist it gives an error message.
 
