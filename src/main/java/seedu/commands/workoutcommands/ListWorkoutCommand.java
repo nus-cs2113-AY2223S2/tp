@@ -6,8 +6,6 @@ import seedu.ui.Ui;
 import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
 
-
-
 //@@ author ZIZI-czh
 /**
  * This is the class for executing the list command

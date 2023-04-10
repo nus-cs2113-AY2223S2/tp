@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+actor user
+participant ":Duke" as duke
+participant ":Parser" as parser
+
+activate duke
+activate parser
+duke -> duke: executeCommandUntilExit()
+loop until exit
+duke -> user: getUserInput()
+user -> duke: userInput
+duke -> parser: parseCommand(userInput)
+parser -> duke: command
+end
+
+@enduml

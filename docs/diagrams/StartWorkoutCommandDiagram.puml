@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+participant ":StartWorkoutCommand" as start
+participant ":WorkoutList" as list
+participant ":Workout" as workout
+
+activate start
+activate list
+-> start: execute()
+start -> list: getCurrentWorkoutIndex()
+list -> start: currentWorkoutIndex
+alt ongoing workout
+<- start: end workout first message
+else
+start -> list: startWorkout(date, workoutName)
+list -> workout: Workout(date, workoutName)
+activate workout
+workout -> list: workout
+list -> list: add(workout)
+<- start: start workout message
+end
+@enduml
