@@ -109,6 +109,14 @@ public class ParseEdit extends Parser {
                 logger.warning("edit command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
+            if (editFlagAndField.contains("-v")) {
+                int valueFlagIndex = editFlagAndField.indexOf("-v");
+                double valueToChange = Double.parseDouble(editFlagAndField.get(valueFlagIndex + 1));
+                if (valueToChange <= 0) {
+                    logger.warning("edit value is less than 0");
+                    throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+                }
+            }
             return editFlagAndField;
         } else {
             logger.warning("edit command given by user in the wrong format");
