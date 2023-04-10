@@ -349,7 +349,7 @@ public class Storage {
                 } catch (DateTimeParseException | NumberFormatException e) {
                     return Types.FileHealth.CORRUPT;
                 }
-                if (qty <= 0 || price <= 0) {
+                if (qty < 0 || price < 0) {
                     return Types.FileHealth.CORRUPT;
                 }
                 if(qty > Types.MAX_QTY || price > Types.MAX_QTY){
