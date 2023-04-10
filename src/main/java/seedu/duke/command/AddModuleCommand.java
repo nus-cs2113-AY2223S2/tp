@@ -21,6 +21,10 @@ public class AddModuleCommand extends Command {
         return storage;
     }
 
+    /**
+     * Executes the AddModuleCommand where it calls the ModuleStorage class to add a module to the saved module list.
+     * Prints an add module successfully message if the module adding in storage is successful.l
+     */
     @Override
     public void execute() {
         boolean isAddSuccessful = storage.addModuleToModuleList(moduleToAdd);

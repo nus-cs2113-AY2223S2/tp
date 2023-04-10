@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+":Duke" -> ":Duke" : initialisation
+activate ":Duke"
+":Duke" -> ":DataReader" : getUniversities()
+activate ":DataReader"
+":Duke" <-- ":DataReader" : universities:ArrayList<University>
+deactivate ":DataReader"
+":Duke" -> ":DataReader" : getModules()
+activate ":DataReader"
+":Duke" <-- ":DataReader" : allModules:ArrayList<Module>
+deactivate ":DataReader"
+":Duke" -> ":ModuleStorage" : getModules()
+activate ":ModuleStorage"
+":Duke" <-- ":ModuleStorage" : modules:ArrayList<Module>
+deactivate ":ModuleStorage"
+":Duke" -> ":DeadlineStorage" : getDeadlines()
+activate ":DeadlineStorage"
+":Duke" <-- ":DeadlineStorage" : deadlines:ArrayList<Deadline>
+deactivate ":DeadlineStorage"
+":Duke" -> "<<class>>\n:Parser" : getInstance();
+activate "<<class>>\n:Parser"
+":Duke" <-- "<<class>>\n:Parser" : parser:Parser
+deactivate "<<class>>\n:Parser"
+":Duke" --> ":Duke"
+deactivate ":Duke"
+
+@enduml

@@ -84,7 +84,7 @@ class Entertainment extends GoodsAndServices {
 +getPrice():int
 +setPrice():void
 }
-class GoodsAndServices {
+abstract class GoodsAndServices {
 -price:int
 +getPrice():int
 +setPrice():void

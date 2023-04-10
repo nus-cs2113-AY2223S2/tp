@@ -9,6 +9,10 @@ public class ViewBudgetCommand extends BudgetCommand {
         super(budgetPlanner);
     }
 
+    /**
+     * Executes the ViewBudgetCommand where it prints out all the components of the Budget, including Budget,
+     * Accommodation cost, Airplane Ticket cost, Entertainment cost, Food cost, and surplus/deficit.
+     */
     @Override
     public void execute() {
         UI.printViewBudget(budgetPlanner);

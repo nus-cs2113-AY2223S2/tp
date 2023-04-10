@@ -81,7 +81,8 @@ class ListFoundNusModsCommandTest {
                 + "3. [M2794.008600][INVISCID FLOW][0]" + System.lineSeparator()
                 + "4. [M2795.006500][AIR BREATHING PROPULSION THEORY][0]" + System.lineSeparator()
                 + "5. [457.206][SOIL MECHANICS][0]" + System.lineSeparator()
-                + "6. [M2795.00400][HIGH ENERGY THERMOFLUID DYNAMICS][0]"
+                + "6. [M2795.00400][HIGH ENERGY THERMOFLUID DYNAMICS][0]" + System.lineSeparator()
+                + LINE
                 , outputStreamCatcher.toString().trim());
     }
 

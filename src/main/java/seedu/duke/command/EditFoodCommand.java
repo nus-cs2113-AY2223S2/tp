@@ -10,6 +10,12 @@ public class EditFoodCommand extends EditCostCommand {
         super(cost, budgetPlanner);
     }
 
+    /**
+     * Executes the EditFoodCommand where it gets the previous saved cost of the Food.
+     * It then sets the new cost and compares between the two. It there was no change or the setting of the new cost
+     * is of an invalid value, a cost no change message would be printed.
+     * If changed successfully, and edit cost message would be printed.
+     */
     @Override
     public void execute() {
         int initialCost = budgetPlanner.getFoodTotalCost();
