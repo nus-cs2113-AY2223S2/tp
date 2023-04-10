@@ -175,3 +175,18 @@ I also contributed by creating and formatting the **Command Summary**, which can
 
 
 #### Developer Guide
+
+In the Developer Guide, I added the following:
+- The DeckList Component with all the data and the Class Diagram 
+
+![DeckList_Class_Diagram](../img/DeckListFinal.svg)
+
+- Wrote the functionality of the `Deck Feature` and added the following diagrams:
+
+![Add Cards to Deck](../img/AddCardToDeck.png)
+![Add Cards to Deck Reference Frame](../img/AddCardToDeckRef.png)
+![List Items under a Deck](../img/ListItemDeckFinal.png)
+
+
+
+
