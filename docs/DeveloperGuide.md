@@ -273,7 +273,7 @@ Expected behaviour: Error details are shown on the terminal
 <p style="page-break-after: always;">&nbsp;</p>
 
 
-## Appendix A: Product Scope
+# Appendix A: Product Scope
 
 ### Target user profile
 
