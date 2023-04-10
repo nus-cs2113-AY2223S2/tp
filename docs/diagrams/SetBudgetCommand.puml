@@ -1,0 +1,18 @@
+@startuml
+participant ":SetBudgetCommand" as SetBudgetCommand
+participant ":UserData" as UserData
+
+[-> SetBudgetCommand : execute()
+
+activate SetBudgetCommand
+
+SetBudgetCommand -> UserData : setBudgetGoal(goal:Double)
+activate UserData
+UserData --> SetBudgetCommand
+deactivate UserData
+SetBudgetCommand -->[ : :CommandResult
+deactivate SetBudgetCommand
+SetBudgetCommand <-[hidden]- SetBudgetCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy SetBudgetCommand
+@enduml

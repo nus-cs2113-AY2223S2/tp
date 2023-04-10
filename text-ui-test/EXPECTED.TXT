@@ -1,9 +1,17 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+Hello from rainyDay!
+        __.|.__
+    .-"'..':`..`"-.
+  .' .' .  :  . `. `.
+ / .   .   :   .   . \
+/_ _._ _.._:_.._ _._ _\
+  '   '    |    '   '
+           |
+           |
+           |
+         `='
+No valid save file detected. Starting with empty financial data.
+Welcome new user! What is your name?
+> Welcome John
+Get started by providing the command "help" to learn the functions offered by rainyDay!
 
-What is your name?
-Hello James Gosling
+> We hope that you enjoyed using rainyDay, goodbye John

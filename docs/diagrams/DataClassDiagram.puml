@@ -1,0 +1,48 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+hide circle
+hide empty methods
+
+package Data {
+
+class "<<enumeration>>\nFlowDirection" as FlowDirection
+
+Class UserData {
+}
+
+Class SavedData {
+-shortcutCommands: HashMap<String, String>
+-budgetGoal: double
+}
+
+Class MonthlyExpenditures {
+-{static}monthlyExpenditures: HashMap<Integer, Double>
+}
+
+Class FinancialReport {
+-reportOwner: String
+}
+
+Class FinancialStatement {
+-description: String
+-value: double
+-category: String
+-date: LocalDate
+-isIgnored: boolean
+}
+
+Class FlowDirection {
+OUTFLOW
+INFLOW
+}
+
+UserData -> "1"SavedData
+UserData -left-> "1"MonthlyExpenditures
+
+SavedData -down-> "1"FinancialReport
+
+FinancialReport -left-> "*"FinancialStatement
+
+FinancialStatement -left-> "1"FlowDirection
+@enduml

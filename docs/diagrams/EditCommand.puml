@@ -1,0 +1,53 @@
+@startuml
+participant ":EditCommand" as EditCommand
+participant ":UserData" as UserData
+participant ":FinancialReport" as FinancialReport
+
+[-> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> UserData : getStatement()
+activate UserData
+
+UserData -> FinancialReport : getFinancialStatement()
+activate FinancialReport
+FinancialReport --> UserData: : FinancialStatement
+deactivate FinancialReport
+
+UserData --> EditCommand : : FinancialStatement
+deactivate UserData
+
+EditCommand -> UserData : removeFromMonthlyExpenditure(editedStatement : FinancialStatement)
+activate UserData
+
+UserData -> FinancialReport: removeFromMonthlyExpenditure(editedStatement : FinancialStatement)
+activate FinancialReport
+FinancialReport --> UserData
+deactivate FinancialReport
+
+UserData --> EditCommand
+deactivate UserData
+ref over EditCommand
+
+Loop through editFlagAndField
+
+end ref
+
+
+EditCommand -> UserData : addToMonthlyExpenditure(editedStatement : FinancialStatement)
+activate UserData
+
+UserData -> FinancialReport: addToMonthlyExpenditure(editedStatement : FinancialStatement)
+activate FinancialReport
+FinancialReport --> UserData
+deactivate FinancialReport
+UserData --> EditCommand
+deactivate UserData
+
+[<--EditCommand : : CommandResult
+deactivate EditCommand
+EditCommand <-[hidden]- EditCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy EditCommand
+
+@enduml

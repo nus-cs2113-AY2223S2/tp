@@ -1,0 +1,48 @@
+@startuml
+participant ":ViewCommand" as ViewCommand
+participant ":UserData" as UserData
+participant ":ViewResult" as ViewResult
+
+[-> ViewCommand : execute()
+activate ViewCommand
+
+loop sizeOfFinancialReport
+    ViewCommand -> UserData : getStatement(i)
+    activate UserData
+    UserData --> ViewCommand: FinancialStatement[i]
+    deactivate UserData
+    end
+
+    alt sortingRequired
+        ViewCommand -> ViewCommand : sortByValue(validIndexes : ArrayList<Integer>)
+        activate ViewCommand
+        ViewCommand --> ViewCommand
+        deactivate ViewCommand
+    else else
+        ViewCommand -> ViewCommand : sortByDate(validIndexes : ArrayList<Integer>)
+        activate ViewCommand
+        ViewCommand --> ViewCommand
+        deactivate ViewCommand
+    end
+
+    ViewCommand -> ViewResult : printReport(validIndexes : ArrayList<Integer>)
+    activate ViewResult
+
+ViewResult ->] : Print Table Header to User
+loop sizeOfArrayList
+    ViewResult -> UserData : getStatement(i)
+    activate UserData
+    UserData --> ViewResult: FinancialStatement[i]
+    deactivate UserData
+    ViewResult ->] : Print Statement to User
+    end
+    ViewResult ->] : Print Summary to User
+    ViewResult --> ViewCommand
+    deactivate ViewResult
+
+ViewCommand -->[ : : CommandResult
+deactivate ViewCommand
+ViewCommand <-[hidden]- ViewCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy ViewCommand
+@enduml

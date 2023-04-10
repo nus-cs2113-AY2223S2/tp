@@ -1,0 +1,71 @@
+@startuml
+participant ":FilterCommand" as FilterCommand
+participant ":UserData" as UserData
+participant ":FinancialStatement" as FinancialStatement
+
+participant ":ViewResult" as ViewResult
+
+
+[-> FilterCommand : execute()
+activate FilterCommand
+
+loop filterFlagAndField.size()
+    alt equals "-d"
+
+    else equals "-c"
+        alt isFirstFlag
+            FilterCommand -> FilterCommand : filterByCategoryFirstFlag()
+            activate FilterCommand
+            FilterCommand -> UserData : getStatementCount()
+            activate UserData
+            UserData --> FilterCommand :statementCount : int
+            deactivate UserData
+
+            loop statementCount
+                FilterCommand -> UserData : getStatement()
+                activate UserData
+                UserData -> FinancialStatement : getCategory()
+                activate FinancialStatement
+                FinancialStatement --> UserData : : String
+                deactivate FinancialStatement
+                UserData --> FilterCommand : : FinancialStatement
+                deactivate UserData
+
+                FilterCommand -> FilterCommand : filterFlagAndField.get()
+                activate FilterCommand
+                FilterCommand --> FilterCommand : category : String
+                deactivate FilterCommand
+
+                opt financialStatement contains category
+                    FilterCommand -> FilterCommand : add(financialStatement : FinancialStatement)
+                    activate FilterCommand
+                    FilterCommand --> FilterCommand
+                    deactivate FilterCommand
+                    FilterCommand -> FilterCommand : add(statementIndex : int)
+                    activate FilterCommand
+                    FilterCommand --> FilterCommand
+                    deactivate FilterCommand
+                end
+                deactivate FilterCommand
+        end
+    end
+    else equals "-date"
+
+    else equals "-in"
+
+    else equals "-out"
+end
+
+FilterCommand -> ViewResult : printItemsInList(listToFilterStatementIndex)
+activate ViewResult
+ViewResult -> :Print to user
+ViewResult --> FilterCommand
+deactivate ViewResult
+
+[<--FilterCommand : : CommandResult
+deactivate FilterCommand
+FilterCommand <-[hidden]- FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy FilterCommand
+
+@enduml

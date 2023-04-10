@@ -1,0 +1,31 @@
+@startuml
+participant ":ShortcutAddCommand" as ShortcutAddCommand
+participant "shortcutCommands:HashMap" as shortcutCommands
+
+[-> ShortcutAddCommand : execute()
+activate ShortcutAddCommand
+
+ShortcutAddCommand -> ShortcutAddCommand : checkShortcutValidity(shortcutCommands, key, value)
+activate ShortcutAddCommand
+
+ShortcutAddCommand -> shortcutCommands : containsKey(key)
+activate shortcutCommands
+shortcutCommands --> ShortcutAddCommand
+deactivate shortcutCommands
+ShortcutAddCommand --> ShortcutAddCommand
+deactivate ShortcutAddCommand
+
+opt valid shortcut
+ShortcutAddCommand -> shortcutCommands : puts(key, value)
+activate shortcutCommands
+shortcutCommands --> ShortcutAddCommand
+deactivate shortcutCommands
+end
+
+[<--ShortcutAddCommand
+deactivate ShortcutAddCommand
+ShortcutAddCommand <-[hidden]- ShortcutAddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy ShortcutAddCommand
+
+@enduml

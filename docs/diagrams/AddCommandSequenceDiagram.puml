@@ -1,0 +1,47 @@
+@startuml
+participant ":AddCommand" as AddCommand
+participant ":FinancialStatement" as FinancialStatement
+participant ":UserData" as UserData
+participant ":FinancialReport" as FinancialReport
+
+[-> AddCommand : execute()
+activate AddCommand
+
+create FinancialStatement
+AddCommand -> FinancialStatement : FinancialStatement
+activate FinancialStatement
+
+FinancialStatement --> AddCommand : : FinancialStatement
+deactivate FinancialStatement
+
+AddCommand -> UserData: addStatement(statement:FinancialStatement)
+activate UserData
+
+UserData -> FinancialReport : addStatement(statement:FinancialStatement)
+activate FinancialReport
+
+FinancialReport -> FinancialReport : addToMonthlyExpenditure\n(statement:FinancialStatement)
+activate FinancialReport
+
+FinancialReport --> FinancialReport
+deactivate FinancialReport
+
+FinancialReport --> UserData
+deactivate FinancialReport
+
+UserData --> AddCommand
+deactivate UserData
+
+AddCommand -> UserData : checkUserBudgetLimit(statement:FinancialStatement)
+activate UserData
+
+UserData --> AddCommand : : String
+deactivate UserData
+
+[<--AddCommand : : CommandResult
+deactivate AddCommand
+AddCommand <-[hidden]- AddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy AddCommand
+
+@enduml
