@@ -20,7 +20,8 @@ public class HelloWorldCommand extends ExecutableCommand {
             mealCompanionSession.getUi().printMessage("Congratulations! You found our hidden easter egg!");
             mealCompanionSession.getUi().printMessage("Try the command <hello psle>");
             return;
+        } else if (this.name.equalsIgnoreCase("walt")) {
+            mealCompanionSession.getUi().printMessage("Jesse, we need to cook");
         }
-        mealCompanionSession.getUi().printMessage(String.format("Hello, %s!", this.name));
     }
 }
