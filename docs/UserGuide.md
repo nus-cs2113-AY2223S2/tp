@@ -96,19 +96,19 @@ ______________________________________________________________________
  Owner Name: Becks | Contact Number: 90199000
 
  2.  Consultation   [ ]
- Date: 2023-12-12
+ Date: 2023-11-12
  Time: 19:00
  UID: C41606700F
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
 
  3.  Vaccination   [ ]
- Date: 2023-12-12
- Time: 19:00
+ Date: 2023-11-31
+ Time: 15:00
  UID: V77751751P
- Vaccine: covid
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
 
  4.  Surgery  [ ] | Priority: HIGH
  Start Date: 2023-12-12
@@ -155,6 +155,8 @@ Example of usage: Using the appointment list below,
 
 ```
 ______________________________________________________________________
+list
+______________________________________________________________________
  1.  Consultation   [ ]
  Date: 2023-11-03
  Time: 10:00
@@ -163,19 +165,19 @@ ______________________________________________________________________
  Owner Name: Becks | Contact Number: 90199000
 
  2.  Consultation   [ ]
- Date: 2023-12-12
+ Date: 2023-11-12
  Time: 19:00
  UID: C41606700F
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
 
  3.  Vaccination   [ ]
- Date: 2023-12-12
- Time: 19:00
+ Date: 2023-11-31
+ Time: 15:00
  UID: V77751751P
- Vaccine: covid
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
 
  4.  Surgery  [ ] | Priority: HIGH
  Start Date: 2023-12-12
@@ -195,11 +197,12 @@ remove uid/C41606700F
 ______________________________________________________________________
  This appointment has been removed your appointment manager: 
  Consultation   [ ]
- Date: 2023-12-12
+ Date: 2023-11-12
  Time: 19:00
  UID: C41606700F
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
+
  Task removed successfully!
 ______________________________________________________________________
 ```
@@ -264,9 +267,9 @@ The appointment has been marked successfully
 Task marked successfully!
 ______________________________________________________________________
 ```
-Example of InValid Command :
+Example of Invalid Command :
 ```
-mark uID/C26135173W_
+mark uID/C26135173W
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
  There are no appointments with this ID.

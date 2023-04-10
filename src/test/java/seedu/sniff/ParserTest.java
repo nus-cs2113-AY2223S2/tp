@@ -127,7 +127,7 @@ public class ParserTest {
 
     @Test
     public void removeTest() {
-        String removeCommand = "remove a/1";
+        String removeCommand = "remove uid/C12345678A";
         Command removeParsedCommand = null;
         try {
             removeParsedCommand = Parser.parse(removeCommand);

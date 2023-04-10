@@ -288,7 +288,7 @@ public class Parser {
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
-            String uid = task.split(" ", 2)[1];
+            String uid = splitInputBy(task, "uid/");
             assert uid != null;
             command = new RemoveCommand(uid);
         } catch (ArrayIndexOutOfBoundsException e) {
