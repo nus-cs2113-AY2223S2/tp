@@ -29,12 +29,14 @@
 ### Contributions to the Developer's Guide
 * Add documentation for the `Storage` component.
 * Add documentation for the overall architecture of project, including architecture diagram to provide readers with a bird's eye view of the architecture.
+* Add Instructions for manual testing to the DG
 * Add User Stories to the DG.
 * Add Non-functional requirements to the DG. 
+* Proofread Developer's Guide.
 
 ### Contributions to team-based tasks:
 * Create Github labels for issues as recommended on the CS2113 website.
 * Use Github Projects to create a task tracker for each milestone.
 * Create and assign Issues for each milestone
 * Maintain GitHub issue tracker by updating labels for issues.
-* Reviewed PRs from all team members
+* Reviewed PRs for all team members
