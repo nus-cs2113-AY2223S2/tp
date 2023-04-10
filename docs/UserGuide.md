@@ -100,9 +100,8 @@ cook 5 minutes
 
 Got it. I've added this recipe:
   [Chinese] Hotpot
-Now you have 2 recipes in the list.
+Now you have 3 recipes in the list.
 
-Data saved successfully!
 __________________________________________________________
 ```
 <h2 id="adding-elements-to-recipe"> Adding an element to a recipe: <code class="language-plaintext highlighter-rouge">addtorecipe</code></h2>
@@ -114,12 +113,13 @@ App will prompt you to enter the exact index at which the element is to be added
 ```
 __________________________________________________________
 addtorecipe --i id/1 desc/mala sauce
+
 The ingredient has been successfully added to the ingredient list!
 __________________________________________________________
 ```
 ```
 __________________________________________________________
-addtorecipe --s id/1 desc/Add mala sauce when water has reached a rolling boil.
+addtorecipe --s id/3 desc/Add mala sauce when water has reached a rolling boil.
 There are 4 steps in the list
 1. chop beef
 2. add potatoes
@@ -129,6 +129,7 @@ Valid range: 1 to 5
 Enter "quit" to cancel.
 Enter step index below:
 4
+
 The step has been successfully added to the step list!
 __________________________________________________________
 ```
@@ -154,8 +155,6 @@ Enter the description of the step:
 go to haidilao
 Step has been edited:
 1. go to haidilao
-
-Data saved successfully!
 __________________________________________________________
 ```
 ```
@@ -197,8 +196,6 @@ Enter the description of the ingredient:
 Chicken
 Ingredient has been edited:
 2. Chicken
-
-Data saved successfully!
 __________________________________________________________
 ```
 ```
@@ -254,11 +251,8 @@ __________________________________________________________
 delete 1
 
 Noted. I've removed this recipe:
-  [Chinese] MaLaXiangGuo
-Now you have 1 recipes in the list.
-
-
-Data saved successfully!
+  [Chinese] Hotpot
+Now you have 1 recipe in the list.
 __________________________________________________________
 ```
 <p>App will remove the recipe with the corresponding index.</p>
@@ -310,9 +304,8 @@ Find recipes whose names contain any of the given keywords. The results will be 
 ```
 __________________________________________________________
 findname hotpot
-
-Here are the matching items:
-  [Chinese] Hotpot [Index: 2]
+Here is the matching item:
+  [Chinese] Hotpot [Index: 1]
 __________________________________________________________
 ```
 
@@ -327,9 +320,8 @@ Find recipes whose tag contain any of the given keywords. The results will be di
 ```
 __________________________________________________________
 findtag chinese
-
-Here are the matching items:
-  [Chinese] Hotpot [Index: 2]
+Here is the matching item:
+  [Chinese] Hotpot [Index: 1]
 __________________________________________________________
 ```
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
@@ -349,7 +341,7 @@ __________________________________________________________
 ```
 __________________________________________________________
 view 1
-Here is the recipe you requested, which is a Chinese flavour:
+Here is the recipe you requested, which is Chinese flavour:
 name: Hotpot
 __________________________________________________________
 Here are 3 ingredients in the list:
@@ -380,7 +372,7 @@ __________________________________________________________
 ```
 __________________________________________________________
 view Hotpot
-Here is the recipe you requested, which is a Chinese flavour:
+Here is the recipe you requested, which is Chinese flavour:
 name: Hotpot
 __________________________________________________________
 Here are 3 ingredients in the list:
