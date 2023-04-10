@@ -681,21 +681,21 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## User Stories
 
-| Version | As a ...                                    | I want to ...                                                | So that I can ...                                      |
-|---------|---------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------|
-| v1.0    | working adult                               | track my outflows by adding new entries                      | where my money is going                                |
-| v1.0    | working adult                               | track my inflows by adding new entries                       | know how much I am earning                             |
-| v1.0    | diligent user                               | view my inflows and outflows                                 | know where my money is going                           |
-| v1.0    | careless user                               | delete my entries                                            | recover after making wrong entries                     |
-| v1.0    | returning user                              | continue from my previous data                               | re-enter all the entries                               |
-| v2.0    | new user                                    | see usage instructions                                       | refer to them when I forget how to use the application |
-| v2.0    | user who uses multiple applications         | access the data I saved in RainyDay in my other applications | avoid having to re-enter the same data                 |
-| v2.0    | busy user                                   | create and use shortcuts                                     | avoid having to repeatedly type in lengthy commands    |
-| v2.0    | diligent user                               | filter my data                                               | view my past expenses with ease                        |
-| v2.0    | careless user                               | edit my entries                                              | amend my wrong entries                                 |
-| v2.0    | careful user                                | ignore certain entries                                       | I can have a more accurate track of my finances        |
-| v2.0    | user who is serious in managing my finances | set up a budget                                              | know whether my outflows have exceeded my budget goal  |
-| v2.0    | advanced user                               | export my data                                               | view my expenses in charts and diagrams in excel       |
+| Version | As a ...                                    | I want to ...                                           | So that I can ...                                      |
+|---------|---------------------------------------------|---------------------------------------------------------|--------------------------------------------------------|
+| v1.0    | working adult                               | track my outflows by adding new entries                 | where my money is going                                |
+| v1.0    | working adult                               | track my inflows by adding new entries                  | know how much I am earning                             |
+| v1.0    | diligent user                               | view my inflows and outflows                            | know where my money is going                           |
+| v1.0    | careless user                               | delete my entries                                       | recover after making wrong entries                     |
+| v1.0    | returning user                              | continue from my previous data                          | avoid re-entering all the entries                      |
+| v2.0    | new user                                    | see usage instructions                                  | refer to them when I forget how to use the application |
+| v2.0    | user who uses multiple devices              | access the data I saved in RainyDay in my other devices | avoid having to re-enter the same data                 |
+| v2.0    | busy user                                   | create and use shortcuts                                | avoid having to repeatedly type in lengthy commands    |
+| v2.0    | diligent user                               | filter my data                                          | view my past expenses with ease                        |
+| v2.0    | careless user                               | edit my entries                                         | amend my wrong entries                                 |
+| v2.0    | careful user                                | ignore certain entries                                  | I can have a more accurate track of my finances        |
+| v2.0    | user who is serious in managing my finances | set up a budget                                         | know whether my outflows have exceeded my budget goal  |
+| v2.0    | advanced user                               | export my data                                          | view my expenses in charts and diagrams in excel       |
 
 ## Non-Functional Requirements
 
@@ -879,7 +879,7 @@ Prerequisites: None
 ### Using a shortcut
 
 Prerequisites: You have added a shortcut which you will be using. For this section, we will require you to configure
-the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+the first shortcut in the [adding a shortcut](#adding-a-shortcut) section
 
 1. Test case: `a` <br>Expected: A message should indicate that a shortcut is being used. The `add -out noodles $5`
    command should also be successfully performed.
@@ -895,7 +895,7 @@ Prerequisites: None
 ### Deleting a shortcut
 
 Prerequisites: You have added a shortcut which you will be deleting. For this section, we will require you to
-configure only the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+configure only the first shortcut in the [adding a shortcut](#adding-a-shortcut) section
 
 1. Test case: `shortcut_delete a` <br>Expected: A success message should be displayed indicating that the shortcut has
    been successfully deleted.
