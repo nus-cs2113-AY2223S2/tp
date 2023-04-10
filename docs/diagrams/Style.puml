@@ -1,0 +1,19 @@
+skinparam Class {
+    BorderColor #000000
+    BorderThickness 1
+    FontColor #000000
+    StereotypeFontColor #FF0000
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+}
+
+skinparam ClassAttributeIconSize 0
+skinparam MinClassWidth 50
+skinparam packageStyle Rectangle
+skinparam DefaultTextAlignment center
+hide footbox
+hide circle

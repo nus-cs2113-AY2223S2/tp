@@ -1,0 +1,21 @@
+@startuml
+!include ../../Style.puml
+
+autonumber
+
+group ref
+FrontEnd -> ViewCommand : execute()
+end
+group ref
+ViewCommand -> Backend : Endpoint /entries - Handle GET
+Backend -> ViewCommand : return response
+end
+opt responseStatus == UNPROCESSABLE_CONTENT
+    ViewCommand -> Exception : throw new InvalidCategoryException
+end
+alt categoryToView != null
+    ViewCommand -> UI : printEntriesToBeViewed(relevantEntries, categoryToView)
+else categoryToView == null
+    ViewCommand -> UI :printEntriesToBeViewed(relevantEntries)
+end
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+!include ../../Style.puml
+
+group get Entry and get responseGet
+participant "backend:Backend" as Backend
+participant "endpoint:entryEndpoint" as Endpoint
+participant "entries:EntryLog" as EntryLog
+participant "responseGet:Response" as ResponseGet
+
+Backend -> Endpoint : handleRequest(requestGet)
+Endpoint -> Endpoint : handleGet(requestGet)
+Endpoint -> EntryLog : getEntry(entryId)
+EntryLog --> Endpoint : entryObj
+Endpoint -> ResponseGet ** : (ResponseStatus, " ")
+ResponseGet --> Endpoint : responseGet
+Endpoint -->Backend: responseGet
+end
+@enduml

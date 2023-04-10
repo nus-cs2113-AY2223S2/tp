@@ -1,0 +1,32 @@
+@startuml
+!include ../../Style.puml
+
+class ViewCommand {
+- numberOfEntriesToView : int = MAX_DOUBLE
+- categoryToView : Category = null
+- startDateString : String = ""
+- endDateString : String = ""
+- priceToViewMin : int = 0
+- priceToViewMax : int = MAX_DOUBLE
++ execute()
+}
+
+class UI{
++printEntriesToBeViewed(relevantEntries : EntryLog, categoryToView : Category)
+}
+class Backend{
++requestEndpointEntries(request : Request) : Response
+}
+class Request{
++addParam(requestParameter : enum, parameterValue : String)
+}
+class Response{
++ getData() : String
+}
+UI "1" <... "*" ViewCommand : prints by
+Backend "1" <.. "*" ViewCommand : gets relevant entries from
+ViewCommand "1" *--- "1" Request
+ViewCommand "1" *-- "1" Response
+
+
+@enduml

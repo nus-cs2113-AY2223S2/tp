@@ -1,0 +1,18 @@
+@startuml
+!include ../../Style.puml
+
+mainframe sd Endpoint /entry - Handle GET
+participant ":EntryEndpoint" as EntryEndpoint
+participant ":EntryLog" as EntryLog
+
+-> EntryEndpoint : handleGet(Request)
+
+EntryEndpoint -> EntryLog : getEntry()
+EntryEndpoint <-- EntryLog : Entry
+
+group opt [Entry is null]
+    <-- EntryEndpoint : Response(NOT_FOUND)
+end
+
+<-- EntryEndpoint : Response(OK)
+@enduml

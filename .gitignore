@@ -3,6 +3,15 @@
 /out/
 /*.iml
 
+#Visual Studio Code
+.vscode/
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-snippets
+
 # Gradle build files
 /.gradle/
 /build/
@@ -13,5 +22,32 @@ src/main/resources/docs/
 *.iml
 bin/
 
+### Java ###
+# Compiled class file
+*.class
+
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+
+# Test data
+data/*
+test/*
+
+# Application Logging
+/logs
+*/logs
+
+### Hugo ###
+# Generated files by hugo
+/docs/public/
+/docs/resources/_gen/
+/docs/assets/jsconfig.json
+docs/hugo_stats.json
+
+# Executable may be added to repository
+/docs/hugo.exe
+/docs/hugo.darwin
+/docs/hugo.linux
+
+# Temporary lock file while building
+/docs/.hugo_build.lock

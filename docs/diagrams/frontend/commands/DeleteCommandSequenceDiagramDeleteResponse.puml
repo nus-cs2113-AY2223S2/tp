@@ -1,0 +1,19 @@
+@startuml
+!include ../../Style.puml
+
+group delete from EntryLog and get responseDelete
+participant "backend:Backend" as Backend
+participant "endpoint:entryEndpoint" as Endpoint
+participant "entries:EntryLog" as EntryLog
+participant "requestDelete:Request" as RequestDelete
+
+Backend -> Endpoint : handleRequest(requestDelete)
+Endpoint -> Endpoint : handleGet(requestDelete)
+Endpoint -> EntryLog : deleteEntry(entryId)
+EntryLog -> EntryLog : remove(entryId)
+EntryLog --> Endpoint
+Endpoint -> ResponseDelete ** : Response(responseStatus, " ")
+ResponseDelete --> Endpoint : responseDelete
+Endpoint --> Backend : responseDelete
+end
+@enduml

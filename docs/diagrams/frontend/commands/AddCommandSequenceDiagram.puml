@@ -1,0 +1,51 @@
+@startuml
+!include ../../Style.puml
+
+participant ":Frontend" as Frontend
+participant ":Parser" as Parser
+participant "command:AddCommand" as AddCommand
+participant "entryObj:Entry" as Entry
+participant "backend:Backend" as Backend
+
+participant "UI" as UI
+
+activate Frontend
+activate Parser
+activate UI
+activate Backend
+Frontend -> Parser : parseUserInput(userInput)
+Parser -> AddCommand ** : AddCommand(description, price, category)
+activate AddCommand
+AddCommand -> Entry ** :Entry(description, price, category)
+activate Entry
+Entry --> AddCommand : entryObj
+deactivate Entry
+destroy Entry
+AddCommand --> Parser : command
+deactivate AddCommand
+Parser --> Frontend : command
+
+Frontend -> AddCommand :execute()
+activate AddCommand
+AddCommand -> Backend : request
+ref over Backend
+Handle request and
+get response
+end ref
+
+Backend --> AddCommand : response
+
+alt response.getResponseStatus() == ResponseStatus.CREATED
+    AddCommand -> UI : printExpenditureAdded(entryObj)
+    UI --> AddCommand
+else else
+    AddCommand --> Parser : exception
+        deactivate AddCommand
+
+destroy AddCommand
+end
+
+
+
+
+@enduml

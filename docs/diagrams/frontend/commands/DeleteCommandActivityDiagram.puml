@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:user executes delete entry command;
+    if () then ([valid format])
+      :Create new DeleteCommand object;
+      :Remove entry from the EntryLog;
+      :Show success message;
+
+    else ([invalid format])
+      :Show error message;
+    endif
+
+stop
+
+@enduml

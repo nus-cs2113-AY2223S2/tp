@@ -1,0 +1,21 @@
+@startuml
+!include ../../Style.puml
+
+group sd add to EntryLog and get response
+
+participant "backend:Backend" as Backend
+participant "endpoint:entryEndpoint" as Endpoint
+participant "entries:EntryLog" as EntryLog
+
+activate Backend
+Backend -> Endpoint : handleRequest(postReq)
+Endpoint -> Endpoint : handlePost(postReq)
+Endpoint -> EntryLog : addEntry(entry)
+EntryLog -> EntryLog : add(entry)
+EntryLog --> Endpoint
+Endpoint -> Response ** : Response(CREATED, " ")
+Response --> Endpoint : response
+Endpoint --> Backend : reponse
+end
+
+@enduml

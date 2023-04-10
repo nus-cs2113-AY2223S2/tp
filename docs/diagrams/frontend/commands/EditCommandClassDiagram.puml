@@ -1,0 +1,35 @@
+@startuml
+!include Style.puml
+
+UI <... EditCommand
+Backend <.. EditCommand
+EditCommand *-- Request
+EditCommand *-- Response
+
+class EditCommand {
+    - expenseId : int
+    - newDescription : String
+    - newPrice : String
+    - newCategory : String
+    + EditCommand(expenseId : int, newDescription : String, newPrice : String,
+                newCategory : String)
+    + execute(ui : UI, backend : Backend)
+}
+
+class Request {
++addParam(RequestParams : enum, parameterValue : String)
+}
+
+class UI {
++printExpenditureEdited(newEntry : Entry)
+}
+
+class Response{
++getData() : String
+}
+
+class Backend{
++requestEndpointEntry(request : Request) : Response
+}
+
+@enduml
