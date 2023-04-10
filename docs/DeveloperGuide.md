@@ -58,7 +58,7 @@ It is also facilitated by `Foodlist` Class, using `addFood` method of `FoodList`
 
 The add feature implementation is as follows:
 1. New AddCommand object is created by passing in a String containing food details
-2. `splitDetails` is called to split the string using different flags `-n`,`-e`,`-c`,`-q`,`-u`;
+2. `splitDetails` is called to split the string using different flags `--n`,`--e`,`--c`,`--q`,`--u`;
 3. After obtaining an array of String, it will check the correctness of each parameter. It will specially check the date 
 and the quantity. If the `date` is not a valid date (e.g. 02/15/2024)or it is before the current date
 (meaning expired food), it will return a `CommandResult` object, and `FoodSupplyTracker` will continue print the command result.
