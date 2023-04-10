@@ -45,31 +45,6 @@ activate "<<class>>\nui:UI"
 "<<class>>\nui:UI" <-- UserConsole
 
 ":ListPuCommand" <-- "<<class>>\nui:UI" : return control
-'    "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
-'    activate ":Module"
-'    "<<class>>\nui:UI" <-- ":Module" : moduleCode
-'
-'    "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
-'    "<<class>>\nui:UI" <-- ":Module" : moduleName
-'
-'    "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
-'    "<<class>>\nui:UI" <-- ":Module" : moduleMCs
-'
-'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
-'    "<<class>>\nui:UI" <-- ":Module" : NusModuleCode"
-'
-'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
-'    "<<class>>\nui:UI" <-- ":Module" : NusmModuleName
-'
-'    "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
-'    "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
-'    deactivate ":Module"
-'    "<<class>>\nui:UI" -> UserConsole : Print out Modules details
-'    "<<class>>\nui:UI" <-- UserConsole
-
-'end
-
-'"<<class>>\nui:UI" --> ":ListPuCommand" : return control
-'deactivate "<<class>>\nui:UI"
-
+deactivate "<<class>>\nui:UI"
+deactivate ":ListPuCommand"
 @enduml
