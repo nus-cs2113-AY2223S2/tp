@@ -32,6 +32,8 @@ It is written in Java, and has about 5kLoC.
 - Sequence diagrams for DateCommand, FindCommand,DeleteHelpCommand
 - Class diagram for Storage
 - Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
+
+
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 
 - Helped write script for demo video 
