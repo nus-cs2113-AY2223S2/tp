@@ -199,20 +199,22 @@ Format: **`add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`**
 * `DIRECTION` should be either:
     * `-in` signifying an [inflow](#glossary) type of transaction, or
     * `-out` signifying an [outflow](#glossary) type of transaction
-* `DESCRIPTION` signifies the description of the transaction, consisting of characters and space
+* `DESCRIPTION` signifies the description of the transaction, consisting of [alphanumeric](#glossary) characters and
+  space
 * `AMOUNT` signifies the value of the transaction, where the number needs to be more than 0, with `$` appended
   before the number
 * `CATEGORY` is a field representing the category to be tagged with the transaction, where category can consist of
-  characters and space, with `-c` appended before the category
+  [alphanumeric](#glossary) characters and space, with `-c` appended before the category
 * `DATE` is a field representing the date to be tagged with the transaction, where date needs to be in the format
   of `DAY/MONTH/YEAR`, with `-date` appended before the date
     * `DAY` and `MONTH` can either be a single or double-digit number
     * `YEAR` needs to be a four-digit number
     * When this field is omitted, the date will be set to the day when the transaction is added to rainyDay
 
-> ⚠️ Amount provided must be a positive value and cannot be more than $21,474,836.47!
->
-> ⚠️ `DESCRIPTION` and `CATEGORY` cannot contain dash `-`
+> ⚠️ Please avoid doing the following:
+> - Amount provided must be a positive value and cannot be more than $21,474,836.47!
+> - `DESCRIPTION` and `CATEGORY` cannot contain dash `-`
+> - Avoid using characters other than alphanumeric characters and space as it could lead to abnormal behaviour
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:
 >
@@ -661,6 +663,7 @@ and their contents do not affect rainyDay's functions. The "logs" folder and its
 
 | Term                   | Explanation                                                                                                                                                      |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Alphanumeric character | A character that is either a letter or a number.                                                                                                                 |
 | Cmd                    | Acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 | Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
 | Corrupted saved data   | When data saved is not understandable by rainyDay. May occur due to editing of saved file to a condition that violates the saving format                         |
