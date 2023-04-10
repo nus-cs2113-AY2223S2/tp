@@ -550,34 +550,63 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
 These are the following Sniff commands available:
+
 Add consultation appointment:
+
  consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME
+
 Add vaccination appointment:
+
  vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE vt/TIME
+
 Add surgery appointment:
+
  surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL
+
 Listing all appointments:
+
  list
+
 Removing an appointment:
+
  remove uid/UID
+
 Finding an appointment by animal type, appointment type or uid:
+
  find a/ANIMAL_TYPE
+
  find t/APPOINTMENT_TYPE 
+
  find uid/UID
+
  find d/DATE
+
 Mark or UnMark an appointment:
+
  mark uid/UID
+
  unMark uid/UID
+
 Editing an appointment:
+
  edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME
+
  edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATEvt/TIME
+
  edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATEst/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL
-Archiving apppointments:
+
+Archiving appointments:
+
  archive
+
 Exiting the program:
+
  bye
+
 Additional notes:
+
  1. DATES and TIMES format are in (YYYY-MM-DD) and (HH:MM) respectively
+
  2. PRIORITY_LEVEL format is in (L, M, H)
 ______________________________________________________________________
 ```
