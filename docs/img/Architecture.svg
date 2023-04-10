@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="510px" preserveAspectRatio="none" style="width:888px;height:510px;background:#FFFFFF;" version="1.1" viewBox="0 0 888 510" width="888px" zoomAndPan="magnify"><defs/><g><!--MD5=[d64883541e3d62e3241c4d12decf100d]
+cluster Application--><g id="cluster_Application"><polygon fill="none" points="16,169,26,159,690,159,690,483,680,493,16,493,16,169" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="680" x2="690" y1="169" y2="159"/><line style="stroke:#181818;stroke-width:1.0;" x1="16" x2="680" y1="169" y2="169"/><line style="stroke:#181818;stroke-width:1.0;" x1="680" x2="680" y1="169" y2="493"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="79" x="309.5" y="186.5332">Application</text></g><!--MD5=[75ea3bd801f35bf9c6563570d027214a]
+cluster state--><g id="cluster_state"><polygon fill="none" points="48,282,58,272,312,272,312,451,302,461,48,461,48,282" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="302" x2="312" y1="282" y2="272"/><line style="stroke:#181818;stroke-width:1.0;" x1="48" x2="302" y1="282" y2="282"/><line style="stroke:#181818;stroke-width:1.0;" x1="302" x2="302" y1="282" y2="461"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="96" x="128" y="299.5332">Program State</text></g><!--MD5=[823eae247e5b9b25193451248ff40473]
+cluster localStorage--><g id="cluster_localStorage"><path d="M621,16 C621,6 746,6 746,6 C746,6 871,6 871,16 L871,117 C871,127 746,127 746,127 C746,127 621,127 621,117 L621,16 " fill="none" style="stroke:#181818;stroke-width:1.0;"/><path d="M621,16 C621,26 746,26 746,26 C746,26 871,26 871,16 " fill="none" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="95" x="698.5" y="42.5332">Local Storage</text></g><!--MD5=[e7be9d3d4fe52749147b3ded97365e25]
+entity Inka--><g id="elem_Inka"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="67" x="460.5" y="200"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="507.5" y="205"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="505.5" y="207"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="505.5" y="211"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="475.5" y="234.5332">Inka</text></g><!--MD5=[34b989d78a7f96922e664ca82802714e]
+entity UserInterface--><g id="elem_UserInterface"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="126" x="336" y="321"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="442" y="326"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="440" y="328"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="440" y="332"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="86" x="351" y="355.5332">UserInterface</text></g><!--MD5=[b8966a4a60ec894312d4f55fd40cce21]
+entity Parser--><g id="elem_Parser"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="82" x="482" y="321"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="544" y="326"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="542" y="328"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="542" y="332"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="497" y="355.5332">Parser</text></g><!--MD5=[e92c63db3bab30672c9b345919c8e067]
+entity Command--><g id="elem_Command"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="106" x="408" y="389"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="494" y="394"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="492" y="396"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="492" y="400"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="423" y="423.5332">Command</text></g><!--MD5=[cf25d34b6f9695ab689953484c0b6ae1]
+entity Storage--><g id="elem_Storage"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="90" x="584" y="321"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="654" y="326"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="652" y="328"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="652" y="332"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="599" y="355.5332">Storage</text></g><!--MD5=[b79a0641d29229c3ceb9b0addb11b1ba]
+entity CardList--><g id="elem_CardList"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="93" x="72.5" y="321"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="145.5" y="326"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="143.5" y="328"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="143.5" y="332"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="53" x="87.5" y="355.5332">CardList</text></g><!--MD5=[965fd86f49467209c3bdebdc117dbc9b]
+entity DeckList--><g id="elem_DeckList"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="186" y="321"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="260" y="326"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="258" y="328"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="258" y="332"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="54" x="201" y="355.5332">DeckList</text></g><!--MD5=[edec93761fba8e25e1a74631c5e4ea76]
+entity TagList--><g id="elem_TagList"><rect fill="#F1F1F1" height="47.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="87" x="75.5" y="389"/><rect fill="#F1F1F1" height="10" style="stroke:#181818;stroke-width:0.5;" width="15" x="142.5" y="394"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="140.5" y="396"/><rect fill="#F1F1F1" height="2" style="stroke:#181818;stroke-width:0.5;" width="4" x="140.5" y="400"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="47" x="90.5" y="423.5332">TagList</text></g><!--MD5=[457367359dcae5cc34c51c5ef734eadd]
+entity Save File--><g id="elem_Save File"><path d="M767.5,67.5 L767.5,100.1094 A2.5,2.5 0 0 0 770,102.6094 L844,102.6094 A2.5,2.5 0 0 0 846.5,100.1094 L846.5,75 L836.5,65 L770,65 A2.5,2.5 0 0 0 767.5,67.5 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M836.5,65 L836.5,72.5 A2.5,2.5 0 0 0 839,75 L846.5,75 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="59" x="777.5" y="89.5332">Save File</text></g><!--MD5=[b0b95e1308ec5fccaca715b0aa55d56e]
+entity Backup File--><g id="elem_Backup File"><path d="M653,67.5 L653,100.1094 A2.5,2.5 0 0 0 655.5,102.6094 L744.5,102.6094 A2.5,2.5 0 0 0 747,100.1094 L747,75 L737,65 L655.5,65 A2.5,2.5 0 0 0 653,67.5 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M737,65 L737,72.5 A2.5,2.5 0 0 0 739.5,75 L747,75 " fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="74" x="663" y="89.5332">Backup File</text></g><!--MD5=[494c489cc4328319247ec2e1625e02a3]
+entity Student--><g id="elem_Student"><ellipse cx="399" cy="53.5" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M399,61.5 L399,88.5 M386,69.5 L412,69.5 M399,88.5 L386,103.5 M399,88.5 L412,103.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="49" x="374.5" y="119.5332">Student</text></g><!--MD5=[66146a202580ec86c19caba4e74f4146]
+link Inka to Parser--><g id="link_Inka_Parser"><path d="M499.66,248.23 C504.37,267.56 511.09,295.15 516.12,315.75 " fill="none" id="Inka-to-Parser" style="stroke:#FF0000;stroke-width:1.0;"/><polygon fill="#FF0000" points="517.35,320.83,519.1015,311.1381,516.1642,315.9726,511.3297,313.0354,517.35,320.83" style="stroke:#FF0000;stroke-width:1.0;"/></g><!--MD5=[2100ced1f84f1cf2eeac62066b8d88b3]
+link Inka to UserInterface--><g id="link_Inka_UserInterface"><path d="M472.23,252.27 C456.85,271.54 436.31,297.26 420.9,316.57 " fill="none" id="Inka-UserInterface" style="stroke:#FF0000;stroke-width:1.0;"/><polygon fill="#FF0000" points="417.5,320.83,426.2518,316.3127,420.6287,316.9298,420.0115,311.3068,417.5,320.83" style="stroke:#FF0000;stroke-width:1.0;"/><polygon fill="#FF0000" points="475.46,248.23,466.7163,252.7629,472.3383,252.1357,472.9655,257.7577,475.46,248.23" style="stroke:#FF0000;stroke-width:1.0;"/></g><!--MD5=[efdfceca062966d9ed711b7c20504a79]
+link Inka to Storage--><g id="link_Inka_Storage"><path d="M532.77,234.46 C546.82,239.25 562.14,246.19 574,256 C593.46,272.09 608.09,296.93 617.35,316.12 " fill="none" id="Inka-Storage" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="619.59,320.87,619.3696,311.0236,617.4576,316.3475,612.1336,314.4355,619.59,320.87" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="527.66,232.79,534.9691,239.3913,532.4119,234.3454,537.4578,231.7882,527.66,232.79" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[5ca06cfae30740f54a370ee39bf7e6c4]
+link Inka to state--><g id="link_Inka_state"><path d="M460.12,225.73 C412.03,227.55 327.6,233.9 308,256 C304.8538,259.5475 302.4108,263.5263 300.5469,267.7798 C300.0809,268.8432 299.6512,269.9237 299.2557,271.019 C299.1568,271.2928 299.06,271.5676 298.9654,271.8432 " fill="none" id="Inka-to-state" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="298.9654,271.8432,305.6711,264.6298,300.589,267.1142,298.1046,262.032,298.9654,271.8432" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[29f924dc602e7262ec0f1e072f411055]
+link UserInterface to Storage--><!--MD5=[0152bae793d3ee4ba65b4ceead07f830]
+link Storage to Parser--><!--MD5=[bd7c6c600a39a700a410d9cc8e1f1937]
+link Student to UserInterface--><g id="link_Student_UserInterface"><path d="M399,128.45 C399,181.71 399,270.45 399,315.66 " fill="none" id="Student-UserInterface" style="stroke:#FF0000;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#FF0000" points="399,320.68,403,311.68,399,315.68,395,311.68,399,320.68" style="stroke:#FF0000;stroke-width:1.0;"/><polygon fill="#FF0000" points="399,123.22,395,132.22,399,128.22,403,132.22,399,123.22" style="stroke:#FF0000;stroke-width:1.0;"/></g><!--MD5=[156d06b400f2f93dcbdcfbfb4c062723]
+link localStorage to Storage--><g id="link_localStorage_Storage"><path d="M629,127.3812 C629,127.6845 629,127.989 629,128.2947 C629,128.906 629,129.5221 629,130.1427 C629,131.3839 629,132.6435 629,133.9204 C629,136.4741 629,139.0973 629,141.7822 C629,152.5216 629,164.2484 629,176.4713 C629,225.3625 629,282.19 629,315.51 " fill="none" id="localStorage-Storage" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="629,320.9,633,311.9,629,315.9,625,311.9,629,320.9" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="629,127.3812,625,136.3812,629,132.3812,633,136.3812,629,127.3812" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[f0ffe6497b7d1d01b68217af11f4b39a]
+link Parser to Command--><g id="link_Parser_Command"><path d="M501.32,369.08 C496.44,374.28 491.22,379.83 486.21,385.17 " fill="none" id="Parser-to-Command" style="stroke:#FF0000;stroke-width:1.0;"/><polygon fill="#FF0000" points="482.78,388.82,491.8531,384.9887,486.1992,385.1719,486.0161,379.518,482.78,388.82" style="stroke:#FF0000;stroke-width:1.0;"/></g><!--MD5=[d0a4561060b33223d15bb39280dae55a]
+reverse link UserInterface to Command--><g id="link_UserInterface_Command"><path d="M424.11,372.73 C429.12,378.06 434.34,383.62 439.22,388.82 " fill="none" id="UserInterface-backto-Command" style="stroke:#0000FF;stroke-width:1.0;"/><polygon fill="#0000FF" points="420.68,369.08,423.9355,378.3753,424.1068,372.721,429.7611,372.8923,420.68,369.08" style="stroke:#0000FF;stroke-width:1.0;"/></g><!--MD5=[894af96810da56d5af6f5fd9ee84a0d6]
+reverse link Storage to Command--><g id="link_Storage_Command"><path d="M578.82,367.06 C577.2,367.72 575.59,368.37 574,369 C554.51,376.78 533,385.05 514.03,392.23 " fill="none" id="Storage-backto-Command" style="stroke:#0000FF;stroke-width:1.0;"/><polygon fill="#0000FF" points="583.73,365.07,573.8868,364.7352,579.0946,366.9442,576.8856,372.1519,583.73,365.07" style="stroke:#0000FF;stroke-width:1.0;"/></g><!--MD5=[c25434a7c29556259cffff8eb042fe04]
+reverse link state to Command--><g id="link_state_Command"><path d="M312.2539,373.399 C312.4631,373.6012 312.6732,373.8024 312.8842,374.0026 C314.5721,375.6042 316.3178,377.1406 318.1155,378.6146 C321.7109,381.5624 325.5139,384.2601 329.4772,386.7283 C337.4037,391.6647 345.9712,395.6831 354.8,398.9488 C372.4575,405.48 391.16,409 407.87,410.83 " fill="none" id="state-backto-Command" style="stroke:#0000FF;stroke-width:1.0;"/><polygon fill="#0000FF" points="312.2539,373.399,315.9438,382.5305,315.8485,376.8744,321.5046,376.7791,312.2539,373.399" style="stroke:#0000FF;stroke-width:1.0;"/></g><!--MD5=[b982cf5a614240d66c9041330d195c50]
+@startuml Architecture
+top to bottom direction
+
+skinparam nodesep 20
+skinparam ranksep 20
+
+node "Application" {
+    [Inka]
+    [UserInterface]
+    [Parser]
+    [Command]
+    [Storage]
+
+    node "Program State" as state {
+        [CardList]
+        [DeckList]
+        [TagList]
+    }
+}
+
+actor Student
+
+database "Local Storage" as localStorage {
+    file "Save File"
+    file "Backup File"
+}
+
+Inka -[#red]-> Parser
+Inka <-[#red]-> UserInterface
+Inka <- -> Storage
+Inka - -> state
+
+UserInterface-[hidden]r-Storage
+Storage-[hidden]r-Parser
+
+UserInterface <-[#red]u.-> Student
+Storage <-u.-> localStorage
+
+Parser -[#red]-> Command
+UserInterface <-[#blue]- Command
+Storage <-[#blue]- Command
+state <-[#blue]- Command
+
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>

@@ -1,0 +1,59 @@
+@startuml ListCardsInTagCommand
+
+autoactivate on
+
+participant ":Inka" as Inka
+participant ":ListCardsInTagCommand" as ListCardsInTagCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+
+participant ":UserInterface" as UserInterface
+'participant ":TagKeywordParser" as TagKeywordParser
+
+'Inka -> TagKeywordParser : parseCommand()
+'
+'Create TagSelector
+'TagKeywordParser -> TagSelector : create tagSelector to identify tag
+'return tagSelector
+'
+'Create ListCardsInTagCommand
+'TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand(tagSelector)
+'return
+'
+'return ListCardsInTagCommand
+
+Inka -> ListCardsInTagCommand: execute()
+ListCardsInTagCommand -> TagList : findTag(tagSelector)
+return foundTag
+
+ListCardsInTagCommand -> ListCardsInTagCommand : findCardsUnderTag(foundTag)
+ListCardsInTagCommand -> Tag : getCardsUUID()
+return cardsUUID
+
+
+ref over ListCardsInTagCommand, CardList
+Add all Card with cardsUUID to foundCardList
+end ref
+
+'loop curr UUID of all Cards != null
+'    loop curr UUID of cardsUUID != null
+'      alt curr UUID of all Cards == curr UUID of cardsUUID
+'        ListCardsInTagCommand -> CardList : addCard()
+'         return
+'       end
+'      end loop
+'end loop
+
+return foundCardList
+
+ListCardsInTagCommand -> UserInterface : printCardList(foundCardList)
+return
+
+return
+
+@enduml

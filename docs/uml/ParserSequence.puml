@@ -1,0 +1,45 @@
+@startuml ParserSequence
+autoactivate on
+
+participant ":Parser" as parser
+participant ":CardKeywordParser" as cardparser
+participant ":DefaultParser" as apacheparser
+participant ":OptionsBuilder" as optsbuilder
+
+note over apacheparser
+    Apache Commons
+    CLI parser
+end note
+
+-> parser : User inputs as tokens
+parser -> cardparser : parseTokens()
+note over parser
+    Keyword token is not
+    passed to KeywordParser
+end note
+
+cardparser -> cardparser : handleAction()
+cardparser -> cardparser : handleAdd()
+
+create optsbuilder
+cardparser -> optsbuilder : new flag-specific instance
+return 
+cardparser -> optsbuilder : buildOptions
+return
+destroy optsbuilder
+
+cardparser -> cardparser : parseUsingOptions()
+
+cardparser -> apacheparser : parse()
+return Flag values
+
+return Parsed Command 
+return 
+return 
+return 
+
+<-- parser
+
+note right : Parsed Command propagated back
+
+@enduml

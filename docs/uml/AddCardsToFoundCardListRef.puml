@@ -1,0 +1,28 @@
+@startuml
+autoactivate on
+
+mainframe sd Add all Card with cardsUUID to foundCardList
+
+participant ":Inka" as Inka
+participant ":ListCardsInTagCommand" as ListCardsInTagCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+
+participant ":UserInterface" as UserInterface
+
+
+loop curr UUID of all Cards != null
+    loop curr UUID of cardsUUID != null
+      alt curr UUID of all Cards == curr UUID of cardsUUID
+        ListCardsInTagCommand -> CardList : addCard()
+         return
+       end
+      end loop
+end loop
+
+@enduml

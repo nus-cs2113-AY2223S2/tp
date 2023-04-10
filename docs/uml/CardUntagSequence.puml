@@ -1,0 +1,81 @@
+@startuml
+autoactivate on
+
+participant ":Inka" as Inka
+participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Card" as Card
+participant ":Deck" as Deck
+participant ":UserInterface" as UserInterface
+
+Inka -> RemoveTagFromCardCommand: execute()
+RemoveTagFromCardCommand -> CardList : findCard(cardSelector)
+
+alt index is specified
+CardList -> CardSelector : getIndex()
+return cardIndex
+else uuid is specified
+CardList -> CardSelector : getUUID()
+return cardUUID
+end
+return cardAffected
+
+
+RemoveTagFromCardCommand -> TagList : findTag(tagSelector)
+
+alt index is specified
+TagList -> TagSelector : getIndex()
+return tagIndex
+else tagName is specified
+TagList -> TagSelector : getTagName()
+return tagUUID
+end
+return tagToRemove
+
+RemoveTagFromCardCommand -> RemoveTagFromCardCommand : RemoveTagFromCard(cardAffected, tagToRemove)
+
+
+ref over RemoveTagFromCardCommand, Tag, DeckList, Deck
+Remove affected Cards from Deck
+end ref
+
+'opt tagToRemove.isDeckEmpty()
+'RemoveTagFromCardCommand -> Tag : getDecks()
+'return decksUUIDArr
+'loop curr uuid of decksUUIDArr != null
+'RemoveTagFromCardCommand -> DeckList : findDeckFromUUID(deckUUID)
+'return affectedDeck
+'RemoveTagFromCardCommand -> Deck : removeCardFromMap(cardAffected)
+'
+'end loop
+'end
+
+ref over RemoveTagFromCardCommand, Tag, Card
+Remove Tag from Card and vice versa
+end ref
+
+'opt cardAffected.getUUID() != null
+'RemoveTagFromCardCommand -> Card : getUUID()
+'return cardUUID
+'RemoveTagFromCardCommand -> Tag : removeCard(cardUUID)
+'return
+'RemoveTagFromCardCommand -> Tag : getUUID()
+'return tagUUID
+'RemoveTagFromCardCommand -> Card : removeTag(tagUUID)
+'return
+
+'end
+return
+
+RemoveTagFromCardCommand -> UserInterface : printRemoveTagFromCard()
+return
+
+return
+
+@enduml

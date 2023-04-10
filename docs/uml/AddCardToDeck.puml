@@ -1,0 +1,70 @@
+@startuml
+autoactivate on
+
+participant ":Inka" as Inka
+participant ":AddCardToDeckCommand" as AddCardToDeckCommand
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":DeckList" as DeckList
+participant ":Deck" as Deck
+
+participant ":UserInterface" as UserInterface
+
+Inka -> CardKeywordParser : parseCommand()
+
+Create CardSelector
+CardKeywordParser -> CardSelector : create cardSelector to identify card
+return cardSelector
+
+Create AddCardToDeckCommand
+CardKeywordParser -> AddCardToDeckCommand : AddCardToDeckCommand(cardSelector)
+
+return
+
+return AddCardToDeckCommand
+
+Inka -> AddCardToDeckCommand : execute()
+AddCardToDeckCommand -> CardList : findCard(cardSelector)
+return cardToAdd
+
+AddCardToDeckCommand -> AddCardToDeckCommand : addCardToDeck(cardToAdd)
+AddCardToDeckCommand -> DeckList : findDeckFromName(deckName)
+return deckToAdd
+AddCardToDeckCommand -> Card : cardToAdd.getUuid()
+return cardToAddUUID
+
+ref over AddCardToDeckCommand, UserInterface
+If deckToAdd is null, create a new deck and add the card, else add the card to the existing deck
+end ref
+
+'alt deckToAdd is null
+'AddCardToDeckCommand -> UserInterface : printDeckCreationSuccess()
+'return
+'AddCardToDeckCommand -> Deck : deck(deckName, cardToAddUUID)
+'return deckToAdd
+'AddCardToDeckCommand -> Deck : addCardToSet(cardToAddUUID)
+'return
+'AddCardToDeckCommand -> DeckList : addDeck(deckToAdd)
+'return
+'
+'else deckToAdd is not null
+'AddCardToDeckCommand -> Deck : addCard(cardToAddUUID)
+'return
+'AddCardToDeckCommand -> Deck : addCardToSet(cardToAddUUID)
+'return
+'end
+
+AddCardToDeckCommand -> Deck : getDeckUUID()
+return deckUUID
+AddCardToDeckCommand -> Card : addDeck(deckUUID)
+return
+
+AddCardToDeckCommand -> Card : getUuid()
+return cardUUID
+AddCardToDeckCommand -> UserInterface : printAddCardToDeckSuccess(cardUUID, deckName)
+return
+
+return
+
+return
+@enduml

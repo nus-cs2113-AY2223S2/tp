@@ -1,0 +1,38 @@
+@startuml
+autoactivate on
+
+
+
+mainframe sd Add all Tags with tagsUUID to tagsFound
+
+participant ":Inka" as Inka
+participant ":ViewCardCommand" as ViewCardCommand
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Card" as Card
+participant ":Deck" as Deck
+participant ":TagUUID" as TagUUID
+participant ":DeckUUID" as DeckUUID
+participant ":UserInterface" as UserInterface
+
+
+loop current uuid of tagsUUID != null
+
+  ViewCardCommand -> TagList : TagList()
+  return tagsFound
+  ViewCardCommand -> TagList : getTags()
+  return allTags
+  loop current uuid of allTags != null
+      ViewCardCommand -> TagUUID : equals()
+      return isUUIDEqual
+      alt isUUIDEqual
+       ViewCardCommand -> TagList : addTag()
+       return
+      end
+  end loop
+end loop
+
+@enduml

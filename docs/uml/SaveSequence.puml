@@ -1,0 +1,53 @@
+@startuml
+
+participant ":JsonStorage" as JsonStorage
+
+
+participant ":Memory" as memory
+participant "<<class>> \n MemoryToJson" as mtj
+
+
+
+
+
+
+-> JsonStorage  : save(cardList, tagList, deckList)
+activate JsonStorage
+
+
+create memory
+JsonStorage -> memory : Memory(cardList, tagList, deckList)
+activate memory
+memory --> JsonStorage : Memory
+deactivate memory
+
+JsonStorage-> "mtj" :MemoryToJson.convert(memory);
+activate "mtj"
+
+
+
+"mtj" -> "mtj" ++ : convert()
+
+"mtj" -> "mtj" ++: cardListToJson
+
+return
+"mtj" -> "mtj" ++: tagListToJson
+return
+"mtj" -> "mtj" ++: deckListToJson
+return
+return
+
+
+"mtj" --> JsonStorage : JsonObject
+note left : savedata converted to json
+
+deactivate "mtj"
+
+
+
+JsonStorage -> JsonStorage ++: saveDataToFile()
+note right : data written to filesystem as json
+return
+
+
+@enduml

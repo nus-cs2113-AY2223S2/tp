@@ -1,0 +1,44 @@
+@startuml Architecture
+top to bottom direction
+
+skinparam nodesep 20
+skinparam ranksep 20
+
+node "Application" {
+    [Inka]
+    [UserInterface]
+    [Parser]
+    [Command]
+    [Storage]
+
+    node "Program State" as state {
+        [CardList]
+        [DeckList]
+        [TagList]
+    }
+}
+
+actor Student
+
+database "Local Storage" as localStorage {
+    file "Save File"
+    file "Backup File"
+}
+
+Inka -[#red]-> Parser
+Inka <-[#red]-> UserInterface
+Inka <--> Storage
+Inka --> state
+
+UserInterface-[hidden]r-Storage
+Storage-[hidden]r-Parser
+
+UserInterface <-[#red]u.-> Student
+Storage <-u.-> localStorage
+
+Parser -[#red]-> Command
+UserInterface <-[#blue]- Command
+Storage <-[#blue]- Command
+state <-[#blue]- Command
+
+@enduml
