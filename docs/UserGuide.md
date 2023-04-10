@@ -426,7 +426,11 @@ ______________________________________________________________________
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: 
+**A**: Transfer the save file into the user directory and ensure that the naming of the file, as well as the file format remains the same.
+
+**Q**: How do I save my data?
+
+**A**: Data is automatically saved after every command, there is no need for the user to write any command to manually save their data.
 
 ## Command Summary
 
@@ -441,7 +445,7 @@ ______________________________________________________________________
 
 
 * Add vaccination :
-  `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+  `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE vt/TIME` 
 
 
 * List :
