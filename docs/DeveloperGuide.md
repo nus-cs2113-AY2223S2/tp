@@ -264,7 +264,7 @@ Duck will be able to allow students who can type fast to quickly record down the
 1. Ensure that Java 11 or above is installed
 2. Download the latest version of Duck
 3. Launch the terminal and navigate to the folder where Duck is located in
-4. Type in the command ```java -jar Duck.jar``` to lauch Duck
+4. Type in the command ```java -jar [CS2113-T11-1][DUCK].jar``` to lauch Duck
     - Expected Outcome: Duck launches in the terminal with its start message displayed.
 
 ### Closing the program
