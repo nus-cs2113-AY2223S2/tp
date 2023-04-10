@@ -13,19 +13,6 @@ public class EntertainmentExpenditureCommandTest {
     ExpenditureList testExpenditures = new ExpenditureList();
 
     @Test
-    public void test_academicExpenditureCommand_execute() {
-        AcademicExpenditureCommand testAcademicExpenditureCommand = new AcademicExpenditureCommand(
-                "new laptop",
-                1500.5,
-                LocalDate.parse("2023-02-01"));
-        assertEquals("Added academic expenditure: " +
-                "[Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
-                testAcademicExpenditureCommand.execute(testExpenditures).getCommandResult());
-        assertEquals("1. [Academic] || Date: 1 Feb 2023 || Value: 1500.5 || Description: new laptop",
-                testExpenditures.toString());
-    }
-
-    @Test
     public void test_entertainmentExpenditureCommand_execute() {
         EntertainmentExpenditureCommand testEntertainmentExpenditureCommand = new EntertainmentExpenditureCommand(
                 "darts", 10, LocalDate.parse("2023-03-01"));
