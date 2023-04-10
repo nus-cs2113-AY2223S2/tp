@@ -1,5 +1,13 @@
 # Developer Guide
 
+<div style="width:30%; height:auto; margin-left: auto; margin-right: auto;">
+
+
+<img src="https://i.imgur.com/ptkwkny.png">
+
+
+</div>
+
 ## Table of Contents
 
 * [Acknowledgements](#acknowledgements)
