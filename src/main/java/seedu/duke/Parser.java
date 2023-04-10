@@ -110,7 +110,7 @@ public class Parser {
         if (amount < 0) {
             throw new DukeException("Expense price cannot be negative! Adding expense failed");
         }
-        if(amount > 1000000000000.0) {
+        if (amount > 1000000000000.0) {
             throw new DukeException("Expense price is too large! Adding expense failed");
         }
         if (amount < 0.01) {
@@ -447,7 +447,7 @@ public class Parser {
         if (amount < 0) {
             throw new DukeException("Expense price cannot be negative! Adding expense failed");
         }
-        if(amount > 1000000000000.0) {
+        if (amount > 1000000000000.0) {
             throw new DukeException("Expense price is too large! Adding expense failed");
         }
         if (amount < 0.01) {
@@ -553,7 +553,8 @@ public class Parser {
      * @param id Stores the expense id
      * @throws DukeException if amount is negative
      */
-    private static void editFutureExpenseAmount(ExpenseManager expenseManager, int id, Scanner in) throws DukeException {
+    private static void editFutureExpenseAmount(ExpenseManager expenseManager, int id, Scanner in)
+            throws DukeException {
         System.out.println("Enter a new amount spent! Just enter a number!");
         Ui.printHorizontalLine();
         Double newAmount = Double.parseDouble(in.nextLine()) / expenseManager.getRate();
