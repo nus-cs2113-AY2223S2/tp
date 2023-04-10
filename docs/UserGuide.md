@@ -306,11 +306,11 @@ Format: `/bye`
 
 | Command | Format                                                                                                                     |
 |--------:|----------------------------------------------------------------------------------------------------------------------------|
-|    /add | /add -d &lt;description&gt; -c &lt;category&gt;<br/>-p &lt;price&gt;                                                       |
-|   /view | /view [count] [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;]                   |
-|   /edit | /edit &lt;index&gt; [-c &lt;category&gt;]<br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-d &lt;description&gt;] |
-| /delete | /delete &lt;index&gt; [additional_index...]                                                                                |
-|   /help | /help [command_type]                                                                                                       |
+|    /add | /add -d &lt;description&gt; -c &lt;category&gt;<br/>-p &lt;price&gt;<br/>e.g. <code>/add -d Gucci Bag -c Others -p 2000</code>|
+|   /view | /view [count] [-c &lt;category&gt;] <br/>[-sp &lt;startprice&gt;] [-ep &lt;endprice&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;] <br/>e.g. <code>/view -c food</code><br/>e.g.<code>/view -sp 100 -ep 200</code>|
+|   /edit | /edit &lt;index&gt; [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-d &lt;description&gt;]<br/>e.g. <code>/edit 1 -d Gucci Wallet -p 3000</code> |
+| /delete | /delete &lt;index&gt; [additional_index...]<br/>e.g. <code>/delete 1</code><br/>e.g. <code>/delete 1 5 10</code>           |
+|   /help | /help [command_type]<br/>e.g. <code>/help</code><br/>e.g.<code>/help add</code>                                            |
 |    /bye | /bye                                                                                                                       |
 
 

@@ -34,13 +34,13 @@ public final class MessageConstants {
             + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE;
     public static final String MESSAGE_VALID_PRICE = "Valid input prices are:" + NEWLINE
             + "Positive numbers strictly ranging from 0.01 to 999999999.99" + NEWLINE + NEWLINE;
-    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified entry(s) from your expenditure."
+    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified entry(s) from your account."
             + NEWLINE
             + "Usage: /delete <index> [additional_index...]" + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/delete 10 11 13 " + NEWLINE
             + "/delete 1" + NEWLINE;
-    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified entry in your current expenditure."
+    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified entry in your account."
             + NEWLINE
             + "Usage: /edit <index> [options]" + NEWLINE
             + "Options:" + NEWLINE
