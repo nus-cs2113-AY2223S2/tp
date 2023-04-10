@@ -89,37 +89,10 @@ public class CardKeywordParser extends KeywordParser {
         Options untagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, UNTAG_ACTION).buildOptions();
         Options viewOptions = new OptionsBuilder(Parser.CARD_KEYWORD, VIEW_ACTION).buildOptions();
         Options deckOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DECK_ACTION).buildOptions();
-        // Combine all action
-        String[] syntaxList = {
-            "card add -q QUESTION -a ANSWER",
-            "card list",
-            "card delete {-c CARD_UUID | -i CARD_INDEX}",
-            "card tag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}",
-            "card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}",
-            "card deck {-c CARD_UUID | -i CARD_INDEX} -d DECK_NAME",
-            "card view {-c CARD_UUID | -i CARD_INDEX}"
-        };
-        String[] headerList = {
-            "Adding cards",
-            "List all cards",
-            "Deleting cards",
-            "Tagging cards",
-            "Untagging cards",
-            "Adding cards to deck",
-            "View cards"
-        };
-        Options[] optionsList = {
-            addOptions,
-            new Options(),
-            deleteOptions,
-            tagOptions,
-            untagOptions,
-            deckOptions,
-            viewOptions
-        };
-        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
+        Options[] helpDetails = {addOptions, new Options(), deleteOptions, tagOptions,
+            untagOptions, deckOptions, viewOptions};
 
-        return new PrintHelpCommand(helpMessage);
+        return new PrintHelpCommand(Parser.CARD_KEYWORD, helpDetails);
     }
 
     private Command handleList(List<String> tokens) throws InvalidSyntaxException {

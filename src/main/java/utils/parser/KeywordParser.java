@@ -1,7 +1,5 @@
 package utils.parser;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +8,6 @@ import model.TagSelector;
 import org.apache.commons.cli.AlreadySelectedException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Option;
@@ -220,31 +217,4 @@ public abstract class KeywordParser {
      */
     protected abstract Command handleAction(String action, List<String> tokens)
             throws ParseException, InkaException;
-
-    /**
-     * Combines help messages for all actions into a single message
-     *
-     * @param syntaxList  Command syntaxes
-     * @param headerList  Descriptions of actions
-     * @param optionsList All action Options for this keyword
-     * @return Formatted help string
-     */
-    protected String formatHelpMessage(String[] syntaxList, String[] headerList, Options[] optionsList) {
-        assert optionsList.length == headerList.length;
-        assert optionsList.length == syntaxList.length;
-
-        HelpFormatter formatter = new HelpFormatter();
-
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-
-        for (int i = 0; i < optionsList.length; i++) {
-            formatter.printHelp(printWriter, FORMAT_HELP_WIDTH, syntaxList[i], headerList[i], optionsList[i],
-                    FORMAT_HELP_LEFT_PAD, FORMAT_HELP_DESC_PAD, "\n",
-                    false);
-        }
-
-        // Fix for extra newlines at end
-        return stringWriter.toString().trim() + System.lineSeparator();
-    }
 }
