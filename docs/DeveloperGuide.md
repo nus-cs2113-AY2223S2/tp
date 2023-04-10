@@ -59,19 +59,23 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 5. Finally, the parse method returns the command object. If an exception occurs during parsing, it throws a **`SniffException`**.
 
 ### Storage - Class Implementation 
-![img_18.png](img_18.png) <br>
-**Figure 9: UML Diagram of Storage class**
+![img_23.png](img_23.png) <br>
+**Figure 9.1: Sequence Diagram of Storage class** 
+
+![img_24.png](img_24.png) <br>
+**Figure 9.2: Sequence Diagram of Storage class**
 1. The Storage class takes in the path of the Sniff storage file.
 2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
 3. **`load()`** method also calls **`addFileContents`** method.
 4. **`addFileContents`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`readConsultationintoAppointmentList()`** / **`readVaccinationintoAppointmentList()`** / **`readSurgeryintoAppointmentList()`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
 5. If the file is stored in an incorrect format / has missing details, a **`SniffException`** is thrown.
+6. At the end of the application all unmarked appointments are saved into the `SniffAppointments.txt` file using the `saveAppointments` method.
 
 ### Find - Find Implementation
-![img_17.png](img_17.png) <br>
+![img_25.png](img_25.png)<br>
 **Figure 10: Sequence Diagram showing the logical implementation of executeCommand() for the Find Command**
 
-- Find command can be used by the user to find up to 3 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**.
+- Find command can be used by the user to find up to 4 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**, **`Date of Appointment`**.
 - If user input is not supported by these three find commands, a **`SniffException`** is thrown.
 
 #### findAppointment()
@@ -87,6 +91,11 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 #### findType()
 1. **`findType`** loops through arraylist appointments and checks if specified appointment type (surgery, consultation, vaccination) is present.
+2. If appointments are found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
+3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
+
+#### findDate()
+1. **`findDate`** loops through arraylist appointments and checks if any appointment is present for the given date.
 2. If appointments are found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
 3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
 
@@ -331,22 +340,63 @@ ______________________________________________________________________
    Example:
 ```
 ______________________________________________________________________
-1.  UID: V12400172X | vaccine: Covid
- Date: 2023-12-12 | Time: 19:00
- Animal Name: Russ | Animal Type: Dog
- Owner Name: Abel | Contact Number: 92929292
+1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S02547136Q
+ Animal Name: lulu | Animal Type: dog
+ Owner Name: jon | Contact Number: 91919191
+ 
 ______________________________________________________________________
 ```
 
-3. Test case: `find t/consultation`
+3. Test case: `find t/surgery`
    Expected output: A list of all previously added appointments with the appointment type.
    Example:
 ```
 ______________________________________________________________________
-1.  UID: C84422868K
- Date: 2023-12-12 | Time: 19:00
- Animal Name: Lulu | Animal Type: 
- Owner Name: Jon | Contact Number: 91919191
+1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S01534766O
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ 
+______________________________________________________________________
+```
+4. Test case: `find uID/S02547136Q`
+   Expected output: A list of all previously added appointment with the appointment uID.
+   Example:
+```
+______________________________________________________________________
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S02547136Q
+ Animal Name: lulu | Animal Type: dog
+ Owner Name: jon | Contact Number: 91919191
+ 
+______________________________________________________________________
+```
+5. Test case: `find d/2023-12-12`
+   Expected output: A list of all previously added appointments with the same appointment date.
+   Example:
+```
+______________________________________________________________________
+1.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V17511055M
+ Vaccine: covid
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ 
 ______________________________________________________________________
 ```
 
