@@ -34,13 +34,13 @@ public final class MessageConstants {
             + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE;
     public static final String MESSAGE_VALID_PRICE = "Valid input prices are:" + NEWLINE
             + "Positive numbers strictly ranging from 0.01 to 999999999.99" + NEWLINE + NEWLINE;
-    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
+    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified entry(s) from your expenditure."
             + NEWLINE
             + "Usage: /delete <index> [additional_index...]" + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/delete 10 11 13 " + NEWLINE
             + "/delete 1" + NEWLINE;
-    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
+    public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified entry in your current expenditure."
             + NEWLINE
             + "Usage: /edit <index> [options]" + NEWLINE
             + "Options:" + NEWLINE
@@ -49,7 +49,7 @@ public final class MessageConstants {
             + "-p <price>" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND_EXMPLE = "See below for examples" + NEWLINE
             + "/edit 5 -d Grab to school -c Transportation -p 20.00" + NEWLINE;
-    public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
+    public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current entries."
             + NEWLINE
             + "Usage: /view [count] [filter_options]" + NEWLINE
             + "Filter options:" + NEWLINE
@@ -60,8 +60,8 @@ public final class MessageConstants {
             + "*Both `-sd` and `-ed` must be used together to filter by date." + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
-            + "/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
-            + "/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE;
+            + "/view -sd 21/11/1997 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
+            + "/view 10 -sd 21/11/1997 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE
             + "For more help on a specific command, type `/help COMMAND_TYPE`" + NEWLINE
