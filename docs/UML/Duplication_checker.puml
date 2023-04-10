@@ -16,19 +16,19 @@ activate ":AddCommand"
     alt isDuplicateCompanyName
             ":CompanyList" -> ":CompanyList" : isDuplicateCompanyName(companyName)
             activate ":CompanyList"
-                ":CompanyList" --> ":CompanyList"
+                ":CompanyList" -->
             deactivate ":CompanyList"
 
     else isDuplicateContactEmail
             ":CompanyList" -> ":CompanyList" : isDuplicateContactEmail(contactEmail)
             activate ":CompanyList"
-                ":CompanyList" --> ":CompanyList"
+                ":CompanyList" -->
             deactivate ":CompanyList"
 
     else isDuplicateContactNumber
             ":CompanyList" -> ":CompanyList" : isDuplicateContactNumber(contactNumber)
             activate ":CompanyList"
-                ":CompanyList" --> ":CompanyList"
+                ":CompanyList" -->
             deactivate ":CompanyList"
 
     else else
