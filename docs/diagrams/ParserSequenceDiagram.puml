@@ -4,107 +4,90 @@
 -> ":Parser": "parseUserCommand(userInput, universities, modules, allModules, storage, budgetPlanner, deadlines)"
 activate ":Parser"
 
-":Parser" -> "ui:UI": UI()
-activate "ui:UI"
-
-
 ":Parser" -> "userInputWords: ArrayList<String>": "parseCommand(userInput)"
 activate "userInputWords: ArrayList<String>"
 ":Parser" <-- "userInputWords: ArrayList<String>"
 deactivate "userInputWords: ArrayList<String>"
 
 alt /list
-    ":Parser" -> ":Parser": prepareListCommands(userInputWords, universities, modules)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    return handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
-    ":Parser" -> ":Parser": handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
-    activate ":Parser"
-    alt pu
-        ":Parser" -> ":ListPuCommand" : ListPuCommand()
-        activate ":ListPuCommand"
-    else current
-        ":Parser" -> ":Parser":prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules)
-        activate ":Parser"
-        return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
-        ":Parser" -> ":Parser": handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
-        activate ":Parser"
-        ":Parser" -> ":ListCurrentPuCommand" : ListCurrentPuCommand(modules, univID)
-        activate ":ListCurrentPuCommand"
-    else
-        ":Parser" -> ":Parser":prepareListPuModulesCommand(userCommandSecondKeyword, universities)
-        activate ":Parser"
-        return handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
-        ":Parser" -> ":Parser":handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
-        activate ":Parser"
-        ":Parser" -> ":ListPuModulesCommand":ListPuModulesCommand(univID, universityName)
-        activate ":ListPuModulesCommand"
+    ref over ":Parser"
+    prepareListPuModulesCommand
     end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /search
-    ":Parser" -> ":Parser":prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    return handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities)
-    ":Parser" -> ":Parser": handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities)
-    activate ":Parser"
-    alt Specific NUS Module Code
-        ":Parser" -> ":ListFoundNusModsCommand": ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities)
-        activate ":ListFoundNusModsCommand"
-    else /mods
-        ":Parser" -> ":ListMappableNusModsCommand": ListMappableNusModsCommand(allModules)
-        activate ":ListMappableNusModsCommand"
+    ref over ":Parser"
+    prepareSearchByNusModCode
     end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /exit
-    ":Parser" -> ":ExitCommand": ExitCommand()
-    activate ":ExitCommand"
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    exitCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /add
-    ":Parser" -> ":Parser":prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    return handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities)
-    ":Parser" -> ":Parser":handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities)
-    activate ":Parser"
-    ":Parser" -> ":AddModuleCommand": AddModuleCommand(moduleToAdd, storage)
-    activate ":AddModuleCommand"
+    ref over ":Parser"
+    prepareAddModuleCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /remove
-    ":Parser" -> ":Parser":prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
-    ":Parser" -> ":Parser":handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
-    activate ":Parser"
-    ":Parser" -> ":DeleteModuleCommand": DeleteModuleCommand(storage, indexToDelete, univID)
-    activate ":DeleteModuleCommand"
+    ref over ":Parser"
+    prepareRemoveModuleCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /help
-    ":Parser" -> ":HelpCommand": HelpCommand()
-    activate ":HelpCommand"
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    HelpCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /budget
-    ":Parser" -> ":Parser":prepareBudgetCommand(userInput, budgetPlanner)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    ":Parser" -> ":BudgetCommand"
-    activate ":BudgetCommand"
+    ref over ":Parser"
+    prepareBudgetCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /deadline/list
-    ":Parser" -> ":ListDeadlinesCommand": ListDeadlinesCommand(deadlines)
-    activate ":ListDeadlinesCommand"
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    ListDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /deadline/add
-    ":Parser" -> ":Parser":prepareAddDeadlineCommand(deadlineStorage, userInputWords)
+    ":Parser" -> ":Parser"
     activate ":Parser"
-    return handleAddDeadlineCommand(deadlineStorage, userInputWords)
-    ":Parser" -> ":Parser":handleAddDeadlineCommand(deadlineStorage, userInputWords)
-    activate ":Parser"
-    ":Parser" -> ":AddDeadlineCommand": AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage)
-    activate ":AddDeadlineCommand"
+    ref over ":Parser"
+    prepareAddDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
 else /deadline/remove
-    ":Parser" -> ":DeleteDeadlineCommand": DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines)
-    activate ":DeleteDeadlineCommand"
-
-deactivate ":ListPuCommand"
-deactivate ":DeleteDeadlineCommand"
-deactivate ":AddDeadlineCommand"
-deactivate ":ListDeadlinesCommand"
-deactivate ":BudgetCommand"
-deactivate ":HelpCommand"
-deactivate ":DeleteModuleCommand"
-deactivate ":AddModuleCommand"
-deactivate ":ExitCommand"
-deactivate ":ListMappableNusModsCommand"
-deactivate ":ListFoundNusModsCommand"
-deactivate ":ListCurrentPuCommand"
-deactivate ":ListPuModulesCommand"
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    deleteDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+end
 @enduml
