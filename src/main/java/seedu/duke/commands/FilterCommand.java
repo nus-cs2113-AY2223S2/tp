@@ -58,7 +58,7 @@ public class FilterCommand extends Command {
         }
         if (category.isEmpty()) {
             throw new SearchFilterErrorException();
-        } else if (!categoryHash.containsKey(category)) {
+        } else if (!categoryHash.containsKey(category.toLowerCase())) {
             throw new NullPointerException();
         }
         ArrayList<Item> tempFilteredItems = new ArrayList<>();
