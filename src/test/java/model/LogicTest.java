@@ -255,7 +255,6 @@ public class LogicTest {
 
     }
 
-    //TODO: Failing
     @Test
     public void logic_tagCardWhileTagInDeck() throws InkaException {
         // create a card

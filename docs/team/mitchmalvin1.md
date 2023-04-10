@@ -102,7 +102,7 @@ Add documentations for the following features :
 - `tag edit -o OLD_NAME -n NEW_NAME` to edit the name of the Tag
 - `tag list [-c CARD_UUID | -i CARD_INDEX]` to list all the Cards that fall under the Tag
 - `tag delete {-t TAG_NAME | -x TAG_INDEX}` to remove the Tag from the TagList
-- `tag deck {-t TAG_NAME | -x TAG_INDEX} -d DECK_NAME` to add all the cards that fall under a tag into the dck
+- `tag deck {-t TAG_NAME | -x TAG_INDEX} -d DECK_NAME` to add all the cards that fall under a tag into the deck
 
 #### Developer Guide
 
@@ -110,11 +110,11 @@ Add documentations for the following features :
 
 The Class Diagram for `CardList` can be found below :
 
-![CardList Class Diagram](../img/CardListClass.svg)
+![CardList Class Diagram](../img/CardListClass.png)
 
 The Class Diagram for `TagList` can be found below :
 
-![TagList Class Diagram](../img/TagListClass.svg)
+![TagList Class Diagram](../img/TagListClass.png)
 
 - Add Sequence Diagram for `card view {-c CARD_UUID | -i CARD_INDEX}`, `card untag {-c CARD_UUID | -t TAG_NAME}`
   and `tag list {-c CARD_UUID | -i CARD_INDEX}`
