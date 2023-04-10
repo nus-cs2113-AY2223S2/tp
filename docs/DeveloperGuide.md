@@ -7,8 +7,8 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 
 ## Design & implementation
 #### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
-1. commands 
-   - Command
+1. [commands](#bagpacker-command-mechanisms-) 
+   - [Command](#command)
    - [AddCommand](#add-command)
    - [ByeCommand](#bye-command)
    - [DeleteCommand](#delete-command)
@@ -23,10 +23,11 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
    - [PackCommand](#pack-command)
    - UnpackAllCommand
    - [UnpackCommand](#unpack-command)
-2. exception
-   - EmptyInputException
-   - InvalidIndexException
-   - InvalidVariablesException
+2. [exception](#exceptions)
+   - [EmptyInputException](#emptyinputexception)
+   - [InvalidIndexException](#invalidindexexception)
+   - [InvalidQuantityException](#invalidquantityexception)
+   - [InvalidVariablesException](#invalidvariablesexception)
 3. iohandler
    - Parser
    - Storage
@@ -40,13 +41,17 @@ The class diagram below shows the overall structure of BagPacker application, ma
 ![BagPackerClassDiagram.png](umlDiagrams%2FBagPackerClassDiagram.png)
 ![ExceptionClassDiagram.png](umlDiagrams%2FExceptionClassDiagram.png)
 
-### Command Mechanisms:
+### BagPacker Command Mechanisms:
 For all valid commands, the mechanism of implementation are as follows:
-1. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command
-2. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command
-3. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
+1. If `ByeCommand.isBagPackerRunning` is true, keep looping through steps 2-4
+2. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command using `Parser.parse()`
+3. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command (child class of the Command Class)
+4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
+Below shows a sequence diagram of the above explanation
+
+![BagPackerSequenceDiagram.png](umlDiagrams%2FBagPackerSequenceDiagram.png)
 ---
 #### Command
 The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
@@ -292,6 +297,70 @@ Mechanism: ```ByeCommand.execute()``` updates the static boolean ```isBagPackerR
 The ```runBagPacker()``` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until
 ```isBagPackerRunning == false``` which occurs upon the execution of the ```byeCommand```.
 
+---
+
+### Exceptions
+The `exceptions` package contains all exceptions within BagPacker that are thrown when an error is detected. This is done to allow the program
+to continue running and to elegantly handle any potential app stopping errors.
+---
+#### EmptyInputException
+The `EmptyInputException` is thrown when the user input is empty or is composed of whitespace characters only.
+
+Thrown by:
+1. `Parser.readLine()`
+
+Caught in:
+1. `Parser.parse()`
+
+---
+#### InvalidIndexException
+The `InvalidIndexException` is thrown when the user inputs an item index that is out of bounds of the `PackingList` or greater than 1,000,000
+
+Thrown by:
+1. `Parser.getItemIndex()`
+2. `Parser.getPackVariables()`
+3. `Parser.getPackAllIndex()`
+
+Thrown and caught in:
+1. `Parser.createDeleteObj()`
+2. `Parser.createPackObj()`
+3. `Parser.createEditQuantityObj()`
+4. `Parser.createPackAllObj()`
+5. `Parser.createUnpackObj()`
+
+---
+#### InvalidQuantityException
+The `InvalidQuantityException` is thrown when the user inputs a quantity of an item that is invalid. This differs depending on the respective Command. 
+
+Invalid Quantity definition:
+1. For all cases, when input quantity is less than 1 or more than 1,000,000
+2. For `add` command, when new total quantity of item will exceed 1,000,000
+3. For `pack` command, when input pack quantity is greater than the item's unpacked quantity
+4. For `unpack` command, when input unpack quantity is greater than the item's packed quantity
+5. For `editquantity` command, when new total quantity (input) is less than the item's packed quantity
+
+Thrown and caught in:
+1. `Parser.createAddObj()`
+2. `Parser.createPackObj()`
+3. `Parser.createEditQuantityObj()`
+4. `Parser.createUnpackObj()`
+
+---
+#### InvalidVariablesException
+The `InvalidVariablesException` is thrown when the user inputs the wrong number of variables for commands with input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
+
+Thrown by:
+1. `Parser.getKeyword()`
+2. `Parser.getAddVariables`
+3. `Parser.getItemIndex()`
+4. `Parser.getPackVariables()`
+5. `Parser.getPackAllIndex()`
+6. `Parser.getEditQuantityVariables()`
+
+Caught by: 
+all createCommandObj methods except for commands without input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
+
+---
 ## Product scope
 
 ### Target user profile
