@@ -57,9 +57,9 @@ public class EditCommand extends Command {
             return new CommandResult(ERROR_LACK_OF_PARAMETERS_MESSAGE.toString());
         } catch (WrongPrecisionException e) {
             return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
-        }  catch (NotPositiveValueException p) {
+        } catch (NotPositiveValueException p) {
             return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
-        }   catch (SmallAmountException | InvalidCharacterInAmount e) {
+        } catch (SmallAmountException | InvalidCharacterInAmount e) {
             return new CommandResult(e.getMessage());
         } catch (DateLimitException l) {
             return new CommandResult(l.getMessage());
@@ -71,7 +71,8 @@ public class EditCommand extends Command {
      */
     public void editExpenditure(Expenditure editedExpenditure, boolean isLendOrBorrowExpenditure)
             throws EmptyStringException, WrongPrecisionException, SmallAmountException,
-            InvalidCharacterInAmount, NotPositiveValueException {
+            InvalidCharacterInAmount, NotPositiveValueException, StringIndexOutOfBoundsException,
+            DateTimeParseException, DateLimitException {
         LocalDate date = fetchDate(isLendOrBorrowExpenditure);
         double amount = fetchAmount(isLendOrBorrowExpenditure);
         String descriptionVal = fetchDescription();
@@ -82,7 +83,7 @@ public class EditCommand extends Command {
      * @author Leo Zheng Rui Darren
      */
     public void handleLumpSumExpenditure(Expenditure editedExpenditure, boolean isLendOrBorrowExpenditure)
-            throws EmptyStringException {
+            throws EmptyStringException, StringIndexOutOfBoundsException, DateTimeParseException, DateLimitException {
         if (editedExpenditure instanceof AccommodationExpenditure) {
             LocalDate firstDate = fetchDate(isLendOrBorrowExpenditure);
             ((AccommodationExpenditure) editedExpenditure).setRepeatDate(firstDate);
@@ -124,8 +125,8 @@ public class EditCommand extends Command {
     }
 
     public double fetchAmount(boolean isLendOrBorrowExpenditure)
-            throws StringIndexOutOfBoundsException, EmptyStringException, 
-            WrongPrecisionException, InvalidCharacterInAmount, NumberFormatException, NotPositiveValueException, 
+            throws StringIndexOutOfBoundsException, EmptyStringException,
+            WrongPrecisionException, InvalidCharacterInAmount, NumberFormatException, NotPositiveValueException,
             SmallAmountException {
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH,
                 isLendOrBorrowExpenditure ? BSLASH : PSLASH);
