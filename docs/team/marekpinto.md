@@ -43,7 +43,7 @@ Found bugs during PE-D for Team MovieMate (W12-4)
 
 ### UG Extract
 
-### Print Task Schedule: `schedule`
+## Print Task Schedule: `schedule`
 Views the current list of tasks with an associated deadline, in order of deadline.
 
 Format: `schedule`
@@ -62,4 +62,4 @@ Here is your schedule:
 
 ### DG Extracts
 
-[RemoveStatSeqDiagram](../diagrams/RemoveStatCommand.puml)
+[RemoveStatSeqDiagram](../images/RemoveStatCommand.png)
