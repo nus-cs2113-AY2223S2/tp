@@ -195,4 +195,9 @@ public interface StringLib {
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
     String EMPTY_STEP_ID_MESSAGE = "Index of step cannot be empty!";
     String EMPTY_INGREDIENT_ID_MESSAGE = "Index of ingredient cannot be empty!";
+    String DEFAULT_CASE_WARNING = "Warning! Unhandled default of case statement reached";
+    String DEFAULT_ELSE_CONDITION_WARNING = "Warning! Unhandled default \"else\" condition was reached";
+    String EDIT_RECIPE_INGREDIENT_PROMPT = "Which ingredient do you want to edit?\nType 'quit' to exit the edit view";
+    String EDIT_RECIPE_STEP_PROMPT = "Which step do you want to edit?\nType 'quit' to exit the edit view";
+    String EDIT_NUMBERFORMATEXCEPTION_MESSAGE = "Error! Input should be a positive integer value!";
 }
