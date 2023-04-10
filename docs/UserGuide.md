@@ -11,7 +11,7 @@
     * [View Account](#view-account)
     * [Deposit](#deposit)
     * [Withdraw](#withdraw)
-    * [Transaction History](#view-transaction-all)
+    * [Transaction History](#view-transaction)
     * [Save Goal](#add-save-goal)
     * [Withdraw Limit](#set-wl)
     * [Check Withdraw Limit](#check-wl)
