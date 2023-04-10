@@ -189,10 +189,10 @@ public class Storage {
             InvalidSeparatorException, InvalidPetNameException {
         for (String line : data) {
             validatePetDataSep(line);
-            String petName = getPetName(line);
-            String petType = getPetType(line);
-            String age = getAge(line);
-            String weight = getWeight(line);
+            String petName = getPetDetail(line, "petName");
+            String petType = getPetDetail(line, "petType");
+            String age = getPetDetail(line, "petAge");
+            String weight = getPetDetail(line, "petWeight");
 
             PetList.addPet(petName);
             if (!petType.equals("")) {
@@ -269,10 +269,11 @@ public class Storage {
     }
 
     private String getTaskStatus(String line) throws InvalidMarkTaskSymbolException {
-        String[] words = line.split("\\|", 2);
+        String[] words = line.split("\\|", EXPECTED_TASK_SEP_MAX_COUNT + 1);
         String taskStatus = words[0];
 
-        if (!taskStatus.equals("1") && !taskStatus.equals("0")) {
+        boolean isMarkTaskSymbolInvalid = !taskStatus.equals("1") && !taskStatus.equals("0");
+        if (isMarkTaskSymbolInvalid) {
             throw new InvalidMarkTaskSymbolException();
         }
 
