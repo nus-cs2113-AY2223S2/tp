@@ -64,9 +64,13 @@ operation through the Command-Line Interface(CLI)
 - Contributed to JUnit tests for methods authored by my teammates
   [#138](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/138)
 
+<div style="page-break-after: always;"></div>
+
 ### Diagrams contributed for Developer Guide
 #### Sequence diagram for Encoder feature
 ![Encoder.png](..%2FUML%2FImage%2FEncoder.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Sequence diagram for Decoder feature
 ![Decoder.png](..%2FUML%2FImage%2FDecoder.png)
