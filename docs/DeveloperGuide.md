@@ -60,15 +60,6 @@ This section describes how Duck is implemented and how its commands are executed
 
 ### Purge feature
 
-**Sequence Diagram**
-
-![image](https://user-images.githubusercontent.com/1620654/227128864-cfc9cac7-bc68-4962-ac45-77e1ae067db0.png)
-
-<br />
-
-The ```TaskList#purge()``` command will be implemented following the sequence diagram as shown above.
-
-
 **Implementation**
 
 The ```TaskList#purge()``` command will be implemented to facilitate the removal of expired ```Task``` items from the ```TaskList```. This will be executed once upon Duck's startup, and can be further executed by inputting the term ```purge``` into the CLI when Duck is running. The following is the new operation to be implemented.
@@ -268,6 +259,7 @@ Duck will be able to allow students who can type fast to quickly record down the
 3. Launch the terminal and navigate to the folder where Duck is located in
 4. Type in the command ```java -jar [CS2113-T11-1][DUCK].jar``` to lauch Duck
     - Expected Outcome: Duck launches in the terminal with its start message displayed.
+    - If the file was sourced from our Github Releases, type in the command ```java -jar CS2113-T11-1.DUCK.jar``` to lauch Duck instead!
 
 ### Closing the program
 1. Type ```bye``` in the terminal to exit the program
