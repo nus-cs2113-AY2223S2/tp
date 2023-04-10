@@ -14,8 +14,22 @@ hide footbox
         ":CompanyListDecoder" -> "s:Scanner"
         activate "s:Scanner"
             loop Next line exists
-                "s:Scanner" -> "s:Scanner" : nextLine()
+                ":CompanyListDecoder" -> "s:Scanner" : nextLine()
+                "s:Scanner" --> ":CompanyListDecoder"
+
                 ":CompanyListDecoder" -> ":CompanyListDecoder" :parseInput(line)
+                activate ":CompanyListDecoder"
+                ":CompanyListDecoder" --> ":CompanyListDecoder"
+                deactivate ":CompanyListDecoder"
+
+                ":CompanyListDecoder" -> ":CompanyListDecoder" : writeToCompanyList(companyList, parsedInput)
+                activate ":CompanyListDecoder"
+                ":CompanyListDecoder" --> ":CompanyListDecoder"
+                deactivate ":CompanyListDecoder"
             end
+        deactivate "f:File"
+        deactivate "s:Scanner"
+        <-- ":CompanyListDecoder"
+        deactivate ":CompanyListDecoder"
 
 @enduml
