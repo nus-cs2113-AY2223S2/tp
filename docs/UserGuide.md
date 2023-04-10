@@ -436,7 +436,7 @@ Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-` edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
+`edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
 ```
 ______________________________________________________________________
 Consultation changed successfully!
@@ -456,7 +456,7 @@ Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
 
 Example:
-` edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+`edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
 ```
 ______________________________________________________________________
  Surgery changed successfully!
@@ -474,7 +474,7 @@ Format:   `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NU
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-`  edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+`edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
 ```
 ______________________________________________________________________
 Vaccination changed successfully!
