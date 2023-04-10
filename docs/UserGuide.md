@@ -364,6 +364,8 @@ The tasks are Unmarked depending on the uID input the by user.
 If the uID entry is not valid it displays a corresponding error message.<br>
 
 Example of Valid Command :
+Format : `mark uid/ `
+Example : `mark uid/V14082745S`
 ```
 
 unmark uID/C26135173W
@@ -558,6 +560,8 @@ ______________________________________________________________________
 * List :
   `list`
 
+* Archived appointments :
+  `archive`
 
 * Remove appointment :
   `remove uid`
