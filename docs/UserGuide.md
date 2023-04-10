@@ -26,6 +26,8 @@ Some example commands you can try:
    * ```filters```: Displays available filters for users to customise their workout.
    * ```history```: Lists all finished exercises.
 6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
+7. 
+<div style="page-break-after: always;"></div>
 
 # FitnessDuke's Features
 
@@ -38,7 +40,7 @@ Some example commands you can try:
 
 * Items with `…`​ after them must minimally be used once, but can also be used multiple times, according to how the 
 feature is designed.<br>
-e.g. `[ARGUMENT]…​` can be used as  `ARGUMENT1`, `ARGUMENT1 ARGUMENT2` etc.
+e.g. `ARGUMENT…​` can be used as  `ARGUMENT1`, `ARGUMENT1 ARGUMENT2` etc.
 
 * All commands you enter are not case-sensitive. For instance, Help is equivalent to help.
 
@@ -67,14 +69,19 @@ Output:
 Thanks for using Fitness Duke!
 Hope to see you again
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## Generate a random exercise session with n exercises: ```generate NUMBER```
 Generates a number of random exercises from a pool of exercises stored within Fitness Duke.
 <br>
 Example input:
+
 ```generate 3```
 <br><br>
 Example output:
 ```
+
 Exercise ID: 227. 
 Name: Dumbbell Incline Row
 Difficulty Level: easy
@@ -106,6 +113,9 @@ ________________________________________
 
 
 **These exercises can be enhanced and filtered using our filter parameters (Please see below)**
+
+<div style="page-break-after: always;"></div>
+
 ## View filters used in generating workouts: ```filters```
 
 Shows a list of filters available and their description.
@@ -124,7 +134,7 @@ The filters are shown here:
 | [core]   | exercises that train your core                |
 | [legs]   | exercises that train your legs                |
 
-
+<div style="page-break-after: always;"></div>
 
 ## Generating a list of workouts according to filters: ```generate ARGUMENT... NUMBER```
 
@@ -170,6 +180,7 @@ Workout Type: upper body
 Position a bar in a rack at upper body height., Standing, take a shoulder width grip on the bar and step a yard or two back, feet together and upper body extended so that you are leaning on the bar. This will be your starting position., Begin by flexing the elbow, lowering yourself towards the bar., Pause, and then reverse the motion by extending the elbows., Progress from bodyweight by adding chains over your upper body.
 ________________________________________
 ```
+<div style="page-break-after: always;"></div>
 
 ## Getting into a workout: ```start```
 Enters a workout session with the **previously (latest) generated** workout session.
@@ -206,6 +217,7 @@ The current workout contains:
 2) Front Leg Raises
 Start workout! You got this, all the best!
 ```
+<div style="page-break-after: always;"></div>
 
 ## Achievements: ```achievements``` ```clear_achievements```
 A list of achievements exist to provide motivation upon the completion of a workout.
@@ -243,6 +255,8 @@ in the *Workout Session's* feature guide below.
 <br><br>
 <br>A full list of the preloaded achievements exist
 **[here](UG_features%2FachievementList.md)**
+
+<div style="page-break-after: always;"></div>
 
 ## IPPT Calculator and session: ```ippt AGE RUNTIME PUSHUPS SITUPS```
 
@@ -296,6 +310,7 @@ Situps: 14
 2.4 Km Run 41
 ________________________________________
 ```
+<div style="page-break-after: always;"></div>
 
 # Within your workout session
 
@@ -382,6 +397,7 @@ Calling the ```finish``` command will provide the following outputs:
    using Fitness Duke <br>
    ```Keep on working out with Fitness Duke!```
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Seeing your workout history: ```history```
 
@@ -423,6 +439,7 @@ Difficulty Level: medium
 Workout Type: upper body
 To get yourself into the starting position set the pulleys at the floor level (lowest level possible on the machine that is below your torso). Place an incline bench (set at 45 degrees) in between the pulleys select a weight on each one and grab a pulley on each hand. With a handle on each hand lie on the incline bench and bring your hands together at upper body length in front of your face. This will be your starting position. With a slight bend of your elbows (in order to prevent stress at the upper body tendon) lower your upper body out at both sides in a wide arc until you feel a stretch on your upper body. Breathe in as you perform this portion of the movement. Tip: Keep in mind that throughout the movement the upper body should remain stationary. The movement should only occur at the shoulder joint. Return your upper body back to the starting position as you squeeze your upper body muscles and exhale. Hold the contracted position for a second. Tip: Make sure to use the same arc of motion used to lower the weights. Repeat the movement for the prescribed amount of repetitions.
 ```
+<div style="page-break-after: always;"></div>
 
 ## Seeing your workout summary: ```data```
 
@@ -457,6 +474,7 @@ Times Completed: 2
 You have completed a total of 3 non-unique exercise(s), of which 2 of them are unique! Keep it up!:)
 ```
 
+<div style="page-break-after: always;"></div>
 
 ## Deleting a workout session: ```delete NUMBER```
 
@@ -520,6 +538,7 @@ ________________________________________
       from the feature's purpose
    </p>
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Searching for an exercise: ```find KEYWORD```
 
@@ -569,6 +588,7 @@ Here are the exercises matching your keyword:
 6.Wide Stance Stiff Legs
 ________________________________________
 ```
+<div style="page-break-after: always;"></div>
 
 ## Searching for an exercise that the user has completed: ```search KEYWORD```
 
@@ -622,6 +642,7 @@ Workout type: upper body
 To get yourself into the starting position, set the pulleys at the floor level (lowest level possible on the machine that is below your torso)., Place an incline bench (set at 45 degrees) in between the pulleys, select a weight on each one and grab a pulley on each hand., With a handle on each hand, lie on the incline bench and bring your hands together at upper body length in front of your face. This will be your starting position., With a slight bend of your elbows (in order to prevent stress at the upper body tendon), lower your upper body out at both sides in a wide arc until you feel a stretch on your upper body. Breathe in as you perform this portion of the movement. Tip: Keep in mind that throughout the movement, the upper body should remain stationary. The movement should only occur at the shoulder joint., Return your upper body back to the starting position as you squeeze your upper body muscles and exhale. Hold the contracted position for a second. Tip: Make sure to use the same arc of motion used to lower the weights., Repeat the movement for the prescribed amount of repetitions.
 
 ```
+<div style="page-break-after: always;"></div>
 
 # Workout Plans
 
@@ -673,6 +694,7 @@ ________________________________________
 ```
 
 Format: ```plans```
+<div style="page-break-after: always;"></div>
 
 # Within your fitness planner
 
@@ -747,6 +769,7 @@ These are some commands available:
 
 
 
+<div style="page-break-after: always;"></div>
 
 ## Generating a list of planned exercises: ```quick PLAN_NAME NUMBER```
 
@@ -804,6 +827,7 @@ Begin in a pushup position on the floor. This will be your starting position., U
 
 ________________________________________
 ```
+<div style="page-break-after: always;"></div>
 
 # Saving the data
 
@@ -825,6 +849,7 @@ data files be tampered with. </p>
 </div>
 
 
+<div style="page-break-after: always;"></div>
 
 # Resource data
 
@@ -854,6 +879,8 @@ week.
 
 > You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W13-2/tp).
 
+<div style="page-break-after: always;"></div>
+
 # Command Summary
 
 <table>
@@ -881,6 +908,29 @@ week.
 <code class="language-plaintext highlighter-rouge">filters</code><br>
 </td>
     <td>Shows the available filters  </td>
+    </tr>
+<tr>
+      <td><strong>start</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">start</code></td>
+      <td>Starts a workout session.  </td>
+    </tr>
+   <tr>
+      <td><strong>current (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">current</code></td>
+      <td>Displays a list of the user's current workout exercises. Do note that this feature is only available upon 
+      the starting of a workout session by the user. </td>
+    </tr>
+   <tr>
+      <td><strong>cancel (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">cancel</code></td>
+      <td>Cancels the user's current workout session. Do note that this feature is only available upon 
+      the starting of a workout session by the user. </td>
+    </tr>
+   <tr>
+      <td><strong>finish (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">finish</code></td>
+      <td>Finishes the current workout session. The workout session is recognised as completed. Do note that this 
+      feature is only available upon the starting of a workout session by the user. </td>
     </tr>
     <tr>
       <td><strong>find</strong></td>
@@ -912,6 +962,20 @@ week.
       <td>Goes into the planner for editing</td>
     </tr>
     <tr>
+      <td><strong>add (planner feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">add PLAN_NAME FILTER1 FILTER2 ...</code>e.g., 
+<code class="language-plaintext highlighter-rouge">add monday home_leg_day static legs medium</code></td>
+      <td>Adds new workout plans based on the desired day of the week. Do note that this feature is only
+available while using the planner feature of Fitness Duke</td>
+    </tr>
+    <tr>
+      <td><strong>delete (planner feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">delete DAY PLAN_NAME</code>e.g., 
+<code class="language-plaintext highlighter-rouge">delete monday home_leg_day</code></td>
+      <td>Deletes a specified workout plans on the specified day of the week. Do note that this feature is only
+available while using the planner feature of Fitness Duke</td>
+    </tr>
+    <tr>
       <td><strong>history</strong></td>
       <td><code class="language-plaintext highlighter-rouge">history</code></td>
       <td>Shows the session history of a user's exercises</td>
@@ -921,11 +985,6 @@ week.
       <td><code class="language-plaintext highlighter-rouge">data</code></td>
       <td>Shows a count of all the user's completed exercises as well as the total number of unique and non-unique 
       exercises completed</td>
-    </tr>
-    <tr>
-      <td><strong>start</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">start</code></td>
-      <td>Starts an exercise  </td>
     </tr>
     <tr>
       <td><strong>quick</strong></td>

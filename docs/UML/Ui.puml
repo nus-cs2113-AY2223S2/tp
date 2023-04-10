@@ -12,11 +12,11 @@ Class Greet SEA {
 }
 
 Class PrintExercises ORANGE {
-+ printExercises(ArrayList<ExerciseData>): void
++ printExercises(exercise: ArrayList<ExerciseData>): void
 }
 
 Class PrintPlanner DATA_COLOUR {
-+ printPlanner(UserPlan): void
++ printPlanner(planner: UserPlan): void
 + printPlannerGreeting(): void
 }
 
@@ -28,22 +28,22 @@ Class PrintHelpMessage LAPIS {
 }
 
 Class PrintUserExerciseData DATA_COLOUR {
-+ printUserExerciseHistory(HashMap<String,Integer>): void
++ printUserExerciseHistory(exerciseMap: HashMap<String,Integer>, overallCount: int, uniqueCount: int): void
 }
 
 Class Ui MAIN_COLOUR {
-+ printExerciseFromList (ArrayList<ExerciseData>): void
++ printExerciseFromList (exercise: ArrayList<ExerciseData>): void
 + greetUser(): void
 + byeUser(): void
 + printFilters(): void
 + unknownCommand(): void
-+ showPlan(UserPlan): void
++ showPlan(planner: UserPlan): void
 + printHelp(): void
 + printPlannerHelp(): void
 + splitLine(): void
 + plannerMode(): void
 + workoutMode(): void
-+ printUserExerciseHistory(HashMap<String, Integer>): void
++ printUserExerciseHistory(exerciseMap: HashMap<String, Integer>, overallCount: int, uniqueCount: int): void
 + printPlannerGreeting(): void
 + printExerciseSessionHelp(): void
 }
