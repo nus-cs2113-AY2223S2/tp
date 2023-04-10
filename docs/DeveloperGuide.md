@@ -1509,13 +1509,9 @@ If you have read until the end, thank you! We hope you have understood the inner
 you had a relatively easy time reading through this Developer Guide. 
 
 We (the original MoneyGoWhere team) put in a considerable amount of effort to make the guide as detailed 
-and correct as possible. We hope that the information in this guide will be useful in improving MoneyGoWhere, and we look forward to seeing it 
-being continuously loved and improved upon. 
+and correct as possible. We hope that the information in this guide will be useful in improving MoneyGoWhere, 
+and we look forward to seeing it being continuously loved and improved upon. 
 
 Once again, thank you for reading the guide!
-
-</br>
-
-###### [Back to table of contents](#table-of-contents)
 
 <hr>
