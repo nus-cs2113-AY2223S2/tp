@@ -14,6 +14,27 @@ import static org.junit.jupiter.api.Assertions.fail;
 class CompanyListTest {
 
     @Test
+    void isDuplicateCompanyName_sameName_success() {
+        String companyName = "NUS";
+        if (CompanyList.isDuplicateCompanyName(companyName)) {
+            assert true;
+        } else {
+            fail();
+        }
+    }
+
+    @Test
+    void isDuplicateContactNumber_sameNumber_success() {
+        CompanyList companyList = companyListWithOneCompany();
+        int contactNumber = 91001234;
+        if (CompanyList.isDuplicateContactNumber(contactNumber)) {
+            assert true;
+        } else {
+            fail();
+        }
+    }
+
+    @Test
     void getNumberOfCompanies_zeroCompanies_success() {
         assertEquals(0, new CompanyList(new ArrayList<>(), new Ui()).getNumberOfCompanies());
     }
