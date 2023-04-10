@@ -199,6 +199,8 @@ figure illustrates the interaction of Storage components whenever ```writeToJson
 
 <!--- Dylan AchievementListHandler Start --->
 
+#### Achievement Storage Component
+
 API: ```AchievementListHandler.java```
 
 The storage handler that we have is the achievements list handler, which has seperated logic from the ```Storagejava```
@@ -214,7 +216,14 @@ Key Aspects:
 
 ```achievementData``` will be stored as ```uachievementData.txt```
 
+<div align="center">
 <img src="UML/Images/AchievementStorage.png"/>
+<p>
+Figure PLEASE CHANGE THIS
+</p>
+</div>
+
+
 
 During the initialisation of FitnessDuke, the ```loadAchievementsFromFile``` method from the AchievementListHandler
 API which searches for the contents of the achievementData File. 
@@ -223,7 +232,22 @@ text from the local hard disk into the new ```AchievementListHandler``` object, 
 in an arraylist.
 
 The populated ```achieventData``` which now contains all the previous sessions is now stored in the 
-AchievementListHandler class and can be accessed using the .
+AchievementListHandler class and can be accessed using the getAchievementList() function from the AchievementListHandler.
+More information on this later.
+
+This process is also similar to the loading of the ```UserPlan```, aside from the file being a text file and that there
+is more parsing to do due to the object oriented nature of achievements.
+
+<div align="center">
+<img src="UML/Images/AchievementHandling.png"/>
+<p>
+Figure PLEASE CHANGE THIS
+</p>
+</div>
+
+Above shows how there are actually 3 classes (i.e. ```AchievementBodyPart```, ```AchievementGymStatic```, ```AchievementLevel```) that 
+extend the abstract ```Achievements``` class. 
+
 
 This process is similar for the loading of the ```UserPlan``` object except where we loop through seven times
 (number of days in a week) and for each loop, iterate and parse through each plan from the local hard disk into the
