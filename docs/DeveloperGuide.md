@@ -339,7 +339,7 @@ The sequence diagram for `check` without parameters can be observed as follows.
     <i>Figure 9: UML diagram of check command </i>
 </p>
 
-The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check y/03-04-2023`) are the same but with slightly different method name, thus the above can 
+The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check d/03-04-2023`) are the same but with slightly different method name, thus the above can 
 accurately represent the check commands.
 
 ### 4.10. Show Rates Command
