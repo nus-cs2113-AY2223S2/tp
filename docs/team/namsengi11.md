@@ -1,18 +1,5 @@
 # Sangjun Nam - Project Portfolio Page
 
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Summary of Contributions](#summary-of-contributions)
-   - [Code Contributed](#code-contributed)
-   - [Enhancements Implemented](#enhancements-implemented)
-   - [Contributions to DG](#contributions-to-the-dg)
-   - [Contributions to UG](#contributions-to-the-ug)
-   - [Contribution to team-tasks](#contribution-to-team-tasks)
-
-## Overview
-
-
 ### Summary of Contributions
 
 BrokeMan is a desktop app for managing expenses, incomes, and personal budget, optimized for use via a Command Line Interface(CLI). If you can type fast, BrokeMan can get your expenses and income management tasks done faster than traditional GUI apps.
