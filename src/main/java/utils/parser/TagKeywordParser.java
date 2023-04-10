@@ -74,10 +74,10 @@ public class TagKeywordParser extends KeywordParser {
 
         // Combine all actions
         String[] syntaxList = {
-            EDIT_ACTION,
-            DELETE_ACTION,
-            LIST_ACTION,
-            DECK_ACTION
+            "tag edit -o OLD_TAG_NAME -n NEW_TAG_NAME",
+            "tag delete {-t TAG_NAME | -x TAG_INDEX}",
+            "tag list [-t TAG_NAME | -x TAG_INDEX]",
+            "tag deck -d DECK_NAME {-t TAG_NAME | -x TAG_INDEX}"
         };
         String[] headerList = {
             "Edit existing tags",

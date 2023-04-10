@@ -340,7 +340,7 @@ viewing.
 
 ### Editing a tag :
 
-`tag edit -o {OLD_TAG_NAME} -n {NEW_TAG_NAME}`
+`tag edit -o OLD_TAG_NAME -n NEW_TAG_NAME`
 
 Edit the name of an existing tag by specifying the old name and new name. This change of tag name will also take effect
 in `tag list` and `card view`
@@ -389,7 +389,9 @@ Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 ```
 
-### List all tags : `tag list [-t TAG_NAME | -x TAG_INDEX]`
+### List all tags : 
+
+`tag list [-t TAG_NAME | -x TAG_INDEX]`
 
 List all current tags in Inka ***(with no flags)***. Users can also list all the cards that fall under this tag by
 specifying the
