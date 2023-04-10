@@ -60,8 +60,8 @@ public final class MessageConstants {
             + "*Both `-sd` and `-ed` must be used together to filter by date." + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
-            + "/view -sd 21/11/1997 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
-            + "/view 10 -sd 21/11/1997 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE;
+            + "/view -sd 21/11/1997 -ed 22/11/1997 -c Transportation -sp 2.00" + NEWLINE
+            + "/view 10 -sd 21/11/1997 -ed 22/12/1997 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE
             + "For more help on a specific command, type `/help COMMAND_TYPE`" + NEWLINE
