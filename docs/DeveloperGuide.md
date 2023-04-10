@@ -44,7 +44,7 @@ The Architecture Diagram below showcases the high level design of BadMaths:
 <summary>Architecture Diagram</summary>
 <div markdown="1">
 
-![img.png](Architecture_diagram.png)
+![img.png](ArchitectureDiagram/Architecture_diagram.png)
 
 </div>
 </details>
@@ -302,7 +302,7 @@ Step 3. The `storeNotes` public method will then store the note item input by us
 <summary>Sequence Diagram for Store</summary>
 <div markdown="1">
 
-![img_4.png](img_4.png)
+![img_4.png](SequenceDiagrams/img_4.png)
 
 </div>
 </details>
