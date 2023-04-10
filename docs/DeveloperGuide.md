@@ -33,14 +33,15 @@ Third-party libraries:
 - [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/)
 - [gson](https://github.com/google/gson)
 
-
 ---
 
 ## Setting up, Getting started
 
-This repository was developed using [IntelliJ IDEA](https://www.jetbrains.com/idea/), and can be set up as per any regular IntelliJ project.
+This repository was developed using [IntelliJ IDEA](https://www.jetbrains.com/idea/), and can be set up as per any
+regular IntelliJ project.
 
-For compliance with code style, developers may find it useful to import the `CS2113-codestyle.xml` formatter configuration.
+For compliance with code style, developers may find it useful to import the `CS2113-codestyle.xml` formatter
+configuration.
 
 ---
 
@@ -65,7 +66,6 @@ The following diagram describes the architecture of Inka:
 ### UI Component
 
 API: `UserInterface.java`
-
 
 ### Parser Component
 
@@ -108,16 +108,21 @@ The following is the sequence diagram for parsing `card add -q QN -a ANS`:
 
 ### Selector Component
 
-API: `CardSelector.java`, `TagSelector.java` 
+API: `CardSelector.java`, `TagSelector.java`
 
-Complimentary to the parser design is the use of _selectors_ to allow the user more flexibility in how they choose to specify a `Card` or a `Tag`.
+Complimentary to the parser design is the use of _selectors_ to allow the user more flexibility in how they choose to
+specify a `Card` or a `Tag`.
 
-- Aim: Allow the user to refer to a `Card` either by its `CardUUID` or its index in `card list`, and to refer to a `Tag` either by its name or its index in `tag list`
-- Difficulties: 
-  - By design, the parsers should not require access to `CardList` or `TagList` to decouple the user input parsing and the actual application logic
-  - The parsed `Command` should only fetch the corresponding `Card`/`Tag` once `Command::execute()` is run, hence requiring an intermediate representation
+- Aim: Allow the user to refer to a `Card` either by its `CardUUID` or its index in `card list`, and to refer to a `Tag`
+  either by its name or its index in `tag list`
+- Difficulties:
+    - By design, the parsers should not require access to `CardList` or `TagList` to decouple the user input parsing and
+      the actual application logic
+    - The parsed `Command` should only fetch the corresponding `Card`/`Tag` once `Command::execute()` is run, hence
+      requiring an intermediate representation
 
-By encapsulating the identifier in a selector class, retrieving the actual instance of `Card`/`Tag` from `CardList`/`TagList` can be deferred until `Command::execute()` is run.
+By encapsulating the identifier in a selector class, retrieving the actual instance of `Card`/`Tag`
+from `CardList`/`TagList` can be deferred until `Command::execute()` is run.
 
 The class diagram for the selector-style classes are as follows:
 
@@ -148,6 +153,7 @@ associated with.
 inherit from the `InkaUUID` class.
 
 The following describes the class diagram for CardList Component :
+
 ![CardList Class Diagram](img/CardListClass.png)
 
 ### TagList Component
@@ -196,7 +202,7 @@ The current functionalities:
 User input format for adding a card
 
 ```
-card delete -q QN -a ANS
+card add -q QN -a ANS
 ```
 
 For adding a card, a sample user input like `card add -q QN -a ANS` would be broken down as:
@@ -211,8 +217,7 @@ The implementation of `card add -q QN -a ANS` will be shown below :
 
 1. When the user enters `card add -q QN -a ANS`, the input is passed to `Parser` class which
    calls `Parser::parseCommand()`. The parser detects the keyword "card", then calls the `Parser::CardKeywordParser()`
-   on
-   the user inputs excluding the "card" keyword.
+   on the user inputs excluding the "card" keyword.
 
 
 2. The `Parser::CardKeywordParser()` further extracts the action keyword "add" from the user input, and calls
@@ -252,19 +257,23 @@ A sample user input, like `card delete -i 3` would be broken down as:
 
 The implementation of `card delete -i 3` will be shown below :
 
-1. When the user enters `card delete -i 3`, the input is passed to `Parser` class which calls `Parser::parseCommand()`.
-   The parser detects the keyword "card", then calls the `Parser::CardKeywordParser()` on the user inputs excluding
-   the "
-   card" keyword.
+1. When the user enters `card delete [-i CARDINDEX | -c CARDUUID]`, the input is passed to `Parser` class which
+   calls `Parser::parseCommand()`. The parser detects the keyword "card", then calls the `Parser::CardKeywordParser()`
+   on the user inputs excluding the "card" keyword.
+
 2. The `Parser::CardKeywordParser()` further extracts the action keyword "delete" from the user input and
    call `CardKeywordParser::handleDelete()` method.
+
 3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand`
    with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field,
    used in identifying the `Card` object, in this case to be deleted. The sequence diagram for the first 3 steps has
    been shown in the [parser sequence diagram](#parser-component).
+
 4. The `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is
    associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them.
+
 5. Then the `Card` object is deleted from the `CardList`.
+
 6. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with
    the corresponding functions.
 
@@ -296,22 +305,18 @@ The implementation of `card list` will be shown below :
 4. The command will call `UserInterface::printCardList()` method to print all `Card` objects in the `CardList`.
 
 The sequence diagram below shows how this feature of card works:
+
 ![Card List feature](img/CardListSequence.svg)
 
 #### Card View
 
-The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown below :
+The implementation of `card view {-c CARD_UUID | -i CARD_INDEX}` will be shown below :
 
-- When the user enters `card view {-c {cardUUID} | -i {cardIndex}}`, the input is passed to `Parser` class which
-  calls `Parser::parseCommand()`. The parser detects the keyword "card", then calls the `Parser::CardKeywordParser()` on
-  the user inputs excluding the "
-  card" keyword. The `Parser::CardKeywordParser()` uses the Apache Commons CLI library to parse the remaining user input
-  and call `CardKeywordParser::handleView()` method which in turn returns
-  a `ViewCardCommand`. The sequence diagram for this section has been
-  shown [above](#parser-component).
+- When the user enters `card view {-c CARD_UUID | -i CARD_INDEX}`, the input is processed by `Parser` which eventually
+  returns a `ViewCardCommand`. The sequence diagram for this section has been shown [above](#parser-component).
 
 
-- This `ViewCardCommand` will first find the card that is to be viewed by calling
+- This `ViewCardCommand::execute()` will first find the card that is to be viewed by calling
   the `CardList::findCard()` which will in turn call the `CardSelector::getIndex()`
   and `CardSelector::getUUID()` depending on the flags and parameter specified by the user. `CardSelector` will then
   return the `cardToView` to `CardList` and then
@@ -325,16 +330,15 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
 
 - Once the `tagsUUID` is ready, `ViewCardCommand` will then call  `ViewCardCommand::findTagFromTagUUID` which will loop
   through each element `Tag` of `TagList`, call `Tag::getUUID()` and match it with every element of the `tagsUUID`
-  previously.
-  If the `Tag` element's uuid matches the uuid in `tagsUUID`, then the `Tag` will be added to a `tagsFound` and returned
-  to `ViewCardCommand`.
+  previously. If the `Tag` element's uuid matches the uuid in `tagsUUID`, then the `Tag` will be added to a `tagsFound`
+  and returned to `ViewCardCommand`(this part is shown in a separate reference frame).
 
 
 - Similarly, once the `decksUUID` is ready, `ViewCardCommand` will then call  `ViewCardCommand::findDeckFromDeckUUID`
   which will loop through each element `Deck` of `DeckList`, call `Deck::getUUID()` and match it with every element of
-  the `decksUUID` previously.
-  If the `Deck` element's uuid matches the uuid in `decksUUID`, then the `Deck` will be added to a `decksFound` and
-  returned to `ViewCardCommand`.
+  the `decksUUID` previously. If the `Deck` element's uuid matches the uuid in `decksUUID`, then the `Deck` will be
+  added to a `decksFound` and returned to `ViewCardCommand`.
+  (this part is also shown in a separate reference frame).
 
 The sequence diagram below shows how this feature works:
 ![Card View feature](img/CardViewSequence.png)
@@ -362,37 +366,34 @@ similar :
 
 The implementation of the `card untag` feature is as follows:
 
-- When the user enters `card untag {-c CARD_UUID} | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
-  to `Parser` class which
-  calls `Parser::parseCommand()`. The parser detects the keyword `card` and process the remaining input and pass them
-  to  `Parser::CardKeywordParser` class which calls `HandleUntag()` method and returns a `RemoveTagFromCardCommand`. The
-  sequence diagram for this section has been
+- When the user enters `card untag {-c CARD_UUID} | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`, the input is processed
+  by `Parser` which eventually returns a `RemoveTagFromCardCommand`. The sequence diagram for this section has been
   shown [above](#parser-component).
 
 
-- This `RemoveTagFromCardCommand` will first find the card to remove the tag from by calling
+- This `RemoveTagFromCardCommand::execute()` will first find the card to remove the tag from by calling
   the `CardList::findCard()` which will in turn call the `CardSelector::getIndex()`
   and `CardSelector::getUUID()` depending on the flags and parameter specified by the user. `CardSelector` will then
   return the `cardAffected` to `CardList` and then back
   to `RemoveTagFromCardCommand`.
 
 
-- `RemoveTagFromCardCommand` will then find the tag to delete from the card by calling `TagList::findCard()` which will
-  in turn call the
-  `TagSelector::getIndex()` and `TagSelector::getTagName()`  depending on the flags and parameter specified by the
-  user. `TagSelector` will return the `tagToRemove` to `TagList` and then back to `RemoveTagFromCardCommand`.
+- `RemoveTagFromCardCommand` will then find the tag to delete from the card by calling `TagList::findCard(cardSelector)`
+  which will in turn call the`TagSelector::getIndex()` and `TagSelector::getTagName()`  depending on the flags and
+  parameter specified by the user. `TagSelector` will return the `tagToRemove` to `TagList` and then back
+  to `RemoveTagFromCardCommand`.
 
 
 - After `cardAffected` and `tagToRemove` is ready, `RemoveCardFromTagCommand` will
   call `RemoveTagFromCardCommand::removeTagFromCard(cardAffected, tagToRemove)` which will check if the `Tag` is
-  currently inside a deck,
-  if it is, we will loop through all the decks that the `Tag` is currently inside and remove the `cardAffected` from
-  each of the deck.
+  currently inside a deck, if it is, we will loop through all the decks that the `Tag` is currently inside and remove
+  the `cardAffected` from each of the deck (this part is shown in a separate reference frame)
 
 
 - Afterwards, `RemoveTagFromCardCommand::removeTagFromCard(cardAffected, tagToRemove)`  will remove the reference
-  to the tag from the card and remove the reference to the card from the tag
-  by calling `Card::getUUID()`, `Tag::removeCard()`, `Tag::getUUID()`,`Card::RemoveTag()`.
+  to the tag from the card and remove the reference to the card from the tag by
+  calling `Card::getUUID()`, `Tag::removeCard()`, `Tag::getUUID()`,`Card::RemoveTag()` (this part is also shown in a
+  separate reference frame.
 
 
 - Finally, `RemoveTagFromCardCommand` will then call `UserInterface::printRemoveTagFromCard()` to print successful
@@ -411,32 +412,28 @@ Reference Frames :
 
 The implementation of the `tag list {-t TAG_NAME | -x TAG_INDEX}`
 
-- When the user enters `tag list {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
-  to `Parser` class which
-  calls `Parser::parseCommand()`. The parser detects the keyword `tag` and process the remaining input and pass them
-  to  `Parser::TagKeywordParser` class which calls `HandleList()` method and returns a `ListCardsUnderTagCommand`. The
-  sequence diagram for this section has been
-  shown [above](#parser-component).
+- When the user enters `tag list {-t TAG_NAME | -x TAG_INDEX}`, the input is processed by `Parser` which eventually
+  returns a `ListCardsUnderTagCommand`. The sequence diagram for this section has been shown [above](#parser-component).
 
 
-- This `ListCardsUnderTagCommand` will find the tag under which to display the cards from by calling
+- This `ListCardsUnderTagCommand::execute()` will find the tag under which to display the cards from by calling
   the `TagList::findTag()` which will in turn call the `TagSelector::getIndex()`
   and `TagSelector::getTagName()` depending on the flags and parameter specified by the user. `TagSelector` will then
-  return the `foundTag` to `TagList` and then back
-  to `ListCardsUnderTagCommand`.
+  return the `foundTag` to `TagList` and then back to `ListCardsUnderTagCommand`.
 
 
 - After `foundTag`  is ready, `ListCardsUnderTagCommand` will
   call `ListCardsUnderTagCommand::findCardsUnderTag(foundTag)` which will call the `Tag::getCardsUUID` and return the
-  UUIDs of the cards
-  under the `Tag` in the form of `cardsUUID`. `ListCardsUnderTagCommand` will then loop through the entire cardList and
-  the `cardsUUID`, if their uuid matches,
-  that `Card` will be added to `foundCardList` and returned to `ListCardsUnderTagCommand`.
+  UUIDs of the cards under the `Tag` in the form of `cardsUUID`.
+
+
+- `ListCardsUnderTagCommand` will then loop through the entire cardList and the `cardsUUID`, if their uuid matches,
+  that `Card` will be added to `foundCardList` and returned to `ListCardsUnderTagCommand` (this part is shown in a
+  separate reference frame).
 
 
 - Once `foundCardList` is returned, `ListCardsUnderTagCommand` will call `UserInterface::printCardList(foundCardList)`
-  to
-  print the list of cards under the specified tag.
+  to print the list of cards under the specified tag.
 
 The sequence diagram below shows how this feature works:
 ![List Cards under Tag](img/ListCardsUnderTagSequence.png)
@@ -647,7 +644,10 @@ on their mind.
 ### Instructions for Manual Testing
 
 Running the program:
-- Download the latest version of the `.jar` file from the [release page](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
-- Move the executable to a folder of your choice. The folder should have write permissions as it will generate save files in this directory.
+
+- Download the latest version of the `.jar` file from
+  the [release page](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
+- Move the executable to a folder of your choice. The folder should have write permissions as it will generate save
+  files in this directory.
 - Run the executable either by double-clicking on it, or using `java -jar FILENAME.jar`
 - An introduction to the supported commands are provided in the User Guide

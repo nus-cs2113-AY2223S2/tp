@@ -4,6 +4,7 @@ autoactivate on
 
 mainframe sd Remove affected Cards from Deck
 
+participant ":Inka" as Inka
 participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
@@ -15,7 +16,7 @@ participant ":Tag" as Tag
 participant ":Card" as Card
 participant ":Deck" as Deck
 participant ":UserInterface" as UserInterface
-participant ":CardKeywordParser" as CardKeywordParser
+
 
 
 opt tagToRemove.isDeckEmpty()

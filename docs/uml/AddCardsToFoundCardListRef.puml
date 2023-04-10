@@ -3,6 +3,7 @@ autoactivate on
 
 mainframe sd Add all Card with cardsUUID to foundCardList
 
+participant ":Inka" as Inka
 participant ":ListCardsInTagCommand" as ListCardsInTagCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
@@ -13,7 +14,7 @@ participant ":DeckList" as DeckList
 participant ":Tag" as Tag
 
 participant ":UserInterface" as UserInterface
-participant ":TagKeywordParser" as TagKeywordParser
+
 
 loop curr UUID of all Cards != null
     loop curr UUID of cardsUUID != null
