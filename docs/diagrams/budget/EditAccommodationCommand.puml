@@ -14,13 +14,13 @@ deactivate ":BudgetPlanner"
 activate ":BudgetPlanner"
 ":EditAccommodationCommand" <-- ":BudgetPlanner" : newCost:int
 deactivate ":BudgetPlanner"
-opt initialCost == newCost
+alt initialCost == newCost
 ":EditAccommodationCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
 activate "<<class>>\n:UI"
 ":EditAccommodationCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditAccommodationCommand" --> ":Duke"
-end
+<-- ":EditAccommodationCommand"
+else initialCost != newCost
 create ":Accommodation"
 ":EditAccommodationCommand" -> ":Accommodation" : new Accommodation(cost)
 activate ":Accommodation"
@@ -32,4 +32,5 @@ activate "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 <-- ":EditAccommodationCommand"
 deactivate ":EditAccommodationCommand"
+end
 @enduml

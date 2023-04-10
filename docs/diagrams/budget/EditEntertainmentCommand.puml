@@ -14,13 +14,13 @@ deactivate ":BudgetPlanner"
 activate ":BudgetPlanner"
 ":EditEntertainmentCommand" <-- ":BudgetPlanner" : newCost:int
 deactivate ":BudgetPlanner"
-opt initialCost == newCost
+alt initialCost == newCost
 ":EditEntertainmentCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
 activate "<<class>>\n:UI"
 ":EditEntertainmentCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditEntertainmentCommand" --> ":Duke"
-end
+<-- ":EditEntertainmentCommand"
+else initialCost != newCost
 create ":Entertainment"
 ":EditEntertainmentCommand" -> ":Entertainment" : new Entertainment(cost)
 activate ":Entertainment"
@@ -32,4 +32,5 @@ activate "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 <-- ":EditEntertainmentCommand"
 deactivate ":EditEntertainmentCommand"
+end
 @enduml

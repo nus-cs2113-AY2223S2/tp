@@ -14,17 +14,18 @@ deactivate ":BudgetPlanner"
 activate ":BudgetPlanner"
 ":EditBudgetCommand" <-- ":BudgetPlanner" : newBudget:int
 deactivate ":BudgetPlanner"
-opt initialBudget == newBudget
+alt initialBudget == newBudget
 ":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printBudgetNoChangeMessage()
 activate "<<class>>\n:UI"
 ":EditBudgetCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditBudgetCommand" --> ":Duke"
-end
+<-- ":EditBudgetCommand"
+else initialBudget != newBudget
 ":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printEditBudgetMessage(budget)
 activate "<<class>>\n:UI"
 ":EditBudgetCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 <-- ":EditBudgetCommand"
 deactivate ":EditBudgetCommand"
+end
 @enduml

@@ -14,13 +14,13 @@ deactivate ":BudgetPlanner"
 activate ":BudgetPlanner"
 ":EditAirplaneTicketCommand" <-- ":BudgetPlanner" : newCost:int
 deactivate ":BudgetPlanner"
-opt initialCost == newCost
+alt initialCost == newCost
 ":EditAirplaneTicketCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
 activate "<<class>>\n:UI"
 ":EditAirplaneTicketCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditAirplaneTicketCommand" --> ":Duke"
-end
+<-- ":EditAirplaneTicketCommand"
+else initialCost != newCost
 create ":AirplaneTicket"
 ":EditAirplaneTicketCommand" -> ":AirplaneTicket" : new AirplaneTicket(cost)
 activate ":AirplaneTicket"
@@ -32,4 +32,5 @@ activate "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 <-- ":EditAirplaneTicketCommand"
 deactivate ":EditAirplaneTicketCommand"
+end
 @enduml
