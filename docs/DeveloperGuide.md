@@ -465,6 +465,30 @@ Expected: Error message is shown and no changes are made to the ingredients list
 Expected: Similar to previous.
 <br/><br/>
 
+### Recipe All
+
+1. Test Case: `recipe all`
+Expected: All 6 stored recipes are displayed
+
+2. Test Case: `recipe list`
+Expected: Error message for incorrect command is shown.
+
+3. Other incorrect commands to try: `recipe list all`, `recipe show all`, `recipe show` etc.  
+Expected: Error message for incorrect command is shown.
+
+### Recipe Detail
+
+1. Test Case: `recipe 1`
+Expected: Details for recipe 1 (Beef Burger) are shown with all ingredients and instructions.
+
+2. Test Case: `recipe 0`
+Expected: Error message for invalid recipe is shown.
+
+3. Other test cases: `recipe <index_number>` where `<index_number>` is 1-6 inclusive.
+Expected: Respective recipes are displayed correctly with all ingredients and instructions.
+
+4. Incorrect test cases to try: `recipe <x>` where `<x>` is either out of bounds of 1-6 or an invalid flag (ie. a string or a decimal)
+Expected: Error message for invalid recipe is shown.
 
 ### Saving Data
 1. Dealing with corrupted data file
