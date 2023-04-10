@@ -81,7 +81,10 @@ academic d/2023-02-02 a/25.10 p/NUS
 Output:
 
 ```
-Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS
+
+Added academic expenditure: [Academic] || Date: 2 Feb 2023 
+|| Value: 25.1 || Description: NUS
+
 ```
 
 Adding a Other Expenditure
@@ -95,7 +98,10 @@ other d/2000-01-31 a/26 p/Eating lunch
 Output:
 
 ```
-Added other expenditure: [Other] || Date: 31 Jan 2000 || Value: 26.0 || Description: Eating lunch
+
+Added other expenditure: [Other] || Date: 31 Jan 2000 
+|| Value: 26.0 || Description: Eating lunch
+
 ```
 
 ### 4.2. Adding a lend/borrow record
@@ -104,7 +110,7 @@ Adds a lending or borrowing transaction to the record
 
 Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
-| Parameter     | Description                                                                                             |
+  | Parameter     | Description                                                                                             |
 |---------------|---------------------------------------------------------------------------------------------------------|
 | `CATEGORY`        | The category of record of `lend` or `borrow`. It should either be `lend` or `borrow`.                   |        |
 | `DATE`      | The date when the transaction took place on. It must be in yyyy-MM-dd format, e.g. 2023-02-02.          | 
@@ -118,7 +124,7 @@ Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 - All parameters must be present in this command.
 - All parameters must not be empty.
-- The input date format must be in yyyy-MM-DD format.
+  - The input date format must be in yyyy-MM-DD format.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 - Our application does not support input names with a slash '/'.
 
@@ -138,7 +144,10 @@ lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113
 Output:
 
 ```
-Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2023 || Value: 25.1 || Description: CS2113 || by: 2 Apr 2023
+
+Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2023 
+|| Value: 25.1 || Description: CS2113 || by: 2 Apr 2023
+
 ```
 
 ### 4.3. Editing an Expenditure
@@ -431,7 +440,7 @@ Displays list of the other currency available in MyLedger and their value agains
 
 * Add food expenditure: `food d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add lend expenditure: `academic d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
+* Add lend expenditure: `lend d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 * Add other expenditure: `other d/DATE a/AMOUNT p/DESCRIPTION`
 
