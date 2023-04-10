@@ -515,7 +515,8 @@ currencies, we require a limit on how far back the date can be set.
   
 ## Command Summary
 
-### Account-related command 
+### Account-related command
+
 |             Action             |  Command   |
 |:------------------------------:|:----------:|
 |      Log in your account       |  `login`   |
@@ -525,6 +526,7 @@ currencies, we require a limit on how far back the date can be set.
 
 
 ### Expense management command
+
 |             Action              |                                     Command                                     |
 |:-------------------------------:|:-------------------------------------------------------------------------------:|
 |         Add an expense          |  `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`  |
