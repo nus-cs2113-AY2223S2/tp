@@ -47,10 +47,10 @@ operation through the Command-Line Interface(CLI)
 
 ### Contributions to Developer Guide
 - Added table of contents in Developer Guide
-- UML diagrams (displayed below)
-    - [Sequence diagram for Encoder feature](#sequence-diagram-for-encoder-feature)
-    - [Sequence diagram for Decoder feature](#sequence-diagram-for-decoder-feature)
-    - [Class diagram of custom Exceptions](#class-diagram-for-exceptions)
+- UML diagrams
+    - [Sequence diagram for Encoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Encoder.puml)
+    - [Sequence diagram for Decoder feature](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Decoder.puml)
+    - [Class diagram of custom Exceptions](https://github.com/AY2223S2-CS2113-W12-2/tp/blob/master/docs/UML/Exceptions.puml)
 
 
 ## Contributions to Team tasks
@@ -63,16 +63,4 @@ operation through the Command-Line Interface(CLI)
 - Actively contributed ideas for features to implement and solutions for bugs faced
 - Contributed to JUnit tests for methods authored by my teammates
   [#138](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/138)
-
-
-### Diagrams contributed for Developer Guide
-#### Sequence diagram for Encoder feature
-![Encoder.png](..%2FUML%2FImage%2FEncoder.png)
-
-
-#### Sequence diagram for Decoder feature
-![Decoder.png](..%2FUML%2FImage%2FDecoder.png)
-
-#### Class diagram for Exceptions
-![Exceptions.png](..%2FUML%2FImage%2FExceptions.png)
 
