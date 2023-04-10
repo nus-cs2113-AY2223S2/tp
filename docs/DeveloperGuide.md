@@ -11,10 +11,10 @@
   - [ Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-1)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-1)
-  - [List meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-meal-feature)
+  - [List feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-2)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-2)
-  - [ Delete meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-meal-feature)
+  - [ Delete feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-3)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-3)
   - [View feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#view-feature)
@@ -327,7 +327,7 @@ At the end of every update, the userStorage will be updated accordingly.
 
 ### Design considerations:
 
-#### Aspect:
+#### Aspect: How to update user data
 
 - Alternative 1 (current choice): Use a one-line for the CLI
   - Pros: Faster to input for experienced users.
@@ -356,7 +356,7 @@ Step 5: The nutritional information for that food will then be displayed.
 
 ### Design considerations:
 
-#### Aspect: How to update user data
+#### Aspect: How to view nutritional information for foods
 
 - Alternative 1 (current choice): Follow prompts for information.
   - Pros: User can get accurate information about the food. 
