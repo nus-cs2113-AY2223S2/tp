@@ -674,6 +674,7 @@ The following are instructions for testers to manual test:
    ```
    Today's date in the expected output will correspond to the day that the user is using MyLedger.
    In our example case, the day in which the user was attempting to add the `borrow` command was on 2023-04-07.
+<div style="page-break-after: always;"></div>
 
 #### Displaying the list of inputs and conversion rates
 1. Displaying list of conversion rates
@@ -741,6 +742,7 @@ The following are instructions for testers to manual test:
    Input command does not have required parameters! Please try again
    ```
    The command `list` is missing currency, thus no list will be displayed.
+<div style="page-break-after: always;"></div>
 
 #### Deleting an expenditure
 1. Deleting an expenditure from the list of inputs.
@@ -774,6 +776,8 @@ The following are instructions for testers to manual test:
     ```
     Index must be an integer and within bounds! Please try again
     ```
+<div style="page-break-after: always;"></div>
+
 #### Editing an expenditure
 1. Editing a current expenditure within the list of inputs.
      - Prerequisite : Similar to delete, an existing expenditure is required. 
@@ -843,6 +847,7 @@ The following are instructions for testers to manual test:
     edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing
     ```
     Expected : Invalid message similar to previous invalid cases will be provided.
+<div style="page-break-after: always;"></div>
 
 #### Duplicate an expenditure
 1. Duplicating an expenditure from the list of inputs.
@@ -867,6 +872,7 @@ The following are instructions for testers to manual test:
     Other invalid `duplicate` commands: eg. `duplicate`
     
     Expected : Similar to previous, an invalid message with the error will be displayed for the user.
+<div style="page-break-after: always;"></div>
 
 #### Sorting the list
   - Prerequisite : A list with more than 2 expenditures are saved, which can be checked with the `list` command <br> <br/>
@@ -896,6 +902,7 @@ The following are instructions for testers to manual test:
     sort latest
     ```
     Expected :  In contrast to previous test case, new list with the latest date at index 1
+<div style="page-break-after: always;"></div>
 
 #### Set budget
 1. Setting a temporary budget that the user might be on
@@ -924,6 +931,7 @@ The following are instructions for testers to manual test:
     set 3-3
     ```
     Expected : Similar to previous, an invalid message with the error will be displayed for the user.
+<div style="page-break-after: always;"></div>
 
 #### Check budget
 1. Checking the total amount of spending and the intended budget.
@@ -988,6 +996,8 @@ The following are instructions for testers to manual test:
     ```
     Failed to check! Please check the format and try again!
     ```
+   <div style="page-break-after: always;"></div>
+
 #### Mark/Unmark accommodation or tuition expenditures
    - Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
    The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
@@ -1047,6 +1057,7 @@ The following are instructions for testers to manual test:
     ```
     No paid field for this expenditure!
     ```
+<div style="page-break-after: always;"></div>
 
 #### Find keyword
 1. Finding keywords under the descriptions column in their list of expenditures <br><br/>
