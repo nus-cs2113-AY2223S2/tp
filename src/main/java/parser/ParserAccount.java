@@ -30,9 +30,15 @@ public class ParserAccount {
      */
     private static void caseLogIn(Scanner scanner) {
         System.out.println("username");
-        String user = scanner.nextLine();
+        String user = "";
+        if (scanner.hasNextLine()) {
+            user = scanner.nextLine();
+        }
         System.out.println("password");
-        String password = scanner.nextLine();
+        String password = "";
+        if (scanner.hasNextLine()) {
+            password = scanner.nextLine();
+        }
         Account existingAccount = new Account(user, password);
         String res = existingAccount.login();
         System.out.println(res);
@@ -52,9 +58,15 @@ public class ParserAccount {
      */
     public static void caseSignUp(Scanner scanner) {
         System.out.println("username");
-        String user = scanner.nextLine();
+        String user = "";
+        if (scanner.hasNextLine()) {
+            user = scanner.nextLine();
+        }
         System.out.println("password");
-        String password = scanner.nextLine();
+        String password = "";
+        if (scanner.hasNextLine()) {
+            password = scanner.nextLine();
+        }
         Account newAccount = new Account(user, password);
         System.out.println(newAccount.signup());
     }
