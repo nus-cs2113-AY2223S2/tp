@@ -466,9 +466,9 @@ Displays list of the other currency available in MyLedger and their value agains
 
 - Duplicate expenditure `duplicate INDEX`
 
-- Edit expenditure: `edit d/DATE a/AMOUNT p/DESCRIPTION`
+- Edit expenditure: `edit INDEX d/DATE a/AMOUNT p/DESCRIPTION`
 
-- Edit borrow or lend expenditure: `edit d/DATE n/BORROWER_OR_LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
+- Edit borrow or lend expenditure: `edit INDEX d/DATE n/BORROWER_OR_LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 - Find by keyword in expenditure descriptions: `find KEYWORD`
 
