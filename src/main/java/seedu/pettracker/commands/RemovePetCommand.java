@@ -27,7 +27,7 @@ public class RemovePetCommand extends Command {
             PetList.savePetsToStorage(storage, ui);
             ui.removePetCommandMessage(petName);
         } catch (PetNotFoundException e) {
-            ui.petNotFoundMessage();
+            ui.printPetNotFoundMessage();
         }
     }
 

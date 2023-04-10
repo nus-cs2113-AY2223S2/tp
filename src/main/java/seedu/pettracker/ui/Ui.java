@@ -12,8 +12,8 @@ public class Ui {
     private static final String NON_INTEGER_ERROR = "ERROR: Input should be an integer";
     private static final String NON_POSITIVE_INTEGER_ERROR = "ERROR: Integer provided should be above 0";
     private static final String INVALID_STAT_ERROR = "ERROR: The only valid stats are type, age, or weight.";
-    private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not Found";
-    private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
+    private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not found";
+    private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet name is empty";
     private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
     private static final String EMPTY_TASK_NAME_ERROR = "ERROR: Task description is empty";
     private static final String NON_INTEGER_FILE_ERROR = "ERROR: Pet save file has non-integer values for age" +
@@ -226,19 +226,19 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void petNotFoundMessage() {
+    public void printPetNotFoundMessage() {
         System.out.println(DIVIDER);
         System.out.println(PET_NOT_FOUND_ERROR);
         System.out.println(DIVIDER);
     }
 
-    public void petNameEmptyMessage() {
+    public void printPetNameEmptyMessage() {
         System.out.println(DIVIDER);
         System.out.println(EMPTY_PET_NAME_ERROR);
         System.out.println(DIVIDER);
     }
 
-    public void duplicatePetMessage() {
+    public void printDuplicatePetMessage() {
         System.out.println(DIVIDER);
         System.out.println(DUPLICATE_PET_ERROR);
         System.out.println(DIVIDER);
