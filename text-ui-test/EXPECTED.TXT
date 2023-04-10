@@ -233,7 +233,7 @@ There are 3 ingredients in the list:
 2. Tomato Sauce
 3. Cheese
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
 To exit recipe view, type "quit"
@@ -302,13 +302,13 @@ There are 3 ingredients in the list:
 2. Mutton
 3. Mushrooms
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
-There are 1 steps in the list
+There is 1 step in the list
 1. chop beef
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. chop beef
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -316,7 +316,7 @@ Enter the description of the step:
 Step has been edited:
 1. go to haidilao
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -324,7 +324,7 @@ Type 'quit' to exit the edit view
 Please enter a valid index!
 Valid range: 1 to 1
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -340,10 +340,10 @@ There are 3 ingredients in the list:
 2. Mutton
 3. Mushrooms
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 __________________________________________________________
 There are 3 ingredients in the list:

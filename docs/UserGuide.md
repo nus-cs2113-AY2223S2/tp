@@ -145,7 +145,7 @@ Edits a step for a recipe in the recipe manager.<br>
 ```
 __________________________________________________________
 editstep 2
-There are 1 steps in the list
+There is 1 step in the list
 1. chop beef
 Which step do you want to edit?
 Type 'quit' to exit the edit view

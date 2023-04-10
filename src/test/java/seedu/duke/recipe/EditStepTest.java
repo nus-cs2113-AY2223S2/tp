@@ -110,14 +110,13 @@ public class EditStepTest {
      */
     @Test
     public void editStepIndexExceededTestCase() throws Exception {
-        String newDescription = "boiling water";
         int userInput = 3;
         Recipe recipeToEdit = RecipeList.getRecipeFromList(1);
         StepList stepListToEdit = recipeToEdit.getStepList();
 
         String exceptionOutput = "";
         try {
-            stepListToEdit.isIndexWithinRange(userInput - 1);
+            stepListToEdit.checkIndexWithinRange(userInput - 1);
         } catch (InvalidIndexRangeException e) {
             exceptionOutput = e.getMessage();
         }
@@ -135,14 +134,13 @@ public class EditStepTest {
      */
     @Test
     public void editStepIndexZeroTestCase() throws Exception {
-        String newDescription = "boiling water";
         int userInput = 0;
         Recipe recipeToEdit = RecipeList.getRecipeFromList(1);
         StepList stepListToEdit = recipeToEdit.getStepList();
 
         String exceptionOutput = "";
         try {
-            stepListToEdit.isIndexWithinRange( userInput - 1);
+            stepListToEdit.checkIndexWithinRange( userInput - 1);
         } catch (InvalidIndexRangeException e) {
             exceptionOutput = e.getMessage();
         }
