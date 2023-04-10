@@ -25,7 +25,7 @@
     * [4.14. Sorting the expenditure list](#414-sorting-the-expenditure-list)
     * [4.15. View the expenditure list by expenditure category or type](#415-view-the-expenditure-list-by-expenditure-category-or-type)
     * [4.16. View the expenditure list by date](#416-view-the-expenditure-list-by-date)
-    * [4.16. Currency rates](#417-currency-rates)
+    * [4.17. Currency rates](#417-currency-rates)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -409,10 +409,12 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of viewdate must follow with a valid date or the command would not be valid.
 - The date must be input in YYYY-MM-DD format.
+- If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
 
 ### 4.17. Currency rates
 
 Displays list of the other currency available in MyLedger and their value against SGD.
+
 **Format:** `showrates`     |
 
 ## FAQ

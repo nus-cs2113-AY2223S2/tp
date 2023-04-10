@@ -23,6 +23,7 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
@@ -42,6 +43,7 @@ public class MainInputParser {
     public static final int LIMIT = 2;
     public static final int INDEX_COMMAND = 0;
     public static final int INDEX_USERSTRING = 1;
+    public static final String CHECK_STRING = "c/";
 
     public static Command parseInputs(String userInput) {
         String[] splitValues = userInput.split(" ", LIMIT);
@@ -58,11 +60,14 @@ public class MainInputParser {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         } catch (InvalidDateException e) {
             return new InvalidCommand(e.getMessage());
+        } catch (DateLimitException l) {
+            return new InvalidCommand(l.getMessage());
         }
     }
 
     public static Command filterCategories(String command, String[] splitValues) throws IndexOutOfBoundsException,
-            DateTimeParseException, WrongInputException, NotPositiveValueException, InvalidDateException {
+            DateTimeParseException, WrongInputException, NotPositiveValueException, 
+            InvalidDateException, DateLimitException {
         switch (command) {
 
         // Commands that insert new inputs
@@ -135,7 +140,7 @@ public class MainInputParser {
             return prepareBudget.setBudget();
         case CheckBudgetCommand.COMMAND_WORD:
             if (splitValues.length == 1 || splitValues[1].isEmpty() || splitValues[1].isBlank()) {
-                return new CheckBudgetCommand("c/");
+                return new CheckBudgetCommand(CHECK_STRING);
             }
             return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
 

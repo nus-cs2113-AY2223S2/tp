@@ -6,7 +6,10 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.EmptyStringException;
+import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.YearLimitException;
 import seedu.expenditure.BorrowExpenditure;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
@@ -56,6 +59,10 @@ public class CheckBudgetCommand extends Command {
             return new CommandResult("Failed to check! Please check the format and try again!");
         } catch (EmptyStringException e) {
             return new CommandResult("Failed to check! Please check the format and try again!");
+        } catch (DateLimitException l) {
+            return new CommandResult(l.getMessage());
+        } catch (YearLimitException y) {
+            return new CommandResult(y.getMessage());
         }
     }
 
@@ -103,11 +110,10 @@ public class CheckBudgetCommand extends Command {
 
     private void updateAmount(Expenditure individualExpenditure) {
         if (individualExpenditure.getExpenditureType().equals("B")) {
-
             borrowedAmount += individualExpenditure.getValue();
         } else if (individualExpenditure.getExpenditureType().equals("L")) {
             lentAmount += individualExpenditure.getValue();
-        } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
+        } else if (individualExpenditure.getPaidIcon().equals("[X]")) {
             totalAmount += individualExpenditure.getValue();
         }
     }
@@ -140,53 +146,83 @@ public class CheckBudgetCommand extends Command {
     /**
      * @author TzeLoong
      */
-    private void checkYear(ExpenditureList expenditures) throws EmptyStringException {
+    private void checkYear(ExpenditureList expenditures) throws EmptyStringException, StringIndexOutOfBoundsException, 
+            DateTimeParseException, YearLimitException {
+        Year year = fetchYear();
+        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
+            fetchYearLendBorrowAmounts(individualExpenditure, year);
+            fetchYearExpenditureAmounts(individualExpenditure, year);
+        }
+    }
+
+    private void checkDay(ExpenditureList expenditures) throws EmptyStringException, DateLimitException {
+        LocalDate dayVal = LocalDate
+                .parse(ParseIndividualValue.parseIndividualValue(userInput, DSLASH, BLANK));
+        ExceptionChecker.checkDateLimit(dayVal);
+        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
+            fetchDayLendBorrowAmounts(individualExpenditure, dayVal);
+            fetchDayExpenditureAmounts(individualExpenditure, dayVal);
+        }
+    }
+
+    public Year fetchYear()
+            throws EmptyStringException, StringIndexOutOfBoundsException,
+            DateTimeParseException, YearLimitException {
         DateTimeFormatter formatYear = DateTimeFormatter.ofPattern("uuuu");
         String yearVal = ParseIndividualValue.parseIndividualValue(userInput, YSLASH,
                 BLANK);
-        Year year = Year.parse(yearVal, formatYear);
-        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
-            if (individualExpenditure instanceof BorrowExpenditure) {
-                int startYear = ((BorrowExpenditure) individualExpenditure).getDate().getYear();
-                int endYear = ((BorrowExpenditure) individualExpenditure).getDeadline().getYear();
-                if (year.getValue() >= startYear && year.getValue() <= endYear) {
-                    borrowedAmount += individualExpenditure.getValue();
-                }
-            } else if (individualExpenditure instanceof LendExpenditure) {
-                int startTheYear = ((LendExpenditure) individualExpenditure).getDate().getYear();
-                int endTheYear = ((LendExpenditure) individualExpenditure).getDeadline().getYear();
-                if (year.getValue() >= startTheYear && year.getValue() <= endTheYear) {
-                    lentAmount += individualExpenditure.getValue();
-                }
-            } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
-                if (individualExpenditure.getDate().getYear() == year.getValue()) {
-                    updateAmount(individualExpenditure);
-                }
+        ExceptionChecker.checkYearLimit(yearVal);
+        return Year.parse(yearVal, formatYear);
+    }
+
+    public void fetchDayLendBorrowAmounts(Expenditure expenditure, LocalDate dayVal) {
+        if (expenditure instanceof BorrowExpenditure) {
+            LocalDate startDate = ((BorrowExpenditure) expenditure).getDate();
+            LocalDate endDate = ((BorrowExpenditure) expenditure).getDeadline();
+            if (!dayVal.isAfter(endDate) && !dayVal.isBefore(startDate)) {
+                borrowedAmount += expenditure.getValue();
+            }
+        } else if (expenditure instanceof LendExpenditure) {
+            LocalDate startDate = ((LendExpenditure) expenditure).getDate();
+            LocalDate endDate = ((LendExpenditure) expenditure).getDeadline();
+            if (!dayVal.isAfter(endDate) && !dayVal.isBefore(startDate)) {
+                lentAmount += expenditure.getValue();
             }
         }
     }
 
-    private void checkDay(ExpenditureList expenditures) throws EmptyStringException {
-        LocalDate dayVal = LocalDate
-                .parse(ParseIndividualValue.parseIndividualValue(userInput, DSLASH, BLANK));
-        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
-            if (individualExpenditure instanceof BorrowExpenditure) {
-                LocalDate startDate = ((BorrowExpenditure) individualExpenditure).getDate();
-                LocalDate endDate = ((BorrowExpenditure) individualExpenditure).getDeadline();
-                if (!dayVal.isAfter(endDate) && !dayVal.isBefore(startDate)) {
-                    borrowedAmount += individualExpenditure.getValue();
-                }
-            } else if (individualExpenditure instanceof LendExpenditure) {
-                LocalDate startDate = ((LendExpenditure) individualExpenditure).getDate();
-                LocalDate endDate = ((LendExpenditure) individualExpenditure).getDeadline();
-                if (!dayVal.isAfter(endDate) && !dayVal.isBefore(startDate)) {
-                    lentAmount += individualExpenditure.getValue();
-                }
-            } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
-                if (individualExpenditure.getDate().equals(dayVal)) {
-                    totalAmount += individualExpenditure.getValue();
-                }
+    public void fetchDayExpenditureAmounts(Expenditure expenditure, LocalDate dayVal) {
+        boolean isLendBorrowExpenditure = (expenditure instanceof BorrowExpenditure ||
+                expenditure instanceof LendExpenditure);
+        if (!isLendBorrowExpenditure && expenditure.getPaidIcon().equals("[X]") &&
+                (expenditure.getDate().equals(dayVal))) {
+            totalAmount += expenditure.getValue();
+        }
+    }
+
+    public void fetchYearLendBorrowAmounts(Expenditure expenditure, Year year) {
+        if (expenditure instanceof BorrowExpenditure) {
+            int startYear = ((BorrowExpenditure) expenditure).getDate().getYear();
+            int endYear = ((BorrowExpenditure) expenditure).getDeadline().getYear();
+            if (year.getValue() >= startYear && year.getValue() <= endYear) {
+                borrowedAmount += expenditure.getValue();
             }
+        } else if (expenditure instanceof LendExpenditure) {
+            int startTheYear = ((LendExpenditure) expenditure).getDate().getYear();
+            int endTheYear = ((LendExpenditure) expenditure).getDeadline().getYear();
+            if (year.getValue() >= startTheYear && year.getValue() <= endTheYear) {
+                lentAmount += expenditure.getValue();
+            }
+        }
+    }
+
+    public void fetchYearExpenditureAmounts(Expenditure expenditure, Year year) {
+        boolean isLendBorrowExpenditure = (expenditure instanceof BorrowExpenditure ||
+                expenditure instanceof LendExpenditure);
+        if (!isLendBorrowExpenditure && expenditure.getPaidIcon().equals("[X]") &&
+                (expenditure.getDate().getYear() == year
+                .getValue())) {
+            totalAmount += expenditure.getValue();
         }
     }
 

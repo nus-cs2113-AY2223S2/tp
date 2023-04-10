@@ -6,7 +6,9 @@ import seedu.exceptions.ExceptionChecker;
 public class ParseIndividualValue {
 
     private static final int OFFSET_DELIMITER = 2;
+    private static final int DOT_OFFSET_DELIMITER = 1;
     private static final String BLANK = "";
+    private static final String DOT = ".";
 
     public static String parseIndividualValue(String userInput, String front, String back)
             throws StringIndexOutOfBoundsException, EmptyStringException {
@@ -17,6 +19,7 @@ public class ParseIndividualValue {
         } else {
             positionOfFirstSlash = -OFFSET_DELIMITER;
         }
+
         int positionOfSecondSlash;
         // Checks for the position of the backslash
         if (!back.equals(BLANK)) {
@@ -25,7 +28,12 @@ public class ParseIndividualValue {
             positionOfSecondSlash = userInput.length();
         }
         // Parses the value in between the front and backslash
-        String value = userInput.substring(positionOfFirstSlash + OFFSET_DELIMITER, positionOfSecondSlash).trim();
+        String value;
+        if (front.equals(DOT)) {
+            value = userInput.substring(positionOfFirstSlash + DOT_OFFSET_DELIMITER, positionOfSecondSlash).trim();
+        } else {
+            value = userInput.substring(positionOfFirstSlash + OFFSET_DELIMITER, positionOfSecondSlash).trim();
+        }
         ExceptionChecker.checkEmptyString(value);
         return value;
     }
