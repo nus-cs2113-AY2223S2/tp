@@ -8,13 +8,13 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 ## Design & implementation
 #### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
 1. [commands](#bagpacker-command-mechanisms-) 
-   - Command
+   - [Command](#command)
    - [AddCommand](#add-command)
    - [ByeCommand](#bye-command)
    - [DeleteCommand](#delete-command)
    - [DeleteListCommand](#deletelist-command)
    - EditQuantityCommand
-   - FindCommand
+   - [FindCommand](#find-command)
    - [HelpCommand](#help-command)
    - IncorrectCommand
    - [ListCommand](#list-command)
@@ -44,7 +44,7 @@ The class diagram below shows the overall structure of BagPacker application, ma
 ### BagPacker Command Mechanisms:
 For all valid commands, the mechanism of implementation are as follows:
 1. If `ByeCommand.isBagPackerRunning` is true, keep looping through steps 2-4
-2. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command using `Parser.parse()`
+2. Read input - `runBagPacker()` method in `BagPacker` calls the `Parser` class to read user input command using `Parser.parse()`
 3. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command (child class of the Command Class)
 4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
@@ -53,7 +53,9 @@ Below shows a sequence diagram of the above explanation
 
 ![BagPackerSequenceDiagram.png](umlDiagrams%2FBagPackerSequenceDiagram.png)
 ---
-
+#### Command
+The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
+`targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. An `item` of that index will be extracted out using `getTargetItem()`.
 #### Add Command
 
 Add command is used to add a quantity of item(s) to the packing list.
@@ -243,24 +245,62 @@ All items in your list are fully packed!
 ________________________________________________________________________________________________________________________
 
 ```
+---
+#### Pack Command
+`PackCommand` is used to increase the quantity packed of a certain item in the `packingList`.
+Mechanism: PackCommand.execute() calls packingList.packItem() with a certain `item` and `itemQuantity`, which then calls the `.setPacked()` method. This method will increase the `packedQuantity` of that specific item by `itemQuantity`.
+
+Example:
+```
+________________________________________________________________________________________________________________________
+add 3 /of jackets
+________________________________________________________________________________________________________________________
+New item added: [0/3] jackets
+________________________________________________________________________________________________________________________
+pack 2 /of 1
+________________________________________________________________________________________________________________________
+Item packed: [2/3] jackets
+________________________________________________________________________________________________________________________
+```
+
+In the case where the user tries to pack an item over its limit, i.e. have an item's `packedQuantity` > `totalQuantity`, there are checks put in place to prevent the command from going through.
+During `createPackObj`, `quantityNotPacked` is compared to `itemQuantity`. If `quantityNotPacked` < `itemQuantity`, an `IncorrectCommand` will be returned that prints an error message to the user about the invalid command.
+
+Example:
+```
+________________________________________________________________________________________________________________________
+pack 5 /of 1
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Error Invalid Item Quantity:
+Can only pack a positive quantity that is less than or equal to the unpacked quantity (Max integer supported is 1,000,000)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+```
 
 ---
+#### Find Command
+`FindCommand` is used to find all items containing the keyword(s) provided.
 
-
+Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
+The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
+---
 #### DeleteList Command
 `DeleteListCommand` is used to delete all items inside `packingList`.
 
 Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
 
-
 ---
 
 #### Bye Command
-```ByeCommand``` is used to exit the BagPacker application.
+`ByeCommand` is used to exit the BagPacker application.
 
-Mechanism: ```ByeCommand.execute()``` updates the static boolean ```isBagPackerRunning``` to be false. 
-The ```runBagPacker()``` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until
-```isBagPackerRunning == false``` which occurs upon the execution of the ```byeCommand```.
+Mechanism: `ByeCommand.execute()`updates the static boolean `isBagPackerRunning` to be false. 
+The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
+`isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
+---
+#### Incorrect Command
+
+`IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
+These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
 
 ---
 
@@ -353,7 +393,7 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 | v2.1    | user     | save my packing list                           | keep track of my packing list even after leaving the app                     |
 | v2.1    | user     | see the list of items I have yet to pack       | easily track what I am missing                                               |
 | v2.1    | user     | edit the number of items i need to pack        | change my mind whenever I want                                               |
-
+| v2.1    | user     | fully pack or unpack an item                   | don't have to refer to how many of that item I need                          |
 
 
 ## Non-Functional Requirements
