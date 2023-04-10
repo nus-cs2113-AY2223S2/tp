@@ -1,5 +1,6 @@
 package seedu.mealcompanion.command.misc;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.recipe.RecipePossibleCommand;
@@ -12,19 +13,21 @@ import seedu.mealcompanion.recipe.Recipe;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //@@author ngyida
 class RecipePossibleCommandTest {
+    private static IngredientList ingredients = new IngredientList();
 
-    @Test
-    public void testHasEnoughIngredient_hasEnough() throws MealCompanionException {
-        RecipePossibleCommand command = new RecipePossibleCommand();
-        Ingredient water = new Ingredient("water", 100);
-        IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient("water", 100));
-        ingredients.add(new Ingredient("chicken", 5));
-        assertEquals(true, command.hasEnoughIngredient(water, ingredients));
+    @BeforeAll
+    static void createIngredients() {
+        try {
+            ingredients.add(new Ingredient("water", 100));
+            ingredients.add(new Ingredient("chicken", 5));
+        } catch (MealCompanionException e) {
+            System.out.println("Failed to initialise ingredient list");
+        }
     }
 
 
@@ -59,62 +62,55 @@ class RecipePossibleCommandTest {
         mealCompanionSession.getRecipes().add(eggSandwich);
     }
 
-    public void testHasEnoughIngredient_notEnough() throws MealCompanionException {
+    @Test
+    public void testHasEnoughIngredient_hasEnough_returnTrue() throws MealCompanionException {
+        RecipePossibleCommand command = new RecipePossibleCommand();
+        Ingredient water = new Ingredient("water", 100);
+        assertTrue(command.hasEnoughIngredient(water, ingredients));
+    }
+
+    @Test
+    public void testHasEnoughIngredient_notEnough_returnFalse() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
         Ingredient chicken = new Ingredient("chicken", 100);
-        IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient("water", 100));
-        ingredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.hasEnoughIngredient(chicken, ingredients));
+        assertFalse(command.hasEnoughIngredient(chicken, ingredients));
     }
 
     @Test
-    public void testHasEnoughIngredient_notFound() throws MealCompanionException {
+    public void testHasEnoughIngredient_notFound_returnFalse() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
         Ingredient salt = new Ingredient("salt", 1);
-        IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient("water", 100));
-        ingredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.hasEnoughIngredient(salt, ingredients));
+        assertFalse(command.hasEnoughIngredient(salt, ingredients));
     }
 
     @Test
-    public void testCanMakeRecipe_canMake() throws MealCompanionException {
+    public void testCanMakeRecipe_canMake_returnTrue() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100));
         Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
                 waterIngredients, new InstructionList());
-        IngredientList fridgeIngredients = new IngredientList();
-        fridgeIngredients.add(new Ingredient("water", 100));
-        fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(true, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        assertTrue(command.canMakeRecipe(cupOfWater, ingredients));
     }
 
     @Test
-    public void testCanMakeRecipe_notEnoughIngredient_cannotMake() throws MealCompanionException {
+    public void testCanMakeRecipe_notEnoughIngredient_returnFalse() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
-        waterIngredients.add(new Ingredient("water", 100));
+        waterIngredients.add(new Ingredient("water", 200));
         Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
                 waterIngredients, new InstructionList());
-        IngredientList fridgeIngredients = new IngredientList();
-        fridgeIngredients.add(new Ingredient("water", 90));
-        fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        assertFalse(command.canMakeRecipe(cupOfWater, ingredients));
     }
 
     @Test
-    public void testCanMakeRecipe_missingIngredient_cannotMake() throws MealCompanionException {
+    public void testCanMakeRecipe_missingIngredient_returnFalse() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
-        IngredientList waterIngredients = new IngredientList();
-        waterIngredients.add(new Ingredient("water", 100));
-        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
-                waterIngredients, new InstructionList());
-        IngredientList fridgeIngredients = new IngredientList();
-        fridgeIngredients.add(new Ingredient("apple", 9));
-        fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        IngredientList beefIngredients = new IngredientList();
+        beefIngredients.add(new Ingredient("Ground Beef", 2));
+        Recipe beef = new Recipe("Beef", false, 0, 0, 0,
+                beefIngredients, new InstructionList());
+        assertFalse(command.canMakeRecipe(beef, ingredients));
     }
 }
 

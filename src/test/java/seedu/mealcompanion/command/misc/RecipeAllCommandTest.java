@@ -1,43 +1,37 @@
 package seedu.mealcompanion.command.misc;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.recipe.RecipeAllCommand;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import seedu.mealcompanion.ingredient.IngredientList;
+import seedu.mealcompanion.recipe.InstructionList;
+import seedu.mealcompanion.recipe.Recipe;
+import seedu.mealcompanion.recipe.RecipeList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 //@@author ngyida
 class RecipeAllCommandTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
+    @Test
+    public void testGetRecipeNameList_noRecipe() {
+        RecipeList emptyRecipes = new RecipeList();
+        String predictedOutput = "There is no recipe available.";
+        RecipeAllCommand command = new RecipeAllCommand();
+        assertEquals(command.getAllRecipeNameList(emptyRecipes), predictedOutput);
     }
 
     @Test
-    public void testRecipeAll_hasRecipes() {
-        MealCompanionSession mealCompanionSession = new MealCompanionSession();
+    public void testGetRecipeNameList_twoRecipes() {
+        RecipeList twoRecipes = new RecipeList();
+        Recipe firstRecipe = new Recipe("Dummy Recipe 1", false, 0, 0, 0,
+                new IngredientList(), new InstructionList());
+        Recipe secondRecipe = new Recipe("Dummy Recipe 2", false, 0, 0, 0,
+                new IngredientList(), new InstructionList());
+        twoRecipes.add(firstRecipe);
+        twoRecipes.add(secondRecipe);
+        String predictedOutput = "Here is the full list of recipes:" + System.lineSeparator() + "1. Dummy Recipe 1"
+                + System.lineSeparator() + "2. Dummy Recipe 2" + System.lineSeparator();
         RecipeAllCommand command = new RecipeAllCommand();
-        command.execute(mealCompanionSession);
-        String predictedOutput = "There is no recipe available." + System.lineSeparator();
-        if (mealCompanionSession.getRecipes().isEmpty()) {
-            assertEquals(predictedOutput, outContent.toString());
-        } else {
-            assertNotEquals(predictedOutput, outContent.toString());
-        }
+        assertEquals(command.getAllRecipeNameList(twoRecipes), predictedOutput);
     }
 }
 

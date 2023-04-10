@@ -15,7 +15,6 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
      - [Clear Command](#clear-command)
    - [Recipes](#recipes)
      - [Make Command](#make-command)
-     - [Recipe Detail Command](#recipe-detail-command)
      - [Recipe Possible Command](#recipe-possible-command)
      - [Recipe All Command](#recipe-all-command)
      - [Recipe Almost Command](#recipe-almost-command)
@@ -169,7 +168,9 @@ Below shows the class diagram of how recipes are being stored in our program
 
 ![RecipeUML.png](images%2FRecipeUML.png)
 
-The current `MealCompanionSession` would keep track of the `RecipeList` which is an ArrayList of `Recipe` objects.
+The current `MealCompanionSession` would keep track of a `RecipeList` which is an ArrayList of `Recipe` objects.
+
+###### [Back to table of contents](#table-of-contents)
 
 ## Implementation
 
@@ -251,23 +252,7 @@ The following sequence diagram shows how the Make Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-#### Recipe Detail Command
-
-The recipe command is facilitated by `RecipeDetailCommand`. 
-
-It requires `RecipeList` of `MealCompanionSession`. 
-
-The recipe commands takes in either a recipe index or a recipe name as parameter. The latter is resolved into the recipe's corresponding index number.
-
-The `Recipe` is retrieved from `RecipeList` and its details are outputted.
-
-The following sequence diagram shows how the Recipe Detail Command works:
-
-![RecipeDetailCommandSequence.png](images%2FRecipeDetailCommandSequence.png)
-
-###### [Back to table of contents](#table-of-contents)
-
-#### Recipe Possible Command
+### Recipe Possible Command
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
 
@@ -277,11 +262,11 @@ Given below is the only example usage scenario and how the recipe possible comma
 
 Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
 
-Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList` and `IngredientList` of `MealCompanionSession`.
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`,`IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
 
 Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
 
-Step 4: `Recipe` that can be made are outputted.
+Step 4: `Recipe` that can be made are returned from getPossibleRecipes function.
 
 The following sequence diagram shows how the Recipe Possible Command works:
 
@@ -301,7 +286,7 @@ Step 1: User wants to get the full list of recipes stored in the program. User c
 
 Step 2: `RecipeAllCommand` executes by retrieving the `RecipeList` of `MealCompanionSession`.
 
-Step 3: Every `Recipe` in `RecipeList` is outputted.
+Step 3: Every `Recipe` in `RecipeList` is formatted then outputted.
 
 The following sequence diagram shows how the Recipe All Command works:
 
