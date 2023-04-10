@@ -68,10 +68,9 @@ faster than traditional Graphical User Interface(GUI) apps.
 
 3. Copy the file to the folder you want to use as the home folder for your WellNUS++.
 
-4. Open a command terminal, cd into the folder you put the .jar file in, and use
-   the `java -jar "[CS2113-T12-4][WellNUS++].jar"`
-5. 
-   command to run the application. A CLI should appear in a few seconds (shown below).
+4. Open a command terminal, cd into the folder you put the .jar file in, and run the command  
+  `java -jar "[CS2113-T12-4][WellNUS++].jar"` 
+   to run the application. A CLI should appear in a few seconds (shown below).
 
 ```
 ------------------------------------------------------------
