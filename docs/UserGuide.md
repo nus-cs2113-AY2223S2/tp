@@ -11,6 +11,8 @@ This helps with planning future exercises.
 - [Quick Start](#quick-start)
   - [Setting Up](setting-up)
   - [Viewing Help](viewing-help)
+  - [List of valid workout commands : /whelp](#list-valid-commands--help)
+  - [List of valid calorie commands : /chelp](#list-of-valid-commands--help)
 - [Features](#features)
   - [Workout Recorder](#workout-recorder)
       - [Start a workout: /wstart](#start-a-workout--wstart)
@@ -19,13 +21,12 @@ This helps with planning future exercises.
       - [View workout details: /wview](#view-a-workout--wview)
       - [Delete workout record: /wdelete](#delete-a-workout--wdelete)
       - [Count sets and reps for a week: /wcount](#count-sets-and-reps-over-a-week--wcount)
+      - [End current workout: /wend](#end-a-workout--wend)
   - [Calories Recorder](calories-recorder)
     - [Add calories consumed: /cadd](#add-calories-consumed--cadd)
     - [List all the datesof Calories consumed: /clist](#list-calories-clist)
     - [View calorie consumption: /cview](#view-calorie-consumption--cview)
     - [Delete calories record: /cdelete](#delete-a-workout--delete)
-  - [List of valid workout commands : /whelp](#list-valid-commands--help)
-  - [List of valid calorie commands : /chelp](#list-of-valid-commands--help)
   - [Exit the app: /exit](#exit-the-app--exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
@@ -103,7 +104,7 @@ Here are the list of commands that you can use for calories record:
 ## Features
 
 ### Start a workout: `/wstart`
-Starts the workout for a specific date
+Starts the workout for the current date
 
 Format: `/wstart WORKOUT_NAME`
 
@@ -124,8 +125,8 @@ Adds exercise to the current workout.
 Format: `/wadd EXERCISE_NAME WEIGHT_USED_WEIGHT_UNIT RPS`
 
 * `/wadd` only works after a workout is started with `/wstart`.
-* `WEIGHT_USED_WEIGHT_UNIT` example: 100kg or 100lb (the unit needs to be connected with the weight used)
-* `RPS` it means reps per set of an exercise it can be inputted in this format: 7 6 9
+* `WEIGHT_USED_WEIGHT_UNIT` example: 100kg or 100lb (the unit needs to be kg or lb and connected with the weight used)
+* `RPS` needs to be integers separated by a single whitespace
 
 Example of usage:
 
@@ -150,13 +151,12 @@ Example of usage:
 Expected output:
 ```
 Here is the list of dates of your workouts:
-1. 08/04/23 21/02/21 chest day
-2. 08/04/23 chest day
-3. 09/04/23 chest day
+1. 08/04/23 chest day
+2. 09/04/23 chest day
 =======================================
 ```
 ### View a workout: `/wview`
-Display the list of exercises done of a workout date.
+Display the list of exercises done for a specific workout date.
 
 Format: `/wview INDEX`
 
@@ -172,15 +172,15 @@ Here are the list of exercises for chest day on 09/04/23.
 =======================================
 ```
 ### Delete a workout: `/wdelete`
-Delete a workout on a specified date.
+Delete a specified workout based on `INDEX`.
 
-Format: `/delete INDEX`
+Format: `/wdelete INDEX`
 
 * `INDEX` is the number that is displayed when using the `/wlist` function
 
 Example of usage:
 
-`/delete 3`
+`/wdelete 3`
 
 Expected output:
 ```
@@ -207,6 +207,7 @@ Add record of calories consumed.
 Format: `/cadd DD/MM/YY FOOD_NAME CALORIE_COUNT`
 
 * `CALORIE_COUNT` can be omitted if food has not been added previously.
+* If user adds food that has been added previously with `CALORIE_COUNT`, the `CALORIE_COUNT` of said food will be updated
 
 Example of usage:
 `/cadd 11/02/23 chicken 100`
