@@ -58,6 +58,9 @@ public class Parser {
                 return new ParseSetBudget().setUserBudgetGoal(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
+                if(userInput.split(" ").length < 2) {
+                    throw new RainyDayException(ErrorMessage.WRONG_SHORTCUT_DELETE_NAME.toString());
+                }
                 return new ShortcutDeleteCommand(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_VIEW)) {
                 logger.info("view_shortcut command executing");
