@@ -37,6 +37,7 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 ### Project Management:
 - Updating the team when a new PR is merged to ensure everyone is on the same page.
 - Integration of different parts when a new feature is implemented.
+- Seting up milestone v2.1 and dividing issues among the team members.
 
 ### Documentation:
 - User Guide:
