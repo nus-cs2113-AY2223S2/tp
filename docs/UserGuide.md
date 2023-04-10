@@ -573,8 +573,6 @@ ______________________________________________________________________
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 * Add consultation :
   `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
@@ -593,7 +591,7 @@ ______________________________________________________________________
   `archive`
 
 * Remove appointment :
-  `remove uid`
+  `remove uid/UID`
 
 
 * find appointment by animal_type :
@@ -605,23 +603,23 @@ ______________________________________________________________________
 
 
 * find appointment by appointment_uID :
-`find aID/123`
+`find uid/UID`
 
 
 * Mark appointment :
-  `mark uID/UID `
+  `mark uid/UID `
 
 
 * UnMark appointment :
-  `unmark uID/UID`
+  `unmark uid/UID`
 
 * Edit Consultation :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
 * Edit Surgery :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
 
 * Edit vaccination :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
 
