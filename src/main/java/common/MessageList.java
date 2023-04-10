@@ -17,8 +17,8 @@ public class MessageList {
     public static final String SUCCESSFUL_ADD = "The following expense is successfully added:";
 
     public static final String TAB = "    ";
-    public static final String ACCOUNT_MESSAGE = "> Type \"login\" to start manage your expense. \n" +
-            "> Haven't got your account yet? Type \"signup\" to create your account. \n" +
+    public static final String ACCOUNT_MESSAGE = "> Type \"login\" to start managing your expense. \n" +
+            "> Haven't gotten your account yet? Type \"signup\" to create your account. \n" +
             "> Type \"exit\" to instantly terminate the program.";
 
     public static final String EXIT_MESSAGE = "Goodbye! Hope to see you again soon! \n";
@@ -31,7 +31,7 @@ public class MessageList {
      * This method is used to remind the user to use commandHelper the first time after they log in the software.
      */
     public static void welcomeHelper() {
-        System.out.println("You can type 'help' and press enter button to get the helper!");
+        System.out.println("You can type \"help\" and press enter to get the helper!");
     }
 
     public static void printLogo() {
