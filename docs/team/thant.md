@@ -48,7 +48,6 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 - Developer Guide:
   - Did the ```architecture``` section.
   - Did the design and implementation for ```purge``` and ```clear``` features
-  - Added the sequence diagram for the ```purge``` function
   - Added an editable class diagram powerpoint skeleton located at ```docs/tP Diagram Editable.pptx```
 
 
