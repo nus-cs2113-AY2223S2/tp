@@ -407,7 +407,7 @@ Example of usage:
 Expected output:
 
 ```
-Overview for JUNE 2021
+-------------Monthly Overview for JUNE 2021-------------
 
     Total expenses: 80.55 SGD
 
@@ -419,6 +419,7 @@ Overview for JUNE 2021
     ----------------------------
      travel 10.00 SGD
     ----------------------------
+----------------------------END----------------------------
 ```
 
 **Yearly overview**
@@ -435,7 +436,7 @@ Example of usage:
 
 Expected output:
 ```
-Yearly Overview for 2022
+-------Yearly Overview for 2022-------
 
     Total expenses: 35.66 SGD
 
@@ -465,6 +466,7 @@ Yearly Overview for 2022
     ----------------------------
      DECEMBER 0.00 SGD
     ----------------------------
+-----------------END-----------------
 ```
 
 ### Exiting the program (inside the account): `exit`
