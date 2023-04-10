@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+activate ":AddCommand"
+
+    ":AddCommand" -> ":CompanyList": execute()
+    activate ":CompanyList"
+        ":CompanyList"-> ":CompanyList": add()
+        activate ":CompanyListEncoder"
+
+                ":AddCommand" -> ":CompanyListEncoder" : execute()
+
+            ":CompanyListEncoder" -> ":CompanyListEncoder" : write()
+
+    deactivate ":CompanyListEncoder"
+    deactivate ":CompanyList"
+    deactivate ":AddCommand"
+
+
+@enduml
