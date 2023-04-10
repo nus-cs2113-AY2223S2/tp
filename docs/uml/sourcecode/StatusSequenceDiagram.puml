@@ -1,0 +1,82 @@
+@startuml
+participant User
+participant ":Ui" as Ui
+
+box "Logic" #LightBlue
+participant ":LogicManager" as LogicManager
+participant ":Parser" as Parser
+participant "command:StatusCommand" as StatusCommand
+participant "result:CommandResult" as CommandResult
+end box
+
+box "Model" #LightPink
+participant ":ModelManager" as ModelManager
+end box
+
+box "Utils" #LightGrey
+participant ":Module Retriever" as ModuleRetriever
+participant ":MCsTaken" as MCsTaken
+end box
+
+User -> Ui: getUserCommand() "status"
+activate Ui
+
+Ui -> LogicManager: getCommand()
+activate LogicManager
+
+LogicManager -> Parser: parseCommand()
+activate Parser
+Parser -> LogicManager: status command
+deactivate Parser
+
+LogicManager -> "StatusCommand" : execute()
+activate "StatusCommand"
+
+"StatusCommand" -> ModelManager: getUserName()
+activate ModelManager
+ModelManager -> "StatusCommand": name
+"StatusCommand" -> ModelManager: getUserCourse()
+ModelManager -> "StatusCommand": course
+"StatusCommand" -> ModelManager: getTakenCoreMods()
+ModelManager -> "StatusCommand": takenCoreMods
+"StatusCommand" -> ModelManager: getUntakenCoreMods()
+ModelManager -> "StatusCommand": untakenCoreMods
+deactivate ModelManager
+
+
+"StatusCommand" -> MCsTaken: getNumberOfMCsTaken()
+activate MCsTaken
+MCsTaken -> "StatusCommand": total MCs taken
+deactivate MCsTaken
+
+"StatusCommand" -> ModelManager: getNumberOfCoreMCsTaken()
+activate ModelManager
+ModelManager -> "StatusCommand": number of core module MCs taken
+deactivate ModelManager
+
+loop For each Module Code
+    "StatusCommand" -> ModuleRetriever: moduleDetailsString()
+    activate ModuleRetriever
+    ModuleRetriever -> "StatusCommand": moduleDetailsString
+    deactivate ModuleRetriever
+end
+
+
+create CommandResult
+"StatusCommand" -> CommandResult
+activate CommandResult
+CommandResult --> "StatusCommand"
+deactivate CommandResult
+destroy CommandResult
+
+"StatusCommand" -> LogicManager: result
+deactivate "StatusCommand"
+destroy "StatusCommand"
+
+LogicManager -> Ui: printResult()
+deactivate "LogicManager"
+
+
+Ui -> User
+
+@enduml

@@ -1,0 +1,123 @@
+@startuml
+participant User
+participant ":Ui" as Ui
+
+box "Logic" #LightBlue
+participant ":LogicManager" as LogicManager
+participant ":Parser" as Parser
+participant "command: DetailsCommand" as DetailsCommand
+box "Commons"
+participant ":DetailsCompiler" as DetailsCompiler
+participant ":ModuleRetriever" as ModuleRetriever
+end box
+participant "result: CommandResult" as CommandResult
+end box
+
+box "Model" #LightPink
+
+end box
+
+
+User -> Ui: getUserCommand() "details CS2113"
+activate Ui
+
+Ui -> LogicManager: getCommand()
+activate LogicManager
+
+LogicManager -> Parser: parseCommand()
+activate Parser
+
+create DetailsCommand
+Parser -> DetailsCommand
+activate DetailsCommand
+
+DetailsCommand --> Parser: command
+deactivate DetailsCommand
+
+Parser --> LogicManager: command
+deactivate Parser
+
+
+LogicManager -> DetailsCommand: execute()
+activate DetailsCommand
+
+
+
+
+
+
+DetailsCommand -> DetailsCompiler: getDetails('CS2113')
+activate DetailsCompiler
+
+DetailsCompiler -> ModuleRetriever: isValidMod('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: boolean value
+deactivate ModuleRetriever
+
+DetailsCompiler -> ModuleRetriever: getTitle2223('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: title
+deactivate ModuleRetriever
+
+DetailsCompiler -> ModuleRetriever: getDescription('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: description
+deactivate ModuleRetriever
+
+
+DetailsCompiler -> ModuleRetriever: getPrerequisite('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: prereqs
+deactivate ModuleRetriever
+
+
+DetailsCompiler -> ModuleRetriever: getModuleCredit2223('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: credits
+deactivate ModuleRetriever
+
+DetailsCompiler -> ModuleRetriever: getSUstatus('CS2113')
+activate ModuleRetriever
+ModuleRetriever -> ModuleRetriever: getData2223('CS2113')
+activate ModuleRetriever
+deactivate ModuleRetriever
+ModuleRetriever --> DetailsCompiler: suStatus
+deactivate ModuleRetriever
+
+DetailsCompiler -> DetailsCommand: result
+deactivate DetailsCompiler
+
+create CommandResult
+DetailsCommand -> CommandResult
+activate CommandResult
+CommandResult --> DetailsCommand
+deactivate CommandResult
+destroy CommandResult
+
+DetailsCommand --> LogicManager: result
+deactivate DetailsCommand
+destroy DetailsCommand
+
+LogicManager --> Ui: printResult()
+deactivate LogicManager
+
+Ui --> User
+deactivate Ui
+
+
+@enduml

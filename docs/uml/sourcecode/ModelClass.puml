@@ -1,0 +1,21 @@
+@startuml
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+package Model{
+    class ModelManager
+    class ModuleList
+    class User
+    class Module
+}
+
+Class Storage #FFFFFF
+Storage ..> ModelManager: core module details >
+
+ModelManager -> "1" ModuleList
+ModelManager --> "1" User
+ModuleList --> "*" Module
+
+
+@enduml
