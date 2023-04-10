@@ -3,9 +3,15 @@ package seedu.badmaths.matrix.exception;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class prints the corresponding exception message.
+ */
 public class ExceptionPrinter {
     Logger logger = Logger.getLogger("exception");
 
+    /**
+     * Print the exception message of ShapeMismatchException.
+     */
     public void printShapeMismatchExceptionLog() {
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
@@ -15,6 +21,9 @@ public class ExceptionPrinter {
         logger.log(Level.WARNING, "shape mismatch occur.");
     }
 
+    /**
+     * Print the exception message of UnknownOperatorException.
+     */
     public void printUnknownOperatorExceptionLog() {
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
@@ -24,6 +33,9 @@ public class ExceptionPrinter {
         logger.log(Level.WARNING, "Unknown operator.");
     }
 
+    /**
+     * Print the exception message of MatrixShapeException.
+     */
     public void printMatrixShapeExceptionLog(){
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
@@ -33,6 +45,9 @@ public class ExceptionPrinter {
         logger.log(Level.WARNING, "shape of matrix is not correct.");
     }
 
+    /**
+     * Print the exception message of MatrixFormatException.
+     */
     public void printMatrixFormatExceptionLog(){
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
@@ -42,6 +57,9 @@ public class ExceptionPrinter {
         logger.log(Level.WARNING, "Format of matrix is not correct.");
     }
 
+    /**
+     * Print the exception message of NumericFormatException.
+     */
     public void printMatrixNumericExceptionLog(){
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
