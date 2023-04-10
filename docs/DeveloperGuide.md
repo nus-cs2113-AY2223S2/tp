@@ -23,9 +23,10 @@
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
 4. [User Stories](#user-stories)
-5. [Non-Functional Requirements](#non-functional-requirements)
-6. [Glossary](#glossary)
-7. [Instructions for manual testing](#instructions-for-manual-testing)
+5. [Future Implementations](#futurepossible-implementations)
+6. [Non-Functional Requirements](#non-functional-requirements)
+7. [Glossary](#glossary)
+8. [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
