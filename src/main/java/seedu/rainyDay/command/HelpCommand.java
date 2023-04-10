@@ -33,7 +33,7 @@ public class HelpCommand extends Command {
             "| Details       | Requirement | Description                                                          |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
-            "| <DESCRIPTION> | Mandatory   | Used to describe the entry. Description will be left blank if omitted|\n" +
+            "| <DESCRIPTION> | Mandatory   | Used to describe the entry.                                          |\n" +
             "| $<VALUE>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
             "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +

@@ -32,6 +32,7 @@ public enum ErrorMessage {
             "Please refer to 'help' for more information!"),
     WRONG_EDIT_INDEX("Sorry, your edit command is invalid. Please ensure [INDEX] is a number " +
             "and is within the boundary > 0 and <= %s"),
+    WRONG_SHORTCUT_DELETE_NAME("Please indicate a shortcut name to delete"),
     WRONG_SET_BUDGET_FORMAT("Sorry, your setbudget command is invalid. setbudget format is as follows: \n" +
             "setbudget [VALUE] \n" +
             "Please refer to 'help' for more information!"),
