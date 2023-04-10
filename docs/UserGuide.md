@@ -103,7 +103,11 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * Head over to [NUSMods](www.nusmods.com)
 * Find the class and slot that you want
 * For example, user wants to take these 3 slots:
-![NUSModsEG.png](NUSModsEG.png)
+
+<p align = "center">
+<img src="NUSModsEG.png" style="zoom:60%;" >
+</p>
+
 > `MODULECODE`: Module code
 > 
 >`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
