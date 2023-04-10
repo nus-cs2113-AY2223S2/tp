@@ -91,15 +91,15 @@ public class Card {
     @Override
     public String toString() {
         return "\t[" + this.uuid + "]\n" +
-                "\tQn:  " + this.question +
-                "\n\tAns:  " + this.answer + "\n";
+                "\tQn:\t\t\t" + this.question +
+                "\n\tAns:\t\t" + this.answer + "\n";
     }
 
     public String toTruncatedString() {
         boolean isQnTooLong = this.question.length() > 50;
         boolean isAnsTooLong = this.answer.length() > 50;
 
-        String uuidStr = "\t\t[" + this.uuid + "]";
+        String uuidStr = "\t[" + this.uuid + "]";
         String warningStr =
                 (isQnTooLong || isAnsTooLong) ? "\n\tNote:\tActual question or answer is too long, string truncated"
                         : "";
@@ -107,6 +107,6 @@ public class Card {
         String questionStr = isQnTooLong ? this.question.substring(0, 50) : this.question;
         String answerStr = isAnsTooLong ? this.answer.substring(0, 50) : this.answer;
 
-        return uuidStr + "\n\tQn:\t\t" + questionStr + "\n\tAns:\t" + answerStr + warningStr + "\n";
+        return uuidStr + "\n\tQn:\t\t\t" + questionStr + "\n\tAns:\t\t" + answerStr + warningStr + "\n";
     }
 }
