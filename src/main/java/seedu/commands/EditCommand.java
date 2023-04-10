@@ -54,7 +54,6 @@ public class EditCommand extends Command {
             editExpenditure(editedExpenditure, isLendOrBorrowExpenditure);
             handleLumpSumExpenditure(editedExpenditure, isLendOrBorrowExpenditure);
             handleLendBorrowExpenditure(editedExpenditure);
-            ExceptionChecker.checkDate(fetchDate(isLendOrBorrowExpenditure), fetchDeadline());
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
         } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException | NumberFormatException s) {
             return new CommandResult(ERROR_LACK_OF_PARAMETERS_MESSAGE.toString());
@@ -62,8 +61,8 @@ public class EditCommand extends Command {
             return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
         } catch (NotPositiveValueException p) {
             return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
-        } catch (InvalidDeadlineException | InvalidDateException | SmallAmountException | InvalidCharacterInAmount
-                | DateLimitException e) {
+        } catch (SmallAmountException | InvalidCharacterInAmount
+                | DateLimitException | InvalidDeadlineException | InvalidDateException e) {
             return new CommandResult(e.getMessage());
         }
     }
@@ -98,7 +97,8 @@ public class EditCommand extends Command {
     /**
      * @author TzeLoong
      */
-    public void handleLendBorrowExpenditure(Expenditure editedExpenditure) throws EmptyStringException {
+    public void handleLendBorrowExpenditure(Expenditure editedExpenditure) throws EmptyStringException,
+            StringIndexOutOfBoundsException, DateTimeParseException, InvalidDateException, InvalidDeadlineException {
         if (editedExpenditure instanceof LendExpenditure) {
             String name = fetchName();
             LocalDate deadline = fetchDeadline();
@@ -150,8 +150,12 @@ public class EditCommand extends Command {
 
     public LocalDate fetchDeadline()
             throws EmptyStringException, StringIndexOutOfBoundsException,
-            DateTimeParseException {
-        String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
-        return LocalDate.parse(deadline);
+            DateTimeParseException, InvalidDateException, InvalidDeadlineException {
+        String deadlineVal = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
+        LocalDate deadline = LocalDate.parse(deadlineVal);
+        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, NSLASH);
+        LocalDate date = LocalDate.parse(dateVal);
+        ExceptionChecker.checkDate(date, deadline);
+        return deadline;
     }
 }

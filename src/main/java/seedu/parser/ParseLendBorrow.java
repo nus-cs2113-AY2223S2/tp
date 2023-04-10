@@ -57,12 +57,12 @@ public class ParseLendBorrow {
 
             // Differentiates between lend and borrow
             switch (command) {
-                case LendExpenditureCommand.COMMAND_WORD:
-                    return new LendExpenditureCommand(descriptionVal, name, amount, date, deadline);
-                case BorrowExpenditureCommand.COMMAND_WORD:
-                    return new BorrowExpenditureCommand(descriptionVal, name, amount, date, deadline);
-                default:
-                    return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
+            case LendExpenditureCommand.COMMAND_WORD:
+                return new LendExpenditureCommand(descriptionVal, name, amount, date, deadline);
+            case BorrowExpenditureCommand.COMMAND_WORD:
+                return new BorrowExpenditureCommand(descriptionVal, name, amount, date, deadline);
+            default:
+                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }
 
         } catch (DateTimeParseException d) {
