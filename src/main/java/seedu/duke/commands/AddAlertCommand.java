@@ -51,6 +51,7 @@ public class AddAlertCommand extends Command  {
         } else {
             assert false: Ui.printInvalidAlertType();
         }
+
     }
 
     /**
@@ -61,8 +62,9 @@ public class AddAlertCommand extends Command  {
             if (isMinValueValid(alert.getStock(), alert.getUpc(), alertList.getMaxAlertUpcs())) {
                 alertList.setMinAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
-                SessionManager.writeSession(alertList);
-
+                if(SessionManager.getAutoSave()){
+                    SessionManager.writeSession(alertList);
+                }
                 alertList.checkAlerts(alert.getUpc(), inventory.getUpcCodes().get(alert.getUpc()).getName(),
                         inventory.getUpcCodes().get(alert.getUpc()).getQuantity());
 
@@ -83,8 +85,9 @@ public class AddAlertCommand extends Command  {
             if (isMaxValueValid(alert.getStock(), alert.getUpc(), alertList.getMinAlertUpcs())) {
                 alertList.setMaxAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
-                SessionManager.writeSession(alertList);
-
+                if(SessionManager.getAutoSave()){
+                    SessionManager.writeSession(alertList);
+                }
                 alertList.checkAlerts(alert.getUpc(), inventory.getUpcCodes().get(alert.getUpc()).getName(),
                         inventory.getUpcCodes().get(alert.getUpc()).getQuantity());
             } else {
