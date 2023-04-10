@@ -86,6 +86,7 @@ it in the type of ExpenseList.
 - `Storage#checkValidExpenseList(expenses, filePath)` -- Checking if the expenseList read from the json file is valid,
 which helps to detect any data changes in the file or file corruption.
 Given below is an example usage of the feature. 
+
 ![](diagrams/LoginFeature.png)
 
 Step 1. The user executes `login` command to log in to his / her account. `Duke` then calls `ParserAccount#initialize()`
