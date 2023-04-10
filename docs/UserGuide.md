@@ -116,7 +116,9 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 chest day started on 09/04/23.
+=======================================
 ```
 
 ### Add exercises to current workout: `/wadd`
@@ -136,7 +138,9 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 chest press 100kg 7 6 5 has been added.
+=======================================
 ```
 
 ### List workout dates: `/wlist`
@@ -150,6 +154,7 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 Here is the list of dates of your workouts:
 1. 08/04/23 chest day
 2. 09/04/23 chest day
@@ -169,6 +174,7 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 Here are the list of exercises for chest day on 09/04/23.
 1. chest press 100kg 7 6 5
 =======================================
@@ -187,7 +193,9 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 Deleted chest day on 09/04/23.
+=======================================
 ```
 ### End a workout: `/wend`
 End a current workout
@@ -198,6 +206,12 @@ Example of usage:
 
 `/wend`
 
+Expected output:
+```
+=======================================
+Great job completing your workout!
+=======================================
+```
 
 ### Count sets and reps over a week: `/wcount`
 Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
@@ -212,7 +226,10 @@ Example of usage:
 
 Expected output:
 ```
-Great job completing your workout!
+=======================================
+Information of exercises for the week of 09/04/23
+Name: leg press, sets: 3, rps:22
+=======================================
 ```
 ### Add calories consumed: `/cadd`
 Add record of calories consumed.
@@ -221,13 +238,16 @@ Format: `/cadd DD/MM/YY FOOD_NAME CALORIE_COUNT`
 
 * `CALORIE_COUNT` can be omitted if food has not been added previously.
 * If user adds food that has been added previously with `CALORIE_COUNT`, the `CALORIE_COUNT` of said food will be updated
+* `DD/MM/YY` must be a current or past date, it cannot be a future date.
 
 Example of usage:
 `/cadd 11/02/23 chicken 100`
 
 Expected output:
 ```
+=======================================
 Added chicken(100 kcal) to 11/02/23.
+=======================================
 ```
 ### View calorie consumption: `/clist`
 Display the list of dates and total calorie consumption.
@@ -239,6 +259,7 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 Here is your list of daily calorie consumption: 
 1. 11/02/23: 100kcal
 =======================================
@@ -248,13 +269,14 @@ View the total calorie consumption in a specified date.
 
 Format: `/cview DD/MM/YY`
 
-* DD
+* `DD/MM/YY` must be a current or past date, it cannot be a future date.
 
 Example of usage:
 `/cview 11/02/23`
 
 Expected output:
 ```
+=======================================
 Here are the foods consumed on 11/02/23:
 1. chicken - 100kcal
 =======================================
@@ -270,6 +292,7 @@ Example of usage:
 
 Expected output:
 ```
+=======================================
 Thank you, hope you had a great workout!!!
 =======================================
 ```
