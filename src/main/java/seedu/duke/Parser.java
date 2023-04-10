@@ -31,6 +31,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Parser has a Singleton Design Pattern
+ */
 public class Parser {
     private static UI ui = UI.getUiOneInstance();
     private static Parser instance = null;
@@ -45,6 +48,19 @@ public class Parser {
         return instance;
     }
 
+    /**
+     * Parses user input and returns the appropriate Command object based on the user input.
+     *
+     * @param userInput The command input provided by the user in the form of a string.
+     * @param universities An ArrayList of University containing all the Partner Universities.
+     * @param modules An ArrayList of Module containing the saved current list of modules.
+     * @param puModules An ArrayList of Module containing all the modules of the Partner Universities.
+     * @param moduleStorage A ModuleStorage object to store and manage current module list-related information
+     * @param deadlineStorage A DeadlineStorage object to store and manage deadline-related information.
+     * @param budgetPlanner  A BudgetPlanner object to store and manage budget-related information.
+     * @param deadlines An ArrayList of Deadline containing the added/saved deadlines.
+     * @return
+     */
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                     ArrayList<Module> puModules, ModuleStorage moduleStorage,
                                     DeadlineStorage deadlineStorage, BudgetPlanner budgetPlanner,
@@ -95,18 +111,34 @@ public class Parser {
         }
     }
 
+    /**
+     * Throws an InvalidCommandException when the user input is more than 3 words
+     * @param userInputWords ArrayList of string containing the words of user input
+     * @throws InvalidCommandException If the user input does not match any valid list command.
+     */
     private void userInput3WordsException(ArrayList<String> userInputWords) throws InvalidCommandException {
         if (userInputWords.size() >= 3) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
     }
 
+    /**
+     * Throws an InvalidCommandException when the user input is more than 2 words
+     * @param userInputWords ArrayList of string containing the words of user input
+     * @throws InvalidCommandException If the user input does not match any valid list command.
+     */
     private void userInput2WordsException(ArrayList<String> userInputWords) throws InvalidCommandException {
         if (userInputWords.size() >= 2) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
     }
 
+    /**
+     * Replace all the extra white spaces with a single white space and tokenizes the user input into ArrayList of
+     * strings with a max size of 3.
+     * @param userInput The String of user input
+     * @return commandWords The ArrayList of String containing the command words inputted by the user
+     */
     private static ArrayList<String> parseCommand(String userInput) {
         ArrayList<String> commandWords = new ArrayList<String>();
         String commandInput = userInput.replaceAll("\\s+", " ");
@@ -119,6 +151,15 @@ public class Parser {
         return commandWords;
     }
 
+    /**
+     * Prepare to call the handleListCommands() if size of userInputWords is more than 1, otherwise it will throw
+     * InvalidCommandException.
+     * @param userInputWords ArrayList of string containing the command words of user input
+     * @param universities An ArrayList of University containing all the Partner Universities.
+     * @param modules An ArrayList of Module containing the saved current list of modules.
+     * @return handleListCommands()
+     * @throws InvalidCommandException If the user input does not match any valid list command.
+     */
     private Command prepareListCommands(ArrayList<String> userInputWords, ArrayList<University> universities,
                                         ArrayList<Module> modules) {
         try {
@@ -133,6 +174,17 @@ public class Parser {
         }
     }
 
+    /**
+     * Reads in the second command keyword and instantiates its respective Commands: ListPuCommand() or
+     * ListCurrentCommand() or prepareListPuModulesCommand() using the switch-case statements, otherwise it will
+     * throw and catch InvalidCommandException.
+     * @param userInputWords ArrayList of string containing the command words of user input
+     * @param userCommandSecondKeyword The string containing the second keyword
+     * @param universities An ArrayList of University containing all the Partner Universities.
+     * @param modules An ArrayList of Module containing the saved current list of modules.
+     * @return ListPuCommand() or ListCurrentCommand() or prepareListPuModulesCommand()
+     * @throws InvalidCommandException If the user input does not match any valid list command.
+     */
     private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
                                        ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
@@ -157,6 +209,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the search command with creating a new ArrayList of Module foundModulesToPrint and a string
+     * searchModCode before calling handleSearchByNusModCode().
+     * @param nusModCode String containing the specific Nus Module Code to search by inputted by user.
+     * @param allModules An ArrayList of Module containing all the modules of the Partner Universities.
+     * @param universities ArrayList of University containing all the Partner Universities details.
+     * @return handleSearchByNusModCode()
+     */
     private Command prepareSearchByNusModCode(String nusModCode, ArrayList<Module> allModules,
                                               ArrayList<University> universities) {
         String searchModCode = nusModCode;
@@ -168,6 +228,16 @@ public class Parser {
         }
     }
 
+    /**
+     * Reads in the String searchModCode and instantiates its respective Commands objects: ListMappableNusModsCommand()
+     * or ListFoundNusModsCommand().
+     * @param foundModulesToPrint Arraylist of Module containing all the mappable Partner Universities modules.
+     * @param searchModCode String containing the specific Nus Module Code to search by inputted by user.
+     * @param allModules An ArrayList of Module containing all the modules of the Partner Universities.
+     * @param universities ArrayList of University containing all the Partner Universities details.
+     * @return ListMappableNusModsCommand() or ListFoundNusModsCommand()
+     * @throws InvalidModuleException
+     */
     private Command handleSearchByNusModCode(ArrayList<Module> foundModulesToPrint, String searchModCode,
                                              ArrayList<Module> allModules, ArrayList<University> universities)
             throws InvalidModuleException {
