@@ -6,11 +6,14 @@ import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.PassedDateException;
+import seedu.todolist.model.Priority;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,17 +24,14 @@ class ParserUtilTest {
     @Test
     void parseIdTest() {
         // Invalid ids should throw an exception
-        final String invalid_ids = "2.5 abc";
-        assertThrows(InvalidIdException.class, () -> ParserUtil.parseId(invalid_ids));
+        final String invalidIds = "2.5 abc";
+        assertThrows(InvalidIdException.class, () -> ParserUtil.parseId(invalidIds));
 
         // Valid ids get parsed successfully
-        final String valid_ids = "3 17 84725";
-        HashSet<Integer> validIdHashSet = new HashSet<Integer>();
-        validIdHashSet.add(3);
-        validIdHashSet.add(17);
-        validIdHashSet.add(84725);
+        final String validIds = "3 17 84725";
+        final HashSet<Integer> validIdHashSet = new HashSet<>(Arrays.asList(3, 17, 84725));
         try {
-            assertEquals(ParserUtil.parseId(valid_ids), validIdHashSet);
+            assertEquals(ParserUtil.parseId(validIds), validIdHashSet);
         } catch (InvalidIdException e) {
             fail("Valid id was not successfully parsed.");
         }
@@ -40,17 +40,17 @@ class ParserUtilTest {
     @Test
     void parseDeadlineTest() {
         // Invalid dates should throw an exception
-        final String[] invalid_deadlines = {"30/02/2023 16:40", "lalala", "10-50-2032 22:06", ""};
-        for (String invalidDeadline : invalid_deadlines) {
+        final String[] invalidDeadlines = {"30/02/2023 16:40", "lalala", "10-50-2032 22:06", ""};
+        for (String invalidDeadline : invalidDeadlines) {
             assertThrows(InvalidDateException.class, () -> ParserUtil.parseDeadline(invalidDeadline));
         }
 
         // Valid dates get parsed successfully
         final LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        final LocalDateTime[] valid_deadlines = {now.plusDays(1), now.plusYears(10)};
+        final LocalDateTime[] validDeadlines = {now.plusDays(1), now.plusYears(10)};
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1);
         try {
-            for (LocalDateTime validDeadline : valid_deadlines) {
+            for (LocalDateTime validDeadline : validDeadlines) {
                 assertEquals(ParserUtil.parseDeadline(validDeadline.format(inputFormatter)), validDeadline);
             }
         } catch (InvalidDateException e) {
@@ -63,15 +63,15 @@ class ParserUtilTest {
     @Test
     void parseEmailTest() {
         // Invalid emails should throw an exception
-        final String[] invalid_emails = {"a@b@c@d.com", "example.com", "hello", "", "where@how"};
-        for (String invalidEmail : invalid_emails) {
+        final String[] invalidEmails = {"a@b@c@d.com", "example.com", "hello", "", "where@how"};
+        for (String invalidEmail : invalidEmails) {
             assertThrows(InvalidEmailFormatException.class, () -> ParserUtil.parseEmail(invalidEmail));
         }
 
         // Valid emails get parsed successfully
-        final String[] valid_emails = {"xyz@xyz.com", "Idk@lalala.com", "legit@gmail.com"};
+        final String[] validEmails = {"xyz@xyz.com", "Idk@lalala.com", "legit@gmail.com"};
         try {
-            for (String validEmail : valid_emails) {
+            for (String validEmail : validEmails) {
                 assertEquals(ParserUtil.parseEmail(validEmail), validEmail);
             }
         } catch (InvalidEmailFormatException e) {
@@ -80,26 +80,26 @@ class ParserUtilTest {
     }
 
     @Test
-    void parseRepeatDurationTest() {
+    void parseRepeatTimesTest() {
         // Invalid repeat durations should throw an exception
-        final String[] invalid_durations = {"$^8g", "1.36", "vb 2s"};
-        for (String invalidDuration : invalid_durations) {
+        final String[] invalidDurations = {"$^8g", "1.36", "vb 2s"};
+        for (String invalidDuration : invalidDurations) {
             assertThrows(InvalidDurationException.class,
-                    () -> ParserUtil.parseRepeatDuration(invalidDuration, LocalDateTime.now()));
+                    () -> ParserUtil.parseRepeatTimes(invalidDuration, LocalDateTime.now()));
         }
 
         // If repeat duration is not provided, it should default to 0
         try {
-            assertEquals(ParserUtil.parseRepeatDuration(null, LocalDateTime.now()), 0);
+            assertEquals(ParserUtil.parseRepeatTimes(null, LocalDateTime.now()), 0);
         } catch (InvalidDateException | InvalidDurationException e) {
             fail("Missing repeat duration was not automatically parsed as 0.");
         }
 
         // Valid repeat durations get parsed successfully
-        final int[] valid_durations = {3, 17, 84725};
+        final int[] validDurations = {3, 17, 84725};
         try {
-            for (int validDuration : valid_durations) {
-                assertEquals(ParserUtil.parseRepeatDuration(Integer.toString(validDuration),
+            for (int validDuration : validDurations) {
+                assertEquals(ParserUtil.parseRepeatTimes(Integer.toString(validDuration),
                         LocalDateTime.now()), validDuration);
             }
         } catch (InvalidDateException | InvalidDurationException e) {
@@ -107,9 +107,31 @@ class ParserUtilTest {
         }
 
         // Missing deadline should throw an exception
-        for (int validDuration : valid_durations) {
+        for (int validDuration : validDurations) {
             assertThrows(InvalidDateException.class,
-                    () -> ParserUtil.parseRepeatDuration(Integer.toString(validDuration), null));
+                    () -> ParserUtil.parseRepeatTimes(Integer.toString(validDuration), null));
+        }
+    }
+
+    @Test
+    void parsePriorityTest() {
+        // Invalid priority levels should throw an exception
+        final String[] invalidPriorities = {"4", "1.2", "hello", "?]|"};
+        for (String invalidPriority : invalidPriorities) {
+            assertThrows(InvalidPriorityException.class, () -> ParserUtil.parsePriority(invalidPriority));
+        }
+
+        try {
+            // No priority provided gets converted to priority level None
+            assertEquals(ParserUtil.parsePriority(null), Priority.NONE);
+
+            // Valid priority levels get parsed successfully
+            assertEquals(ParserUtil.parsePriority("0"), Priority.NONE);
+            assertEquals(ParserUtil.parsePriority("1"), Priority.LOW);
+            assertEquals(ParserUtil.parsePriority("2"), Priority.MEDIUM);
+            assertEquals(ParserUtil.parsePriority("3"), Priority.HIGH);
+        } catch (InvalidPriorityException e) {
+            fail("Valid priority level was not successfully parsed.");
         }
     }
 }

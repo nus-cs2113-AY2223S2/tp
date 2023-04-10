@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 @startuml
 !include Style.puml
 
@@ -11,7 +12,6 @@ box Logic COLOR_LOGIC_LIGHT
 participant ":Parser" as Parser COLOR_LOGIC
 participant ":ExitCommand" as ExitCommand COLOR_LOGIC
 end box
-
 
 box Ui COLOR_UI_LIGHT
 participant ":Ui" as Ui COLOR_UI

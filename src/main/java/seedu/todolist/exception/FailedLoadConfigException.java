@@ -5,6 +5,6 @@ import seedu.todolist.constants.Errors;
 
 public class FailedLoadConfigException extends ToDoListException {
     public FailedLoadConfigException() {
-        super(Errors.FAILED_CONFIG_LOAD);
+        super(Errors.FAILED_LOAD_CONFIG);
     }
 }

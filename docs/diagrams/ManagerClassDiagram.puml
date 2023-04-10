@@ -8,14 +8,19 @@ package Logic <<Rectangle>> {
 class Parser COLOR_LOGIC
 class "{abstract}\nCommand" as Command COLOR_LOGIC
 }
+package "\t\t\t\tModel" <<Rectangle>> {
 class TaskList COLOR_TASK_LIST
+class Config COLOR_TASK_LIST
+}
 class Storage COLOR_STORAGE
 
-ToDoListManager -d-> "\t\t1" Ui : creates >
-ToDoListManager -d-> "\t1" Parser : creates >
+ToDoListManager -l-> "1\t" Ui : creates >
+ToDoListManager -u-> "\t1" Parser : creates >
 ToDoListManager -d-> "\t\t1" TaskList : creates >
-ToDoListManager -d-> "\t1" Storage : creates >
+ToDoListManager -d-> "\t\t1" Config : creates >
+ToDoListManager -d-> "1" Storage : creates\t >
 ToDoListManager .d.> Command : executes >
 Parser .r.> Command
-Storage .r> TaskList
+Storage .u.> TaskList
+Storage .u.> Config
 @enduml

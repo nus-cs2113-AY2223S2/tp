@@ -1,5 +1,5 @@
 add do math homework -due 20/04/3023 23:59
-add laundry -due 18/04/3023 16:30
+add laundry -due 18/04/3023 16:30 -prio 2
 list
 mark 1
 delete 2

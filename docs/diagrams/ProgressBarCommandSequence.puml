@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 @startuml
 !include Style.puml
 
@@ -34,16 +35,20 @@ deactivate Parser
 ToDoListManager -> ProgressBarCommand : execute(taskList, ui)
 activate ProgressBarCommand
 
-ProgressBarCommand -> TaskList: countTasksWithFilter(inThisWeek)
+ProgressBarCommand -> TaskList: size(inThisWeek)
 activate TaskList
 TaskList --> ProgressBarCommand : tasksThisWeek
-ProgressBarCommand -> TaskList: countTasksWithFilter(inThisWeek.and(Task.isDonePredicate()))
+deactivate TaskList
+ProgressBarCommand -> TaskList: size(inThisWeek.and(Task.isDonePredicate()))
+activate TaskList
 TaskList --> ProgressBarCommand : completedTasksThisWeek
+deactivate TaskList
 ProgressBarCommand -> TaskList: toString(inThisWeek)
-TaskList --> ProgressBarCommand
+activate TaskList
+TaskList --> ProgressBarCommand : taskListString
 deactivate TaskList
 
-ProgressBarCommand -> Ui : printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskList.toString(inThisWeek))
+ProgressBarCommand -> Ui : printProgressBar(...)
 activate Ui
 Ui --> ProgressBarCommand
 deactivate Ui
