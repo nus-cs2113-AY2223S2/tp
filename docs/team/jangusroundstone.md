@@ -13,7 +13,8 @@ experience.
 #### 1. Parser Version 1
 
 - ***What it is :***
-  This is the first parser of Inka, which parses user input with long switch cases.
+  This is the first parser of Inka, which parses user input with long switch cases. Author also contributed to 
+  the writing of several initial commands such as AddCardCommand.
 
 - ***Value :***
   With this parser, Inka v1.0 is able to run, and we could test all of our initial functionalities.
@@ -48,17 +49,20 @@ found [here.](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=Wang&so
 - Retest the bugs raised during PE dry-run, and flag the possible causes of bugs to facilitate more efficient bug fixing, for example in
   [#110.](https://github.com/AY2223S2-CS2113-F10-1/tp/issues/110)
 - Created the skeleton for Developer Guide, and assigned the roles for filling up each part of the Developer Guide.
+- Help refactor existing codes to follow software programming principles learnt in class, such as by refactoring
+  the `PrintHelpCommand()` to follow Single Responsibility Principle.[#233](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/233)
 - Helped teammates using Mac with `checkstyle` issues.
 
 ### Documentation
 
 #### User Guide
 
-Add initial documentations for all the `Tag` features [link](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/91/files) :
+- Add initial documentations for all the `Tag` features [link](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/91/files) :
+- Tidy up the final version of User Guide.
 
 #### Developer Guide
 
-- Add in explanation for card feature.
+- Add in explanation for card features.
 
 - Add Sequence Diagram for `card add -q QN -a ANS`, `card delete [-i CARDINDEX | -c CARDUUID]` and `card list`.
 
