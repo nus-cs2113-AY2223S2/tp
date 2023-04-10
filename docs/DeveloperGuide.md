@@ -1,6 +1,3 @@
----
-layout: page
----
 # Developer Guide
 Welcome to the Meal Companion Developer Guide! Thank you for taking an interest in the behind-the-scenes working of our product, and we hope this document proves informative and useful for your work.
 
