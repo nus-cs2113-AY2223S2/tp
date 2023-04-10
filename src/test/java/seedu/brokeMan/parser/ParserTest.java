@@ -1,6 +1,7 @@
 package seedu.brokeMan.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.brokeMan.command.AddExpenseCommand;
 import seedu.brokeMan.command.Command;
 import seedu.brokeMan.command.DeleteExpenseCommand;
 import seedu.brokeMan.command.DeleteIncomeCommand;
@@ -11,13 +12,12 @@ import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
 import seedu.brokeMan.command.ListExpenseCommand;
 import seedu.brokeMan.command.ListIncomeCommand;
+import seedu.brokeMan.command.SetBudgetCommand;
 import seedu.brokeMan.command.SortExpenseByAmountCommand;
 import seedu.brokeMan.command.SortExpenseByDateCommand;
 import seedu.brokeMan.command.SortIncomeByAmountCommand;
 import seedu.brokeMan.command.SortIncomeByDateCommand;
 import seedu.brokeMan.command.ViewBudgetCommand;
-import seedu.brokeMan.command.SetBudgetCommand;
-import seedu.brokeMan.command.AddExpenseCommand;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,7 +75,7 @@ class ParserTest {
 
     @Test
     void testViewBudget_validDateWithOverspendBudget_success() {
-        final String userInput1 = "setBudget 0 t/ 2000/12";
+        final String userInput1 = "setBudget 1 t/ 2000/12";
         Command firstCommand = Parser.parseCommand(userInput1);
         firstCommand.execute();
 
@@ -94,13 +94,6 @@ class ParserTest {
         final String cleanUp = "deleteExpense 1";
         Command cleanUpCommand = Parser.parseCommand(cleanUp);
         cleanUpCommand.execute();
-    }
-
-    @Test
-    void validSetBudgetShouldReturnSetBudgetCommand() {
-        final String userFullInput = "setBudget 500";
-        Command actualCommand = Parser.parseCommand(userFullInput);
-        actualCommand.execute();
     }
 
     @Test
