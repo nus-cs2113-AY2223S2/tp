@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor User
+User -> ":SEPHelper" : start program
+activate ":SEPHelper"
+create ":Scanner"
+":SEPHelper" -> ":Scanner" : Scanner(System.in)
+activate ":Scanner"
+":SEPHelper" <-- ":Scanner" : in:Scanner
+deactivate ":Scanner"
+ref over ":SEPHelper"
+initialisation
+end
+loop isContinue == true
+":SEPHelper" -> ":Scanner" : nextline()
+activate ":Scanner"
+":SEPHelper" <-- ":Scanner" : userInput:String
+deactivate ":Scanner"
+":SEPHelper" -> ":Parser" : parseUserCommand(userInput, universities, modules, allModules, moduleStorage, deadlineStorage, budgetPlanner, deadlines)
+activate ":Parser"
+create ":Command"
+":Parser" -> ":Command" : creates Command based on userInput
+activate ":Command"
+ref over ":Parser", ":Command"
+Parser logic
+end
+":Parser" <-- ":Command" : command: Command
+deactivate ":Command"
+":SEPHelper" <-- ":Parser" : command: Command
+deactivate ":Parser"
+":SEPHelper" -> ":Command" : execute()
+activate ":Command"
+":SEPHelper" <-- ":Command"
+deactivate ":Command"
+":SEPHelper" -> ":Command" : getIsExit()
+activate ":Command"
+":SEPHelper" <-- ":Command" : isContinue = !isExit:boolean
+deactivate ":Command"
+end
+":SEPHelper" --> User
+deactivate ":SEPHelper"
+
+
+@enduml

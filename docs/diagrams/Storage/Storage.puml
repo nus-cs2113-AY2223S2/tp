@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+activate ":SEPHelper"
+create ":ModuleStorage"
+":SEPHelper" -> ":ModuleStorage" : ModuleStorage()
+activate ":ModuleStorage"
+":ModuleStorage" -> ":ModuleStorage" : initialiseDatabase()
+activate ":ModuleStorage"
+create ":ArrayList<Module>"
+":ModuleStorage" -> ":ArrayList<Module>" : new ArrayList<>()
+activate ":ArrayList<Module>"
+":ModuleStorage" <-- ":ArrayList<Module>" : modules:ArrayList<Module>
+deactivate ":ArrayList<Module>"
+create ":File"
+":ModuleStorage" -> ":File" : File(SAVED_MODULES_FILE_PATH)
+activate ":File"
+":ModuleStorage" <-- ":File" : savedModulesFile
+deactivate ":File"
+
+opt !savedModulesFile.exists()
+create ":File"
+":ModuleStorage" -> ":File" : File("data")
+activate ":File"
+":ModuleStorage" <-- ":File" : directory
+deactivate ":File"
+":ModuleStorage" -> ":File" : directory.mkdirs()
+activate ":File"
+deactivate ":File"
+end
+":ModuleStorage" -> ":ModuleStorage" : readModData(SAVED_MODULES_FILE_PATH, modules)
+activate ":ModuleStorage"
+ref over ":ModuleStorage" : readModData
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" -> ":ModuleStorage" : checkDatabaseCorrupted()
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage" : isStorageCorrupted:boolean
+deactivate ":ModuleStorage"
+opt isModuleStorageCorrupted == true
+":ModuleStorage" -> "<<class>>\n:UI" : UI.printStorageCorruptedMessage()
+activate "<<class>>\n:UI"
+":ModuleStorage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+end
+":ModuleStorage" -> ":ModuleStorage" : writeModListToFile(modules)
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" --> ":SEPHelper"
+deactivate ":ModuleStorage"
+
+deactivate ":SEPHelper"
+
+
+@enduml

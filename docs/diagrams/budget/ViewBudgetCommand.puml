@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+-> ":ViewBudgetCommand" : command.execute()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : UI.printViewBudget(budgetPlanner)
+activate "<<class>>\n:UI"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getBudget()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : budget
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Total budget: " + budget)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getAccommodationTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : accommodationCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Accommodation cost: " + accommodationCost)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getAirplaneTicketTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : airplaneTicketCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Airplane Ticket cost: " + airplaneTicketCost)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getFoodTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : foodCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Food cost: " + foodCost)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getEntertainmentTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : entertainmentCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Entertainment cost: " + entertainmentCost)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getSurplus()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" --> "<<class>>\n:UI" : surplus
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":UserConsole" : println("Surplus/Deficit: " + surplus)
+activate ":UserConsole"
+"<<class>>\n:UI" <-- ":UserConsole"
+deactivate ":UserConsole"
+"<<class>>\n:UI" --> ":ViewBudgetCommand"
+deactivate "<<class>>\n:UI"
+<-- ":ViewBudgetCommand"
+deactivate ":ViewBudgetCommand"
+@enduml

@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+-> ":EditBudgetCommand" : command.execute()
+activate ":EditBudgetCommand"
+":EditBudgetCommand" -> ":BudgetPlanner" : budgetPlanner.getBudget()
+activate ":BudgetPlanner"
+":EditBudgetCommand" <-- ":BudgetPlanner" : initialBudget:int
+deactivate ":BudgetPlanner"
+":EditBudgetCommand" -> ":BudgetPlanner" : budgetPlanner.setBudget(budget)
+activate ":BudgetPlanner"
+":EditBudgetCommand" <-- ":BudgetPlanner"
+deactivate ":BudgetPlanner"
+":EditBudgetCommand" -> ":BudgetPlanner" : budgetPlanner.getBudget()
+activate ":BudgetPlanner"
+":EditBudgetCommand" <-- ":BudgetPlanner" : newBudget:int
+deactivate ":BudgetPlanner"
+alt initialBudget == newBudget
+":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printBudgetNoChangeMessage()
+activate "<<class>>\n:UI"
+":EditBudgetCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+<-- ":EditBudgetCommand"
+else initialBudget != newBudget
+":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printEditBudgetMessage(budget)
+activate "<<class>>\n:UI"
+":EditBudgetCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+<-- ":EditBudgetCommand"
+deactivate ":EditBudgetCommand"
+end
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Parser"
+":Parser" -> ":Parser":prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities)
+activate ":Parser"
+'return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
+":Parser" -> ":Parser":handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
+activate ":Parser"
+create ":DeleteModuleCommand"
+":Parser" -> ":DeleteModuleCommand": DeleteModuleCommand(storage, indexToDelete, univID)
+activate ":DeleteModuleCommand"
+":Parser" <-- ":DeleteModuleCommand"
+deactivate ":DeleteModuleCommand"
+":Parser" --> ":Parser" : deleteModuleCommand:DeleteModuleCommand
+deactivate ":Parser"
+":Parser" --> ":Parser" : deleteModuleCommand:DeleteModuleCommand
+deactivate ":Parser"
+":Parser" --> ":Parser" : deleteModuleCommand:DeleteModuleCommand
+deactivate ":Parser"
+@enduml

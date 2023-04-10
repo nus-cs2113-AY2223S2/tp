@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":DeleteModuleCommand"
+
+":DeleteModuleCommand" -> ":ModuleStorage" : deleteModule(indexToRemove, modules, storage, uniID)
+activate ":ModuleStorage"
+
+create "indexToDelete: Int"
+":ModuleStorage" -> "indexToDelete: Int": Initialize indexToDelete
+activate "indexToDelete: Int"
+":ModuleStorage" <-- "indexToDelete: Int"
+deactivate "indexToDelete: Int"
+
+create "counterUpToIndexToDelete: Int"
+":ModuleStorage" -> "counterUpToIndexToDelete: Int": Initialize counterUpToIndexToDelete
+activate "counterUpToIndexToDelete: Int"
+":ModuleStorage" <-- "counterUpToIndexToDelete: Int"
+deactivate "counterUpToIndexToDelete: Int"
+
+alt indexToRemove == -1
+":ModuleStorage" --> ":DeleteModuleCommand" : return false
+else else
+    loop for each Module in Modules
+
+        ":ModuleStorage" -> "modules: ArrayList<Module>"
+         activate "modules: ArrayList<Module>"
+         create ":Module"
+         "modules: ArrayList<Module>" -> ":Module"
+         activate ":Module"
+         "modules: ArrayList<Module>" <-- ":Module"
+         deactivate ":Module"
+
+         ":ModuleStorage" <-- "modules: ArrayList<Module>"
+         deactivate "modules: ArrayList<Module>"
+
+        ":ModuleStorage" -> ":Module" : "getUnivId()"
+        ":ModuleStorage" <-- ":Module" : univID
+
+        alt univID == uniID
+            alt counterUpToIndexToDelete == indexToDeletePuSpecificListToZeroBased
+                ":ModuleStorage" -> "indexToDelete: Int": set indexToDelete to current Module iteration index
+                activate "indexToDelete: Int"
+                ":ModuleStorage" <-- "indexToDelete: Int"
+                deactivate "indexToDelete: Int"
+
+            end
+        end
+    end
+
+   ":ModuleStorage" -> "modules: ArrayList<Module>" : remove(indexToDelete)
+    activate "modules: ArrayList<Module>"
+    ":ModuleStorage" <-- "modules: ArrayList<Module>" : remove(indexToDelete)
+    deactivate "modules: ArrayList<Module>"
+     ":ModuleStorage" -> ":ModuleStorage": sortModulesAccordingToPrintingLength(modules)
+    activate ":ModuleStorage"
+        ":ModuleStorage" --> ":ModuleStorage"
+        deactivate ":ModuleStorage"
+
+     ":ModuleStorage" -> ":ModuleStorage": writeModListToFile(modules)
+    activate ":ModuleStorage"
+        ":ModuleStorage" --> ":ModuleStorage"
+        deactivate ":ModuleStorage"
+
+    ":ModuleStorage" --> ":DeleteModuleCommand" : return true
+
+end
+":DeleteModuleCommand" -> "<<class>>\nui:UI" : printDeleteModMessage()
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Delete Mod Message
+"<<class>>\nui:UI" <-- UserConsole
+":DeleteModuleCommand" <-- "<<class>>\nui:UI"
+deactivate "<<class>>\nui:UI"
+deactivate ":ModuleStorage"
+deactivate ":DeleteModuleCommand"
+@enduml
+
+

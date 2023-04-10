@@ -1,0 +1,115 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class UI {
+{static}-INVALID_BUDGET_AMOUNT_MESSAGE: String
+{static}-LIST_PU_LENGTH_FOR_PU_ABB     : String
+{static}- LIST_PU_HEADER_MESSAGE    : String
+{static}-LIST_PU_MESSAGE     : String
+{static}-  LIST_CURRENT_PU_MESSAGE   : String
+{static}-  CURRENT_LIST_PU_EMPTY   : String
+{static}-  LIST_CURRENT_MESSAGE   : String
+{static}- LIST_DEADLINES_MESSAGE    : String
+{static}-  LINE   : String
+{static}- ADD_MOD_MESSAGE    : String
+{static}- ADD_DEADLINE_MESSAGE    : String
+{static}-  DELETE_MOD_MESSAGE   : String
+{static}- DELETE_DEADLINE_MESSAGE    : String
+{static}- DELETE_NUM_ERROR    : String
+{static}- ADD_MOD_FAILURE_MESSAGE    : String
+{static}- ADD_DEADLINE_FAILURE_MESSAGE    : String
+{static}-   COMMAND_INPUT_ERROR   : String
+{static}- WRITE_TO_DATABASE_ERROR    : String
+{static}-  WELCOME_MESSAGE   : String
+{static}- READ_COMMAND_INPUT   : String
+{static}-  HELP_MESSAGE   : String
+{static}-  INPUT_NOT_INT_MESSAGE   : String
+{static}-  INVALID_PU_MESSAGE   : String
+{static}-  INVALID_MODULE_MESSAGE   : String
+{static}- INVALID_MODULE_INDEX_MESSAGE    : String
+{static}- INVALID_SEARCH_MODULE_MESSAGE    : String
+{static}-INVALID_BUDGET_MESSAGE     : String
+{static}- CURRENT_MOD_LIST_EMPTY    : String
+{static}- CURRENT_DEADLINES_LIST_EMPTY    : String
+{static}-  FOUND_LIST_MESSAGE   : String
+{static}- MODULE_ALREADY_EXIST_MESSAGE    : String
+{static}-  PU_UNI_NAME_MAPS_TO_NUS_MESSAGE   : String
+{static}-   puModules  : ArrayList<Module>
+{static}-   universities  : ArrayList<University>
+{static}-  uiOneInstance   : UI
+-private UI()
+{static}+ getUiOneInstance():UI
+{static}+ printLine(): void
++ printPUListMessage(): void
++ printPUModListMessage(String univName)  : void
++ printAddModMessage()  : void
++ printDeleteModMessage()  : void
++  printInputNotNumMessage()  : void
++  getInvalidPuMessage() : String
++ getInvalidSearchModuleMessage()  : String
++  getInvalidModuleMessage() : String
++ getCommandInputError()  : String
+{static}+ printDeleteNumError():void
++ getInvalidBudgetMessage(): String
++ getLine(): String
++ printGreetingMessage(): void
++  printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
+                                       ArrayList<University> universities): void
++ printPUModules(int univID, String filter): void
++ printPUList(): void
++ printAllCurrentModList(ArrayList<Module> modules): void
++ printDeadlinesList(ArrayList<Deadline> deadlines): void
++ printAddDeadlineMessage(): void
++ printDeleteDeadlineMessage(): void
+{static}+ printStorageCorruptedMessage():void
+{static}+ printModuleCorruptDeleteMessage():void
+{static}+ printReminderMessage():void
+{static}+ printReminderDeadline(Deadline deadline, int counter):void
++ printInvalidInputMessage(): void
+{static}+ printAddModuleFailureMessage(): void
+{static}+ printModAlreadyExistMessage(): void
+{static}+  printAddDeadlineFailureMessage(): void
+{static}+ printWriteToDatabaseFailureMessage(): void
+{static}+ printHelpCommandMessage(): void
+{static}+ printEditBudgetMessage(int amount): void
+{static}+ printEditCostMessage(int amount, GoodsAndServices goods): void
+{static}+ printBudgetNoChangeMessage(): void
+{static}+ printCostNoChangeMessage(): void
+{static}+ printViewBudget(BudgetPlanner budgetPlanner): void
+{static}+ printBudgetStorageCorruptedMessage(): void
+{static}+ printDeadlineStorageCorruptedMessage(): void
+{static}+ printInvalidBudgetAmountMessage(): void
++ printCurrentPuModList(ArrayList<Module> modules, int uniID):void
+{static}+ printExceptionErrorMessage(Exception e): void
++ printExitMessage():void
+
+}
+
+
+
+@enduml
+
+
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+Object[] elementData
+size()
+}
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}

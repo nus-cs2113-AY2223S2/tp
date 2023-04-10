@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+-> ":ListMappableNusModsCommand": command.execute()
+activate ":ListMappableNusModsCommand"
+":ListMappableNusModsCommand" -> "<<class>>\nui:UI" : printNusMods(allModules)
+activate "<<class>>\nui:UI"
+"<<class>>\nui:UI" -> "nusModuleCodeList:HashSet<String>": removeDupeNusMods(allModules)
+activate "nusModuleCodeList:HashSet<String>"
+"<<class>>\nui:UI" <- "nusModuleCodeList:HashSet<String>": nusModuleCodeList
+deactivate "nusModuleCodeList:HashSet<String>"
+"<<class>>\nui:UI" -> UserConsole : Println out Line + Mappable Nus Mod Code Message + Line
+"<<class>>\nui:UI" <-- UserConsole
+loop for each nusModCode string in the nusModuleCodeList
+"<<class>>\nui:UI" -> "<<class>>\nui:UI": listIndex++;
+    loop for each PU module in the allModules ArrayList
+    "<<class>>\nui:UI" -> "allModules:ArrayList<Module>"
+    activate "allModules:ArrayList<Module>"
+    "<<class>>\nui:UI" <-- "allModules:ArrayList<Module>"
+    deactivate "allModules:ArrayList<Module>"
+    "<<class>>\nui:UI" -> "allModules:ArrayList<Module>": getNusModuleCode()
+    "<<class>>\nui:UI" <-- "allModules:ArrayList<Module>": nusModuleCode
+    "<<class>>\nui:UI" -> "allModules:ArrayList<Module>": getNusModuleName()
+    "<<class>>\nui:UI" <-- "allModules:ArrayList<Module>": nusModuleName
+    "<<class>>\nui:UI" -> "allModules:ArrayList<Module>": getNusModuleMCs()
+    "<<class>>\nui:UI" <-- "allModules:ArrayList<Module>": nusModuleMc
+    break nusModuleCode.equalsIgnoreCase(nusModCode)
+    "<<class>>\nui:UI" -> UserConsole: Print out listIndex + nusModuleCode + nusModuleName + nusModuleMc
+    "<<class>>\nui:UI" <-- UserConsole
+    end
+    end
+end
+"<<class>>\nui:UI" -> UserConsole: Print out Line string
+"<<class>>\nui:UI" <-- UserConsole
+deactivate ":ListMappableNusModsCommand"
+deactivate "<<class>>\nui:UI"
+@enduml

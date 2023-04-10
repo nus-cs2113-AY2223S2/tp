@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+create ":ListDeadlinesCommand"
+":Parser" -> ":ListDeadlinesCommand": ListDeadlinesCommand(deadlines)
+activate ":ListDeadlinesCommand"
+":Parser" <-- ":ListDeadlinesCommand" : listDeadlinesCommand:ListDeadlinesCommand
+deactivate ":ListDeadlinesCommand"
+":Parser" --> ":Parser" : listDeadlinesCommand:ListDeadlinesCommand
+deactivate ":Parser"
+@enduml

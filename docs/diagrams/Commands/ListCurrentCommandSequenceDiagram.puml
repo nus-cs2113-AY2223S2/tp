@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+activate ":ListCurrentCommand"
+
+":ListCurrentCommand" -> "<<class>>\nui:UI" : printAllCurrentModList(modules)
+activate "<<class>>\nui:UI"
+
+loop for university in universities
+    "<<class>>\nui:UI" -> "<<class>>universities: ArrayList<University>" : retrieve Class level object "universities"
+     activate "<<class>>universities: ArrayList<University>"
+     create "currentUniversity: University"
+     "<<class>>universities: ArrayList<University>" -> "currentUniversity: University"
+     activate "currentUniversity: University"
+     "<<class>>universities: ArrayList<University>" <-- "currentUniversity: University"
+     deactivate "currentUniversity: University"
+     "<<class>>\nui:UI" <-- "<<class>>universities: ArrayList<University>"
+     deactivate "<<class>>universities: ArrayList<University>"
+
+     "<<class>>\nui:UI" -> "currentUniversity: University": "getUnivId()"
+     "<<class>>\nui:UI" <-- "currentUniversity: University": "currentUniversity's ID"
+
+
+    "<<class>>\nui:UI" -> "<<class>>\nui:UI": printCurrentPuModList(modules, currentUniversity ID)
+    activate "<<class>>\nui:UI"
+    "<<class>>\nui:UI" --> "<<class>>\nui:UI": return control
+    deactivate "<<class>>\nui:UI"
+end
+
+
+"<<class>>\nui:UI" --> ":ListCurrentCommand" : return control
+deactivate "<<class>>\nui:UI"
+deactivate ":ListCurrentCommand"
+@enduml

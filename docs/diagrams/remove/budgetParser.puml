@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+":Parser" -> ":Parser":prepareBudgetCommand(userInput, budgetPlanner)
+activate ":Parser"
+ref over ":Parser", ":BudgetCommand"
+BudgetCommandType
+end
+deactivate ":BudgetCommand"
+":Parser" --> ":Parser" :budgetCommand:BudgetCommand
+deactivate ":Parser"
+":Parser" --> ":Parser": budgetCommand:BudgetCommand
+deactivate ":Parser"
+@enduml

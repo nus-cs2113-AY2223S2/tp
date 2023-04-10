@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+":Parser" -> ":Parser":prepareAddDeadlineCommand(deadlineStorage, userInputWords)
+activate ":Parser"
+'return handleAddDeadlineCommand(deadlineStorage, userInputWords)
+":Parser" -> ":Parser":handleAddDeadlineCommand(deadlineStorage, userInputWords)
+activate ":Parser"
+create ":AddDeadlineCommand"
+":Parser" -> ":AddDeadlineCommand": AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage)
+activate ":AddDeadlineCommand"
+":Parser" <-- ":AddDeadlineCommand": addDeadlineCommand:AddDeadlineCommand
+deactivate ":AddDeadlineCommand"
+":Parser" --> ":Parser" : addDeadlineCommand:AddDeadlineCommand
+deactivate ":Parser"
+":Parser" --> ":Parser" : addDeadlineCommand:AddDeadlineCommand
+deactivate ":Parser"
+":Parser" --> ":Parser" : addDeadlineCommand:AddDeadlineCommand
+deactivate ":Parser"
+
+@enduml

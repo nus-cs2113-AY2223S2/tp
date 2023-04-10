@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+":Parser" -> ":Parser":prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities)
+activate ":Parser"
+":Parser" -> ":Parser": handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities)
+activate ":Parser"
+alt Specific NUS Module Code
+    create ":ListFoundNusModsCommand"
+    ":Parser" -> ":ListFoundNusModsCommand": ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities)
+    activate ":ListFoundNusModsCommand"
+    ":Parser" <-- ":ListFoundNusModsCommand"
+    deactivate ":ListFoundNusModsCommand"
+    ":Parser" --> ":Parser": ListFoundNusModsCommand:ListFoundNusModsCommand
+    deactivate ":Parser"
+else /mods
+    create ":ListMappableNusModsCommand"
+    ":Parser" -> ":ListMappableNusModsCommand": ListMappableNusModsCommand(allModules)
+    activate ":ListMappableNusModsCommand"
+    ":Parser" <-- ":ListMappableNusModsCommand"
+    deactivate ":ListMappableNusModsCommand"
+    ":Parser" --> ":Parser": ListMappableNusModsCommand:ListMappableNusModsCommand
+    deactivate ":Parser"
+end
+":Parser" --> ":Parser": Command
+deactivate ":Parser"
+@enduml

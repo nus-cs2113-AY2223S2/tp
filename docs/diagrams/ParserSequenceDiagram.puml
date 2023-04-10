@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+-> ":Parser": "parseUserCommand(userInput, universities, modules, allModules, storage, budgetPlanner, deadlines)"
+activate ":Parser"
+
+":Parser" -> "userInputWords: ArrayList<String>": "parseCommand(userInput)"
+activate "userInputWords: ArrayList<String>"
+":Parser" <-- "userInputWords: ArrayList<String>"
+deactivate "userInputWords: ArrayList<String>"
+
+alt /list
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareListCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /search
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareSearchByNusModCode
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /exit
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    ExitCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /add
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareAddModuleCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /remove
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareRemoveModuleCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /help
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    HelpCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /budget
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareBudgetCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /deadline/list
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    ListDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /deadline/add
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    prepareAddDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+else /deadline/remove
+    ":Parser" -> ":Parser"
+    activate ":Parser"
+    ref over ":Parser"
+    deleteDeadlineCommand
+    end
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+end
+@enduml

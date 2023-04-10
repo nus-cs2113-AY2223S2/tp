@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+":SEPHelper" -> ":SEPHelper" : initialisation
+activate ":SEPHelper"
+":SEPHelper" -> ":DataReader" : getUniversities()
+activate ":DataReader"
+":SEPHelper" <-- ":DataReader" : universities:ArrayList<University>
+deactivate ":DataReader"
+":SEPHelper" -> ":DataReader" : getModules()
+activate ":DataReader"
+":SEPHelper" <-- ":DataReader" : allModules:ArrayList<Module>
+deactivate ":DataReader"
+":SEPHelper" -> ":ModuleStorage" : getModules()
+activate ":ModuleStorage"
+":SEPHelper" <-- ":ModuleStorage" : modules:ArrayList<Module>
+deactivate ":ModuleStorage"
+":SEPHelper" -> ":DeadlineStorage" : getDeadlines()
+activate ":DeadlineStorage"
+":SEPHelper" <-- ":DeadlineStorage" : deadlines:ArrayList<Deadline>
+deactivate ":DeadlineStorage"
+":SEPHelper" -> "<<class>>\n:Parser" : getInstance();
+activate "<<class>>\n:Parser"
+":SEPHelper" <-- "<<class>>\n:Parser" : parser:Parser
+deactivate "<<class>>\n:Parser"
+":SEPHelper" --> ":SEPHelper"
+deactivate ":SEPHelper"
+
+@enduml
