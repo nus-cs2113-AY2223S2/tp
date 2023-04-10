@@ -4,9 +4,8 @@
 * [User Guide](#user-guide)
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
-  * [Account instructions](#account-instructions)
+  * [Account Instructions](#account-instructions)
     * [Create Account: `signup`](#create-account--signup)
-    * [Note: Username and password rules:](#note--username-and-password-rules-)
     * [Log In To Your Account: `login`](#log-in-to-your-account--login)
     * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense--logout)
     * [Exiting the program (outside the account): `exit`](#exiting-the-program--outside-the-account---exit)
@@ -134,7 +133,8 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 ```
 Then, you can log in to your new account.
-### Note: Username and password rules:
+
+ **Note: Username and password rules:**
 
 * Username must just include alphabet characters (both uppercase and lowercase) or numbers.
 * Password must have at least 8 characters.
@@ -421,7 +421,8 @@ Expected output:
 
     Total expenses: 80.55 SGD
 
-    Breakdown of expenses by category in descending order by category sum:
+    Breakdown of expenses by category in descending order 
+    by category sum:
     ----------------------------
      uncategorized 44.00 SGD
     ----------------------------
