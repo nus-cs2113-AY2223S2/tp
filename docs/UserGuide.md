@@ -7,6 +7,8 @@
     - [3.0 Features](#30-features)
     - [FAQ](#faq)
     - [Command Summary](#command-summary)
+
+
 ## 1.0 Introduction
 🗓️ NUSPlanner is a desktop app that allows for an *easy* and *straightforward* way for NUS students to manage their schedule ranging from person, school or external related activities. This application makes use of a desktop Command Line Interface (CLI), enabling a quick and sleek method of getting your schedule in check.
 
@@ -30,6 +32,8 @@ Before we get started, here's what you need to do:
 
 [Back to Contents Page](#table-of-contents)
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ## 3.0 Features
 
 Read this section to find out how NUSPlanner can make your life easier!
@@ -38,11 +42,11 @@ Read this section to find out how NUSPlanner can make your life easier!
 Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIME`
-* sd and ed must be of the format YYYY/MM/DD
-* e, sd and st are compulsory fields
-* ed and et are optional, but they must be written together if you use them
-* v is optional
-* r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.
+* `sd` and `ed` must be of the format `YYYY/MM/DD`
+* `e`, `sd` and `st` are **compulsory** fields
+* `ed` and `et` are **optional**, but they must be written **together** if you use them
+* `v` is **optional**
+* `r` is optional, the format is `x D/ x W`, which means the event will happen in every x day(s)/x week(s).
 
 #### Examples of usage
 1. Add event that starts and ends on different days: `add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11`
@@ -78,27 +82,32 @@ Expected outcome:
 
 
 
-**Confliction Checking: ** 
+**Confliction Checking:** 
 
 - NUSPlanner will only check for conflicts between events and classes that have **starting date & time and ending date & time, within the time period of selected semester.**
 - Users need to check themselves whether the events will clash with each other during vacation periods.
 
+<p style="page-break-after: always;">&nbsp;</p>
 
 ### Adding a module: `add`
 Adds a module to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
-* All fields are compulsory
+* All fields are **<u>compulsory</u>**
 
 #### Examples of usage
 * Add a lecture of module: `add -m AC5001 -n 1 -l LEC`
 * Add a tutorial of module: `add -m CS2100 -n 11 -l TUT`
 
 #### How to find the correct `MODULECODE`, `CLASSNUMBER` and `LESSONTYPE`?
-* Head over to [NUSMods](www.nusmods.com)
+* Head over to [NUSMods](https://nusmods.com/timetable/sem-2)
 * Find the class and slot that you want
 * For example, user wants to take these 3 slots:
-![NUSModsEG.png](NUSModsEG.png)
+
+<p align = "center">
+<img src="NUSModsEG.png" style="zoom:30%;" >
+</p>
+
 > `MODULECODE`: Module code
 > 
 >`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
@@ -111,31 +120,31 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 
 **`LessonTypes` Recognized by NUSPlanner**
 
-| Lesson name                | Name on NUSMODS | Lesson type to input into Command line |
-|----------------------------|-----------------|----------------------------------------|
-| Lecture                    | LEC             | `LEC`                                  |
-| Sectional Teaching         | SEC             | `SEC`                                  |
-| Design Lecture             | DLEC            | `DLEC`                                 |
-| Recitation                 | REC             | `REC`                                  |
-| Packaged Lecture           | PLEC            | `PLEC`                                 |
-| Seminar-Style Module Class | SEM             | `SEM`                                  |
-| Tutorial                   | TUT             | `TUT`                                  |
-| Tutorial Type 2            | TUT2            | `TUT2`                                 |
-| Packaged Tutorial          | PTUT            | `PTUT`                                 |
-| Laboratory                 | LAB             | `LAB`                                  |
+| Lesson name                | Name on NUSMODS | LessonType input |
+|----------------------------|-----------------|------------------|
+| Lecture                    | LEC             | `LEC`            |
+| Sectional Teaching         | SEC             | `SEC`            |
+| Design Lecture             | DLEC            | `DLEC`           |
+| Recitation                 | REC             | `REC`            |
+| Packaged Lecture           | PLEC            | `PLEC`           |
+| Seminar-Style Module Class | SEM             | `SEM`            |
+| Tutorial                   | TUT             | `TUT`            |
+| Tutorial Type 2            | TUT2            | `TUT2`           |
+| Packaged Tutorial          | PTUT            | `PTUT`           |
+| Laboratory                 | LAB             | `LAB`            |
 
 **Workshops** and **Mini Projects** are excluded from the lesson types as they do not have specific timings. Do add them as individual/recurring
 events should you need to have them.
 
 **Notice**
-> For the lesson number and lesson type, follow the EXACT format as displayed on NUSMods. 
+> For the lesson number and lesson type, follow the <u>**EXACT**</u> format as displayed on NUSMods. 
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
-> **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m HSI2016 -n L1 -l SEC`
+> **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m AC5001 -l LEC -n 1`
 > 
 > 
-> For `LESSONTYPE` field, only `lecture / tutorial / laboratory` or any of the fields specified in the table above are accepted
+> For `LESSONTYPE` field, only inputs specified in the table above are accepted
 
 Expected outcome:
 ~~~
@@ -152,6 +161,8 @@ Event successfully added:
     > Added 11 classes of Module: CS2100
 ____________________________________________________________
 ~~~
+
+<p style="page-break-after: always;">&nbsp;</p>
 
 ### Deleting an event: `delete`
 Delete a single event or all events from the schedule. Use –s to specify the events to delete, or –all to delete all events.
@@ -178,7 +189,8 @@ Expected outcome:
 	    > all events are deleted!
 	____________________________________________________________
    ~~~
-	
+
+<p style="page-break-after: always;">&nbsp;</p>	
 	
 ### List an event: `list`
 Displays a list of all events that have been added to the schedule.
@@ -244,6 +256,9 @@ ____________________________________________________________
          @ COM1-0114
 ____________________________________________________________
 ~~~
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 ~~~
 Showing schedule for semester 1 and week 7
 ____________________________________________________________
@@ -321,12 +336,14 @@ TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDA
 ____________________________________________________________
 ~~~
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### Editing an event: `edit`
 Edit an event that has been added to the schedule. Use –x to specify the attributes to edit.
 
 Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`
 
-**notice: **
+**notice:**
 
 > when Editing the event, User need to rewrite the complete time information including the parts that they do not what to change
 >
@@ -336,17 +353,17 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 > 
 > Modifications can also be made to move slots (tutorial, lecture, etc) to after semester boundaries. This is normal behaviour as we give users full control over their timetable
 
-* sd and ed must be of the format YYYY/MM/DD
-* e, sd and st are compulsory fields
-* ed and et are optional, but they must be written together if you use them
-* other fields are optional.
+* `sd` and `ed` must be of the format `YYYY/MM/DD`
+* `e`, `sd` and `st` are **compulsory** fields
+* `ed` and `et` are **optional**, but they must be written _**together**_ if you use them
+* other fields are **optional**.
 
 #### Examples of usage
 1. Edit the start time of an event: `edit –i 1 -sd 2023/04/01 –st 16:00` 
 
 2. Edit the start date, start time and end time of an event: `edit -i 1 –sd 2023/02/11 –st 08:00 –et 10:00 `
 
-**notice: ** 
+**notice:** 
 
 > Similar to add command, the app will also check whether there is any confliction between the new revised time and other events/classes with **full details of time information** if and only if the revised time information also have **starting date & time and ending date & time**
 >
@@ -380,6 +397,8 @@ Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[
 ### NUSMods Data
 NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored in NUSPlanner is correct as of **March 17, 2023**. 
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ## FAQ
 
 **Q**: Why is a JAR file required?
@@ -403,6 +422,10 @@ NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored i
 **A**: Our team of developers are always on the look-out to fix such bugs.
 Please add a description of the bug found under our [Issue Tracker](https://github.com/AY2223S2-CS2113-F13-3/tp/issues).
 
+<br>
+
+[Back to Contents Page](#table-of-contents)
+
 ## Command Summary
 👉 Words in **CAPITAL LETTERS** are user input
 
@@ -416,3 +439,7 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 * `delete -all` | Delete all events
 * `list` | List all events
 * `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
+
+<br>
+
+[Back to Contents Page](#table-of-contents)
