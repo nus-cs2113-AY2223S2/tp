@@ -1,0 +1,59 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+participant ":FileManager" as FileManager FileManager_STYLE
+participant ":FileEncoder" as FileEncoder FileEncoder_STYLE
+participant ":SingleFile" as SingleFile SingleFile_STYLE
+participant ":FileWriter" as FileWriter FileWriter_STYLE
+participant ":BufferedWriter" as BufferedWriter BufferedWriter_STYLE
+participant ":File" as File File_STYLE
+
+activate FileManager FileManager_STYLE
+-> FileManager : addEntry
+FileManager -> FileEncoder : encodeCS2040CFile
+FileEncoder --> FileManager : encodedCS2040CFile: String
+FileManager -> SingleFile : writeCS2040CFileToFile
+activate SingleFile SingleFile_STYLE
+    opt file does not exist
+        FileManager -> SingleFile : recreateFile()
+        SingleFile --> FileManager
+        opt file created successfully
+            SingleFile -> SingleFile : overwriteFile()
+            activate SingleFile
+            SingleFile -> FileWriter **
+            activate FileWriter FileWriter_STYLE
+            FileWriter -> BufferedWriter **
+            activate BufferedWriter BufferedWriter_STYLE
+            loop for each String in storedRawData.values()
+                BufferedWriter -> File : write(string: String)
+                activate File
+                File --> SingleFile
+                deactivate File
+            end
+        end
+            deactivate SingleFile
+            destroy BufferedWriter
+            destroy FileWriter
+        end
+
+SingleFile -> FileWriter **
+activate FileWriter FileWriter_STYLE
+FileWriter -> BufferedWriter **
+activate BufferedWriter BufferedWriter_STYLE
+BufferedWriter -> File : write(encodedCS2040CFile: String)
+activate File File_STYLE
+BufferedWriter -> File : newLine()
+BufferedWriter -> BufferedWriter : close()
+activate BufferedWriter
+deactivate BufferedWriter
+destroy BufferedWriter
+FileWriter -> FileWriter : close()
+activate FileWriter
+deactivate FileWriter
+destroy FileWriter
+File --> SingleFile
+deactivate File
+SingleFile --> FileManager
+deactivate SingleFile
+@enduml

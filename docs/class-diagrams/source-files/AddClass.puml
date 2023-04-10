@@ -1,0 +1,48 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Command Command_STYLE {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class AddCommand AddCommand_STYLE {
+    #name: String
+    #ui: String
+    #topic: String
+    +getName(): String
+    +getTag(): String
+    +checkFileType(): FileType
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class AddCodeCommand AddCodeCommand_STYLE {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class AddNoteCommand AddNoteCommand_STYLE {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class TopicManager TopicManager_STYLE {
+}
+
+class Ui Ui_STYLE {
+}
+
+class Buffer Buffer_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+Command <|-- AddCommand
+AddCommand <|-- AddCodeCommand
+AddCommand <|-- AddNoteCommand
+
+TopicManager .. AddCommand
+Ui .. AddCommand
+FileManager .. AddCommand
+Buffer .. AddCommand
+@enduml

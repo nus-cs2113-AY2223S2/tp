@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.clialgo.CLIAlgo"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "clialgo"
     archiveClassifier = null
 }
 
@@ -43,4 +43,5 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

@@ -1,0 +1,55 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide empty members
+
+class user {
+}
+
+package clialgo <<rectangle>> {
+    class CLIAlgo CLIAlgo_STYLE {
+
+    }
+
+    class Parser Parser_STYLE {
+    }
+
+    class Ui Ui_STYLE {
+    }
+
+    class logic logic_STYLE {
+    }
+
+    class command Command_STYLE {
+    }
+
+    class storage storage_STYLE {
+    }
+
+    class Buffer Buffer_STYLE {
+    }
+
+    class CS2040CFile CS2040CFile_STYLE {
+    }
+}
+package "hard disk" {
+}
+user --> Ui
+CLIAlgo --> Ui
+CLIAlgo -->logic
+CLIAlgo --> Parser
+CLIAlgo ..> storage
+Parser ..> Ui
+Parser ..> logic
+Parser ..> command
+storage ..> "hard disk"
+storage --> CS2040CFile
+command ..> Ui
+command ..> logic
+command ..> storage
+command ..> CS2040CFile
+command ..> Buffer
+logic ..> CS2040CFile
+
+hide circle
+@enduml

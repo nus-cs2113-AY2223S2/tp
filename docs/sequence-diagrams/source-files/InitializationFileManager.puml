@@ -1,0 +1,68 @@
+@startuml
+hide footbox
+!include ../../style.iuml
+
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant ": SingleFile" as SingleFile SingleFile_STYLE
+participant ": File" as File File_STYLE
+participant ": Scanner" as Scanner Scanner_STYLE
+participant ": FileDecoder" as FileDecoder FileDecoder_STYLE
+
+-> FileManager : initialize()
+activate FileManager FileManager_STYLE
+loop topicNames
+    FileManager -> SingleFile ** : createSingleFile(string : String)
+    activate SingleFile SingleFile_STYLE
+    SingleFile -> File ** : new File()
+    activate File File_STYLE
+    File -> File : createNewFile()
+    File -> SingleFile : setFile(file : File)
+    activate SingleFile
+    deactivate File
+    SingleFile --> SingleFile
+    deactivate SingleFile
+    SingleFile --> FileManager : newFile : SingleFile
+    deactivate SingleFile
+end
+FileManager -> SingleFile : readFile()
+activate SingleFile SingleFile_STYLE
+SingleFile -> Scanner ** : new Scanner(file : File)
+activate Scanner Scanner_STYLE
+deactivate FileManager
+    loop hasNext()
+    Scanner -> File
+    activate File File_STYLE
+    File --> Scanner
+    deactivate File
+    Scanner --> SingleFile : nextLine()
+    SingleFile -> FileDecoder : decodeString()
+    activate FileDecoder FileDecoder_STYLE
+    FileDecoder --> SingleFile : isCorrupted
+        alt isCorrupted
+        SingleFile --> SingleFile : isFileCorrupted
+        deactivate SingleFile
+        else else
+        FileDecoder --> SingleFile
+        activate SingleFile SingleFile_STYLE
+        SingleFile-->SingleFile
+        deactivate SingleFile
+        end
+    end
+    destroy Scanner
+    deactivate SingleFile
+    deactivate FileDecoder
+    opt isFileCorrupted
+    SingleFile -> SingleFile : overwriteFile()
+    activate SingleFile SingleFile_STYLE
+    SingleFile --> SingleFile
+    deactivate SingleFile
+    end
+TopicManager -> FileManager : decodeAll()
+activate FileManager FileManager_STYLE
+FileManager -> SingleFile : convertFileToTopic()
+activate SingleFile SingleFile_STYLE
+return
+return topics : HashMap<String, Topic>
+
+@enduml

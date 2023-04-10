@@ -1,0 +1,47 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class Ui Ui_STYLE {
+    -Divider: String
+    +getUserInput(): void
+    +printWelcomeMessage(): void
+    +printExitMessage(): void
+    +printHelpPage(): void
+    +printAddSuccess(): void
+    +printListSuccess(): void
+    +printRemoveSuccess(): void
+    +printFilterFail(): void
+    +printInvalidCommand(): void
+    +printSaveFail(): void
+    +printFileWriteError(): void
+    +printInvalidNote(): void
+    +printTopoSortSuccess(): void
+}
+
+class CLIAlgo CLIAlgo_STYLE {
+}
+
+class SingleFile SingleFile_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+package Command <<Rectangle>> Command_STYLE {
+}
+
+package Buffer <<Rectangle>> Buffer_STYLE {
+}
+
+CLIAlgo--> "1" Ui
+
+FileManager --> "1    " Ui
+FileManager *- "*" SingleFile
+SingleFile --> "1  " Ui
+
+Command ..> Ui
+Buffer ..> Ui
+
+@enduml

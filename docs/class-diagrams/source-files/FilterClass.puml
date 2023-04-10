@@ -1,0 +1,56 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Command Command_STYLE {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class FilterCommand FilterCommand_STYLE {
+    #keyWord: String
+    #topic: String
+
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class FilterByTopicCommand FilterByTopicCommand_STYLE {
+    #keyWord: String
+    #topic: String
+
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+    -printAllTopics(topicManager : TopicManager, ui : Ui) : void
+    -printSingleTopic(topicManager : TopicManager, ui : Ui) : void
+}
+
+class FilterByImportanceCommand FilterByImportanceCommand_STYLE {
+    #keyWord: String
+    #topic: String
+
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+    -printAllTopics(topicManager : TopicManager, ui : Ui) : void
+    -printSingleTopic(topicManager : TopicManager, ui : Ui) : void
+}
+
+class TopicManager TopicManager_STYLE {
+}
+
+class Ui Ui_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+class Buffer Buffer_STYLE {
+}
+
+Command <|-- FilterCommand
+FilterCommand <|-- FilterByTopicCommand
+FilterCommand <|-- FilterByImportanceCommand
+
+TopicManager .. FilterCommand
+Ui .. FilterCommand
+FileManager .. FilterCommand
+Buffer .. FilterCommand
+
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+participant ": AddCommand" as AddCommand AddCommand_STYLE
+participant ": InvalidTopicCommand" as InvalidTopicCommand InvalidTopicCommand_STYLE
+participant ": AddNoteCommand" as AddNoteCommand AddNoteCommand_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant ": InvalidCommand" as InvalidCommand InvalidCommand_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+
+-> AddCommand : execute()
+activate AddCommand AddCommand_STYLE
+    opt CS2040CFile does not exist in directory
+        AddCommand -> Ui : printFileDoesNotExist()
+        activate Ui Ui_STYLE
+        return
+        <-- AddCommand
+    end
+
+    opt topicName is not valid
+        AddCommand -> InvalidTopicCommand **
+        activate InvalidTopicCommand InvalidTopicCommand_STYLE
+        return
+
+        AddCommand -> InvalidTopicCommand: execute()
+        activate InvalidTopicCommand InvalidTopicCommand_STYLE
+        return
+        destroy InvalidTopicCommand
+        <-- AddCommand
+    end
+
+    opt is CS2040CFile is repeated
+        AddCommand -> Ui : printCS2040CFileExists()
+        activate Ui Ui_STYLE
+        return
+    end
+
+    alt CS2040CFile type is txt
+        AddCommand -> AddNoteCommand **
+        activate AddNoteCommand AddNoteCommand_STYLE
+        return
+
+        AddCommand -> AddNoteCommand : execute()
+        activate AddNoteCommand AddNoteCommand_STYLE
+            AddNoteCommand -> FileManager : addEntry()
+            activate FileManager FileManager_STYLE
+            return isAddedToFile: boolean
+
+            opt CS2040CFile is not added to fileManager
+                AddNoteCommand --> AddCommand
+                <-- AddCommand
+            end
+
+
+            AddNoteCommand -> TopicManager : addCS2040CFile()
+            activate TopicManager TopicManager_STYLE
+            return isAdded: boolean
+
+            opt CS2040CFile is not added to topicManager
+                AddNoteCommand -> InvalidCommand **
+                activate InvalidCommand InvalidCommand_STYLE
+                return
+
+                AddNoteCommand -> InvalidCommand : execute()
+                activate InvalidCommand InvalidCommand_STYLE
+                return
+                destroy InvalidCommand
+            end
+            return
+            destroy AddNoteCommand
+            <-- AddCommand
+    end
+
+    AddCommand -> Ui : printAddSuccess()
+    activate Ui Ui_STYLE
+    return
+return
+destroy AddCommand
+
+@enduml

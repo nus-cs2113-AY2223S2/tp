@@ -1,0 +1,78 @@
+@startuml
+!include ../../style.iuml
+
+hide footbox
+
+participant ": FilterCommand" as FilterCommand FilterCommand_STYLE
+participant ": FilterByTopicCommand" as FilterByTopicCommand FilterByTopicCommand_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "buffer: Buffer" as Buffer Buffer_STYLE
+
+-> FilterCommand : execute()
+activate FilterCommand FilterCommand_STYLE
+    opt topicManger.isEmpty()
+        FilterCommand -> Ui : printFilterEmpty()
+        activate Ui Ui_STYLE
+        return
+        FilterCommand -> Buffer : updateBuffer(filteredFiles : ArrayList<CS2040CFile>)
+        activate Buffer Buffer_STYLE
+        return
+    end
+    <-- FilterCommand
+    alt keyWord.equals("topic")
+        FilterCommand -> FilterByTopicCommand **
+        activate FilterByTopicCommand FilterByTopicCommand_STYLE
+        return
+
+        FilterCommand -> FilterByTopicCommand : execute()
+        activate FilterByTopicCommand FilterByTopicCommand_STYLE
+            alt topic == null
+                FilterByTopicCommand -> FilterByTopicCommand : printAllTopics()
+                activate FilterByTopicCommand
+                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesGroupedByTopic()
+                    activate TopicManager TopicManager_STYLE
+                    return toPrintCS2040CFiles: HashMap<String, ArrayList<String>>
+
+                    FilterByTopicCommand -> Ui : printFilterSuccess()
+                    activate Ui Ui_STYLE
+                    return
+
+                    loop toPrintCS2040CFiles
+                        FilterByTopicCommand -> Ui : printListOfCS2040CFiles(currentTopicCS2040CFiles)
+                        activate Ui Ui_STYLE
+                        return
+                    end
+                return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer Buffer_STYLE
+                return
+            else else
+                FilterByTopicCommand -> FilterByTopicCommand : printSingleTopic()
+                activate FilterByTopicCommand
+                    FilterByTopicCommand -> TopicManager : getAllCS2040CFilesByTopic()
+                    activate TopicManager TopicManager_STYLE
+                    return toPrintCS2040CFiles: ArrayList<String>
+
+                    FilterByTopicCommand -> Ui : printFilterSuccess()
+                    activate Ui Ui_STYLE
+                    return
+
+                    FilterByTopicCommand -> Ui : printListOfCS2040CFiles(toPrintCS2040CFiles)
+                    activate Ui Ui_STYLE
+                    return
+                return
+
+                FilterByTopicCommand -> Buffer: updateBuffer();
+                activate Buffer Buffer_STYLE
+                return
+            end
+        return
+        destroy FilterByTopicCommand
+    else keyWord.equals("importance")
+    else else
+    end
+return
+destroy FilterCommand
+@enduml

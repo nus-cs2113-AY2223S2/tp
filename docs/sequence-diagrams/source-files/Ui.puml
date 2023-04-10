@@ -1,0 +1,45 @@
+@startuml
+!include ../../style.iuml
+
+hide footbox
+
+participant ": ListCommand" as ListCommand ListCommand_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "in: Scanner" as Scanner Scanner_STYLE
+participant "System.out" as System System_STYLE
+
+-> Ui: getUserInput()
+activate Ui Ui_STYLE
+alt Successful case
+    Ui -> Scanner: nextLine()
+    activate Scanner Scanner_STYLE
+    note right of Scanner : User Input: `list`
+    return :String
+    <-- Ui : fullUserInput: String
+else NoSuchElementException
+    Ui -> Ui : printReadFail()
+    activate Ui
+    return
+    <-- Ui : EXIT_COMMAND: String
+else IllegalStateException
+    Ui -> Ui : printReadFail()
+    activate Ui
+    return
+    <-- Ui : EXIT_COMMAND: String
+end
+
+-> ListCommand: execute()
+activate ListCommand ListCommand_STYLE
+    ListCommand -> Ui: printListOfCS2040CFiles()
+    activate Ui
+        loop cs2040cFiles
+            Ui -> System: println(cs2040cFile: String)
+            activate System System_STYLE
+            return
+        end
+    return
+return
+
+destroy ListCommand
+
+@enduml

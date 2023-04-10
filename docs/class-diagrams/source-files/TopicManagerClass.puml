@@ -1,0 +1,42 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+together {
+    package command <<rectangle>> Command_STYLE {
+    }
+    class CS2040CFile CS2040CFile_STYLE {
+    }
+}
+
+class TopicManager TopicManager_STYLE {
+    -TOPIC_NAMES: ArrayList<String>
+    -TOPO_ORDER: ArrayList<String>
+    -allCS2040CFiles: HashMap<String, String>
+    +getTopicOfCS2040CFile(CS2040CFileName: String): String
+    +getAllCS2040CFiles(): ArrayList<String>
+    +getAllCS2040CFilesGroupedByTopicToPrint(): HashMap<String, ArrayList<String>>
+    +getAllCS2040CFilesBeforeTopic(cs2040cFileName: String): LinkedHashMap<String, ArrayList<String>>
+    +addCS2040CFile(cs2040cFileName: String, topicName: String, cs2040cFile: CS2040CFile): boolean
+    +removeCS2040CFile(cs2040cFileName: String, topicName: String): boolean
+}
+
+class Topic Topic_STYLE {
+    -topicName: String
+    -cs2040cFiles: HashMap<String, CS2040CFile>
+    +getC2040CFiles(): HashMap<String, CS2040CFile>
+    +getAllCS2040CFilesInTopicToPrint(): ArrayList<String>
+    +addCS2040CFile(cs2040cFileName: String, cs2040cFile: CS2040CFile): void
+    +removeCS2040CFile(cs2040cFileName: String): void
+}
+
+
+
+TopicManager *-- "10" Topic
+command .> TopicManager: calls method of >
+TopicManager ..> Topic: calls method of >
+command ..> CS2040CFile
+Topic *- "*" CS2040CFile
+TopicManager -[hidden]-> Topic
+@enduml

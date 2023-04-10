@@ -1,0 +1,35 @@
+@startuml
+!include ../../style.iuml
+
+hide footbox
+
+participant ": ListCommand" as ListCommand ListCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+
+-> ListCommand : execute()
+activate ListCommand ListCommand_STYLE
+    ListCommand -> TopicManager: isEmpty()
+    activate TopicManager TopicManager_STYLE
+    return
+
+    alt TopicManager is empty
+        ListCommand -> Ui : printListFail()
+        activate Ui Ui_STYLE
+        return
+    else else
+        ListCommand -> Ui : printListSuccess()
+        activate Ui Ui_STYLE
+        return
+
+        ListCommand -> TopicManager : getAllCS2040CFiles()
+        activate TopicManager TopicManager_STYLE
+        return printedCS2040CFiles: ArrayList<String>
+
+        ListCommand -> Ui : printListOfCS2040CFiles(printedCS2040CFiles: ArrayList<String>)
+        activate Ui Ui_STYLE
+        return
+    end
+return
+destroy ListCommand
+@enduml

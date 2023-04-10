@@ -1,0 +1,7 @@
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme 
+
+title: CLIAlgo
+description: Looking for a quick, easy, and efficient way to track your CS2040C note and code files? They're all on CLIAlgo.
+show_downloads: true

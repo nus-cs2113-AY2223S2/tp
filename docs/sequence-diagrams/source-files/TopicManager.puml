@@ -1,0 +1,37 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+participant ": TopoCommand" as TopoCommand TopoCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant ": Topic" as Topic Topic_STYLE
+participant "topicCS2040CFiles: ArrayList<String>" as topicCS2040CFiles
+
+activate TopoCommand TopoCommand_STYLE
+TopoCommand -> TopicManager : getAllCS2040CFilesBeforeTopic(CS2040CFileName: String)
+activate TopicManager TopicManager_STYLE
+    loop TOPO_ORDER
+        TopicManager -> Topic: isInsideTopic(CS2040CFileName: String)
+        activate Topic Topic_STYLE
+        return : boolean
+
+        opt isPartOfTopoOrder
+            TopicManager -> TopicManager: getCS2040CFilesByTopicToPrint(topicName: String)
+            activate TopicManager
+                TopicManager -> Topic: getAllCS2040CFilesInTopicToPrint()
+                activate Topic Topic_STYLE
+                    Topic -> topicCS2040CFiles **
+                    activate topicCS2040CFiles
+                    return
+
+                    loop cs2040cFiles
+                        Topic -> topicCS2040CFiles: add(cs2040cFileNameWithLabel: String)
+                        activate topicCS2040CFiles
+                        return
+                    end
+                return topicCS2040CFiles: ArrayList<String>
+            return topicCS2040CFiles: ArrayList<String>
+        end
+    end
+return toPrintCS2040CFiles: LinkedHashMap<String, ArrayList<String>>
+@enduml

@@ -1,9 +1,112 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
+======================================================
+Hello! Welcome to CLIAlgo Notes!
+======================================================
+======================================================
+Starting test mode.
+======================================================
+======================================================
+You have no CS2040CFiles!
+Type 'help c/add' for assistance on how to add a CS2040CFile.
+======================================================
+======================================================
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
+======================================================
+======================================================
+The available COMMAND_TYPE(s) are:
 
-What is your name?
-Hello James Gosling
+[add]: add CS2040CFile
+[remove]: remove CS2040CFile
+[list]: displays all CS2040CFiles
+[filter]: filters CS2040CFiles by topic
+[topo]: displays all CS2040CFiles before the selected topic
+[export]: places CS2040CFiles sorted by filter/topo in a file
+[exit]: close the application
+
+For more help on a specific command, type `help c/COMMAND_TYPE`.
+======================================================
+======================================================
+Unsuccessful! sorting is not a topic in CS2040C.
+Type 'help c/add' for assistance.
+======================================================
+======================================================
+Add a CS2040CFile to a topic using:
+
+    `add n/NAME t/TOPIC [i/IMPORTANCE]`
+
+NAME: String name of the CS2040CFile file.
+TOPIC: String topic that NAME will be tagged to.
+IMPORTANCE: int level of importance on a scale of 1-10 (optional field).
+
+Valid TOPIC's are 'SORTING', 'LINKED_LIST', 'GRAPH_STRUCTURES',
+'BINARY_HEAP', 'HASH_TABLE', 'GRAPH_TRAVERSAL', 'BINARY_SEARCH_TREE',
+'SS_SHORTEST_PATH', 'UNION_FIND_DS' and 'MINIMUM_SPANNING_TREE'.
+======================================================
+======================================================
+Invalid keyword! Only `topic` and `importance` are supported keywords.
+Type `help c/filter for more information.
+======================================================
+======================================================
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
+======================================================
+======================================================
+Unsuccessful! LINKED LIST is not a topic in CS2040C.
+Type 'help c/add' for assistance.
+======================================================
+======================================================
+Remove a CS2040CFile using:
+
+    `remove n/NAME`
+
+NAME: String name of the CS2040CFile file.
+======================================================
+======================================================
+You have no files!
+You can add a file to a specific topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
+======================================================
+======================================================
+Unsuccessful!
+Type 'help c/remove' for assistance on how to remove a CS2040CFile.
+======================================================
+======================================================
+You have no CS2040CFiles!
+Type 'help c/add' for assistance on how to add a CS2040CFile.
+======================================================
+======================================================
+Successfully added sorting notes into SORTING.
+======================================================
+======================================================
+Here are the filtered CS2040CFiles:
+======================================================
+[SORTING]
+1. [NOTE] sorting notes
+======================================================
+======================================================
+Unsuccessful! MST is not a topic in CS2040C.
+Type 'help c/add' for assistance.
+======================================================
+======================================================
+There are no files in this topic!
+You can add a file to this topic using the add command.
+Type 'help c/add' for more information on how to add a CS2040CFile.
+======================================================
+======================================================
+Successfully removed sorting notes.
+======================================================
+======================================================
+Unsuccessful!
+Type 'help c/remove' for assistance on how to remove a CS2040CFile.
+======================================================
+======================================================
+Ending test mode.
+======================================================
+======================================================
+Successfully deleted file.
+======================================================
+======================================================
+Thank you for using CLIAlgo! Study hard!
+======================================================

@@ -1,0 +1,70 @@
+@startuml
+skinparam classAttributeIconSize 0
+!include ../../style.iuml
+
+class FileManager FileManager_STYLE {
+-path: String
+-topicRawData: HashMap<String, SingleFile>
+-topicNames: Arraylist<String>
++initialize()
++createSingleFile()
++addEntry(name: String, cs2040cFile: CS2040CFile)
++deleteEntry(cs2040cFileName: String)
+}
+
+class SingleFile SingleFile_STYLE {
+-storedRawData: HashMap<String, String>
+-cs2040cFiles: HashMap<String, CS2040CFile>
++readFile()
++recreateFile()
++writeCS2040CFileToFile(fileName: String, encodedCS2040CFile: String, cs2040cFile: CS2040CFile)
++deleteEntry(name: String)
++convertFileToTopic(): Topic
+}
+
+class FileDecoder FileDecoder_STYLE {
++decodeString(encodedCS2040CFile: String, topicName: String): boolean
+}
+
+class FileEncoder FileEncoder_STYLE {
++encodeCS2040CFile(name: String, cs2040cFile: CS2040CFile): String
+}
+
+class File File_STYLE {
++createNewFile()
+}
+
+class Topic Topic_STYLE {
+}
+
+class CS2040CFile CS2040CFile_STYLE {
+}
+
+class Scanner Scanner_STYLE {
++nextLine()
+}
+
+class FileWriter FileWriter_STYLE {
+}
+
+class BufferedWriter BufferedWriter_STYLE {
++write()
++newLine()
+}
+
+FileManager --> "1" FileEncoder
+FileManager *- "*" SingleFile
+SingleFile --> "1" FileDecoder
+SingleFile --> "1" File
+SingleFile -- Topic : creates >
+SingleFile .. FileWriter : passes string to >
+FileWriter -> "1" BufferedWriter
+File .. BufferedWriter : writes to <
+SingleFile .. Scanner : updates storedRawData <
+File .. Scanner : passes string to >
+CS2040CFile .. FileManager : gets reference from <
+CS2040CFile .. FileEncoder : gets reference from <
+Topic *- "*" CS2040CFile
+
+hide circle
+@enduml

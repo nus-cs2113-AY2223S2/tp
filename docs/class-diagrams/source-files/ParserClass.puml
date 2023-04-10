@@ -1,0 +1,50 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class "<<interface>> \n StringManipulation" as StringManipulation
+
+class Parser Parser_STYLE {
+-COMMANDS: Arraylist<String>
+-KEYWORDS: Arraylist<String>
+
+-prepareCommand(): Command
+#isCorrectMarker(userInput: String, correctMarker: String): boolean
++isValidCommand(): boolean
++isValidKeyword(): boolean
++parse(fullCommand: String, topics: TopicManager): Command
+}
+
+interface StringManipulation StringManipulation_STYLE {
+getFirstWord(userInput: String, regex: String): String
+removeFirstWord(userInput: String, regex: String): String
+removeMarker(userInput: String, marker: String): String
+}
+
+class Ui Ui_STYLE {
+}
+
+class TopicManager TopicManager_STYLE {
+}
+
+class Buffer Buffer_STYLE{
+}
+
+class CLIAlgo CLIAlgo_STYLE{
++CLIAlgo(): void
+-run(): void
+}
+
+package command <<rectangle>> Command_STYLE {
+}
+
+CLIAlgo --> "1" Ui : ui
+CLIAlgo --> "1" TopicManager : topicManager
+CLIAlgo --> "1" Parser : parser
+Parser ..|> StringManipulation
+Parser ..> Ui
+Parser ..> TopicManager
+Parser ..> command
+Parser ..> Buffer
+@enduml

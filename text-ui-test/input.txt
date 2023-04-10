@@ -1,1 +1,21 @@
-James Gosling
+start-test-mode
+list
+filter k/topic
+help
+add n/incorrect topic note t/sorting
+help c/add
+filter k/Topic
+filter k/topic t/LINKED_LIST
+filter k/topic t/LINKED LIST
+help c/remove
+filter k/topic t/SORTING
+remove n/    hash table notes
+list
+add n/sorting notes t/SORTING
+filter k/ topic
+filter k/topic t/MST
+filter k/topic t/MINIMUM_SPANNING_TREE
+remove n/sorting notes
+remove n/sorting notes
+exit-test-mode
+exit

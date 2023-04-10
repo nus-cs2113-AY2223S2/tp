@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+abstract class Command Command_STYLE {
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void {abstract}
++equals(otherCommand: Command): boolean {abstract}
+}
+
+class TopoCommand TopoCommand_STYLE {
+-topoSortedNotes: LinkedHashMap<String, ArrayList<String>>
+-name: String
+
++getName(): String
+-printSingleTopic(topicName: String): void
++printTopoSortedNotes(topicManager: TopicManager, ui: Ui): void
++execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
++equals(otherCommand: Command): boolean
+}
+
+class Ui Ui_STYLE {
+}
+
+class TopicManager TopicManager_STYLE {
+}
+
+class Buffer Buffer_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+Command ..> Ui
+TopoCommand ..> Ui
+Command ..> TopicManager
+TopoCommand ..> TopicManager
+Command ..> FileManager
+TopoCommand ..> FileManager
+TopoCommand ..> Buffer
+Command <|-- TopoCommand
+@enduml

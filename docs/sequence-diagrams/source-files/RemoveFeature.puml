@@ -1,0 +1,66 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+participant ": RemoveCommand" as RemoveCommand RemoveCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "buffer: Buffer" as Buffer Buffer_STYLE
+
+-> RemoveCommand : execute()
+activate RemoveCommand RemoveCommand_STYLE
+    opt topic manager is empty
+        RemoveCommand -> Ui : printRemoveFail()
+        activate Ui Ui_STYLE
+        return
+        <-- RemoveCommand
+    end
+
+    opt CS2040CFile is not inside topic manager
+        participant ": NameNotFoundCommand" as nn NameNotFoundCommand_STYLE
+        RemoveCommand -> nn **
+        activate nn NameNotFoundCommand_STYLE
+        return
+
+        RemoveCommand -> nn : execute()
+        activate nn NameNotFoundCommand_STYLE
+        return
+        destroy nn
+        <-- RemoveCommand
+    end
+
+    RemoveCommand -> TopicManager : removeCS2040CFile
+    activate TopicManager TopicManager_STYLE
+    return
+
+    opt CS2040CFile NOT successfully removed from topic manager
+        RemoveCommand -> Ui : printRemoveFail
+        activate Ui Ui_STYLE
+        return
+        <-- RemoveCommand
+    end
+
+    RemoveCommand -> FileManager : recreateAll()
+    activate FileManager FileManager_STYLE
+    return
+
+    RemoveCommand -> FileManager : deleteEntry()
+    activate FileManager FileManager_STYLE
+    return
+
+    opt CS2040CFile NOT deleted from file manager
+        <-- RemoveCommand
+    end
+
+    RemoveCommand -> Buffer : updateBuffer()
+    activate Buffer Buffer_STYLE
+    return
+
+    RemoveCommand -> Ui : printRemoveSuccess()
+    activate Ui Ui_STYLE
+    return
+    return
+    destroy RemoveCommand
+
+@enduml

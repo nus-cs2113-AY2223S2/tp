@@ -1,0 +1,35 @@
+@startuml
+!include ../../style.iuml
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Command Command_STYLE {
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class HelpCommand HelpCommand_STYLE {
+    -command: String
+    +getCommand(): String
+    +execute(topicManager: TopicManager, ui: Ui, fileManager: FileManager, buffer: Buffer): void
+}
+
+class TopicManager TopicManager_STYLE {
+}
+
+class Ui Ui_STYLE {
+}
+
+class FileManager FileManager_STYLE {
+}
+
+class Buffer Buffer_STYLE {
+}
+
+Command <|-- HelpCommand
+
+
+TopicManager .. HelpCommand
+Ui .. HelpCommand
+FileManager .. HelpCommand
+Buffer .. HelpCommand
+@enduml

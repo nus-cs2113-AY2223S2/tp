@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+!include ../../style.iuml
+
+class Buffer Buffer_STYLE {
+-buffer: Buffer = null
+-files: ArrayList<CS2040CFile>
++getInstance()
++updateBuffer(filteredFiles: ArrayList<CS2040File>)
++exportBuffer()
+}
+
+class File File_STYLE {
+}
+
+class Ui Ui_STYLE {
+}
+
+class CS2040CFile CS2040CFile_STYLE {
+}
+
+class Desktop Desktop_STYLE {
++getDesktop()
++open()
+}
+
+Buffer ..> "0..1" Desktop
+Desktop - "0..1" Desktop : has instance of >
+Buffer -  "0..1" Buffer: has instance of >
+Buffer ..> "1" Ui
+Buffer ..> "1" File
+Buffer o-- "*" CS2040CFile
+
+hide circle
+@enduml

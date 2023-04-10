@@ -1,0 +1,56 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+actor User
+participant "cliAlgo: CLIAlgo" as CLIAlgo CLIAlgo_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+participant "parser: Parser" as Parser Parser_STYLE
+participant ": Command" as Command Command_STYLE
+box logic logic_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant ": Topic" as Topic Topic_STYLE
+end box
+participant "buffer: Buffer" as Buffer Buffer_STYLE
+box storage storage_STYLE
+participant "fileManager: FileManager" as FileManager FileManager_STYLE
+participant ": SingleFile" as SingleFile SingleFile_STYLE
+end box
+
+activate CLIAlgo CLIAlgo_STYLE
+    loop fullCommand != "exit"
+    User -> CLIAlgo
+    CLIAlgo -> Ui : getUserInput()
+    activate Ui Ui_STYLE
+    return fullCommand : String
+
+    CLIAlgo -> Parser : parse(fullCommand: String)
+    activate Parser Parser_STYLE
+        Parser -> Command **
+        activate Command Command_STYLE
+        return
+    return command : Command
+
+    CLIAlgo -> Command : execute()
+    activate Command Command_STYLE
+        Command -> TopicManager
+        activate TopicManager TopicManager_STYLE
+            TopicManager -> Topic
+            activate Topic Topic_STYLE
+            return
+        return
+
+        Command -> Buffer
+        activate Buffer Buffer_STYLE
+        return
+
+        Command -> FileManager
+        activate FileManager FileManager_STYLE
+            FileManager -> SingleFile
+            activate SingleFile SingleFile_STYLE
+            return
+        return
+    return
+    destroy Command
+    end
+@enduml

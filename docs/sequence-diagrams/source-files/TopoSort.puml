@@ -1,0 +1,60 @@
+@startuml
+!include ../../style.iuml
+hide footbox
+
+participant ": TopoCommand" as TopoCommand TopoCommand_STYLE
+participant "topicManager: TopicManager" as TopicManager TopicManager_STYLE
+participant "buffer: Buffer" as Buffer Buffer_STYLE
+participant "ui: Ui" as Ui Ui_STYLE
+
+-> TopoCommand : execute()
+activate TopoCommand TopoCommand_STYLE
+    TopoCommand -> TopicManager: isEmpty()
+    activate TopicManager TopicManager_STYLE
+    return : boolean
+
+    opt TopicManager is empty
+        TopoCommand -> Buffer: updateBuffer()
+        activate Buffer Buffer_STYLE
+        return
+
+        TopoCommand -> Ui: printNoCS2040CFilesSaved()
+        activate Ui Ui_STYLE
+        return
+        <-- TopoCommand
+    end
+
+    TopoCommand -> TopicManager: isRepeatedCS2040CFile(CS2040CFileName: String)
+    activate TopicManager TopicManager_STYLE
+    return : boolean
+
+    opt TopicManager does not contain CS2040CFileName
+        TopoCommand -> Ui: printFileDoesNotExist()
+        activate Ui Ui_STYLE
+        return
+        <-- TopoCommand
+    end
+
+    TopoCommand -> TopoCommand: printTopoSortedCS2040CFiles()
+    activate TopoCommand
+        TopoCommand -> TopicManager: getAllCS2040CFilesBeforeTopic(CS2040CFileName: String)
+        activate TopicManager TopicManager_STYLE
+        return topoSortedCS2040CFiles: LinkedHashMap<String, ArrayList<String>>
+
+        TopoCommand -> Ui: printTopoSortSuccess()
+        activate Ui Ui_STYLE
+        return
+
+        loop topoSortedCS2040CFiles
+            TopoCommand -> Ui: printListOfCS2040CFilesWithGivenIndex()
+            activate Ui Ui_STYLE
+            return serialNumber: String
+        end
+    return files: ArrayList<CS2040CFile>
+
+    TopoCommand -> Buffer: updateBuffer(files: ArrayList<CS2040CFile>)
+    activate Buffer Buffer_STYLE
+    return
+return
+destroy TopoCommand
+@enduml

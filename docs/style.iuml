@@ -1,0 +1,54 @@
+'Command
+!define Command_STYLE #FFD6D6
+!define AddCommand_STYLE #FFCCCC
+!define AddCodeCommand_STYLE #FFC1C1
+!define AddNoteCommand_STYLE #FFB7B7
+!define EmptyBufferCommand_STYLE #FFACAC
+!define ExitCommand_STYLE #FFA5A5
+!define ExitTestModeCommand_STYLE #FFAB9E
+!define ExportCommand_STYLE #FFB297
+!define FilterCommand_STYLE #FFB990
+!define FilterByImportanceCommand_STYLE #FFC089
+!define FilterByTopicCommand_STYLE #FFC782
+!define HelpCommand_STYLE #FFCD7B
+!define InvalidCommand_STYLE #FFD374
+!define InvalidFilterCommand_STYLE #FFD96D
+!define InvalidTopicCommand_STYLE #FFDE66
+!define InvalidImportanceCommand_STYLE #FFE35F
+!define ListCommand_STYLE #FFE858
+!define NameNotFoundCommand_STYLE #FFED51
+!define RemoveCommand_STYLE #FFF24A
+!define TestModeCommand_STYLE #FFF843
+!define TopoCommand_STYLE #FFFD3C
+
+'File
+!define CS2040CFile_STYLE #EBE1E1
+!define Code_STYLE #DDCDCD
+!define Note_STYLE #D0BABA
+
+'Logic
+!define logic_STYLE #d2e5fa
+!define Topic_STYLE #8DC4FF
+!define TopicManager_STYLE #8D9AFF
+
+'Storage
+!define storage_STYLE #f1fcd9
+!define FileDecoder_STYLE #E7FFB7
+!define FileEncoder_STYLE #DCFF97
+!define FileManager_STYLE #D1FF75
+!define SingleFile_STYLE #C3FF4B
+
+'Top Level Classes
+!define Buffer_STYLE #9AFF9A
+!define CLIAlgo_STYLE #8DFFC4
+!define StringManipulation_STYLE #8DFFFF
+!define Parser_STYLE #D5FFFF
+!define Ui_STYLE #C48DFF
+
+'Java Library Classes
+!define FileWriter_STYLE #FF4BFF
+!define BufferedWriter_STYLE #FF61FF
+!define Scanner_STYLE #FF71FF
+!define System_STYLE #FF97FF
+!define File_STYLE #00D4FF
+!define Desktop_STYLE #BBFF00

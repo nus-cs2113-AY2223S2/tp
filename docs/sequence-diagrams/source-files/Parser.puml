@@ -1,0 +1,57 @@
+@startuml
+!include ../../style.iuml
+
+hide footbox
+
+participant "parser: Parser" as Parser Parser_STYLE
+participant "<<interface>> \n StringManipulation" as StringManipulation StringManipulation_STYLE
+participant ": InvalidCommand" as InvalidCommand InvalidCommand_STYLE
+participant ": RemoveCommand" as RemoveCommand RemoveCommand_STYLE
+
+-> Parser : parse(fullCommand : String)
+activate Parser Parser_STYLE
+    Parser -> StringManipulation : getFirstWord(fullCommand : String)
+    activate StringManipulation StringManipulation_STYLE
+    return command : String
+
+    alt !isValidCommand(command)
+        Parser -> InvalidCommand **
+        activate InvalidCommand InvalidCommand_STYLE
+        return
+    else else
+        Parser -> StringManipulation : removeFirstWord(fullCommand : String)
+        activate StringManipulation StringManipulation_STYLE
+        return description : String
+
+        Parser -> Parser : prepareCommand(command : String, description : String, topics : TopicManager)
+        activate Parser
+            alt command == "help"
+            else command == "add"
+            else command == "remove"
+                Parser -> Parser : PrepareRemoveCommand (description : String, topics : TopicManager)
+                activate Parser Parser_STYLE
+                    alt description == null || !isCorrectMarker(description)
+                        Parser -> InvalidCommand **
+                        activate InvalidCommand InvalidCommand_STYLE
+                        return
+                    else
+                        Parser -> StringManipulation : RemoveMarker(description : String)
+                        activate StringManipulation StringManipulation_STYLE
+                        return cs2040cFileName
+
+                        Parser -> RemoveCommand **
+                        activate RemoveCommand RemoveCommand_STYLE
+                        return RemoveCommand
+                    end
+                return
+            else command == "filter"
+            else command == "list"
+            else command == "export"
+            else command == "topo"
+            else
+            end
+        return
+    end
+return command: Command
+
+@enduml

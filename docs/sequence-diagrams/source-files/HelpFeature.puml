@@ -1,0 +1,53 @@
+@startuml
+!include ../../style.iuml
+
+hide footbox
+
+participant ": HelpCommand" as hc HelpCommand_STYLE
+participant "ui: Ui" as ui Ui_STYLE
+
+ -> hc : execute()
+ activate hc HelpCommand_STYLE
+    alt command is null
+    hc -> ui : ui.printHelpPage()
+    activate ui Ui_STYLE
+    return
+
+    else add
+    hc -> ui : ui.printHelpAdd()
+    activate ui Ui_STYLE
+    return
+
+    else remove
+    hc -> ui : ui.printHelpRemove()
+    activate ui Ui_STYLE
+    return
+
+    else filter
+    hc -> ui : ui.printHelpFilter()
+    activate ui Ui_STYLE
+    return
+
+    else topo
+    hc -> ui : ui.printHelpTopo()
+    activate ui Ui_STYLE
+    return
+
+    else list
+    hc -> ui : ui.printHelpList()
+    activate ui Ui_STYLE
+    return
+
+    else export
+    hc -> ui : ui.printHelpExport()
+    activate ui Ui_STYLE
+    return
+
+    else exit
+    hc -> ui : ui.printHelpExit()
+    activate ui Ui_STYLE
+    return
+   end
+<-- hc
+destroy hc
+@enduml
