@@ -13,12 +13,16 @@ import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.InvalidDeadlineException;
 import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.WrongPrecisionException;
+import seedu.exceptions.LargeValueException;
 import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_AMOUNT_FORMAT_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_PRECISION;
+import static seedu.ui.ErrorMessages.ERROR_INVALID_AMOUNT_TOO_LARGE;
 
 public class ParseLendBorrow {
     public static final String BLANK = "";
@@ -27,6 +31,7 @@ public class ParseLendBorrow {
     public static final String PSLASH = "p/";
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
+    public static final String DOT = ".";
     private final String userInput;
 
     public ParseLendBorrow(String userInput) {
@@ -69,6 +74,10 @@ public class ParseLendBorrow {
             return new InvalidCommand(e.getMessage());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
+        } catch (LargeValueException l) {
+            return new InvalidCommand(ERROR_INVALID_AMOUNT_TOO_LARGE.toString());
+        } catch (WrongPrecisionException e) {
+            return new InvalidCommand(ERROR_INVALID_AMOUNT_PRECISION.toString());
         }
     }
 
@@ -83,12 +92,15 @@ public class ParseLendBorrow {
     }
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
-            StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException {
+            StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException,
+            WrongPrecisionException, LargeValueException {
         // Converts from string to double for numerical addition functionalities
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
+        ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
         ExceptionChecker.checkValidDoubleInput(amountVal);
         double amount = Double.parseDouble(amountVal);
         ExceptionChecker.checkValidAmount(amount);
+        ExceptionChecker.checkLargeValue(amount);
         return Double.parseDouble(amountVal);
     }
 
