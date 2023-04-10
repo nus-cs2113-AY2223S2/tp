@@ -32,7 +32,10 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We would like to thank the authors and contributors of the [GSON](https://github.com/google/gson) library.
+
+Ideas regarding project structure, parsing, argument validation, and exception handling were taken from
+[Ethan's iP](https://github.com/ethanyidong/ip), but were heavily modified and improved upon.
 
 ###### [Back to table of contents](#table-of-contents)
 
