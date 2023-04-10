@@ -5,7 +5,7 @@
 * **Setting up, getting started**
 * **Design**
     * [Architecture](#architecture)
-    * [BagPacker Mechanism](#bagpacker-mechanism)
+    * [BagPacker Mechanism](#runbagpacker---mechanism)
     * [commands Package](#commands-package) 
         - <em>[Command](#command)
         - [AddCommand](#add-command)
@@ -27,11 +27,11 @@
         - [InvalidIndexException](#invalidindexexception)
         - [InvalidQuantityException](#invalidquantityexception)
         - [InvalidVariablesException](#invalidvariablesexception)</em>
-    * **[iohandler Pakage](#iohandler-package)**
+    * **[iohandler Pakage](#iohandler)**
         - <em>[Parser](#parser-class)
         - Storage
         - Ui</em>
-    * **[packingfunc Package](#packingfunc-package)**
+    * **[packingfunc Package]()**
         - <em>Item
         - PackingList</em>
 * **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
@@ -393,10 +393,10 @@ all createCommandObj methods except for commands without input variables (i.e. e
 
 
 ### IOHandler
-The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
-while managing the storage and retrieval of the associated `item`s in the user's `packingList`.
+The `IOHandler` package contains three main classes, which are [Parser](#parser-class), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+while managing the storage and retrieval of the associated `item`'s in the user's `packingList`.
 
-### parser class
+### Parser Class
 The Parser class has 2 main functions:
 1. Reading and retrieving the relevant command, and command variables from the users input (get*CommandVariable()*)
 2. Creating a command object based on the retrieved command and command variables (create*Command*Obj())
@@ -417,6 +417,7 @@ The Parser class has 2 main functions:
 `getPackAllIndex()` - returns the item Index of the item to set as fully packed. Used by `createPackAllObj()` and `createUnpackAllObj`. .
 
 ##### create*Command*Obj() methods:
+
 All erroneous inputs will instead return `IncorrectCommand()` with respective error messages. Go to [Exceptions](#exceptions) to see more details 
 
 The following show the respective create methods for each command. The `command` object they return will be executed in `BagPacker()`
@@ -449,9 +450,6 @@ The following show the respective create methods for each command. The `command`
 
 `IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
 
-
----
-#### Parser
 
 
 ---
