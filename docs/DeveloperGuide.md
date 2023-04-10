@@ -173,22 +173,38 @@ that is likely to see high amounts of usage given the target user.
 
 ![Load Events Sequence Diagram](UML/Images/loadEvents.png)
 
-When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
+When the application starts up, the storage's loadEvents() function will be called to load contents in the save.json file in the local folder directory. 
 
+The save file can be edited and modified as it is stored in a JSON format. However, if certain field is changed in a manner 
+that may cause the application to fail when running at a later stage, the storage will discard all the data in the EventList 
+and provide the user with an empty Event List. One such example would be the deletion of a certain field's key without replacing it.
+
+In the case where there are duplicate names within a JSON object, lexically preceding values for the same key shall be overwritten,
+and the last value for the key will be taken as the accurate value. 
+
+<br>
 
 ### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
 
-When any component requires reading the NUS module files, the loadModules() method is called. Data from nusmods.json
-is accurate as of March 17, 2023. 
+When any component requires information from a module offered by NUS, the loadModules() method is called. 
+loadModules() extracts Data from nusmods.json which is a web-scrapped version of the NUSMods API. The data on the file 
+is correct as of March 17, 2023. 
+
+It should be noted that Modules that are **Mini Projects** or **Workshops** are not supported by this application as they
+do not have any semester data. As such they cannot be added as an event through the hashMap. Instead, they should be added
+as individual/recurring invents by the user through the add events functionality.
+
+<p style="page-break-after: always;">&nbsp;</p>
 
 ### 2.3.4 Save Events Sequence Diagram
 
 ![Save To File Sequence Diagram](UML/Images/SaveToFile.png)
 
 Similarly, the state of the user's event list is saved when the user exits the application by calling the saveToFile() 
-method.
+method. 
 
+<br>
 
 ### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
@@ -330,7 +346,7 @@ allowing them to take charge of their schedules and ensure that they have their 
 * *NUSPlanner* - The name of our application
 * *OS* - Operating System (ie Windows, Linux, macOS) of the computer
 * *CLI* - Command Line Interface, the terminal of an OS
-* *Ui* - User Interface
+* *UI* - User Interface
 * *NUSMods* - NUSMods is a module manager and organiser tool used by NUS Students.
 
 <br>

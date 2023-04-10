@@ -20,7 +20,11 @@
   * Highlights: Data was scraped from the [NUSMODS API](https://api.nusmods.com/v2/) to enable the application to run offline. As the data was not in a 
   directly-usable format, a custom Adapter was created using the GSON API, converting it into custom-classes usable for the purposes of our application. 
   The java-compatible module data is then stored in a HashMap for fast retrieval. 
-
+* **JUnit Tests**:
+  * Ensured overall functionality of application with JUnit tests.
+  * Implemented most JUnit tests to ensure good branch & line coverage for at least the storage component.
+  * Overall Method coverage: 216/330, Storage Method coverage: 54/58
+  * Overall Line Coverage: 1462/2658, Storage Line Coverage: 764/906
 ### Contributions to User Guide:
 * Added documentation for Storage in the UG.
 * Update changes in commands and command summary
@@ -29,12 +33,16 @@
 ### Contributions to the Developer's Guide
 * Add documentation for the `Storage` component.
 * Add documentation for the overall architecture of project, including architecture diagram to provide readers with a bird's eye view of the architecture.
+* Add Instructions for manual testing to the DG.
 * Add User Stories to the DG.
 * Add Non-functional requirements to the DG. 
+* Proofread Developer's Guide.
 
 ### Contributions to team-based tasks:
-* Create Github labels for issues as recommended on the CS2113 website.
-* Use Github Projects to create a task tracker for each milestone.
+* Create GitHub labels for issues as recommended on the CS2113 website.
+* Use GitHub Projects to create a task tracker for each milestone.
 * Create and assign Issues for each milestone
 * Maintain GitHub issue tracker by updating labels for issues.
-* Reviewed PRs from all team members
+* Reviewed PRs for all team members.
+* Ensure resolution & closure of issues before each release.
+* Coordinate `v2.0` release of `.jar` file and source code.
