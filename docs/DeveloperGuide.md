@@ -52,20 +52,23 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 
 
 ---
-### Setting up, getting started
+## Setting up, getting started
 Refer to the [UserGuide.md](UserGuide.md) for more details
 
-
+---
+## Design
 ##### Architecture
 ![BagPackerClassDiagram.png](diagrams%2FBagPackerClassDiagram.png)
 ![ExceptionClassDiagram.png](diagrams%2FExceptionClassDiagram.png)
 
-The Architecture of BagPacker Application can be seen  from the diagram above
+The Architecture of BagPacker Application can be seen from the diagrams above containing
+1. BagPacker() class - role is similar to a how a standard main() class acts in Java programs
+2. commands package
+3. iohandler package
+4. exception package
+5. packingfunc package
 
-BagPacker() role is similar to a how a standard main() class acts in Java programs
-
-`BagPacker` is responsible for, 
-
+`BagPacker` is responsible for,
 - At app launch: Initializes the components in the correct sequence. Retrieves saved packing list if any.
 - Running the main app: Calls 'BagPacker.runBagPacker()' which runs the main program for BagPacker application. (including execution of commands)
 - At shut down: Shuts down the components and invokes cleanup methods where necessary. Saves the current packing list.
