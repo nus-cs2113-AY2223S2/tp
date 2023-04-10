@@ -241,7 +241,7 @@ Below are the specific steps on how to use the ListCaloriesCommand function and 
 
 #### Deleting Calories Date
 
-The ViewCaloriesCommand component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
+The DeleteCaloriesCommand component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
 `Command` and `DeleteCaloriesCommand`, where the user will
 enter a command `/cdelete INDEX` and it will return all the dates in the list
 
