@@ -145,7 +145,7 @@ install rainyDay on your device and start using it. Please refer to the steps be
     * [Exporting to CSV](#exporting-to-csv)
         * [Where to locate exported CSV file?](#where-to-locate-the-exported-csv-file)
         * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-* [Exiting the application](#exiting-the-application)
+* [Exiting rainyDay](#exiting-rainyday)
 
 ## Features
 
@@ -216,6 +216,7 @@ Format: **`add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`**
 > ⚠️ Please avoid doing the following:
 > - Amount provided must be a positive value and cannot be more than $21,474,836.47!
 > - `DESCRIPTION` and `CATEGORY` cannot contain dash `-`
+> - `CATEGORY` cannot contain dollar symbol `$`
 > - Avoid using characters other than alphanumeric characters and space as it could lead to abnormal behaviour
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:
@@ -318,7 +319,7 @@ Format: **`edit [INDEX] [FLAG] {NEWFIELD}`**
 
 Example of Usage:
 
-Suppose you realised you forgot to add the "Category" for entry 1, and you would like to place it under
+Suppose you realised you forgot to add the "Category" for entry with index 1, and you would like to place it under
 "Food and Drinks". You can use the following command:
 
 ![editCategory.png](images/UserGuide/editCategory.png)
@@ -327,7 +328,7 @@ and use the `view` command afterwards to verify the edits are accurate:
 
 ![editCategoryView.png](images/UserGuide/editCategoryView.png)
 
-Perhaps you realised you made a mistake in the "Amount" for entry 2 and your allowance is $75 instead.
+Perhaps you realised you made a mistake in the "Amount" for entry with index 2 and your allowance is $75 instead.
 You can use the following command:
 
 ![editValue.png](images/UserGuide/editValue.png)
@@ -336,7 +337,7 @@ and use the `view` command afterwards to verify the edits are accurate:
 
 ![editValueView.png](images/UserGuide/editValueView.png)
 
-But what happens if you realised you made multiple mistakes in entry 3? Don't worry! You can edit multiple fields at the
+But what happens if you realised you made multiple mistakes in entry with index 3? Don't worry! You can edit multiple fields at the
 same time using multiple flags. However, do take note of the flag order as listed below.
 > ⚠️ Multiple flags may be used at once, but must be in the following order:
 >
@@ -418,7 +419,7 @@ not want to include it in your budget calculations. After adding it into rainyDa
 
 ![ignoreView.png](images/UserGuide/ignoreView.png)
 
-To ignore the entry, you can use the following command:
+To ignore the index, you can use the following command:
 
 ![ignoreGST.png](images/UserGuide/ignoreGST.png)
 
@@ -591,20 +592,20 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 1. Open your Microsoft Excel application and open a blank workbook.
 2. Click on the *Data* tab found at the top and click on *From
-   Text/CSV*.
+   Text/CSV*.<br><br>
 
-![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
-
+    ![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
+   <br><br>
 3. Navigate to the CSV file as directed in
    the [where to locate exported CSV file section](#where-to-locate-the-exported-csv-file).
-4. Double-click on the CSV file and click the *load* button.
+4. Double-click on the CSV file and click the *load* button.<br><br>
 
-![img.png](images/UserGuide/csv.png)
-
+    ![img.png](images/UserGuide/csv.png)
+   <br><br>
 5. With steps 1-4, your financial statements should now be viewable in a nicely formatted table as shown
-   below.
+   below.<br><br>
 
-![statementstable.png](images/UserGuide/statementTable.png)
+    ![statementTable.png](images/UserGuide/statementTable.png)
 
 [Jump back to Features Overview](#features-overview)
 
@@ -619,14 +620,20 @@ Format: **`bye`**
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer?
-
-**A**: Copy the txt file named "rainyDay" that is in the same directory as "rainyDay.jar", to the new device's directory
-that "rainyDay.jar" is going to be stored in.
-
 **Q**: I tried to input a value, but it is not showing up as what I typed!
 
 **A**: The value of transactions has a maximum of $21,474,836.47 and will also be rounded down to 2 decimal places.
+
+**Q**: Does rainyDay support the use of [non-alphanumeric characters](#glossary) such as emojis and non-english
+characters?
+
+**A**: Using these characters may lead to unexpected behaviours. Hence, users are encouraged to use alphanumeric
+characters only when using rainyDay
+
+**Q**: How do I transfer my data to another computer?
+
+**A**: Transfer the entire folder containing the "rainyDay.jar" file from one device to the other device. You can now use 
+rainyDay in your new device with the same data you previously saved.
 
 **Q**: I remember having saved data, but why is it that when I start rainyDay, it says that the report is empty?
 
@@ -648,21 +655,21 @@ and their contents do not affect rainyDay's functions. The "logs" folder and its
 
 | Action                                          | Format <br> Example input                                                                                                                                                                                                                                    |
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Help](#viewing-help)                           | `help {COMMAND}`                                                                                                                                                                                                                                             |
+| [Help](#viewing-help)                           | `help {COMMAND}` <br><br> **Example:** <br> `help` <br> `help add`                                                                                                                                                                                            |
 | [Add a transaction](#adding-a-transaction)      | `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}` <br><br> **Example:** <br> `add -in angpao $300` <br> `add -out ipad $120` <br> `add -in income $2000 -c pay -date 05/03/2023` <br> `add -out hawker food $6 -c food and drinks -date 10/03/2023` |
-| [View transactions](#viewing-the-transactions)  | `view {TIMESPAN} {-sort}`                                                                                                                                                                                                                                    |
+| [View transactions](#viewing-the-transactions)  | `view {TIMESPAN} {-sort}` <br><br> **Example:** <br> `view` <br> `view -all` <br> `view -sort` <br> `view 2m -sort`                                                                                                                                          |
 | [Delete a transaction](#deleting-a-transaction) | `delete [INDEX]` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                       |
 | [Edit a transaction](#editing-a-transaction)    | `edit [INDEX] [FLAG] {NEWFIELD}` <br><br> **Example:** <br> `edit 1 -c Food and Drinks` <br> `edit 3 -v $5000 -c Monthly Pay -date 01/04/2023`                                                                                                               |
 | [Filter transactions](#filter-transactions)     | `filter [FLAG] {FIELD}` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023` <br> `filter -date 01/01/2023 18/03/2023`                                                                                                                |
 | [Ignore transaction](#ignoring-a-transaction)   | `ignore [INDEX]` <br><br> **Example:** <br> `ignore 1` <br> `ignore 2`                                                                                                                                                                                       |
 | [Unignore transaction](#ignoring-a-transaction) | `unignore [INDEX]` <br><br> **Example:** <br> `unignore 1` <br> `unignore 2`                                                                                                                                                                                 |
-| [Set Budget](#setting-a-monthly-budget)         | `setbudget [AMOUNT]`                                                                                                                                                                                                                                         |   
+| [Set Budget](#setting-a-monthly-budget)         | `setbudget [AMOUNT]` <br><br> **Example:** <br> `setbudget 1000` <br> `setbudget 0`                                                                                                                                                                          |   
 | [Add Shortcut](#adding-a-shortcut)              | `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`<br><br> **Example:** <br> `shortcut FavLunch -maps add -out noodles $4`                                                                                                                                      |   
 | [Use Shortcut](#using-a-shortcut)               | `[SHORTCUTNAME]`                                                                                                                                                                                                                                             |
 | [View Shortcuts](#viewing-a-shortcut)           | `shortcut_view`                                                                                                                                                                                                                                              |
 | [Delete Shortcut](#deleting-a-shortcut)         | `shortcut_delete [SHORTCUTNAME]`<br><br> **Example:** <br> `shortcut_delete FavLunch`                                                                                                                                                                        |
 | [Export to CSV](#exporting-to-csv)              | `export`                                                                                                                                                                                                                                                     |              
-| [Exit](#exiting-the-application)                | `bye`                                                                                                                                                                                                                                                        |
+| [Exit](#exiting-rainyday)                       | `bye`                                                                                                                                                                                                                                                        |
 
 [Jump back to Table of Contents](#content-page)
 

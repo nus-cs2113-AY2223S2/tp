@@ -101,6 +101,8 @@ public class ParseEdit extends Parser {
                     String dateString = date.format(formatters);
                     editFlagAndField.add("-date");
                     editFlagAndField.add(dateString);
+                } catch (NumberFormatException e) {
+                    throw new RainyDayException(ErrorMessage.EDIT_FORMAT.toString());
                 } catch (RainyDayException e) {
                     throw new RainyDayException(e.getMessage() + ErrorMessage.EDIT_FORMAT);
                 }
@@ -115,6 +117,14 @@ public class ParseEdit extends Parser {
                 double valueToChange = Double.parseDouble(editFlagAndField.get(valueFlagIndex + 1));
                 if (valueToChange <= 0 || valueToChange > MAX_AMOUNT) {
                     logger.warning("edit value is less than 0");
+                    throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+                }
+            }
+            if (editFlagAndField.contains("-c")) {
+                int categoryToChangeIndex = editFlagAndField.indexOf("-c");
+                String categoryToChange = editFlagAndField.get(categoryToChangeIndex);
+                if (categoryToChange.contains("$")) {
+                    logger.warning("edit category contains $");
                     throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
                 }
             }

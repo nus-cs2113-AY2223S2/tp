@@ -16,7 +16,7 @@ public enum ErrorMessage {
             "Please refer to 'help' for more information!"),
     NO_DELETE_INDEX("Sorry, your delete command is invalid. Please include a delete index! \n" +
             "Delete format is as follows :\n" + "delete [INDEX]"),
-    WRONG_ADD_FORMAT("Sorry, your add command is invalid."),
+    WRONG_ADD_FORMAT("Sorry, your add command is invalid. "),
     WRONG_FILTER_FORMAT("Sorry, your filter command is invalid. Filter format is as follows: \n" +
             "filter {-in/-out} {-d DESCRIPTION} {-c CATEGORY} {-date DD/MM/YYYY} \n" +
             "At least one of these flags must be present and in the order above.\n" +
@@ -44,7 +44,7 @@ public enum ErrorMessage {
     WRONG_IGNORE_FORMAT("Sorry, your ignore command is invalid. Please include a ignore index! \n" +
             "ignore format is as follows :\n" + "ignore/unignore [INDEX]"),
     UNSUPPORTED_DESCRIPTION_NAME("Sorry, character \"-\" is not supported for description name\n\n"),
-    UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n"),
+    UNSUPPORTED_CATEGORY_NAME("Sorry, characters \"-\" and \"$\" are not supported for category name\n\n"),
     EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n"),
     SHORTCUT_ALREADY_EXISTS("The shortcut already exists."),
     SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
@@ -52,16 +52,17 @@ public enum ErrorMessage {
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
     SHORTCUT_DOES_NOT_EXIST("The shortcut does not exist."),
-    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47\n\n"),
+    MAPPED_SHORTCUT_START_SPACE("The mapped command should not start with a space."),
+    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47\n"),
     INVALID_GOAL("Unsupported amount provided, note that amount has to be a number >= 0 and <= 21,474,836.47"),
-    INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
-    INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n\n"),
-    INVALID_DAY("Day provided needs to be in the form DD or D, where day is a number from 1 to 31!\n\n"),
+    INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n"),
+    INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n"),
+    INVALID_DAY("Day provided needs to be in the form DD or D, where day is a number from 1 to 31!\n"),
     INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M " +
-            "instead of MM, where D, M, and Y are numbers!\n\n"),
-    EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
-    INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n"),
-    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n"),
+            "instead of MM, where D, M, and Y are numbers!"),
+    EMPTY_CATEGORY_NAME("Category name cannot be empty\n"),
+    INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n"),
+    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n"),
     FAILED_FILE_OPERATION("File operation failed"),
     INVALID_SAVED_FINANCIAL_REPORT("Your saved data for financialReport is invalid"),
     INVALID_SAVED_SHORTCUT_COMMANDS("Your saved data for shortcutCommands is invalid"),

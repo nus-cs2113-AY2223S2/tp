@@ -10,8 +10,8 @@ public class HelpCommand extends Command {
             "+--------------------+-----------+-------------------------------------------------------------------+\n" +
             "| Add entry          | add       | [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}      |\n" +
             "| Delete entry       | delete    | [INDEX]                                                           |\n" +
-            "| View entries       | view      | {TIME} {-sort}                                                    |\n" +
-            "| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |\n" +
+            "| View entries       | view      | {TIMESPAN} {-sort}                                                |\n" +
+            "| Filter entries     | filter    | [-in/-out/-d DESCRIPTION/-c CATEGORY/-date DATE]                  |\n" +
             "| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|\n" +
             "| Set monthly budget | setbudget | [VALUE]                                                           |\n" +
             "| Create shortcuts   | shortcut  | [SHORTCUT -maps COMMAND]                                          |\n" +
@@ -35,8 +35,8 @@ public class HelpCommand extends Command {
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
             "| <DESCRIPTION> | Mandatory   | Used to describe the entry.                                          |\n" +
             "| $<VALUE>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
-            "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
-            "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
+            "| -c <CATEGORY> | Optional    | Used to denote the entry's category. Set to miscellaneous if omitted |\n" +
+            "| -date <DATE>  | Optional    | Used to denote the entry's date. Set to present date if omitted      |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
             + //Note: the \ is used as an escape character for " in this case. The table will seem misaligned here only.
@@ -44,9 +44,11 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| add -in Salary $2113.09     | Adds entry with description: Salary and value: $2113.09 as inflow    |\n" +
+            "| add -in Salary $2113.09     | Adds entry with description: Salary and value: $2113.09 as inflow,   |\n" +
+            "|                             | with its category set to miscellaneous and date set to present date  |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Noodles $5         | Adds entry with description: Noodles and value: $5 as outflow        |\n" +
+            "|                             | with its category set to miscellaneous and date set to present date  |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow, with   |\n" +
             "| Transport                   | its category set to Transport and date set to present date           |\n" +
@@ -77,11 +79,11 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| TIME       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
+            "| TIMESPAN   | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
             "|            |                | timeframes not more than 31 days, 4 weeks, 12 months or 10 years.    |\n" +
             "|            |                | -all can also be used to view all entries                            |\n" +
             "| -sort      | Optional       | Sort entries by their value, and display them in non-decreasing      |\n" +
-            "|            |                | order. Inflows will be shown before Outflows.                        |\n" +
+            "|            |                | order. Inflows will be shown before outflows.                        |\n" +
             "|            |                | Statements will be sorted by date instead if omitted.                |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
@@ -106,7 +108,8 @@ public class HelpCommand extends Command {
             "| -in / -out    | Optional    | Used to filter for only inflows / outflows.                          |\n" +
             "| -d <DESC>     | Optional    | Used to filter for descriptions with a matching substring            |\n" +
             "| -c <CATEGORY> | Optional    | Used to filter for categories with a matching substring              |\n" +
-            "| -date <DATE>  | Optional    | Used to filter for entries with the specific date                    |\n" +
+            "| -date <DATE>  | Optional    | Used to filter for entries with the specific date or between the     |\n" +
+            "|               |             | 2 specified dates (inclusive)                                        |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| Note: At least 1 of the details must be given.                                                     |\n" +
             "|       Multiple details are allowed, but they must be in the following order:                       |\n" +
@@ -116,11 +119,20 @@ public class HelpCommand extends Command {
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| filter -in                  | View all inflows                                                     |\n" +
+            "|                             |                                                                      |\n" +
             "| filter -c Food              | View all entries with the category: Food                             |\n" +
+            "|                             |                                                                      |\n" +
             "| filter -date 22/03/2022     | View all entries with the date: 22/03/2022                           |\n" +
-            "| filter -d Bubble Tea        | View all entries containing the phrase: Bubble Tea                   |\n" +
-            "| filter -out -c Transfers    | View all outflows with the category: Transfers                       |\n" +
-            "| filter -out -d Shark -c Toys| View all outflows containing the word: Shark and the category: Toys  |\n" +
+            "|                             |                                                                      |\n" +
+            "| filter -d Bubble Tea        | View all entries with a description containing the phrase: Bubble Tea|\n" +
+            "|                             |                                                                      |\n" +
+            "| filter -out -c Transfers    | View all outflows with a category containing the word: Transfers     |\n" +
+            "|                             |                                                                      |\n" +
+            "| filter -out -d Shark        | View all outflows with a description containing the word Shark and   |\n" +
+            "| -c Toys                     | a category containing the word: Toys                                 |\n" +
+            "|                             |                                                                      |\n" +
+            "| filter -date 29/09/2022     | View all entries between 29/09/2022 and 21/10/2022                   |\n" +
+            "| 21/10/2022                  |                                                                      |\n" +
             "+====================================================================================================+";
     private static final String HELP_EDIT_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -135,17 +147,23 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to change the category of an entry                              |\n" +
             "| -date <DATE>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Multiple flags are allowed but must be in the following order:                               |\n" +
-            "|        `-in` or `out` -> `-d` -> `-c` -> `-date`                                                   |\n" +
+            "| Note: At least 1 of the optional details must be given.                                            |\n" +
+            "|       Multiple details are allowed, but they must be in the following order:                       |\n" +
+            "|       `-in` or `out` -> `-d` -> `-c` -> `-date`                                                    |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| edit 1 -in                  | Change flow direction of entry 1 to inflow                           |\n" +
+            "|                             |                                                                      |\n" +
             "| edit 3 -c Food              | Change category of entry 3 to Food                                   |\n" +
+            "|                             |                                                                      |\n" +
             "| edit 7 -date 22/03/2022     | Change date of entry 7 to 22/03/2022                                 |\n" +
+            "|                             |                                                                      |\n" +
             "| edit 2 -d Bubble Tea        | Change description of entry 2 to Bubble Tea                          |\n" +
+            "|                             |                                                                      |\n" +
             "| edit 4 -out -c Transfers    | Change flow direction of entry 4 to outflow and category to Transfers|\n" +
+            "|                             |                                                                      |\n" +
             "| edit 5 -out -d Shark -c Toys| Change flow direction of entry 5 to outflow, description to Shark,   |\n" +
             "| -date 22/03/2023            | category to Toys and date to 22/03/2023                              |\n" +
             "+====================================================================================================+";
@@ -189,10 +207,13 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in $10000 salary         |\n" +
-            "| -in $10000 salary           |                                                                      |\n" +
+            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in salary $10000         |\n" +
+            "| -in salary $10000           |                                                                      |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
+            "|                             |                                                                      |\n" +
+            "| salary                      | Execute the command linked to the shortcut: salary, if the shortcut  |\n" +
+            "|                             | is valid                                                             |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_delete salary      | Remove the shortcut: salary                                          |\n" +
             "+====================================================================================================+";
@@ -203,7 +224,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| INDEX      | Mandatory      | Entry at the given index will be ignored when calculating overview   |\n" +
+            "| INDEX      | Mandatory      | Entry at the given index will be ignored in all calculations         |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +

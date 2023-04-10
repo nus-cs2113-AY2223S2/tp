@@ -44,17 +44,17 @@ public class IgnoreCommand extends Command {
         if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
             currentStatement.setIgnore(false);
             MonthlyExpenditures.addToMonthlyExpenditure(currentStatement);
-            output = "Done, Entry " + (index + 1) + " included in overview calculations";
+            output = "Done, index " + (index + 1) + " included in all calculations";
             logger.log(Level.INFO, "Ignore status updated in financial report");
         } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
-            output = "Entry " + (index + 1) + " already included in overview calculations";
+            output = "Index " + (index + 1) + " already included in all calculations";
         } else if (this.command.equalsIgnoreCase("ignore") && !currentStatement.isIgnored()) {
             currentStatement.setIgnore(true);
-            output = "Done, Entry " + (index + 1) + " ignored from overview calculations";
+            output = "Done, index " + (index + 1) + " ignored from all calculations";
             MonthlyExpenditures.removeFromMonthlyExpenditure(currentStatement);
             logger.log(Level.INFO, "Ignore status updated in financial report");
         } else {
-            output = "Entry " + (index + 1) + " is already ignored from overview calculations";
+            output = "Index " + (index + 1) + " is already ignored from all calculations";
         }
 
         assert previousStatementCount == savedData.getStatementCount() : "statement count mismatch";

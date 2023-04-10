@@ -97,13 +97,13 @@ public class Storage {
      */
     private static void roundDouble(SavedData savedData) {
         double budgetGoal = savedData.getBudgetGoal();
-        budgetGoal = (double) Math.round(budgetGoal * 100) / 100;
+        budgetGoal = (double) Math.floor(budgetGoal * 100) / 100;
         savedData.setBudgetGoal(budgetGoal);
 
         FinancialReport financialReport = savedData.getFinancialReport();
         for (int i = 0; i < financialReport.getStatementCount(); i++) {
             double statementValue = financialReport.getFinancialStatement(i).getValue();
-            statementValue = (double) Math.round(statementValue * 100) / 100;
+            statementValue = (double) Math.floor(statementValue * 100) / 100;
             financialReport.getFinancialStatement(i).setValue(statementValue);
         }
     }
@@ -199,7 +199,7 @@ public class Storage {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
             }
             String category = financialStatement.get("category").getAsString();
-            if (category.isEmpty() || category.contains("-") || category.charAt(0) == ' ') {
+            if (category.isEmpty() || category.contains("-") || category.charAt(0) == ' ' || category.contains("$")) {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
             }
 
@@ -228,6 +228,9 @@ public class Storage {
         for (String key : shortcutCommands.keySet()) {
             String value = shortcutCommands.get(key).getAsString();
             if (key.isEmpty() || value.isEmpty() || key.charAt(0) == ' ' || value.charAt(0) == ' ') {
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
+            }
+            if (key.contains(" ")) {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
             }
 

@@ -23,5 +23,9 @@ public abstract class ShortcutCommand extends Command {
         if (Command.isValidCommand(keyFirstWord)) {
             throw new RainyDayException(ErrorMessage.SHORTCUT_NAME_VALID_COMMAND.toString());
         }
+
+        if (value.charAt(0) == ' ') {
+            throw new RainyDayException(ErrorMessage.MAPPED_SHORTCUT_START_SPACE.toString());
+        }
     }
 }
