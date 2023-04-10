@@ -2,30 +2,32 @@
 'https://plantuml.com/sequence-diagram
 
 hide footbox
-activate ":ChooseVenueCommand"
--> ":ChooseVenueCommand": execute()
 
-":ChooseVenueCommand" -> ":Event": updateVenue()
-activate ":Event"
-":Event" -> ":VenueList": getVenue()
-activate ":VenueList"
-":VenueList" --> ":Event": Venue
-deactivate ":VenueList"
-":Event" -> ":Ui": showVenueSelectionMessage()
-activate ":Ui"
-":Ui" --> ":Event":
-deactivate ":Ui"
-":Event" --> ":ChooseVenueCommand":
-deactivate ":Event"
+-> "chooseVenueCommand: ChooseVenueCommand": execute(event, venueList)
 
-":ChooseVenueCommand" -> ":EventDetailsStorage": updateFile()
-activate ":EventDetailsStorage"
-":EventDetailsStorage" --> ":ChooseVenueCommand":
+activate "chooseVenueCommand: ChooseVenueCommand"
 
-deactivate ":EventDetailsStorage"
-<-- ":ChooseVenueCommand"
+"chooseVenueCommand: ChooseVenueCommand" -> "event: Event": updateVenue(venueList, venueNum)
+activate "event: Event"
+"event: Event" -> "venueList: VenueList": getVenue(venueNum)
+activate "venueList: VenueList"
+"venueList: VenueList" --> "event: Event": venue
+deactivate "venueList: VenueList"
+"event: Event" -> "ui: Ui": showVenueSelectionMessage(venueName)
+activate "ui: Ui"
+"ui: Ui" --> "event: Event":
+deactivate "ui: Ui"
+"event: Event" --> "chooseVenueCommand: ChooseVenueCommand":
+deactivate "event: Event"
 
-deactivate ":ChooseVenueCommand"
+"chooseVenueCommand: ChooseVenueCommand" -> "<<class>>\nEventDetailsStorage": updateFile(event, venueNum)
+activate "<<class>>\nEventDetailsStorage"
+"<<class>>\nEventDetailsStorage" --> "chooseVenueCommand: ChooseVenueCommand":
 
-destroy ":ChooseVenueCommand"
+deactivate "<<class>>\nEventDetailsStorage"
+<-- "chooseVenueCommand: ChooseVenueCommand"
+
+deactivate "chooseVenueCommand: ChooseVenueCommand"
+
+destroy "chooseVenueCommand: ChooseVenueCommand"
 @enduml

@@ -4,10 +4,23 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-Command <|-- AddCommand
+Command <|-l- AddCommand
+Command <|-- ChooseVenueCommand
+Command <|-- ConfirmCommand
+Command <|-r- DeleteCommand
+Command <|-- FilterVenueCommand
+Command <|-u- FindCompanyCommand
+Command <|-u- FindIndustryCommand
+Command <|-u- ListCompanyCommand
+Command <|-u- ListUnconfirmedCommand
+Command <|-u- ListVenueCommand
+Command <|-- LoadSampleCompanyCommand
+Command <|-- PurgeCommand
+Command <|-- UnconfirmCommand
+Command <|-u- UpdateEventNameCommand
 
 class Command{
--commandType: String
+#commandType: String
 +Command(commandType: String)
 +getCommandType(): String
 +execute(companyList: CompanyList): void
@@ -18,13 +31,29 @@ class Command{
 
 
 class AddCommand {
--companyName: String
--industry: String
--contactNumber: int
--contactEmail: String
-+AddCommand(commandType: String, industry: String, companyName: String, contactNumber: int, contactEmail: String)
-+execute(companyList: CompanyList)
+#companyName: String
+#industry: String
+#contactNumber: int
+#contactEmail: String
++AddCommand(commandType: String, industry: String,
+companyName: String, contactNumber: int, contactEmail: String)
++execute(companyList: CompanyList): void
 }
+
+class ChooseVenueCommand {}
+class ConfirmCommand {}
+class DeleteCommand {}
+class FilterVenueCommand {}
+class FindCompanyCommand {}
+class FindIndustryCommand {}
+class ListCompanyCommand {}
+class ListUnconfirmedCommand {}
+class ListVenueCommand {}
+class LoadSampleCompanyCommand {}
+class PurgeCommand {}
+class UnconfirmCommand {}
+class UpdateEventNameCommand {}
+
 
 
 @enduml

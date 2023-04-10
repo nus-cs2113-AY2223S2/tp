@@ -1,7 +1,7 @@
 # Developer Guide
 
 ## Table of Contents
-1. [Acknowledgements](#acknowledgements)
+1. [Acknowledgements](#acknowledgements) 
 
 2. [Design & Implementation](#design--implementation)
    
@@ -12,19 +12,21 @@
     * [Parser](#parser)
     * [Command](#command)
     * [Features](#features)
-      * [Duplication checker feature](#duplication-checker-feature)
       * [Add feature](#add-feature)
+      * [Duplication checker feature](#duplication-checker-feature)
       * [Delete feature](#delete-feature)
       * [List companies feature](#list-companies-feature)
       * [Store/Load Company information to/from text file feature](#storeload-company-information-tofrom-text-file-feature)
       * [Storing event details feature](#storing-event-details-feature)
+    * [Exceptions](#custom-exceptions)
 3. [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
 4. [User Stories](#user-stories)
-5. [Non-Functional Requirements](#non-functional-requirements)
-6. [Glossary](#glossary)
-7. [Instructions for manual testing](#instructions-for-manual-testing)
+5. [Future Implementations](#futurepossible-implementations)
+6. [Non-Functional Requirements](#non-functional-requirements)
+7. [Glossary](#glossary)
+8. [Instructions for manual testing](#instructions-for-manual-testing)
 
 ## Acknowledgements
 
@@ -43,12 +45,22 @@ The CS2113 Team (Professor Akshay <3) for the guidance and teaching us concepts 
 ![broadOverview.png](UML%2FImage%2FbroadOverview.png)
 
 Fig 1: Shows the architecture diagram of the main components of EveNtUs.
+The basic description of the interaction between the class is as follows.
+
+At the launch of the programme,the Storage class retrieves the information from text files and updates the event class in Fig 2.
+It then goes into a waiting state, where user input will parsed and return as a Command. Following that, the command
+will be executed and corresponding Ui messages will be displayed.
+
 
 ### Event Class
 
 ![event.png](UML%2FImage%2Fevent.png)
 
 Fig 2: Shows the class Event that holds event details and the company list.
+
+The Event class holds the information regarding the event details and company list, and this is the class that the Storage 
+loads/save the information to/from. 
+
 
 ### Ui 
 
@@ -71,99 +83,42 @@ Fig 4: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` 
 
 ### Storage
 
+![StorageOverview.png](UML%2FImage%2FStorageOverview.png)
 
-<code>sequence diagram</code>
+Fig 5: Shows the super Storage class that the EventDetailsStorage, CompanyListEncoder, and CompanyListDecoder classes inherits from. 
+
+The detailed implementation is explained in the features section. [Storage explanation](#storeload-company-information-to-text-file-feature)
 
 ### Parser
 
 Parser involves dealing with parsing user input to understand what the user wants to do. It returns a 
-<code>Command</code> class that it executed during the run-time.
+<code>Command</code> class that it executed during the run-time. The possible commands are listed below. 
 
 ### Command
-Command classes are executed after the parser class has processed the user input. The figure below shows a typical class 
-diagram, AddCommand, which inherits from Command.
+Command classes are executed after the parser class has processed the user input. 
+
+The following Command classes inherits from the main <code>Command</code> class and
+executes different code.
 
 ![AddCommand_Class.png](UML%2FImage%2FAddCommand_Class.png)
 
-
-We also have an example of a sequence diagram for the AddCommand as shown in the figure below.
-
-![AddCommand.png](UML%2FImage%2FAddCommand.png)
-
-The following <code>Command</code> classes inherits from the main <code>Command</code> class and 
-executes different code.
-
-
-#### Add Command
-Every implementation of the `add` command is created with 4 instances of user input, the strings 
-<code>companyName</code>, <code>contactEmail</code>, <code>industry</code> and integer <code>contactNumber</code>.
-AddCommand will add the Company class to CompanyList through the <code>CompanyList.add(Company)</code> and
-the CompanyList will be updated through CompanyListEncoder through <code>CompanyListEncoder.write(CompanyList)</code>.
-
-#### Choose Venue Command
-Every implementation of `ChooseVenueCommand` creates and stores an integer <code>venueNum</code>. It will then
-run `execute` where venue chosen will be updated via <code>event.updateVenue(venueList, venueNum)</code> and
-updates the chosen venue in the storage files through <code>EventDetailsStorage.updateFile(event, venueNum)</code>.
-
-#### Confirm Command
-Every implementation of `ConfirmCommand` creates and store an integer <code>companyNum</code> which is the
-specific company to be marked confirmed in the CompanyList. It will then run `execute` which will mark a company as
-confirmed through <code>companyList.markConfirm(companyNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
-
-#### Unconfirm Command
-Every implementation of `UnconfirmCommand` creates and store an integer <code>companyNum</code> which is the
-specific company to be marked unconfirmed in the CompanyList. It will then run `execute` which will mark a company as
-unconfirmed through <code>companyList.markUnconfirm(companyNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
-
-#### Delete Command
-Every implementation of `DeleteCommand` creates and store an integer <code>taaskNum</code> which is the
-specific company to be deleted in the CompanyList. It will then run `execute` which will delete a company from the companyList
-through <code>companyList.deleteCompanyInformation(taskNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
-
-#### Find Company Command
-Every implementation of `FindCompanyCommand` creates and store a String <code>targetCompany</code> which is the
-specific company to be found in the CompanyList. It will then run `execute` which will find a company from the companyList
-through <code>companyList.findCompany(targetCompany)</code>.
-
-#### Find Industry Command
-Every implementation of `FindIndustryCommand` creates and store a String <code>targetIndustry</code> which is the
-specific company to be found in the CompanyList. It will then run `execute` which will find companies from a specific 
-industry from the companyList through <code>companyList.findIndustry(targetIndustry)</code>.
-
-#### List Company Command
-Every implementation of `ListCompanyCommand` shows all the companies currently stored in the CompanyList. It will then run 
-`execute` which will print out each company through <code>companyList.printCompanyInformation()</code>.
-
-#### List Company Command
-Every implementation of `ListUnconfirmedCommand` shows all the unconfirmed companies currently stored in the CompanyList.
-It will then run `execute` which will print out each unconfirmed company through <code>companyList.printUnconfirmed()</code>.
-
-#### List Venue Command
-Every implementation of `ListVenueCommand` shows all the venues currently stored in the venueList.
-It will then run `execute` which will print out each venue through <code>venueList.printVenueInformation()</code>.
-
-#### Load Sample Company Command
-Every implementation of `LoadSampleCompanyCommand` loads all the sample company list for user testing and updates it into
-the file. It will then run `execute` which will load the samples into companyList and the save file through
-<code>companyList.loadSampleCompanyInformation()</code> and <code>CompanyListEncoder.write(companyList)</code>.
-
-#### Purge Command
-Every implementation of `PurgeCompanyCommand` deletes the information of companies already stored in the companyList. 
-It will then run `execute` which will delete each company in the companyList through <code>companyList.purgeData()</code>
-and <code>CompanyListEncoder.write(companyList)</code>.
-
-#### Update Event Name Command
-Every implementation of `UpdateEventNameCommand` creates a new string <code>newEventName</code> which stores the new name
-for the Event. It will then run `execute` which will update the Event name through <code>event.updateEventName(newEventName)</code>.
-A new integer, <code>venueIndex</code>, is created and stored with the return value of <code>event.getVenue().getVenueIndex()</code>.
-Lastly, the file within storage is updated through <code>EventDetailsStorage.updateFile(event, venueIndex)</code>.
-
+Fig 6: Shows the list of commands that inherits from the Command class.
 
 ### Features
 
+####  Add feature
+The adding to company list feature  is facilitated by <code>AddCommand</code>. It will add new <code>Company</code> to existing
+list of companies. It has four parameters, <code>companyName</code>, <code>industry</code>, <code>contactNumber</code>, and <code>contactEmail</code>.
+After successfully executing the command, it will show successful addition message using
+the related method in the <code>Ui</code> class.
+
+![AddCommand2.png](UML%2FImage%2FAddCommand2.png)
+
+Fig 7: Shows an high level overview of the <code>addCommand</code> execute method.
+
 #### Duplication checker feature
 
-The <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
+The duplicationChecker is facilitated by <code>CompanyList</code>. It will check against the existing
 <code>CompanyList</code> to check if the company has already been added. The check is done in 3 ways: `company name`,
 `contact number`, and `contact email`. If any one of the above-mentioned details are identical to the ones already present
 in the <code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
@@ -173,12 +128,6 @@ standardized to remove any potential duplicated addition issues.
 ![Duplication_checker.png](UML%2FImage%2FDuplication_checker.png)
 
 Fig 8: Shows the sequence diagram for the Duplication Checker feature when the user adds a new company to the list
-
-####  Add feature
-The adding to company list feature  is facilitated by <code>AddCommand</code>. It will add new <code>Company</code> to existing 
-list of companies. It has four parameters, <code>companyName</code>, <code>industry</code>, <code>contactNumber</code>, and <code>contactEmail</code>. 
-After successfully executing the command, it will show successful addition message using
-the related method in the <code>Ui</code>.
 
 ####  Delete feature
 The deleting company feature  is facilitated by <code>DeleteCommand</code>. It will delete the company at the specified 
@@ -203,11 +152,11 @@ stored will be parsed and added to a local ArrayList. If the text file does not 
 
 ![Encoder.png](UML%2FImage%2FEncoder.png)
 
-Fig 6: Shows how the <code>CompanyListEncoder</code> deals with saving the data to the text file.
+Fig 9: Shows how the <code>CompanyListEncoder</code> deals with saving the data to the text file.
 
 ![Decoder.png](UML%2FImage%2FDecoder.png)
 
-Fig 7: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
+Fig 10: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
 
 ####  Storing event details feature
 The eventDetailStorage feature will allow users to save the event details of the current session to hard disk.
@@ -219,16 +168,17 @@ details. If there is no text file, a text file will be created.
 
 ![chooseVenueCommand.png](UML%2FImage%2FchooseVenueCommand.png)
 
-Fig 8: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
+Fig 11: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
-#### Custom Exceptions
+### Custom Exceptions
 Custom exceptions are created to catch erroneous user inputs that might otherwise cause EveNtUS to crash. When these 
 exceptions are caught, specific error messages are displayed to the user to indicate why their input was unsuccessful.
 These custom exceptions inherit from the Exception Class.
 
-[Exceptions.puml](UML%2FExceptions.puml)
-Fig 9: Shows the class diagram of custom Exceptions used in EveNtUS
+![Exceptions.png](UML%2FImage%2FExceptions.png)
+
+Fig 12: Shows the class diagram of custom Exceptions used in EveNtUS
 
 ## Product scope
 ### Target user profile
@@ -242,19 +192,27 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## User Stories
 
-| Version | As a ...   | I want to ...                                                                                                                                                        | So that I can ...                                                                        |
-|---------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| v1.0    | new user   | see usage instructions                                                                                                                                               | refer to them when I forget how to use the application                                   |
-| v1.0    | basic user | be able to delete company information                                                                                                                                | keep track of only the companies who are attending the event                             |
-| v2.0    | basic user | load some sample data                                                                                                                                                | so that I can get familiar with the application                                          |
-| v2.0    | basic user | select a venue for the event                                                                                                                                         | keep track of the venue information                                                      |
-| v2.0    | basic user | purge the sample data                                                                                                                                                | start to input my data                                                     |
-| v2.0    | basic user | save and retrieve my data                                                                                                                                            | continue past sessions                                                     |
-| v2.0    | basic user | search for companies attending the career fair                                                                                                                       | easily confirm their attendance without having to manually look through the entire list. |
-| v2.0    | basic user | filter the companies based on the industries they belong                                                                                                             | easily look for a company in a specific industry                                         |
-| v2.0    | basic user | prevent me from adding the same company twice                   | prevent overlap of data                                        |
-| v2.0    | basic user | tag the companies attendance status as confirmed/unconfirmed | ensure there are sufficient companies and any further follow-up action can be taken accordingly                                                     |
+| Version | As a ...   | I want to ...                                                | So that I can ...                                                                               |
+|------|------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| v1.0 | new user   | see usage instructions                                       | refer to them when I forget how to use the application                                          |
+| v1.0 | basic user | be able to delete company information                        | delete wrongly added companies                                                                  |
+| v1.0 | basic user | add a company to the company list                            | add desired companies                                                                           |
+| v1.0 | basic user | list the companies that I have added                         | have a basic record of who is attending the event                                               |
+| v2.0 | basic user | load some sample data                                        | get familiar with the application                                                               |
+| v2.0 | basic user | select a venue for the event                                 | keep track of the venue information                                                             |
+| v2.0 | basic user | purge the sample data                                        | start to input my data                                                                          |
+| v2.0 | basic user | save and retrieve my data                                    | continue past sessions                                                                          |
+| v2.0 | basic user | search for companies attending the career fair               | easily confirm their attendance without having to manually look through the entire list         |
+| v2.0 | basic user | filter the companies based on the industries they belong     | easily look for a company in a specific industry                                                |
+| v2.0 | basic user | prevent me from adding the same company twice                | prevent overlap of data                                                                         |
+| v2.0 | basic user | tag the companies attendance status as confirmed/unconfirmed | ensure there are sufficient companies and any further follow-up action can be taken accordingly |
+| v2.1 | basic user | update the name of the event                                 | customise the event name                                                                        |
+| v2.1 | basic user | filter by venue size                                         | choose the correct venue                                                                        |
 
+## Future/Possible implementations
+1. Having more venues
+2. User can print out the event details on the interface
+3. Set dates for event
 
 ## Non-Functional Requirements
 
