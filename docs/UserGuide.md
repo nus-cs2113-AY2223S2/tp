@@ -70,7 +70,7 @@ The user can then specify the card of their choice **either** via the card's UUI
 
 ## Features
 
-### Get help manual :
+### Get help manual
 
 Users can run `help` command to see the list of commands available for each feature.
 
@@ -110,7 +110,7 @@ List tags
 -t,--tag <arg>          tag name (optional)
 ```
 
-### Adding a card:
+### Adding a card
 
 `card add -q QUESTION -a ANSWER`
 
@@ -146,7 +146,7 @@ card add -q What is the flag for question? -a -q
 card add -q What is the flag for question? -a "-q"
 ```
 
-### Listing all cards :
+### Listing all cards
 
 `card list`
 
@@ -183,7 +183,7 @@ In `1.    [1ddd9a67-f56c-4914-99c0-2f90c580f0e9]` above, the `1` refers the card
 `1ddd9a67-f56c-4914-99c0-2f90c580f0e9` refers the UUID of the card. User can choose whether to refer to the card by UUID
 or card index.
 
-### Deleting a card :
+### Deleting a card
 
 `card delete {-c CARD_UUID | -i CARD_INDEX}`
 
@@ -211,7 +211,7 @@ Too easy ha? You won't see that question again!
 You now have 2 questions in the bank.
 ```
 
-### Tagging a card :
+### Tagging a card
 
 `card tag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
 
@@ -240,7 +240,7 @@ Tag does not exist.. creating a new tag: physics
 Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
-### Removing a Tag from a card :
+### Removing a tag from a card
 
 `card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
 
@@ -268,7 +268,7 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 Successfully removed tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 from card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
-### Putting a card into a deck :
+### Putting a card into a deck
 
 `card deck {-c CARD_UUID | -i CARD_INDEX} -d DECK_NAME`
 
@@ -297,7 +297,7 @@ Deck does not exist.. creating a new one
 Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4bbe-4be7-83df-5ddaecd3f1ca
 ```
 
-### Viewing a card :
+### Viewing a card
 
 `card view {-c CARD_UUID | -i CARD_INDEX} `
 
@@ -338,7 +338,7 @@ viewing.
 
 ---
 
-### Editing a tag :
+### Editing a tag
 
 `tag edit -o OLD_TAG_NAME -n NEW_TAG_NAME`
 
@@ -363,7 +363,7 @@ Sample output :
 Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
 ```
 
-### Deleting a tag :
+### Deleting a tag
 
 `tag delete {-t TAG_NAME | -x TAG_INDEX}`
 
@@ -389,7 +389,7 @@ Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 ```
 
-### List all tags : 
+### List all tags
 
 `tag list [-t TAG_NAME | -x TAG_INDEX]`
 
@@ -466,7 +466,9 @@ Successfully added tag c8259fee-125d-4700-829c-0da79eba1e91 to deck aef23e46-532
 
 ---
 
-### Edit a deck: `deck edit`
+### Edit a deck
+
+`deck edit`
 
 Rename an existing deck
 
@@ -478,7 +480,8 @@ Sample output:
 Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
 ```
 
-### [WIP] Delete a card/tag from deck: `deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
+### Delete a card/tag from deck
+`deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
 
 Delete a card from an existing deck either by specifying the cardUUID or tagUUID to delete.
 
@@ -513,7 +516,8 @@ Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c6147
 Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
 ```
 
-### List all decks: `deck list`
+### List all decks
+`deck list`
 
 List all decks that have been created
 
@@ -529,7 +533,7 @@ Here is your current list of decks:
 
 ---
 
-### Exit the program :
+### Exit the program
 
 User simply needs to run `bye`
 
