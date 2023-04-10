@@ -79,9 +79,11 @@ public class WorkoutList {
     /**
      * Displays the count of sets and reps for each distinct exercise performed in a specific week.
      *
-     * @param distinctExercises A HashMap containing distinct exercises names as keys and an ArrayList of sets and reps as values.
+     * @param distinctExercises A HashMap containing distinct exercises names as keys and an ArrayList
+     *               of sets and reps as values.
      * @param dateInSpecificWeek Date representing a specific week to display count of sets and reps.
-     * @return A String representation of the count of sets and reps for each distinct exercise performed in the specific week.
+     * @return A String representation of the count of sets and reps for each distinct exercise performed
+     *               in the specific week.
      */
     //@@ author ZIZI-czh
     public static String displayCountSetsReps(HashMap<String, ArrayList<Integer>> distinctExercises,
