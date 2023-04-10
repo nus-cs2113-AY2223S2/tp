@@ -77,7 +77,7 @@ them keep track of their expense based on category, date, amount, and currency.
 * When you sign up, you should type your username, press Enter, then type your password, and press Enter.
 * If your username is taken already, you should sign up again. Else, you could proceed to `login`.
 
-Format: <br>
+Format:
 ```
 signup
 username
@@ -86,8 +86,9 @@ password
 your_password   //Type your password after seeing `Password`, then press 'Enter'
 ```
 
-Expected Output: <br>
-* This will be displayed when your username contains a special characters (ie `_` in `your_username`):
+Expected Output:
+
+This will be displayed when your username contains a special characters (ie `_` in `your_username`):
 ```
 Username must contain only letters and numbers.
 _____________________________________________________________________________________
@@ -97,7 +98,7 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 ```
 
-* This will be displayed when your password is less than 8 characters:
+This will be displayed when your password is less than 8 characters:
 
 ```
 Password must be at least 8 characters long.
@@ -109,8 +110,8 @@ ________________________________________________________________________________
 
 ```
 
-* This will be displayed if your username is taken already (not case-sensitive):
-<br>
+This will be displayed if your username is taken already (not case-sensitive):
+
 ```
 The username is taken, please use another username.
 _____________________________________________________________________________________
@@ -120,9 +121,9 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 ```
 
-* For all those cases, the user will need to change to `login` or `exit`, or continue to signup until they could create 
+For all those cases, the user will need to change to `login` or `exit`, or continue to signup until they could create 
 a satisfied account. When the username is satisfied, this will be displayed:
-<br>
+
 ```
 User <your_username> has been created
 Signup successfully
@@ -144,7 +145,7 @@ Then, you can log in to your new account.
 * In order to log in to your account, you do similar steps as `signup`.
 * If you type the password wrongly, you will see the message `Invalid username or password.` and you have to log in again.
 
-Format <br>
+Format
 ```
 login
 username
@@ -154,12 +155,14 @@ your_password   //Type your password after seeing `Password`, then press 'Enter'
 ```
 
 Expected Output:
-* If the password and username are matched, this will be displayed, follow by a command list box for expense tracking.
+
+If the password and username are matched, this will be displayed, follow by a command list box for expense tracking.
 ```
 Login successfully
 ```
 After that, you can start managed your expense in your account
-* Else, this will be displayed, meaning that you will have to type the password again:
+
+Else, this will be displayed, meaning that you will have to type the password again:
 ```
 Invalid username or password.
 _____________________________________________________________________________________
