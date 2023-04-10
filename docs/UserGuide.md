@@ -79,6 +79,7 @@ Adds a new expense to the list of expenses.
 
 * The `amount` should be a double up to **2 decimal places** (dp). If amount has more than 2dp, it will round off to nearest 2dp.
   * The largest amount that can be entered is `9999999999.99`.
+  * The amount entered must be greater `0`.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March. 
@@ -116,6 +117,7 @@ Adds a new income to the list of incomes.
 
 * The `amount` should be a double up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.
     * The largest amount that can be entered is `9999999999.99`.
+    * The amount entered must be greater `0`.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March.
@@ -219,6 +221,7 @@ The index must be a positive integer 1, 2, 3, …​
 * The `type` can be: amount, info, time, or category.
   * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.): edits the expense
     * The largest amount that can be entered is `9999999999.99`.
+    * The amount entered must be greater `0`.
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
@@ -257,6 +260,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
 * The `type` can be: amount, info, time, or category.
   * amount (of type **double** up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.): edits the income
     * The largest amount that can be entered is `9999999999.99`.
+    * The amount entered must be greater `0`.
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. 
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
@@ -471,6 +475,7 @@ Example output:
 Format:  `setBudget <amount> [t/ date]`
 * The `amount` should be double up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.
   * The largest amount that can be entered is `9999999999.99`. 
+  * The amount entered must be greater `0`.
 * The `date` should follow `YYYY/MM` format.
   * The oldest date that can be entered is 2000/01.
 * The time parameter is **optional**. 
