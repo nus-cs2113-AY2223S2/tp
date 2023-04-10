@@ -92,7 +92,7 @@ Added academic expenditure: [Academic] || Date: 2 Feb 2023
 
 ```
 
-The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form. 
+The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 Adding a Other Expenditure
 
@@ -110,6 +110,7 @@ Added other expenditure: [Other] || Date: 31 Jan 2000
 || Value: 26.0 || Description: Eating lunch
 
 ```
+
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.2. Adding a lend/borrow record
@@ -134,10 +135,12 @@ Format: `CATEGORY d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 - The input date format must be in yyyy-MM-DD format.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
 - Our application does not support input names with a slash '/'.
+- Return date should be equal to or later than the present date.
+- Borrow date must be before the return date.
 
 **Examples:**
 
-- `lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113`
+- `lend d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
@@ -146,17 +149,18 @@ Adding a lend transaction
 Input:
 
 ```
-lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113
+lend d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 ```
 
 Output:
 
 ```
 
-Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2023
-|| Value: 25.1 || Description: CS2113 || by: 2 Apr 2023
+Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2022
+|| Value: 25.1 || Description: CS2113 || by: 14 Jul 2024
 
 ```
+
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.3. Editing an Expenditure
@@ -177,6 +181,7 @@ Edits an existing expenditure transaction in the record. After a successful edit
 - The fields provided are the same as adding an expenditure in [4.1](#41-adding-an-expenditure)
 - Cannot change an expenditure type, e.g. cannot change an `Academic` expenditure to an `Accomodation` expenditure
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
+- All parameters must be present in this command.
 
 **Examples:**
 
@@ -192,6 +197,8 @@ edit 2 d/2023-02-15 a/20.00 p/Eat Food
 Edited! Here is the updated list:
 
 ```
+
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
 
 ### 4.4. Editing a Lend/Borrow record
 
@@ -214,21 +221,26 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 - Cannot change a `lend` record to a `borrow` record or vice versa.
 - Our application does not support input names with a slash '/'.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
+- Return date should be equal to or later than the present date.
+- Borrow date must be before the return date.
+- All parameters must be present in this command.
 
 **Examples:**
 
-- `edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040`
+- `edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040
+edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 
 Edited! Here is the updated list:
 
 ```
+
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
 
 ### 4.5. Deleting an expenditure record
 
@@ -256,6 +268,8 @@ Output:
 Entry has been deleted
 Here is your updated list:
 ```
+
+- Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
 
 ### 4.6. Duplicating an expenditure record
 
@@ -327,7 +341,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 | `FILTER`<br/> [optional] | A filter that allows the user to compare budget with a certain category or time period. |
 
 | Filter types     | Description                                                                                                                                                         |
-|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Year             | `y/YEAR` filters the check to only compare budget with expenditures made in that specific year.                                                                     |
 | Day              | `d/YEAR-MONTH-DAY` filters the check to only compare budget with expenditures made on that specific day in that specific month and year.                            |
 | Expenditure type | `t/EXPENDITURE_TYPE` filters the check to only compare budget with expenditures made under that expenditure type. This does not include categories lent and borrow. |
@@ -458,8 +472,6 @@ Displays list of the other currency available in MyLedger and their value agains
 - Check all expenditure with budget: `check`
 
 - Check budget with expenditures made in specific year: `check y/YEAR`
-
-- Check budget with expenditures made in specific month: `check m/YEAR-MONTH`
 
 - Check budget with expenditures made in specific day: `check d/YEAR-MONTH-DAY`
 

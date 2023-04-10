@@ -9,3 +9,5 @@ which helps them to monitor their budget and expenses more effciently.
 
 Useful links:
 * [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
+* [About Us](AboutUs.md)

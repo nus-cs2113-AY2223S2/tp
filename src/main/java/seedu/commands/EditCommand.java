@@ -2,6 +2,8 @@ package seedu.commands;
 
 import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.InvalidCharacterInAmount;
+import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.InvalidDeadlineException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.WrongPrecisionException;
@@ -59,10 +61,9 @@ public class EditCommand extends Command {
             return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
         } catch (NotPositiveValueException p) {
             return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
-        } catch (SmallAmountException | InvalidCharacterInAmount e) {
+        } catch (SmallAmountException | InvalidCharacterInAmount
+                | DateLimitException | InvalidDeadlineException | InvalidDateException e) {
             return new CommandResult(e.getMessage());
-        } catch (DateLimitException l) {
-            return new CommandResult(l.getMessage());
         }
     }
 
@@ -96,7 +97,8 @@ public class EditCommand extends Command {
     /**
      * @author TzeLoong
      */
-    public void handleLendBorrowExpenditure(Expenditure editedExpenditure) throws EmptyStringException {
+    public void handleLendBorrowExpenditure(Expenditure editedExpenditure) throws EmptyStringException,
+            StringIndexOutOfBoundsException, DateTimeParseException, InvalidDateException, InvalidDeadlineException {
         if (editedExpenditure instanceof LendExpenditure) {
             String name = fetchName();
             LocalDate deadline = fetchDeadline();
@@ -148,8 +150,12 @@ public class EditCommand extends Command {
 
     public LocalDate fetchDeadline()
             throws EmptyStringException, StringIndexOutOfBoundsException,
-            DateTimeParseException {
-        String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
-        return LocalDate.parse(deadline);
+            DateTimeParseException, InvalidDateException, InvalidDeadlineException {
+        String deadlineVal = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
+        LocalDate deadline = LocalDate.parse(deadlineVal);
+        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, NSLASH);
+        LocalDate date = LocalDate.parse(dateVal);
+        ExceptionChecker.checkDate(date, deadline);
+        return deadline;
     }
 }
