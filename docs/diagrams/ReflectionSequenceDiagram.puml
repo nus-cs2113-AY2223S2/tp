@@ -1,0 +1,184 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+hide footbox
+
+participant ":MainManager" as MainManager MODEL_COLOR
+participant ":ReflectionManager" as ReflectionManager MODEL_COLOR
+participant ":ReflectUi" as ReflectUi MODEL_COLOR
+participant ":CommandParser" as CommandParser MODEL_COLOR
+participant ":QuestionList" as QuestionList MODEL_COLOR
+participant ":GetCommand" as GetCommand MODEL_COLOR
+participant ":LikeCommand" as LikeCommand MODEL_COLOR
+participant ":UnlikeCommand" as UnlikeCommand MODEL_COLOR
+participant ":PrevCommand" as PrevCommand MODEL_COLOR
+participant ":FavoriteCommand" as FavoriteCommand MODEL_COLOR
+participant ":HelpCommand" as HelpCommand MODEL_COLOR
+participant ":HomeCommand" as HomeCommand MODEL_COLOR
+participant ":BadCommandException" as BadCommandException MODEL_COLOR
+
+activate MainManager
+
+create ReflectionManager
+MainManager -> ReflectionManager:
+activate ReflectionManager
+
+create ReflectUi
+ReflectionManager -> ReflectUi:
+activate ReflectUi
+ReflectUi --> ReflectionManager
+deactivate ReflectUi
+
+create CommandParser
+ReflectionManager -> CommandParser:
+activate CommandParser
+CommandParser --> ReflectionManager
+deactivate CommandParser
+
+create QuestionList
+ReflectionManager -> QuestionList:
+activate QuestionList
+QuestionList --> ReflectionManager
+deactivate QuestionList
+
+ReflectionManager --> MainManager
+deactivate ReflectionManager
+
+MainManager -> ReflectionManager : runEventDriver()
+activate ReflectionManager
+
+loop until isExit is true
+
+    ReflectionManager -> ReflectUi : getCommands()
+    activate ReflectUi
+    ReflectUi --> ReflectionManager : inputCommand: String
+    deactivate ReflectUi
+
+    ReflectionManager -> CommandParser : setCommand(inputCommand: String)
+    activate CommandParser
+    CommandParser --> ReflectionManager
+    deactivate CommandParser
+
+    ReflectionManager -> ReflectionManager : executeCommands()
+    activate ReflectionManager
+        alt commandType = get
+            create GetCommand
+            ReflectionManager -> GetCommand
+            activate GetCommand
+            GetCommand --> ReflectionManager
+            deactivate GetCommand
+
+            ReflectionManager -> GetCommand : execute()
+            activate GetCommand
+
+            GetCommand --> ReflectionManager
+            deactivate GetCommand
+            destroy GetCommand
+
+        else commandType = like
+            create LikeCommand
+            ReflectionManager -> LikeCommand
+            activate LikeCommand
+            LikeCommand --> ReflectionManager
+            deactivate LikeCommand
+
+            ReflectionManager -> LikeCommand : execute()
+            activate LikeCommand
+
+            LikeCommand --> ReflectionManager
+            deactivate LikeCommand
+            destroy LikeCommand
+
+        else commandType = unlike
+            create UnlikeCommand
+            ReflectionManager -> UnlikeCommand
+            activate UnlikeCommand
+            UnlikeCommand --> ReflectionManager
+            deactivate UnlikeCommand
+
+            ReflectionManager -> UnlikeCommand : execute()
+            activate UnlikeCommand
+
+            UnlikeCommand --> ReflectionManager
+            deactivate UnlikeCommand
+            destroy UnlikeCommand
+
+        else commandType = prev
+            create PrevCommand
+            ReflectionManager -> PrevCommand
+            activate PrevCommand
+            PrevCommand --> ReflectionManager
+            deactivate PrevCommand
+
+            ReflectionManager -> PrevCommand : execute()
+            activate PrevCommand
+
+            PrevCommand --> ReflectionManager
+            deactivate PrevCommand
+            destroy PrevCommand
+
+        else commandType = fav
+            create FavoriteCommand
+            ReflectionManager -> FavoriteCommand
+            activate FavoriteCommand
+            FavoriteCommand --> ReflectionManager
+            deactivate FavoriteCommand
+
+            ReflectionManager -> FavoriteCommand : execute()
+            activate FavoriteCommand
+
+            FavoriteCommand --> ReflectionManager
+            deactivate FavoriteCommand
+            destroy FavoriteCommand
+
+        else commandType = help
+            create HelpCommand
+            ReflectionManager -> HelpCommand
+            activate HelpCommand
+            HelpCommand --> ReflectionManager
+            deactivate HelpCommand
+
+            ReflectionManager -> HelpCommand : execute()
+            activate HelpCommand
+
+            HelpCommand --> ReflectionManager
+            deactivate HelpCommand
+            destroy HelpCommand
+
+        else commandType = home
+            create HomeCommand
+            ReflectionManager -> HomeCommand
+            activate HomeCommand
+            HomeCommand --> ReflectionManager
+            deactivate HomeCommand
+
+            ReflectionManager -> HomeCommand : execute()
+            activate HomeCommand
+
+            HomeCommand --> ReflectionManager
+            deactivate HomeCommand
+            destroy HomeCommand
+
+        else
+            create BadCommandException
+            ReflectionManager -> BadCommandException
+            activate BadCommandException
+            BadCommandException --> ReflectionManager
+            deactivate BadCommandException
+
+            ReflectionManager -> BadCommandException
+            activate BadCommandException
+
+            BadCommandException --> ReflectionManager
+            deactivate BadCommandException
+            destroy BadCommandException
+        end
+        ReflectionManager --> ReflectionManager
+        deactivate ReflectionManager
+end
+ReflectionManager --> MainManager
+deactivate ReflectionManager
+@enduml

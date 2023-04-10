@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class CommandParser {
+    + parseUserInput(String)
+    + getMainArgument(String)
+    - splitIntoCommands(String)
+    - getArgumentFromCommand(String)
+    - getPayloadFromCommand(String)
+}
+
+
+Class "{abstract}\nManager" as Manager {
+    # commandParser : CommandParser
+    + getCommandParser()
+}
+
+Class AtomicHabitManager {
+    # commandParser : CommandParser
+    + getCommandParser()
+}
+
+Class ReflectionManager {
+    # commandParser : CommandParser
+    + getCommandParser()
+}
+
+Class FocusManager {
+    # commandParser : CommandParser
+    + getCommandParser()
+}
+
+Class GamificationManager {
+    # commandParser : CommandParser
+    + getCommandParser()
+}
+
+
+CommandParser "1" -- Manager : contains <
+Manager <|-- AtomicHabitManager
+Manager <|-- ReflectionManager
+Manager <|-- GamificationManager
+Manager <|-- FocusManager
+
+@enduml

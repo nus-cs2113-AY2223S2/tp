@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+
+Class MainManager
+
+Class AtomicHabitManager {
++ runEventDriver()
+}
+
+Class AtomicHabitList {
++ addAtomicHabit(AtomicHabit)
++ deleteAtomicHabit(AtomicHabit)
++ getAllHabits(): ArrayList<AtomicHabit>
++ getHabitByIndex(Integer): AtomicHabit
+}
+
+Class AtomicHabit {
+- description: String
+- count: int
++ increaseCount()
++ decreaseCount()
++ getDescription(): String
++ getCount(): int
++ toString(): String
+}
+
+Class AtomicHabitCommand {
++ execute()
+}
+
+Class "{abstract}\nCommand" as Command
+
+MainManager --> AtomicHabitManager : > Executes
+
+AtomicHabitManager --> "1   " AtomicHabitList : > Initializes
+
+AtomicHabitManager -down-> "6" AtomicHabitCommand : > Calls
+
+AtomicHabitCommand -right-> "1" AtomicHabitList: > Controls
+
+AtomicHabitCommand -up-|> Command
+
+AtomicHabitList -right-> "0..*" AtomicHabit : > Manages
+
+
+@enduml

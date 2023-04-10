@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class ReflectionManager{
+-reflectUi : ReflectUi
++executeCommands() : void
++runEventDriver() : void
+}
+class ReflectUi{
+#printLogoWithSeparator(logo : String) : void
+}
+class ReflectionQuestion{
+-questionDescription : String
+}
+class QuestionList{
+-setUpQuestions() : void
++getQuestions() : ArrayList<ReflectionQuestion>
+}
+
+class ReflectionCommands
+
+class TextUi{
++printOutputMessage(message : String) : void
++printErrorFor(exception : Exception, additionalMessage : String) : void
+}
+class "{abstract}\nManager" as Manager{
+#{abstract}setSupportedCommands() : void
+#{abstract}runEventDriver() : void
+}
+class "{abstract}\nCommand" as Command{
+-arguments : HashMap<String, String>
+#{abstract}execute : void
+#{abstract}validateCommand(commandMap: HashMap<String, String>) : void
+}
+class Storage
+class ReflectionTokenizer
+
+ReflectionManager --> "1" QuestionList : create >
+ReflectionManager --|> Manager
+ReflectionManager ..> ReflectionCommands
+ReflectionCommands --> "1" ReflectUi : uses >
+ReflectionCommands ..> QuestionList
+QuestionList --> "10" ReflectionQuestion : contains >
+QuestionList --> "1" ReflectUi : uses >
+QuestionList --> "1" Storage : uses >
+QuestionList --> "1" ReflectionTokenizer : uses >
+ReflectUi --|> TextUi
+ReflectionCommands --|> Command
+@enduml

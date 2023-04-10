@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package common {
+Class MainManager {
++greet()
++runEventDriver()
+}
+}
+
+Class WellNus {
++greet()
++executeUserCommands()
++byeUser()
+}
+
+Package manager {
+Class "{abstract}\nManager" as Manager {
++{abstract} runEventDriver()
+}
+}
+
+Package atomichabit {
+Class AtomicHabitManager {
++runEventDriver()
+}
+}
+
+Package reflection {
+Class ReflectionManager {
++runEventDriver()
+}
+}
+
+Manager <|-- MainManager
+Manager <|- AtomicHabitManager
+Manager <|- ReflectionManager
+
+WellNus -> "1" MainManager : executes >
+MainManager --> "1" AtomicHabitManager : calls >
+MainManager --> "1" ReflectionManager : calls >
+
+@enduml
