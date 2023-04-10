@@ -108,7 +108,7 @@ Added other expenditure: [Other] || Date: 31 Jan 2000
 ```
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
-
+<div style="page-break-after: always;"></div>
 ### 4.2. Adding a lend/borrow record
 
 Adds a lending or borrowing transaction to the record
