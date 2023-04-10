@@ -50,8 +50,6 @@ apps.
     * Added documentation for the following components:
         * `Meal360`, `RecipeList`, `IngredientList`,
           `WeeklyPlan`, `Database`
-    * Added documentation for the following classes:
-        * `Database`, `WeeklyPlan`
     * Added documentation for the following implementations:
         * Add Ingredient Feature
         * Delete Ingredient Feature
@@ -62,7 +60,7 @@ apps.
 * __Contributions to the team-based tasks__:
     * Setting up of GitHub team org/repo
     * Maintaining issue tracker
-    * Release management (`v1.0`, `v2.0`)
+    * Release management (`v1.0`, `v2.0`, `v2.1`)
 * __Review/mentoring contributions__:
     * [#14](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/14),
       [#26](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/26),
@@ -83,7 +81,9 @@ apps.
       [#121](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/121),
       [#122](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/122),
       [#130](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/130),
-      [#133](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/133)
+      [#133](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/133),
+      [#139](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/139),
+
 * __Tools__:
     * Integrated third party library (GSON) to save and load data from
       databases. ([#39](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/39))
