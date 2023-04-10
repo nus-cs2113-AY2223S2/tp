@@ -4,22 +4,21 @@
 activate ":AddModuleCommand"
 ":AddModuleCommand" -> ":Storage" : addModuleToModuleList(moduleToAdd)
 activate ":Storage"
-opt moduleToAdd == null
+alt moduleToAdd == null
 ":Storage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
 activate "<<class>>\n:UI"
 ":Storage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 ":AddModuleCommand"<-- ":Storage" : false
-end
 
-opt doesModuleExist(moduleToAdd)
+else doesModuleExist(moduleToAdd)
 ":Storage" -> "<<class>>\n:UI" : UI.printModAlreadyExistMessage()
 activate "<<class>>\n:UI"
 ":Storage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 ":AddModuleCommand"<-- ":Storage" : false
-end
 
+else
 ":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
 activate ":ArrayList<Module>"
 ":Storage" <-- ":ArrayList<Module>"
@@ -65,15 +64,17 @@ deactivate "<<class>>\n:UI"
 end
 ":AddModuleCommand" <-- ":Storage" : true
 deactivate ":Storage"
-opt isAddSuccessful == false
-":AddModuleCommand" --> ":Duke"
 end
+alt isAddSuccessful == false
+<-- ":AddModuleCommand"
+else isAddSuccessful == true
 ":AddModuleCommand" -> "<<class>>\n:UI" : UI.printAddModMessage()
 activate "<<class>>\n:UI"
 ":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 <-- ":AddModuleCommand"
 deactivate ":AddModuleCommand"
+end
 
 
 @enduml

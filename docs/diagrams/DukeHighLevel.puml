@@ -18,6 +18,14 @@ activate ":Scanner"
 deactivate ":Scanner"
 ":Duke" -> ":Parser" : parseUserCommand(userInput, universities, modules, allModules, moduleStorage, deadlineStorage, budgetPlanner, deadlines)
 activate ":Parser"
+create ":Command"
+":Parser" -> ":Command" : creates Command based on userInput
+activate ":Command"
+ref over ":Parser", ":Command"
+Parser logic
+end
+":Parser" <-- ":Command" : command: Command
+deactivate ":Command"
 ":Duke" <-- ":Parser" : command: Command
 deactivate ":Parser"
 ":Duke" -> ":Command" : execute()
@@ -32,7 +40,5 @@ end
 ":Duke" --> User
 deactivate ":Duke"
 
-'":Duke" -> ":Parser"
-'activate ":Parser"
 
 @enduml
