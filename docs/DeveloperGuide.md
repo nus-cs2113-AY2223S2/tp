@@ -499,17 +499,18 @@ Expected: Error message for invalid recipe is shown.
    Expected: MealCompanion to throw error message notifying users of corrupted data file, program still runs normally.
 
 ### Command lists for testing  
+Please ensure that your ingredients list is in the correct and/or is currently storing the ingredient(s) for the commands to be tested successfully, more details are in the table. 
 
 | Correct Command | Expected behaviour |
 | --------------- | ------------------ |
 | `add apple /qty 3` | Success message is printed, 3 apples added to ingredients list and `ingredients.txt` |
-| `remove ground chicken /qty 100` | Success message is printed, 100 grams of ground chicken removed from ingredients list and `ingredients.txt` |
+| `remove ground apple /qty 1` | Success message is printed, 1 apple removed from ingredients list and `ingredients.txt` (please ensure you have performed the previous command first) |
 | `ingredients list` | All stored ingredients listed out |
-| `ingredients search ground chicken` | Output shows the valid ingredient and the unit of measurement (if applicable) - grams expected for ground chicken |
+| `ingredients search apple` | Output shows the valid ingredient and the unit of measurement (if applicable) |
 | `ingredients search` | Returns list of all valid ingredients |
 | `clear` | Deletes all stored ingredients |
 | `allergen add egg` | Allergy to egg added, any recipes containing eggs will not be shown to users |
-| `allergen remove egg` | Allergy to egg removed, any recipes containing eggs will now be shown to users |
+| `allergen remove egg` | Allergy to egg removed, any recipes containing eggs will now be shown to users (please ensure you have performed the previous command first) |
 | `allergen list` | Shows list of all ingredients that user is allergic to |
 | `recipe all` | Shows all stored recipes in a list |
 | `recipe 1` | Shows details of recipe 1 (Beef Burger), replace with any number 1-6 inclusive to view other recipes |
@@ -518,7 +519,7 @@ Expected: Error message for invalid recipe is shown.
 | `recipe find chicken` | Returns a list of recipes whose names contain the keyword - in this case chicken |
 | `recipe need 2` | Shows users which ingredients are lacking for the specified recipe - in this case recipe 2 (cup of water) |
 | `recipe almost` | Shows users which recipes are only lacking 3 or fewer ingredients |
-| `make 1` | Consumes the required amount of ingredients to make the specified recipe, deleting them from the ingredients list - in this case recipe 1 (Beef Burger) |
+| `make 1` | Consumes the required amount of ingredients to make the specified recipe, deleting them from the ingredients list - in this case recipe 1 (Beef Burger) (please ensure you have first added all the required ingredients, please use `recipe 1` or `recipe need 1` before using `make 1`) |
 | `recipe favourite 1` | Favourites the specified recipe and outputs a star next to that recipe when `recipe all` is used - in this case recipe 1 (Beef Burger) |
 | `recipe unfavourite 1` | Unfavourites the specified recipe and removes the star in `recipe all` - in this case recipe 1 (Beef Burger) |
 | `help` | Outputs list of commands and explanations | 
