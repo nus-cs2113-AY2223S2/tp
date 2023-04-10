@@ -34,7 +34,7 @@ We hope this documents serves useful to understand the behind-the-scenes working
 
 
 
-
+---
 # 1. Introduction:
 
 ## 1.1 About this Document
@@ -50,7 +50,7 @@ critical to the app's function. We hope that this document will serve you well i
 Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UserGuide.md).
 <br>
 [Back to contents page](#table-of-contents)
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+---
 # 2. Design and Implementation
 ## 2.1 Architecture
 ![Architecture Diagram](UML/Images/ArchitectureDesign.png)
@@ -71,7 +71,7 @@ The rest of the app consists of four components:
 * `Storage`: Reads data from and writes data to the hard disk
 <br>
 [Back to contents page](#table-of-contents)
-
+---
 ### 2.2 Parser Component
 The component will return the correct command based on what the user inputs into the application.
 
@@ -119,7 +119,7 @@ It should be able to perform basic data validation checks to ensure that the use
 This makes life easier to developers in the future if they wish to add new features that requires users to use new commands.
 
 [Back to contents page](#table-of-contents)
-
+---
 ### 2.3 Storage Component
 API: `Storage.java`
 
@@ -169,7 +169,7 @@ The Gson library was chosen as it allowed for flexible adaptation of its TypeAda
 serialization and deserialization of data to be saved. 
 
 [Back to contents page](#table-of-contents)
-
+---
 ### 2.4 EventList component
 
 API: `EventList.java`
