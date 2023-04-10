@@ -256,13 +256,13 @@ The following sequence diagram shows how the Make Command works:
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
 
-It requires `RecipeList` and `IngredientList` of `MealCompanionSession`.
+It requires `RecipeList`, `IngredientList` and `Arraylist of Allergens`` of `MealCompanionSession`.
 
 Given below is the only example usage scenario and how the recipe possible command behaves at each step.
 
 Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
 
-Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`,`IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`, `IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
 
 Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
 
@@ -339,14 +339,6 @@ The following activity diagram summarizes what happens when a user executes a co
 ![StoargeActivity.png](images/StorageActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
-
-## Documentation, logging, testing, configuration, dev-ops
-
-{insert Documentation guide link}
-{insert Testing guide link}
-{insert Logging guide link}
-{insert Configuration guide link}
-{insert DevOps guide link}
 
 ## Appendix: Requirements
 
