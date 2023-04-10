@@ -35,7 +35,7 @@ It also helps them filter recipes with ease.
 
 1. Ensure you have `Java 11` installed on your Computer.
 2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
-3. Copy the file to the folder you want to use as home folder for the recipe manager.
+3. Copy the file to an **empty folder** you want to use as home folder for the recipe manager.
 4. Open the command prompt.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`.
 6. Type `java -jar tp.main.jar` and press Enter to start the program.
@@ -265,7 +265,7 @@ __________________________________________________________
 <h2 id="deleting-elements-from-recipe"> Deleting an element from a recipe: <code class="language-plaintext highlighter-rouge">deletefromrecipe</code></h2>
 
 Deletes either a step or an ingredient from a particular recipe in the recipe list.<br> 
-As shown in the format the flag for `--[s/i]` can be used interchangeably, `s` to delete a step and `i` to delete an ingredient.<br>
+As shown in the format, the flag for `--[s/i]` can be used interchangeably, `s` to delete a step and `i` to delete an ingredient.<br>
 **Format**: `deletefromrecipe --[s/i] id/[index]`<br>
 **Examples**:<br>
 ```
