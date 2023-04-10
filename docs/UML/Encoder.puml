@@ -1,76 +1,76 @@
 @startuml
 
 hide footbox
- -> "<<Class>\nCompanyListEncoder": write(companyList)
-    activate "<<Class>\nCompanyListEncoder"
-        "<<Class>\nCompanyListEncoder" -> "fw:FileWriter" ** : FileWriter(filePath)
+ -> "<<class>>\nCompanyListEncoder": write(companyList)
+    activate "<<class>>\nCompanyListEncoder"
+        "<<class>>\nCompanyListEncoder" -> "fw:FileWriter" ** : FileWriter(filePath)
         activate "fw:FileWriter"
-            "fw:FileWriter" --> "<<Class>\nCompanyListEncoder" : fw
+            "fw:FileWriter" --> "<<class>>\nCompanyListEncoder" : fw
             deactivate "fw:FileWriter"
 
-            "<<Class>\nCompanyListEncoder" -> "companyList:CompanyList": getNumberOfCompanies()
+            "<<class>>\nCompanyListEncoder" -> "companyList:CompanyList": getNumberOfCompanies()
             activate "companyList:CompanyList"
-            "companyList:CompanyList" --> "<<Class>\nCompanyListEncoder" : numberOfCompanies
+            "companyList:CompanyList" --> "<<class>>\nCompanyListEncoder" : numberOfCompanies
             deactivate "companyList:CompanyList"
             opt numberOfCompanies == 0
-                "<<Class>\nCompanyListEncoder" -> "fw:FileWriter" : write("")
+                "<<class>>\nCompanyListEncoder" -> "fw:FileWriter" : write("")
                 activate "fw:FileWriter"
-                "fw:FileWriter" --> "<<Class>\nCompanyListEncoder"
+                "fw:FileWriter" --> "<<class>>\nCompanyListEncoder"
                 deactivate "fw:FileWriter"
 
-                "<<Class>\nCompanyListEncoder" -> "fw:FileWriter" : close()
+                "<<class>>\nCompanyListEncoder" -> "fw:FileWriter" : close()
                 activate "fw:FileWriter"
-                "fw:FileWriter" --> "<<Class>\nCompanyListEncoder"
+                "fw:FileWriter" --> "<<class>>\nCompanyListEncoder"
                 deactivate "fw:FileWriter"
 
             end
             loop companies in companyList times
-                "<<Class>\nCompanyListEncoder" -> "companyList:CompanyList": getCompany(index)
+                "<<class>>\nCompanyListEncoder" -> "companyList:CompanyList": getCompany(index)
                 activate "companyList:CompanyList"
-                "<<Class>\nCompanyListEncoder" <-- "companyList:CompanyList": company
+                "<<class>>\nCompanyListEncoder" <-- "companyList:CompanyList": company
                 deactivate "companyList:CompanyList"
 
-                "<<Class>\nCompanyListEncoder" -> "<<Class>\nCompanyListEncoder": parseAndWriteToFile(company, fw)
-                activate "<<Class>\nCompanyListEncoder"
+                "<<class>>\nCompanyListEncoder" -> "<<class>>\nCompanyListEncoder": parseAndWriteToFile(company, fw)
+                activate "<<class>>\nCompanyListEncoder"
 
-                "<<Class>\nCompanyListEncoder" -> "company:Company": getCompanyName()
+                "<<class>>\nCompanyListEncoder" -> "company:Company": getCompanyName()
                 activate "company:Company"
-                "<<Class>\nCompanyListEncoder" <-- "company:Company": companyName
+                "<<class>>\nCompanyListEncoder" <-- "company:Company": companyName
                 deactivate "company:Company"
 
-                "<<Class>\nCompanyListEncoder" -> "company:Company": getContactNumber()
+                "<<class>>\nCompanyListEncoder" -> "company:Company": getContactNumber()
                 activate "company:Company"
-                "<<Class>\nCompanyListEncoder" <-- "company:Company": contactNumber
+                "<<class>>\nCompanyListEncoder" <-- "company:Company": contactNumber
                 deactivate "company:Company"
 
-                "<<Class>\nCompanyListEncoder" -> "company:Company": getContactEmail()
+                "<<class>>\nCompanyListEncoder" -> "company:Company": getContactEmail()
                 activate "company:Company"
-                "<<Class>\nCompanyListEncoder" <-- "company:Company": contactEmail
+                "<<class>>\nCompanyListEncoder" <-- "company:Company": contactEmail
                 deactivate "company:Company"
 
-                "<<Class>\nCompanyListEncoder" -> "<<Class>\nCompanyListEncoder": convertConfirmStatusToBinary(confirmStatus)
-                activate "<<Class>\nCompanyListEncoder"
-                "<<Class>\nCompanyListEncoder" --> "<<Class>\nCompanyListEncoder": confirmStatus
-                deactivate "<<Class>\nCompanyListEncoder"
+                "<<class>>\nCompanyListEncoder" -> "<<class>>\nCompanyListEncoder": convertConfirmStatusToBinary(confirmStatus)
+                activate "<<class>>\nCompanyListEncoder"
+                "<<class>>\nCompanyListEncoder" --> "<<class>>\nCompanyListEncoder": confirmStatus
+                deactivate "<<class>>\nCompanyListEncoder"
 
-                "<<Class>\nCompanyListEncoder" -> "company:Company": getIndustry()
+                "<<class>>\nCompanyListEncoder" -> "company:Company": getIndustry()
                 activate "company:Company"
-                "<<Class>\nCompanyListEncoder" <-- "company:Company": industry
+                "<<class>>\nCompanyListEncoder" <-- "company:Company": industry
                 deactivate "company:Company"
 
-                "<<Class>\nCompanyListEncoder" -> "fw:FileWriter": write(companyName, contactNumber, contactEmail, confirmStatus, industry)
+                "<<class>>\nCompanyListEncoder" -> "fw:FileWriter": write(companyName, contactNumber, contactEmail, confirmStatus, industry)
                 activate "fw:FileWriter"
-                "fw:FileWriter" --> "<<Class>\nCompanyListEncoder"
+                "fw:FileWriter" --> "<<class>>\nCompanyListEncoder"
                 deactivate "fw:FileWriter"
 '
-                "<<Class>\nCompanyListEncoder" --> "<<Class>\nCompanyListEncoder"
-                deactivate "<<Class>\nCompanyListEncoder"
+                "<<class>>\nCompanyListEncoder" --> "<<class>>\nCompanyListEncoder"
+                deactivate "<<class>>\nCompanyListEncoder"
             end
-            "<<Class>\nCompanyListEncoder" -> "fw:FileWriter": close()
+            "<<class>>\nCompanyListEncoder" -> "fw:FileWriter": close()
             activate "fw:FileWriter"
-            "<<Class>\nCompanyListEncoder" <-- "fw:FileWriter"
+            "<<class>>\nCompanyListEncoder" <-- "fw:FileWriter"
             deactivate "fw:FileWriter"
-            <-- "<<Class>\nCompanyListEncoder"
-            deactivate "<<Class>\nCompanyListEncoder"
+            <-- "<<class>>\nCompanyListEncoder"
+            deactivate "<<class>>\nCompanyListEncoder"
 
 @enduml

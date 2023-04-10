@@ -2,29 +2,29 @@
 
 hide footbox
 
- -> "<<Class>>\nCompanyListDecoder": read(companyList)
-     activate "<<Class>>\nCompanyListDecoder"
+ -> "<<class>>\nCompanyListDecoder": read(companyList)
+     activate "<<class>>\nCompanyListDecoder"
 
-        "<<Class>>\nCompanyListDecoder" -> "<<Class>>\nCompanyListDecoder" :checkFileAccess(filePath)
-        activate "<<Class>>\nCompanyListDecoder"
-        "<<Class>>\nCompanyListDecoder" --> "<<Class>>\nCompanyListDecoder"
-        deactivate "<<Class>>\nCompanyListDecoder"
+        "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" :checkFileAccess(filePath)
+        activate "<<class>>\nCompanyListDecoder"
+        "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder"
+        deactivate "<<class>>\nCompanyListDecoder"
 
             loop next line exists
-                "<<Class>>\nCompanyListDecoder" -> : nextLine()
-                "<<Class>>\nCompanyListDecoder" <--: line
+                "<<class>>\nCompanyListDecoder" -> : nextLine()
+                "<<class>>\nCompanyListDecoder" <--: line
 
-                "<<Class>>\nCompanyListDecoder" -> "<<Class>>\nCompanyListDecoder" : parseInput(line)
-                activate "<<Class>>\nCompanyListDecoder"
-                "<<Class>>\nCompanyListDecoder" --> "<<Class>>\nCompanyListDecoder" : parsedInput
-                deactivate "<<Class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" : parseInput(line)
+                activate "<<class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder" : parsedInput
+                deactivate "<<class>>\nCompanyListDecoder"
 
-                "<<Class>>\nCompanyListDecoder" -> "<<Class>>\nCompanyListDecoder" : writeToCompanyList(companyList, parsedInput)
-                activate "<<Class>>\nCompanyListDecoder"
-                "<<Class>>\nCompanyListDecoder" --> "<<Class>>\nCompanyListDecoder"
-                deactivate "<<Class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" : writeToCompanyList(companyList, parsedInput)
+                activate "<<class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder"
+                deactivate "<<class>>\nCompanyListDecoder"
             end
-        <-- "<<Class>>\nCompanyListDecoder"
-        deactivate "<<Class>>\nCompanyListDecoder"
+        <-- "<<class>>\nCompanyListDecoder"
+        deactivate "<<class>>\nCompanyListDecoder"
 
 @enduml
