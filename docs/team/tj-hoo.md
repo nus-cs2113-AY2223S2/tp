@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 - Created `CaloricIntake` entity to hold the calculation of the user's the daily caloric intake.
 
 ## Contributions to the UG:
-- Added documentation for `Nutrition` and `help` commands.
+- Added documentation for `nutrition` and `help` commands.
 - Added FAQ and command summary sections.
 
 ## Contributions to the DG:
