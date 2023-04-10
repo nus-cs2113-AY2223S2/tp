@@ -63,13 +63,14 @@ Please note the following about the format of commands given under each [feature
 * *italics* format are related to buttons that can be found on the screen e.g. *From Text/CSV*
 
 * Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional e.g.
-  [DESCRIPTION] {TIME}
+  [DESCRIPTION] {TIMESPAN}
 
 * Words in "double quotation marks" are the names of items e.g. "beef noodles"
 
 * 💡 indicates helpful suggestions that will enhance your experience
 
 * ⚠️ highlights actions you should avoid
+
 * Some technical terminologies are defined in the [glossary](#glossary), clicking on the links will navigate you to the
   glossary where you can read their definitions
 
@@ -99,7 +100,8 @@ install rainyDay on your device and start using it. Please refer to the steps be
     2. You will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder
        path in the address bar as shown <br><br>
        ![cmd.png](images/UserGuide/cmd.png)<br><br>
-    3. Press Enter. Your Command Line terminal should now be open in the folder containing "rainyDay.jar" as shown below. The
+    3. Press Enter. Your Command Line terminal should now be open in the folder containing "rainyDay.jar" as shown
+       below. The
        location you saved rainyDay should be shown. In this example we saved it in the path
        "\Users\Qi Rong\Downloads\rainyDay Folder" <br><br>
        ![cmd prompt open.png](images/UserGuide/cmdPromptOpen.png)<br><br>
@@ -114,7 +116,7 @@ install rainyDay on your device and start using it. Please refer to the steps be
 - For those who are familiar with what a CLI is, go ahead and proceed to view the [features](#features-overview) that we
   offer!
 - A [CLI](#glossary) receives commands from a user, that is you, in the form of lines of text.
-- In rainyDay, we make it simple for you. Whenever we require you to input something, we will prompt you with a `>`. 
+- In rainyDay, we make it simple for you. Whenever we require you to input something, we will prompt you with a `>`.
   A sample input is boxed in red as shown: <br><br>
   ![understandingCLI.png](images/UserGuide/understandingCLI.png) <br><br>
 - If you are interested in learning more about CLI, you may refer to the following
@@ -150,7 +152,7 @@ install rainyDay on your device and start using it. Please refer to the steps be
 ### Viewing help
 
 Welcome to the help section of rainyDay! Now that you have started rainyDay by following the [Quick Start](#quick-start)
-section, you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to 
+section, you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to
 perform a certain task, don't worry! The help command is here to help you every step of the way!
 
 To get an overview of possible commands and their respective formats, you can use the `help` command as seen
@@ -170,7 +172,7 @@ This command will give you more information on the particular command, such as i
 
 Example of Usage:
 
-Suppose you want to find out more information on rainyDay's `add` command, you can use the following command: 
+Suppose you want to find out more information on rainyDay's `add` command, you can use the following command:
 
 ![helpAdd.png](images/UserGuide/helpAdd.png)
 
@@ -244,7 +246,7 @@ You received your pay of $50000 on 26/04/2023. To add it to rainyDay, you can us
 ### Viewing the transactions
 
 After adding your transactions into rainyDay, you can view them by using the "view" feature of rainyDay.
-This lists all the transactions added, and the summary of all your inflows and outflows.
+This lists all the transactions added in dated order, and the summary of all your inflows and outflows.
 
 Format: **`view {TIMESPAN} {-sort}`**
 
@@ -311,7 +313,7 @@ Format: **`edit [INDEX] [FLAG] {NEWFIELD}`**
     * `-date` to edit the date
 * `NEWFIELD` is the new information that you would like to change to
     * `NEWFIELD` is not required when changing direction with `-in` or `-out`
-    * `NEWFIELD` needs to be in `DD/MM/YYYY` format when changing date with `-date`
+    * `NEWFIELD` needs to be in `DAY/MONTH/YEAR` format when changing date with `-date`
     * `NEWFIELD` needs to be appended with a `$` before the number when changing the value with `-v`
 
 Example of Usage:
@@ -364,7 +366,7 @@ Format: **`filter [FLAG] {FIELD}`**
     * `-d` to filter by description
     * `-c` to filter by category
     * `-date` to filter by a specific date or timespan
-        * `FIELD` must be in the form DD/MM/YYYY
+        * `FIELD` must be in the form `DAY/MONTH/YEAR`
         * If only one `FIELD` is provided, only transactions with the specified date will be shown
         * If two `FIELD` is provided, transactions between the 2 dates (inclusive) will be shown.
 
@@ -376,7 +378,8 @@ Let's say you added a couple more entries. And using `view -all` provides you wi
 
 > 💡 Note the use of `view -all` instead of `view` as `view` only provides entries in the current month.
 
-Suppose you want to find all transactions labelled "Food and Drinks". You can use the following command:
+Suppose you want to find all transactions with the category labelled "Food and Drinks". You can use the following
+command:
 
 ![filterFood.png](images/UserGuide/filterFood.png)
 
@@ -392,7 +395,7 @@ can use the following command:
 
 ![filterMultipleFlags.png](images/UserGuide/filterMultipleFlags.png)
 
-> 💡 Note that the first date(e.g. 30/3/2023) provided must be before the second date(e.g. 7/4/2023) when you are
+> 💡 Note that the first date (e.g. 30/3/2023) provided must be before the second date (e.g. 7/4/2023) when you are
 > indicating a date range.
 
 [Jump back to Features Overview](#features-overview)
@@ -443,11 +446,11 @@ If you would like to set a monthly budget goal of $1000, you can use the followi
 ![setBudgetGoal.png](images%2FUserGuide%2FsetBudgetGoal.png)
 
 After setting a goal, an additional message will accompany every new expense on how much you have spent for the month
-as shown below: 
+as shown below:
 
 ![addNoodlesBudget.png](images%2FUserGuide%2FaddNoodlesBudget.png)
 
-If at any point of time you would like to remove this feature, simply set the goal to $0. 
+If at any point of time you would like to remove this feature, simply set the goal to $0.
 To do so, you can use the following command:
 
 ![unsetBudgetGoal.png](images%2FUserGuide%2FunsetBudgetGoal.png)
@@ -534,8 +537,7 @@ the following command:
 Saving and loading your data is something you don't have to worry about as we got it covered! In this section,
 we'll show you where to locate your saved files and how to export your data to a [CSV](#glossary) file, which is a
 widely-used file format that can be opened in a variety of software applications. We'll also show you how to export and
-view
-the CSV file using [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel),
+view the CSV file using [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel),
 which is a popular spreadsheet program used by many people around the world. Let's get started!
 
 * [Saving the data](#saving-the-data)
@@ -547,7 +549,7 @@ which is a popular spreadsheet program used by many people around the world. Let
 
 ### Saving the data
 
-Your data will be automatically saved whenever any changes are made. This includes changes to any of your transactions 
+Your data will be automatically saved whenever any changes are made. This includes changes to any of your transactions
 or any created shortcuts.
 
 #### Where is my saved file located?
@@ -589,11 +591,16 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 1. Open your Microsoft Excel application and open a blank workbook.
 2. Click on the *Data* tab found at the top and click on *From
-   Text/CSV*.![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
+   Text/CSV*.
+
+![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
+
 3. Navigate to the CSV file as directed in
    the [where to locate exported CSV file section](#where-to-locate-the-exported-csv-file).
 4. Double-click on the CSV file and click the *load* button.
-   ![img.png](images/UserGuide/csv.png)
+
+![img.png](images/UserGuide/csv.png)
+
 5. With steps 1-4, your financial statements should now be viewable in a nicely formatted table as shown
    below.
 
@@ -603,7 +610,7 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 ### Exiting rainyDay
 
-After you have completed updating your transactions and would like to close rainyDay, 
+After you have completed updating your transactions and would like to close rainyDay,
 you can use the following command:
 
 Format: **`bye`**
@@ -623,14 +630,14 @@ that "rainyDay.jar" is going to be stored in.
 
 **Q**: I remember having saved data, but why is it that when I start rainyDay, it says that the report is empty?
 
-**A**: When rainyDay detects a [corrupted saved data](#glossary), the data will automatically be deleted. However, 
-this is extremely unlikely to happen under normal usage. If you intend to edit the data file directly, it is 
+**A**: When rainyDay detects a [corrupted saved data](#glossary), the data will automatically be deleted. However,
+this is extremely unlikely to happen under normal usage. If you intend to edit the data file directly, it is
 recommended to keep an extra copy of the data somewhere else to prevent permanent data loss.
 
-**Q**: I used rainyDay and a folder named "logs" appeared. What is the "logs" folder and what are the contents 
+**Q**: I used rainyDay and a folder named "logs" appeared. What is the "logs" folder and what are the contents
 inside it?
 
-**A**: The "logs" folder contains files that record the processes and status of rainyDay. The files are non-malicious 
+**A**: The "logs" folder contains files that record the processes and status of rainyDay. The files are non-malicious
 and their contents do not affect rainyDay's functions. The "logs" folder and its contents can be ignored or deleted.
 
 **Q**: I want to view my transactions for today, but `view 0d` does not work. What should I do?
