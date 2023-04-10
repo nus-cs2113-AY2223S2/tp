@@ -1,0 +1,73 @@
+@startuml
+
+participant ":Command" as Command
+participant ":ModuleList" as ML
+participant "<<class>>\nPrint" as Print
+[->Command : editCommand\n(userCommands:String[],\n moduleList:ModuleList)
+activate Command
+Command -> Command : editModuleField\n(moduleList:ModuleList, userInput:String[])
+activate Command
+
+
+alt MC
+    Command -> ML : editModularCredits(moduleCode:String, newModularCredits:String)
+    activate ML
+    ML -> Print : printEditedModule(module:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+else YEAR
+    Command -> ML : editYear(moduleCode:String, newYear:String)
+    activate ML
+    ML -> Print : printEditedModule(module:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+else SEMESTER
+    Command -> ML : editSemester(moduleCode:String, newSemester:String)
+    activate ML
+    ML -> Print : printEditedModule(module:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+else GRADE
+    Command -> ML : editModuleGrade(moduleCode:String, newGrade:String)
+    activate ML
+    ML -> Print : printEditedModule(module:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+else TYPE
+    Command -> ML : editModuleType(moduleCode:String, moduleType:String)
+    activate ML
+    ML -> Print : printEditedModule(moduleEdited:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+else CODE
+    Command -> ML : editModuleCode(moduleCode:String, moduleType:String)
+    activate ML
+    ML -> Print : printEditedModule(moduleEdited:Module, moduleListSize:int)
+    activate Print
+    Print --> ML
+    deactivate Print
+    ML --> Command
+    deactivate ML
+end
+Command --> Command
+deactivate Command
+
+Command-->[
+deactivate Command
+
+@enduml

@@ -1,0 +1,41 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Parser {
+Class Command
+Class InputChecker
+Class "<<interface>>\nParser" as ParserInterface
+}
+
+package Print{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
+package ModuleList{
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside..> ParserInterface
+
+ParserInterface --> Command : creates >
+Command --> InputChecker : creates >
+
+Command .right.> Print
+Command .up.> Storage
+Command .up.> ModuleList
+InputChecker .right.> Print
+InputChecker .up.> ModuleList
+
+@enduml

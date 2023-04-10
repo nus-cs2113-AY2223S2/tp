@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object "__:Main__" as Main
+object "__listOfModules:ModuleList__" as ModuleList
+ModuleList : ArrayList<Module> = "listOfModules"
+object "__CS2113T:Module__" as CS2113T
+object "__CS2101T:Module__" as CS2101
+
+Main -> ModuleList : contains
+ModuleList -down-> CS2113T : contains
+ModuleList -down-> CS2101 : contains
+
+@enduml

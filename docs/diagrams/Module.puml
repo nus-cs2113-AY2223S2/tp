@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Module{
+
+
+
+Class getModuleCode
+Class getModularCredits
+Class getYear
+Class getSemester
+Class getModuleType
+Class getGrade
+
+
+Class "<<interface>>\Module" as ModuleInterface
+}
+
+
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
+package ModuleList{
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside..> ModuleInterface
+
+ModuleInterface --> getModuleCode : executes >
+ModuleInterface --> getModularCredits : executes >
+ModuleInterface --> getYear : executes >
+ModuleInterface --> getSemester: executes >
+ModuleInterface --> getModuleType : executes >
+ModuleInterface --> getGrade : executes >
+
+
+getModuleCode ..> ModuleList
+getModularCredits ..> ModuleList
+getModuleType ..> ModuleList
+getGrade ..> ModuleList
+getModuleCode ..> Storage
+getModularCredits ..> Storage
+getModuleType ..> Storage
+getGrade ..> Storage
+
+
+
+
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+
+participant ":Command" as Command
+participant ":ModuleList" as ML
+participant ":Module" as Mod
+participant "<<class>>\nPrint" as Print
+[->Command : calculateCAPCommand\n(userCommands:String[],\n moduleList:ModuleList)
+activate Command
+Command->ML : calculateCAP()
+
+activate ML
+loop until module list ends
+    ML -> Mod : getGrade()
+    activate Mod
+    Mod --> ML : moduleGrade:String
+    deactivate Mod
+    ML -> ML : shouldCountModuleGrade(moduleGrade:String)
+    activate ML
+    ML --> ML : shouldCount:boolean
+    deactivate ML
+    opt should count module
+        ML -> ML : getGradeValue(moduleGrade:String)
+        activate ML
+        ML -> Mod : getGrade()
+        activate Mod
+        Mod --> ML : moduleGrade:String
+        deactivate Mod
+        ML --> ML : calculatedCAP:double
+        deactivate ML
+    end
+end
+    ML -> Print : printCalculatedCAP(calculatedCAP:double)
+    activate Print
+    Print --> ML
+    deactivate Print
+
+ML --> Command
+deactivate ML
+Command-->[
+deactivate Command
+
+@enduml

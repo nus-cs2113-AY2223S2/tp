@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage{
+Class "<<interface>>\nStorage" as StorageInterface
+Class saveModules
+Class getSavedModules
+Class saveName
+Class getSavedName
+}
+
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> StorageInterface
+
+
+StorageInterface -> getSavedModules : executes >
+StorageInterface --> getSavedName : executes >
+StorageInterface --> saveModules : executes >
+StorageInterface --> saveName : executes >
+
+
+@enduml

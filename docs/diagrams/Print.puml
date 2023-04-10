@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package Print {
+
+Class printAddedModule
+Class printDeletedModule
+Class printFarewellMessage
+Class "<<interface>>\nPrint" as PrintInterface
+}
+
+package ModuleList{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
+package Parser{
+Class HiddenModel #FFFFFF
+}
+
+
+PrintInterface --> printDeletedModule : executes >
+PrintInterface --> printAddedModule : executes >
+PrintInterface --> printFarewellMessage : executes >
+
+ModuleList ..> Print
+Parser ..> Print
+Storage .up.> Print
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+
+participant ":Command" as Command
+participant ":ModuleList" as ML
+participant "<<class>>\nPrint" as Print
+
+[->Command : trackCommand\n(userCommands:String[],\n moduleList:ModuleList)
+activate Command
+Command -> Command : trackGraduationRequirements(listOfModules:\nModuleList, moduleType:String)
+activate Command
+
+    Command -> ML : findModuleByType(moduleType:String)
+    activate ML
+
+    ML --> Command : foundModules:ArrayList<Module>
+    deactivate ML
+
+    Command -> ML : trackModules(foundModules:ArrayList<Module>,\n moduleType:String, requiredMC:int)
+    activate ML
+
+    ML -> Print : printModuleTypeRequirements(moduleList:ModuleList,\n plannedMCs:int, remainingMCs:int, requiredMCs:int,\n moduleType:String)
+    activate Print
+
+    Print --> ML
+    deactivate Print
+
+    ML --> Command
+    deactivate ML
+
+Command --> Command
+deactivate Command
+
+Command-->[
+deactivate Command
+
+@enduml

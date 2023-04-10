@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":Command" as Command
+participant ":InputChecker" as IC
+participant ":ModuleList" as ML
+participant "<<class>>\nPrint" as Print
+[->Command : addCommand\n(userCommands:String[],\n moduleList:ModuleList)
+activate Command
+
+Command->IC : checkAddInput\n(listOfModules:ModuleList,\n userCommands:String[])
+activate IC
+
+IC->IC : addModuleWithChecks\n(moduleList:String[], listOfModules:ModuleList, userCommands:String[])
+activate IC
+
+loop until all modules are added
+    IC->ML: addModule()
+    activate ML
+    ML-->IC : addedModule:Module
+    deactivate ML
+
+    IC->Print: printAddedModule(addedModule:Module, moduleListSize:int)
+    activate Print
+    Print-->IC
+    deactivate Print
+end
+
+IC-->IC
+deactivate IC
+
+IC-->Command
+deactivate IC
+
+Command-->[
+deactivate Command
+
+@enduml

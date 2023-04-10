@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+interface Module
+
+
+class Module {
+(-) moduleCode: String
+(-) modularCredits: String
+(-) year: String
+(-) semester: String
+(-) grade: String
+--
+(+) getModuleCode()
+(+) getModularCredits()
+(+) getYear()
+(+) getSemester()
+(+) getModuleType()
+(+) setModularCredits(newModularCredits: String)
+(+) setSemester(newSemester: String)
+(+) setYear(newYear: String)
+(+) getGrade()
+(+) setGrade(grade: String)
+(+) toString()
+}
+
+
+
+@enduml

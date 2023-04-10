@@ -1,0 +1,31 @@
+@startuml
+participant ":ModuleList" as ML
+participant ":Module" as Mod
+participant "<<class>>\nPrint" as Print
+
+[->ML : listModulesByYear\n(year:String)
+ activate ML
+        ML -> ML: addModulesToLists(year:String, moduleListByYear:ArrayList<Module>,\n moduleListSemOne:ArrayList<String>, moduleListSpecialTermOne:ArrayList<String>, \n moduleListSemTwo:ArrayList<String>, moduleListSpecialTermTwo:ArrayList<String>)
+ activate ML
+        ML -> Mod: getModuleCode()
+        ML -> Mod: getModuleType()
+        ML -> Mod: getModularCredits()
+        ML -> Mod: getYear()
+        ML -> Mod: getSemester()
+        ML -> Mod: getGrade()
+ML-->ML
+deactivate ML
+        alt LIST_NOT_EMPTY
+            ML -> Print : printModuleListByYear(year:String,\n moduleListSemOne:ArrayList<String>, moduleListSpecialTermOne:ArrayList<String>, \n moduleListSemTwo:ArrayList<String>, moduleListSpecialTermTwo:ArrayList<String>)
+            activate Print
+            Print --> ML
+            deactivate Print
+        else LIST_EMPTY
+            ML -> Print : printEmptyModuleList(year:String)
+            activate Print
+            Print --> ML
+            deactivate Print
+        end
+ML-->[
+deactivate ML
+@enduml

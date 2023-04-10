@@ -1,0 +1,54 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+interface Parser
+
+
+class Parser {
+--
+(+) checkUserInput(userInput : String, moduleList : ModuleList)
+}
+
+Parser --|> Command
+
+class Command {
+__
+(+) manPageCommand(userCommands : String[])
+(+) addCommand(userCommands : String[], moduleList : ModuleList)
+(+) findCommand(userCommands : String[], moduleList : ModuleList)
+(+) deleteCommand(userCommands : String[], moduleList : ModuleList)
+(+) listCommand(userCommands : String[], moduleList : ModuleList)
+(-) listModules(listOfModules : ModuleList, year : String)
+(+) editCommand(userCommands : String[], moduleList : ModuleList)
+(-) editModuleField(userCommands : String[], listOfModules : ModuleList)
+(+) gradeCommand(userCommands : String[], moduleList : ModuleList)
+(+) calculateCAPCommand(userCommands : String[], moduleList : ModuleList)
+(+) byeCommand(userCommands : String[], moduleList : ModuleList)
+(+) trackCommand(userCommands : String[], moduleList : ModuleList)
+(-) trackGraduationRequirements(listOfModules : ModuleList, moduleType : String)
+}
+
+Command --|> InputChecker
+
+class InputChecker {
+__
+(+) checkManPageInput(userCommands : String[])
+(+) checkAddInput(userCommands : String[], listOfModules : ModuleList)
+(-) checkAddInputCorrectModuleCode(moduleList : String[])
+(-) checkAddInputCorrectModularCreditField(userCommands : String[])
+(-) checkAddInputCorrectTypeOfModule(userCommands : String[])
+(+) checkAddInputNoDuplicates(moduleCode : String, listOfModules : ArrayList<Module>)
+(-) checkAddInputYearAndSemester(userCommands : String[])
+(+) checkNumberOfFields(userCommands : String[], numberOfFields : int)
+(-) lazyDeleteInvalidInputsForModuleList(moduleList : String[]): String[]
+(-) addModuleWithChecks(moduleList : String[], listOfModules : ModuleList, userCommands : String[])
+(+) checkEditInputCorrectModuleCode(moduleCode : String)
+(+) checkEditInputCorrectModularCreditField(modularCredits : String)
+(+) checkEditInputCorrectTypeOfModule(typeOfModule : String)
+(+) checkEditInputYear(year : String)
+(+) checkEditInputSemester(semester : String)
+(+) checkGradeInput(inputGrade : String)
+}
+
+@enduml

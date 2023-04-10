@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+box findModuleByName
+participant ":Command" as Command
+participant ":ModuleList" as ModuleList
+participant ":Module" as Module
+participant "<<class>>\nPrint" as Print
+end box
+
+[-> Command: findCommand\n({"FIND", "CODE", "CS"},\n moduleList:ModuleList)
+activate Command
+
+Command -> ModuleList : findModuleByCode("CS")
+activate ModuleList
+
+loop until module list ends
+    ModuleList -> Module :getModuleCode()
+    activate Module
+    Module --> ModuleList : moduleCode:String
+    deactivate Module
+
+    opt should include module
+        ModuleList -> ModuleList : Add foundModule into List
+    end
+end
+
+ModuleList --> Command : foundModules:ArrayList<Module>
+deactivate ModuleList
+
+alt module found
+    Command -> Print : printFoundModule()
+    activate Print
+    Print --> Command
+    deactivate Print
+else module not found
+    Command -> Print : PrintNoModuleFound()
+    activate Print
+    Print --> Command
+    deactivate Print
+end
+
+return
+@enduml

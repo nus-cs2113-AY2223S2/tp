@@ -1,0 +1,23 @@
+@startuml
+participant ":ModuleList" as ML
+participant ":Module" as Mod
+participant "<<class>>\nPrint" as Print
+
+[->ML : editModuleCode\n(moduleCode:String,\n moduleType:String)
+ activate ML
+        ML -> ML: deleteModule(moduleCode:String)
+        ML -> Mod: getModularType()
+        ML -> Mod: getModularCredits()
+        ML -> Mod: getYear()
+        ML -> Mod: getSemester()
+        ML -> Mod: getGrade()
+
+        ML -> ML: addModule(moduleCode:String, modularCredits:String,\n moduleType:String, year:String, semester:String)
+        ML -> ML: updateModuleGrade(moduleCode:String, grade:String, \n command:String)
+        ML -> Print : printEditedModule(moduleEdited:Module, moduleListSize:int)
+        activate Print
+        Print --> ML
+        deactivate Print
+ML-->[
+deactivate ML
+@enduml

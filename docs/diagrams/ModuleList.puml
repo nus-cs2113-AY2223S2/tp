@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+package ModuleList {
+
+/'Class AddressBookParser'/
+/'Class XYZCommand'/
+Class addModule
+/'Class Command'/
+Class findModule
+Class editModule
+Class deleteModule
+Class listModule
+Class calculateCap
+Class trackModule
+Class listOfModules
+Class "<<interface>>\nModuleList" as ModuleListInterface
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside..> ModuleListInterface
+
+ModuleListInterface --> addModule : executes >
+ModuleListInterface --> findModule : executes >
+ModuleListInterface --> deleteModule : executes >
+ModuleListInterface --> editModule: executes >
+ModuleListInterface --> listModule : executes >
+ModuleListInterface --> trackModule : executes >
+ModuleListInterface --> calculateCap : executes >
+
+Module .up.> listOfModules
+
+addModule -.> Module
+editModule ..> Module
+
+deleteModule --> listOfModules : interacts >
+findModule --> listOfModules : interacts >
+listModule --> listOfModules : interacts >
+trackModule --> listOfModules : interacts >
+calculateCap --> listOfModules : interacts >
+
+listOfModules ..> Print
+listOfModules ..> Storage
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+!include <office/Concepts/globe_internet>
+!include <office/Concepts/documents>
+!include <office/Users/user>
+!include style.puml
+
+Package " "<<Rectangle>>{
+    Class Print #green
+    Class ModuleList LOGIC_COLOR
+    Class Storage STORAGE_COLOR
+    Class Parser #red
+    Class Main #grey /' We can keep this '/
+    Class Module #orange
+}
+/'
+Red user on top
+Green icon below
+'/
+Class "<$user>" as User MODEL_COLOR_T2
+Class "<$documents>" as File UI_COLOR_T1
+
+ModuleList -left[#blue]-> Print
+Parser -right[#red]-> Print
+ModuleList -[#blue]-> Storage
+Parser -[#red]-> ModuleList
+Main -[#grey]-> ModuleList
+Main -down[#grey]-> Storage
+Main -down[#grey]-> Parser
+Main -[#grey]-> Print
+ModuleList -down[#blue]-> Module
+Storage -[STORAGE_COLOR]-> Print
+Parser -down[#red]-> Storage
+Storage .[STORAGE_COLOR]->File
+User .down-> Main
+
+@enduml

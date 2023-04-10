@@ -1,0 +1,43 @@
+@startuml
+
+participant ":Command" as Command
+participant ":ModuleList" as ML
+participant ":Module" as Mod
+participant "<<class>>\nPrint" as Print
+
+[->Command : gradeCommand\n(userCommands:String[],\n moduleList:ModuleList)
+activate Command
+Command->ML : updateModuleGrade\n(moduleCode:String, moduleGrade:String, \n command:String)
+
+activate ML
+loop until module code matches or list ends
+    ML -> Mod : getModuleCode()
+    activate Mod
+    Mod --> ML : moduleCode:String
+    deactivate Mod
+    opt module code matches
+    ML -> Mod : setGrade(moduleGrade:String)
+    activate Mod
+    Mod --> ML : updatedModule:Module
+    deactivate Mod
+    end
+end
+ML --> Command : updatedModule:Module
+deactivate ML
+
+alt module found
+    Command -> Print : printUpdatedModuleGrade(updatedModule:Module)
+    activate Print
+    Print --> Command
+    deactivate Print
+else module not found
+    Command -> Print : printInvalidModule(moduleCode:String)
+    activate Print
+    Print --> Command
+    deactivate Print
+end
+
+Command-->[
+deactivate Command
+
+@enduml
