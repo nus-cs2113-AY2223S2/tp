@@ -1,0 +1,16 @@
+@startuml
+start
+:User wants to make a recipe;
+:Run recipe possible command;
+if () then ([there is a recipe shown that the user wants to make])
+    :Pick a recipe from the list;
+else ([there are no recipes that the user wants to make or is possible])
+    :Run recipe almost command;
+    :Pick a recipe from the list;
+    :Run recipe need command;
+    :Acquire additional ingredients needed;
+endif
+:Run recipe detail command;
+:Run make command;
+stop
+@enduml

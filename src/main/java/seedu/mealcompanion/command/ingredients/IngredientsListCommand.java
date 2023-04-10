@@ -12,7 +12,11 @@ public class IngredientsListCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-        mealCompanionSession.getUi().printMessage("You have the following ingredients:");
-        mealCompanionSession.getUi().printMessage(fridgeIngredients.toString());
+        if (mealCompanionSession.getIngredients().isEmpty()) {
+            mealCompanionSession.getUi().printMessage("You have no ingredients.");
+        } else {
+            mealCompanionSession.getUi().printMessage("You have the following ingredients:");
+            mealCompanionSession.getUi().printMessage(fridgeIngredients.toString());
+        }
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class AddCommandFactory extends ExecutableCommandFactory {
     IngredientNameExtractor ingredientName = new IngredientNameExtractor();
-    IntegerRangeExtractor addAmount = new IntegerRangeExtractor(1, 10000);
+    IntegerRangeExtractor addAmount = new IntegerRangeExtractor(1, AddCommand.MAX_INGREDIENTS);
 
     @Override
     public List<Extractor> getExtractors() {

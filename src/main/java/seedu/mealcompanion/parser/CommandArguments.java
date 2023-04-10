@@ -36,9 +36,13 @@ public class CommandArguments {
                 buffer.append(currentToken);
                 continue;
             }
-            // If we encounter a flag label
-            // Check if we haven't encountered a flag label previously, then write into positionalArgument
-            // Otherwise write the appropriate flag
+
+            /*
+             *  If we encounter a flag label
+             *   Check if we haven't encountered a flag label previously, then write into positionalArgument
+             *   Otherwise write the appropriate flag
+             */
+
             if (currentFlagLabel == null) {
                 this.positionalArgument = buffer.toString();
             } else {

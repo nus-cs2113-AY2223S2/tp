@@ -2,7 +2,7 @@
 !include Style.puml
 
 interface Routable {
-+ ExecutableCommandFactory resolve(CommandTokens commandTokens)
++ {abstract} ExecutableCommandFactory resolve(CommandTokens commandTokens)
 }
 class CommandRouterNode {
 + CommandRouterNode route()
@@ -19,7 +19,11 @@ class CommandTokens {
 }
 abstract class ExecutableCommandFactory {
 ... skipped for brevity
++ {abstract} ExecutableCommand buildCommand()
++ {abstract} String getCommandFormat()
 + ExecutableCommandFactory resolve(CommandTokens commandTokens)
++ List<Extractor> getExtractors()
++ void runExtractors()
 }
 
 Routable .up. CommandTokens

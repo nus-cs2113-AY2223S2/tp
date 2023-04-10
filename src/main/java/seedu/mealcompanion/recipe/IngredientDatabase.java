@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import seedu.mealcompanion.exception.InvalidIngredientNameException;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
@@ -20,7 +21,9 @@ public class IngredientDatabase {
     private IngredientDatabase() {
         this.knownIngredients = new HashMap<>();
         Gson gson = new Gson();
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/ingredients.json"))) {
+        try {
+            InputStream ingredientData = this.getClass().getResourceAsStream("/ingredients.json");
+            Reader reader = new InputStreamReader(ingredientData);
             // This is needed for GSON to return the expected instance of List<IngredientMetadata>
             Type ingredientMetadataListType =
                     TypeToken.getParameterized(List.class, IngredientMetadata.class).getType();
