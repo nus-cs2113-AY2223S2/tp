@@ -24,18 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StorageTest {
 
     private static final String ROUND_UP_WARNING = "Expense amount is rounded back to 2 decimal points by default.";
-    private static final String logo =
-            "*******     **********" + System.lineSeparator() +
-            "        *******     **********" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        *******        ***" + System.lineSeparator() +
-            "        *******        ***" + System.lineSeparator() +
-            System.lineSeparator();
 
     public ExpenseList expenseList = new ExpenseList();
     public Storage storage = new Storage(expenseList);
