@@ -255,7 +255,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 ### Find by appointment UID / appointment type / animal type / date: <br>
-Format: `find a/dog` `find t/surgery` `find aID/123` `find d/2023-12-12` <br>
+Format: `find a/dog` `find t/surgery` `find uID/123` `find d/2023-12-12` <br>
 Retrieves specific appointments requested by user <br>
 Can filter by appointment ID, appointment type, animal type, date of appointment<br>
 Example of usage: Displays the requested appointments <br>
