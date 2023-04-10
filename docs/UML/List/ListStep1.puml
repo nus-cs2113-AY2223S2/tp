@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/object-diagram
 
+skinparam classAttributeIconSize 0
 object ListParser{
     - Inventory = inventory
 }

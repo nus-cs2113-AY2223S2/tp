@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-
+skinparam classAttributeIconSize 0
 object RemoveParser{
     - rawInput = "f/upc 123"
     - Inventory = inventory
