@@ -79,15 +79,15 @@ respectively. The class diagrams below shows the subsystems for recipes, ingredi
 plan. For the class diagrams, `Meal360` and the `Ui` component are not shown for simplicity.
 Additionally, methods irrelevant to the subsystem shown are also omitted for simplicity.
 
-1. Recipe related
+- Recipe related
 
 ![](./UML/Architecture/RecipeRelated.png)
 
-2. Ingredient related
+- Ingredient related
 
 ![](./UML/Architecture/IngredientRelated.png)
 
-3. WeeklyPlan related
+- WeeklyPlan related
 
 ![](./UML/Architecture/WeeklyPlanRelated.png)
 

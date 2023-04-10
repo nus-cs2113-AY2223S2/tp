@@ -20,8 +20,8 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    String recipeErrorMessage1 = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
-            "[eg:chicken=100]";
+    String recipeErrorMessage1 =
+            "Wrong Format or Invalid Quantity. Please enter ingredients properly " + "[eg:chicken=100]";
 
     String recipeErrorMessage2 = "Enter \"done\" when finished entering ingredients!";
 
@@ -139,7 +139,8 @@ public class Parser {
                 if (line.equals("done")) {
                     ui.printSeparator();
                     if (addedIngredient == 0 || ingredients.size() == 0) {
-                        ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                        ui.printMessage(
+                                "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                         ui.printSeparator();
                     } else {
                         break;
@@ -372,6 +373,7 @@ public class Parser {
     }
 
     //@@author gurmankalkat
+
     /**
      * This method deletes a single, range, or all recipes.
      *
@@ -389,11 +391,11 @@ public class Parser {
                 Integer.parseInt(input[1]);
             }
         } catch (NumberFormatException e) {
-            throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in the " +
-                    "correct format.");
+            throw new ArrayIndexOutOfBoundsException(
+                    "Please enter a valid recipe number, name, or range in the " + "correct format.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
-                    "the correct format.");
+            throw new ArrayIndexOutOfBoundsException(
+                    "Please enter a valid recipe number, name, or range in " + "the correct format.");
         }
         if (input[1].contains("/r")) {
             // skip over /r in recipe name
@@ -422,26 +424,27 @@ public class Parser {
                     recipeIndex++;
                 }
                 if (!recipeFound) {
-                    throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
-                            "the correct format.");
+                    throw new ArrayIndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range in " + "the correct format.");
                 }
                 return recipeList.deleteRecipe(recipeIndex).getName();
             }
-        // user inputted index of recipe in list
+            // user inputted index of recipe in list
         } else {
             // deleting a range of recipes
             if (input[1].length() >= 3 && input[1].contains("-")) {
                 String[] range = input[1].trim().split("-");
                 if (range.length != 2) {
-                    throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
-                            "the correct format.");
+                    throw new ArrayIndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range in " + "the correct format.");
                 }
                 int startIndex = Integer.parseInt(range[0]);
                 int endIndex = Integer.parseInt(range[1]);
                 startIndex -= 1;
                 endIndex -= 1;
                 if (startIndex < 0 || endIndex >= recipeList.size() || endIndex < startIndex) {
-                    throw new IndexOutOfBoundsException("Please enter a valid recipe number, name, or range.");
+                    throw new IndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range.");
                 }
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
                 String rangeRecipes = "";
@@ -451,11 +454,12 @@ public class Parser {
                 rangeRecipes = String.valueOf(
                         new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
                 return rangeRecipes;
-            // deleting a single recipe
+                // deleting a single recipe
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
                 if (recipeIndex <= 0 || recipeIndex > recipeList.size()) {
-                    throw new IndexOutOfBoundsException("Please enter a valid recipe number, name, or range.");
+                    throw new IndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range.");
                 }
                 recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
@@ -465,6 +469,7 @@ public class Parser {
     }
 
     //@@author junenita
+
     /**
      * Extract inputs from users whether it is adding recipes to a tag or removing recipe from a tag.
      * Then, proceed to add or remove the recipes from the tag, and returns a string whether
@@ -512,6 +517,7 @@ public class Parser {
     }
 
     //@@author junenita
+
     /**
      * Extract the tag label and recipes. Then, proceed to add the recipes to the tag,
      * and returns the tag label that users modified
@@ -552,6 +558,7 @@ public class Parser {
     }
 
     //@@author junenita
+
     /**
      * Extract the tag label and recipes. Then, proceed to remove the recipes from the tag,
      * and returns the tag label that users modified
@@ -611,6 +618,7 @@ public class Parser {
     }
 
     //@@author junenita
+
     /**
      * Extract the filters from users' input. Then, proceed to extract the recipes by the filters.
      *
@@ -652,6 +660,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Extract the recipe index that the users wishes to view. Then, proceed to extract the recipe and returns
      * the recipe.
@@ -689,6 +698,7 @@ public class Parser {
     }
 
     //@@author AbijithRam
+
     /**
      * This method is designed to find the index of a recipe from
      * the recipe list of the user and return the recipe.
@@ -710,6 +720,7 @@ public class Parser {
     }
 
     //@@author junenita
+
     /**
      * Returns a Recipe object that contain a recipe's name and ingredients.
      *
@@ -726,6 +737,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Checks whether the user wants to edit single, multiple, or clear all the recipes in the weekly plan.
      * Then, return a WeeklyPlan object that contains the recipes that the user wants to add or delete.
@@ -753,6 +765,7 @@ public class Parser {
             updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
             break;
         case "/clear":
+        case "/done":
             updatedWeeklyPlan = new WeeklyPlan();
             break;
         default:
@@ -765,6 +778,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Parses the user input to extract the single recipe that the user wants to add or delete from the weekly
      * plan.
@@ -814,6 +828,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Parses the user input to extract the multiple recipes that the user wants to add or delete from the
      * weekly plan.
@@ -917,6 +932,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Parses the user input to extract the ingredient name, quantity, and expiry date that the user wants to
      * add to the ingredient list. Returns the Ingredient object that contains parsed data.
@@ -977,6 +993,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Parses the user input to extract the ingredient name and quantity that the user wants to delete from
      * the ingredient list. Returns the Ingredient object that contains parsed data.
@@ -1035,6 +1052,7 @@ public class Parser {
     }
 
     //@@author jaredoong
+
     /**
      * Parses the user input to extract the recipe which the user wants to mark as done. Returns the recipe
      * name to be deleted from the weekly plan.

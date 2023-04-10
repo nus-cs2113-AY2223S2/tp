@@ -180,7 +180,7 @@ Adding one or more recipes into a tag, so that users can organize the recipes in
 Format: `tag LABEL << [RECIPE_NAME && RECIPE_NAME && ...]`
 
 * `LABEL` is required, and replace with the tag label that user want to
-  add the recipes into. This is case-sensitive.
+  add the recipes into.
 * At least one `RECIPE_NAME` is required.
 * To add multiple recipes into the tag, use `&&` followed by next `RECIPE_NAME`.
 
@@ -198,7 +198,7 @@ Remove recipes from a specific tag.
 Format: `tag LABEL >> [RECIPE_NAME && RECIPE_NAME && ...]`
 
 * `LABEL` is required, and replace with the tag label that user want to
-  remove the recipes from. This is case-sensitive.
+  remove the recipes from.
 * At least one `RECIPE_NAME` is required.
 * To remove multiple recipes from the tag, use `&&` followed by next `RECIPE_NAME`.
 
