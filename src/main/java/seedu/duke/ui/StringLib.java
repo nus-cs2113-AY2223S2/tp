@@ -235,4 +235,5 @@ public interface StringLib {
     String EDIT_RECIPE_STEP_PROMPT = "Which step do you want to edit?\nType 'quit' to exit the edit view";
     String EDIT_NUMBERFORMATEXCEPTION_MESSAGE = "Error! Input should be a positive integer value!";
     String MIN_NUM_INGREDIENT_ERROR = "There must be at least one ingredient in the recipe!";
+    String MATCHING_ITEM_SINGLE = "Here is the matching item:";
 }

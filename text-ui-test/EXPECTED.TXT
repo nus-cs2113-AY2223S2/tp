@@ -189,8 +189,7 @@ Got it. I've added this recipe:
 Now you have 5 recipes in the list.
 
 __________________________________________________________
-
-Here are the matching items:
+Here is the matching item:
   [Chinese] Beijing Duck [Index: 5]
 __________________________________________________________
 
