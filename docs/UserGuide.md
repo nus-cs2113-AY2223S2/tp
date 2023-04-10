@@ -444,7 +444,7 @@ add potatoes
 add carrots
 cook 5 minutes
 ```
-The first line is the name of the dish. And the second line is the tag of the dish. The third line is number of the ingredient list $X$. The following $X$ lines are the ingredients. Then the next line is the number of the step list $Y$. The following $Y$ lines are the steps.
+The first line is the name of the dish. And the second line is the tag of the dish. The third line is number of the ingredient list X. The following X lines are the ingredients. Then the next line is the number of the step list Y. The following Y lines are the steps.
 ***WARNING***:
 * Do **NOT** modify/delete the save files.
 * If you modify/delete the data file, and save data has **the wrong format**, the recipe manager will not process the data correctly.
@@ -462,7 +462,7 @@ The first line is the name of the dish. And the second line is the tag of the di
 | [**add**](#adding-a-recipe-add)                                   | `add n/NAME i/INGREDIENT ... t/TAG s/SUMOFSTEP [STEP]...`                                                  | `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/2` <br/>`add carrots` <br/>`cook 5 minutes` |
 | [**addtorecipe**](#adding-elements-to-recipe)                     | `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`                                     | `addtorecipe --i id/1 desc/mala sauce`                                                          |
 | [**editingredient**](#editing-a-recipe-ingredient-editingredient) | `editingredient INDEX`                                                                                     | `editingredient 1`                                                                              |
-| [**editstep**](#editing-steps-editstep)                           | `editstep INDEX`                                                                                           | `editstep 1`                                                                                    |
+| [**editstep**](#editing-a-recipe-step-editstep)                           | `editstep INDEX`                                                                                           | `editstep 1`                                                                                    |
 | [**edit**](#editing-a-recipe-edit)                                | `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`  `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP` | `edit --i 1 2 i/pork` `edit --s 1 1 s/wash beef`                                                |
 | [**delete**](#deleting-a-recipe-delete)                           | `delete INDEX`                                                                                             | `delete 1`                                                                                      |
 | [**deletefromrecipe**](#deleting-elements-from-recipe)            | `deletefromrecipe --[s/i] id/[index]`                                                                      | `deletefromrecipe --i id/1`                                                                     |
