@@ -4,6 +4,6 @@
 -----------------------------------------------------|:--------------------------:|:-----------------------------------------:|:---------------------------------:
  ![](https://via.placeholder.com/100.png?text=Photo) |        Mitch Malvin        | [Github](https://github.com/mitchmalvin1) | [Portfolio](team/mitchmalvin1.md) 
  ![](https://via.placeholder.com/100.png?text=Photo) | Muthya Narayanachary Akhil |  [Github](https://github.com/lihka1202)   | [Portfolio](team/MuthyaNarayanacharyAkhil.md) 
- ![](https://via.placeholder.com/100.png?text=Photo) |          Ron John          |       [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md) 
- ![](https://via.placeholder.com/100.png?text=Photo) |          John Roe          |       [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md) 
- ![](https://via.placeholder.com/100.png?text=Photo) |          Don Roe           |       [Github](https://github.com/)       | [Portfolio](docs/team/johndoe.md) 
+ ![](https://via.placeholder.com/100.png?text=Photo) |        Lee Tze Han         |       [Github](https://github.com/ltzehan)       | [Portfolio](team/ltzehan.md) 
+ ![](https://via.placeholder.com/100.png?text=Photo) |        Wang Silang         |       [Github](https://github.com/JangusRoundstone)       | [Portfolio](team/JangusRoundstone.md) 
+ ![](https://via.placeholder.com/100.png?text=Photo) |       Teng Yuan Kai        |       [Github](https://github.com/iantenkai)       | [Portfolio](team/johndoe.md) 
