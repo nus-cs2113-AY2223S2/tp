@@ -100,9 +100,8 @@ will be displayed
     <i>Figure 2: UML diagram for the parser component</i>
 </p>
 
-It must be noted that not all the existing parser commands are included in this sequence diagram for parsing, namely
-the mark, unmark and edit commands. This is because they have a similar sequence diagram as the functions parseAdd and 
-parseLendBorrow. The only difference is the condition, with the loop happening one, one and four time(s) respectively. 
+It must be noted that not all the existing parser commands are included in this sequence diagram for parsing as other commands have a similar sequence diagram as the commands `exit` and 
+`parseLendBorrow`. The only difference is the condition and the number of times the loop occurs for each separate command. 
 
 
 ### 3.3. Expenditure Categories
