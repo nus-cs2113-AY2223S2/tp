@@ -66,7 +66,7 @@ This user guide adopts the following conventions for the command-line syntax:
 
 **IMPORTANT NOTES**
 
-- All arguments starting with a dash (`-`) will be treated as options.
+- All arguments starting with a dash (`-`) will be treated as options. This includes negative integers, which would trigger unknown options exception
 
 - For all specified options, only the arguments that follow the first declaration will be parsed. **i.e. any
   subsequent re-declarations of the same option will be ignored.**<br>For example, for the following input:<br>`/view -c food -c clothing`<br>Only expenses in the `food` category will be listed.
@@ -106,7 +106,7 @@ Options:
 
 
 - `-p <price>`<br>`-price <price>`<br>Price of the expense.
-    - Must be a positive numeric or decimal value.
+    - Must be a positive numeric or decimal value with no more than 2 decimal points.
     - Minimum value: `0.01`
     - Maximum value: `999999999.99`
 
@@ -170,7 +170,7 @@ Options:
 
 
 - `-p | -price` `<price>`: New price of the expense.
-    - Must be a non-negative numeric or decimal value.
+    - Must be a non-negative numeric or decimal value with no more than 2 decimal points.
 
 The order of the options are interchangeable.
 
@@ -219,6 +219,7 @@ Note:
 - If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed.
 - If only `max_price` is specified, all expenses smaller than or equal to `max_price` will be listed.
 - `min_price` **must** be smaller than `max_price`.
+- All prices should have no more than 2 decimal points.
 
 **Filter by date range**
 
