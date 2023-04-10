@@ -240,27 +240,29 @@ to use CLI applications to quickly track and update details relating to their pe
 Pet Tracker will allow for fast-typing users to save more time when keeping track of pets.
 Users will be able to quickly update any of their existing pet details or add in new ones, while being able to
 review all current information of all the pets they have at a glance. In addition, Pet Tracker allows users to
-add tasks for errands that even has a reminder feature so that users will not forget.
+add tasks for errands that even has a reminder feature so that users will be reminded to do the tasks that are 
+due on the day itself.
+
 
 ## User Stories
 
-| Version | As a ...         | I want to ...                                           | So that I can ...                                           |
-|---------|------------------|---------------------------------------------------------|-------------------------------------------------------------|
-| v1.0    | basic user       | add new pets                                            | track more pets                                             |
-| v1.0    | basic user       | record my pet's weight                                  | track if the weight is healthy                              |
-| v1.0    | basic user       | record my pet's age                                     | track how old my pet is                                     |
-| v1.0    | basic user       | remove a pet from my list                               | de-clutter the pet-list from pets I no longer take care of  |
-| v1.0    | large-scale user | see basic info on all my pets in one place              | get an overview of all my pets                              |
-| v2.0    | basic user       | save my pet list                                        | save my pet list data when i close the program              |
-| v2.0    | basic user       | load my saved pet list                                  | resume where i left off previously                          |
-| v2.0    | basic user       | add task                                                | remind myself to carry out a task                           |
-| v2.0    | basic user       | mark uncompleted tasks as done                          | check off tasks that i complete                             |
-| v2.0    | basic user       | unmark completed tasks                                  | uncheck off tasks that i did not complete                   |
-| v2.0    | basic user       | see all my tasks in one place                           | get an overview of all my tasks                             |
-| v2.0    | basic user       | edit my pet information                                 | modify my pet information when i need to update it          |
-| v2.0    | basic user       | edit my task information                                | modify my task information when i need to update it         |
-| v2.0    | basic user       | get a schedule of what time tasks must be done          | better meet my pets need by carrying out the task           |
-| v2.0    | forgetful user   | receive reminders about what task should have been done | complete due tasks that i forgot to do                      |
+| Version | As a ...         | I want to ...                                  | So that I can ...                                          |
+|---------|------------------|------------------------------------------------|------------------------------------------------------------|
+| v1.0    | basic user       | add new pets                                   | track more pets                                            |
+| v1.0    | basic user       | record my pet's weight                         | track if the weight is healthy                             |
+| v1.0    | basic user       | record my pet's age                            | track how old my pet is                                    |
+| v1.0    | basic user       | remove a pet from my list                      | de-clutter the pet-list from pets I no longer take care of |
+| v1.0    | large-scale user | see basic info on all my pets in one place     | get an overview of all my pets                             |
+| v2.0    | basic user       | save my pet list                               | save my pet list data when i close the program             |
+| v2.0    | basic user       | load my saved pet list                         | resume where i left off previously                         |
+| v2.0    | basic user       | add task                                       | remind myself to carry out a task                          |
+| v2.0    | basic user       | mark uncompleted tasks as done                 | check off tasks that i complete                            |
+| v2.0    | basic user       | unmark completed tasks                         | uncheck off tasks that i did not complete                  |
+| v2.0    | basic user       | see all my tasks in one place                  | get an overview of all my tasks                            |
+| v2.0    | basic user       | edit my pet information                        | modify my pet information when i need to update it         |
+| v2.0    | basic user       | edit my task information                       | modify my task information when i need to update it        |
+| v2.0    | basic user       | get a schedule of what time tasks must be done | better meet my pets need by carrying out the task          |
+| v2.0    | forgetful user   | receive reminders about what task is due today | complete tasks that are due today                          |
 
 ## Non-Functional Requirements
 

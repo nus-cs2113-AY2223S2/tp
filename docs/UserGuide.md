@@ -9,20 +9,20 @@
     * [Reminder feature for expired tasks](#reminder-feature-for-expired-tasks)
     * [Viewing the full list of pets and tasks](#viewing-the-full-list-of-pets-and-tasks)
   * [Command Summary](#command-summary)
-    * [Adding a pet: `add-pet`](#adding-a-pet--add-pet)
-    * [Removing a pet: `remove-pet`](#removing-a-pet--remove-pet)
-    * [Adding a stat to a pet: `add-stat`](#adding-a-stat-to-a-pet--add-stat)
-    * [Removing a stat from a pet: `remove-stat`](#removing-a-stat-from-a-pet--remove-stat)
-    * [Editing a stat of a pet: `edit-stat`](#editing-a-stat-of-a-pet--edit-stat)
-    * [Viewing Pet List: `list`](#viewing-pet-list--list)
-    * [Adding a Task: `add-task`](#adding-a-task--add-task)
-    * [Removing a Task: `remove-task`](#removing-a-task--remove-task)
-    * [Viewing Task List: `list-tasks`](#viewing-task-list--list-tasks)
-    * [Editing tasks: `edit-task`](#editing-tasks--edit-task)
-    * [Print Task Schedule: `schedule`](#print-task-schedule--schedule)
-    * [Marking a Task as Done: `mark-task`](#marking-a-task-as-done--mark-task)
-    * [Marking a Task as Not Done: `unmark-task`](#marking-a-task-as-not-done--unmark-task)
-    * [Exiting the program: `exit`](#exiting-the-program--exit)
+    * [Adding a pet: `add-pet`](#adding-a-pet-add-pet)
+    * [Removing a pet: `remove-pet`](#removing-a-pet-remove-pet)
+    * [Adding a stat to a pet: `add-stat`](#adding-a-stat-to-a-pet-add-stat)
+    * [Removing a stat from a pet: `remove-stat`](#removing-a-stat-from-a-pet-remove-stat)
+    * [Editing a stat of a pet: `edit-stat`](#editing-a-stat-of-a-pet-edit-stat)
+    * [Viewing Pet List: `list`](#viewing-pet-list-list)
+    * [Adding a Task: `add-task`](#adding-a-task-add-task)
+    * [Removing a Task: `remove-task`](#removing-a-task-remove-task)
+    * [Viewing Task List: `list-tasks`](#viewing-task-list-list-tasks)
+    * [Editing tasks: `edit-task`](#editing-tasks-edit-task)
+    * [Print Task Schedule: `schedule`](#print-task-schedule-schedule)
+    * [Marking a Task as Done: `mark-task`](#marking-a-task-as-done-mark-task)
+    * [Marking a Task as Not Done: `unmark-task`](#marking-a-task-as-not-done-unmark-task)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
   * [FAQ](#faq)
 <!-- TOC -->
 ## Introduction
@@ -62,8 +62,8 @@ the task should be completed.
 
 Related Commands: `add-task`
 
-### Reminder feature for expired tasks
-When a task is not done and past the deadline, Pet Tracker will remind you about this task upon starting the program.
+### Reminder feature for tasks due today
+When a task is due today, Pet Tracker will remind you about this task upon starting the program.
 
 ### Viewing the full list of pets and tasks
 Conveniently view the full list of your pets and tasks
