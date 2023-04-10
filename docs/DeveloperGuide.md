@@ -350,17 +350,20 @@ ______________________________________________________________________
 
 #### Mark/UnMark appointments
 
-1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
+1. Prerequisites: The UID of the appointment you want to mark or unmark. Use `list` or `find` to help you get the specific UID.
 2. Test case: `mark V12400172X`<br>
    Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. 
    A corresponding successful mark message is displayed. 
    Example:
 ```
 ______________________________________________________________________
-mark uID/C26135173W
-______________________________________________________________________
+ 1.  UID: C67345117A [X]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Oreo | Animal Type: Cat
+ Owner Name: fred | Contact Number: 91919191
+
+
 The appointment has been marked successfully
- Task marked successfully!
 ______________________________________________________________________
 ```
 3. Test case: `unmark V12400172X`<br>
@@ -369,9 +372,37 @@ ______________________________________________________________________
    Example:
 ```
 ______________________________________________________________________
-unmark uID/C26135173W
-______________________________________________________________________
-The appointment has been unmarked successfully
- Task marked successfully!
+ 1.  UID: C67345117A [ ]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Oreo | Animal Type: Cat
+ Owner Name: fred | Contact Number: 91919191
+
+
+The appointment has been unMarked successfully
 ______________________________________________________________________
 ```
+
+#### Editing appointments
+
+1. Prerequisites : The UID of the appointment that you want to should already exist. You can find the appointment using `list` or `find` command. 
+2. Test case: `edit uID/C67345117A at/Mouse an/freddy on/muthu cn/91917777 cd/2023-12-12 ct/19:00` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the 
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+Consultation changed successfully!
+______________________________________________________________________
+```
+3. Test case: `edit uID/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+ Surgery changed successfully!
+______________________________________________________________________
+```
+4. 
