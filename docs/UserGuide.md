@@ -505,7 +505,9 @@ exchange rates. However, a lack of internet connection will not hinder the use o
 
 - Our selection of currencies is based on the currencies available in our exchange rate API, we apologise if
 your currency is not available for use.
+
 ### Am I allowed to add my own currency and exchange rate to ET?
+
 - The current version of ET does not support adding of arbitrary currency. We apologise if this caused any 
   inconvenience.
 
