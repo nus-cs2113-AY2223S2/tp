@@ -70,9 +70,8 @@ The above _**Architecture**_ diagram gives a high-level overall of the program.
 
 **1. SEPHelper**
 
-SEPHelper holds an instance of each of the component mentioned above.
-It is the starting point of our program and takes in user inputs.
-SEPHelper executes commands based on an object of class "Command" after Parser processes user inputs and
+SEPHelper is the starting point of our program and takes in user inputs.
+SEPHelper executes commands based on an object of class "Command" passed to it after Parser processes user inputs and
 returns a Command object back to SEPHelper.
 
 Sequence Diagram for SEPHelper:
@@ -89,25 +88,32 @@ Reference Diagram for SEPHelper initialisation:
 Parser class serves to process raw user input and map it to one of the various commands.
 Parser class will return an object of class "Command", which will be used by SEPHelper to execute the user's commands.
 
-**3. UI** (**outdated**)
+**3. Command**
+
+Command class serves to execute the functionalities of the program.
+It is an abstract class inherited by other various commands, where each of those commands have their
+own functionality to execute.
+
+**4. UI** 
 
 UI class is in charge of the majority of the print functions present in the program.
-It is instantiated once in both Parser and SEPHelper classes, where it's print functions are utilized
-to print outputs to the User.
+It's print functions are utilized by many other components in order to print outputs to the user.
 
-
-**4. ModuleStorage**
+**5. Module Storage**
 
 ModuleStorage class holds an ArrayList of modules that the user has selected.
 It saves the user's modules to an external .txt file every time the module list is altered,
 and reads from the same .txt file when the program is first booted up.
 
-**5. DataReader**
+**6. DataReader**
 
 DataReader class reads two external .txt files to acquire the list of Partner Universities and list
 of Modules available in the PUs, and provides this information to other components.
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+**7. Budget Storage**
+
+**8. Deadline Storage**
+
 
 ### ModuleStorage
 
