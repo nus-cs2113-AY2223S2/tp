@@ -592,25 +592,34 @@ Korea in the following areas.
 
 ## User Stories
 
-| Version | As a ...                              | I want to ...                                          | So that I can ...                                            |
-|---------|---------------------------------------|--------------------------------------------------------|--------------------------------------------------------------|
-| v1.0    | mech eng student who is going for SEP | access the list of pre-mapped modules                  | make better choices on which modules to map                  |
-| v1.0    | mech eng student who is going for SEP | add the modules that I want to map into a list         |                                                              |
-| v1.0    | mech eng student who is going for SEP | look up for the PU’s information                       | better planning of SEP                                       |
-| v1.0    | mech eng student who is going for SEP | delete module mapping plans to change my schedule      | as I receive feedbacks from my academic advisor along the way |
-| v1.0    | mech eng student who is going for SEP |                                                        |                                                              |
-|         |                                       |                                                        |                                                              |
-|         |                                       |                                                        |                                                              |
-| v2.0    | SEP student                           | see the total cost I would be spending on the SEP trip |save enough money to go on the trip                           |
-| v2.0    | user                                  | find a to-do item by name                              | locate a to-do without having to go through the entire list  |
+| Version | As a ...                                 | I want to ...                                          | So that I can ...                                             |
+|---------|------------------------------------------|--------------------------------------------------------|---------------------------------------------------------------|
+| v1.0    | mech eng student who is going for SEP    | access the list of pre-mapped modules                  | make better choices on which modules to map                   |
+| v1.0    | mech eng student who is going for SEP    | add the modules that I want to map into a list         |                                                               |
+| v1.0    | mech eng student who is going for SEP    | look up for the PU’s information                       | better planning of SEP                                        |
+| v1.0    | mech eng student who is going for SEP    | delete module mapping plans to change my schedule      | as I receive feedbacks from my academic advisor along the way |
+| v1.0    | mech eng student who is going for SEP    |                                                        |                                                               |
+|         |                                          |                                                        |                                                               |
+| v2.0    | forgetful mech eng student going for SEP | set and view important deadlines                       | not miss anything that would impact my SEP process            |
+| v2.0    | forgetful mech eng student going for SEP | be able to get notifications for urgent submissions    | not miss any important submissions for SEP                    |
+| v2.0    | SEP student                              | plan what areas I will be spending on in the SEP trip  | understand how much money I have for leisure                  |
+| v2.0    | SEP student                              | see the total cost I would be spending on the SEP trip | save enough money to go on the trip                           |
+| v2.0    | user                                     | find a to-do item by name                              | locate a to-do without having to go through the entire list   |
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. SEP Helper should work on the Windows, Linux, and OS-X platforms with only Java 11 installed.
+2. SEP Helper should work better for users with a faster typing speed.
+3. SEP Helper should work without requiring an installer.
+4. SEP Helper should be able to process mappings within a reasonable speed of 3 seconds.
 
 ## Glossary
 
-* *glossary item* - Definition
+* *SEP Helper* - The name of this software programme.
+* *CLI* - Command-Line interface is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
+* *NUS* - National University of Singapore
+* *PU* - Partner University is the university that NUS is working with for Student Exchange Programmes.
+
 
 ## Instructions for manual testing
 
