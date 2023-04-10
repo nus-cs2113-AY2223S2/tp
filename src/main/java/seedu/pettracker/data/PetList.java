@@ -185,20 +185,20 @@ public class PetList {
         }
         Pet petToEdit = PetList.get(index);
         switch (stat.toLowerCase()) {
-            case "name":
-                petToEdit.setPetName(newValue);
-                break;
-            case "type":
-                petToEdit.setPetType(newValue);
-                break;
-            case "age":
-                petToEdit.setAge(newValue);
-                break;
-            case "weight":
-                petToEdit.setWeight(newValue);
-                break;
-            default:
-                throw new InvalidStatException();
+        case "name":
+            petToEdit.setPetName(newValue);
+            break;
+        case "type":
+            petToEdit.setPetType(newValue);
+            break;
+        case "age":
+            petToEdit.setAge(newValue);
+            break;
+        case "weight":
+            petToEdit.setWeight(newValue);
+            break;
+        default:
+            throw new InvalidStatException();
         }
     }
 
