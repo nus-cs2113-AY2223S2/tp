@@ -6,62 +6,65 @@
 
 ## Table of Contents
 
+- [Developer Guide](#developer-guide)
+  - [Table of Contents](#table-of-contents)
 - [Design](#design)
-    - [Architecture](#architecture)
-    - [Frontend](#frontend)
-        - [Parser](#parser)
-        - [Commands](#commands)
-            - [Add Command](#add-command)
-            - [Delete Command](#delete-command)
-            - [Edit Command](#edit-command)
-                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-                - [Implementation](#implementation)
-                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-            - [View Command](#view-command)
-                - [Class diagram of view command](#class-diagram-of-view-command)
-                - [Implementation](#implementation-1)
-            - [Help Command](#help-command)
-                - [Implementation](#implementation-2)
-            - [Exit/Bye Command](#exitbye-command)
-                - [Implementation](#implementation-3)
-    - [Backend](#backend)
-        - [Storage](#storage)
-            - [Reading from Database](#reading-from-database)
-            - [Writing to Database](#writing-to-database)
-            - [Resetting Database](#resetting-database)
-        - [API](#api)
-            - [Endpoints](#endpoints)
-                - [Creating a request](#creating-a-request)
-                - [Making a request](#making-a-request)
-            - [Access all entries available](#access-all-entries-available)
-                - [Get recent or all entries](#get-recent-or-all-entries)
-            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-                - [Add an entry](#add-an-entry)
-                - [View a specific entry](#view-a-specific-entry)
-                - [Delete an entry](#delete-an-entry)
-                - [Modify an entry](#modify-an-entry)
-    - [Data Structure](#data-structure)
-    - [Communication](#communication)
+  - [Architecture](#architecture)
+  - [Frontend](#frontend)
+    - [Parser](#parser)
+    - [Commands](#commands)
+      - [Add Command](#add-command)
+      - [Delete Command](#delete-command)
+      - [Edit Command](#edit-command)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Implementation](#implementation)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [View Command](#view-command)
+        - [Class diagram of view command](#class-diagram-of-view-command)
+        - [Implementation](#implementation-1)
+      - [Help Command](#help-command)
+        - [Implementation](#implementation-2)
+      - [Exit/Bye Command](#exitbye-command)
+        - [Implementation](#implementation-3)
+  - [Backend](#backend)
+    - [Storage](#storage)
+      - [Reading from Database](#reading-from-database)
+      - [Writing to Database](#writing-to-database)
+      - [Resetting Database](#resetting-database)
+    - [API](#api)
+      - [Endpoints](#endpoints)
+        - [Creating a request](#creating-a-request)
+        - [Making a request](#making-a-request)
+      - [Access all entries available](#access-all-entries-available)
+        - [Get recent or all entries](#get-recent-or-all-entries)
+      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+        - [Add an entry](#add-an-entry)
+        - [View a specific entry](#view-a-specific-entry)
+        - [Delete an entry](#delete-an-entry)
+        - [Modify an entry](#modify-an-entry)
+  - [Data Structure](#data-structure)
+  - [Communication](#communication)
 - [Implementation](#implementation-4)
 - [Testing](#testing)
-    - [Unit Tests](#unit-tests)
-    - [Instructions for manual testing](#instructions-for-manual-testing)
-        - [Feature Testing](#feature-testing)
-        - [Add entry: /add](#add-entry-add)
-        - [View entry: /view](#view-entry-view)
-        - [Delete entry: /delete](#delete-entry-delete)
-        - [Edit entry: /edit](#edit-entry-edit)
-        - [Show help menu: /help](#show-help-menu-help)
-        - [Terminate program: /bye](#terminate-program-bye)
-    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-        - [Exceptions](#exceptions)
-- [Product scope](#product-scope)
+  - [Unit Tests](#unit-tests)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+    - [Feature Testing](#feature-testing)
+    - [Add entry: /add](#add-entry-add)
+    - [View entry: /view](#view-entry-view)
+    - [Delete entry: /delete](#delete-entry-delete)
+    - [Edit entry: /edit](#edit-entry-edit)
+    - [Show help menu: /help](#show-help-menu-help)
+    - [Terminate program: /bye](#terminate-program-bye)
+  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+    - [Exceptions](#exceptions)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
     - [Target user profile](#target-user-profile)
     - [Value proposition](#value-proposition)
-- [User Stories](#user-stories)
-- [Non-Functional Requirements](#non-functional-requirements)
-- [Glossary](#glossary)
-- [Acknowledgements](#acknowledgements)
+  - [User Stories](#user-stories)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+  - [Acknowledgements](#acknowledgements)
     - [Documentation](#documentation)
     - [Storage](#storage-1)
     - [Unit Tests](#unit-tests-1)
@@ -1150,34 +1153,55 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-# Product scope
+# Appendix: Requirements
+
+## Product scope
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-## Target user profile
+### Target user profile
 
-{Describe the target user profile}
+PocketPal's main target users are individuals who are 
+- Looking for a simplified process of keeping track of their personal expenses.
+- Able to type fast
+- Comfortable with the use of CLI applications, and might even prefer CLI applications over GUIs
+- From all walks of life
+
+### Value proposition
+
+For individuals striving to save money for a vacation, a new car, or any other significant purchase, understanding their cash flow is crucial, yet often challenging and time-consuming.
+
+PocketPal revolutionizes the process by offering a seamless, user-friendly experience for tracking both income and expenses. PocketPal empowers users with valuable insights into their spending patterns, enabling them to make well-informed financial decisions and effectively reach their financial milestones.
+
+By delivering a comprehensive and automated overview of users' income and expenses, PocketPal puts financial control at their fingertips, making the journey towards financial success more attainable and enjoyable.
+
+## User Stories
+
+| Version | As a ...                         | I want to ...                                                  | So that I can ...                                                      |
+| ------- | -------------------------------- | ---------------------------------------------------            | ---------------------------------------------------------------------- |
+| v1.0    | user                             | easily input my expenses                                       | add expenses quickly                                                   |
+| v1.0    | user                             | view my total expenditure at a glance                          | plan my finances well                                                  |
+| v1.0    | user                             | edit expenditures                                              | correct my mistakes and track my expenditures properly                 |
+| v1.0    | user                             | delete expenditures                                            | remove wrongly tracked expenditures                                    |
+| v1.0    | business owner                   | have different categories                                      | have better flexibility in planning my budget for different categories |
+| v1.0    | user                             | be able to add my income as well                               | track my net cash flow                                                 |
+| v1.0    | less tech savvy user             | have a help function                                           | get assistance whenever I'm not sure of how to do something in the app |
+| v1.0    | user with many expenses to track | limit the number of expenses displayed                         | see only a limited number of expenses at a time                        |
+| v2.0    | user with many expenses to track | filter an expense item by description                          | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by category                             | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by start and end date                   | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by minimum and maximum price            | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | delete multiple expenses at once                               | save time by not needing to delete expenses one by one                 |
+| v2.0    | careless user                    | get accurate feedback and errors when I enter wrong commands   | intuitively know how to correct my command                             |
+
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-## Value proposition
-
-{Describe the value proposition: what problem does it solve?}
-
-# User Stories
-
-| Version | As a ... | I want to ... | So that I can ... |
-|---------|----------|---------------|-------------------|
-
-<div style="text-align: right;">
-   <a href="#table-of-contents"> Back to Table of Contents </a>
-</div>
-
-# Non-Functional Requirements
+## Non-Functional Requirements
 
 {Give non-functional requirements}
 
@@ -1185,7 +1209,7 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-# Glossary
+## Glossary
 
 - __Request Method__ - The action to be performed by the `Endpoint` requested
   ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods))
@@ -1197,21 +1221,21 @@ replicated as follows:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
-# Acknowledgements
+## Acknowledgements
 
-## Documentation
+### Documentation
 
 - [Github REST API documentation](https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28)
 - [Diagrams.net](https://app.diagrams.net/)
 - PlantUML
 
-## Storage
+### Storage
 
 - [Function `makeFileIfNotExists` - StackOverflow](https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists)
 - [Deleting files - w3Schools](https://www.w3schools.com/java/java_files_delete.asp)
 - [BufferedReader - Baeldung](https://www.baeldung.com/java-buffered-reader)
 
-## Unit Tests
+### Unit Tests
 
 - [Assert Exceptions Thrown - Baeldung](https://www.baeldung.com/junit-assert-exception)
 - [Arrange, Act, Assert](https://java-design-patterns.com/patterns/arrange-act-assert)
