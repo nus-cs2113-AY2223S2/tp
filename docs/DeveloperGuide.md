@@ -300,20 +300,14 @@ create a new `RemoveParser` object and pass to it the appropriate `input`, and `
 or `f/item` respectively. 
 
 **Step 3**. The methods `parseRemoveByIndex` or `parseRemoveByUpc` will check the validity of the input. If user input is invalid,
-an error message will be printed out and method execution will halt. Otherwise, both methods will print a confirmation message to 
-the user, where the user will have to enter `Y` or `N` for the method to create a new `RemoveCommand` object to execute the removal. 
+an error message will be printed out and method execution will halt. 
 
 ![RemoveStep3.png](UML/Remove/RemoveStep3.png)
 
 **Step 4**. The `run` method in `RemoveCommand` is called which overrides the `run` method in the `Command` object.
 This calls either `removeByUpcCode` or `removeByIndex` method depending on the type identified earlier. Now, both functions
-will check if the UPC or index input by user is valid/exists in the list. If not, an error message will be printed and method
+will check if the UPC or index input by user is valid/exists in the list and execute removal. If not, an error message will be printed and method
 will halt.
-
-**Step 5**. The `removeByUpcCode` or `removeByIndex` method will check the confirmation input by user earlier. If user confirmation
-is `Y`, the specified item will be removed from the inventory, remove any alerts for the item and `printSuccessRemove` 
-from the `Ui` object will be called. If user confirmation is `N`, `printNotRemoving` from the `Ui` object will be called and method
-will halt. If user confirmation is not valid, `printInvalidReply` from the `Ui` object will be called and method will halt. 
 
 
 ### 2.9. Search

@@ -63,7 +63,8 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Add parameters incomplete!";
+        String expectedOutput = "Wrong/Incomplete Entry For Add! Please refer to UG for more information\n" +
+                "Sample Format: \"add n/[name] upc/[UPC] qty/[quantity] p/[price] c/[category]\"";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 

@@ -50,9 +50,7 @@ public class AddParser extends Parser {
             Item newItem = new Item(name, upc, quantity.intValue(), price.doubleValue(), category);
             Command addCommand = new AddCommand(inventory, newItem);
             addCommand.run();
-        } catch (MissingParametersException e) {
-            e.missingAddItemParameters();
-        } catch (NumberFormatException e) {
+        } catch (MissingParametersException | NumberFormatException e) {
             Ui.printInvalidAddCommand();
         } catch (OutOfRangeException e) {
             e.printOutOfRange();
