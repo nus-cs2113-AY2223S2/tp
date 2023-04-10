@@ -4,45 +4,48 @@ hide circle
 !include style.puml
 
 Class Bye MAROON {
-+ bye()
++ bye(): void
 }
 
 Class Greet SEA {
-+ greet()
++ greet(): void
 }
 
 Class PrintExercises ORANGE {
-+ printExercises(ArrayList<ExerciseData>)
++ printExercises(ArrayList<ExerciseData>): void
 }
 
 Class PrintPlanner DATA_COLOUR {
-+ printPlanner(UserPlan)
-+ printPlannerGreeting()
++ printPlanner(UserPlan): void
++ printPlannerGreeting(): void
 }
 
 Class PrintHelpMessage LAPIS {
-+ showAvailableCommands()
-+ showAvailablePlannerCommands()
-+ printFiltersAvailable()
-+ unknownCommandMessage()
++ showAvailableCommands(): void
++ showAvailablePlannerCommands(): void
++ printFiltersAvailable(): void
++ unknownCommandMessage(): void
 }
 
 Class PrintUserExerciseData DATA_COLOUR {
-+ printUserExerciseHistory(HashMap<String,Integer>)
++ printUserExerciseHistory(HashMap<String,Integer>): void
 }
 
 Class Ui MAIN_COLOUR {
-+ printExerciseFromList (ArrayList<ExerciseData>)
-+ greetUser()
-+ byeUser()
-+ printFilters()
-+ unknownCommand()
-+ showPlan(UserPlan)
-+ printHelp()
-+ printPlannerHelp()
-+ splitLine()
-+ printUserExerciseHistory(HashMap<String, Integer>)
-+ printPlannerGreeting()
++ printExerciseFromList (ArrayList<ExerciseData>): void
++ greetUser(): void
++ byeUser(): void
++ printFilters(): void
++ unknownCommand(): void
++ showPlan(UserPlan): void
++ printHelp(): void
++ printPlannerHelp(): void
++ splitLine(): void
++ plannerMode(): void
++ workoutMode(): void
++ printUserExerciseHistory(HashMap<String, Integer>): void
++ printPlannerGreeting(): void
++ printExerciseSessionHelp(): void
 }
 
 left to right direction

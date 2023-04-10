@@ -685,7 +685,7 @@ Our planner feature is designed to help you plan your weekly workout schedule in
 
 
 
-### Adding a plan ```add [day] [plan_name] [arg 1] [arg 2] [arg 3] ```
+### Adding a plan ```add DAY PLAN_NAME ARGUMENT... ```
 
 Creates a new workout plan using existing filters specified by the user, for a specific day of the week.
 
@@ -839,9 +839,22 @@ tampered with, the data will not be loaded in, and the achievement will not be l
 if a specific line of data is corrupt, that specific achievement is not loaded, but the rest will work.)
 
 # FAQ
+**Q**: I am facing trouble starting the application. Do you know what might be the issue?
+
+**A**: Please ensure that you have Java 11 and above installed on your machine. You may find more instructions at the 
+[Getting Started](#getting-started) section.
+
 **Q**: Can I add my own workouts to the program?
 
-**A**: This is a very intuitive feature, but we have not implemented it yet.
+**A**: Our ```planner``` feature has made it possible to create your own customised workout plans, which can be carried 
+out through the ```quick``` feature, allowing users to pre-set their desired type of exercises on different days of the
+week.
+
+**Q**: I am a developer. How can I find the source code and contribute to FitnessDuke?
+
+**A**: FitnessDuke is an open-source application, and we welcome developers to share their ideas.
+
+> You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W13-2/tp).
 
 # Command Summary
 
