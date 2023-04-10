@@ -47,7 +47,7 @@ public class Currency {
     }
 
     /**
-     * Standardize the format of double when we add it to expenseList
+     * Standardize the format of double when we add it to account
      */
     public static BigDecimal roundInput(String expenseAmountInput) {
         BigDecimal roundedExpense = new BigDecimal(expenseAmountInput);

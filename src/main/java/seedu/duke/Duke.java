@@ -1,61 +1,70 @@
 package seedu.duke;
 
+import command.CommandDelete;
 import command.CommandAdd;
 import command.CommandCategory;
-import command.CommandDelete;
 import command.CommandList;
-import command.CommandSort;
+
 import command.CommandTotal;
-import command.CommandFind;
-import command.overview.CommandOverview;
+import command.CommandSort;
 import command.CommandHelp;
+import command.CommandFind;
+
+import common.WelcomeMessage;
+import command.overview.CommandOverview;
+
+import data.Account;
 import data.ExpenseList;
 import data.Currency;
+
 import parser.Parser;
+import parser.ParserAccount;
 import storage.Storage;
-import common.WelcomeMessage;
 
 import java.util.Scanner;
 
 public class Duke {
-
     protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-
     protected String filePath = "expenses.json";
 
 
     /**
-     * Initialize Duke and instantiate parser and expenseList objects.
+     * Initialize Duke and instantiate parser and account objects.
      */
     public Duke() {
         parser = new Parser();
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        expenseList.setExpenseList(storage.loadExpenses(filePath));
+
     }
 
     public void run() {
-
         Scanner in = new Scanner(System.in);
-
+        if (in.hasNextLine()) {
+            System.out.println("Hello " + in.nextLine());
+        }
+        ParserAccount.initialize(in);
         WelcomeMessage.welcomeHelper();
 
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
             if (input.equals("exit")) {
+                ParserAccount.caseExit();
                 break;
             }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
+                Account.autoSave();
                 break;
             case "delete":
                 new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
+                Account.autoSave();
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
@@ -68,6 +77,9 @@ public class Duke {
                 break;
             case "category":
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
+            case "logout":
+                ParserAccount.caseLogOut(in);
                 break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),
@@ -82,9 +94,7 @@ public class Duke {
                 break;
             default:
                 System.out.println("Unknown command.");
-                break;
             }
-            storage.saveExpenses(filePath);
         }
         in.close();
     }
@@ -95,4 +105,6 @@ public class Duke {
     public static void main(String[] args) {
         new Duke().run();
     }
+
+
 }

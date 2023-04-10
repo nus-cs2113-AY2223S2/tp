@@ -5,7 +5,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.MalformedJsonException;
+
 import common.WelcomeMessage;
+import data.Account;
 import data.Expense;
 import data.ExpenseList;
 import utils.GsonLocalDateAdaptor;
@@ -26,7 +28,6 @@ import java.util.Objects;
 import static common.MessageList.PERIOD;
 import static common.MessageList.WHITESPACE;
 
-
 public class Storage {
 
     private static final String WRITING_TO_FILE_ERROR = "Error writing to account file";
@@ -46,6 +47,7 @@ public class Storage {
             .create();
 
     private ExpenseList expenseList;
+    private Account user;
 
 
     public Storage(ExpenseList expenseList) {
@@ -74,7 +76,7 @@ public class Storage {
      *
      * @param filePath Path at which the json file is stored.
      */
-    private void createFile(String filePath) {
+    public void createFile(String filePath) {
         try {
             File f = new File(filePath);
             if (f.createNewFile()) {
@@ -92,31 +94,33 @@ public class Storage {
 
 
     /**
-     * Loads expenses from json file and save as an ArrayList of Expenses
+     * Loads expenses from json file and save as an ExpenseList
      *
      * @param filePath Path at which the json file is stored.
-     * @return An arraylist of expenses.
+     * @return An ExpenseList.
      * @throws NullPointerException if json file is empty.
      */
 
-    public ArrayList<Expense> loadExpenses(String filePath) throws NullPointerException {
-        ArrayList<Expense> expenses = new ArrayList<>();
+    public ExpenseList loadExpenses(String filePath) throws NullPointerException {
+
+        ExpenseList expenseList = new ExpenseList();
         createFile(filePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(filePath));
             Type typeOfObject = new TypeToken<ArrayList<Expense>>() {
             }.getType();
-            expenses = GSON.fromJson(reader, typeOfObject);
+            ArrayList<Expense> expenses = GSON.fromJson(reader, typeOfObject);
+            expenseList.setExpenseList(expenses);
         } catch (JsonSyntaxException | MalformedJsonException | DateTimeParseException e) {
             System.out.println(DATA_CORRUPTED_ERROR);
             System.exit(0);
         } catch (IOException e) {
             System.out.println(CREATE_FILE_ERROR);
         }
-        if (expenses != null) {
-            checkValidExpenseList(expenses, filePath);
+        if (expenseList.getExpenseList() != null) {
+            checkValidExpenseList(expenseList.getExpenseList(), filePath);
         }
-        return Objects.requireNonNullElseGet(expenses, ArrayList::new);
+        return Objects.requireNonNullElseGet(expenseList, ExpenseList::new);
     }
 
     /**
@@ -159,5 +163,6 @@ public class Storage {
     public ExpenseList getExpenseList() {
         return expenseList;
     }
-
 }
+
+

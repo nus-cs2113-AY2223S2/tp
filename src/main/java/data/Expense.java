@@ -11,8 +11,8 @@ public class Expense {
     protected String currencyType;
     protected BigDecimal rate;
 
-    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType
-            , BigDecimal rate) {
+    public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType,
+                   BigDecimal rate) {
         this.expenseAmount = formatExpenseAmount(expenseAmount);
         this.expenseTime = expenseTime;
         this.description = description;
@@ -23,6 +23,22 @@ public class Expense {
     public Expense(String description, BigDecimal expenseAmount) {
         this.expenseAmount = expenseAmount;
         this.description = description;
+    }
+
+    public Expense(String description, BigDecimal expenseAmount, Time expenseTime) {
+        this.description = description;
+        this.expenseAmount = expenseAmount;
+        this.expenseTime = expenseTime;
+    }
+
+    public Expense(BigDecimal expenseAmount, Time date, String description) {
+        this.expenseAmount = expenseAmount;
+        this.expenseTime = date;
+        this.description = description;
+    }
+
+    public Expense(String category) {
+        this.description = category;
     }
 
     private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
@@ -97,6 +113,12 @@ public class Expense {
             return (currencyString + amountString + " cat:" + descriptionString);
         }
 
+    }
+
+
+    public String toAdd() {
+        return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description
+            + " cur/" + this.currencyType);
     }
 }
 
