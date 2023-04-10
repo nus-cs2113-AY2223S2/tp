@@ -145,7 +145,8 @@ It uses methods contained within the classes `JsonToMemory` and `MemoryToJson` t
 data respectively.
 
 The class diagram is as seen below:
-![Storage Class Diagram](img/StorageClass.png)
+
+![Storage Class Diagram](img/NewStorageClassDiagram.PNG)
 
 ### CardList Component
 
@@ -464,7 +465,9 @@ file.
 3. The Json is written into the filesystem.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/SaveSequence.PNG)
+
+![export feature](img/SaveSequenceDiagram.PNG)
+
 
 ### Load
 
@@ -478,7 +481,10 @@ is corrupted, `load()` is called to read a file `backup.json` instead.
 3. The memory object is returned to be read from by Inka.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/LoadSequence.PNG)
+
+![export feature](img/LoadSequenceDiagram.PNG)
+
+
 
 ### Deck Feature
 
@@ -549,8 +555,7 @@ elucidate what happens internally when this command is run:
 The sequence diagram is as such:
 ![Add Cards to Deck](img/AddCardToDeck.png)
 
-Here is the reference frame that has been abstracted out:
-![Add Cards to Deck Reference Frame](img/AddCardToDeckRef.png)
+
 
 #### List Cards and Tags under a Deck
 
