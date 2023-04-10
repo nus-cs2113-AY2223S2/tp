@@ -255,7 +255,8 @@ All Commands:
 	Meaning: Unpacks 1 quantity of the second item in the packing list
 6. deletelist: Deletes all items in the packing list.
 	Example: deletelist
-7. listunpacked: List all items and their total quantities if they are not fully packed yet.
+7. listunpacked: List all items and their total quantities if they are not fully
+    packed yet.
 	Example: listunpacked
 8. editquantity: Edit the total quantity of an item to be packed.
 	Example: editquantity 3 /of 2
@@ -266,7 +267,8 @@ All Commands:
 10. unpackall: Fully unpacks an item of choice from the packing list.
 	Example: unpackall /of 3
 	Meaning: Set the third item in the packing list as totally not packed yet
-11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
+11. find: Displays all items in the packingList as a list that contains the keyword 
+    used in the command.
 	Example: find jacket
 12. bye: Stops the BagPacker Application
 	Example: bye
@@ -319,20 +321,20 @@ In the case where there are no items in the list, or all items are fully packed,
 
 _**No items:**_
 ```
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 listunpacked
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 There are no items in your list. What would you like to add?
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 ```
 
 **_All items fully packed:_**
 ```
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 listunpacked
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 All items in your list are fully packed!
-________________________________________________________________________________________________________________________
+_________________________________________________________________________
 
 ```
 
@@ -663,7 +665,7 @@ java -jar bagpacker.jar
 
 You will see a greeting screen: 
 ```
-________________________________________________________________________________________________________________________
+________________________________________________________________________________
 Hi this is,
  ____              _____           _
 |  _ \            |  __ \         | |
@@ -675,10 +677,10 @@ Hi this is,
              |___/
 
 Enter "help" to find out how to use BagPacker
-________________________________________________________________________________________________________________________
-________________________________________________________________________________________________________________________
+________________________________________________________________________________
+________________________________________________________________________________
 No save files detected. Hello new user!
-________________________________________________________________________________________________________________________
+________________________________________________________________________________
 
 ```
 You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t14-2.github.io/tp/UserGuide.html) for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
@@ -687,9 +689,9 @@ You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t1
   * Example:  `add 4 /of jackets`
   * Expected:
     ```
-    ________________________________________________________________________________________________________________________
+    ____________________________________________________________________________
     New item added: [0/4] jackets
-    ________________________________________________________________________________________________________________________
+    ____________________________________________________________________________
     ```
   * You may add in as many items you want to test with varying quantity and item names
   
@@ -753,9 +755,9 @@ You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t1
   * Expected: 
   
     ```
-    ________________________________________________________________________________________________________________________
+    _________________________________________________________________________
     Packing list deleted
-    ________________________________________________________________________________________________________________________
+    _________________________________________________________________________
     ```
   * This command will replace your packing list with an empty one.
 
@@ -765,7 +767,7 @@ You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t1
     * Expected: 
 
     ```
-    ________________________________________________________________________________________________________________________
+    __________________________________________________________________________
     Bye thanks for using,
      ____              _____           _
     |  _ \            |  __ \         | |
@@ -776,5 +778,5 @@ You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t1
                   __/ |
                  |___/
     
-    ________________________________________________________________________________________________________________________
+    ___________________________________________________________________________
     ```

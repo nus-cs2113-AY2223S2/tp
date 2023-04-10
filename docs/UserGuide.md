@@ -53,8 +53,8 @@ is unpacked and travel with an ease of mind.
                  |___/
     
     Enter "help" to find out how to use BagPacker
-    _________________________________________________________________________________
-    _________________________________________________________________________________
+    _______________________________________________________________________________
+    _______________________________________________________________________________
     Welcome back, User!
     ```
    
@@ -114,11 +114,13 @@ All Commands:
   Meaning: Change the total quantity of the second item to 3
 8. list: List all items and their total quantities packed in packing list.
   Example: list
-9. listunpacked: List all items and their total quantities if they are not fully packed yet.
+9. listunpacked: List all items and their total quantities if they are not fully 
+    packed yet.
   Example: listunpacked
 10. deletelist: Deletes all items in the packing list.
   Example: deletelist
-11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
+11. find: Displays all items in the packingList as a list that contains the keyword 
+    used in the command.
   Example: find jacket
 12. bye: Stops the BagPacker Application
   Example: bye
