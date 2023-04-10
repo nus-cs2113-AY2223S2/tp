@@ -14,7 +14,7 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
    - [DeleteCommand](#delete-command)
    - [DeleteListCommand](#deletelist-command)
    - EditQuantityCommand
-   - FindCommand
+   - [FindCommand](#find-command)
    - [HelpCommand](#help-command)
    - IncorrectCommand
    - [ListCommand](#list-command)
@@ -48,7 +48,9 @@ For all valid commands, the mechanism of implementation are as follows:
    which runs the actual command function
 
 ---
-
+#### Command
+The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
+`targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. This is done through the `getTargetItem()` method.
 #### Add Command
 
 Add command is used to add a quantity of item(s) to the packing list.
@@ -270,11 +272,16 @@ Can only pack a positive quantity that is less than or equal to the unpacked qua
 ```
 
 ---
+#### Find Command
+`FindCommand` is used to find all items containing the keyword(s) provided.
+
+Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
+The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
+---
 #### DeleteList Command
 `DeleteListCommand` is used to delete all items inside `packingList`.
 
 Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
-
 
 ---
 
