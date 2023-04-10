@@ -189,6 +189,16 @@ Expected output:
 ```
 Deleted chest day on 09/04/23.
 ```
+### End a workout: `/wend`
+End a current workout
+
+Format: `/wend`
+
+Example of usage:
+
+`/wend`
+
+
 ### Count sets and reps over a week: `/wcount`
 Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
 
@@ -202,9 +212,7 @@ Example of usage:
 
 Expected output:
 ```
-Information of exercises for the week of 09/04/23
-Name: leg press, sets: 3, rps:22
-=======================================
+Great job completing your workout!
 ```
 ### Add calories consumed: `/cadd`
 Add record of calories consumed.
@@ -240,8 +248,10 @@ View the total calorie consumption in a specified date.
 
 Format: `/cview DD/MM/YY`
 
+* DD
+
 Example of usage:
-`/cview`
+`/cview 11/02/23`
 
 Expected output:
 ```
@@ -261,6 +271,7 @@ Example of usage:
 Expected output:
 ```
 Thank you, hope you had a great workout!!!
+=======================================
 ```
 
 ## FAQ
