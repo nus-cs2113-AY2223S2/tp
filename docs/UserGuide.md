@@ -112,7 +112,7 @@ Successfully removed pet: Alice
 
 ### Adding a stat to a pet: `add-stat`
 Adds a stat to a pet in the Pet List.
-Currently, the only stats supported are Type, Age and Weight.
+Currently, the only stats supported are Type, Age and Weight. The unit of the Weight is in Kg.
 
 Format: `add-stat PETNAME STAT VALUE`
 
