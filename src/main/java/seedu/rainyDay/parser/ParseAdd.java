@@ -84,7 +84,6 @@ public class ParseAdd extends Parser {
         }
     }
 
-    //@@author lil1n
     private void checkDescription() throws RainyDayException {
         if (description.contains("-")) {
             logger.warning("unsupported description name");
@@ -108,6 +107,7 @@ public class ParseAdd extends Parser {
         amount = exactAmount / 100;
     }
 
+    //@@author lil1n
     private String setCategory(String input) throws RainyDayException {
         int flag = 0;
         Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(.*)");
