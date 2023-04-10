@@ -33,12 +33,11 @@ public class AchievementListHandler extends TextDataUtility {
     private static final String BRACKET = ") ";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
-    private static final boolean PRINT_LOAD_MESSAGE = false;
     private static ArrayList<Achievement> achievementList = new ArrayList<>();
 
     public void loadAchievementsFromFile() {
         File achievementTextFile = new File(ACHIEVEMENT_LIST_FILE_LOCATION);
-        super.checkForListData(achievementTextFile);
+        super.checkForAchievementListData(achievementTextFile);
         try {
             pushDataToAchievementList(achievementList, achievementTextFile);
         } catch (DukeError e) {

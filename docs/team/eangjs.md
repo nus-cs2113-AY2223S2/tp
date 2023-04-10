@@ -59,4 +59,14 @@ Tests the saving and reading of data to and from the local hard disk and checks 
 
 ### Contributions to the team tasks
 * Helped review PRs and made comments to them throughout the project
-* Helped add issues and tagged them throughout the project.
+* Helped maintain the issue tracker
+  - Close issues that have been completed
+  - Link issues with pull request
+  - Add new issues and elaborated on it
+  - Tagged issues with their appropriate tags
+* Developed the ```_layouts/default.html```
+  - Add bootstrap features
+  - Night light mode toggle
+  - Custom theming
+* Release management
+  - Made releases for V1.0, V2.0 of FitnessDuke

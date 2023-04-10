@@ -6,6 +6,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.HashSet;
+import java.util.Set;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.userplan.Plan;
 import seedu.duke.data.userdata.userplan.UserPlan;
@@ -36,12 +38,18 @@ public class JsonUserPlansLoader {
         try (Reader reader = new FileReader(plansFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("UserPlans");
+            Set<String> planNames = new HashSet<String>();
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonElement jsonWeekElements = jsonArray.get(i);
                 JsonArray jsonDayPlans = jsonWeekElements.getAsJsonArray();
                 for (JsonElement element : jsonDayPlans) {
                     Plan planFromFile = gson.fromJson(element, Plan.class);
                     planFromFile.checkDayPlanNullity();
+                    boolean containsNoDuplicate = planNames.add(planFromFile.getPlanName());
+                    if (!containsNoDuplicate) {
+                        System.out.println("Duplicate plan name found - Will be deemed as corrupted");
+                        throw new DukeError("Duplicate plan found in file");
+                    }
                     userPlan.addDayPlan(planFromFile, i);
                 }
                 userPlan.checkPlansNullity();

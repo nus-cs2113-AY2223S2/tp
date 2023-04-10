@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class TextDataUtility{
-    protected static final String ACHIEVEMENT_LIST_FILE_LOCATION = "allAchievements.txt";
+    protected static final String ACHIEVEMENT_LIST_FILE_LOCATION = "achievementData.txt";
     private static final Logger logger = LogMaster.getLogger(TextDataUtility.class);
     private static final String achievementListText = "Easy Peasy:Complete your first Easy exercises!:0:E:easy:0:1\n" +
             "Easy Peasy Lemon Squeezy:Complete 3 easy exercises!:0:M:easy:0:3\n" +
@@ -37,7 +37,7 @@ public abstract class TextDataUtility{
             "The Static Champion:Complete 5 Static workouts!:0:H:static:0:5";
 
 
-    public void checkForListData(File listData) {
+    protected void checkForAchievementListData(File listData) {
         if (!listData.exists()) {
             System.out.println("Data file does not exist, creating a new one");
             try {
@@ -64,21 +64,7 @@ public abstract class TextDataUtility{
                 System.out.println("We can't create a file for some reason :< Please dont use this file thanks");
             }
         } else {
-            checkForListData(listData);
-        }
-    }
-
-    public void clearAchievementListData(File listData, boolean printOrNot) {
-        if (listData.exists()) {
-            try {
-                new FileWriter(listData).close();
-                appendToFile(achievementListText, ACHIEVEMENT_LIST_FILE_LOCATION);
-                logger.log(Level.INFO, "Achievement data cleared");
-            } catch (IOException e) {
-                System.out.println("We can't create a file for some reason :< Please dont use this file thanks");
-            }
-        } else {
-            checkForListData(listData);
+            checkForAchievementListData(listData);
         }
     }
 
