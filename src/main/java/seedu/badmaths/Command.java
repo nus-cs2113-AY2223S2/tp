@@ -53,22 +53,6 @@ public class Command {
         return todo.equals("Invalid todo");
     }
 
-    public boolean isInvalidIndex(int index, NotesList notes) {
-        return (index < 0 || index >= notes.getSize());
-    }
-
-    public boolean isAnInt(String todo) {
-        try {
-            Integer.parseInt(todo);
-        } catch (NumberFormatException numberException) {
-            Ui.printInvalidNumberEntered();
-            return false;
-        }
-        return true;
-    }
-
-
-
     public void executeCommand(NotesList notes, ArrayList<String> historyCommand) {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
@@ -79,8 +63,6 @@ public class Command {
         NotesFinder notesFinder = new NotesFinder(notes, filePath);
         NotesPriorityFinder notesPriorityFinder = new NotesPriorityFinder(notes, filePath);
         NotesRanker notesRanker = new NotesRanker(notes, filePath);
-
-
         try {
             //@@author WilsonLee2000
             assert (command.equals("Bye") || command.equals("Graph") || command.equals("Store") ||
@@ -108,7 +90,7 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
-                List lists = new List(notes,toDo);
+                List lists = new List(notes, toDo);
                 lists.listNotes();
                 break;
             //@@author WilsonLee2000
@@ -116,8 +98,8 @@ public class Command {
                 Delete deletes = new Delete(notes, toDo);
                 deletes.deleteNotes();
                 break;
+            //@@author WilsonLee2000
             case "History":
-                // print out all commands typed in the list
                 commandHist.displayHistory();
                 break;
             //@@author ZiqiuZeng
