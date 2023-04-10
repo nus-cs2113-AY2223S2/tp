@@ -1,11 +1,14 @@
 package seedu.duke.command;
 
+import seedu.duke.ui.Ui;
 import seedu.duke.venue.Venue;
 import seedu.duke.venue.VenueList;
 
 public class FilterVenueCommand extends Command {
 
     protected int venueSize;
+
+    Ui ui = new Ui();
 
     public FilterVenueCommand(String commandType, int venueSize) {
         super(commandType);
@@ -14,6 +17,7 @@ public class FilterVenueCommand extends Command {
 
     @Override
     public void execute(VenueList venueList) {
+        ui.showLine();
         int numberOfSuitableVenues = 0;
         for (int i = 0; i < venueList.getVenueListSize(); i += 1) {
             Venue currVenue = venueList.getVenue(i);
@@ -25,5 +29,6 @@ public class FilterVenueCommand extends Command {
        if (numberOfSuitableVenues == 0) {
            System.out.println("No suitable venues found.");
        }
+       ui.showLine();
     }
 }
