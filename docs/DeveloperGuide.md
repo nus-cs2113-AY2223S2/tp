@@ -1,3 +1,6 @@
+---
+layout: page
+---
 # Developer Guide
 Welcome to the Meal Companion Developer Guide! Thank you for taking an interest in the behind-the-scenes working of our product, and we hope this document proves informative and useful for your work.
 
@@ -496,6 +499,7 @@ Expected: Error message for invalid recipe is shown.
    Expected: MealCompanion to throw error message notifying users of corrupted data file, program still runs normally.
 
 ### Command lists for testing  
+
 | Correct Command | Expected behaviour |
 | --------------- | ------------------ |
 | `add apple /qty 3` | Success message is printed, 3 apples added to ingredients list and `ingredients.txt` |
