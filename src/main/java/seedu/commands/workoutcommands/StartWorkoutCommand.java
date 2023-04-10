@@ -18,7 +18,6 @@ public class StartWorkoutCommand extends Command {
     private final Date date;
 
 
-    //@@author ZIZI-czh
     /**
      * Represents a command to start a new workout with the specified date and workout name.
      *

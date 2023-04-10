@@ -3,6 +3,7 @@ package seedu.commands.workoutcommands;
 import seedu.commands.Command;
 import seedu.exceptions.InvalidArgumentException;
 import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
 
 //@@ author ZIZI-czh
 
@@ -23,6 +24,12 @@ public class ViewWorkoutCommand extends Command {
     }
 
 
+    //@@author ZIZI-czh
+    //used for Junit Test
+    public ViewWorkoutCommand(WorkoutList workoutListParamter, int workoutToViewIndex) {
+        this.workoutToViewIndex = workoutToViewIndex;
+        workoutList = workoutListParamter;
+    }
     //@@ author ZIZI-czh
     /**
      * Executes the command to view a specific workout and returns its string representation.
@@ -30,6 +37,7 @@ public class ViewWorkoutCommand extends Command {
      * @return a string representing the workout to view
      * @throws InvalidArgumentException if the workout index is invalid
      */
+    @Override
     public String execute() throws InvalidArgumentException {
         if (workoutToViewIndex >= workoutList.getWorkouts().size()) {
             throw new InvalidArgumentException("Index cannot be more than " + workoutList.getWorkouts().size());

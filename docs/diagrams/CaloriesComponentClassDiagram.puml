@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+ class CalorieTracker {
+ - dailyFoodConsumption: HashMap<Date, FoodList>
+ - foodDictionary: FoodDictionary
+ + CalorieTracker(Storage, FoodDictionary)
+ +  getFoodList(Date): FoodList
+ + getDailyFoodConsumption(): HashMap<Date, FoodList>
+ + addCalories(Date, String, int): String
+ }
+
+ class Food{
+ - foodName: String
+ - calories: int
+ + Food(String, int)
+ + getFoodName(): String
+ + getCalories(): int
+
+ }
+
+ class FoodDictionary{
+ - foodCalories: HashMap<String, Integer>
+ + FoodDictionary(Storage)
+ + addFood(String, int): void
+ + contains(String): boolean
+ + getFoodCalories(): HashMap<String, Integer>
+
+ }
+ class FoodList{
+ - foods: ArrayList<Food>
+ - totalCalories: int
+ + FoodList()
+ + addFood(Food): void
+ + getFoods(): ArrayList<Food>
+ + getFood(int): Food
+ + getTotalCalories(): int
+ + deleteFood(int): void
+
+}
+
+ class FoodDictionaryStorage{
+ {static} - defaultFoodDictionaryFile: File
+ - foodDictionaryFile: File
+ - readFoodDictionaryFileLine(String, HashMap<String, Integer>): void
+ - createFoodDictionaryFile(): void
+ + saveUserData(HashMap<String, Integer>): void
+ + FoodDictionaryStorage()
+ }
+
+
+ class CaloriesTrackerStorage{
+ {static} - defaultCalorieTrackerFile: File
+ + calorieTrackerFile: File
+ + CalorieTrackerStorage()
+ + getUserData(): HashMap<Date, FoodList>
+ + readCalorieTrackerFile(String,  HashMap<Date, FoodList>): void
+ + createCalorieTrackerFile(): void
+ + saveUserData(HashMap<Date, FoodList>): void
+ }
+
+FoodList *--> "0..*" Food: list of food
+CalorieTracker *--> "0..*" FoodList:  list of food for one day
+FoodDictionaryStorage -[dashed]-> FoodDictionary: > loads and write data
+CalorieTracker -[dashed]->  FoodDictionary: >  check the food information
+CaloriesTrackerStorage -[dashed]-> CalorieTracker: > loads and write data
+
+
+@enduml

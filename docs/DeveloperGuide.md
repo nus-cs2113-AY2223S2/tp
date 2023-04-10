@@ -16,13 +16,13 @@
   * [Calories Component](#calories-component)
   * [Workout Component](#workout-component)
 * [Implementation](#implementation)
-  * [Calories Recording](#user-related-features)
+  * [Calories Record](#user-related-features)
     * [Add Command](#calories-related-features)
     * [View Command](#calories-related-features)
     * [List Command](list-command)
     * [Delete Command](delete-command)
     * [Help Command](help-command)
-  * [Workout Recording](workout-recording)
+  * [Workout Record](workout-recording)
     * [Start Command](start-command)
     * [Add Command](add-command)
     * [End Command](end-command)
@@ -53,38 +53,48 @@ Additionally, the app will allow users to record their daily food intake to achi
 ### Target User Profile
 * Fitness enthusiasts who regularly go to the gym and perform various exercises to maintain their fitness
 * Individuals who want to lose weight 
-* People who want to build muscle strength and are looking for an easy and convenient way to record and track their progress towards their fitness goals.
-* Fitness enthusiasts and athletes who are looking for an easy and convenient way to track their daily workouts and calories intake
+* People who want to build muscle strength and are looking for an easy 
+and convenient way to record and track their progress towards their fitness goals.
+* Fitness enthusiasts and athletes who are looking for an easy and convenient way to 
+track their daily workouts and calories intake
 * People who want to monitor their progress and achieve their fitness goals.
 
 ### Value Proposition
 Our app is a comprehensive workout and calories tracking solution that helps fitness enthusiasts 
-and individuals achieve their fitness goals by providing personalized recommendations based on their goals and progress. 
-With features like tracking of workouts and daily calories intake, our app makes it easy for users to stay motivated and track their progress towards their fitness goals.
+and individuals achieve their fitness goals.
+With features like tracking of workouts and daily calories' intake, 
+our app makes it easy for users to stay motivated and track their progress towards their fitness goals.
 
 
 ###### [Back to table of contents](#table-of-contents)
 
+
 ## Design
 
 ### Architecture
-<p align="center">
-<img src="images/ArchitectureDiagram.png" width="450" />
-</p>
 
 The Architecture Diagram shown above shows the design of FITZ with its components.
 The following are highlighting parts
 * There are 3 Storages class that related to workout and calories.
-They are `CalorieTrackerStorage`, `FoodDictionaryStorage` and `WorkoutListStorage`
-* All the exception messages will be shown in `Ui` 
+  They are `CalorieTrackerStorage`, `FoodDictionaryStorage` and `WorkoutListStorage` 
+* All the exception messages will be shown in `Ui`
 
-After knowing about the overall architecture of our product, the sequence below shows more specifics.
+<p align="center">
+<img src="images/ArchitectureDiagram.png" width="300" />
+</p>
+
+
 
 ### Duke
 `Duke` is the class that contains main method 
 which are responsible for `Ui`, `Storage`, `Parser`, `Exception` and `Command`. 
 Once the program start, `storage` and `Ui` will be initialized.
-`Ui` will then show the welcome message and `Storage` will load the exiting data to the system. 
+The following statements describe what will happen after the program start:
+
+  * `storage` and `Ui` will be initialized.
+  * `Ui`: show the welcome message 
+  * `Storage`: load the exiting data to the system. 
+
 Afterwards, it takes in user commands and continues to do so until the user inputs the exit command. 
 Whenever a user enters a command, the Ui reads it and passes it to `Duke`, which in turn sends it to the `Parser` class for parsing. 
 If the command is determined to be valid, it is then sent to the `Command` class for processing and returned to `Duke` for execution. 
@@ -92,33 +102,107 @@ If the command is determined to be valid, it is then sent to the `Command` class
 The following diagram illustrate how the `Duke` class work.
 
 <p align="center">
-<img src="images/ArchitectureSequenceDiagram.png" width="450" />
+<img src="images/ArchitectureSequenceDiagram.png" width="800" />
 </p>
 
 ### UI Component
 
-<p align="center">
-<img src="images/UiComponentClassDiagram.png" width="450" />
-</p>
-
-The above is the class diagram for Ui.
-The retrieval of user input and display of relevant information and error messages for the application is managed by the `Ui` class, 
-which represents the `Ui` component.
-
-getUserInput() methods is used to get the user input 
-and all the methods that related to showMessage are used for printing out the error message or the relevant information
+Below is the class diagram for the `Ui` component, which is responsible for managing the retrieval of user input 
+and displaying relevant information and error messages within the application.
+`getUserInput()` methods is used to get the user input
+and all the methods that related to `showMessage` are used for printing out the error message or the relevant information
 which will correspond to the user behaviour.
+
+<p align="center">
+<img src="images/UiComponentClassDiagram.png" width="500" />
+</p>
 
 
 ### Command Component
 
+The picture below shows the lower level design of Command component of the software.
+Generally, the commands class in `workoutcommnds` ,`caloriescommands`, and `errorcommands` package
+inherit from `Command` class. Besides, `ExitCommand` also inherit from `Command` class。
+
 <p align="center">
-<img src="images/CommandArchitectureDiagram.png" width="450" />
+<img src="images/CommandArchitectureDiagram.png" width="1482" />
 </p>
 
-The above picture shows the lower level design of Command component of the software. 
-Generally, the commands class in workoutcommnds ,caloriescommands, and workoutcommands package 
-inherit from Command class. Besides, Exit Comamnd also inheerit from Command class
+With this understanding,  it can be seen that there is an inheritance relationship between 
+the `Commands` class and its subclasses. The following class diagram provides more details within each class, 
+and it is evident that all subclasses inherit the `execute()` method from the Command class.
+
+
+These are the  further explanation for each class:
+* Under caloriescommands package:
+  * `AddCaloriesCommand`: It is responsible for taking the food name, date and calories.
+  * `DeleteCaloriesCommand`: It is responsible for deleting the record for calories in one specific day
+  * `ListCaloriesCommand`: It is responsible to show the list of dates that had been entered by the user before.
+  * `ViewCaloriesCommand`: Compare to List feature, view function aims to show more detailed information in one specific day.
+  * `HelpCaloriesCommand`: It is responsible to show the guidance for users if they are not familiar with the calories commands.
+* Under workoutcommands package:
+  * `StartWorkoutCommand`: This class is responsible for user to add their workout in current day. And it will take in workout name.
+  * `AddExerciseCommand`: This class contains the operation to add the exercise to the workouts.
+  * `ListWorkoutCommand`: This class contains the operation to show list of dates.
+  * `ViewWorkoutCommand`: This class contains the operation to view the workouts information for a specific day.
+  * `DeleteWorkoutCommand`: This class contains the operation to delete the workouts for one day
+  * `HelpWorkoutCommand`: Same as HelpCaloriesCommand, but this one show the workout commands.
+  * `CountSetsRepsCommand`: This class contains the operation to get the all number of sets and rps within one week.
+
+<p align="center">
+<img src="images/CommandComponentClassDiagram.png" width="2828" />
+</p>
+
+### Storage Component
+
+Fitz contains three separate storages. `CaloriesTrackerStorage`
+and `FoodDictionaryStorage`  are used for saving and loading calories record 
+while `WorkoutListStorage` is used to save and load the workouts record. The class diagram shows more details.
+Once the user exit program, the date will be store to `fooddic.txt`, `calorietracker.txt`, `workoutlist.txt` respectively
+and these files are under data folder.
+
+One thing to take note is that The difference between `FoodDictionaryStorage` and `CaloriesStorage` is that
+`CaloriesTrackerStorage `will store the food based on the date they entered. 
+However, `FoodDictionaryStorage` will store all the food and calories that had been entered by the user before.
+
+<p align="center">
+<img src="images/StorageComponentDiagram.png" width="1731" />
+</p>
+
+
+
+### Calories Component
+
+The class diagram below illustrate how the `Calories` component interact with each others. 
+Basically, `Calories` Component consist of four main classes which are `Food`, `FoodList`, `FoodDictionary` 
+and `CaloriesTracker`. 
+The following are the explanation for each of them:
+  * `Food`: It is a class which contains the food name and its related calories.
+  * `FoodList`: It consists of list of `Food`.
+  * `FoodDictionary`: It represents a dictionary that maps food to its calories 
+  and it also read the data from `FoodDictionaryStorage`.
+  This class mainly use for retrieving food and it relevant calories that have been entered.
+  * FoodTracker: It has the dependency on `FoodDictionary` 
+  because it is required to check if a food item and its calories exist in dictionary
+  Besides, it also read the data from `CaloriesTrackerStorage` so that users can track their calories consumption for other days.
+  From the diagram, it shows that FoodList consist of a list of Food and FoodDictionary has a dependency of FoodList.
+
+<p align="center">
+<img src="images/CaloriesComponentClassDiagram.png" width="1153" />
+</p>
+
+
+### Workout Component
+The class diagram below illustrates how the Workout component interact with each others.
+From the diagram, it is clear to see that the Workout consists of a list of exercises 
+and the WorkoutList consists of list of Workout.
+
+<p align="center">
+<img src="images/WorkoutComponentClassDiagram.png" width="658" />
+</p>
+
+###### [Back to table of contents](#table-of-contents)
+
 
 
 
