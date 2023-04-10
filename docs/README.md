@@ -9,5 +9,5 @@ Useful links:
   * [Koh Ming En](./team/mingen82.md)
   * [Koh JIng Jie Marcus](./team/koh-jing-jie-marcus.md)
   * [Mustafa Anis Hussian](./team/mustafaah10.md)
-  * [Hoo Jeng Juan](./team/tj-hoo.md)
+  * [Hoo Teng Juan](./team/tj-hoo.md)
   * Hamada Masahiro

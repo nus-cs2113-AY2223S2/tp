@@ -1,38 +1,37 @@
-# ***Life Tracker user guide***
+# ***LifeTracker user guide***
 
 ## Introduction
 
-**_Life Tracker_** is an application that allows users who are health conscious automate the tracking of their calories and keep a record of 
+**_LifeTracker_** is an application that allows users who are health conscious automate the tracking of their calories and keep a record of 
 their calorie intake history.
 
 The app also allows users to keep track of their daily exercises to compute their calorie loss.
 
 Their net calorie gain/loss can then be viewed.
-
-- [Quick Start](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#quick-start)
-- [Features](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#features-v20)
-  - [Viewing User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#viewing-user-profile-view)
-  - [Updating User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#updating-user-profile-update)
-  - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-a-meal-add)
-  - [Listing foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-foods-list)
-  - [Listing meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-meals-list)
-  - [Listing exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-exercises-list)
-  - [Deleting meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#deleting-meals-delete)
-  - [Filtering foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#filtering-foods-filter)
-  - [Viewing nutrition content of foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#view-nutrition-content-of-food-nutrition)
-  - [Adding an exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-an-exercise-exercise)
-  - [Tracking net calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#tracking-net-calorie-intake-track)
-  - [Displaying examples of meals and exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#displaying-examples-of-meals-and-exercises-examples)
- - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#exiting-the-application-bye)
-- [FAQ](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#faq)
-- [Command Summary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#command-summary)
+- [Quick Start](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#quick-start)
+- [Features](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#features)
+  - [Viewing User Profile](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#viewing-user-profile-view)
+  - [Updating User Profile](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#updating-user-profile-update)
+  - [Adding a meal](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#adding-a-meal-add)
+  - [Listing foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-foods-list)
+  - [Listing meals](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-meals-list)
+  - [Listing exercises](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-exercises-list)
+  - [Deleting meals](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#deleting-meals-delete)
+  - [Filtering foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#filtering-foods-filter)
+  - [Viewing nutrition content of foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#view-nutrition-content-of-food-nutrition)
+  - [Adding an exercise](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#adding-an-exercise-exercise)
+  - [Tracking net calorie intake](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#tracking-net-calorie-intake-track)
+  - [Displaying examples of meals and exercises](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#displaying-examples-of-meals-and-exercises-examples)
+  - [Exiting the application](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#exiting-the-application-bye)
+- [FAQ](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#faq)
+- [Command Summary](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#command-summary)
 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
-4. Open a command terminal, cd into the folder you put the jar file in, and use the java -jar lifetracker.jar command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
@@ -118,7 +117,7 @@ Example of usage:
 
 #### Alternatives
 
-For Users who are not experienced with typing fast on keyboards, *LifeTracker* offers a menu option to add meal
+For users who are not experienced with typing fast on keyboards, *LifeTracker* offers a menu option to add meal
 
 Format: `add`
 
@@ -186,7 +185,6 @@ Format: `nutrition`
 
 * The first food search should be in English
 * To select the particular food filtered, an integer should be inputted
-* To continue searching for more food, **1** should be inputted when prompted after, else input any number to exit
 
 Example:
 ![nutrition-example](./UG-images/nutrition-example.PNG)
@@ -228,7 +226,7 @@ Example:
 ![examples-example](./UG-images/examples-example.PNG)
 
 ### Exiting the application: `bye`
-Allows user to exit the application.
+Allows user to exit the appliction.
 
 Format: `bye`
 
@@ -249,15 +247,17 @@ Output:
 
 | Action    | Format, Examples                                                                                         |
 |-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view                                                                                                     |
-| Update    | update                                                                                                   |
+| View      | view /[fieldName]                                                                                        |
+| Update    | update /[fieldName]                                                                                      |
 | Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list foods or list meals                                                                                 |
+| List      | list [foods/meals/exercises]                                                                             |
 | Delete    | delete INDEX e.g delete 3                                                                                |
 | Filter    | filter [lower_bound] [upper_bound]                                                                       |
 | Nutrition | nutrition                                                                                                |
 | Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
 | Track     | track                                                                                                    |
 | Examples  | examples [meal/exercise]                                                                                 |
+| Help      | help
 | Bye       | bye                                                                                                      |
+
 

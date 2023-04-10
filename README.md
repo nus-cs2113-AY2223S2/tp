@@ -3,8 +3,9 @@
 LifeTracker is a desktop application used for encouraging users to lead a healthier life by tracking their net calorie intake. The user interacts with it using a CLI. LifeTracker is written in Java 11 and has about 4 kLoC.
 
 Useful links:
-* [User Guide](UserGuide.md)
-* [Developer Guide](DeveloperGuide.md)
+
+* [User Guide](./docs/UserGuide.md)
+* [Developer Guide](./docs/DeveloperGuide.md)
 
 ## Setting up in Intellij
 
@@ -12,22 +13,33 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 1. **Ensure Intellij JDK 11 is defined as an SDK**, as described [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) -- this step is not needed if you have used JDK 11 in a previous Intellij project.
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/lifetracker/LifeTracker.java` file, right-click it, and choose `Run LifeTracker.main()`. If the setup is correct, you should see something like the below:
+
    ```
    > Task :compileJava
    > Task :processResources NO-SOURCE
    > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
+
+   > Task :run
+   Initialised Meal Storage
+   Initialised User Storage
+   Initialised Exercise Storage
+   ------------------------------------------------------------
+   Hello! Welcome to
+   _      _  __  _______             _              
+   | |    (_)/ _||__   __|           | |            
+   | |     _| |_ ___| |_ __ __ _  ___| | _____ _ __ 
+   | |    | |  _/ _ \ | '__/ _` |/ __| |/ / _ \ '__|
+   | |____| | ||  __/ | | | (_| | (__|   <  __/ |   
+   |______|_|_| \___|_|_|  \__,_|\___|_|\_\___|_|   
+
+   ------------------------------------------------------------
+   Hello! I am LifeTracker, a program to aid you in keeping fit!
+
+   Please enter command 'help' if you require assistance.
+   ------------------------------------------------------------
    ```
+
    Type some word and press enter to let the execution proceed to the end.
 
 ## Build automation using Gradle
@@ -43,7 +55,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 ### JUnit tests
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
+* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template.
 * If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
@@ -59,7 +71,8 @@ The project uses [GitHub actions](https://github.com/features/actions) for CI. W
 
 `/docs` folder contains a skeleton version of the project documentation.
 
-Steps for publishing documentation to the public: 
+Steps for publishing documentation to the public:
+
 1. If you are using this project template for an individual project, go your fork on GitHub.<br>
    If you are using this project template for a team project, go to the team fork on GitHub.
 1. Click on the `settings` tab.
