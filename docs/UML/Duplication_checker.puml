@@ -6,21 +6,36 @@ hide footbox
 -> ":AddCommand" : execute()
 
 activate ":AddCommand"
-    ":AddCommand" -> ":CompanyList" : add(companyName, industry, contactNumber, contactEmail)
+
     activate ":CompanyList"
-    par
+    ":AddCommand" -> ":CompanyList" : add(companyName, industry, contactNumber, contactEmail)
+    ":CompanyList" -> : new Company(companyName, industry, contactNumber, contactEmail)
+                 activate ":CompanyList"
+                 ":CompanyList" <-- :
+                 deactivate ":CompanyList"
+    alt isDuplicateCompanyName
             ":CompanyList" -> ":CompanyList" : isDuplicateCompanyName(companyName)
             activate ":CompanyList"
                 ":CompanyList" --> ":CompanyList"
             deactivate ":CompanyList"
+
+    else isDuplicateContactEmail
             ":CompanyList" -> ":CompanyList" : isDuplicateContactEmail(contactEmail)
             activate ":CompanyList"
                 ":CompanyList" --> ":CompanyList"
             deactivate ":CompanyList"
+
+    else isDuplicateContactNumber
             ":CompanyList" -> ":CompanyList" : isDuplicateContactNumber(contactNumber)
             activate ":CompanyList"
                 ":CompanyList" --> ":CompanyList"
             deactivate ":CompanyList"
+
+    else else
+        ":CompanyList" -> : add(newCompany)
+         activate ":CompanyList"
+         ":CompanyList" <-- :
+         deactivate ":CompanyList"
     end
     ":CompanyList" --> ":AddCommand"
     deactivate ":CompanyList"
@@ -28,5 +43,8 @@ activate ":AddCommand"
 <-- ":AddCommand" :
 
 destroy ":AddCommand"
+
+
+
 
 @enduml
