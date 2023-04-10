@@ -20,14 +20,13 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
      - [Recipe Almost Command](#recipe-almost-command)
      - [Recipe Need Command](#recipe-need-command)
    - [Storage Feature](#storage-feature)
-5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-6. [Appendix: Requirements](#appendix-requirements)
+5. [Appendix: Requirements](#appendix-requirements)
    - [Product scope](#product-scope)
    - [User stories](#user-stories)
    - [Use cases](#use-cases)
    - [Non-Functional Requirements](#non-functional-requirements)
    - [Glossary](#glossary)
-7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+6. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 
 ## Acknowledgements
