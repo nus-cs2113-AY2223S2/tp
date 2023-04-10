@@ -167,7 +167,7 @@ The `Command` component is represented by the `command` package. The `command` p
 | `SetBudgetCommand`                                                                                                                                                                                                                                                                                  |                                                                               Class contains the operations in setting an amount of money users would like to budget.                                                                               |
 | `ShowRatesCommand`                                                                                                                                                                                                                                                                                  |                                                                                Contains the fixed conversion rates used when toggling between different currencies.                                                                                 |
 | `SortCommand`                                                                                                                                                                                                                                                                                       |                                                                         Class contains the operations pertaining to sorting the list of expenditures by amount or by date.                                                                          |
-| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`   
+| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                     |
 
 Below represents the UML class diagram representing all the command classes that instantiates an expenditure record:
 
@@ -355,7 +355,12 @@ accurately represent the check commands.
 ### 4.10. Show Rates Command
 
 `showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
-`showrates` is a simple command that calls on the 
+
+### 4.11. Mark/Unmark Command
+
+The `mark` and `unmark` functions in the system are applicable only to the accommodation and tuition expenses. These functions serve to indicate that the user has paid for the respective expense and it is considered as paid in the system. This enables accurate tracking of the expenditure amount when check function is called. If an expense is not marked as paid, it will not be considered as a paid expenditure.
+
+For other types of expenses, they will be marked as paid right after they are added by the user, and cannot be modified thereafter.
 
 ## Product scope
 ### Target user profile
@@ -531,7 +536,7 @@ list SGD
 Expected :
 ```
 Here is your list of expenditures in SGD:
-1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 8.00 || Description: Fast Food
+1. [Food] || Date: 12 Feb 2023 || Value: 8.00 || Description: Fast Food
 ```
 
 Test Case 2 (Display in USD):
@@ -541,7 +546,7 @@ list USD
 Expected :
 ```
 Here is your list of expenditures in USD: 
-1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 6.00 || Description: Fast Food
+1. [Food] || Date: 12 Feb 2023 || Value: 6.00 || Description: Fast Food
 ```
 
 Test Case 3 (No currency):
@@ -621,7 +626,7 @@ replaced with the new input parameters. An edit message will be shown as well.
 
 ```
 Edited! Here is the updated list:
-1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 8.0 || Description: Western
+1. [Food] || Date: 12 Feb 2023 || Value: 8.0 || Description: Western
 2. [Lend] || Lent to: Carl || Date: 2 Feb 2020 || Value: 22.2 || Description: fishing || by: 3 Mar 2020
 ```
 
