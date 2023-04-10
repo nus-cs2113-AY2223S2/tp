@@ -64,6 +64,10 @@ The following are my contributions to the project:
 
 ### Contribution to Team-based Task
 
+1. Came up with the user stories.
+2. Managed releases v2.1 on GitHub.
+3. Managed issue tracker on GitHub. (e.g. adding labels, assigning issues to team members, closing issues, etc)
+4. Solving issues on Github: [#4](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/4) , [#7](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/7) , [#47](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/47) , [#48](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/48) , [#49](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/49) , [#65](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/65) , [#68](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/68) , [#72](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/72) , [#75](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/75) , [#76](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/76), [#84](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/84) , [#87](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/87) , [#91](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/91), [#126](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/126)
 
 ### Documentation
 * **Contributions to User Guide**
