@@ -238,6 +238,8 @@ Edited! Here is the updated list:
 
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5. Deleting an expenditure record
 
 Deletes an existing expenditure record from the expenditure list. After a successful delete, the updated list is shown.
@@ -361,6 +363,8 @@ Displays all expenditures in the expenditure list. Expenditure value shown can b
 
 - It reads saved expenditures from a save file upon launch of MyLedger. Else, the expenditure list is empty by default.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.12. Finding expenditure records by keyword
 
 Find expenditures by description
@@ -426,8 +430,6 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The date must be input in YYYY-MM-DD format.
 - If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
-
-<div style="page-break-after: always;"></div>
 
 ### 4.16. Currency rates
 
