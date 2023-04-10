@@ -578,7 +578,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 
 #### Design considerations
 
-**Implementation of saving**
+##### Implementation of saving
 
 - Alternative 1 (current choice): Save the "savedData" automatically whenever there is a change to its
   data.
@@ -606,7 +606,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
         - User may forget to save
         - "savedData" may not be saved if application crashes or abnormal exit is performed
 
-**Type of file to save data into**
+##### Type of file to save data into
 
 - Alternative 1 (current choice): Make use of serialization in the gson library to serialize "savedData" object before
   writing to file.
