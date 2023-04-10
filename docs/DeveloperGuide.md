@@ -79,11 +79,11 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 ![img_29.png](img_29.png) <br>
 **Figure 9.2: Sequence Diagram of Storage class**
 1. The Archive class takes in the path of the SniffArchive storage file.
-2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
-3. **`load()`** method also calls **`addFileContents`** method.
-4. **`addFileContents`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`readConsultationintoAppointmentList()`** / **`readVaccinationintoAppointmentList()`** / **`readSurgeryintoAppointmentList()`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
+2. **`openArchiveFile(String filePath)`** method reads and adds the Archived task contents into the Appointments task list.
+3. **`saveArchivedAppointments(String filePath)`** method saves the Archived task contents into the SniffArchive File.
+4. **`extractArchiveData(File archiveFile)`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`addConsult(String content)`** / **`addVaccine(String content)`** / **`addSurgery(String content)`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
 5. If the file is stored in an incorrect format / has missing details, a **`SniffException`** is thrown.
-6. At the end of the application all marked appointments are saved into the `SniffAppointments.txt` file using the `saveArchivedAppointments` method.
+6. At the end of the application all marked appointments are saved into the `SniffArchive.txt` file using the `saveArchivedAppointments` method.
 
 ### Find - Find Implementation
 ![img_25.png](img_25.png)<br>
