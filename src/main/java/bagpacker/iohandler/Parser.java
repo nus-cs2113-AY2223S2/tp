@@ -222,7 +222,7 @@ public class Parser {
         } catch (NumberFormatException | InvalidVariablesException | ArrayIndexOutOfBoundsException |
                  StringIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Add Command Input",
-                    "How to use add command:\n" + PackCommand.HELP_MSG);
+                    "How to use add command:\n" + AddCommand.HELP_MSG);
         } catch (InvalidQuantityException e) {
             return new IncorrectCommand("Invalid Item Quantity",
                     "Can only add a positive quantity, where the total quantity of an item is at most 1,000,000");
