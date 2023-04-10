@@ -55,13 +55,12 @@ public class StepList {
         assert (currStepNumber == stepList.size());
     }
 
-    public boolean isIndexWithinRange(int stepIndex) throws Exception{
+    public void checkIndexWithinRange(int stepIndex) throws Exception{
         if (currStepNumber == 0) {
             throw new ListEmptyException();
         } else if (stepIndex < 0 || stepIndex >= currStepNumber) {
             throw new InvalidIndexRangeException(IntLib.NONEMPTY_START_NUMBER,currStepNumber);
         }
-        return true;
     }
     /**
      * Replaces a specified step in the list with a new step object
@@ -86,13 +85,17 @@ public class StepList {
         System.out.println(stepList.get(stepIndex).toString());
     }
     public void showFullStepList() {
-        System.out.println("There are " + currStepNumber + " steps in the list");
+        assert (!stepList.isEmpty());
+        if (stepList.size() == 1) {
+            System.out.println("There is " + currStepNumber + " step in the list");
+        } else {
+            System.out.println("There are " + currStepNumber + " steps in the list");
+        }
         for (int i = 0; i < currStepNumber; i++) {
             System.out.println((i + 1) + ". " + stepList.get(i).getStepDescription());
         }
     }
     public void showStepByStep(UI ui) {
-        String input;
         for (int i = 0; i < currStepNumber; i++) {
             System.out.println((i + 1) + ". " + stepList.get(i).getStepDescription());
             if (i == currStepNumber - 1) {
@@ -109,7 +112,12 @@ public class StepList {
             System.out.println(StringLib.RECIPE_NO_STEPS);
             return;
         }
-        System.out.println("There are " + currStepNumber + " steps in the list");
+        assert (!stepList.isEmpty());
+        if (stepList.size() == 1) {
+            System.out.println("There is " + currStepNumber + " step in the list");
+        } else {
+            System.out.println("There are " + currStepNumber + " steps in the list");
+        }
         System.out.println(StringLib.STEPBYSTEP_PROMPT);
         String input = ui.readCommand();
         if (input.equalsIgnoreCase("yes")) {

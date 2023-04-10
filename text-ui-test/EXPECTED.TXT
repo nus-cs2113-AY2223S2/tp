@@ -85,7 +85,7 @@ Please enter a valid step index!
 Valid range: 1 to 4
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 There are 3 steps in the list
 1. chop beef
@@ -99,7 +99,7 @@ Please enter a valid step index!
 Valid range: 1 to 3
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 OOPS!!!
 Looks like the description of the command is invalid!
@@ -130,7 +130,7 @@ Please enter a valid step index!
 Valid range: 1 to 5
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 Description of step cannot be empty!
 __________________________________________________________
@@ -232,7 +232,7 @@ There are 3 ingredients in the list:
 2. Tomato Sauce
 3. Cheese
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
 To exit recipe view, type "quit"
@@ -301,13 +301,13 @@ There are 3 ingredients in the list:
 2. Mutton
 3. Mushrooms
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
-There are 1 steps in the list
+There is 1 step in the list
 1. chop beef
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. chop beef
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -315,7 +315,7 @@ Enter the description of the step:
 Step has been edited:
 1. go to haidilao
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -323,7 +323,7 @@ Type 'quit' to exit the edit view
 Please enter a valid index!
 Valid range: 1 to 1
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 Which step do you want to edit?
 Type 'quit' to exit the edit view
@@ -339,10 +339,10 @@ There are 3 ingredients in the list:
 2. Mutton
 3. Mushrooms
 __________________________________________________________
-There are 1 steps in the list
+There is 1 step in the list
 Do you want to view step-by-step?
 Enter "yes" if so
-There are 1 steps in the list
+There is 1 step in the list
 1. go to haidilao
 __________________________________________________________
 There are 3 ingredients in the list:
