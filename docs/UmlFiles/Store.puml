@@ -1,16 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-autonumber
-
 @startuml
 title Sequence Diagram for Store
-
 actor User
 
 User -> ":Store" **: Store(notes, toDo)
-
-
 User -> ":Store":storeNotes()
 activate ":Store"
 alt isInvalidTodo(toDo) is "Invalid todo"
