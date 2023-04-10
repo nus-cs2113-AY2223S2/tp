@@ -8,6 +8,7 @@ It stores a packing list, edit the quantities packed and the total quantity pack
 It is written in Java, and has about 4k LoC.
 
 ---
+
 ## <span style="color:#00A36C">Summary of Contributions</span>
 
 
@@ -18,6 +19,7 @@ It is written in Java, and has about 4k LoC.
    - 770 test-code
 
 ---
+
 ### <span style="color:darkGreen">Enhancements implemented</span>
 1. Added `ioHandler` package
    - Reading in from CLI in `Parser` class ([#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
@@ -37,9 +39,12 @@ It is written in Java, and has about 4k LoC.
 7. Add JavaDocs ([#163](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/163/commits))
 
 ---
+
 ### <span style="color:darkGreen">Contributions to the [UG](../UserGuide.md)</span>
 1. Update UG to include max integer supported by BagPacker ([#154](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/154))
+
 ---
+
 ### <span style="color:darkGreen">Contribution to the [DG](../DeveloperGuide.md)</span>
 1. Update User Stories ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
 2. Add explanation of overall command mechanism for the whole application ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits)) 
@@ -51,7 +56,9 @@ It is written in Java, and has about 4k LoC.
 - adding repeated items in `AddCommand` ([#138](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/138),[#158](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/158/commits/6d154b8464ba4d57e8d19a958e8be0b554e73cd6#diff-60cb84c47c48c2d69d1f587d9c9ed3af7d99acf2c3b11cd94c8d86eb532e32e2))
 - `runBagPacker()` overall Sequence Diagram ([#176](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/176/commits/0ae5782514e02b5c755b689550d1c595449d1128))
 - `PackCommand` and `UnpackCommand` sequence Diagram
+
 ---
+
 ### <span style="color:darkGreen">Contributions to team-based tasks</span>
 
 Plan and create the framework for BagPacker application
@@ -65,11 +72,13 @@ Issues tracking IC
 Managed internal deadlines for group tasking
 
 ---
+
 ### <span style="color:darkGreen">Review/mentoring contributions</span>
 - Maintain code standard before merging ([#139](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/139))
 - Suggest improvements to code ([#22](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22))
 
 ---
+
 ### <span style="color:darkGreen">Contributions to the Developer Guide (Extracts):</span>
 ![AddExistingItemDiagram.png](..%2Fdiagrams%2FAddExistingItemDiagram.png)![BagPackerClassDiagram.png](..%2Fdiagrams%2FBagPackerClassDiagram.png)![BagPackerSequenceDiagram.png](..%2Fdiagrams%2FBagPackerSequenceDiagram.png)
 ![ExceptionClassDiagram.png](..%2Fdiagrams%2FExceptionClassDiagram.png)![ExecutePackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecutePackCommandSequenceDiagram.png)![ExecuteUnpackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecuteUnpackCommandSequenceDiagram.png)
