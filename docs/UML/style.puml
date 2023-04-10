@@ -1,0 +1,15 @@
+@startuml
+!define BLACK #2F3030
+!define UI_COLOUR #FFCCFF
+!define MAIN_COLOUR #EA6B66
+!define LOGIC_COLOUR #FFFF66
+!define DATA_COLOUR #99FFFF
+!define STORAGE_COLOUR #D5E8D4
+!define STORAGE_FADED_COLOUR #E1F7E7
+!define COMMONS_COLOUR #40ff49
+!define BLUE #004e89
+!define ORANGE #ff6b35
+!define LAPIS #76AED8
+!define SEA #16AED8
+!define MAROON #AE4D64
+@enduml

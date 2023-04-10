@@ -1,0 +1,43 @@
+@startuml
+hide footbox
+!include style.puml
+
+participant ":Storage" as Storage
+participant ":UserCareerData"
+participant ":UserPlan"
+
+ -> Storage : loadUserData()
+activate Storage STORAGE_FADED_COLOUR
+    Storage -> ":UserCareerData" ** : UserCareerData()
+        activate ":UserCareerData" ORANGE
+        ":UserCareerData" --> Storage
+        deactivate ":UserCareerData"
+            loop sessions in file times
+                Storage -> ":UserCareerData" : addWorkoutSession(Session)
+                activate ":UserCareerData" ORANGE
+            end
+            ":UserCareerData" --> Storage : UserCareerData
+            deactivate ":UserCareerData"
+    deactivate ":UserCareerData"
+    <-- Storage  : UserCareerData
+deactivate Storage
+ -> Storage : loadUserPlans()
+    activate Storage STORAGE_FADED_COLOUR
+    Storage -> ":UserPlan" ** : UserPlan()
+        activate ":UserPlan" LAPIS
+        ":UserPlan" --> Storage
+        deactivate ":UserPlan"
+    loop days in a week times
+            loop num of plans from file in a day times
+                Storage -> ":UserPlan" : addDayPlan(Plan)
+                activate ":UserPlan" LAPIS
+            end
+    end
+    ":UserPlan" --> Storage : UserPlan
+    deactivate ":UserPlan"
+    <-- Storage : UserPlan
+
+deactivate Storage
+
+
+@enduml

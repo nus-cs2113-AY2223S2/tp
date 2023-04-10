@@ -1,0 +1,59 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+
+Class Bye MAROON {
++ bye(): void
+}
+
+Class Greet SEA {
++ greet(): void
+}
+
+Class PrintExercises ORANGE {
++ printExercises(exercise: ArrayList<ExerciseData>): void
+}
+
+Class PrintPlanner DATA_COLOUR {
++ printPlanner(planner: UserPlan): void
++ printPlannerGreeting(): void
+}
+
+Class PrintHelpMessage LAPIS {
++ showAvailableCommands(): void
++ showAvailablePlannerCommands(): void
++ printFiltersAvailable(): void
++ unknownCommandMessage(): void
+}
+
+Class PrintUserExerciseData DATA_COLOUR {
++ printUserExerciseHistory(exerciseMap: HashMap<String,Integer>, overallCount: int, uniqueCount: int): void
+}
+
+Class Ui MAIN_COLOUR {
++ printExerciseFromList (exercise: ArrayList<ExerciseData>): void
++ greetUser(): void
++ byeUser(): void
++ printFilters(): void
++ unknownCommand(): void
++ showPlan(planner: UserPlan): void
++ printHelp(): void
++ printPlannerHelp(): void
++ splitLine(): void
++ plannerMode(): void
++ workoutMode(): void
++ printUserExerciseHistory(exerciseMap: HashMap<String, Integer>, overallCount: int, uniqueCount: int): void
++ printPlannerGreeting(): void
++ printExerciseSessionHelp(): void
+}
+
+left to right direction
+Bye <.. Ui
+Greet <.. Ui
+PrintExercises <.. Ui
+PrintPlanner <.. Ui
+PrintHelpMessage <.. Ui
+PrintUserExerciseData <.. Ui
+
+@enduml

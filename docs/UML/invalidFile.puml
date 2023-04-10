@@ -1,0 +1,32 @@
+@startuml
+hide footbox
+!include style.puml
+
+participant "Storage" as Storage
+participant "JsonUserCareerStorage" as JsonUserCareerStorage
+participant "JsonUserDataLoader" as JsonUserDataLoader
+participant "UserCareerData"
+-> Storage : loadUserData()
+activate Storage STORAGE_FADED_COLOUR
+        Storage -> JsonUserCareerStorage : loadUserData()
+
+            activate JsonUserCareerStorage BLUE
+            JsonUserCareerStorage -> JsonUserDataLoader : loadFromJson()
+            activate JsonUserDataLoader ORANGE
+            JsonUserDataLoader --> JsonUserCareerStorage : DukeError
+            deactivate JsonUserDataLoader
+        JsonUserCareerStorage -> UserCareerData ** : new UserCareerData()
+        activate UserCareerData MAROON
+            UserCareerData --> JsonUserCareerStorage : UserCareerData
+        deactivate UserCareerData
+        JsonUserCareerStorage -> JsonUserCareerStorage : writeToJson(UserCareerData)
+        activate JsonUserCareerStorage LAPIS
+            JsonUserCareerStorage --> JsonUserCareerStorage
+        deactivate JsonUserCareerStorage
+        JsonUserCareerStorage --> Storage : UserCareerData
+        deactivate JsonUserCareerStorage
+        <-- Storage : UserCareerData
+
+destroy JsonUserDataLoader
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+
+interface CommandList <<interface>> STORAGE_COLOUR
+
+class GeneralCommandHandler LOGIC_COLOUR {
+
++ handleGeneralUserCommands(userCommands: String[],\n ui: Ui,\n exerciseGenerator: GenerateExercise,\n userCareerData: UserCareerData,\n exerciseStateHandler: ExerciseStateHandler,\n storage: Storage,\n planner: UserPlan,\n achievementListHandler: AchievementListHandler,\n scanner: Scanner):\n void
+}
+
+class PlannerCommandHandler LOGIC_COLOUR {
++ plannerCommandHandler (ui: Ui,\n planner: UserPlan,\n storage: Storage,\n in: Scanner):\n void
+}
+
+class ExerciseSessionCommandHandler LOGIC_COLOUR {
++ handleExerciseSessionUserCommands (userCommands: String[],\n ui: Ui,\n userCareerData: UserCareerData,\n exerciseStateHandler: ExerciseStateHandler,\n achievementListHandler: AchievementListHandler):\n void
++ confirmExitDuringWorkout(): boolean
+}
+
+CommandList <|-- GeneralCommandHandler
+CommandList <|-- ExerciseSessionCommandHandler
+CommandList <|-- PlannerCommandHandler
+
+@enduml

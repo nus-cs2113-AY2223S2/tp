@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+left to right direction
+skinparam BackgroundColor transparent
+skinparam componentStyle rectangle
+
+component User
+component "User Career Hard Drive"
+component "User Plans Hard Drive"
+component "Achievements Hard Drive"
+
+component FitnessDuke{
+component Ui UI_COLOUR
+component CommandHandler LOGIC_COLOUR
+component Main MAIN_COLOUR
+component UserCareerStorage STORAGE_COLOUR
+component UserPlansStorage STORAGE_COLOUR
+component Storage STORAGE_COLOUR
+component AchievementsListHandler STORAGE_COLOUR
+}
+
+[User] --> [Ui]
+[Ui] <--> [Main]
+[Main] --> [Storage]
+[Main] <--> [AchievementsListHandler]
+[Main] <--> [CommandHandler]
+[AchievementsListHandler] <--> [Achievements Hard Drive]
+[Storage] --> [UserPlansStorage]
+[Storage] --> [UserCareerStorage]
+[UserCareerStorage] <--> [User Career Hard Drive]
+[UserPlansStorage] <--> [User Plans Hard Drive]
+[UserCareerStorage] --> [Main]
+[UserPlansStorage] --> [Main]
+
+@enduml

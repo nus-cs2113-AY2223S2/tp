@@ -1,0 +1,15 @@
+@startuml
+hidefootbox
+!include style.puml
+PlannerCommandHandler->UserPlan : addPlan()
+activate UserPlan MAIN_COLOUR
+UserPlan -> "newPlan:Plan" **
+activate "newPlan:Plan" LAPIS
+"newPlan:Plan" --> UserPlan
+deactivate "newPlan:Plan"
+UserPlan -> Storage : writeToJson()
+activate Storage STORAGE_COLOUR
+Storage --> UserPlan
+deactivate Storage
+deactivate UserPlan
+@enduml

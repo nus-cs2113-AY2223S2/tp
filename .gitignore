@@ -13,5 +13,20 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# Code coverage reports
+/htmlReport/
+
+#logging files
+**/fitness_duke.*
+*.log
+*.log.*
+**/logging.xml
+
+# UserData files
+**/testData.json
+**/userData.json
+**/testPlans.json
+**/userPlans.json
+
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
