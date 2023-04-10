@@ -839,40 +839,66 @@ Please enter a number for the price!
 #### History Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input:
-    * Expected Output:
-    * Output Example:
+  * **Positive** Test Case Input: `history 1234`
+    * Expected Output: Prints a message showing the history of the item with UPC code `1234`, which shows its initial
+      attributes when it was first added, the changes made to it over its lifetime, and its current attributes.
+    * Output Example (Assuming item with UPC `1234` exists in the inventory):
 
 ````
-
+__________________________________________________________________________
+Item added at: 4:48 AM, MONDAY, APRIL 10, 2023
+Name: Oreo
+UPC: 1234
+Price: 2.0
+Quantity: 5
+Category: Snacks
+__________________________________________________________________________
+__________________________________________________________________________
+At: 12:30 PM, MONDAY, APRIL 10, 2023
+Sold 1 items
+__________________________________________________________________________
+__________________________________________________________________________
+Name: Oreo
+UPC: 1234
+Price: 2.0
+Quantity: 4
+Category: Snacks
+__________________________________________________________________________
 ````
 
-  * **Negative** Test Case Input:
-    * Expected Output:
-    * Output Example:
+  * **Negative** Test Case Input: `history -1` (Item with such UPC does not exist)
+    * Expected Output: Returns an error message informing the user that the item does not exist.
+    * Output Example (Assuming item with UPC `1234` exists in the inventory):
 
 ````
-
+__________________________________________________________________________
+Command failed! Reason: Item not found in database. Please add item first!
+__________________________________________________________________________
 ````
 
 
 #### Alert Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input:
-    * Expected Output:
+  * **Positive** Test Case Input: `alert add upc/1234 min/3`
+    * Expected Output: Prints a message informing the user that an alert has been successfully added.
     * Output Example:
 
 ````
-
+__________________________________________________________________________
+Successfully added a new alert.
+__________________________________________________________________________
 ````
 
-  * **Negative** Test Case Input:
-    * Expected Output:
+  * **Negative** Test Case Input: `alert` (Incomplete format)
+    * Expected Output: Prints an error message that tells the user to refer to the User Guide for the appropriate
+      format for the `alert` command.
     * Output Example:
 
 ````
-
+____________________________________________________________
+Wrong/Incomplete Entry For Alert! Please refer to UG for more information
+____________________________________________________________
 ````
 
 #### Category Testing
