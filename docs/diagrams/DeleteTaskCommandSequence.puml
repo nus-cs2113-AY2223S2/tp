@@ -1,0 +1,50 @@
+//@@author RuiShengGit
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":DeleteTaskCommand" as DeleteTaskCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("delete <id>")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("delete <id>")
+activate Parser
+create DeleteTaskCommand
+Parser -> DeleteTaskCommand
+activate DeleteTaskCommand
+DeleteTaskCommand --> Parser
+deactivate DeleteTaskCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+ToDoListManager -> DeleteTaskCommand : execute(taskList, ui)
+activate DeleteTaskCommand
+DeleteTaskCommand -> TaskList: deleteTask(id)
+activate TaskList
+TaskList --> DeleteTaskCommand : taskString
+deactivate TaskList
+DeleteTaskCommand -> Ui : printDeleteTaskMessage(taskString)
+activate Ui
+Ui --> DeleteTaskCommand
+deactivate Ui
+DeleteTaskCommand --> ToDoListManager
+deactivate DeleteTaskCommand
+destroy DeleteTaskCommand
+ToDoListManager --> User
+deactivate ToDoListManager
+@enduml

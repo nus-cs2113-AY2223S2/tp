@@ -1,0 +1,50 @@
+//@@author RuiShengGit
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":Mark/UnmarkTaskCommand" as MarkTaskCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("mark <id>")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("mark <id>")
+activate Parser
+create MarkTaskCommand
+Parser -> MarkTaskCommand
+activate MarkTaskCommand
+MarkTaskCommand -> Parser
+deactivate MarkTaskCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+ToDoListManager -> MarkTaskCommand : execute(taskList, ui)
+activate MarkTaskCommand
+MarkTaskCommand -> TaskList: setDone(id, isDone)
+activate TaskList
+TaskList --> MarkTaskCommand : taskString
+deactivate TaskList
+MarkTaskCommand -> Ui : printMark/UnmarkTaskMessage(taskString)
+activate Ui
+Ui --> MarkTaskCommand
+deactivate Ui
+MarkTaskCommand --> ToDoListManager
+deactivate MarkTaskCommand
+destroy MarkTaskCommand
+ToDoListManager --> User
+deactivate ToDoListManager
+@enduml

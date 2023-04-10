@@ -1,1 +1,14 @@
-James Gosling
+add do math homework -due 20/04/3023 23:59
+add laundry -due 18/04/3023 16:30 -prio 2
+list
+mark 1
+delete 2
+list
+abcd
+due 3 -edit 30/04/3023 08:45
+due 1 -edit 31/04/3023 08:45
+due 1 -edit 30/04/3023 08:45
+list
+email 1 -edit rui@gmail.com
+info 1
+exit

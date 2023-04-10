@@ -1,0 +1,61 @@
+//@@author jeromeongithub
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":ProgressBarCommand" as ProgressBarCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("progress")
+activate ToDoListManager
+ToDoListManager -> Parser : parseCommand("progress")
+activate Parser
+create ProgressBarCommand
+Parser -> ProgressBarCommand
+activate ProgressBarCommand
+ProgressBarCommand --> Parser
+deactivate ProgressBarCommand
+Parser --> ToDoListManager : command
+deactivate Parser
+ToDoListManager -> ProgressBarCommand : execute(taskList, ui)
+activate ProgressBarCommand
+
+ProgressBarCommand -> TaskList: size(inThisWeek)
+activate TaskList
+TaskList --> ProgressBarCommand : tasksThisWeek
+deactivate TaskList
+ProgressBarCommand -> TaskList: size(inThisWeek.and(Task.isDonePredicate()))
+activate TaskList
+TaskList --> ProgressBarCommand : completedTasksThisWeek
+deactivate TaskList
+ProgressBarCommand -> TaskList: toString(inThisWeek)
+activate TaskList
+TaskList --> ProgressBarCommand : taskListString
+deactivate TaskList
+
+ProgressBarCommand -> Ui : printProgressBar(...)
+activate Ui
+Ui --> ProgressBarCommand
+deactivate Ui
+
+ProgressBarCommand --> ToDoListManager
+deactivate ProgressBarCommand
+destroy ProgressBarCommand
+ToDoListManager --> User
+deactivate ToDoListManager
+@enduml
