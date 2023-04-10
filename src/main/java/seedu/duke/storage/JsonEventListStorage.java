@@ -75,6 +75,10 @@ public class JsonEventListStorage implements EventListStorage{
         }
         return savedList;
     }
+
+    /**
+     * Wipes all information in save.json and replaces it with empty JSON array.
+     */
     public static void wipeFile(){
         File saveFile = new File(fileLocation);
         try {
