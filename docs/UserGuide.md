@@ -15,10 +15,19 @@ Consultation via uid, date, and appointment type to help vet clinics better mana
 3. Move the file to a location where you want to run Sniff from.
 4. Open a command terminal and navigate to the location where `sniff.jar` is.
 5. Use the following command to run the program: `java -jar sniff.jar`
-6. If Sniff runs successfully, you will see the following welcome message
+6. If Sniff runs successfully, you will see the following welcome message.
+
+
 ```
 ______________________________________________________________________
  Hello! I'm Sniff, your personal appointment manager.
+     _______. .__   __.  __   _______   _______
+    /       | |  \ |  | |  | |   ____| |   ____|
+   |   (----` |   \|  | |  | |  |__    |  |__
+    \   \     |  . `  | |  | |   __|   |   __|
+.----)   |    |  |\   | |  | |  |      |  |
+|_______/     |__| \__| |__| |__|      |__|
+
  What can I do for you?
 ______________________________________________________________________
 ```
@@ -354,14 +363,14 @@ Example : `mark uid/V14082745S`
 Example of Valid Command:
 
 ```
-mark uid/C26135173W
+mark uid/C67345117A
 ______________________________________________________________________
- 1.  UID: C67345117A [X]
- Date: 2023-12-12 | Time: 19:00
+ Consultation   [X]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C67345117A
  Animal Name: Oreo | Animal Type: Cat
  Owner Name: fred | Contact Number: 91919191
-
-
 The appointment has been marked successfully
 ______________________________________________________________________
 ```
@@ -390,10 +399,12 @@ Format : `mark uid/ `
 Example : `mark uid/V14082745S`
 ```
 
-unmark uid/C26135173W
+unmark uid/C80880043M
 ______________________________________________________________________
- 1.  UID: C67345117A [ ]
- Date: 2023-12-12 | Time: 19:00
+  1.  Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C80880043M
  Animal Name: Oreo | Animal Type: Cat
  Owner Name: fred | Contact Number: 91919191
 
@@ -425,7 +436,7 @@ Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-` edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
+`edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
 ```
 ______________________________________________________________________
 Consultation changed successfully!
@@ -445,7 +456,7 @@ Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMB
 * The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
 
 Example:
-` edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+`edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
 ```
 ______________________________________________________________________
  Surgery changed successfully!
@@ -463,7 +474,7 @@ Format:   `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NU
 * The `TIME` must be in *HH:MM* format.
 
 Example:
-`  edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+`edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
 ```
 ______________________________________________________________________
 Vaccination changed successfully!
@@ -566,8 +577,6 @@ ______________________________________________________________________
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 * Add consultation :
   `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
@@ -586,7 +595,7 @@ ______________________________________________________________________
   `archive`
 
 * Remove appointment :
-  `remove uid`
+  `remove uid/UID`
 
 
 * find appointment by animal_type :
@@ -598,23 +607,29 @@ ______________________________________________________________________
 
 
 * find appointment by appointment_uID :
-`find aID/123`
+`find uid/UID`
 
 
 * Mark appointment :
-  `mark uID/UID `
+  `mark uid/UID `
 
 
 * UnMark appointment :
-  `unmark uID/UID`
+  `unmark uid/UID`
 
 * Edit Consultation :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
 * Edit Surgery :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
 
 * Edit vaccination :
-  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+  `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+
+* Help: 
+  `help`
+
+* Exit the program: 
+  `bye`
 
