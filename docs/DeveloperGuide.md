@@ -553,8 +553,12 @@ elucidate what happens internally when this command is run:
   algorithms.
 
 The sequence diagram is as such:
+
 ![Add Cards to Deck](img/AddCardToDeck.png)
 
+Here is the reference frame that has been extracted
+
+![Add Cards to Deck](img/AddCardToDeckRef.PNG)
 
 
 #### List Cards and Tags under a Deck
