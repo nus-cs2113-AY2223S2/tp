@@ -41,7 +41,6 @@
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the EditSurgery Command**
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
-
 ![img_10.png](img_10.png) <br>
 **Figure 6: Sequence Diagram showing the logical implementation of executeCommand() for the Remove Command** <br>
 
@@ -138,6 +137,13 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 1. The appointment class takes in the user input of adding an appointment to the list of appointments.
 2. The **`Appointment class`** named `Appointment` takes in input such as uid, name, type of appointment, animal type, and date of appointment. This appointment will then  be added to the list.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
+
+#### Adding Appointments
+![AddAppintmentSequenceDiargram.png](AddAppintmentSequenceDiargram.png)<br>
+**Figure 10: Generic Sequence Diagram for adding an appointment**
+1. The `UI` class reads in the input from the user and then parses all the inputs in the `Parser` for each appointment. 
+2. If the inputs are valid, an `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
+3. The `Snifftasks` class then adds the appointment to the list of current appointments.
 
 ##### UID Generation
 
