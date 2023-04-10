@@ -127,7 +127,7 @@ public class BuilderListComponentCommandTest {
 
         Exception exception = assertThrows(PPException.class, () -> new BuilderListComponentCommand(
                 "cpu -price /from ten /to 100").executeCommand(dataStorage));
-        assertEquals("Start price must be a positive integer", exception.getMessage());
+        assertEquals("Please enter a float for price start range", exception.getMessage());
     }
 
     @Test
@@ -139,7 +139,7 @@ public class BuilderListComponentCommandTest {
 
         Exception exception = assertThrows(PPException.class, () -> new BuilderListComponentCommand(
                 "cpu -price /from -100 /to 100").executeCommand(dataStorage));
-        assertEquals("Start price must be a positive integer", exception.getMessage());
+        assertEquals("Price must be greater than 0", exception.getMessage());
     }
 
     @Test

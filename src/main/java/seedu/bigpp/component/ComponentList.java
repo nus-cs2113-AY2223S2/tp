@@ -51,7 +51,7 @@ public class ComponentList<T> extends ArrayList<Component> {
     }
 
     // filter psu by power
-    public static ComponentList<?> filterByPowerPsu(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerPsu(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -65,7 +65,7 @@ public class ComponentList<T> extends ArrayList<Component> {
     }
 
     // filter storage by power
-    public static ComponentList<?> filterByPowerStorage(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerStorage(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -104,7 +104,7 @@ public class ComponentList<T> extends ArrayList<Component> {
         return filteredComponentList;
     }
 
-    public static ComponentList<?> filterByPowerRam(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerRam(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -159,7 +159,7 @@ public class ComponentList<T> extends ArrayList<Component> {
         return filteredComponentList;
     }
 
-    public static ComponentList<?> filterByPowerMotherboard(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerMotherboard(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -199,7 +199,7 @@ public class ComponentList<T> extends ArrayList<Component> {
         return filteredComponentList;
     }
 
-    public static ComponentList<?> filterByPowerGpu(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerGpu(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -225,7 +225,7 @@ public class ComponentList<T> extends ArrayList<Component> {
         return filteredComponentList;
     }
 
-    public static ComponentList<?> filterByPowerCpuCooler(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerCpuCooler(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
@@ -279,7 +279,7 @@ public class ComponentList<T> extends ArrayList<Component> {
         return filteredComponentList;
     }
 
-    public static ComponentList<?> filterByPowerCpu(ComponentList<?> componentList, int from, int to,
+    public static ComponentList<?> filterByPowerCpu(ComponentList<?> componentList, float from, float to,
             ArrayList<Integer> componentIndexes) {
         ComponentList<?> filteredComponentList = new ComponentList<>();
         for (int i = 0; i <= componentList.size() - 1; i++) {
