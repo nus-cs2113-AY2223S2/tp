@@ -12,14 +12,8 @@ Given below are my contributions to the project.
 
 
 * **UnMark Command**: `
-<<<<<<< .merge_file_zZYzpi
     * UnMarks the appointment that have been completed based on uid
-=======
     * UnMarks the appointment that have been completed based on uid 
-
-
-    
-
 
 * **Documentation**:
     * User Guide:
