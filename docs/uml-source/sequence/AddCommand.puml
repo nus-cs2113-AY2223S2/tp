@@ -33,7 +33,7 @@ add -> add++ : addTask()
 add -> Event** : new Event()
 Event++
 return
-add -> add++ : isClashingEvent()
+add -> add++ : warnEventTaskClash()
 TaskList --> add
 add--
 opt Event clashes with Task
