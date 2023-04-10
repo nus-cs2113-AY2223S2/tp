@@ -159,6 +159,10 @@ public class RecipeList extends ArrayList<Recipe> {
         return filteredRecipeList;
     }
 
+    /**
+     * This method is designed to return any available recipes if they exist.
+     *
+     **/
     public RecipeList availableRecipes() {
         RecipeList availableRecipeList = new RecipeList();
         for (Recipe recipe : this) {

@@ -8,7 +8,12 @@ public class IngredientList extends HashMap<String, Ingredient> {
 
     private static final Parser parser = new Parser();
 
-    // public method to find count of ingredient
+    /**
+     * This method is designed to find the count of a particular ingredient.
+     *
+     * @param ingredientName name of ingredient
+     *
+     **/
     public Integer findIngredientCount(String ingredientName) throws IngredientNotFoundException {
         if (this.containsKey(ingredientName)) {
             return this.get(ingredientName).ingredientCount;
@@ -16,7 +21,12 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
-    // public method to find expiry date of ingredient
+    /**
+     * This method is designed to find the expiry date of a particular ingredient,
+     *
+     * @param ingredientName name of ingredient
+     *
+     **/
     public LocalDate findExpiryDate(String ingredientName) throws IngredientNotFoundException {
         if (this.containsKey(ingredientName)) {
             return this.get(ingredientName).expiryDate;
@@ -42,6 +52,15 @@ public class IngredientList extends HashMap<String, Ingredient> {
         }
     }
 
+    /**
+     * This method is designed to edit the ingredient count and expiry date.
+     * It also checks if the ingredient is expired or not.
+     *
+     * @param ingredient the ingredient we want to check
+     * @param ingredientCount count of ingredient
+     * @param expiryDate expiry date of ingredient
+     *
+     **/
     public void editIngredient(Ingredient ingredient, Integer ingredientCount, String expiryDate)
             throws IngredientNotFoundException {
         if (this.containsKey(ingredient.ingredientName)) {
@@ -80,7 +99,10 @@ public class IngredientList extends HashMap<String, Ingredient> {
         }
     }
 
-    // private indexed list of ingredients, count and expiry date
+    /**
+     * This method is designed to print the contents of an ingredient.
+     *
+     **/
     private String listIngredients() {
         String ingredientList = "";
         int index = 1;
