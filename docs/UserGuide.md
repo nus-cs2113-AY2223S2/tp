@@ -22,7 +22,7 @@ Their net calorie gain/loss can then be viewed.
   - [Adding an exercise](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#adding-an-exercise-exercise)
   - [Tracking net calorie intake](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#tracking-net-calorie-intake-track)
   - [Displaying examples of meals and exercises](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#displaying-examples-of-meals-and-exercises-examples)
- - [Exiting the application](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#exiting-the-application-bye)
+  - [Exiting the application](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#exiting-the-application-bye)
 - [FAQ](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#faq)
 - [Command Summary](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#command-summary)
 
