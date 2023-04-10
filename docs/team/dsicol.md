@@ -1,7 +1,8 @@
 # Leo Zheng Rui, Darren - Project Portfolio Page
 
 ## Overview
-MyLedger is a desktop app for managing finances, designed for university students studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and monitor their budget and expenses, managing their transactions more effciently.
+MyLedger is a desktop app for managing finances, designed for university students in the National University of Singapore (NUS), studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and classify their transactions into categories. Students can expect to get an overview of their transactions at a glance,
+which helps them to monitor their budget and expenses more effciently.
 
 ### Summary of Contributions
 #### Main Features Implemented:

@@ -58,10 +58,12 @@
 
 ## 1. Preface
 
-MyLedger is a desktop app for managing finances, designed for university students studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and classify their transactions into categories. Students can expect to get an overview of their transactions at a glance,
+MyLedger is a desktop app for managing finances, designed for university students in the National University of Singapore (NUS), studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and classify their transactions into categories. Students can expect to get an overview of their transactions at a glance,
 which helps them to monitor their budget and expenses more effciently.
 
-This developer guide provides a detailed view of the overall structure of MyLedger V2.0 and explains how its components and functions are implemented. Additionally, it outlines the specific parameters that were established before feature development began. The aim is to help developers gain a comprehensive understanding of the application's operation and how to maintain it without difficulty.
+All currency amounts used in MyLedger is based of the **Singapore Dollar (SGD)**.
+
+This developer guide provides a detailed view of the overall structure of MyLedger V2.1 and explains how its components and functions are implemented. Additionally, it outlines the specific parameters that were established before feature development began. The aim is to help developers gain a comprehensive understanding of the application's operation and how to maintain it without difficulty.
 
 ## 2. Acknowledgements
 
@@ -411,8 +413,13 @@ The format for delete is ```delete INDEX```
 Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseDelete` is called, which in turn calls `DeleteCommand` that calls `deleteExpenditure` in `ExpenditureList` and returns the string containing the string to print for delete. 
 
 ### 4.4. Find Command
-case insensitive
 
+The ```FindCommand``` provides the search functionality for finding a specific or few transactions from the list of transactions by their respective descriptions. 
+
+The command is able to search for all characters matching the keyword in the expenditure descriptions and the keyword is case-sensitive.
+
+Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseFind` is called, which in turn calls `FindCommand` which loops through the Expenditure
+list and compares the keyword provided with the the descriptions. 
 
 ### 4.5. Duplicate Command
 
@@ -493,6 +500,8 @@ accurately represent the check commands.
 
 
 `showrates` is a simple command where `MainInputParser` calls `getRates` in the `CurrencyValue` class that returns a string to be printed for `showrates`.
+
+It must be noted that all currency options provided is based of the NUS Partner Universities as found [here](https://www.nus.edu.sg/gro/global-programmes/student-exchange/partner-universities)
 
 ### 4.11. Mark/Unmark Command
 

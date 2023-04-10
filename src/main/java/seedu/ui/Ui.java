@@ -37,7 +37,7 @@ public class Ui {
             "\n5. Edit a Lend/Borrow record\n"
             + "Format: edit INDEX d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION\n" +
             "Cannot change a lend record to a borrow record\n" +
-            "Example: edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113\n" +
+            "Example: edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113\n" +
             HORIZONTAL_LINE +
             "\n6. List all expenditures in the record in the specified currency\n"
             + "Format: list CURRENCY \n" + "A currency has to be specified for list to display.\n"
