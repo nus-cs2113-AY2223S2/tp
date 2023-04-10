@@ -382,10 +382,10 @@ rate.
 
 ### 'Storage' Feature
 
-The `storage` class is responsible for saving and loading of expenses to and from the json storage file.
+The `Storage` class is responsible for saving and loading of expenses to and from the json storage file.
 
 - Loading expenses
-    - Upon initialising of the programme, a `storage` class is created before an attempt to load the expenses in the
+    - Upon initialising of the programme, a `Storage` class is created before an attempt to load the expenses in the
       json storage file is made. If the storage file do not exist, a new file is created in the designated path and a
       welcome message will be prompted to greet the user for the first time. If the file exists, data stored in the
       file will be retrieved and converted to an ArrayList of Expense. If the data file is non-empty, a check will
