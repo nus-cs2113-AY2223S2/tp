@@ -21,7 +21,7 @@ to view my codes contributed for this project
 * Added `History` Feature for displaying a list of all commands input by users
 * Refactoring codes as classes for `Store`, `List`, `Delete` and `CommandHistory` 
 * Implemented JUnit Tests for `Store`, `List`, `Delete` and `CommandHistory`
-* Added improvements towards `HelpManual.txt`
+* Added details and improvements towards `HelpManual.txt`
 * Improve codes to more OOP
 
 ### 3) UserGuide Contributions:
@@ -44,7 +44,7 @@ to view my codes contributed for this project
 
 ### 5) Contributions to team-based tasks: 
 * Tracked `v1.0`, `v2.0`, and `v2.1` milestones
-* Assist in reviewing and approving team members' Pull Request before merging to team's master branch
+* Assist in reviewing and approving team members' Pull Requests before merging to team's master branch
 * Contributed to team's brainstorming and discussion of ideas and features for BadMaths
 * Management of issues created on GitHub
 * Contributed to team's Google documents and Google sheet for BadMaths implementation
