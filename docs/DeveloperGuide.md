@@ -105,7 +105,7 @@ If you plan to use Intellij IDEA (highly recommended): <br>
    to import the project into IDEA.<br>
    **Note**: Importing a Gradle project is slightly different from importing a normal Java project.
 3. **Verify the setup:**
-    1. Run the ```wellnus.WellNus``` and try a few commands.
+    1. Run the ```wellnus.WellNus``` class in IntelliJ and try a few commands.
     2. Run the tests to ensure they all pass.
 
 ## Before writing code
