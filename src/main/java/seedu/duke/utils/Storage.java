@@ -227,10 +227,10 @@ public class Storage {
             case EMPTY:
                 //fallthrough
             case MISSING:
-                Ui.printEmptySessionFile();
+                Ui.printEmptyAlertFile();
                 return new AlertList();
             case CORRUPT:
-                Ui.printInvalidSessionFile();
+                Ui.printInvalidAlertFile();
                 return new AlertList();
             case OK:
                 //fallthrough
