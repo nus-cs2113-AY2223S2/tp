@@ -1,7 +1,9 @@
 [DeveloperGuide.md](DeveloperGuide.md)
+
 # Developer Guide
 
 ## <span style="color:#00A36C">Table of contents</span>
+
 * [**Acknowledgements**](#acknowledgements)
 * [**Setting up, getting started**](#setting-up-getting-started)
 * [**Design**](#span-stylecolor00a36c-design-span)
@@ -15,7 +17,7 @@
     * [*PackAllCommand*](#packall-command)
     * [*UnpackCommand*](#unpack-command)
     * [*UnpackAllCommand*](#unpackall-command)
-    * [*EditQuantityCommand*](#edit-quantity-command)
+    * [*EditQuantityCommand*](#editquantity-command)
     * [*HelpCommand*](#help-command)
     * [*ListCommand*](#list-command)
     * [*ListUnpackedCommand*](#list-unpacked-command)
@@ -29,21 +31,21 @@
     * [*InvalidQuantityException*](#invalidquantityexception)
     * [*InvalidVariablesException*](#invalidvariablesexception)
   * [iohandler Package](#iohandler-package)
-    * [*Parser*](#parser-class)
+    * [*Parser*](#parser)
     * [*Storage*](#storage)
     * [*Ui*](#ui)
   * [packingfunc Package](#packingfunc-package)
     * [*Item*](#item)
     * [*PackingList*](#packinglist)
-* [**Appendix A: Product Scope**](#appendix-a--product-scope)
-* [**Appendix B: User Stories**](#appendix-b--user-stories)
-* [**Appendix C: Non-Functional Requirements**](#appendix-c--non-functional-requirements)
-* [**Appendix D: Glossary**](#appendix-d--glossary)
-* [**Appendix E: Instructions for Manual Testing**](#appendix-e--instructions-for-manual-testing)
+* [**Appendix A: Product Scope**](#appendix-a-product-scope)
+* [**Appendix B: User Stories**](#appendix-b-user-stories)
+* [**Appendix C: Non-Functional Requirements**](#appendix-c-non-functional-requirements)
+* [**Appendix D: Glossary**](#appendix-d-glossary)
+* [**Appendix E: Instructions for Manual Testing**](#appendix-e-instructions-for-manual-testing)
 
 ---
 
-## Acknowledgements
+## <span style="color:#00A36C">Acknowledgements</span>
 
 This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
 * The design and structure of our User Guide and Developer Guide is referenced from the AddressBook-Level3 (AB3) User Guide and Developer Guide.
@@ -52,14 +54,14 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 
 ---
 
-## Setting up, getting started
+## <span style="color:#00A36C">Setting up, getting started</span>
 Refer to the [UserGuide.md](UserGuide.md) for more details
 
 ---
 
 ## <span style="color:#00A36C">Design</span>
 
-##### Architecture
+### Architecture
 
 ![BagPackerClassDiagram.png](diagrams%2FBagPackerClassDiagram.png)
 ![ExceptionClassDiagram.png](diagrams%2FExceptionClassDiagram.png)
@@ -76,12 +78,12 @@ The Architecture of BagPacker Application can be seen from the diagrams above co
 - Running the main app: Calls 'BagPacker.runBagPacker()' which runs the main program for BagPacker application. (including execution of commands)
 - At shut down: Shuts down the components and invokes cleanup methods where necessary. Saves the current packing list.
 
-##### runBagPacker() Mechanism
+### runBagPacker() Mechanism
 
 Run Condition: ByeCommand.isBagPackerRunning
 
 While Loop (if Run Condition is true):
-1. `Parser.parse()` the user input which involves reading, getting command variables, and creating of relevant command object. (more info in [Parser](#parser-class))
+1. `Parser.parse()` the user input which involves reading, getting command variables, and creating of relevant command object. (more info in [Parser](#parser))
 2. execute the relevant command returned from `Parser.parse()`
 
 This can be seen from the interactions between `:BagPacker` and `:Parser` in the diagram below.
@@ -99,7 +101,7 @@ For all valid commands, the mechanism of implementation are as follows:
 4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
-Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker---mechanism) for a visual aid of the above explanation.
+Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker-mechanism) for a visual aid of the above explanation.
 
 
 #### Command
@@ -154,7 +156,8 @@ The following conditions will cause an `IncorrectCommand` to be returned instead
 
 
 Execute Mechanism: ```PackCommand.execute()``` calls the ```Command.getTargetItem()``` method to retrieve the target item to pack. 
-After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. `Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
+After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. 
+`Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
 Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to print a message to the user signifying that the `pack` command has been executed successfully.
 
 ![ExecutePackCommandSequenceDiagram.png](diagrams%2FExecutePackCommandSequenceDiagram.png)
@@ -211,7 +214,7 @@ After which the ```PackingList.getPackedQuantity()``` method is called in ```Pac
 Lastly `Ui.printToUser(MSG_SUCCESS_UNPACKALL, item)` from `Ui` class is called to print a message to the user signifying that the `unpackall` command has been executed successfully.
 
 
-#### Edit Quantity Command
+#### EditQuantity Command
 
 `EditQuantityCommand` is used to edit the total quantity of an item in the packing list.
 
@@ -227,7 +230,6 @@ Execute Mechanism: `EditQuantityCommand.execute()` calls the `EditQuantityComman
 Next, the `PackingList.editTotalQuantity()` method is called in `PackingList`, which calls `Item.setTotalQuantity()` in `Item` class.
 `Item.setTotalQuantity()` will set the `totalQuantity` attribute to the `QUANTITY` input given.
 Last, `Ui.printToUser()` from `Ui` class is called to print a message to the user signifying that the Edit Quantity command has been executed successfully.
-
 
 #### Help Command
 
@@ -270,7 +272,6 @@ All Commands:
 	Example: bye
 ____________________________________________________________
 ```
-
 
 #### List Command
 
@@ -341,7 +342,6 @@ ________________________________________________________________________________
 
 Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
 The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
-
 
 #### DeleteList Command
 
@@ -441,10 +441,12 @@ all createCommandObj methods except for commands without input variables (i.e. e
 
 ### IOHandler Package
 
-The `IOHandler` package contains three main classes, which are [Parser](#parser-class), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
 while managing the storage and retrieval of the associated `item`'s in the user's `packingList`.
 
-### Parser Class
+---
+
+### Parser
 The Parser class has 2 main functions:
 1. Reading and retrieving the relevant command, and command variables from the users input (get*CommandVariable()*)
 2. Creating a command object based on the retrieved command and command variables (create*Command*Obj())
@@ -502,7 +504,7 @@ The following show the respective create methods for each command. The `command`
 
 ---
 
-#### Storage
+### Storage
 
 The `Storage` class consists of two main methods: `save()` and `load()`.
 The constructor of this class, which is called in `BagPacker`, will set the `file_path` of storage, which is default at "packingList.txt".
@@ -527,7 +529,8 @@ Each `item` is returned to `load()` and added to the packingList.
 
 ---
 
-#### Ui
+### Ui
+
 The `Ui` class is the main component of `BagPacker`'s Command Line Interface (CLI) interface. 
 It is responsible for handling most of start-up and farewell messages, the CLI output, including error messages, information messages, and confirmation prompts after every `command.execute()`.
 
@@ -538,10 +541,13 @@ Some important methods are:
 `errorMessage()` - shows the error type and help message to the user in the case an error occurs
 
 ---
+
 ### Packingfunc Package
+
 The `Packingfunc` package consists of `Item` and `PackingList` classes, which are used to manage the main packing list of `BagPacker`, and its individual items.
 
 #### Item
+
 The `Item` class contains methods used to manage and manipulate the variables `packedQuantity` and `totalQuantity`.
 
 There are two constructors of `Item`:
@@ -558,10 +564,11 @@ It is used in multiple [commands](#commands-package) and [storage](#storage) to 
 
 `checkFullyPacked()` is used in [listunpacked](#list-unpacked-command) to return whether the item is fully packed by comparing packedQuantity to totalQuantity. 
 
-`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser-class)) to change the packed quantity of the item.
+`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser)) to change the packed quantity of the item.
 
 
 #### PackingList
+
 `PackingList()` contains a `static ArrayList<Item> itemList` which is the user's packing list.
 The `PackingList()` class' methods are used to search through and manipulate this `itemList`.
 
@@ -593,8 +600,8 @@ Methods:
 
 
 ---
-## <span style="color:#00A36C">Appendix: Requirements</span>
-## Appendix A: Product scope
+
+## <span style="color:#00A36C">Appendix A: Product scope</span>
 
 **Target user profile**
 * Has a need to pack items for travel purposes
@@ -608,7 +615,7 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 
 ---
 
-## Appendix B: User Stories
+## <span style="color:#00A36C">Appendix B: User Stories</span>
 
 
 | Version | As a ... | I want to ...                                  | So that I can ...                                                            |
@@ -629,20 +636,20 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 
 ---
 
-## Appendix C: Non-Functional Requirements
+## <span style="color:#00A36C">Appendix C: Non-Functional Requirements</span>
 
 - be able to retrieve the user's packing list quickly and accurately
 - the quantity of each item to be packed should not be unreasonably large
 
 ---
 
-## Appendix D: Glossary
+## <span style="color:#00A36C">Appendix D: Glossary</span>
 
 * *CLI* - Command Line Interface
 
 ---
 
-## Appendix E: Instructions for Manual Testing
+## <span style="color:#00A36C">Appendix E: Instructions for Manual Testing</span>
 
 Download the jar file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases/tag/v2.1) and run `BagPacker` in a terminal with the command 
 ```
@@ -650,7 +657,7 @@ java -jar bagpacker.jar
 ```
 
 You will see a greeting screen: 
-```text
+```
 ________________________________________________________________________________________________________________________
 Hi this is,
  ____              _____           _
@@ -669,12 +676,12 @@ No save files detected. Hello new user!
 ________________________________________________________________________________________________________________________
 
 ```
-You can run a few commands; refer to the [User Guide]() for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
+You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t14-2.github.io/tp/UserGuide.html) for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
 
 * Try adding a few items using the `add` command 
   * Example:  `add 4 /of jackets`
   * Expected:
-    ```text
+    ```
     ________________________________________________________________________________________________________________________
     New item added: [0/4] jackets
     ________________________________________________________________________________________________________________________
@@ -739,7 +746,8 @@ You can run a few commands; refer to the [User Guide]() for the full list of com
 * Try deleting your entire list using the `deletelist` command
   * Example: `deletelist`
   * Expected: 
-    ```text
+  
+    ```
     ________________________________________________________________________________________________________________________
     Packing list deleted
     ________________________________________________________________________________________________________________________
@@ -750,6 +758,7 @@ You can run a few commands; refer to the [User Guide]() for the full list of com
 * To exit `BagPacker`, use the `bye` command
     * Example: `bye`
     * Expected: 
+
     ```
     ________________________________________________________________________________________________________________________
     Bye thanks for using,
