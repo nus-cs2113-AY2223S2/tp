@@ -36,6 +36,12 @@ deactivate Parser
 Main -> DeleteCommand : execute()
 activate DeleteCommand
 
+DeleteCommand -> FlashcardList : queryFlashcards(query)
+activate FlashcardList
+
+FlashcardList -> DeleteCommand : matchingFlashcards : ArrayList
+deactivate FlashcardList
+
 DeleteCommand -> FlashcardList : getFlashcards()
 activate FlashcardList
 
