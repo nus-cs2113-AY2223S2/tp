@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.TreeSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ListFullInfoCommandTest {
     private Parser parser = new Parser();
