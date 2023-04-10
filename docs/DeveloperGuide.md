@@ -1,44 +1,46 @@
 [DeveloperGuide.md](DeveloperGuide.md)
 # Developer Guide
+## Table of Contents
+* **Acknowledgements**
+* **Setting up, getting started**
+* **Design**
+    * [Architecture](#architecture)
+    * [commands Package](#bagpacker-command-mechanisms-) 
+        - <em>Command
+        - [AddCommand](#add-command)
+        - [ByeCommand](#bye-command)
+        - [DeleteCommand](#delete-command)
+        - [DeleteListCommand](#deletelist-command)
+        - EditQuantityCommand
+        - FindCommand
+        - [HelpCommand](#help-command)
+        - IncorrectCommand
+        - [ListCommand](#list-command)
+        - [ListUnpackedCommand](#list-unpacked-command)
+        - PackAllCommand
+        - [PackCommand](#pack-command)
+        - UnpackAllCommand
+        - [UnpackCommand](#unpack-command)</em>
+    * **[exception Package](#exceptions)**
+        - <em>[EmptyInputException](#emptyinputexception)
+        - [InvalidIndexException](#invalidindexexception)
+        - [InvalidQuantityException](#invalidquantityexception)
+        - [InvalidVariablesException](#invalidvariablesexception)</em>
+    * **[iohandler Pakage](#iohandler-package)**
+        - <em>Parser
+        - Storage
+        - Ui</em>
+    * **[packingfunc Package](#packingfunc-package)**
+        - <em>Item
+        - PackingList</em>
+* **Documentation, logging, testing, configuration, dev-ops**
+* **Appendix: Requirements**
+    * Product scope
+    * User stories
+    * Use cases
+    * Non-Functional Requirements
+    * Glossary
 
-* [Acknowledgements](#acknowledgements)
-* [Setting up and getting started](#setting-up-and-getting-started)
-* [Design](#design)
-  * [Commands component](#commands-component)
-    * [Add command](#add-command)
-    * [Preventing duplicate items](#preventing-duplicate-items)
-    * [Delete command](#delete-command)
-    * [Pack command](#pack-command)
-    * [Unpack command](#unpack-command)
-    * [Help command](#help-command)
-    * [List command](#list-command)
-    * [List Unpacked command](#list-unpacked-command)
-    * [Find command](#find-command)
-    * [Delete list command](#deletelist-command)
-    * [Bye command](#bye-command)
-    * [Incorrect command](#incorrect-command)
-    * Edit Quantity command
-    * Pack All command
-    * Unpack All command
-  * [Exceptions component](#exceptions)
-    * [Empty input](#emptyinputexception)
-    * [Invalid index](#invalidindexexception)
-    * [Invalid quantity](#invalidquantityexception)
-    * [Invalid variables](#invalidvariablesexception)
-  * IOHandler component
-    * Parser
-    * Storage
-    * Ui
-  * Packing component
-    * Item
-    * Packing List
-* Implementation
-* Documentation, logging, testing, configuration, dev-ops
-* [Appendix A: Product Scope](#appendix-a--product-scope)
-* [Appendix B: User Stories](#appendix-b--user-stories)
-* [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements)
-* [Appendix D: Glossary](#appendix-d--glossary)
-* [Appendix E: Instructions for manual testing](#appendix-e--instructions-for-manual-testing)
 
 
 ## Acknowledgements
@@ -48,17 +50,25 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
   * [AB3 User Guide](https://se-education.org/addressbook-level3/UserGuide.html)
   * [AB3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
-## Setting up and getting started
 
-## Design
-#### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
+---
+### Setting up, getting started
+Refer to the [user guide]([UserGuide.md](UserGuide.md)) for more details
 
-The class diagram below shows the overall structure of BagPacker application, many methods, variables and associations are omitted for improved clarity
 
+##### Architecture
 ![BagPackerClassDiagram.png](diagrams%2FBagPackerClassDiagram.png)
 ![ExceptionClassDiagram.png](diagrams%2FExceptionClassDiagram.png)
 
+The Architecture of BagPacker Application can be seen  from the diagram above
+
+BagPacker components of the architecture (similar to a standard main() class)
+
+`BagPacker` is responsible for
+
+
 ### Commands component
+
 For all valid commands, the mechanism of implementation are as follows:
 1. If `ByeCommand.isBagPackerRunning` is true, keep looping through steps 2-4
 2. Read input - `runBagPacker()` method in `BagPacker` calls the `Parser` class to read user input command using `Parser.parse()`
@@ -77,7 +87,7 @@ Below shows a sequence diagram of the above explanation
 The `Command` abstract class is used to create subclasses of commands for BagPacker. The constructor `Command()` takes in an integer of `targetIndex` which sets the internal `targetIndex` value. 
 `targetIndex` is used for certain commands such as delete, pack, and edit, where the `index` of a certain `item` in the `packingList` is important in the command. An `item` of that index will be extracted out using `getTargetItem()`.
 
----
+
 
 #### Add Command
 
@@ -86,7 +96,7 @@ Add command is used to add a quantity of item(s) to the packing list.
 Mechanism: ```AddCommand.execute()``` calls the ```PackingList.addItem()``` method from the ```PackingList``` class which executes the ```ArrayList.add()``` method to add the item to the ```PackingList``` ArrayList. 
 It then updates the ```quantity``` variable according to the quantity inputted by the user.
 
----
+
 
 ##### Preventing duplicate items
 
@@ -108,7 +118,6 @@ If `PackingList.itemFinder()` returns false, the item will be added onto `packin
 
 In both scenarios, the relevant `ui.printToUser` messages (omitted in the sequence diagram for easier reading) will be called to print a message to the user.
 
----
 
 #### Delete Command
 
@@ -116,7 +125,6 @@ Delete command is used to delete an item from the packing list.
 
 Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``` method from the ```PackingList``` class which executes the ```ArrayList.remove()``` method to remove the item from the ```PackingList``` ArrayList.
 
----
 
 #### Pack Command
 
@@ -138,7 +146,6 @@ Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to pri
 
 Sequence Diagram of Successful `PackCommand.execute()`
 
----
 
 #### Unpack Command
 
@@ -160,7 +167,6 @@ Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to p
 
 Sequence Diagram of Successful `UnpackCommand.execute()`
 
----
 
 #### Help Command
 Help command is used to display all the possible commands in the BagPacker application for the user.
@@ -203,7 +209,6 @@ All Commands:
 ____________________________________________________________
 ```
 
----
 
 #### List Command
 
@@ -226,7 +231,6 @@ Here are the items in your list
 ____________________________________________________________
 ```
 
----
 
 #### List Unpacked Command
 
@@ -270,7 +274,6 @@ ________________________________________________________________________________
 
 ```
 
----
 
 #### Pack Command
 `PackCommand` is used to increase the quantity packed of a certain item in the `packingList`.
@@ -302,7 +305,6 @@ Can only pack a positive quantity that is less than or equal to the unpacked qua
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ```
 
----
 
 #### Find Command
 `FindCommand` is used to find all items containing the keyword(s) provided.
@@ -310,14 +312,13 @@ Can only pack a positive quantity that is less than or equal to the unpacked qua
 Mechanism: `FindCommand.execute()` calls `PackingList.keywordFinder()` with the given `keyword`. This method loops through every `item` in `packingList` to see if the `itemName` for each `item` contains the keyword(s) given. 
 The `item`(s) that contain the keyword are placed into an ArrayList with their `itemIndex` then used in `printToUser`.
 
----
 
 #### DeleteList Command
 `DeleteListCommand` is used to delete all items inside `packingList`.
 
 Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
 
----
+
 
 #### Bye Command
 `ByeCommand` is used to exit the BagPacker application.
@@ -326,20 +327,19 @@ Mechanism: `ByeCommand.execute()`updates the static boolean `isBagPackerRunning`
 The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
 `isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
 
----
+
 
 #### Incorrect Command
 
 `IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
 These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
 
----
 
+---
 ### Exceptions
 The `exceptions` package contains all exceptions within BagPacker that are thrown when an error is detected. This is done to allow the program
 to continue running and to elegantly handle any potential app stopping errors.
 
----
 
 #### EmptyInputException
 
@@ -351,7 +351,6 @@ Thrown by:
 Caught in:
 1. `Parser.parse()`
 
----
 
 #### InvalidIndexException
 The `InvalidIndexException` is thrown when the user inputs an item index that is out of bounds of the `PackingList` or greater than 1,000,000
@@ -368,7 +367,6 @@ Thrown and caught in:
 4. `Parser.createPackAllObj()`
 5. `Parser.createUnpackObj()`
 
----
 
 #### InvalidQuantityException
 The `InvalidQuantityException` is thrown when the user inputs a quantity of an item that is invalid. This differs depending on the respective Command. 
@@ -386,7 +384,6 @@ Thrown and caught in:
 3. `Parser.createEditQuantityObj()`
 4. `Parser.createUnpackObj()`
 
----
 
 #### InvalidVariablesException
 The `InvalidVariablesException` is thrown when the user inputs the wrong number of variables for commands with input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
@@ -403,12 +400,17 @@ Caught by:
 all createCommandObj methods except for commands without input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
 
 ---
-
-## Appendix
+### iohandler package
 
 ---
+### packingfunc package
 
-### Appendix A: Product scope
+---
+### Documentation, logging, testing, configuration, dev-ops
+
+---
+### Appendix: Requirements
+##### Product scope
 
 **Target user profile**
 * Has a need to pack items for travel purposes
@@ -417,13 +419,14 @@ all createCommandObj methods except for commands without input variables (i.e. e
 * Is reasonably comfortable using CLI apps
 
 
+
 **Value proposition**
 
 BagPacker aims to help busy students simplify their packing process by allowing easy adding of items to pack and record of the items they have already packed so that they can be organised and aboard their travels with ease.
 
----
 
-### Appendix B: User Stories
+
+##### User Stories
 
 | Version | As a ... | I want to ...                                  | So that I can ...                                                            |
 |---------|----------|------------------------------------------------|------------------------------------------------------------------------------|
@@ -443,19 +446,18 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 
 ---
 
-### Appendix C: Non-Functional Requirements
+##### Non-Functional Requirements
 
 - be able to retrieve the user's packing list quickly and accurately
 - the quantity of each item to be packed should not be unreasonably large
 
----
 
-### Appendix D: Glossary
+##### Glossary
 
 * *CLI* - Command Line Interface
 
 ---
 
-### Appendix E: Instructions for manual testing
+### Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
