@@ -4,8 +4,8 @@
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 
-### Summary of Contributions
-**Code Contributed**
+## Summary of Contributions
+### Code Contributed
 
 Code Contribution RepoSense [link](
 https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=darrenlsx&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17)
@@ -13,7 +13,7 @@ https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=darrenlsx&sort=groupT
 ### Enhancements Implemented
 
 #### Deadline Features:
-* Implemented all the 3 command features for deadline: `add`, `remove` and `list`.
+* Implemented all 3 command features for deadline: `add`, `remove` and `list`.
 * Created a deadline storage class to store the deadlines that was added by the user.
 * Created the feature of that displays a notification when a deadline is
   approaching.
@@ -24,11 +24,10 @@ Implemented delete feature to remove modules from the user's saved list of modul
 #### Exception Handling:
 Implemented exceptions to allow system to print the respective statements should an error occur.
 
-
 ### Contributions to The User Guide:
 * Deadline Features and Module Remove Feature.
 * Formatted UG to be more presentable and added contents page with titles and their respective links.
-* Fixed numerous bugs in DG such as sentences and its descriptions.
+* Fixed numerous bugs in UG such as sentences and its descriptions.
 * Ensured that the different features have a consistent format.
 
 ### Contributions to The Developer Guide:
@@ -42,4 +41,4 @@ Helped maintained issue tracker in GitHub by closing and labelling issues.
 
 
 ### Review/Mentoring Contributions:
-Helped look through code and gave suggestions through GitHub comments and Telegram before merging pull requests.
+Helped to look through code and gave suggestions through GitHub comments and Telegram before merging pull requests.

@@ -1,5 +1,6 @@
 # Developer Guide
 
+
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 ---
@@ -43,9 +44,6 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 ---
 
 ## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
 
 1. Using ByteArrayOutputStream to test System.out.print functions
    Author: dfa. Link: https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
