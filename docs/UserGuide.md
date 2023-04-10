@@ -940,7 +940,7 @@ week.
     <tr>
       <td><strong>find</strong></td>
       <td>
-<code class="language-plaintext highlighter-rouge">find KEYWORD</code> <br> e.g., <code class="language-plaintext highlighter-rouge">find arms</code>
+<code class="language-plaintext highlighter-rouge">find KEYWORD</code> <br> e.g., <code class="language-plaintext highlighter-rouge">find cat</code>
 </td>
     <td>Finds all exercises that contain a certain keyword  </td>
     </tr>
