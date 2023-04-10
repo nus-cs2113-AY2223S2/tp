@@ -8,10 +8,8 @@ title: user Guide
 <h3> "Mind your Money" </h3>
 </div>
 
-Moneymind is a Command Line Interface (CLI) application that helps you manage your personal finances. With Moneymind, you can keep track of your budgets, expenses, and categorize them for better organization.
-
-* Table of Contents
-{:toc}
+Moneymind is a Command Line Interface (CLI) application that helps you manage your personal finances. 
+With Moneymind, you can keep track of your budgets, expenses, and categorize them for better organization.
 
 ## Quick Start
 
