@@ -50,10 +50,12 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 
 **Notice:** 
 
-> date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
+> - Date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
 >
-> the app will omit possible negative recurring time that users might input and consider the current event non-recurring.
-
+> - App will omit possible negative recurring time that users might input and consider the current event non-recurring.
+> 
+> - Users are able to add events that are not within the semester boundaries, however it will not be shown in the timetable user interface and will only be listed out.
+>
 
 Expected outcome:
 
@@ -101,9 +103,9 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 > 
 >`CLASSNUMBER`: Number that is allocated to class. It is in this format: [X]
 > 
->`LESSONTYPE`: Refer to table Below:
+>`LESSONTYPE`: Refer to table below.
 * Commands used for this case are
-`add -m CS2100 -n 01 -l TUT`, `add -m CS2100 -n 02 -l LAB` and `add -m CS2100 -l LEC`
+`add -m CS2100 -n 01 -l TUT`, `add -m CS2100 -n 02 -l LAB` and `add -m CS2100 -n 1 -l LEC`
 * Please type out your commands and ensure your spelling is accurate
 * Copying and pasting commands from the user guide may cause some issues due to formatting
 
@@ -126,7 +128,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 events should you need to have them.
 
 **Notice**
-> For the lesson number and lesson type, follow the format as displayed on NUSMods. 
+> For the lesson number and lesson type, follow the EXACT format as displayed on NUSMods. 
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
@@ -193,34 +195,60 @@ Expected outcome:
 ~~~
 ____________________________________________________________
    > 1.[E] AC5001 (2022/08/10 14:00 to 2022/08/10 17:00 not recurring)
+         @ UTSRC-LT51
    > 2.[E] AC5001 (2022/08/17 14:00 to 2022/08/17 17:00 not recurring)
+         @ UTSRC-LT51
    > 3.[E] AC5001 (2022/08/24 14:00 to 2022/08/24 17:00 not recurring)
+         @ UTSRC-LT51
    > 4.[E] AC5001 (2022/08/31 14:00 to 2022/08/31 17:00 not recurring)
+         @ UTSRC-LT51
    > 5.[E] AC5001 (2022/09/07 14:00 to 2022/09/07 17:00 not recurring)
+         @ UTSRC-LT51
    > 6.[E] AC5001 (2022/09/14 14:00 to 2022/09/14 17:00 not recurring)
-   > 7.[E] AC5001 (2022/09/21 14:00 to 2022/09/21 17:00 not recurring)
-   > 8.[E] AC5001 (2022/09/28 14:00 to 2022/09/28 17:00 not recurring)
-   > 9.[E] AC5001 (2022/10/05 14:00 to 2022/10/05 17:00 not recurring)
-   > 10.[E] AC5001 (2022/10/12 14:00 to 2022/10/12 17:00 not recurring)
-   > 11.[E] AC5001 (2022/10/19 14:00 to 2022/10/19 17:00 not recurring)
-   > 12.[E] AC5001 (2022/10/26 14:00 to 2022/10/26 17:00 not recurring)
-   > 13.[E] AC5001 (2022/11/02 14:00 to 2022/11/02 17:00 not recurring)
-   > 14.[E] CS2100 (2022/08/26 16:00 to 2022/08/26 17:00 not recurring)
-   > 15.[E] CS2100 (2022/09/02 16:00 to 2022/09/02 17:00 not recurring)
-   > 16.[E] CS2100 (2022/09/09 16:00 to 2022/09/09 17:00 not recurring)
-   > 17.[E] CS2100 (2022/09/16 16:00 to 2022/09/16 17:00 not recurring)
-   > 18.[E] CS2100 (2022/09/23 16:00 to 2022/09/23 17:00 not recurring)
-   > 19.[E] CS2100 (2022/09/30 16:00 to 2022/09/30 17:00 not recurring)
-   > 20.[E] CS2100 (2022/10/07 16:00 to 2022/10/07 17:00 not recurring)
-   > 21.[E] CS2100 (2022/10/14 16:00 to 2022/10/14 17:00 not recurring)
-   > 22.[E] CS2100 (2022/10/21 16:00 to 2022/10/21 17:00 not recurring)
-   > 23.[E] CS2100 (2022/10/28 16:00 to 2022/10/28 17:00 not recurring)
-   > 24.[E] CS2100 (2022/11/04 16:00 to 2022/11/04 17:00 not recurring)
+         @ UTSRC-LT51
+   > 7.[E] AC5001 (2022/09/28 14:00 to 2022/09/28 17:00 not recurring)
+         @ UTSRC-LT51
+   > 8.[E] AC5001 (2022/10/05 14:00 to 2022/10/05 17:00 not recurring)
+         @ UTSRC-LT51
+   > 9.[E] AC5001 (2022/10/12 14:00 to 2022/10/12 17:00 not recurring)
+         @ UTSRC-LT51
+   > 10.[E] AC5001 (2022/10/19 14:00 to 2022/10/19 17:00 not recurring)
+         @ UTSRC-LT51
+   > 11.[E] AC5001 (2022/10/26 14:00 to 2022/10/26 17:00 not recurring)
+         @ UTSRC-LT51
+   > 12.[E] AC5001 (2022/11/02 14:00 to 2022/11/02 17:00 not recurring)
+         @ UTSRC-LT51
+   > 13.[E] AC5001 (2022/11/09 14:00 to 2022/11/09 17:00 not recurring)
+         @ UTSRC-LT51
+   > 14.[E] CS2100 (2022/08/26 10:00 to 2022/08/26 11:00 not recurring)
+         @ COM1-0114
+   > 15.[E] CS2100 (2022/09/02 10:00 to 2022/09/02 11:00 not recurring)
+         @ COM1-0114
+   > 16.[E] CS2100 (2022/09/09 10:00 to 2022/09/09 11:00 not recurring)
+         @ COM1-0114
+   > 17.[E] CS2100 (2022/09/16 10:00 to 2022/09/16 11:00 not recurring)
+         @ COM1-0114
+   > 18.[E] CS2100 (2022/09/30 10:00 to 2022/09/30 11:00 not recurring)
+         @ COM1-0114
+   > 19.[E] CS2100 (2022/10/07 10:00 to 2022/10/07 11:00 not recurring)
+         @ COM1-0114
+   > 20.[E] CS2100 (2022/10/14 10:00 to 2022/10/14 11:00 not recurring)
+         @ COM1-0114
+   > 21.[E] CS2100 (2022/10/21 10:00 to 2022/10/21 11:00 not recurring)
+         @ COM1-0114
+   > 22.[E] CS2100 (2022/10/28 10:00 to 2022/10/28 11:00 not recurring)
+         @ COM1-0114
+   > 23.[E] CS2100 (2022/11/04 10:00 to 2022/11/04 11:00 not recurring)
+         @ COM1-0114
+   > 24.[E] CS2100 (2022/11/11 10:00 to 2022/11/11 11:00 not recurring)
+         @ COM1-0114
 ____________________________________________________________
 ~~~
 ~~~
 Showing schedule for semester 1 and week 7
-
+____________________________________________________________
+There are no events!
+____________________________________________________________
 TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDAY         |SATURDAY       |SUNDAY         |
 ----------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 08:00     |               |               |               |               |               |               |               |
@@ -231,11 +259,11 @@ TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDA
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 09:30     |               |               |               |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-10:00     |               |               |               |               |               |               |               |
+10:00     |               |               |               |               |CS2100         |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-10:30     |               |               |               |               |               |               |               |
+10:30     |               |               |               |               |CS2100         |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-11:00     |               |               |               |               |               |               |               |
+11:00     |               |               |               |               |CS2100         |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 11:30     |               |               |               |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
@@ -247,7 +275,7 @@ TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDA
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 13:30     |               |               |               |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-14:00     |               |               |               |               |               |               |               |
+14:00     |               |               |AC5001         |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 14:30     |               |               |AC5001         |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
@@ -257,11 +285,37 @@ TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDA
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 16:00     |               |               |AC5001         |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-16:30     |               |               |AC5001         |               |CS2100         |               |               |
+16:30     |               |               |AC5001         |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
-17:00     |               |               |               |               |               |               |               |
+17:00     |               |               |AC5001         |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 17:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+18:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+18:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+19:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+19:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+20:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+20:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+21:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+21:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+22:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+22:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+23:00     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+23:30     |               |               |               |               |               |               |               |
+          +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
+23:59     |               |               |               |               |               |               |               |
           +---------------+---------------+---------------+---------------+---------------+---------------+---------------+
 
 ____________________________________________________________
@@ -277,6 +331,10 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 > when Editing the event, User need to rewrite the complete time information including the parts that they do not what to change
 >
 > the format is the same as it in add command
+> 
+> Modification of specific module slots (tutorial, lecture, etc) are allowed in the event of public holidays/NUS Well Being day. This ensures that users have full control over their tiemtable and can make easy edits if their professor or teaching assistance decides to change the day/time slot.
+> 
+> Modifications can also be made to move slots (tutorial, lecture, etc) to after semester boundaries. This is normal behaviour as we give users full control over their timetable
 
 * sd and ed must be of the format YYYY/MM/DD
 * e, sd and st are compulsory fields
@@ -313,7 +371,7 @@ Expected outcome:
 
 ### Saving Data
 NusPlanner data are saved to the hard drive automatically after the `bye` command to quit it. There is no need to save manually.
-
+Please note that data will only be saved if application closes as per normal (not crashed or closed with Cntrl + C).
 ### Editing the data file
 Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
 
@@ -328,6 +386,17 @@ NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored i
 
 **A**: Java ARchive, also known as JAR, is a container that groups multiple small files to enable efficient execution, which is similar to a ZIP file.
 
+**Q**: How can I force quit the application?
+
+**A**: We have intentionally left in Cntrl + C command in this event of emergencies like this. 
+
+**Q**: Why doesn't the application save the semester I am in?
+
+**A**: We have intentionally made NUSPlanner to work this way so that users will not be restricted in planning the semester they are currently in only. For example, students may want to plan for their future timetable in semester 2, while currently in semester 1.
+
+**Q**: Why doesn't the application stop me from adding events to dates that has already passed?
+
+**A**: NUSPlanner provides users with the flexibility and full control over the timetable and does not stop users from adding events on dates that have passed.
 
 **Q**: Where can I report bugs I found while using NUSPlanner?
 

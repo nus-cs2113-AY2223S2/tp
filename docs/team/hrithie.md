@@ -13,6 +13,24 @@ NUSPlanner is a user-friendly desktop application designed for NUS students to e
     * Justification: This feature is essential to our application as it enables the execution of various actions based on user input
     * Highlight: Future addition of new commands is made easy by this implementation
 
+* **New Feature**: Implement Add Module slots
+  * What it does: Requests for the semester user is in and only allows user to select module and slots that are available within that particular semester
+  * Justification: This is a core feature to enable users to add modules from modules displayed on NUSMods that have been extracted by my team member, Matthew
+  * Highlight: User is able to select specific slots based on the module code, class number and lecture type. This feature supports all possible lesson types as follows:
+
+| Lesson name                | Name on NUSMODS | Lesson type to input into Command line |
+|----------------------------|-----------------|----------------------------------------|
+| Lecture                    | LEC             | `LEC`                                  |
+| Sectional Teaching         | SEC             | `SEC`                                  |
+| Design Lecture             | DLEC            | `DLEC`                                 |
+| Recitation                 | REC             | `REC`                                  |
+| Packaged Lecture           | PLEC            | `PLEC`                                 |
+| Seminar-Style Module Class | SEM             | `SEM`                                  |
+| Tutorial                   | TUT             | `TUT`                                  |
+| Tutorial Type 2            | TUT2            | `TUT2`                                 |
+| Packaged Tutorial          | PTUT            | `PTUT`                                 |
+| Laboratory                 | LAB             | `LAB`                                  |
+
 * **New Feature**: Add the user interface for events/modules
     * What it does: The selected modules and lessons of users can be viewed in a timetable format
     * Justification: The visual display enables users to check for any schedule conflicts and ensure that their planned events and selected modules fit their timetable
@@ -21,6 +39,11 @@ NUSPlanner is a user-friendly desktop application designed for NUS students to e
 * **New Feature**: Implement User Interface and Logger
   * What it does: Displays all texts that is shown to users, including banner welcome message, instructions, etc. Creates a log file for tracking purposes
   * Justification: The text display makes it easier for users to understand the application and interact with it accordingly. The logging is great for users/developers to check and ensure commands are being executed properly that their planned events and selected modules fit their timetable
+  * Highlight: -
+
+* **New Feature**: Implement Help command
+  * What it does: Displays user guide on the command line interface
+  * Justification: This command makes it easier for users to understand how the application commands work without having to open another tab to refer to the user guide
   * Highlight: -
 
 ### Contributions to User Guide:
@@ -38,6 +61,7 @@ NUSPlanner is a user-friendly desktop application designed for NUS students to e
 * Contributed to product ideation, brainstorming user stories and key features
 * Use Github Projects task tracker to track my to-do list for every milestone
 * Assigned issues and updated labels for every milestone
+* Performed testing on our applications, proposed ideas on fixes and implemented fixes
 * Performed code review and merged Pull Requests for every team member
 
 ### Beyond the team:
