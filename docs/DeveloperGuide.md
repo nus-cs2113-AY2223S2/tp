@@ -15,7 +15,6 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
      - [Clear Command](#clear-command)
    - [Recipes](#recipes)
      - [Make Command](#make-command)
-     - [Recipe Detail Command](#recipe-detail-command)
      - [Recipe Possible Command](#recipe-possible-command)
      - [Recipe All Command](#recipe-all-command)
      - [Recipe Almost Command](#recipe-almost-command)
@@ -77,6 +76,12 @@ Given below is a quick overview of main components.
 * `Storage`: Read and write data from hard disk
 * `Command`: Specific commands for execution
 
+#### Program Flow
+- The `MealCompanionSession` controls access to the `UI`, `Parsing`, `Model`, and `Storage` components of the app
+- The user will send input to the `MealCompanionSession`.
+- The `MealCompanionSession` will parse the input to produce a `Command`, which will hook back into the
+`MealCompanionSession` to gain access to the other components when running
+
 ### Command Parsing
 
 The system of `Routable` classes is built to allow for a composable setup of commands and subcommands.
@@ -131,6 +136,24 @@ constructor.
 
 If extraction yields an exception, the exception will be passed up to the caller of `buildCommand()`.
 
+### Exception Handling
+
+We have 5 different custom exceptions thrown by our code:
+- `CommandRunException` - thrown only by `ExecutableCommand`s a problem occurs while running a command
+- `InvalidArgumentException` - thrown only by `ArgumentExtractor`s when an argument value is malformed
+- `InvalidCommandException` - thrown only by `Extractor`s when the command is malformed
+- `MealCompanionException` - thrown by code run outside the REPL (for example, loading save data)
+
+`CommandRunException`s and `InvalidCommandException`s are handled in the `MealCompanionSession`. The error message
+is printed for the user and the program will wait for the next command.
+
+`InvalidArgumentException` is never thrown outside the context of a `Extractor` calling its child `ArgumentExtractor`.
+The `Extractor` will always wrap the thrown `InvalidArgumentException` in an `InvalidCommandException`, which is
+handled as above.
+
+`MealCompanionException` should be handled by the caller of the function which throws it. We are in the process of
+shifting this responsibility away from the `ExecutableCommand`s.
+
 ### Ingredient Class
 
 Below shows the class diagram of how ingredients are being stored in our program
@@ -145,7 +168,9 @@ Below shows the class diagram of how recipes are being stored in our program
 
 ![RecipeUML.png](images%2FRecipeUML.png)
 
-The current `MealCompanionSession` would keep track of the `RecipeList` which is an ArrayList of `Recipe` objects.
+The current `MealCompanionSession` would keep track of a `RecipeList` which is an ArrayList of `Recipe` objects.
+
+###### [Back to table of contents](#table-of-contents)
 
 ## Implementation
 
@@ -227,23 +252,7 @@ The following sequence diagram shows how the Make Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-#### Recipe Detail Command
-
-The recipe command is facilitated by `RecipeDetailCommand`. 
-
-It requires `RecipeList` of `MealCompanionSession`. 
-
-The recipe commands takes in either a recipe index or a recipe name as parameter. The latter is resolved into the recipe's corresponding index number.
-
-The `Recipe` is retrieved from `RecipeList` and its details are outputted.
-
-The following sequence diagram shows how the Recipe Detail Command works:
-
-![RecipeDetailCommandSequence.png](images%2FRecipeDetailCommandSequence.png)
-
-###### [Back to table of contents](#table-of-contents)
-
-#### Recipe Possible Command
+### Recipe Possible Command
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
 
@@ -253,11 +262,11 @@ Given below is the only example usage scenario and how the recipe possible comma
 
 Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
 
-Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList` and `IngredientList` of `MealCompanionSession`.
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`,`IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
 
 Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
 
-Step 4: `Recipe` that can be made are outputted.
+Step 4: `Recipe` that can be made are returned from getPossibleRecipes function.
 
 The following sequence diagram shows how the Recipe Possible Command works:
 
@@ -277,7 +286,7 @@ Step 1: User wants to get the full list of recipes stored in the program. User c
 
 Step 2: `RecipeAllCommand` executes by retrieving the `RecipeList` of `MealCompanionSession`.
 
-Step 3: Every `Recipe` in `RecipeList` is outputted.
+Step 3: Every `Recipe` in `RecipeList` is formatted then outputted.
 
 The following sequence diagram shows how the Recipe All Command works:
 

@@ -30,14 +30,14 @@ MealCompanion is a one-stop solution to handling meal preparation, ingredient tr
 ### Contributions to the DG
 - Design of Recipe Class
 - Implementation of the following commands:
-  - Recipe Detail
   - Recipe Possible
   - Recipe All
 
 ### Contributions to team-based tasks
 - Set up skeleton DG for teammates to work on in a standardised manner
-- Set up several fundamental classes of the project, including Recipe, Instruction, RecipeList and InstructionList
+- Set up several fundamental classes of the project, including Recipe, Instruction, RecipeList and InstructionList for the team to use
 - Refactoring files and codes ([PR 82](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/82))
+- Created milestones and assigned issues to team members
 
 ### Review/mentoring contributions
 Reviewed

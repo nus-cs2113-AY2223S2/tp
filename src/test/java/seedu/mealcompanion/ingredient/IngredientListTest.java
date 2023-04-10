@@ -19,4 +19,20 @@ public class IngredientListTest {
         assertEquals(1, ingredients.findIndex("egg"));
         assertEquals(-1, ingredients.findIndex("bread"));
     }
+
+    //@@author ngyida
+    @Test
+    void testToString_correctStringFormat() {
+        IngredientList ingredients = new IngredientList();
+        try {
+            ingredients.add(new Ingredient("water", 100));
+            ingredients.add(new Ingredient("chicken", 2));
+        } catch (MealCompanionException e) {
+            System.out.println("Failed to create ingredients");
+            return;
+        }
+        String expectedString =
+                "1. 100 ml water" + System.lineSeparator() +  "2. 2 pieces chicken" + System.lineSeparator();
+        assertEquals(ingredients.toString(), expectedString);
+    }
 }
