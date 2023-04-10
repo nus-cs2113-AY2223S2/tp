@@ -45,7 +45,7 @@ The following below is the breakdown of my contributions to the team project Bro
 ensuring the working of the product.
 5. Helped with some parts of exception handling for SaveExpense and SaveBudget classes.
 6. Implemented **almost all** the [exception](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/exception) classes to determine the error messages displayed to users when invalid inputs are entered.
-7. Implemented the **entire** [Messages](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/common/Messages.java) class under the common package which contains the various messages to be displayed to user.
+7. Implemented the **almost all** the [Messages](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/common/Messages.java) class under the common package which contains the various messages to be displayed to user.
 8. Handled **almost all** the exceptions for the program to prevent crashing.
 Most of the exceptions handling are done in the Parser class.
 9. Implemented most of the JUnit tests for [ParserTest.java](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/test/java/seedu/brokeMan/parser/ParserTest.java).
