@@ -23,7 +23,7 @@ commands I have worked on.
 * Implemented the code to allow users to view their information
 
 `update` command: Allows the user to update their information stored.
-* Added methods to allow update command to handle updates to name, age and gender 
+* Added methods to allow update command to handle updates to name, age and gender
 
 `help` command: Allows the user to view a help menu that gives them a quick guide on how to use the program.
 * Abstracted print statements into UI
@@ -35,11 +35,19 @@ commands I have worked on.
 * Modified calculateCaloricNeeds method to factor in age and gender
 
 ### Contribution to team-based tasks
-- Created and implemented the `view` command
+- Created and implemented the `view` command to allow users to view their information
+- Enhanced `view` and `update` commands to allow for better user experience
+
+### Unit Testing
+- Wrote JUnit tests for the following commands: `ViewUserCommand`, `UpdateUserCommand`
+- Wrote JUnit tests for the following entities: `User`
 
 ### Enhancement to existing features
 * Modified `view` command to be able to take in one-liner inputs from the user to view their information
   * Shortens the process of user viewing their information
+
+* Modified `update` command to allow names to be longer than one word.
+  * Allows for freedom of choice in names for user.
 
 * Modified `update` command to be able to take in one-liner inputs from the user to view their information
   * Shortens the process of user updating their information
@@ -49,6 +57,7 @@ commands I have worked on.
 
 ## UG/DG
 * Added the introduction to the UG as well as a framework of explanation for the other members to build off
-* Added Documentation for the `view` command and `update` command
+* Added documentation for the `view` command and `update` command in user guide.
+* Added Sequence Diagrams and explanation for `view` and `update` command in developer guide.
 * Added explanation of program and user stories
 

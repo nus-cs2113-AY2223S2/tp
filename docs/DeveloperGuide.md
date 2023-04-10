@@ -585,15 +585,33 @@ Given below are instructions on how to test the application by yourself manually
 
 ### View user profile
 
-Test case: `view`
+Test case: `view /weight`
 
-Expected: Menu where user can input a value from 1 to 9 to view their current profile. User can then input 1 to continue viewing their profile or 2 to exit.
+Expected: Weight information will be shown. 
+
+Test case: `view /null`
+
+Expected: "Oops! Invalid field name /null for command view" message will be shown as /null fieldName does not exist.
 
 ### Update user profile
 
-Test case: `update`
+Test case: `update /weight 60`
 
-Expected: Menu where user can input a value from 1 to 7 to update their current profile. User can then input 1 to continue viewing their ofile or 2 to exit.
+Expected: Amount of weight needed to lose to hit target weight message as well as user settings successfully updated 
+message will be shown
+
+Test case: `update /null 60`
+
+Expected: "Oops! Invalid field name /null for command view" message will be shown as /null fieldName does not exist.
+
+Test case: `update /weight 800`
+
+Expected: "800 kg is an impossible value for /weight please enter a valid one!" message is shown as a weight of 800 kg
+is impossible to attain.
+
+Test case: `update /weight abc`
+
+Expected: "abc is not of valid format for /weight please try again!" message as weight only accepts numerical values.
 
 ### Adding a meal
 
