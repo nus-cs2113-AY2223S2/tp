@@ -157,6 +157,7 @@ It implements the following operations:
 - `RecipeList#getRecipeList()` - Get the recipe list.
 - `RecipeList#removeRecipe()` - Delete a recipe from the recipe list.
 - `RecipeList#clearRecipeList()` - Clear all recipes from the recipe list.
+- 
 #### Example Usage
 Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
 
@@ -196,6 +197,7 @@ The `Command` object will then be executed by calling the `Command#execute()` me
 The recipe find feature is facilitated by the `command`,`parser`,`recipe` package. 
 It implements the following operations:
 - `RecipeList#searchRecipeList()` - Find a recipe from the recipe list.
+
 #### Example Usage
 Given below is an example usage scenario and how the recipe find mechanism behaves at each step.
 
@@ -291,7 +293,7 @@ in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` c
 parse the user input, which returns a `Command` object of type `VIEW`. Under
 `Command#execute()`, this object will be executed.
 
-**Step 2** Under the `VIEW` case, the second part of the user's input `1` is parsed to an `int` to obtain the item
+**Step 2.** Under the `VIEW` case, the second part of the user's input `1` is parsed to an `int` to obtain the item
 number in the list. 
 
 **Step 3.** The method `RecipeList#getRecipeFromList()` is called to retrieve the desired recipe
