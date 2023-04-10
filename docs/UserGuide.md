@@ -710,7 +710,28 @@ __________________________________________________________________________
 
 <a name = "faq"></a>
 ## FAQ
-1. How do I transfer my
+1. **How do I transfer my data to another Computer?** <br />
+Answer: Extract the `data` folder found in your folder containing the MagusStock application. Install the MagusStock 
+JAR file in another computer following the same procedures as mentioned above, and transfer the `data` folder that you
+have just extracted into the empty folder containing the new MagusStock application. Data should be loaded properly.
+
+2. **Does the program save my data in the event of a crash?** <br />
+Answer: MagusStock saves your data at all points in time, provided that  the `autosave` function is turned `on`. 
+Turning the `autosave` function `off` will not result in your data being saved.
+
+3. **Do I need internet connection for MagusStock?** <br />
+Answer: MagusStock can be used offline, anywhere and at anytime. It does not depend on an online database or external
+applications for its data storage capability or functionalities.
+
+4. **How do I obtain a summary of commands inside the application?** <br />
+Answer: Upon launch of MagusStock, you can type `help` in the command line to obtain a table showing every single
+available command for the application.
+
+5. **I cannot seem to get the commands to work. It keeps returning an error message. Why?** <br />
+Answer: Ensure that the formatting of your commands are correct. Square brackets and curly brackets are not needed
+for command input, so make sure that your user input do not contain them. Conditions returned by the error messages
+should also be followed in order for the program to respond favourably to your command inputs.
+
 <a name = "command_summary"></a>
 ## Command Summary
 | Action                                                     | Format                                                                     |
