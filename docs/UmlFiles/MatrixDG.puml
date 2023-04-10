@@ -102,10 +102,11 @@ end
 
 Parser -> Calculator : result
 
-Calculator -> Ui : printResult(result)
-deactivate Calculator
 
+Calculator -> Ui : printResult(result)
 activate Ui
 deactivate Ui
+
+deactivate Calculator
 
 @enduml
