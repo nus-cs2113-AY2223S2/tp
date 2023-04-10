@@ -100,9 +100,8 @@ will be displayed
     <i>Figure 2: UML diagram for the parser component</i>
 </p>
 
-It must be noted that not all the existing parser commands are included in this sequence diagram for parsing, namely
-the mark, unmark and edit commands. This is because they have a similar sequence diagram as the functions parseAdd and 
-parseLendBorrow. The only difference is the condition, with the loop happening one, one and four time(s) respectively. 
+It must be noted that not all the existing parser commands are included in this sequence diagram for parsing as other commands have a similar sequence diagram as the commands `exit` and 
+`parseLendBorrow`. The only difference is the condition and the number of times the loop occurs for each separate command. 
 
 
 ### 3.3. Expenditure Categories
@@ -168,7 +167,7 @@ The `Command` component is represented by the `command` package. The `command` p
 | `SetBudgetCommand`                                                                                                                                                                                                                                                                                  |                                                                               Class contains the operations in setting an amount of money users would like to budget.                                                                               |
 | `ShowRatesCommand`                                                                                                                                                                                                                                                                                  |                                                                                Contains the fixed conversion rates used when toggling between different currencies.                                                                                 |
 | `SortCommand`                                                                                                                                                                                                                                                                                       |                                                                         Class contains the operations pertaining to sorting the list of expenditures by amount or by date.                                                                          |
-| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                     |
+| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                                            Class contains the operation pertaining to viewing the date and type of the expenditure list.                                                                            |
 
 Below represents the UML class diagram representing all the command classes that instantiates an expenditure record:
 
@@ -835,7 +834,65 @@ Expected :
 ```
 Failed to check! Please check the format and try again!
 ```
+#### Mark/Unmark accommodation or tuition expenditures
+- Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
+The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
+following the `Adding a record` documentation.
 
+1. Marking an expenditure
+- Mark indicates that the expenditure has been paid, otherwise the expenditure will be interpreted as unpaid.
+- Prerequisite: Accommodation expenditure of such is stored at the first index of the list:
+```
+1. [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.00 || Description: NUS
+```
+
+Test case 1:
+```
+mark 1
+```
+Expected : 
+```
+Marked your expenditure!
+```
+
+Test case 2 (Attempt to mark other expenditures that are not accommodation or tuition):
+```
+mark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+
+Test case 3:
+```
+mark 1
+```
+Expected :
+```
+Sorry! This expenditure is already marked!
+```
+
+2. Unmarking an expenditure
+- Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances.
+
+Test Case 1:
+```
+unmark 1
+```
+Expected :
+```
+Unmarked your expenditure!
+```
+Test case 2 (Attempt to unmark other expenditures that are not accommodation or tuition):
+```
+unmark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+2. 
 #### Find keyword
 1. Finding keywords under the descriptions column in their list of expenditures
 
