@@ -6,17 +6,17 @@ MealCompanion is a one-stop solution to a cookbook, ingredient tracker and meal 
 
 Given below are my contributions to the project:
 
-* New Feature: Added a `recipe almost` command  
+* New Feature: Added a `recipe almost` command
   <br/><br/>
   * What it does: allows users to see a list of recipes that they can almost make (i.e. missing a maximum of 3 ingredients)
-  * Justification: improves the product by giving users a wider range of potential recipes that they can make  
+  * Justification: improves the product by giving users a wider range of potential recipes that they can make
   <br/><br/>
-* New Feature: Added a `recipe need` command  
+* New Feature: Added a `recipe need` command
   <br/><br/>
   * What it does: allows users to see a list of ingredients that they are missing to make a recipe
   * Justification: improves the product by allowing users to easily find out what additional ingredients they need to make a specific recipe
   <br/><br/>
-* New Feature: Added a `recipe find` command that
+* New Feature: Added a `recipe find` command
   <br/><br/>
   * What it does: allows users to search for a recipe by its name
   * Justification: improves the product by allowing users to easily find a specific recipe or type of recipe and it's/their index(es) by a portion of the name
