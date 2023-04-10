@@ -53,30 +53,32 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 
 ## Architecture
 
-![Architecture Diagram.png](diagrams%2FArchitecture%20Diagram.png)
+![Architecture Diagram.png](diagrams%2FMiscellaneous%2FArchitecture%20Diagram.png)
 
 The above _**Architecture**_ diagram gives a high-level overall of the program.
 
 **Main Components of system**
 
-1. Duke : Taking user inputs
-2. Parser : Processes and Executes User Commands
-3. UI : Prints out messages to user
-4. ModuleStorage : Processes and stores module mappings
-5. DataReader
+1. SEPHelper : Taking user inputs
+2. Parser : Processes user inputs and creates Command Class objects accordingly
+3. Command : Executes functionalities  
+4. UI : Prints out messages to user
+5. ModuleStorage : Processes and stores module mappings
+6. DataReader : Reads and provides module mapping information and partner universities information
+7. Budget Storage : Processes and stores budget information
+8. Deadline Storage: Processes and stores deadline information
 
-**1. Duke**
+**1. SEPHelper**
 
-Duke holds an instance of each of the component mentioned above.
-It is the starting point of our program and takes in user inputs.
-Duke executes commands based on an object of class "Command" after Parser processes user inputs and
-returns a Command object back to Duke.
+SEPHelper is the starting point of our program and takes in user inputs.
+SEPHelper executes commands based on an object of class "Command" passed to it after Parser processes user inputs and
+returns a Command object back to SEPHelper.
 
-Sequence Diagram for Duke:
+Sequence Diagram for SEPHelper:
 
 ![DukeHighLevel.png](diagrams%2FDukeHighLevel.png)
 
-Reference Diagram for Duke initialisation:
+Reference Diagram for SEPHelper initialisation:
 
 ![DukeInitialisation.png](diagrams%2FDukeInitialisation.png)
 
@@ -84,27 +86,34 @@ Reference Diagram for Duke initialisation:
 **2. Parser**
 
 Parser class serves to process raw user input and map it to one of the various commands.
-Parser class will return an object of class "Command", which will be used by Duke to execute the user's commands.
+Parser class will return an object of class "Command", which will be used by SEPHelper to execute the user's commands.
 
-**3. UI** (**outdated**)
+**3. Command**
+
+Command class serves to execute the functionalities of the program.
+It is an abstract class inherited by other various commands, where each of those commands have their
+own functionality to execute.
+
+**4. UI** 
 
 UI class is in charge of the majority of the print functions present in the program.
-It is instantiated once in both Parser and Duke classes, where it's print functions are utilized
-to print outputs to the User.
+It's print functions are utilized by many other components in order to print outputs to the user.
 
-
-**4. ModuleStorage**
+**5. Module Storage**
 
 ModuleStorage class holds an ArrayList of modules that the user has selected.
 It saves the user's modules to an external .txt file every time the module list is altered,
 and reads from the same .txt file when the program is first booted up.
 
-**5. DataReader**
+**6. DataReader**
 
 DataReader class reads two external .txt files to acquire the list of Partner Universities and list
 of Modules available in the PUs, and provides this information to other components.
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+**7. Budget Storage**
+
+**8. Deadline Storage**
+
 
 ### ModuleStorage
 
@@ -304,7 +313,7 @@ Sequence Diagram of Add Module Command.
 according to the correct printing length. _Refer to Reference Block for SortModulesAccording for more info._
 [SortModulesAccordingToPrintingLength](#reference-block-for-sortmodulesaccording-to-printing-length-function)
 5. ModuleStorage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
-6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
+6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to SEPHelper
    
 
 **Future Development**
@@ -404,7 +413,7 @@ called.
 3. DeadlineStorage class will then add the deadline to its ArrayList of saved deadlines.
 4. DeadlineStorage class will then initialise an instance of FileWriter to append the newly added deadline to the txt
    file.
-5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to Duke.
+5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to SEPHelper.
 
 ### Delete Deadline Command
 The delete deadline command removes a deadline from the user's list of deadlines that is specified by the user.
