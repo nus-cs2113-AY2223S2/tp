@@ -106,7 +106,7 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If it is already marked then a corresponding **`showUserMessage`** is called.
 
 #### unmark()
-![img_22.png](img_22.png)`  aqΩΩ
+![img_22.png](img_22.png)`  
 1. **`unmark`** loops through arraylist appointments and checks if ID is present and finds the appointment index.
 2. If appointments is not previously unmarked , it calls **`isDone`** and sets the value to false and **`showUserMessage`** is called.
 3. If it is already unmarked then a corresponding **`showUserMessage`** is called.
