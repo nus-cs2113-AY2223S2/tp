@@ -1,0 +1,54 @@
+@startuml architecture
+!include style.puml
+
+allow_mixing
+skinparam classFontColor automatic
+skinparam classHeaderBackgroundColor MODEL_COLOR_T4
+
+database Storage STORAGE_COLOR {
+
+}
+
+class UI UI_COLOR {
+
+}
+
+class User {
+
+}
+
+class Food {
+
+}
+
+class Meal {
+
+}
+
+class Command LOGIC_COLOR {
+
+}
+
+class LifeTracker STORAGE_COLOR_T1 {
+
+}
+
+LifeTracker -up-> UI
+LifeTracker -right-> Storage
+
+actor user USER_COLOR
+
+user ..> UI
+UI -> Command
+
+Storage ..> Meal
+Storage ..> Food
+Storage ..> User
+Meal *--left-- "1..*" Food
+
+Command --> User
+Command --> Meal
+Command --> Storage
+
+
+@enduml

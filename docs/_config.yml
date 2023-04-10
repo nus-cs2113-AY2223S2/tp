@@ -1,0 +1,7 @@
+# basic options
+title: LifeTracker
+description: Get your desired body shape with this application!
+
+# Build settings
+markdown: kramdown
+remote_theme: benbalter/retlab

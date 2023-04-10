@@ -3,6 +3,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'jacoco'
 }
 
 repositories {
@@ -12,6 +13,7 @@ repositories {
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    implementation 'com.opencsv:opencsv:5.6'
 }
 
 test {
@@ -29,11 +31,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.lifetracker.LifeTracker"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "lifeTracker"
     archiveClassifier = null
 }
 
@@ -43,4 +45,18 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDirectory = file("$buildDir/jacoco")
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
 }

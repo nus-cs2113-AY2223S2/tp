@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="366px" preserveAspectRatio="none" style="width:342px;height:366px;background:#FFFFFF;" version="1.1" viewBox="0 0 342 366" width="342px" zoomAndPan="magnify"><defs/><g><!--MD5=[cf25d34b6f9695ab689953484c0b6ae1]
+entity Storage--><g id="elem_Storage"><path d="M191,237.5 C191,227.5 226,227.5 226,227.5 C226,227.5 261,227.5 261,237.5 L261,264.1094 C261,274.1094 226,274.1094 226,274.1094 C226,274.1094 191,274.1094 191,264.1094 L191,237.5 " fill="#A38300" style="stroke:#181818;stroke-width:0.5;"/><path d="M191,237.5 C191,247.5 226,247.5 226,247.5 C226,247.5 261,247.5 261,237.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="50" x="201" y="266.0332">Storage</text></g><!--MD5=[df76e760f2062188d44f98c21a88999b]
+class UI--><g id="elem_UI"><rect codeLine="11" fill="#1D8900" height="26.0986" id="UI" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="63" y="141.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="12" x="82" y="159.6318">UI</text></g><!--MD5=[3fd616f346a44cd59a91eb10b19e157c]
+class User--><g id="elem_User"><rect codeLine="15" fill="#F1F1F1" height="26.0986" id="User" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="115" y="334.5"/><rect fill="#51000A" height="26.0986" rx="2.5" ry="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="115" y="334.5"/><rect fill="#51000A" height="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="115" y="358.0986"/><rect codeLine="15" fill="none" height="26.0986" id="User" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="115" y="334.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="29" x="125.5" y="352.6318">User</text></g><!--MD5=[5b4460e97222b45c9cf25eacd4639dbc]
+class Food--><g id="elem_Food"><rect codeLine="19" fill="#F1F1F1" height="26.0986" id="Food" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="201" y="334.5"/><rect fill="#51000A" height="26.0986" rx="2.5" ry="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="201" y="334.5"/><rect fill="#51000A" height="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="201" y="358.0986"/><rect codeLine="19" fill="none" height="26.0986" id="Food" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="201" y="334.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="33" x="209.5" y="352.6318">Food</text></g><!--MD5=[46a869ae9a533cd0f135276579d5ca7a]
+class Meal--><g id="elem_Meal"><rect codeLine="23" fill="#F1F1F1" height="26.0986" id="Meal" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="286" y="334.5"/><rect fill="#51000A" height="26.0986" rx="2.5" ry="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="286" y="334.5"/><rect fill="#51000A" height="2.5" style="stroke:#51000A;stroke-width:1.0;" width="50" x="286" y="358.0986"/><rect codeLine="23" fill="none" height="26.0986" id="Meal" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="50" x="286" y="334.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="30" x="296" y="352.6318">Meal</text></g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command--><g id="elem_Command"><rect codeLine="27" fill="#3333C4" height="26.0986" id="Command" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="70" x="169" y="141.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="64" x="172" y="159.6318">Command</text></g><!--MD5=[b5527d90ceafaed760a28dc82673bb27]
+class LifeTracker--><g id="elem_LifeTracker"><rect codeLine="31" fill="#FFE374" height="26.0986" id="LifeTracker" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="78" x="7" y="238"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="72" x="10" y="256.1318">LifeTracker</text></g><!--MD5=[8fc3522a43f8c7199df5e09e5bb0188e]
+entity user--><g id="elem_user"><ellipse cx="88" cy="14" fill="#000000" rx="8" ry="8" style="stroke:#000000;stroke-width:0.5;"/><path d="M88,22 L88,49 M75,30 L101,30 M88,49 L75,64 M88,49 L101,64 " fill="none" style="stroke:#000000;stroke-width:0.5;"/><text fill="#000000" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="28" x="74" y="78.6318">user</text></g><!--MD5=[14472b50e7f54e2908f6fe7b9f4337c1]
+reverse link UI to LifeTracker--><g id="link_UI_LifeTracker"><path codeLine="35" d="M80.28,172.88 C71.88,191.76 58.69,221.45 51.36,237.94 " fill="none" id="UI-backto-LifeTracker" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="82.51,167.85,75.2033,174.454,80.482,172.4202,82.5157,177.6989,82.51,167.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[1561ff13e435ecdbf8ade998c9ca2f38]
+link LifeTracker to Storage--><g id="link_LifeTracker_Storage"><path codeLine="36" d="M85.02,251 C118.48,251 151.93,251 185.39,251 " fill="none" id="LifeTracker-to-Storage" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="190.76,251,181.76,247,185.76,251,181.76,255,190.76,251" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[7f089046b4f57836c07a1313d3eb59fd]
+link user to UI--><g id="link_user_UI"><path codeLine="40" d="M88,81.71 C88,100.16 88,121.57 88,136.17 " fill="none" id="user-to-UI" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="88,141.23,92,132.23,88,136.23,84,132.23,88,141.23" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[d064d464e10cec1c3f4b09719e30bc7d]
+link UI to Command--><g id="link_UI_Command"><path codeLine="41" d="M113.38,154.5 C130.16,154.5 146.95,154.5 163.74,154.5 " fill="none" id="UI-to-Command" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="168.95,154.5,159.95,150.5,163.95,154.5,159.95,158.5,168.95,154.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[de252ee1cc3e2dba36a8e9c4d18e7256]
+link Storage to Meal--><g id="link_Storage_Meal"><path codeLine="43" d="M246.58,274.88 C262.03,292.05 282.8,315.14 296.53,330.41 " fill="none" id="Storage-to-Meal" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="300.2,334.5,297.1525,325.1345,296.8552,330.7835,291.2061,330.4862,300.2,334.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[789538ac1ea9682bb8948e416329213c]
+link Storage to Food--><g id="link_Storage_Food"><path codeLine="44" d="M226,274.88 C226,291.61 226,313.96 226,329.22 " fill="none" id="Storage-to-Food" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="226,334.5,230,325.5,226,329.5,222,325.5,226,334.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[0e297f9fd8c48da6278b7cc305e2b719]
+link Storage to User--><g id="link_Storage_User"><path codeLine="45" d="M205.18,274.88 C189.55,292.05 168.53,315.14 154.64,330.41 " fill="none" id="Storage-to-User" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="150.92,334.5,159.946,330.559,154.2947,330.8107,154.0431,325.1594,150.92,334.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[179648b2ecbf26d5293900b14bb1b1f6]
+link Food to Meal--><g id="link_Food_Meal"><path codeLine="46" d="M251.23,347.5 C258.34,347.5 265.45,347.5 272.56,347.5 " fill="none" id="Food-to-Meal" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="285.79,347.5,279.79,343.5,273.79,347.5,279.79,351.5,285.79,347.5" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="257.9507" y="343.0479">1..*</text></g><!--MD5=[50c7a912baaa622e2ba76a51ffae1ef2]
+link Command to User--><g id="link_Command_User"><path codeLine="48" d="M198.47,167.56 C192.08,181.73 181.51,206.03 174,227.5 C161.53,263.14 150.16,305.91 144.26,329.24 " fill="none" id="Command-to-User" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="143.01,334.19,149.0948,326.4457,144.2361,329.3427,141.3391,324.4839,143.01,334.19" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[a45ec3bd279fc895900c0851160fe591]
+link Command to Meal--><g id="link_Command_Meal"><path codeLine="49" d="M221.21,167.55 C238.35,180.46 264.2,202.49 279,227.5 C298.34,260.2 306.25,304.79 309.28,329.04 " fill="none" id="Command-to-Meal" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="309.88,334.18,312.7995,324.7738,309.295,329.2143,304.8544,325.7098,309.88,334.18" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ba7fe7864d0b99b4c256f013fbdb4a3f]
+link Command to Storage--><g id="link_Command_Storage"><path codeLine="50" d="M206.88,167.85 C210.07,181.57 215.33,204.16 219.52,222.18 " fill="none" id="Command-to-Storage" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="220.68,227.13,222.5455,217.4594,219.5515,222.259,214.752,219.265,220.68,227.13" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[72950b7ae050a4e2c91ced014a1401d2]
+@startuml architecture
+!include style.puml
+
+allow_mixing
+skinparam classFontColor automatic
+skinparam classHeaderBackgroundColor MODEL_COLOR_T4
+
+database Storage STORAGE_COLOR {
+
+}
+
+class UI UI_COLOR {
+
+}
+
+class User {
+
+}
+
+class Food {
+
+}
+
+class Meal {
+
+}
+
+class Command LOGIC_COLOR {
+
+}
+
+class LifeTracker STORAGE_COLOR_T1 {
+
+}
+
+LifeTracker -up-> UI
+LifeTracker -right-> Storage
+
+actor user USER_COLOR
+
+user ..> UI
+UI -> Command
+
+Storage ..> Meal
+Storage ..> Food
+Storage ..> User
+Meal *- -left- - "1..*" Food
+
+Command - -> User
+Command - -> Meal
+Command - -> Storage
+
+
+@enduml
+
+@startuml architecture
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+
+allow_mixing
+skinparam classFontColor automatic
+skinparam classHeaderBackgroundColor #51000A
+
+database Storage #A38300 {
+
+}
+
+class UI #1D8900 {
+
+}
+
+class User {
+
+}
+
+class Food {
+
+}
+
+class Meal {
+
+}
+
+class Command #3333C4 {
+
+}
+
+class LifeTracker #FFE374 {
+
+}
+
+LifeTracker -up-> UI
+LifeTracker -right-> Storage
+
+actor user #000000
+
+user ..> UI
+UI -> Command
+
+Storage ..> Meal
+Storage ..> Food
+Storage ..> User
+Meal *- -left- - "1..*" Food
+
+Command - -> User
+Command - -> Meal
+Command - -> Storage
+
+
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>
