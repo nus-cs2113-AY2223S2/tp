@@ -6,26 +6,26 @@ skinparam classAttributeIconSize 0
 
 
 class Ui {
-+showLine()
-+showWelcome()
-+showGuide()
-+showExitMessage()
-+showHelpText()
-+showSuccessfulDeletionMessage()
-+showSuccessfulAdditionMessage(String company)
-+showSuccessfulPurgingMessage()
-+showSampleDataLoadedMessage()
-+showSuccessfulConfirmedMessage()
-+showSuccessfulUnconfirmedMessage()
-+showExistingConfirmationMessage()
-+showExistingUnconfirmationMessage()
-+showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList)
-+showCompanyFoundMessage(Company company, int idx)
-+showCompanyNotFoundMessage(String targetCompany)
-+showVenueSelectionMessage(String venue)
-+showEventNameSelectionMessage(String eventName)
-+invalidInputFormatErrorMessage(String invalidPart)
-+invalidInputFormatErrorMessage(String invalidPart, String expectedInput)
++showLine() : void
++showWelcome() : void
++showGuide() : void
++showExitMessage() : void
++showHelpText() : void
++showSuccessfulDeletionMessage() : void
++showSuccessfulAdditionMessage(company :String)
++showSuccessfulPurgingMessage() : void
++showSampleDataLoadedMessage() : void
++showSuccessfulConfirmedMessage() : void
++showSuccessfulUnconfirmedMessage() : void
++showExistingConfirmationMessage() : void
++showExistingUnconfirmationMessage() : void
++showSortedCompanyList(industry :String, sortedCompanyList :ArrayList<Company>) : void
++showCompanyFoundMessage(company :Company, idx :int) : void
++showCompanyNotFoundMessage(targetCompany :String) : void
++showVenueSelectionMessage(venue: String) : void
++showEventNameSelectionMessage(eventName :String ) : void
++invalidInputFormatErrorMessage(invalidPart :String ) : void
++invalidInputFormatErrorMessage(invalidPart :String, expectedInput :String) : void
 }
 
 
