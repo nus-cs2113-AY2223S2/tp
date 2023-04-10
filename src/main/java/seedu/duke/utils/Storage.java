@@ -40,7 +40,7 @@ public class Storage {
      */
     public static synchronized Inventory readCSV(String filePath) {
         inventory = new Inventory();
-        Types.FileHealth fileHealth = checkFileValid(filePath, true);
+        Types.FileHealth fileHealth = checkFileValid(inventory, filePath, true);
         switch (fileHealth) {
         case EMPTY:
             //fallthrough
@@ -222,7 +222,7 @@ public class Storage {
             BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
             String line = reader.readLine();
             AlertList tempAlertList = new AlertList();
-            Types.FileHealth fileHealth = checkFileValid(Types.ALERTFILEPATH, false);
+            Types.FileHealth fileHealth = checkFileValid(inventory, Types.ALERTFILEPATH, false);
             switch (fileHealth) {
             case EMPTY:
                 //fallthrough
@@ -271,14 +271,15 @@ public class Storage {
      * @param path File path
      * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
      */
-    public static synchronized Types.FileHealth checkFileValid(final String path, boolean isInventoryData) {
+    public static synchronized Types.FileHealth checkFileValid(Inventory inventory, final String path,
+                                                               boolean isInventoryData) {
         if (isInventoryData) {
             return checkFileValidSession(path);
         }
-        return checkFileValidAlert(path);
+        return checkFileValidAlert(inventory, path);
     }
 
-    private static Types.FileHealth checkFileValidAlert(String path) {
+    private static Types.FileHealth checkFileValidAlert(Inventory inventory, String path) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line = reader.readLine();
@@ -359,7 +360,7 @@ public class Storage {
             }
             reader.close();
         } catch (IOException ioException) {
-            return Types.FileHealth.EMPTY;
+            return Types.FileHealth.MISSING;
         } catch (NumberFormatException numberFormatException) {
             return Types.FileHealth.CORRUPT;
         }
@@ -372,12 +373,12 @@ public class Storage {
      *
      * @return String that will be printed which indicates the state of the file (MISSING/CORRUPT/OK/UNKNOWN)
      */
-    public static synchronized String checkDataFileExist(boolean isInventoryData) {
+    public static synchronized String checkDataFileExist(Inventory inventory, boolean isInventoryData) {
         Types.FileHealth fileHealth;
         if (isInventoryData) {
-            fileHealth = checkFileValid(Types.SESSIONFILEPATH, true);
+            fileHealth = checkFileValid(inventory, Types.SESSIONFILEPATH, true);
         } else {
-            fileHealth = checkFileValid(Types.ALERTFILEPATH, false);
+            fileHealth = checkFileValid(inventory, Types.ALERTFILEPATH, false);
         }
         switch (fileHealth) {
         case OK:
