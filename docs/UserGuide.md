@@ -336,7 +336,7 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 
 Displays all expenditures in the expenditure list. Expenditure value shown can be set to desired currency value.
 
-**Format:** `list CURRENCY`     |
+**Format:** `list CURRENCY`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
@@ -415,7 +415,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 Displays list of the other currency available in MyLedger and their value against SGD.
 
-**Format:** `showrates`     |
+**Format:** `showrates`
 
 ## FAQ
 
