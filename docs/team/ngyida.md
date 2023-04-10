@@ -23,7 +23,7 @@ MealCompanion is a one-stop solution to handling meal preparation, ingredient tr
   - Recipe Possible for listing of recipes that can be made with existing ingredients
   - Recipe All for listing of all recipes
 
-### Contributions to the US
+### Contributions to the UG
 - Target Audience: "Who is Meal Companion for"
 - Upcoming Features
 
