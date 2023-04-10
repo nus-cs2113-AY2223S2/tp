@@ -11,7 +11,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
     * [Displaying class schedule :](#displaying-class-schedule--list_classes) `list_classes`
     * [Displaying upcoming class :](#displaying-upcoming-class--upcoming_class) `upcoming_class`
-    * [Displaying upcoming deadline :](#displaying-upcoming-class--upcoming_deadline) `upcoming_deadline`
+    * [Displaying upcoming deadline :](#displaying-upcoming-deadline--upcoming_deadline) `upcoming_deadline`
     * [Displaying upcoming event :](#displaying-upcoming-event--upcoming_event) `upcoming_event`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number>`
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
