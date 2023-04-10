@@ -8,7 +8,7 @@ Refer to the links below to try it out and learn more about ET.
 * [User Guide](UserGuide.md)
 * [Developer Guide](DeveloperGuide.md)
 * [About Us](AboutUs.md)
-  * [Bui Phuong Nam](team/BuiPhuongNam.md)
+  * [Bui Phuong Nam](team/arsdorintbp2003.md)
   * [Fan Zixian](team/FanZixian.md)
   * [GohJinWeiAaron](team/gohjw.md)
   * [Ju Can](team/ju-can.md)
