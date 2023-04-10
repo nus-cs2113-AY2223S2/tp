@@ -691,6 +691,8 @@ Therefore, it is a good idea to give this section a read if you want to familiar
 * [List all Orders](#list-all-orders)
 * [Refund an Order](#refund-an-order)
 
+<div style="page-break-after: always;"></div>
+
 ## Add an Order
 
 After adding your items to the menu, you can begin to take orders from your many customers with
