@@ -6,6 +6,7 @@ import seedu.duke.event.Event;
 import seedu.duke.exception.EmptyFieldException;
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.exception.RepeatedFieldsException;
+import seedu.duke.exception.NegativeNumberException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.EventDetailsStorage;
