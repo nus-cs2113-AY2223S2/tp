@@ -3,6 +3,7 @@
 
 # <span style="color:#00C34C">Linus Puah Jia He - Project Portfolio Page</span>
 ## <span style="color:#00A36C">Overview</span>
+
 BagPacker is a desktop Command Line Interface (CLI) application used to manage a user's packing list.
 It stores a packing list, edit the quantities packed and the total quantity packed of an item, and searches the packing list for items.
 It is written in Java, and has about 4k LoC.
@@ -13,6 +14,7 @@ It is written in Java, and has about 4k LoC.
 
 
 ### <span style="color:darkGreen">Code Contributed</span>
+
 2266 LOC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linuspuah&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
    - 628 lines documentation
    - 868 function-code
@@ -21,6 +23,7 @@ It is written in Java, and has about 4k LoC.
 ---
 
 ### <span style="color:darkGreen">Enhancements implemented</span>
+
 1. Added `ioHandler` package
    - Reading in from CLI in `Parser` class ([#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
    - Printing out to CLI in `Ui` class ([#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
@@ -41,11 +44,13 @@ It is written in Java, and has about 4k LoC.
 ---
 
 ### <span style="color:darkGreen">Contributions to the [UG](../UserGuide.md)</span>
+
 1. Update UG to include max integer supported by BagPacker ([#154](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/154))
 
 ---
 
 ### <span style="color:darkGreen">Contribution to the [DG](../DeveloperGuide.md)</span>
+
 1. Update user stories ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
 2. Add explanation of overall command mechanism for the whole application ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits)) 
 3. Add explanation for `Exceptions` ([#179](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/179/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b))
@@ -74,12 +79,14 @@ Managed internal deadlines for group tasking
 ---
 
 ### <span style="color:darkGreen">Review/mentoring contributions</span>
+
 - Maintain code standard before merging ([#139](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/139))
 - Suggest improvements to code ([#22](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22))
 
 ---
 
 ### <span style="color:darkGreen">Contributions to the Developer Guide (Extracts):</span>
+
 ![AddExistingItemDiagram.png](..%2Fdiagrams%2FAddExistingItemDiagram.png)![BagPackerClassDiagram.png](..%2Fdiagrams%2FBagPackerClassDiagram.png)![BagPackerSequenceDiagram.png](..%2Fdiagrams%2FBagPackerSequenceDiagram.png)
 ![ExceptionClassDiagram.png](..%2Fdiagrams%2FExceptionClassDiagram.png)![ExecutePackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecutePackCommandSequenceDiagram.png)![ExecuteUnpackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecuteUnpackCommandSequenceDiagram.png)
 ---
