@@ -24,18 +24,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StorageTest {
 
     private static final String ROUND_UP_WARNING = "Expense amount is rounded back to 2 decimal points by default.";
-    private static final String logo =
-            "*******     **********" + System.lineSeparator() +
-            "        *******     **********" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ******         ***" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        ***            ***" + System.lineSeparator() +
-            "        *******        ***" + System.lineSeparator() +
-            "        *******        ***" + System.lineSeparator() +
-            System.lineSeparator();
 
     public ExpenseList expenseList = new ExpenseList();
     public Storage storage = new Storage(expenseList);
@@ -60,7 +48,7 @@ class StorageTest {
     @Test
     public void moreDPWarning() throws IOException {
         ExpenseList testExpenses = storage.loadExpenses("src/test/moreDPRoundingWarning.json");
-        String expectedOutput = logo + "Welcome back!" + System.lineSeparator() +
+        String expectedOutput = "Welcome back!" + System.lineSeparator() +
 
                 "More than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
@@ -84,7 +72,7 @@ class StorageTest {
     @Test
     public void lessDPWarning() throws IOException {
         ExpenseList testExpenses = storage.loadExpenses("src/test/lessDPRoundingWarning.json");
-        String expectedOutput = logo + "Welcome back!" + System.lineSeparator() +
+        String expectedOutput = "Welcome back!" + System.lineSeparator() +
                 "Less than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
         String jsonString =

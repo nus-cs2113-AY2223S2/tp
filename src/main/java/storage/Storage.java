@@ -6,7 +6,6 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.MalformedJsonException;
 
-import common.WelcomeMessage;
 import data.Account;
 import data.Expense;
 import data.ExpenseList;
@@ -81,10 +80,8 @@ public class Storage {
             File f = new File(filePath);
             if (f.createNewFile()) {
                 // first time that the programme is being run, update welcome message later on
-                WelcomeMessage.printLogo();
                 System.out.println(INITIAL_WELCOME_MESSAGE);
             } else {
-                WelcomeMessage.printLogo();
                 System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
             }
         } catch (IOException e) {

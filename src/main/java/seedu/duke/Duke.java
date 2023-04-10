@@ -43,10 +43,8 @@ public class Duke {
     }
 
     public void run() {
+        WelcomeMessage.printLogo();
         Scanner in = new Scanner(System.in);
-        if (in.hasNextLine()) {
-            System.out.println("Hello " + in.nextLine());
-        }
         ParserAccount.initialize(in);
         WelcomeMessage.welcomeHelper();
 
