@@ -68,24 +68,9 @@ public class ParseAdd extends Parser {
             }
             direction = matcher.group(1);
             description = matcher.group(2);
-            if (description.contains("-")) {
-                logger.warning("unsupported description name");
-                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
-            }
-            if (description.trim().isEmpty()) {
-                logger.warning("unsupported description name");
-                throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
-            }
 
-            double exactAmount = Double.parseDouble(matcher.group(3));
-            if (exactAmount > MAX_AMOUNT) {
-                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
-            }
-            exactAmount = (int) (exactAmount * 100);
-            if (exactAmount == 0) {
-                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
-            }
-            amount = exactAmount / 100;
+            checkDescription();
+            setValue(matcher.group(3));
 
             if (flag == 0) {
                 logger.info("obtaining mandatory information");
@@ -100,6 +85,29 @@ public class ParseAdd extends Parser {
     }
 
     //@@author lil1n
+    private void checkDescription() throws RainyDayException {
+        if (description.contains("-")) {
+            logger.warning("unsupported description name");
+            throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
+        }
+        if (description.trim().isEmpty()) {
+            logger.warning("unsupported description name");
+            throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
+        }
+    }
+
+    private void setValue(String value) throws RainyDayException {
+        double exactAmount = Double.parseDouble(value);
+        if (exactAmount > MAX_AMOUNT) {
+            throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
+        }
+        exactAmount = (int) (exactAmount * 100);
+        if (exactAmount == 0) {
+            throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
+        }
+        amount = exactAmount / 100;
+    }
+
     private String setCategory(String input) throws RainyDayException {
         int flag = 0;
         Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(.*)");
