@@ -166,6 +166,40 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 break;
             case "lessonType":
                 lessonType = reader.nextString();
+                switch(lessonType){
+                case("Lecture"):
+                    lessonType = "LEC";
+                    break;
+                case("Sectional Teaching"):
+                    lessonType = "SEC";
+                    break;
+                case("Design Lecture"):
+                    lessonType = "DLEC";
+                    break;
+                case("Recitation"):
+                    lessonType = "REC";
+                    break;
+                case("Packaged Lecture"):
+                    lessonType = "PLEC";
+                    break;
+                case("Seminar-Style Module Class"):
+                    lessonType = "SEM";
+                    break;
+                case("Tutorial"):
+                    lessonType = "TUT";
+                    break;
+                case("Tutorial Type 2"):
+                    lessonType = "TUT2";
+                    break;
+                case("Packaged Tutorial"):
+                    lessonType = "PTUT";
+                    break;
+                case("Laboratory"):
+                    lessonType = "LAB";
+                    break;
+                default:
+                    break;
+                }
                 break;
             case "day":
                 day = reader.nextString();
