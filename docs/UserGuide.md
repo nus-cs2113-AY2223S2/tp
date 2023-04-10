@@ -144,7 +144,7 @@ For example, `add ground chicken /qty 300`.
 
 > **Note**: Look out for the new [`new ingredient`](#new-ingredient) feature coming out soon!
 
-![add1.png](images/add1.png)  
+![add2.png](images/add2.png)  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
 
 
@@ -152,7 +152,7 @@ For example, `add ground chicken /qty 300`.
 To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
 For example, `remove ground chicken /qty 100`.
 
-![remove1.png](images/remove1.png)  
+![remove2.png](images/remove2.png)  
 <sub>Fig 4: Sample of Remove Ingredients command with user input highlighted.</sub>
 
 <br>
@@ -165,7 +165,7 @@ For example, `remove ground chicken /qty 100`.
 ### List Ingredients
 In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list`.
 
-![ingredientlist1.png](images/ingredientlist1.png)  
+![ingredientlist2.png](images/ingredientlist2.png)  
 <sub>Fig 5: Sample of Ingredients List command with user input highlighted.</sub>
 
 
@@ -190,7 +190,7 @@ Omitting the keyword will return a list of all valid ingredients.
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
 
-![clear.png](images/clear.png)  
+![clear2.png](images/clear2.png)  
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
 
 > **Warning**: This move cannot be undone.
@@ -280,7 +280,7 @@ To go into details about a certain recipe, use the command `recipe <index_number
 
 For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`. The recipe displayed will also include the calorie count, to aid in your calorie tracking if necessary.
 
-![recipedetails2.png](images/recipedetails2.png)  
+![recipedetails3.png](images/recipedetails3.png)  
 <sub>Fig 13: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
 
@@ -291,14 +291,14 @@ To get the list of possible recipes that can be made based on the available ingr
 
 > **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
 
-![recipepossible1.png](images/recipepossible1.png)  
+![recipepossible2.png](images/recipepossible2.png)  
 <sub>Fig 14: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
 
 > **Warning**: Recipes that contain your allergens are deemed not possible. 
 > 
 >Please refer to the [Allergens](#allergens) section for more information. Below is an example of the random recipe and allergen function in use.
 
-![recipepossibleallergen.png](images/recipepossibleallergen.png)  
+![recipepossibleallergen2.png](images/recipepossibleallergen2.png)  
 <sub>Fig 15: Sample of Recipe Possible command after adding an allergy to ground beef, which is an ingredient in Recipe 1 (Beef Burger), showing that the recipe containing the allergen is no longer shown to the user. User input is highlighted.</sub>
 
 
@@ -316,21 +316,21 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 ### Check Ingredients for Recipe
 If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. For example, `recipe need 2`.
 
-![recipeneed.png](images/recipeneed.png)  
+![recipeneed2.png](images/recipeneed2.png)  
 <sub>Fig 17: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 
 ### Almost Completed Recipe
 If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients.
 
-![recipealmost.png](images/recipealmost.png)  
+![recipealmost2.png](images/recipealmost2.png)  
 <sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 
 ### Make Recipe
 If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. For example, `make 1` (Recipe for Beef Burger).
 
-![make.png](images/make.png)  
+![make2.png](images/make2.png)  
 <sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 
