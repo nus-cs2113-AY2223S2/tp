@@ -13,6 +13,10 @@ public class ListCurrentPuCommand extends Command {
         this.univId = univId;
     }
 
+    /**
+     * Executes ListCurrentPuCommand where it calls UI class to print out user added modules for the
+     * given Partner University identified by the univID.
+     */
     @Override
     public void execute() {
         ui.printCurrentPuModList(modules, univId);

@@ -63,6 +63,11 @@ public class UI {
     private UI() {
     }
 
+    /**
+     * Returns the one instance of the UI class, OR if there is no such instance yet, instantiates an instance of UI.
+     *
+     * @return The Singleton Instance of UI class.
+     */
     public static UI getUiOneInstance() {
         if (uiOneInstance == null) {
             uiOneInstance = new UI();
@@ -115,6 +120,12 @@ public class UI {
         return INVALID_SEARCH_MODULE_MESSAGE;
     }
 
+    /**
+     * Getter function for the Invalid Module Index Message
+     * String: "Module not found :( Please type in a correct index"
+     *
+     * @return String of INVALID_MODULE_INDEX_MESSAGE
+     */
     public String getInvalidModuleMessage() {
         return INVALID_MODULE_INDEX_MESSAGE;
     }
@@ -218,6 +229,15 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Filters out mappable modules according to corresponding PU by the univID and filter given, by looping
+     * through all mappable modules and looking at their univID and checking if it aligns with filter given.
+     * After filtering, prints out module details to users.
+     *
+     * @param univID Unique integer index corresponding to Partner University.
+     * @param filter String containing filter input from user, filter is yet to be distinguished between
+     *               MC Filter or Name Filter
+     */
     public void printPUModules(int univID, String filter) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
         for (Module puModule : puModules) {
@@ -234,7 +254,14 @@ public class UI {
         System.out.println(LINE);
     }
 
+
     //@@author MuxPotato
+
+    /**
+     * Prints out mapping details, from both NUS and Korea PU, associated with the Module object passed.
+     *
+     * @param puModuleToPrint Module object whom information is to be printed out.
+     */
     private void printModule(Module puModuleToPrint) {
         String moduleCode = puModuleToPrint.getModuleCode();
         String moduleName = puModuleToPrint.getModuleName();
@@ -246,8 +273,12 @@ public class UI {
         System.out.print("   maps to ----> ");
         System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
     }
-
     //@@author
+
+    /**
+     * Prints out the list of Korea Partner Universities, formatted to be aligned.
+     * Uses a while loop to print whitespaces till a certain length is obtained for PU Abbrev to be printed in a column.
+     */
     public void printPUList() {
         System.out.println(LINE);
         System.out.println(LIST_PU_HEADER_MESSAGE);
@@ -268,6 +299,11 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out all current modules users added for all Partner Universities.
+     *
+     * @param modules ArrayList that holds all the modules users has added to his/her list.
+     */
     public void printAllCurrentModList(ArrayList<Module> modules) {
         for (int i = 0; i < universities.size(); i++) {
             University currentUniversity = universities.get(i);
@@ -322,6 +358,9 @@ public class UI {
         System.out.println(counter + ". " + deadlineTask + " [Due by: " + deadlineDueDate + "]");
     }
 
+    /**
+     * Prints out Invalid Input Message.
+     */
     public void printInvalidInputMessage() {
         System.out.println("Invalid Input");
     }
@@ -505,6 +544,9 @@ public class UI {
         System.out.println(e.getMessage());
     }
 
+    /**
+     * Prints out Exit Message.
+     */
     public void printExitMessage() {
         System.out.println("Exiting program now");
     }

@@ -23,6 +23,13 @@ public class DataReader {
         readUnivData();
         readModData(MODULES_FILE_PATH, puModules);
     }
+
+    /**
+     * Returns the one instance of the DataReader class,
+     * OR if there is no such instance yet, instantiates an instance of DataReader.
+     *
+     * @return The Singleton Instance of DataReader class.
+     */
     public static DataReader getDataReaderOneInstance() {
         if (dataReaderOneInstance == null) {
             dataReaderOneInstance = new DataReader();
