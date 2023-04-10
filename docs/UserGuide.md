@@ -14,24 +14,23 @@ Use the hyperlinks for ease of access!
     - [Use Case](#use-case)
 - [Usage of Flags](#usage-of-flags)
 - [Features](#features)
-    - [Get Help Manual](#get-help-manual-)
-    - [Adding a Card](#adding-a-card)
-    - [Listing all the cards](#listing-all-cards-)
-    - [Deleting a card](#deleting-a-card-)
-    - [Tagging a Card](#tagging-a-card-)
-    - [Removing a tag from a card](#removing-a-tag-from-a-card-)
-    - [Putting a card into a deck](#putting-a-card-into-a-deck-)
-    - [Viewing a card](#viewing-a-card-)
-    - [Editing a tag](#editing-a-tag-)
-    - [Deleting a tag](#deleting-a-card-)
-    - [List all tags](#list-all-tags--tag-list--t-tagname---x-tagindex)
+    - [Get Help Manual](#get-help-manual)
+    - [Adding a card](#adding-a-card)
+    - [Listing all the cards](#listing-all-cards)
+    - [Deleting a card](#deleting-a-card)
+    - [Tagging a card](#tagging-a-card)
+    - [Removing a tag from a card](#removing-a-tag-from-a-card)
+    - [Putting a card into a deck](#putting-a-card-into-a-deck)
+    - [Viewing a card](#viewing-a-card)
+    - [Editing a tag](#editing-a-tag)
+    - [Deleting a tag](#deleting-a-card)
+    - [List all tags](#list-all-tags)
     - [Put all cards under a tag into a deck](#put-all-cards-under-a-tag-into-a-deck)
-    - [Edit a Deck](#edit-a-deck-deck-edit--o-olddeckname--n-newdeckname)
-    - [Delete a card/tag from deck](#delete-a-cardtag-from-deck-deck-delete--d-deckname--c-carduuid---t-taguuid)
-    - [List all decks](#list-all-decks-deck-list)
-    - [List all cards and tags under deck](#list-all-cards-and-tags-under-deck--deck-list--d-deckname)
-    - [Run the deck](#run-the-deck--deck-run--d-deckname)
-    - [Exit the Program](#exit-the-program-)
+    - [Edit a deck](#edit-a-deck)
+    - [Delete a card/tag from deck](#delete-a-cardtag-from-deck)
+    - [List all decks](#list-all-decks)
+    - [Run the deck](#run-the-deck)
+    - [Exit the Program](#exit-the-program)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -582,7 +581,7 @@ Successfully removed deck my-deck from card c2c61475-df53-4656-94c4-c2e36933d359
 Successfully removed deck my-deck from the deck list.
 ```
 
-### List all decks :
+### List all decks
 
 `deck list [-d DECK_NAME]`
 
@@ -612,7 +611,7 @@ Here is your current list of decks:
 2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
 ```
 
-To list all the Cards and Tags under the deck :
+To list all the Cards and Tags under the deck:
 
 ***Example of usage:***
 
@@ -633,7 +632,7 @@ Here is your current list of tags:
 1.Tag name : physics, tag uuid : c8259fee-125d-4700-829c-0da79eba1e91
 ```
 
-### Run the Deck :
+### Run the Deck
 
 `deck run -d DECK_NAME`
 
@@ -750,33 +749,33 @@ Your file will be loaded the next time you run Inka!
 ## Command Summary
 **Note:** Flags can be given in any order!
 
-| **Command**                       | **Format**                                                                         |
-|-----------------------------------|------------------------------------------------------------------------------------|
-| Create a card                     | `card add -q QUESTION -a ANSWER`                                                   |
-| Create a tag                      | `card tag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c;  -x TAG_INDEX}`  |
-| Create a deck (using card)        | `card deck {-c CARD_UUID &#x7c; -i CARD_INDEX} -d DECK_NAME`                       |
-| Create a deck (using tag)         | `card deck {-t TAG_NAME &#x7c; -x TAG_INDEX} -d DECK_NAME`                         |
-| Add a tag to a card               | `card tag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c; -x TAG_INDEX}`   |
-| Untag a card                      | `card untag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c; -x TAG_INDEX}` |
-| Add a card to a deck              | `card deck {-c CARD_UUID &#x7c; -i CARD_INDEX} -d DECK_NAME`                       |
-| Add a tag to a deck               | `tag deck -d DECK_NAME {-t TAG_NAME &#x7c; -x TAG_INDEX}`                          |
-| Delete a card                     | `card delete {-c CARD_UUID &#x7c; -i CARD_INDEX}`                                  |
-| Delete a tag                      | `tag delete {-t TAG_NAME &#x7c; -x TAG_INDEX}`                                     |
-| Delete a deck                     | `deck delete -d DECK_NAME`                                                         |
-| Delete a card from a deck         | `deck delete -d DECK_NAME {-c CARD_UUID &#x7c; -i CARD_INDEX}`                     |
-| Delete a tag from a deck          | `deck delete -d DECK_NAME {-t TAG_NAME &#x7c; -x TAG_INDEX}`                       |
-| List cards                        | `card list`                                                                        |
-| List tags                         | `tag list`                                                                         |
-| List decks                        | `deck list`                                                                        |
-| List cards under a tag            | `tag list {-t TAG_NAME &#x7c; -x TAG_INDEX}`                                       |
-| List cards and tags under a deck | `deck list -d DECK_NAME`   
-| Edit a card                       | `card edit -n NEW_CARD_NAME -o OLD_CARD_NAME`                                      |
-| Edit a tag                        | `tag edit -n NEW_TAG_NAME -o OLD_TAG_NAME`                                         |
-| Edit a deck                       | `deck edit -n NEW_DECK_NAME -o OLD_DECK_NAME`                                      |
-| View a card                       | `card view {-c CARD_UUID &#x7c; -i CARD_INDEX}`                                    |
-| Run the `deck`                         | `deck run -d DECK_NAME`                        |
-| Exits the program                 | `bye`                                                                              |
-| Help about deck                   | `deck help`                                                                        |
-| Help about tag                    | `tag help`                                                                         |
-| Help about card                   | `card help`                                                                        |
-| Help in general                   | `help`                                                                             |
+| **Command**                      | **Format**                                                                         |
+|----------------------------------|------------------------------------------------------------------------------------|
+| Create a card                    | `card add -q QUESTION -a ANSWER`                                                   |
+| Create a tag                     | `card tag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c;  -x TAG_INDEX}`  |
+| Create a deck (using card)       | `card deck {-c CARD_UUID &#x7c; -i CARD_INDEX} -d DECK_NAME`                       |
+| Create a deck (using tag)        | `card deck {-t TAG_NAME &#x7c; -x TAG_INDEX} -d DECK_NAME`                         |
+| Add a tag to a card              | `card tag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c; -x TAG_INDEX}`   |
+| Untag a card                     | `card untag {-c CARD_UUID &#x7c; -i CARD_INDEX} {-t TAG_NAME &#x7c; -x TAG_INDEX}` |
+| Add a card to a deck             | `card deck {-c CARD_UUID &#x7c; -i CARD_INDEX} -d DECK_NAME`                       |
+| Add a tag to a deck              | `tag deck -d DECK_NAME {-t TAG_NAME &#x7c; -x TAG_INDEX}`                          |
+| Delete a card                    | `card delete {-c CARD_UUID &#x7c; -i CARD_INDEX}`                                  |
+| Delete a tag                     | `tag delete {-t TAG_NAME &#x7c; -x TAG_INDEX}`                                     |
+| Delete a deck                    | `deck delete -d DECK_NAME`                                                         |
+| Delete a card from a deck        | `deck delete -d DECK_NAME {-c CARD_UUID &#x7c; -i CARD_INDEX}`                     |
+| Delete a tag from a deck         | `deck delete -d DECK_NAME {-t TAG_NAME &#x7c; -x TAG_INDEX}`                       |
+| List cards                       | `card list`                                                                        |
+| List tags                        | `tag list`                                                                         |
+| List cards under a tag           | `tag list {-t TAG_NAME &#x7c; -x TAG_INDEX}`                                       |
+| List decks                       | `deck list`                                                                        |
+| List cards and tags under a deck | `deck list -d DECK_NAME`                                                           |
+| View a card                      | `card view {-c CARD_UUID &#x7c; -i CARD_INDEX}`                                    |
+| Run the `deck`                   | `deck run -d DECK_NAME`                                                            |
+| Edit a card                      | `card edit -n NEW_CARD_NAME -o OLD_CARD_NAME`                                      |
+| Edit a tag                       | `tag edit -n NEW_TAG_NAME -o OLD_TAG_NAME`                                         |
+| Edit a deck                      | `deck edit -n NEW_DECK_NAME -o OLD_DECK_NAME`                                      |
+| Exits the program                | `bye`                                                                              |
+| Help about deck                  | `deck help`                                                                        |
+| Help about tag                   | `tag help`                                                                         |
+| Help about card                  | `card help`                                                                        |
+| Help in general                  | `help`                                                                             |
