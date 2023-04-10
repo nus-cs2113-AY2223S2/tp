@@ -2,7 +2,7 @@
 
 | Display                                                                                                    |      Name      |              Github Profile              |            Portfolio             |
 |------------------------------------------------------------------------------------------------------------|:--------------:|:----------------------------------------:|:--------------------------------:|
-| ![](https://via.placeholder.com/100.png?text=Photo)                                                        | Yong Shan Ling |   [Github](https://github.com/ysl-28)    |   [Portfolio](team/ysl-28.md)    |
+| ![](https://avatars.githubusercontent.com/u/88529907?v=4))                                                        | Yong Shan Ling |   [Github](https://github.com/ysl-28)    |   [Portfolio](team/ysl-28.md)    |
 | ![](https://avatars.githubusercontent.com/u/88542282?v=4)                                                  |  Ng Yan Zhen   |    [Github](https://github.com/Ng-YZ)    |    [Portfolio](team/ng-yz.md)    |
 | ![](https://avatars.githubusercontent.com/u/88386677?s=400&v=4)                                            |   Ng Kai Wen   | [Github](https://github.com/ngkaiwen123) | [Portfolio](team/ngkaiwen123.md) |
 | ![](https://avatars.githubusercontent.com/u/7589432?v=4)                                                        |  Poh Wei Pin   |   [Github](https://github.com/firwer)    |   [Portfolio](team/firwer.md)    |

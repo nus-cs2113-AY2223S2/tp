@@ -1,5 +1,4 @@
 # Yong Shan Ling's Project Portfolio Page
-
 ## Overview
 MagusStock is a Java command-line interface (CLI) designed for inventory management. 
 This application that I have contributed to developing with my team aims to help store operators, 
@@ -53,22 +52,5 @@ Code contributed: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dash
 
 
 **DG Diagrams**  
-
-
-![AlertParser.png](..%2FUML%2FAlert%2FAlertParser.png)
-
-
-![AlertStep1.png](..%2FUML%2FAlert%2FAlertStep1.png)
-![AlertStep3Add.png](..%2FUML%2FAlert%2FAlertStep3Add.png)
-![AlertStep3Remove.png](..%2FUML%2FAlert%2FAlertStep3Remove.png)
-
-![AddAlertCommand.png](..%2FUML%2FAlert%2FAddAlertCommand.png)  
-
-![RemoveAlertCommand.png](..%2FUML%2FAlert%2FRemoveAlertCommand.png)
-
-![ListCommand.png](..%2FUML%2FList%2FListCommand.png)
-
-
-![ListStep1.png](..%2FUML%2FList%2FListStep1.png)
-![ListStep2.png](..%2FUML%2FList%2FListStep2.png)
-![ListStep3.png](..%2FUML%2FList%2FListStep3.png)
+* [Sequence and UML Diagrams for List](https://github.com/AY2223S2-CS2113-W12-3/tp/tree/master/docs/UML/List)
+* [Sequence and UML Diagrams for Alert](https://github.com/AY2223S2-CS2113-W12-3/tp/tree/master/docs/UML/Alert)
