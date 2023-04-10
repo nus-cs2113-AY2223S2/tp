@@ -528,8 +528,6 @@ The general workflow of `/listitem` is as follows:
 
 <hr>
 
-<div style="page-break-after: always;"></div>
-
 #### Update an Item
 
 ##### Experienced Mode Update an Item
@@ -859,7 +857,6 @@ The general workflow of `pay` is as follows:
 
 <hr>
 
-<div style="page-break-after: always;"></div>
 
 #### List all Orders
 
@@ -1501,3 +1498,24 @@ MoneyGoWhere.jar is placed in a location with no read and write permissions
 ```
 
 ###### [Back to table of contents](#table-of-contents)
+
+
+<div style="page-break-after: always;"></div>
+
+
+### Final Comments
+
+If you have read until the end, thank you! We hope you have understood the inner mechanisms of MoneyGoWhere, and that 
+you had a relatively easy time reading through this Developer Guide. 
+
+We (the original MoneyGoWhere team) put in a considerable amount of effort to make the guide as detailed 
+and correct as possible. We hope that the information in this guide will be useful in improving MoneyGoWhere, and we look forward to seeing it 
+being continuously loved and improved upon. 
+
+Once again, thank you for reading the guide!
+
+</br>
+
+###### [Back to table of contents](#table-of-contents)
+
+<hr>
