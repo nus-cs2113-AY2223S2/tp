@@ -1,0 +1,50 @@
+@startuml
+!define AWSPUML https://cdn.rawgit.com/Willibaur/PlantUML_AWS/07362bc9/
+skinparam defaultTextAlignment center
+!define ICONURLAWSPUML https://raw.githubusercontent.com/Willibaur/PlantUML_AWS/07362bc9/
+!define AWSPUML_SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v2.0/
+!define AWSPUML_NOBORDER
+skinparam defaultFontSize 24
+
+participant ":MainInputParser" as MainInputParser
+-> MainInputParser: parseInput(line)
+activate MainInputParser
+
+participant ":ExitCommand" as ExitCommand
+alt Command is "exit"
+MainInputParser->ExitCommand** : <<create>>
+activate ExitCommand
+return
+deactivate ExitCommand
+destroy ExitCommand
+
+else Command is "lend" or "borrow"
+participant ":ParseLendBorrow" as ParseLendBorrow
+MainInputParser->ParseLendBorrow** : ParseLendBorrow(splitValues[INDEX_USERSTRING])
+activate ParseLendBorrow
+loop five times to extract user fields
+participant ":ParseIndividualValue" as ParseIndividualValue
+ParseLendBorrow->ParseIndividualValue : parseIndividualValue
+activate ParseIndividualValue
+return :String
+deactivate ParseIndividualValue
+end
+alt Command is "Lend"
+participant ":LendExpenditureCommand" as LendExpenditureCommand
+ParseLendBorrow->LendExpenditureCommand** : LendExpenditureCommand
+activate LendExpenditureCommand
+return
+deactivate LendExpenditureCommand
+destroy LendExpenditureCommand
+else Command is "Borrow"
+participant ":BorrowExpenditureCommand" as BorrowExpenditureCommand
+ParseLendBorrow-> BorrowExpenditureCommand** : BorrowExpenditureCommand
+activate BorrowExpenditureCommand
+return
+deactivate BorrowExpenditureCommand
+destroy BorrowExpenditureCommand
+end
+ParseLendBorrow --> MainInputParser
+destroy ParseLendBorrow
+end
+@enduml
