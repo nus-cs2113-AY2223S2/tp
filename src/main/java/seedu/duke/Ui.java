@@ -50,7 +50,7 @@ public class Ui {
      * Prints a welcome message for users when application is launched
      */
     public static void showWelcome() {
-        final String LOGO = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
+        String LOGO = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
                 + "8888b     88  88        88  d8\"     \"8b  88      \"8b  88\n"
                 + "88 `8b    88  88        88  Y8,          88      ,8P  88\n"
                 + "88  `8b   88  88        88  `Y8aaaaa,    88aaaaaa8P'  88  ,"
@@ -64,6 +64,60 @@ public class Ui {
                 + "88      `888   `\"Y8888Y\"'    \"Y88888P\"   88           88 "
                 + " `\"8bbdP\"Y8  88       88  88       88   `\"Ybbd8\"'  88          \n" + "\n");
         System.out.println(LOGO);
+        printDash();
+    }
+
+    /**
+     * Prints user guide on command line when user
+     * requests for help
+     */
+    public static void helpCommand() {
+        printDash();
+        System.out.println("Please view our user guide at this link for a more" +
+                "in depth version: https://ay2223s2-cs2113-f13-3.github.io/tp/UserGuide.html");
+        System.out.println("Continue reading for quick help:");
+        printDash();
+        System.out.println("Add an event:\n" +
+                "add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE" +
+                "-r RECURRING TIME\n" +
+                "• sd and ed must be of the format YYYY/MM/DD\n" +
+                "• e, sd and st are compulsory fields\n" +
+                "• ed and et are optional, but they must be written together if you use them\n" +
+                "• v is optional\n" +
+                "• r is optional, the format is x D/ x W, which means the event" +
+                "will happen in every x day/x week.\n\n" +
+                "EXAMPLE -> add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11");
+        printDash();
+        System.out.println("Add a module:\n" +
+                "add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE\n" +
+                "• For the lesson number and lesson type, follow the format as" +
+                "displayed on NUSMods.\n\n" +
+                "EXAMPLE -> add -m CS2100 -n 02 -l LAB");
+        printDash();
+        System.out.println("Delete a single event:\n" +
+                "delete –s INDEX_OF_EVENT\n\n" +
+                "EXAMPLE -> delete -s 1\n\n" +
+                "Delete all events:\n" +
+                "delete –all");
+        printDash();
+        System.out.println("List all events:\n" +
+                "list\n\n" +
+                "List timetable of specific week:\n" +
+                "list -w WEEKNUM\n\n" +
+                "EXAMPLE -> list -w 7");
+        printDash();
+        System.out.println("Edit an event:\n" +
+                "edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME" +
+                "–ed ENDDATE -v VENUE -r x D/W\n" +
+                "• sd and ed must be of the format YYYY/MM/DD\n" +
+                "• e, sd and st are compulsory fields\n" +
+                "• ed and et are optional, but they must be written together" +
+                "if you use them\n" +
+                "• other fields are optional\n\n" +
+                "EXAMPLE -> edit –i 1 -sd 2023/04/01 –st 16:00");
+        printDash();
+        System.out.println("WARNING! Please do not copy/paste commands.\n" +
+                "Type them out to ensure there are no formatting issues.");
         printDash();
     }
 
@@ -261,7 +315,7 @@ public class Ui {
      * Retrieves semester that user is in
      */
     public static void getSemester() {
-        System.out.println("Before getting started, Please enter the semester you are in according to the below menu.");
+        System.out.println("Please enter the semester you are in according to the below menu.");
 
         System.out.println("Type \"1\" for Semester 1");
         System.out.println("Type \"2\" for Semester 2");
@@ -275,29 +329,23 @@ public class Ui {
         // trim user input to ignore all whitespaces
         String cmdTrim = cmd.replaceAll("\\s", "");
 
-        if (cmdTrim.equals("bye")) {
+        if (PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
+            User user = getUser();
+            user.setSemester(Integer.parseInt(cmdTrim));
+            System.out.println("Semester saved!");
+            printDash();
+            System.out.println("Hello there! What can we do for you today?");
+        } else if (cmdTrim.equals("bye")) {
             printExit();
             Duke.LOGGER.log(Level.INFO, "User input is 'bye', exiting NUSPlanner.");
             in.close();
             // force exit of application
             System.exit(0);
-        } else {
-            while (!PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
-                System.out.println("Not a valid semester, please provide a valid semester.");
-                System.out.println("Type \"1\" for Semester 1");
-                System.out.println("Type \"2\" for Semester 2");
-                System.out.println("Type \"3\" for Special Term 1");
-                System.out.println("Type \"4\" for Special Term 2");
-                System.out.println("Type \"bye\" to exit");
-            }
+        } else if (!PERMITTED_SEMESTER_VALUES.contains(cmdTrim)) {
+            Duke.LOGGER.log(Level.INFO, "User input is invalid, requesting for valid input again.");
+            System.out.println("Your input is not a valid semester.");
+            getSemester();
         }
-
-        User user = getUser();
-        user.setSemester(Integer.parseInt(cmdTrim));
-
-        System.out.println("Semester saved!");
-        printDash();
-        System.out.println("Hello there! What can we do for you today?");
     }
 
     public static void printOverlapInfo(String info) {

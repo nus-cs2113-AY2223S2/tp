@@ -4,7 +4,9 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import seedu.duke.Event;
+import seedu.duke.EventList;
 import seedu.duke.NPExceptions;
+import seedu.duke.Schedule;
 import seedu.duke.Ui;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * EventListAdapter is a custom serializer/deserializer type adapter for saving and loading information.
  */
-public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
+public class EventListAdapter extends TypeAdapter<ArrayList<Schedule>> {
     private static final DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     /**
@@ -25,10 +27,10 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * @throws IOException If there is an error writing to file
      */
     @Override
-    public void write(JsonWriter writer, ArrayList<Event> eventList) throws IOException {
+    public void write(JsonWriter writer, ArrayList<Schedule> eventList) throws IOException {
         writer.beginArray();
-        for (Event event : eventList){
-            writeEvent(writer, event);
+        for (Schedule event : eventList){
+            writeEvent(writer, (Event) event);
         }
         writer.endArray();
     }
@@ -103,13 +105,22 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * @throws IOException If there was an error reading the JSON file.
      */
     @Override
-    public ArrayList<Event> read (JsonReader reader) throws IOException {
-        ArrayList<Event> eventList = new ArrayList<>();
+    public ArrayList<Schedule> read (JsonReader reader) throws IOException {
+        ArrayList<Schedule> eventList = new ArrayList<>();
         boolean isCorrupt = false;
         reader.beginArray();
         while(reader.hasNext()){
             try {
-                eventList.add(readEvent(reader));
+                Event event = readEvent(reader);
+                if (checkEvent(event)){
+                    if(EventList.canAddNewEvent(event, -1, eventList)) {
+                        eventList.add(event);
+                    } else {
+                        throw new NPExceptions("Event Conflict Detected in save file! Wiping save file.");
+                    }
+                }else{
+                    eventList.add(event);
+                }
             } catch (NPExceptions e){
                 Ui.printErrorMsg(e.getMessage());
                 isCorrupt = true;
@@ -117,7 +128,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         }
         reader.endArray();
         if (isCorrupt){
-            eventList.clear();
+            eventList = new ArrayList<>();
             JsonEventListStorage.wipeFile();
         }
         return eventList;
@@ -181,7 +192,6 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
                 break;
             default:
                 throw new NPExceptions("File Corrupted"); //catches un-parsable modifications to fields.
-
             }
         }
         reader.endObject();
@@ -225,7 +235,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * @param isRecurring Boolean - if object is recurring (ie has a non-null timeInterval field), this must be true
      * @param timeInterval Time interval between each event.
      * @param location Venue field of event
-     * @return
+     * @return Event
      */
     private static Event createEvent(String description, LocalDateTime startTime, LocalDateTime endTime,
                                      boolean hasStartTime, boolean hasEndTime, boolean hasLocation, boolean isRecurring,
@@ -294,6 +304,12 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         }
     }
 
+    private boolean checkEvent(Event event){
+        if (event.hasStartTime() && event.hasEndTime() && event.hasEndInfo()){
+            return true;
+        }
+        return false;
+    }
     /**
      * readDate is used to parse timeandflag objects in events
      * @param reader JsonReader to be used
@@ -334,7 +350,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * ReadTime is used to parse timeandflag objects
      * @param reader JsonReader to be used
      * @return String representing time
-     * @throws IOException
+     * @throws IOException if exception occurs while reading time
      */
     private String readTime(JsonReader reader) throws IOException, NPExceptions {
         int hour = 0;
