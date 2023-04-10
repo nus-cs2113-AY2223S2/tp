@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" modified="2023-03-29T09:56:24.255Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36" version="21.1.0" etag="LEr_KCDgeFE1tpWCHtBi" type="device">
+  <diagram id="xadO-9Vl5RYoHtH8PXEa" name="Page-1">
+    <mxGraphModel dx="1050" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s0rDMdlFasftcmTUgx0m-3" value=":RecipeList" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=30;" vertex="1" parent="1">
+          <mxGeometry x="570" y="60" width="100" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-4" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="s0rDMdlFasftcmTUgx0m-3">
+          <mxGeometry x="40" y="70" width="20" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-5" value=":Parser" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};size=30;" vertex="1" parent="1">
+          <mxGeometry x="315" y="60" width="100" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="s0rDMdlFasftcmTUgx0m-5">
+          <mxGeometry x="40" y="50" width="20" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-8" value="parseRandomRecipe(recipeList)" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1" target="s0rDMdlFasftcmTUgx0m-6">
+          <mxGeometry x="-0.1" width="80" relative="1" as="geometry">
+            <mxPoint x="150" y="110" as="sourcePoint" />
+            <mxPoint x="300" y="110" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-11" value="randomRecipe" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="355" y="179.33333333333337" as="sourcePoint" />
+            <mxPoint x="150" y="179" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-23" value="randomRecipe()" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry x="-0.1023" width="80" relative="1" as="geometry">
+            <mxPoint x="379" y="131" as="sourcePoint" />
+            <mxPoint x="610" y="131" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s0rDMdlFasftcmTUgx0m-25" value="randomRecipe" style="html=1;verticalAlign=bottom;endArrow=block;edgeStyle=elbowEdgeStyle;elbow=vertical;curved=0;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="628" y="160.33333333333337" as="sourcePoint" />
+            <mxPoint x="377.5" y="160" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

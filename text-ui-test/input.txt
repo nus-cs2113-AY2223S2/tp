@@ -1,1 +1,47 @@
-James Gosling
+list /t
+list /t random tag
+list /t /t
+list apple
+list soup && apple
+list soup apple
+list soup /t
+list soup && /t
+list /t tag#1
+list /t
+tag tag#1 << avocado toast >>
+tag tag#1 << avocado toast <<
+list /t tag#1 && tag#2
+tag tag#1 >> avocado toast <<
+tag tag#1 >> avocado toast && strawberry>>
+tag tag#1 >> avocado toast && strawberry
+list /t tag#1
+list /t tag#1 && tag#2 /t
+view
+view -2
+view abc
+weekly
+weekly random name
+weekly /add random name 1
+weekly /add test recipe name 1
+weekly /add 10 avocado toast
+weekly /add avocado toast 10
+weekly /delete avocado toast
+weekly /delete 10 avocado toast
+weekly /delete avocado toast 5
+weeklyplan
+weekly /delete test recipe name
+weeklyplan
+add_i
+add_i /n /c /d
+add_i /n carrot /c 99 /d 01/01/2020
+view_ingredients
+add_i /d 01/01/2020 /n carrot /c 99
+view_ingredients
+add_i  /c 99 /n carrot /d 01/01/2020
+view_ingredients
+del_i
+del_i /n carrot /c 10
+view_ingredients
+del_i /c 10 /n carrot
+view_ingredients
+bye
