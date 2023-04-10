@@ -3,14 +3,19 @@
 
 autonumber
 
-ref over Parser, ViewCommand : create new ViewCommand
-group Request
-ViewCommand -> Backend : Create and send new request
+group ref
+FrontEnd -> ViewCommand : execute()
 end
-group Response
-Backend -> ViewCommand : Create and return response
+group ref
+ViewCommand -> Backend : Endpoint /entries - Handle GET
+Backend -> ViewCommand : return response
 end
-ref over ViewCommand: print Entries to user
-
-
+opt responseStatus == UNPROCESSABLE_CONTENT
+    ViewCommand -> Exception : throw new InvalidCategoryException
+end
+alt categoryToView != null
+    ViewCommand -> UI : printEntriesToBeViewed(relevantEntries, categoryToView)
+else categoryToView == null
+    ViewCommand -> UI :printEntriesToBeViewed(relevantEntries)
+end
 @enduml
