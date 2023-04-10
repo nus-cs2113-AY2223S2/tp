@@ -12,7 +12,7 @@ with a reminder system in place for overdue tasks.
 * **Code Contributed**: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=pyongjie&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=pyongjie&tabRepo=AY2223S2-CS2113-T11-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 
-* **New Feature**: Adding a pet With Information
+* **New Feature**: Adding a Pet With Information
     * What it does: Allows a user to create a pet with a name and additional information (i.e. pet type, age, weight)
     * Justification: This feature forms the foundation of the program a core data structure, data getter and setter
     * Highlights: This feature allows a user to able to keep track of multiple pets
@@ -32,7 +32,7 @@ with a reminder system in place for overdue tasks.
     * Validation of User Input to Ensure No Pipes are Inside Due to Program Storage Saving Format for v2.1
       [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203), [\#212](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/212)
     * Displaying Which Task is Marked/Unmarked When Marking/Unmarking Tasks for v2.1  [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
-    * Handling of Upper/Lowercase for Commands [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
+    * Handling of Upper/Lowercase for Commands for v2.1 [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
 
 
 * **Documentations**:
