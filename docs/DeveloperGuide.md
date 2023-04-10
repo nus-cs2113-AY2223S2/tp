@@ -34,11 +34,11 @@ various features for note-taking.
 
 ## Acknowledgements
 
-[Files.createTempFile/Files.delete](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintWriter.html)
-[Redirecting System.in/System.Out](https://www.baeldung.com/java-testing-system-out-println)
-[JUnit testing with simulated user input](https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input/6416142)
-[Add resources files to JAR with gradle](https://stackoverflow.com/questions/24724383/add-resources-and-config-files-to-your-jar-using-gradle)
-[Exit Java program after a certain time](https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds)
+- The `Files.createTempFile` and `Files.delete` code snippets: [docs.oracle.com](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintWriter.html).
+- The information on redirecting `System.in` and `System.out`: [Unit Testing of System.out.println() with JUnit](https://www.baeldung.com/java-testing-system-out-println).
+- The solution for JUnit testing with simulated user input [JUnit testing with simulated user input](https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input/6416142).
+- The solution for adding resource files to a JAR file using Gradle: [Add resources and config files to your JAR using Gradle](https://stackoverflow.com/questions/24724383/add-resources-and-config-files-to-your-jar-using-gradle).
+- The solution for exiting a Java program after a certain time: [How to make Java program exit after a couple of seconds](https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds).
 
 ## Design & implementation
 
