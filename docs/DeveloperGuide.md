@@ -578,27 +578,63 @@ You can run a few commands; refer to the [User Guide]() for the full list of com
     ```
   * You may add in as many items you want to test with varying quantity and item names
   
+
 * Try packing the items added using the `pack` command
   * Example: `pack 2 /of 1`
-  * Expected: A message showing that the first item pas been packed with quantity of 2.
+  * Expected: A message showing that the first item has been packed with quantity of 2.
   * You may pack other items with different quantities.
+
 
 * Try to see your current packing list with the `list` command
     * Example: `list`
-    * Expected: A message showing every item in the packing list with the respective item index, packed quantity, total quantity and item name.
+    * Expected: A list showing every item in the packing list with the respective item index, packed quantity, total quantity and item name.
     * You may use this command everytime you wish to see your packing list.
+
 
 * Try deleting some items using the `delete` command
     * Example: `delete 1`
     * Expected: A message showing the removal of the item with its packed quantity and total quantity.
     * You may delete any item added to the list at any time.
 
-* Try  using the `` command
-    * Example: ``
-    * Expected: A message showing 
+
+* Try unpacking an item using the `unpack` command
+    * Example: `unpack 1 /of 1`
+    * Expected: A message showing the first item has been unpacked with quantity of 1, assuming that it had a packed quantity of 1 or more.
+    * You may unpack other items with different quantities given that they are packed to a certain amount beforehand.
 
 
+* Try editing the total quantity of an item using the `editquantity` command
+    * Example: `editquantity 3 /of 1`
+    * Expected: A message showing the first item has changed its total quantity to 3.
+    * You may change the total quantity of other items with different total quantity values.
 
 
+* Try searching an item containing a certain keyword or keyphrase using the `find` command
+    * Example: `find jac`
+    * Expected: A message showing all the items containing "jac" in their item names, with their item index, packed quantity and total quantity.
+    * You may search using other keyword(s)
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+* Try seeing all not fully packed items added using the `listunpacked` command
+    * Example: `listunpacked`
+    * Expected: A list showing all items that are not fully packed.
+    * This command will show different results if all items are fully packed, or if there are no items in your packing list.
+
+
+* To exit `BagPacker`, use the `bye` command
+    * Example: `bye`
+    * Expected: 
+    ```
+    ________________________________________________________________________________________________________________________
+    Bye thanks for using,
+     ____              _____           _
+    |  _ \            |  __ \         | |
+    | |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __
+    |  _ < / _` |/ _` |  ___/ _` |/ __| |/ / _ \ '__|
+    | |_) | (_| | (_| | |  | (_| | (__|   <  __/ |
+    |____/ \__,_|\__, |_|   \__,_|\___|_|\_\___|_|
+                  __/ |
+                 |___/
+    
+    ________________________________________________________________________________________________________________________
+    ```
