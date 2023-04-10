@@ -506,7 +506,7 @@ then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-c
 <summary>Sequence Diagram for TrigoGraph class</summary>
 <div markdown="1">
 
-![img_1.png](SequenceDiagrams/GraphSequence.png)!
+![img_1.png](SequenceDiagrams/GraphSequence.png)
 
 </div>
 </details>
