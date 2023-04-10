@@ -25,7 +25,11 @@ hide footbox
                 activate ":CompanyList"
                 ":CompanyListEncoder" <-- ":CompanyList":
                 deactivate ":CompanyList"
+
                 ":CompanyListEncoder" -> ":CompanyListEncoder": parseAndWriteToFile(company, fw)
+                activate ":CompanyListEncoder"
+                ":CompanyListEncoder" --> ":CompanyListEncoder"
+                deactivate ":CompanyListEncoder"
 
                 ":CompanyListEncoder" -> ":Company": getCompanyName()
                 activate ":Company"
@@ -43,16 +47,23 @@ hide footbox
                 deactivate ":Company"
 
                 ":CompanyListEncoder" -> ":CompanyListEncoder": convertConfirmStatusToBinary(confirmStatus)
+                activate ":CompanyListEncoder"
+                ":CompanyListEncoder" --> ":CompanyListEncoder":
+                deactivate ":CompanyListEncoder"
+
                 ":CompanyListEncoder" -> ":Company": getIndustry()
                 activate ":Company"
                 ":CompanyListEncoder" <-- ":Company":
                 deactivate ":Company"
 
                 ":CompanyListEncoder" -> "fw:FileWriter": write(companyName, contactNumber, contactEmail, confirmStatus, industry)
+                "fw:FileWriter" --> ":CompanyListEncoder"
             end
             ":CompanyListEncoder" -> "fw:FileWriter": close()
             ":CompanyListEncoder" <-- "fw:FileWriter"
+            deactivate "fw:FileWriter"
             <-- ":CompanyListEncoder"
-        deactivate "fw:FileWriter"
+            deactivate ":CompanyListEncoder"
+
 
 @enduml
