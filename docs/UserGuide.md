@@ -627,3 +627,9 @@ ______________________________________________________________________
 * Edit vaccination :
   `edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
 
+* Help: 
+  `help`
+
+* Exit the program: 
+  `bye`
+
