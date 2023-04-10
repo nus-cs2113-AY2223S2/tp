@@ -83,8 +83,8 @@ public class FindCommand extends Command {
             for (int i = 0; i < expenses.size(); i++) {
                 Expense expense = expenses.get(i);
                 if ((description == null 
-                    || expense.getDescription().toLowerCase().contains(description.toLowerCase()))
-                    && (category == null || expense.getCategory().equals(category)) 
+                    || expense.getDescription().toLowerCase().trim().contains(description.toLowerCase()))
+                    && (category == null || expense.getCategory().toLowerCase().trim().contains(category)) 
                     && (date == null || expense.getDate().equals(date))) {
                     expensesMatched.addExpense(expense);
                 }
