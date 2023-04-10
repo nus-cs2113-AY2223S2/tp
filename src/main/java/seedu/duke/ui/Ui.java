@@ -67,6 +67,9 @@ public class Ui {
         System.out.println("To filter according to industry, type:");
         System.out.println("                    find industry <INDUSTRY>");
         System.out.println(" ");
+        System.out.println("To filter according to venue size, type:");
+        System.out.println("                    filter venues <SIZE>");
+        System.out.println(" ");
         System.out.println("To choose a venue, type:");
         System.out.println("                    choose venue <INDEX>");
         System.out.println(" ");
