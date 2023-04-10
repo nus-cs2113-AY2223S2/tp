@@ -30,6 +30,7 @@ public class Parser {
     private static final String DELETE_T = "delete";
     private static final String LIST_T = "list";
     private static final String EDIT_T = "edit";
+    private static final String HELP_T = "help";
 
     // flags
     private static final String EVENT_NAME_F = "e";
@@ -95,6 +96,9 @@ public class Parser {
                 break;
             case EDIT_T:
                 parseEditCommand(remainder, eventList);
+                break;
+            case HELP_T:
+                Ui.helpCommand();
                 break;
             default:
                 Ui.addErrorMsg();
