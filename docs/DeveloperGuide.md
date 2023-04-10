@@ -67,6 +67,10 @@ The following diagram describes the architecture of Inka:
 
 API: `UserInterface.java`
 
+The `UserInterface` is a simple class that handles interactions with the user, such as getting input to be passed to the
+parser, or formatting output (e.g., custom messages and conversion of custom objects like `CardList` to string
+representations).
+
 ### Parser Component
 
 API: `Parser.java`
@@ -440,6 +444,10 @@ The implementation of the `tag list {-t TAG_NAME | -x TAG_INDEX}`
 The sequence diagram below shows how this feature works:
 ![List Cards under Tag](img/ListCardsUnderTagSequence.png)
 
+Reference Frames :
+
+![Add Cards to foundCardList](img/AddCardsToFoundCardListRef.png)
+
 ### Export Feature
 
 The implementation of the Export feature is split into [saving](#save) and [loading](#load)
@@ -460,6 +468,7 @@ The sequence diagram below illustrates this feature:
 
 ![export feature](img/SaveSequenceDiagram.PNG)
 
+
 ### Load
 
 Loading is implemented with `load()`
@@ -474,6 +483,7 @@ is corrupted, `load()` is called to read a file `backup.json` instead.
 The sequence diagram below illustrates this feature:
 
 ![export feature](img/LoadSequenceDiagram.PNG)
+
 
 
 ### Deck Feature

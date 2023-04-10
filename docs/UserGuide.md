@@ -37,9 +37,9 @@ Use the hyperlinks for ease of access!
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `Inka.jar` from [here](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
+2. Download the latest `.jar` file from [here](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
 3. Copy the JAR file to the folder you wish to use as the Inka home folder -- your data will be saved here!
-4. Open the JAR file, either by clicking or running `java -jar Inka.jar`. A command line interface should appear:
+4. Open the JAR file, either by clicking or running `java -jar <FILENAME>.jar`. A command line interface should appear:
 
 ![Inka interface](img/quick-start.png)
 
@@ -47,7 +47,8 @@ Enjoy your revision!
 
 ### Use Case
 
-Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding **individual cards** and/or multiple cards with the **same tag**.
+Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding *
+*individual cards** and/or multiple cards with the **same tag**.
 
 For example, suppose you had the following cards:
 
@@ -73,28 +74,33 @@ This allows you to create the following decks easily:
 
 ## Usage of flags
 
-Inka's commands makes substantial use of flags to indicate certain parameters that users enter. In this guide, we will adopt the following syntax similar to many Unix CLI tools:
+Inka's commands makes substantial use of flags to indicate certain parameters that users enter. In this guide, we will
+adopt the following syntax similar to many Unix CLI tools:
 
 - Required arguments are indicated by `-f ARG`
 - Optional arguments are indicated by `[-f ARG]`
 - Mutually exclusive required arguments are `{-a ARG | -b ARG}`
 - Mutually exclusive optional arguments are `[-a ARG | -b ARG]`
 
-There will be many instances where users have to identify a card, tag or deck in a command. For ease of use, there are multiple ways to select a card or tag:
-- Selecting a card
-  - By UUID: `-c CARD_UUID`
-  - By index: `-i CARD_INDEX`:
-- Selecting a tag
-  - By tag name: `-t TAG_NAME`
-  - By index: `-x TAG_INDEX`
-- Selecting a deck
-  - Only by deck name: `-d DECK_NAME`
+There will be many instances where users have to identify a card, tag or deck in a command. For ease of use, there are
+multiple ways to select a card or tag:
 
-For instance, in `card untag` command, since users are required to specify a card and a tag, the format of syntax in the documentation below will be written as:
+- Selecting a card
+    - By UUID: `-c CARD_UUID`
+    - By index: `-i CARD_INDEX`:
+- Selecting a tag
+    - By tag name: `-t TAG_NAME`
+    - By index: `-x TAG_INDEX`
+- Selecting a deck
+    - Only by deck name: `-d DECK_NAME`
+
+For instance, in `card untag` command, since users are required to specify a card and a tag, the format of syntax in the
+documentation below will be written as:
 
 `card untag {-c CARD_UUID | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`
 
-The user can then specify the card of their choice **either** via the card's UUID or index, and similarly for the tag. For more information, refer to `card list`, `tag list` or `deck list`.
+The user can then specify the card of their choice **either** via the card's UUID or index, and similarly for the tag.
+For more information, refer to `card list`, `tag list` or `deck list`.
 
 ## Features
 
@@ -105,14 +111,16 @@ Users can run `help` command to see the list of commands available for each feat
 ***Sample output :***
 
 ```
+____________________________________________________________________________________________________
 Welcome to Inka! Type help at any time to show this message
 == Deck Management (run `<keyword> help` for more info) ===
 card         - Card-related functionality
 tag          - Tag-related functionality
 deck         - Deck-related functionality
 ================== Miscellaneous Commands =================
-export       - Saves your deck
+export       - Manually exports to save file
 bye          - Exits Inka
+____________________________________________________________________________________________________
 ```
 
 Users can then run :
@@ -124,18 +132,28 @@ Users can then run :
 ***Sample output for `tag help` :***
 
 ```
-usage: `tag edit`
+____________________________________________________________________________________________________
+usage: tag edit -o OLD_TAG_NAME -n NEW_TAG_NAME
 Edit existing tags
 -n,--new <arg>          New tag name
 -o,--old <arg>          Old tag name
 
-usage: `tag delete`
+usage: tag delete {-t TAG_NAME | -x TAG_INDEX}
 Delete tags
--t,--tag <arg>          tag name
+-t,--tag <arg>               tag name
+-x,--tagindex <arg>          tag index
 
-usage: `tag list`
+usage: tag list [-t TAG_NAME | -x TAG_INDEX]
 List tags
--t,--tag <arg>          tag name (optional)
+-t,--tag <arg>               tag name (optional)
+-x,--tagindex <arg>          tag index (optional)
+
+usage: tag deck -d DECK_NAME {-t TAG_NAME | -x TAG_INDEX}
+Adding tag to deck
+-d,--deck <arg>              deck name
+-t,--tag <arg>               tag name
+-x,--tagindex <arg>          tag index
+____________________________________________________________________________________________________
 ```
 
 ### Adding a card
@@ -151,7 +169,9 @@ Adds a new Card with its question and answer.
 
 Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
 
-While there is no restriction on then length of the question/answer that the user can enter, these will be truncated in the display of `card list` command if longer than 50 characters. The full version can be viewed using the `card view` command below.
+While there is no restriction on then length of the question/answer that the user can enter, these will be truncated in
+the display of `card list` command if longer than 50 characters. The full version can be viewed using the `card view`
+command below.
 
 ***Example of usage:***
 
@@ -165,7 +185,9 @@ You now have 4 questions in the bank.
 ```
 
 ---
-**Note:** To avoid confusion, `card add` does not support the question/answer being "-q" or "-a". If the user so wishes to use such characters in their question/answer, it is recommended that they provide it as such:
+**Note:** To avoid confusion, `card add` does not support the question/answer being "-q" or "-a". If the user so wishes
+to use such characters in their question/answer, it is recommended that they provide it as such:
+
 ```
 # Do not do this!
 card add -q What is the flag for question? -a -q
@@ -174,9 +196,7 @@ card add -q What is the flag for question? -a -q
 card add -q What is the flag for question? -a "-q"
 ```
 
-### Editing a card :
-
-### Listing all cards :
+### Listing all cards
 
 `card list`
 
@@ -186,12 +206,12 @@ List all existing cards in Inka.
 
 - ***NONE***
 
-***Sample output :***
+***Sample output:***
 
 ```
 Here is a list of your cards :
 
-	1.	[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+	1.      [1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
 	Qn:	What is the formula of force?
 	Ans:    F = ma
 
@@ -199,11 +219,7 @@ Here is a list of your cards :
 	Qn:	How efficient is binary search?
 	Ans:    O(log n)
 
-	3.	[29bea83e-d864-48c4-bb9a-7fa817114fe1]
-	Qn:	how do i use this command?
-	Ans:	by referring to this user guide
-
-	4.	[19d859b1-cede-467e-b384-7d6e690cdae6]
+	3.	[19d859b1-cede-467e-b384-7d6e690cdae6]
 	Qn:	Lorem ipsum dolor sit amet, consectetur adipiscing
 	Ans:	ans
 	Note:	Actual question or answer is too long, string truncated
@@ -353,14 +369,14 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 ***Sample output :***
 
 ```
-[19d859b1-cede-467e-b384-7d6e690cdae6]
-Qn:  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-Ans:  ans
+        [19d859b1-cede-467e-b384-7d6e690cdae6]
+	Qn: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
+	Ans:  ans
 
-Here are your tags:
-1.Tag name : longText, tag uuid : 8a6f3263-5d54-4267-9e8c-751074688e5a
+	Here are your tags:
+	1.  Tag name : physics
 
-There is no deck.
+	There is no deck.
 ```
 
 Similar to before `[19d859b1-cede-467e-b384-7d6e690cdae6]` refers to the UUID of the card that the user is currently
@@ -390,7 +406,7 @@ Example of usage :
 Sample output :
 
 ```
-Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 name has been changed from CS2113 to CS2113T
+Tag name has been changed from CS2113 to CS2113T
 ```
 
 ### Deleting a tag
@@ -447,10 +463,10 @@ Users can refer to this [section](#usage-of-flags) to recap on how the flag work
 
 ```
 Here is your current list of tags:
-1.Tag name : physics, tag uuid : c8259fee-125d-4700-829c-0da79eba1e91
-2.Tag name : chem, tag uuid : f0721ed3-f357-4a6d-9d35-cd436ec5d280
-3.Tag name : math, tag uuid : 1631221a-1b21-4481-8113-76b0b6ce6499
-4.Tag name : bio, tag uuid : 6e5dc558-43e4-4039-bb0f-8eca965052f0
+1. Tag name : physics
+2. Tag name : chem
+3. Tag name : math
+4. Tag name : bio
 ```
 
 ```
@@ -520,10 +536,11 @@ deck edit -o old-deck-name -n new-deck-name
 ***Sample output:***
 
 ```
-Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
+Deck name has been changed from old-deck-name to new-deck-name
 ```
 
 ### Delete a card/tag from deck
+
 `deck delete -d DECK_NAME [{-c CARD_UUID | -i CARD_INDEX} | {-t TAG_NAME | -x TAG_INDEX}]`
 
 ***Lists of flags (in any order)*** :
@@ -606,8 +623,8 @@ To list all decks that have been created :
 
 ```
 Here is your current list of decks:
-1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
-2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
+1. Deck name : test-deck
+2. Deck name : another-deck
 ```
 
 To list all the Cards and Tags under the deck:
@@ -623,12 +640,12 @@ deck list -d physicsdeck
 ```
 Here is a list of your cards :
 
-	1.	[924119c1-a807-4df2-b311-080be9ee8522]
-	Qn:	What is the formula of GPE?
-	Ans:	E = mgh
+	1.	  [924119c1-a807-4df2-b311-080be9ee8522]
+	Qn:	  What is the formula of GPE?
+	Ans:  E = mgh
 
 Here is your current list of tags:
-1.Tag name : physics, tag uuid : c8259fee-125d-4700-829c-0da79eba1e91
+1. Tag name : physics
 ```
 
 ### Run the Deck
@@ -738,7 +755,8 @@ Sample output :
 
 **A**: You do so by following these steps:
 
-1. Export the deck as a Json file using the command "export". It may take a moment for the file to be written, so please wait, or try refreshing your file explorer!
+1. Export the deck as a Json file using the command "export". It may take a moment for the file to be written, so please
+   wait, or try refreshing your file explorer!
 2. Navigate to the directory of your Inka installation.
 3. The file will be named savedata.json. Copy this file.
 4. Paste this file in the Inka's directory in the new computer
@@ -746,35 +764,36 @@ Sample output :
 Your file will be loaded the next time you run Inka!
 
 ## Command Summary
+
 **Note:** Flags can be given in any order!
 
-| **Command**                      | **Format**                                                                 |
-|----------------------------------|----------------------------------------------------------------------------|
-| Create a card                    | `card add -q QUESTION -a ANSWER`                                           |
-| Create a tag                     | `card tag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \|  -x TAG_INDEX}`  |
-| Create a deck (using card)       | `card deck {-c CARD_UUID \| -i CARD_INDEX} -d DECK_NAME`                   |
-| Create a deck (using tag)        | `card deck {-t TAG_NAME \| -x TAG_INDEX} -d DECK_NAME`                     |
-| Add a tag to a card              | `card tag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}`   |
-| Untag a card                     | `card untag {-c CARD_UUID \| -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}` |
-| Add a card to a deck             | `card deck {-c CARD_UUID \| -i CARD_INDEX} -d DECK_NAME`                   |
-| Add a tag to a deck              | `tag deck -d DECK_NAME {-t TAG_NAME \| -x TAG_INDEX}`                      |
-| Delete a card                    | `card delete {-c CARD_UUID \| -i CARD_INDEX}`                              |
-| Delete a tag                     | `tag delete {-t TAG_NAME \| -x TAG_INDEX}`                                 |
-| Delete a deck                    | `deck delete -d DECK_NAME`                                                 |
-| Delete a card from a deck        | `deck delete -d DECK_NAME {-c CARD_UUID \| -i CARD_INDEX}`                 |
-| Delete a tag from a deck         | `deck delete -d DECK_NAME {-t TAG_NAME \| -x TAG_INDEX}`                   |
-| List cards                       | `card list`                                                                |
-| List tags                        | `tag list`                                                                 |
-| List cards under a tag           | `tag list {-t TAG_NAME \| -x TAG_INDEX}`                                   |
-| List decks                       | `deck list`                                                                |
-| List cards and tags under a deck | `deck list -d DECK_NAME`                                                   |
-| View a card                      | `card view {-c CARD_UUID \| -i CARD_INDEX}`                                |
-| Run the `deck`                   | `deck run -d DECK_NAME`                                                    |
-| Edit a card                      | `card edit -n NEW_CARD_NAME -o OLD_CARD_NAME`                              |
-| Edit a tag                       | `tag edit -n NEW_TAG_NAME -o OLD_TAG_NAME`                                 |
-| Edit a deck                      | `deck edit -n NEW_DECK_NAME -o OLD_DECK_NAME`                              |
-| Exits the program                | `bye`                                                                      |
-| Help about deck                  | `deck help`                                                                |
-| Help about tag                   | `tag help`                                                                 |
-| Help about card                  | `card help`                                                                |
-| Help in general                  | `help`                                                                     |
+| **Command**                      | **Format**                                    |
+|----------------------------------|-----------------------------------------------|
+| Create a card                    | `card add -q QUESTION -a ANSWER`              |
+| Create a tag                     | `card tag {-c CARD_UUID \                     | -i CARD_INDEX} {-t TAG_NAME \|  -x TAG_INDEX}`  |
+| Create a deck (using card)       | `card deck {-c CARD_UUID \                    | -i CARD_INDEX} -d DECK_NAME`                   |
+| Create a deck (using tag)        | `card deck {-t TAG_NAME \                     | -x TAG_INDEX} -d DECK_NAME`                     |
+| Add a tag to a card              | `card tag {-c CARD_UUID \                     | -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}`   |
+| Untag a card                     | `card untag {-c CARD_UUID \                   | -i CARD_INDEX} {-t TAG_NAME \| -x TAG_INDEX}` |
+| Add a card to a deck             | `card deck {-c CARD_UUID \                    | -i CARD_INDEX} -d DECK_NAME`                   |
+| Add a tag to a deck              | `tag deck -d DECK_NAME {-t TAG_NAME \         | -x TAG_INDEX}`                      |
+| Delete a card                    | `card delete {-c CARD_UUID \                  | -i CARD_INDEX}`                              |
+| Delete a tag                     | `tag delete {-t TAG_NAME \                    | -x TAG_INDEX}`                                 |
+| Delete a deck                    | `deck delete -d DECK_NAME`                    |
+| Delete a card from a deck        | `deck delete -d DECK_NAME {-c CARD_UUID \     | -i CARD_INDEX}`                 |
+| Delete a tag from a deck         | `deck delete -d DECK_NAME {-t TAG_NAME \      | -x TAG_INDEX}`                   |
+| List cards                       | `card list`                                   |
+| List tags                        | `tag list`                                    |
+| List cards under a tag           | `tag list {-t TAG_NAME \                      | -x TAG_INDEX}`                                   |
+| List decks                       | `deck list`                                   |
+| List cards and tags under a deck | `deck list -d DECK_NAME`                      |
+| View a card                      | `card view {-c CARD_UUID \                    | -i CARD_INDEX}`                                |
+| Run the `deck`                   | `deck run -d DECK_NAME`                       |
+| Edit a card                      | `card edit -n NEW_CARD_NAME -o OLD_CARD_NAME` |
+| Edit a tag                       | `tag edit -n NEW_TAG_NAME -o OLD_TAG_NAME`    |
+| Edit a deck                      | `deck edit -n NEW_DECK_NAME -o OLD_DECK_NAME` |
+| Exits the program                | `bye`                                         |
+| Help about deck                  | `deck help`                                   |
+| Help about tag                   | `tag help`                                    |
+| Help about card                  | `card help`                                   |
+| Help in general                  | `help`                                        |

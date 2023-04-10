@@ -99,7 +99,8 @@ public class UserInterface {
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + ".\t" + cardList.get(i).toTruncatedString()); // 1. question  answer
+                System.out.println(
+                        "\t" + (i + 1) + ".\t\t" + cardList.get(i).toTruncatedString()); // 1. question  answer
             }
         }
     }
@@ -118,14 +119,13 @@ public class UserInterface {
     public void printTags(TagList tagList) {
         if (tagList.isEmpty()) {
             System.out.println("\tThere is no tag.");
-            System.out.println("\tThere is no tag.");
         } else {
             System.out.println("\tHere are your tags:");
             for (int i = 0; i < tagList.size(); ++i) {
                 System.out.println("\t" + (i + 1) + ".\t" + tagList.get(i));
             }
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public void printDeckList(DeckList deckList) {
@@ -229,6 +229,7 @@ public class UserInterface {
     public void printLoadBackup() {
         System.out.println("The original file seems to be corrupted... loading the backup file!");
     }
+
     public void printLoadBackupSuccess() {
         System.out.println("Backup Loaded!");
     }
