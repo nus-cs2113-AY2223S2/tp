@@ -11,7 +11,6 @@ import bagpacker.commands.ListCommand;
 import bagpacker.commands.ListUnpackedCommand;
 import bagpacker.commands.PackAllCommand;
 import bagpacker.commands.PackCommand;
-import bagpacker.commands.UnpackAllCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
