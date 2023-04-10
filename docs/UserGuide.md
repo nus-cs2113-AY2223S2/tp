@@ -39,8 +39,7 @@ are unsure of how to use a feature**.
 
 Don't worry! The guide is written in such a way that you can find what you are looking for easily. Click
 on [*hyperlinks*](#glossary) listed in the Table of Contents to jump to the particular section that you want to know
-more
-about.
+more about.
 
 Additionally, all words listed in our [glossary](#glossary) will [*look like this*](), so you are able to easily
 identify between the various hyperlinks.
@@ -48,9 +47,7 @@ identify between the various hyperlinks.
 If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as
 possible.
 
-
 <div style="page-break-after: always;"></div>
-
 
 <h1> How to use the Guide </h1>
 
@@ -172,17 +169,17 @@ MoneyGoWhere will prompt you to enter your instructions, such as:
 ## MoneyGoWhere [Commands](#glossary)
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖 Meet John! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>command</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
+📖 Meet John! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>commands</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡   For new users, it is recommended to read the sections labelled as <strong>For New Users</strong>. These sections will bring you through using <a href="#glossary"><i>command</i></a> in a guided, step-by-step manner.
-<br><br>  
+💡 For new users, it is recommended to read the sections labelled as <strong>For New Users</strong>. These sections will bring you through using <a href="#glossary"><i>command</i></a> in a guided, step-by-step manner.
+ </br></br>
 As you become more familiar with MoneyGoWhere and want to speed up using the application, we recommend reading sections labelled as  <strong>For Experienced Users</strong>. In these sections, we provide examples on how to use each feature with just a single line of input.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 Even though the <strong>New User</strong> and <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> are entered into the application slightly differently, they both work exactly the same. <br><br> In other words, there is nothing that the <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> can do that the <strong>New User</strong> <a href="#glossary"><i>command</i></a> cannot.
+💡 Even though the <strong>New User</strong> and <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> are entered into the application slightly differently, they both work exactly the same. </br></br> In other words, there is nothing that the <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> can do that the <strong>New User</strong> <a href="#glossary"><i>command</i></a> cannot.
 </blockquote>
 
 [Back to table of contents](#table-of-contents)
@@ -194,15 +191,14 @@ things
 to take note of:
 
 1. Standard text printed by the application is written in **white**.
-2. User input is signified and is written in <text  style="color:#88B3F6">**blue**</text>.
-3. Success messages and examples of expected output is written in <text  style="color:#7ED321">**green**</text>.
-4. Error messages are written in <text style="color:#F25569">**red**</text>.
+2. User input is signified and is written in <text style="color:#88B3F6"><strong>blue</strong></text>.
+3. Success messages and examples of expected output is written in <text  style="color:#7ED321"><strong>green</strong></text>.
+4. Error messages are written in <text style="color:#F25569"><strong>red</strong></text>.
 
 **When you use the application, the text on your screen will be in white.**
 
 We have chosen to color-code our examples to make it easier for you to follow along and tell apart different parts of
-the
-examples.
+the examples.
 
 Here is an example of what you can expect to see in this Guide.
 
@@ -249,7 +245,7 @@ More details are provided in their individual sections.
 This [command](#glossary) displays information about the other [*commands*](#glossary) available in MoneyGoWhere.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖 John has just downloaded MoneyGoWhere. Unlike you, he does not know that MoneyGoWhere has a user guide and wants to find out more about the various <a href="#glossary"><i>commands</i></a> offered by MoneyGoWhere. To find out more about the <a href="#glossary"><i>commands</i></a> offered, he can use the <code>help</code> <a href="#glossary"><i>commands</i></a>. <br><br>
+📖 John has just downloaded MoneyGoWhere. Unlike you, he does not know that MoneyGoWhere has a user guide and wants to find out more about the various <a href="#glossary"><i>commands</i></a> offered by MoneyGoWhere. To find out more about the <a href="#glossary"><i>commands</i></a> offered, he can use the <code>help</code> <a href="#glossary"><i>commands</i></a>. </br></br>
 Currently, all he knows is that he can do <code>help</code>, or <code>/help</code>.
 </blockquote>
 
@@ -314,14 +310,14 @@ name and price.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the name and price of items, as shown below:<br><br>
-
-| Option      | Description            | Restrictions                                                                                                                                                                                                                                       |
-|-------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Item Name` | The name of the item.  | Any input that is not empty and has less than 25 characters. <br><br> It cannot only have numbers.                                                                                                                                                 |
-| `Price`     | The price of the item. | A number, with up to 2 [*decimal places*](#glossary). For example, `1`, `10.23` and `5.20` are valid inputs. However, `1.234` is not a valid input. <br><br> Avoid entering a high number, ie. above `100,000` as it may cause unexpected results. |
+💡 There are restrictions for the name and price of items, as shown below:
 
 </blockquote>
+
+| Option      | Description            | Restrictions                                                                                                                                                                                                                                                         |
+|-------------|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Item Name` | The name of the item.  | Any input that is not empty and has less than 25 characters. </br></br> It cannot only have numbers.                                                                                                                                                                 |
+| `Price`     | The price of the item. | A number, with up to 2 <a href="#glossary"><i>decimal places</i></a>. For example, `1`, `10.23` and `5.20` are valid inputs. However, `1.234` is not a valid input. </br></br> Avoid entering a high number, ie. above `100,000` as it may cause unexpected results. |
 
 
 <h3> <strong>For New Users </strong></h3>
@@ -400,7 +396,7 @@ will get the following error.
 
 **Solution:** Use a different name.
 
-<br> 
+ </br> 
 
 **2. Price has more than two [*decimal places*](#glossary)**
 
@@ -412,7 +408,7 @@ are no such denominations in real life.
 
 **Solution:** Limit the price to 2 decimal points.
 
-<br> 
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -451,7 +447,7 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 
 ![](https://i.imgur.com/oPwXAGW.png)
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -464,7 +460,7 @@ If you decide to stop selling a particular item, you can remove it from the menu
 To view more about listitem, [click here](#list-all-items).
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖  As per the previous example, John currently plans to sell Fried Rice. However, after asking his friends, he realized that no one wants to buy Fried Rice from a Chicken Rice stall. The menu currently looks like this: <br><br>
+📖  As per the previous example, John currently plans to sell Fried Rice. However, after asking his friends, he realized that no one wants to buy Fried Rice from a Chicken Rice stall. The menu currently looks like this: </br></br>
 
 ![](https://i.imgur.com/V30OtYU.png)
 
@@ -474,13 +470,13 @@ deleteitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the index, as shown below:<br><br>
-
-| Option  | Description                           | Restrictions                                                                                                                            |
-|---------|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| `Index` | The position of the item in the menu. | The entered number must be a valid [*index*](#glossary) number from `listitem`. <br><br>The entered number cannot be a negative number. |
+💡 There are restrictions for the index, as shown below: </br></br>
 
 </blockquote>
+
+| Option  | Description                           | Restrictions                                                                                                                                               |
+|---------|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Index` | The position of the item in the menu. | The entered number must be a valid <a href="#glossary"><i>index</i></a> number from `listitem`. </br></br> The entered number cannot be a negative number. |
 
 <h3> For New Users </h3>
 
@@ -525,7 +521,7 @@ In other words, you cannot remove something that does not exist!
 
 **Solution:** Use a valid [*index*](#glossary).
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -534,27 +530,26 @@ In other words, you cannot remove something that does not exist!
 Realised you entered the wrong name or price? You can update your items with this [*command*](#glossary)!
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖 John has been happily using MoneyGoWhere to input all his items. However, he is a bit clumsy and entered a few wrong things. This is what the menu currently looks like: <br><br>
+📖 John has been happily using MoneyGoWhere to input all his items. However, he is a bit clumsy and entered a few wrong things. This is what the menu currently looks like: </br></br>
 
 ![](https://i.imgur.com/6Q3hSNz.png)
 
 He wants to change two things. First, the word <strong>"Vegebatles"</strong>  at [*index*](#glossary) number 6 is spelt
 wrongly. Also,
-he wants to <strong>increase the price of "Vegetables" to $2.00</strong>. <br><br> Next, the item <strong>"Curry
+he wants to <strong>increase the price of "Vegetables" to $2.00</strong>. </br></br> Next, the item <strong>"Curry
 Chicken Rice" should cost $5.50</strong>. He can update these items with the <code>
 updateitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the [*index*](#glossary), name, and price of items, as shown below:<br><br>
-
-| Option  | Description                                  | Restrictions                                                                                                                         |
-|---------|----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `Index` | The [*index*](#glossary) number of the item. | Must be a valid [*index*](#glossary) from `listitem`, cannot be a negative number.<br><br> This [*option*](#glossary) is compulsory. |
-| `Name`  | The new name of the item.                    | It cannot already exist in the menu.<br><br> This [*option*](#glossary) is not compulsory.                                           |
-| `Price` | The new price of the item.                   | It can have at most two [*decimal places*](#glossary). <br><br> This [*option*](#glossary) is not compulsory.                        |
-
+💡 There are restrictions for the <a href="#glossary"><i>index</i></a>, name, and price of items, as shown below: </br></br>
 </blockquote>
+
+| Option  | Description                                                  | Restrictions                                                                                                                                                            |
+|---------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Index` | The <a href="#glossary"><i>index</i></a> number of the item. | Must be a valid <a href="#glossary"><i>index</i></a> from `listitem`, cannot be a negative number. </br></br> This <a href="#glossary"><i>option</i></a> is compulsory. |
+| `Name`  | The new name of the item.                                    | It cannot already exist in the menu. </br></br> This <a href="#glossary"><i>option</i></a> is not compulsory.                                                           |
+| `Price` | The new price of the item.                                   | It can have at most two <a href="#glossary"><i>decimal places</i></a>.  </br></br> This <a href="#glossary"><i>option</i></a> is not compulsory.                        |
 
 <h3> For New Users </h3>
 
@@ -618,7 +613,7 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 **Solution:** Include the [*index*](#glossary).
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -633,13 +628,12 @@ this [*command*](#glossary).
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for keyword, as shown below:<br><br>
+💡 There are restrictions for keyword, as shown below: </br></br>
+</blockquote>
 
 | Option    | Description                                              | Restrictions                 |
 |-----------|----------------------------------------------------------|------------------------------|
 | `Keyword` | The name or part of the item name you are searching for. | The keyword cannot be empty. |
-
-</blockquote>
 
 <h3> For New Users </h3>
 
@@ -683,7 +677,7 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 **Solution:** Include the word or letters you want to look for.
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -711,8 +705,8 @@ how much the customer gives you into the program, and MoneyGoWhere will calculat
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  A few days later, John's Chicken Rice stall is finally open! John is so happy that he has MoneyGoWhere as it is very easy and intuitive to use. After familiarizing himself with the system, John is ready to take an order from his hungry customers. 
- <br><br>
-His menu currently looks like this: <br><br>
+ </br></br>
+His menu currently looks like this:  </br></br>
 
 ![](https://i.imgur.com/GXwOhpJ.png)
 
@@ -723,21 +717,23 @@ To add their orders, he will use the <code>addorder</code> <a href="#glossary"><
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the <a href="#glossary"><i>index</i></a>/name and quantity of items, as shown below:<br><br>
+💡 There are restrictions for the <a href="#glossary"><i>index</i></a>/name and quantity of items, as shown below: </br></br>
+</blockquote>
 
-| Option       | Description                                                              | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|--------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Index/Name` | The [*index*](#glossary) number or name of the item in the menu.         | If you choose to enter an [*index*](#glossary) number, it must be a valid [*index*](#glossary) number from `listitem`. The [*index*](#glossary) number cannot be negative. <br><br>You may also choose to enter the full or partial name of the item. However, the entered part of the name must be specific. <br><br>In other words, if your menu contains items with names such as `Chicken Rice`, `Chicken Noodle`, and `Cereal`, then you at least have to enter `chicken r`, `ice`, or `rice` so that the program knows that you are trying to enter `Chicken Rice` and not any of the other two items. |
-| `Quantity`   | The number of the specified menu item that the customer wishes to order. | The quantity cannot be negative, and avoid entering numbers larger than `10000` as it can cause the program to work incorrectly.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Option       | Description                                                              | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|--------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Index/Name` | The [*index*](#glossary) number or name of the item in the menu.         | If you choose to enter an [*index*](#glossary) number, it must be a valid [*index*](#glossary) number from `listitem`. The [*index*](#glossary) number cannot be negative. </br></br> You may also choose to enter the full or partial name of the item. However, the entered part of the name must be specific. </br></br> In other words, if your menu contains items with names such as `Chicken Rice`, `Chicken Noodle`, and `Cereal`, then you at least have to enter `chicken r`, `ice`, or `rice` so that the program knows that you are trying to enter `Chicken Rice` and not any of the other two items. |
+| `Quantity`   | The number of the specified menu item that the customer wishes to order. | The quantity cannot be negative, and avoid entering numbers larger than `10000` as it can cause the program to work incorrectly.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-As for payment, there are restrictions for the amount, and payment type:
+<blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
+💡 As for payment, there are restrictions for the amount, and payment type:
+</blockquote>
 
 | Option   | Description                       | Restrictions                                                                                     |
 |----------|-----------------------------------|--------------------------------------------------------------------------------------------------|
 | `amount` | The amount paid by your customer. | Can have up to two decimal points, and has to be the same or greater than the cost of the order. |
 | `type`   | The type of payment.              | The accepted inputs are `cash`, `card`, or `others`.                                             |
 
-</blockquote>
 
 <h3> For New Users </h3>
 
@@ -849,7 +845,7 @@ When your customers pay with their card, entering an amount different from the s
 
 **Solution:** Enter the exact price of the order into the program.
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -861,7 +857,7 @@ This feature allows you to view the cost, order IDs, the items included in each 
 were made.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖  John's first day is a huge success! He has fed so many hungry students and could see them enjoying his delicious food. At the end of the day, he wants to take a look at all the orders he has taken over the day. He will use the <code>listorder</code> command. <br><br>
+📖  John's first day is a huge success! He has fed so many hungry students and could see them enjoying his delicious food. At the end of the day, he wants to take a look at all the orders he has taken over the day. He will use the <code>listorder</code> command. </br></br>
 
 **Note: Only the first two orders will be shown to reduce the length of the user guide.**
 </blockquote>
@@ -887,7 +883,7 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ![](https://i.imgur.com/taGiKBr.png)
 
-<br>
+ </br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -900,22 +896,22 @@ refunded.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  After using MoneyGoWhere for a few days, John has encountered his worst nightmare: an indecisive customer! This customer wanted Curry Chicken Rice with Vegetables, but has now changed his mind. 
- <br><br>    
+ </br></br> 
 Not wanting to receive bad reviews about his newly opened stall, John decides to give in to his demands for a refund.
- <br><br>    
-John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>. <br><br>
+ </br></br>
+John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>. </br></br>
 
 John needs to refund the order, and can do so with the <code>refundorder</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the name and price of items, as shown below:<br><br>
+💡 There are restrictions for the name and price of items, as shown below: </br></br>
+
+</blockquote>
 
 | Option     | Description                    | Restrictions                                                                                                       |
 |------------|--------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `Order ID` | A randomly generated order ID. | The entered ID must be a valid entered as shown exactly from the output of the `listorder` [*command*](#glossary). |
-
-</blockquote>
+| `Order ID` | A randomly generated order ID. | The entered ID must be a valid entered as shown exactly from the output of the `listorder` <a href="#glossary"><i>command</i></a>. |
 
 <h3> For New Users </h3>
 
@@ -961,7 +957,7 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 ![](https://i.imgur.com/UwyZCfT.png)
 
 **Solution:** Copy the order ID directly from `listorder` and paste it to ensure there are no errors.
-<br>
+</br>
 
 [Back to table of contents](#table-of-contents)
 
@@ -971,13 +967,13 @@ This important feature of MoneyGoWhere allows you to generate reports to view sa
 to generate reports.
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖  At this point, John has been running the stall for a few months. He's making so much money that it is hard for him to keep track of how much money he has made. He wants to see four things:<br><br>
+📖  At this point, John has been running the stall for a few months. He's making so much money that it is hard for him to keep track of how much money he has made. He wants to see four things: </br></br>
 1. For the year 2023, which items bring in the most income?
- <br><br>
+ </br></br>
 2. For the month of January, which were ordered the most?
- <br><br>
+ </br></br>
 3. John wants to check how his income has changed over the year.
- <br><br>
+ </br></br>
 4. John wants to check his income for the first 10 days of March.
 </blockquote>
 
@@ -993,17 +989,19 @@ to generate reports.
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
 💡 We understand that these <a href="#glossary"><i>command</i></a> formats may be complicated. Here is a refesher on how such formats can be more easily understood.
- <br><br>
+ </br></br>
 1. Any words surrounded by <code><></code>,. 
- <br><br>
+ </br></br>
 2. <a href="#glossary"><i>Options</i></a> that are surrounded by <code>{}</code> are optional. 
- <br><br>
+ </br></br>
 3. All values have to be accompanied by <a href="#glossary"><i>options</i></a> (begins with <code>-</code>, such as <code>-n</code> or <code>--price</code>). <a href="#glossary"><i>Commands</i></a> such as <code>/deleteitem delete -i 10</code> will be an invalid <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-💡 There are restrictions for the name and price of items, as shown below:<br><br>
+💡 There are restrictions for the name and price of items, as shown below: </br></br>
+
+</blockquote>
 
 | Option          | Description                                                      | Accepted Inputs                                                                                          |
 |-----------------|------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
@@ -1011,8 +1009,6 @@ to generate reports.
 | `sale`          | Shows your income based on criteria.                             | `daily` or `monthly`                                                                                     |
 | `year`          | The year you are trying to generate a report for.                | A year in the format `YYYY`. Entering a negative year will cause the application to not work as intended |
 | `from` and `to` | The start and end dates you are trying to generate a report for. | A date in the format `DD/MM/YYYY`                                                                        |
-
-</blockquote>
 
 
 Don't worry if you find yourself still confused by the format. We admit, it is pretty complex. So, let's break it down:
