@@ -771,6 +771,8 @@ These are some commands available:
 
 <div style="page-break-after: always;"></div>
 
+<div style="font-size:30px"><strong> Back in Main Menu </strong>  </div>
+
 ## Generating a list of planned exercises: ```quick PLAN_NAME NUMBER```
 
 
