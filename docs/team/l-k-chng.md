@@ -64,6 +64,7 @@ contains the user's completed workout sessions, before returning an ArrayList of
 
 ### Contributions to the DG
 * Wrote the plantUML file for the Ui class.
+* Contributed to CommandList plantUML diagram and explanation.
 * Added more elaborations to the explanations of features.
 
 ### Contributions to the UG
