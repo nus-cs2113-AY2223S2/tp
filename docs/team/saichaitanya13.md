@@ -15,10 +15,9 @@ to my tP Code dashboard
 1. `Stats` feature: The Stats feature is key to the application as a user would want to know how much of their budget has been spent 
 in a certain month.
 2. Stats classes, such as the StatsCommand, StatsAction and StatsUIResponse.
-3. Assisted in displaying budget progress everytime an expense is added.
-4. Assisted in brainstorming of new ideas for features to include in our application.
-5. Assisted in testing of application and fixing of bugs. 
-6. Added JUnit Testing for `StatsCommand` and `HelpCommand`
+3. Assisted in brainstorming of new ideas for features to include in our application.
+4. Assisted in testing of application and fixing of bugs. 
+5. Added JUnit Testing for `StatsCommand` and `HelpCommand`
 
 #### Contributions to the User Guide
 
