@@ -14,7 +14,6 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 
 import com.google.gson.Gson;
 
@@ -29,6 +28,7 @@ import model.Memory;
 import model.DeckList;
 import model.CardUUID;
 
+import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 import utils.exceptions.StorageLoadFailure;
@@ -48,8 +48,8 @@ public class JsonStorage extends Storage {
      *
      * @param filePath The file path of the JSON storage file.
      */
-    public JsonStorage(String filePath) {
-        super(filePath);
+    public JsonStorage(String filePath,  UserInterface ui) {
+        super(filePath, ui);
 
         // Create the backup file
         String backupFilePath = filePath.replace(".json", "_backup.json");
@@ -79,7 +79,8 @@ public class JsonStorage extends Storage {
                 Files.setPosixFilePermissions(saveFile.toPath(), permissions);
             }
         } catch (IOException e) {
-            logger.log(Level.WARNING, "Failed to set permissions to read-only for " + filePath, e);
+            JsonStorage.ui.printPermFail();
+
         }
     }
 
@@ -98,15 +99,12 @@ public class JsonStorage extends Storage {
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject saveDataObject = jsonElement.getAsJsonObject();
             Memory savedMemory = JsonToMemory.convert(saveDataObject);
-
             return savedMemory;
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
-            logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
             throw new StorageLoadFailure(absolutePath);
-        } catch (NullPointerException | JsonSyntaxException e) {
-            String absolutePath = this.saveFile.getAbsolutePath();
-            logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
+        } catch (NullPointerException | JsonSyntaxException | InkaException e) {
+            JsonStorage.ui.printLoadBackup();
             return loadBackup();
         }
     }
@@ -124,11 +122,11 @@ public class JsonStorage extends Storage {
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject saveDataObject = jsonElement.getAsJsonObject();
             Memory savedMemory = JsonToMemory.convert(saveDataObject);
-            logger.log(Level.INFO, "Loaded backup file successfully");
+            JsonStorage.ui.printLoadBackupSuccess();
             return savedMemory;
-        } catch (IOException | NullPointerException | JsonSyntaxException ex) {
+        } catch (IOException | NullPointerException | JsonSyntaxException | InkaException ex) {
             String absolutePath = this.backupFile.getAbsolutePath();
-            logger.log(Level.WARNING, "Corrupted backup file: " + absolutePath, ex);
+            JsonStorage.ui.CorruptedBackup();
             throw new StorageCorrupted(absolutePath);
         }
     }
@@ -152,7 +150,7 @@ public class JsonStorage extends Storage {
             saveDataToFile(backupFile, exportData);
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
-            logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
+            JsonStorage.ui.failedSave(absolutePath);
             throw new StorageSaveFailure(absolutePath);
         }
     }

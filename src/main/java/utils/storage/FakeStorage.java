@@ -4,14 +4,17 @@ import model.CardList;
 import model.DeckList;
 import model.Memory;
 import model.TagList;
+import utils.UserInterface;
 
 /**
  * For testing without writing to file system
  */
 public class FakeStorage extends Storage {
 
-    public FakeStorage() {
-        super("");
+    public FakeStorage(UserInterface ui) {
+        super("", ui);
+
+
     }
 
     @Override

@@ -14,6 +14,7 @@ import model.DeckUUID;
 import model.Memory;
 import model.TagUUID;
 import org.junit.jupiter.api.Test;
+import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 import utils.storage.json.JsonStorage;
@@ -55,19 +56,22 @@ public class JsonStorageTest {
 
     @Test
     public void load_emptyFile() {
-        Storage storage = new JsonStorage(EMPTY_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(EMPTY_FILE.toString(), ui);
         assertThrows(StorageCorrupted.class, storage::load, "Expected a StorageCorrupted exception");
     }
 
     @Test
     public void load_malformedFile() {
-        Storage storage = new JsonStorage(MALFORMED_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(MALFORMED_FILE.toString(), ui);
         assertThrows(StorageCorrupted.class, storage::load, "Expected a StorageCorrupted exception");
     }
 
     @Test
     public void load_validFile() throws InkaException {
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
 
 
@@ -78,7 +82,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_cardList() throws InkaException {
         //check if it is loading 2 cards
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
         int cardListSize = cardList.size();
@@ -90,7 +95,8 @@ public class JsonStorageTest {
 
     @Test
     public void load_validFile_cardUuid() throws InkaException {
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
 
@@ -108,7 +114,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_cardTags() throws InkaException {
         //check if it is loading 2 cards
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
 
@@ -125,7 +132,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_cardTagUuid() throws InkaException {
         //check if it is loading tag's Uuids
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
 
@@ -144,7 +152,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_cardDecks() throws InkaException {
         //check if it is loading 2 cards
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
 
@@ -160,7 +169,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_cardDeckUuid() throws InkaException {
         //check if it is loading deck's Uuids
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
 
@@ -178,7 +188,8 @@ public class JsonStorageTest {
     @Test
     public void load_validFile_deckList() throws InkaException {
         //check if it is loading deckList
-        Storage storage = new JsonStorage(VALID_FILE.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_FILE.toString(), ui);
         Memory memory = storage.load();
         DeckList deckList = memory.getDeckList();
         int testDeckSize = deckList.getDecks().size();
@@ -193,7 +204,8 @@ public class JsonStorageTest {
     @Test
     public void load_hashFile_deckcardsSet() throws InkaException {
         //check if it is loading cardsSet
-        Storage storage = new JsonStorage(VALID_HASH.toString());
+        UserInterface ui = new UserInterface();
+        Storage storage = new JsonStorage(VALID_HASH.toString(), ui);
         Memory memory = storage.load();
         DeckList deckList = memory.getDeckList();
         DeckUUID deck1Uuidobj = new DeckUUID(UUID.fromString(hashDeckUuid));

@@ -33,7 +33,7 @@ public class DeckParserTest {
         cardList = new CardList();
         tagList = new TagList();
         ui = new UserInterface();
-        storage = new FakeStorage();
+        storage = new FakeStorage(ui);
         parser = new Parser();
         deckList = new DeckList();
     }

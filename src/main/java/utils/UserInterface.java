@@ -118,6 +118,7 @@ public class UserInterface {
     public void printTags(TagList tagList) {
         if (tagList.isEmpty()) {
             System.out.println("\tThere is no tag.");
+            System.out.println("\tThere is no tag.");
         } else {
             System.out.println("\tHere are your tags:");
             for (int i = 0; i < tagList.size(); ++i) {
@@ -223,5 +224,24 @@ public class UserInterface {
     public void printWarning() {
         System.out.println("There is no need to input any characters!\n"
                 + "Just hitting enter is sufficient to show the answer! Anyway, here is the answer!\n");
+    }
+
+    public void printLoadBackup() {
+        System.out.println("The original file seems to be corrupted... loading the backup file!");
+    }
+    public void printLoadBackupSuccess() {
+        System.out.println("Backup Loaded!");
+    }
+
+    public void CorruptedBackup() {
+        System.out.println("Corrupted backup file! making a new file");
+    }
+
+    public void failedSave(String path) {
+        System.out.println("Failed to save at path: " + path);
+    }
+
+    public void printPermFail() {
+        System.out.println("Failed to set file permissions");
     }
 }

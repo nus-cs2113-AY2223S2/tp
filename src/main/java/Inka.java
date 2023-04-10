@@ -22,8 +22,9 @@ public class Inka {
     private DeckList deckList;
 
     public Inka(String filePath) {
-        storage = new JsonStorage(filePath);
+
         ui = new UserInterface();
+        storage = new JsonStorage(filePath, ui);
         parser = new Parser();
         memory = loadSaveFile();
         deckList = memory.getDeckList();
