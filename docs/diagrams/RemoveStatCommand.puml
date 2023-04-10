@@ -36,12 +36,14 @@
             RemoveStatCommand -> PetList
                 PetList -> PetList:find(petName)
                 activate PetList
-                
+                return
             
                 activate Pet
-                return
+                
+                
                 PetList -> Pet 
 
+                    
                     alt statName = "type"
                         Pet -> Pet:setPetType("")
                         activate Pet
@@ -56,20 +58,23 @@
                         Pet -> Pet:setWeight("")
                         activate Pet
                         return
+                    end
                     
-                end
-                    return
                     deactivate Pet
-                
-            return
-            deactivate PetList
+                    deactivate PetList
+
+
             
+            return
+            return 
+            return 
+            return 
+             
+             
 
-        deactivate RemoveStatCommand
-        return
-
-
-        
+            
+                
+                
 
     
 

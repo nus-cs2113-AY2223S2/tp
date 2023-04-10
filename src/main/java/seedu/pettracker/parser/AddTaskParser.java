@@ -11,10 +11,10 @@ public class AddTaskParser implements ArgParser<AddTaskCommand>{
     final String EMPTY_ARG_MESSAGE = "This command requires arguments.";
     final String EMPTY_DESC_MESSAGE = "Please enter a description for the task.";
     final String INVALID_ARG_FORMAT_MESSAGE = "Invalid argument format. Please enter the arguments in the " +
-            "following format: DESCRIPTION DEADLINE.";
+            "following format: DESCRIPTION /by DEADLINE.";
     final String INVALID_DATE_FORMAT_MESSAGE = "Invalid date format. Please enter the date in the following format: " +
-            "YYYY-MM-DD.";
-    final String DATE_SEPARATOR = "/by";
+            "YYYY-MM-DD. Also, ensure that your arguments are in the following format: DESCRIPTION /by DEADLINE";
+    final String DATE_SEPARATOR = " */by *";
     @Override
     public AddTaskCommand parse(String commandArgs) throws IllegalArgException {
         if (commandArgs.isEmpty()) {
@@ -27,7 +27,7 @@ public class AddTaskParser implements ArgParser<AddTaskCommand>{
                 throw new EmptyArgException(EMPTY_ARG_MESSAGE);
             }
             LocalDate deadline;
-            if (commandArgs.contains(DATE_SEPARATOR)) {
+            if (commandArgs.contains("/by")) {
                 deadline = LocalDate.parse(args[1].trim());
                 return new AddTaskCommand(description, deadline);
             }
