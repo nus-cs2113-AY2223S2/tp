@@ -29,8 +29,6 @@ public class ParserAccount {
             || res.equals(NON_EXISTING_ACCOUNT_MESSAGE)
             || res.equals(FAIL_READING_USERNAME_MESSAGE)) {
             initialize(scanner);
-        } else {
-            showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);
         }
     }
 

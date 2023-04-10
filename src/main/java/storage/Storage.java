@@ -81,10 +81,8 @@ public class Storage {
             File f = new File(filePath);
             if (f.createNewFile()) {
                 // first time that the programme is being run, update welcome message later on
-                WelcomeMessage.printLogo();
                 System.out.println(INITIAL_WELCOME_MESSAGE);
             } else {
-                WelcomeMessage.printLogo();
                 System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
             }
         } catch (IOException e) {
