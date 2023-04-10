@@ -42,6 +42,7 @@ Got it. I've added this recipe:
 Now you have 1 recipes in the list.
 
 __________________________________________________________
+
 The ingredient has been successfully added to the ingredient list!
 __________________________________________________________
 There are 4 ingredients in the list:
@@ -113,6 +114,7 @@ There are 3 steps in the list
 Valid range: 1 to 4
 Enter "quit" to cancel.
 Enter step index below:
+
 The step has been successfully added to the step list!
 __________________________________________________________
 There are 4 steps in the list
@@ -222,6 +224,7 @@ RECIPE LIST
 4. [Chinese] Beijing Duck
 
 __________________________________________________________
+
 Here is the recipe you requested, which is Italian flavour:
 name: Spaghetti
 __________________________________________________________
@@ -290,6 +293,7 @@ __________________________________________________________
 
 Find is missing KEYWORDS!
 __________________________________________________________
+
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
@@ -327,6 +331,7 @@ Type 'quit' to exit the edit view
 Input index exceeds the number of steps!
 Valid Range: 1 to 1
 __________________________________________________________
+
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
