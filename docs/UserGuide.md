@@ -59,7 +59,7 @@ Format: `Graph [Amplitude]*[Trigo]([Frequency]*x[sign][PhaseShift])[sign][Vertic
 
 * `Amplitude` can be any positive number. E.g. `15.5`, `4`, `0`
 * `Trigo` can be sin, cos or tan. 
-* `Frequency` can be any positive integer (more than 0). E.g. `100`
+* `Frequency` can be any positive number (more than 0). E.g. `100`
   * When entering frequency, one can include 𝜋 by typing `2*pi*x` instead of `6.283*x`
 * `PhaseShift`, `VerticalShift` can be any positive number. E.g. `15.1`, `4`, `0`,`1`
 * `sign` can be + or - .
