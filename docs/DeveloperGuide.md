@@ -465,10 +465,64 @@ Expected: Error message is shown and no changes are made to the ingredients list
 Expected: Similar to previous.
 <br/><br/>
 
+### Recipe All
+
+1. Test Case: `recipe all`
+Expected: All 6 stored recipes are displayed
+
+2. Test Case: `recipe list`
+Expected: Error message for incorrect command is shown.
+
+3. Other incorrect commands to try: `recipe list all`, `recipe show all`, `recipe show` etc.  
+Expected: Error message for incorrect command is shown.
+
+### Recipe Detail
+
+1. Test Case: `recipe 1`
+Expected: Details for recipe 1 (Beef Burger) are shown with all ingredients and instructions.
+
+2. Test Case: `recipe 0`
+Expected: Error message for invalid recipe is shown.
+
+3. Other test cases: `recipe <index_number>` where `<index_number>` is 1-6 inclusive.
+Expected: Respective recipes are displayed correctly with all ingredients and instructions.
+
+4. Incorrect test cases to try: `recipe <x>` where `<x>` is either out of bounds of 1-6 or an invalid flag (ie. a string or a decimal)
+Expected: Error message for invalid recipe is shown.
 
 ### Saving Data
 1. Dealing with corrupted data file
    * To simulate a corrupted data file, modify the format of the data stored in `ingredients.txt` file. <br>
    Expected: MealCompanion to throw error message notifying users of corrupted data file, program still runs normally.
+
+### Command lists for testing
+| Correct Command | Expected behaviour |
+| --------------- | ----------------- |
+| `add apple /qty 3` | Success message is printed, 3 apples added to ingredients list and `ingredients.txt` |
+| `remove ground chicken /qty 100` | Success message is printed, 100 grams of ground chicken removed from ingredients list and `ingredients.txt` |
+| `ingredients list` | All stored ingredients listed out |
+| `ingredients search ground chicken` | Output shows the valid ingredient and the unit of measurement (if applicable) - grams expected for ground chicken |
+| `ingredients search` | Returns list of all valid ingredients |
+| `clear` | Deletes all stored ingredients |
+| `allergen add egg` | Allergy to egg added, any recipes containing eggs will not be shown to users |
+| `allergen remove egg` | Allergy to egg removed, any recipes containing eggs will now be shown to users |
+| `allergen list` | Shows list of all ingredients that user is allergic to |
+| `recipe all` | Shows all stored recipes in a list |
+| `recipe 1` | Shows details of recipe 1 (Beef Burger), replace with any number 1-6 inclusive to view other recipes |
+| `recipe possible` | Shows recipes which users can make with their stored ingredients, will omit recipes that contain allergens |
+| `recipe random` | Shows a random recipe, does not omit recipes containing allergens |
+| `recipe find chicken` | Returns a list of recipes whose names contain the keyword - in this case chicken |
+| `recipe need 2` | Shows users which ingredients are lacking for the specified recipe - in this case recipe 2 (cup of water) |
+| `recipe almost` | Shows users which recipes are only lacking 3 or fewer ingredients |
+| `make 1` | Consumes the required amount of ingredients to make the specified recipe, deleting them from the ingredients list - in this case recipe 1 (Beef Burger) |
+| `recipe favourite 1` | Favourites the specified recipe and outputs a star next to that recipe when `recipe all` is used - in this case recipe 1 (Beef Burger) |
+| `recipe unfavourite 1` | Unfavourites the specified recipe and removes the star in `recipe all` - in this case recipe 1 (Beef Burger) |
+| `help` | Outputs list of commands and explanations | 
+| `hello world` | Outputs first easter egg hint |
+| `hello psle` | Outputs easter egg puzzle |
+| `hello <puzzle_answer>` | Solve the puzzle and input it in `<puzzle_answer>` in the format specified in the terminal, and it will output our first easter egg |
+| `hello world walt` | Outputs second easter egg |
+
+For more detailed examples of commands, refer to our [User Guide](https://ay2223s2-cs2113t-t09-3.github.io/tp/UserGuide.html). 
 
 ###### [Back to the top](#developer-guide)
