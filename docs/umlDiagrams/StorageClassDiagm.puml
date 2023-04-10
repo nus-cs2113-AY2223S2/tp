@@ -1,0 +1,27 @@
+@startuml
+class StorageFile {
+ + path : Path
+ + StorageFile()
+ + save( flashcardList : FlashcardList) : void
+ + load() : ArrayList<Flashcard>
+}
+class FlashcardEncoder {
+ + {static} encodeFlashcardList( toSave : FlashcardList ) : List<String>
+ - {static} encodeFlashcardToString( flashcard : Flashcard) : String
+}
+class FlashcardDecoder {
+ + {static} decodeFlashcardList( encodedFlashcardList : List<String>) : ArrayList<Flashcard>
+ - {static} decodeFlashcardFromString ( encodedFlashcard : String) : Flashcard
+}
+class Clanki {
+ - storageFile : StorageFile
+ + Clanki()
+ + {static} main (args : String[]) : void
+ + run() : void
+}
+
+Clanki *--> "1" StorageFile : controls >
+StorageFile --> FlashcardDecoder : uses >
+StorageFile --> FlashcardEncoder : uses >
+
+@enduml

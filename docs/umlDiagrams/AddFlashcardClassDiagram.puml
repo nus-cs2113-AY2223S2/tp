@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+abstract Command
+Command : execute(flashcardList: FlashcardList, display: Ui) : void
+class AddCommand
+AddCommand : execute(flashcardList: FlashcardList, display: Ui) : void
+class Ui
+Ui : printSuccessfulAddMessage() : void
+class FlashcardList
+FlashcardList : addNewFlashcard(questionText : String, answerText : String) : void
+class Flashcard
+class Parser
+Parser : parseCommands (userInput : String) : Command
+
+Command <|-- AddCommand
+AddCommand ..> Ui : calls >
+AddCommand ..> FlashcardList : calls >
+Parser ..> AddCommand : creates >
+FlashcardList --> "*" Flashcard
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title UpdateCommand Sequence Diagram
+
+participant "<<Class>> :Clanki" as Main
+participant ":UpdateCommand" as UpdateCommand
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":Flashcard" as Flashcard
+participant ":Flashcard List" as FlashcardList
+participant ":ParsedInput" as ParsedInput
+
+Main -> Ui: User input
+activate Main
+activate Ui
+
+Ui -> Main : userInput :String
+deactivate Ui
+
+Main -> Parser : parseInput(userInput)
+activate Parser
+
+Parser -> UpdateCommand: UpdateCommand(query)
+activate UpdateCommand
+
+UpdateCommand -> Parser
+deactivate UpdateCommand
+
+Parser -> Main : command : UpdateCommand
+deactivate Parser
+
+Main -> UpdateCommand : execute()
+activate UpdateCommand
+
+UpdateCommand -> FlashcardList: queryFlashcards(query)
+activate FlashcardList
+
+FlashcardList -> UpdateCommand : matchingFlashcards
+deactivate FlashcardList
+
+UpdateCommand -> Ui: printFlashCards(matchingFlashcards)
+activate Ui
+
+Ui -> UpdateCommand
+deactivate Ui
+
+loop while not done
+    UpdateCommand -> Ui: getUserCommand()
+    activate Ui
+
+    Ui -> ParsedInput: ParsedInput(display.getUserCommand())
+    deactivate Ui
+    activate ParsedInput
+
+    ParsedInput -> UpdateCommand
+    deactivate ParsedInput
+
+    UpdateCommand -> Ui : printSuccessfulUpdateMessage(currentFlashcard)
+    activate Ui
+
+    Ui -> UpdateCommand
+    deactivate Ui
+
+    UpdateCommand -> Main
+    deactivate UpdateCommand
+    destroy UpdateCommand
+
+end
+@enduml

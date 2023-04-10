@@ -1,0 +1,65 @@
+@startuml
+participant "<<Class>> :Clanki" as Main
+participant "storageFile :StorageFile" as Storage
+participant "<<Class>> :FlashcardListDecoder" as Decoder
+participant "<<Class>> :FlashcardListEncoder" as Encoder
+
+
+activate Main
+create Storage
+Main -> Storage : StorageFile()
+activate Storage
+Storage --> Main
+deactivate Storage
+
+Main -> Storage : load()
+activate Storage
+Storage -> Decoder : decodeFlashcardList(Files.readAllLines(path) :List<String>)
+activate Decoder
+loop for all String in List<String>
+    Decoder -> Decoder : decodeFlashcardFromString(encodedFlashcard :String)
+    activate Decoder
+    opt String does not match pattern
+        Decoder -> Decoder :  :StorageOperationException(ENCODED_FLASHCARD_IN_INVALID_FORMAT_UNABLE_TO_DECODE);
+        end
+    Decoder -> Decoder :  :Flashcard
+    deactivate Decoder
+end
+Decoder -> Storage : flashcards : ArrayList<Flashcard>
+deactivate Decoder
+Storage -> Main : flashcards : ArrayList<Flashcard>
+deactivate Storage
+
+Main -> Main : run()
+activate Main
+loop  command instanceof ByeCommand
+    <- Main : getUserCommand()
+    -> Main : inputText :String
+    <- Main : parseCommand(inputText)
+    -> Main : command :Command
+    <- Main : execute()
+    --> Main
+    Main -> Storage : save()
+    activate Storage
+    Storage -> Encoder : encodeFlashcardList(flashcardList :FlashcardList)
+    activate Encoder
+    loop for all Flashcard in ArrayList<Flashcard> from flashcardlist
+        Encoder -> Encoder : decodeFlashcardFromString(encodedFlashcard :String)
+        activate Encoder
+        Encoder -> Encoder : :String
+        deactivate Encoder
+    end
+    Encoder -> Storage : encodedFlashcardList :FlashcardList
+    deactivate Encoder
+    Storage --> Main
+    deactivate Storage
+end
+Main --> Main
+deactivate Main
+
+
+
+
+
+
+@enduml
