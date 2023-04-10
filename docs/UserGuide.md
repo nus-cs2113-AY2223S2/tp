@@ -359,8 +359,8 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 * `sd` and `ed` must be of the format `YYYY/MM/DD`
 * `e`, `sd` and `st` are **compulsory** fields
 * `ed` and `et` are **optional**,
-  * if user input **ed without et**, ed value will be ignored
-  * if user input **et without ed**, ed value will be set to the same as sd by default. 
+  * if user input **`ed` without `et`**, ed value will be ignored
+  * if user input **`et` without `ed`**, ed value will be set to the same as sd by default. 
 
 * other fields are **optional**.
 
@@ -399,7 +399,7 @@ Please note that data will only be saved if application closes as per normal (no
 Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
 
 🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run.
-
+ 
 ### NUSMods Data
 NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored in NUSPlanner is correct as of **March 17, 2023**. 
 
@@ -438,13 +438,14 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 👉 Each word is separated by only a **single whitespace**
 
 
-**Command | Description**
-* `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Add event
-* `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
-* `delete –s 1` | Delete a single event
-* `delete -all` | Delete all events
-* `list` | List all events
-* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
+| Action                                      | Command                                                                                        |
+|---------------------------------------------|------------------------------------------------------------------------------------------------|
+| [Add Event](#adding-an-event)               | `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`       |
+| [Add Module](#adding-a-module)              | `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`                                               |
+| [Delete a single event](#deleting-an-event) | `delete –s 1`                                                                                  |
+| [Delete all events](#deleting-an-event)     | `delete -all`                                                                                  |
+| [List all events](#list-an-event)           | `list`                                                                                         |
+| [Edit event](#editing-an-event)             | `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` |
 
 <br>
 
