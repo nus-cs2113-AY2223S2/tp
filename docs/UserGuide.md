@@ -591,20 +591,20 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 
 1. Open your Microsoft Excel application and open a blank workbook.
 2. Click on the *Data* tab found at the top and click on *From
-   Text/CSV*.
+   Text/CSV*.<br><br>
 
-![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
-
+    ![csvtoexcel.csv](images/UserGuide/csvToExcel.png)
+   <br><br>
 3. Navigate to the CSV file as directed in
    the [where to locate exported CSV file section](#where-to-locate-the-exported-csv-file).
-4. Double-click on the CSV file and click the *load* button.
+4. Double-click on the CSV file and click the *load* button.<br><br>
 
-![img.png](images/UserGuide/csv.png)
-
+    ![img.png](images/UserGuide/csv.png)
+   <br><br>
 5. With steps 1-4, your financial statements should now be viewable in a nicely formatted table as shown
-   below.
+   below.<br><br>
 
-![statementstable.png](images/UserGuide/statementTable.png)
+    ![statementTable.png](images/UserGuide/statementTable.png)
 
 [Jump back to Features Overview](#features-overview)
 
