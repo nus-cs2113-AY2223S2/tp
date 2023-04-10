@@ -523,6 +523,7 @@ currencies, we require a limit on how far back the date can be set.
 | Exit ET (inside the account) | `exit`   |
 | Log out of the account       | `logout` |
 
+
 ### Expense management command
 | Action                        | Command                                                                       |
 |-------------------------------|-------------------------------------------------------------------------------|
@@ -535,4 +536,5 @@ currencies, we require a limit on how far back the date can be set.
 | Overview                      | monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`  |
 | Find expenses                 | `find KEYWORD`                                                                |
 | Exit ET (outside the account) | `exit`                                                                        |
+
 
