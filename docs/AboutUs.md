@@ -1,4 +1,5 @@
 # About us
+
 |                                                            Display                                                             |           Name           |                       Github Profile                       |                  Portfolio                  |
 |:------------------------------------------------------------------------------------------------------------------------------:|:------------------------:|:----------------------------------------------------------:|:-------------------------------------------:|
 |     <img src="https://lh3.googleusercontent.com/ogw/AAEL6siaN8FAHVYJkDB8wJIkojGsZD4UUHlXbD9XF3NJULQ=s32-c-mo" width = 100>     |       Goh Yi Xuan        |           [Github](https://github.com/yixuann02)           |       [Portfolio](team/yixuann02.md)        |
