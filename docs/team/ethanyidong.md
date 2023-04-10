@@ -25,6 +25,7 @@ by the ingredients you already have so that you can easily find recipes you can 
 - Command syntax (done inside draft, copied over to GitHub)
 
 #### DG
+- Acknowledgements
 - Architecture description and diagram (along with Jing Ya)
 - Describe how routing is implemented and why
   - Routing class diagram
