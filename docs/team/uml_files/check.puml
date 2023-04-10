@@ -1,0 +1,35 @@
+@startuml
+!define AWSPUML https://cdn.rawgit.com/Willibaur/PlantUML_AWS/07362bc9/
+skinparam defaultTextAlignment center
+!define ICONURLAWSPUML https://raw.githubusercontent.com/Willibaur/PlantUML_AWS/07362bc9/
+!define AWSPUML_SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v2.0/
+!define AWSPUML_NOBORDER
+skinparam defaultFontSize 24
+
+participant ":MainInputParser" as MainInputParser
+-> MainInputParser: parseInput(line)
+activate MainInputParser
+
+participant ":CheckBudgetCommand" as CheckBudgetCommand
+
+MainInputParser->CheckBudgetCommand** : <<create>>
+activate CheckBudgetCommand
+participant ":ParseIndividualValue" as ParseIndividualValue
+CheckBudgetCommand->ParseIndividualValue : parseIndividualValue
+activate ParseIndividualValue
+return :String
+participant ":ExpenditureList" as ExpenditureList
+CheckBudgetCommand->ExpenditureList : getBudgetSet()
+activate ExpenditureList
+return :double
+
+autoactivate on
+CheckBudgetCommand->CheckBudgetCommand : checkAll()
+CheckBudgetCommand->CheckBudgetCommand : updateAmount()
+deactivate CheckBudgetCommand
+deactivate CheckBudgetCommand
+CheckBudgetCommand-> CheckBudgetCommand : getCheckCommandResult
+return
+CheckBudgetCommand --> MainInputParser : CommandResult(String)
+
+@enduml
