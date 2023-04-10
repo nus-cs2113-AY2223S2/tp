@@ -738,7 +738,7 @@ Prerequisites: None
 Prerequisites: None
 
 1. Test case: `add -in income $4000 -c full time pay -date 5/4/2023`<br>Expected: An inflow transaction with amount of
-   4000, description of "income", category of "full-time pay" and date of 05/04/2023 will be added into rainyDay.
+   4000, description of "income", category of "full time pay" and date of 05/04/2023 will be added into rainyDay.
    An output reflecting the action done will be shown.
 
 2. Test case: `add -out beef-noodles $12`<br>Expected: No new transaction added. Error message for "unsupported
