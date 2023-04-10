@@ -95,6 +95,8 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 
 * `inline code` format are related to commands, classes and methods in rainyDay
 * "double quotes" format are related to names
+* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional e.g.
+  [DESCRIPTION] {TIME}
 * 💡 indicates helpful tips
 * ℹ️ indicates information to take note of
 
@@ -299,7 +301,7 @@ financial report containing a list of financial statements.
 ### Adding an entry `add`
 
 - When a command is given to add a statement, the command is first parsed to check whether it follows the format of an
-  add command: `add -DIRECTION DESCRIPTION $VALUE -c CATEGORY -date DAY/MONTH/YEAR` with the use of regex pattern
+  add command: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DAY/MONTH/YEAR}` with the use of regex pattern
     - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
@@ -326,7 +328,7 @@ Format of add command
 ### Deleting an entry `delete`
 
 - When a command is given to delete a statement, the command is first parsed to check whether it follows the format of a
-  delete command: `delete INDEX` with the use of regex pattern
+  delete command: `delete [INDEX]` with the use of regex pattern
     - `INDEX`: the index number of the statement in the financial report, stored as an int
 - Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
   be created with the relevant attribute information
@@ -369,7 +371,7 @@ variations of inputs. The following shows the format of input we expect from a u
 
 Adds a new transaction to the financial report.
 
-Format: `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY -date DD/MM/YYYY`
+Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DD/MM/YYYY}`
 
 * The `DIRECTION` to be `in` signifying an inflow type of transaction, or `out` signifying an outflow type of
   transaction. This is a required field
@@ -382,28 +384,30 @@ As this is quite a long command to parse, we will use regular expressions in the
 down the instructions.
 
 1. function addStatement will call function returnRemainingInformation which will check whether the input contains the
-   optional -c and -d commands. This is done through the following:
+   the mandatory fields are present. This is done through the following:
 
-    - `-(in|out)\s+(.+)\$([\d.]+)` checks for the corresponding structure: `[-in/out] [whitepsace]
-      [description] [$amount] `. This will match when the optional flags are not included. An empty string will then be
-      returned
-    - `-(in|out)\s+(.+)\$([\d.]+)\s+(.*)` checks for the corresponding structure `[-in/out] [whitepsace]
-      [description] [$amount] [remaining input]`. This will match when at least one of the optional flags are included,
-      and a string corresponding to `[remaining input]` will be returned<br><br>
+    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)` checks for the corresponding structure: `(-IN/OUT) <whitepsace>
+      (DESCRIPTION) <whitepsace> ($AMOUNT) `. This will match when the optional flags are not included. An empty string 
+      will then be returned
+    - `-(in|out)\\s+(.+)\\s+\$([\d.]+)\\s+(.*)` checks for the corresponding structure `(-IN/OUT) <whitepsace>
+      (DESCRIPTION) <whitepsace> ($AMOUNT) <whitepsace> (remaining input)`. This will match when at least one of the 
+      optional flags are included, and a string corresponding to `(remaining input)` will be returned<br><br>
 
-2. If an empty string is returned, an addCommand object will be returned from function addStatement. Otherwise,
-   a variable `String remainingInformation` will correspond to `[remaining input]` above. `remainingInformation` will
+2. If an empty string is returned, an `addCommand` object will be returned from the method `addStatement`. Otherwise,
+   a variable `String remainingInformation` will correspond to `(remaining input)` above. `remainingInformation` will
    then be checked for if it contains `-c` or `-date` flags<br><br>
 
 3. if `remainingInformation` contains a `-c` flag, it means that the user has provided a category for the item.
-   Thus, it will be passed into the function setCategory. setCategory will then use the following regex to match
+   Thus, it will be passed into the method `setCategory`. `setCategory` will then use the following regex to match
    `remainingInformation`:
-    - `-c\\s+(\\S+)` checks for the corresponding structure `[-c] [whitespace] [1-word category]`
-    - `-c\\s+(\\S+)\\s+(.*)` checks for the same thing except category can be multiple words<br><br>
+    - `-c\\s+(.+)` checks for the corresponding structure `-c <whitespace> (CATEGORY)`
+    - `-c\\s+(.+)\\s+-date\\s+(.*)` checks for the same thing except whether it contains the `-date` flag followed by 
+       any input
+      - <br><br>
 
-4. The last field to check is the `-date` field. If present, the setDate function will be called
+4. The last field to check is the `-date` field. If present, the `setDate` method will be called
    on `remainingInformation`. The setDate function will then use the following regex to match
-    - `-date\\s+(\\d{2}/\\d{2}/\\d{4})` matches the corresponding
+    - `-date\\s+` matches the corresponding
       structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
 
 These steps will ultimately parse the user's input and extract the necessary information. If any pattern does not match,
@@ -419,9 +423,9 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 ### Viewing your data `view`
 
 - When a command is given to view all statements, the command is first parsed to check if it follows the format as shown
-  below. A ViewCommand object will be created at the end.
+  below. A `ViewCommand` object will be created at the end.
     - The format for the command is `view TIMESPAN -sort`
-- The relevant details will then be extracted out and passed as a ViewCommand object. Details include the start date,
+- The relevant details will then be extracted out and passed as a `ViewCommand` object. Details include the start date,
   the end date, if sorting is required, and if `-all` is passed in the `TIMESPAN` field
     - If `-all` is passed, a boolean value will be set to true to indicate this. The start date and end date will be
       set to the earliest and latest possible date of Java's LocalDate
@@ -456,9 +460,12 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   statement
   will be edited
 
-The sequence diagram for the implementation of edit is as shown below:
+The sequence diagram for the implementation of edit is as shown below with the details of looping through 
+editFlagAndField have been omitted from the diagram:
 
 ![EditCommand.png](images\DeveloperGuide\EditCommand.png)
+
+Those details are shown in a separate sequence diagram given below.
 
 ![EditCommandRefFrame.png](images\DeveloperGuide\EditCommandRefFrame.png)
 
@@ -475,7 +482,7 @@ The sequence diagram for the implementation of edit is as shown below:
   whether it follows the format of a filter command with the use of regex. The regex pattern also checks whether the
   flags are in the correct order
 - Commands in the correct format will then be parsed to create a `FilterCommand` object
-- RainyDay will then call `the `Command` specific `execute` method, where every entry in the financial report with the
+- `RainyDay` will then call the `Command` specific `execute` method, where every entry in the financial report with the
   matching
   conditions will be printed
 - Information will be presented in a table format to help improve clarity for users
@@ -483,6 +490,9 @@ The sequence diagram for the implementation of edit is as shown below:
 The sequence diagram for the implementation of filter is as shown below:
 
 ![FilterCommand.png](images\DeveloperGuide\FilterCommand.png)
+
+The diagram above shows the sequence diagram for a `-c` flag, the details for the other flags are omitted to simplify 
+the diagram.
 
 #### Design considerations
 

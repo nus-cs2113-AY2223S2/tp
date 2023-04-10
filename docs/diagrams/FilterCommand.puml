@@ -1,6 +1,5 @@
 @startuml
 participant ":FilterCommand" as FilterCommand
-participant ":ArrayList" as ArrayList
 participant ":UserData" as UserData
 participant ":FinancialStatement" as FinancialStatement
 
@@ -39,7 +38,13 @@ loop filterFlagAndField.size()
 
                 opt financialStatement contains category
                     FilterCommand -> FilterCommand : add(financialStatement : FinancialStatement)
+                    activate FilterCommand
+                    FilterCommand --> FilterCommand
+                    deactivate FilterCommand
                     FilterCommand -> FilterCommand : add(statementIndex : int)
+                    activate FilterCommand
+                    FilterCommand --> FilterCommand
+                    deactivate FilterCommand
                 end
                 deactivate FilterCommand
         end
@@ -54,6 +59,7 @@ end
 FilterCommand -> ViewResult : printItemsInList(listToFilterStatementIndex)
 activate ViewResult
 ViewResult -> :Print to user
+ViewResult --> FilterCommand
 deactivate ViewResult
 
 [<--FilterCommand : : CommandResult
