@@ -81,7 +81,14 @@ error message to be accessed and displayed easily for similar errors.
 
 ### Contributions to the DG
 * Wrote how the ```AchievementListHandler.java API``` in the DG alongside how it is stored and used. This includes the UML diagrams used as well.
-* Some examples of UMLs used are here:![AchievementUpdate.png](..%2FUML%2FImages%2FAchievementUpdate.png)![AchievementHandling.png](..%2FUML%2FImages%2FAchievementHandling.png)
+* Some examples of UMLs used are here:
+<div align="center">
+<img src="UML/Images/AchievementUpdate.png"/>
+</div>
+
+<div align="center">
+<img src="UML/Images/AchievementHandling.png"/>
+</div>
 * Added test cases for achievement related areas.
 * Added user stories.
 
@@ -91,6 +98,7 @@ how specific interactions with certain files might cause unwanted consequences.
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 This allows for better user readability in terms of recognizing *Tips* and *Caution* related messaged. 
+* Added ```achievements``` and ```clear_achievements``` commands and use cases.
 * Added example inputs and outputs for most of the commands.
 * Contributed to the explanations of the usage of certain commands (i.e. achievements).
 
