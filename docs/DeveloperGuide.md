@@ -340,7 +340,7 @@ Step 3. The `storeNotes` public method will then store the note item input by us
 <summary>Sequence Diagram for Store</summary>
 <div markdown="1">
 
-![img_3.png](img_3.png)
+![img_1.png](SequenceDiagrams/Store_Sequence.png)
 
 </div>
 </details>
