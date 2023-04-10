@@ -4,7 +4,11 @@
 EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient
 operation through the Command-Line Interface(CLI).
 
+
+
 ### Summary of Contributions
+
+Contributions to project: [Reposense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=akmalhanis&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=AkmalHanis&tabRepo=AY2223S2-CS2113-W12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 Written below are my contributions to the project, EveNtUS.
 
@@ -29,5 +33,5 @@ Written below are my contributions to the project, EveNtUS.
   - Updated user guide after resolving of issues from PE dry run
   
 - Developer guide:
-  - Added sequence diagram and class diagrams for Command classes
+  - Added AddCommand class sequence diagram and class diagrams for Command classes
   - Wrote an explanation for all the command classes in the DG
