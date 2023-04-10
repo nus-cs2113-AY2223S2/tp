@@ -9,7 +9,7 @@ package Storage{
         +loadEvents():ArrayList<Schedule>
         +loadModules():HashMap<String, NusModule>
     }
-    package "EventListStorage"{
+
         class "<<interface>>\nEventListStorage"{
             +saveToFile(EventList):void
             +loadEvents():ArrayList<Schedule>
@@ -18,9 +18,9 @@ package Storage{
         }
         class EventListAdapter{
         }
-    }
 
-    package NusModuleLoader{
+
+
         class "<<interface>>\nNusModuleLoader"{
             +loadModules():HashMap<String, NusModule>
         }
@@ -30,7 +30,7 @@ package Storage{
 
         class ModuleAdapter{
         }
-    }
+
 
     class StorageManager{
 

@@ -23,11 +23,23 @@ import static seedu.duke.Parser.SEMESTER_END_DATES;
  */
 public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
 
+    /**
+     * Dummy function to extend TypeAdapter
+     * @param out JsonWriter
+     * @param value the Java object to write. May be null.
+     * @throws IOException
+     */
     @Override
     public void write(JsonWriter out, HashMap<String, NusModule> value) throws IOException {
-        //No need to write anything!
+        //No need to write anything to file. Method should be empty!
     }
 
+    /**
+     * Reads nusmods.json file and parses it into a hash map for use by other components in the application.
+     * @param reader JsonReader to parse the JSON file.
+     * @return Hash Map containing all modules in NUS and with its module code as the key.
+     * @throws IOException if there is any issue in parsing the file.
+     */
     @Override
     public HashMap<String, NusModule> read(JsonReader reader) throws IOException {
         HashMap<String, NusModule> nusModuleMap = new HashMap<>();
@@ -40,6 +52,12 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
         return nusModuleMap;
     }
 
+    /**
+     * Deserializes a module object from Json to a java Module class.
+     * @param reader Json Reader to parse the file
+     * @return Module class containing module information
+     * @throws IOException if there is any issue while parsing the file
+     */
     public NusModule readModule(JsonReader reader) throws IOException{
         String description = null;
         String title = null;
