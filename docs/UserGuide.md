@@ -107,7 +107,8 @@ __________________________________________________________
 ```
 <h2 id="adding-elements-to-recipe"> Adding an element to a recipe: <code class="language-plaintext highlighter-rouge">addtorecipe</code></h2>
 
-Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+Adds a step or ingredient to a particular recipe in the recipe list.<br>
+App will prompt you to enter the exact index at which the element is to be added. Existing elements will be shifted down if there is any.<br>
 **Format**: `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`<br>
 **Examples**:<br>
 ```
