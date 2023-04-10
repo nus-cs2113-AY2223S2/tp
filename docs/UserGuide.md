@@ -83,7 +83,7 @@ Adds a new expense to the list of expenses.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March. 
   Users can remove preceding 0s, where apt, for simplicity sake)
-  * The oldest date that can be entered is 2000 01 01 00 00.
+  * The oldest time that can be entered is 2000 01 01 00 00.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -120,7 +120,7 @@ Adds a new income to the list of incomes.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March.
   Users can remove preceding 0s, where apt, for simplicity sake)
-  * The oldest date that can be entered is 2000 01 01 00 00.
+  * The oldest time that can be entered is 2000 01 01 00 00.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -148,10 +148,11 @@ Example output:
 ---
 
 ### Listing all expenses: `listExpense`
-Format: `listExpense [t/ time]`
+Format: `listExpense [t/ date]`
 Shows a list of all expenses in the list of expense.
 
-- The `time` should follow `YYYY/MM` format.
+- The `date` should follow `YYYY/MM` format.
+  * The oldest date that can be entered is 2000/01.
 - The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all the expenses incurred in the month specified. If the optional time parameter is not given,
 it will show a list of all expenses across the entire time period.
@@ -178,10 +179,11 @@ Example output:
 ---
 
 ### Listing all income: `listIncome`
-Format: `listIncome [t/ time]`
+Format: `listIncome [t/ date]`
 Shows a list of all income in the list of income.
 
-- The `time` should follow `YYYY/MM` format.
+- The `date` should follow `YYYY/MM` format.
+  * The oldest date that can be entered is 2000/01.
 - The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all income made in the specified month. If the optional time parameter is not given,
 it will show a list of all income across the entire time period.
@@ -220,7 +222,7 @@ The index must be a positive integer 1, 2, 3, …​
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
-    * The oldest date that can be entered is 2000 01 01 00 00.
+    * The oldest time that can be entered is 2000 01 01 00 00.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -258,7 +260,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. 
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
-    * The oldest date that can be entered is 2000 01 01 00 00.
+    * The oldest time that can be entered is 2000 01 01 00 00.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -466,10 +468,11 @@ Example output:
 ---
 
 ### Set budget: `setBudget`
-Format:  `setBudget <amount> [t/ time]`
+Format:  `setBudget <amount> [t/ date]`
 * The `amount` should be double up to **2dp**. If amount has more than 2dp, it will round off to nearest 2dp.
   * The largest amount that can be entered is `9999999999.99`. 
-* The `time` should follow `YYYY/MM` format.
+* The `date` should follow `YYYY/MM` format.
+  * The oldest date that can be entered is 2000/01.
 * The time parameter is **optional**. 
 If you add this optional parameter, the budget will only take expenses within the indicated month into consideration.
 If the optional time parameter is not given, it will set the budget for the current month.
@@ -511,8 +514,9 @@ Example output without optional time flag:
 ---
 
 ### View budget: `viewBudget`
-Format: `viewBudget [t/ time]`
-* The `time` should follow `YYYY/MM` format.
+Format: `viewBudget [t/ date]`
+* The `date` should follow `YYYY/MM` format.
+  * The oldest date that can be entered is 2000/01.
 * The time parameter is **optional**.
 If you add this optional parameter, it shows the budget of the indicated month.
 If the optional time parameter is not given, it will show the budget for the current month.
