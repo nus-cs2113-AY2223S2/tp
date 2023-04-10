@@ -18,14 +18,14 @@ public class UIUtil {
     }
 
     /**
-     * Converts expenditure into readable format.
+     * Converts entry into readable format.
      *
-     * @param description Description of expenditure
-     * @param price       Price of expenditure
-     * @param category    Category of expenditure
-     * @return Formatted expenditure string
+     * @param description Description of entry
+     * @param price       Price of entry
+     * @param category    Category of entry
+     * @return Formatted entry string
      */
-    public static String formatExpenditure(String description, double price, String category, String dateTime) {
+    public static String formatEntry(String description, double price, String category, String dateTime) {
         return MessageConstants.DESCRIPTION +
                 description +
                 MessageConstants.NEWLINE +

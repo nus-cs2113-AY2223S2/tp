@@ -31,6 +31,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void parseArguments_unknownArgumentBeforeOption_exceptionThrown() {
         Parser parser = new Parser();
@@ -67,6 +68,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void checkPriceValidity_wrongFormatPrice_exceptionThrown() {
         Parser parser = new Parser();
@@ -103,6 +105,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void checkDateValidity_emptyDate_exceptionThrown() {
         Parser parser = new Parser();
@@ -114,6 +117,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void parseUserInput_emptyCategory_exceptionThrown() {
         Parser parser = new Parser();
@@ -172,6 +176,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void parseAddCommand_amount6DP_exceptionThrown() {
         Parser parser = new Parser();
@@ -215,6 +220,7 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+
     @Test
     public void parseEditCommand_invalidExpenseId_exceptionThrown() {
         Parser parser = new Parser();
@@ -427,7 +433,7 @@ public class ParserTest {
     public void parseViewCommand_invalidDateRange_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidDateException.class, () -> {
-            parser.parseUserInput("/view -sd 10/03/23 -ed 09/03/20");
+            parser.parseUserInput("/view -sd 10/03/2023 -ed 09/03/2020");
         });
         String expectedMessage = MessageConstants.MESSAGE_MIXED_DATE;
         String actualMessage = exception.getMessage();
@@ -439,19 +445,19 @@ public class ParserTest {
     public void isValidDate_invalidDate_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidDateException.class, () -> {
-            parser.parseUserInput("/view -sd 31/11/19 -ed 29/2/24");
+            parser.parseUserInput("/view -sd 31/11/0000 -ed 30/02/2024");
         });
         assertEquals(exception.getMessage(), MessageConstants.MESSAGE_INVALID_DATE);
 
 
-        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 20/11/19 -ed 29/02/24"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 20/11/2019 -ed 29/02/2024"));
     }
 
     @Test
     public void parseViewCommand_missingDates_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingDateException.class, () -> {
-            parser.parseUserInput("/view -c food -sd 30/11/19");
+            parser.parseUserInput("/view -c food -sd 30/11/2019");
         });
         assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
     }

@@ -1,68 +1,70 @@
 <!-- omit in toc -->
+
 # Developer Guide
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Design](#design)
-  - [Architecture](#architecture)
-  - [Frontend](#frontend)
-    - [Parser](#parser)
-    - [Commands](#commands)
-      - [Add Command](#add-command)
-      - [Delete Command](#delete-command)
-      - [Edit Command](#edit-command)
-        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-        - [Implementation](#implementation)
-        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-      - [View Command](#view-command)
-        - [Class diagram of view command](#class-diagram-of-view-command)
-        - [Implementation](#implementation-1)
-      - [Help Command](#help-command)
-        - [Implementation](#implementation-2)
-      - [Exit/Bye Command](#exitbye-command)
-        - [Implementation](#implementation-3)
-  - [Backend](#backend)
-    - [Storage](#storage)
-      - [Reading from Database](#reading-from-database)
-      - [Writing to Database](#writing-to-database)
-      - [Resetting Database](#resetting-database)
-    - [API](#api)
-      - [Endpoints](#endpoints)
-        - [Creating a request](#creating-a-request)
-        - [Making a request](#making-a-request)
-      - [Access all entries available](#access-all-entries-available)
-        - [Get recent or all entries](#get-recent-or-all-entries)
-      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-        - [Add an entry](#add-an-entry)
-        - [View a specific entry](#view-a-specific-entry)
-        - [Delete an entry](#delete-an-entry)
-        - [Modify an entry](#modify-an-entry)
-  - [Data Structure](#data-structure)
-  - [Communication](#communication)
+    - [Architecture](#architecture)
+    - [Frontend](#frontend)
+        - [Parser](#parser)
+        - [Commands](#commands)
+            - [Add Command](#add-command)
+            - [Delete Command](#delete-command)
+            - [Edit Command](#edit-command)
+                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+                - [Implementation](#implementation)
+                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+            - [View Command](#view-command)
+                - [Class diagram of view command](#class-diagram-of-view-command)
+                - [Implementation](#implementation-1)
+            - [Help Command](#help-command)
+                - [Implementation](#implementation-2)
+            - [Exit/Bye Command](#exitbye-command)
+                - [Implementation](#implementation-3)
+    - [Backend](#backend)
+        - [Storage](#storage)
+            - [Reading from Database](#reading-from-database)
+            - [Writing to Database](#writing-to-database)
+            - [Resetting Database](#resetting-database)
+        - [API](#api)
+            - [Endpoints](#endpoints)
+                - [Creating a request](#creating-a-request)
+                - [Making a request](#making-a-request)
+            - [Access all entries available](#access-all-entries-available)
+                - [Get recent or all entries](#get-recent-or-all-entries)
+            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+                - [Add an entry](#add-an-entry)
+                - [View a specific entry](#view-a-specific-entry)
+                - [Delete an entry](#delete-an-entry)
+                - [Modify an entry](#modify-an-entry)
+    - [Data Structure](#data-structure)
+    - [Communication](#communication)
 - [Implementation](#implementation-4)
 - [Testing](#testing)
-  - [Unit Tests](#unit-tests)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Feature Testing](#feature-testing)
-    - [Add expense: /add](#add-expense-add)
-    - [View expense: /view](#view-expense-view)
-    - [Delete expense: /delete](#delete-expense-delete)
-    - [Edit expense: /edit](#edit-expense-edit)
-    - [Show help menu: /help](#show-help-menu-help)
-    - [Terminate program: /bye](#terminate-program-bye)
-  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-    - [Exceptions](#exceptions)
+    - [Unit Tests](#unit-tests)
+    - [Instructions for manual testing](#instructions-for-manual-testing)
+        - [Feature Testing](#feature-testing)
+        - [Add entry: /add](#add-entry-add)
+        - [View entry: /view](#view-entry-view)
+        - [Delete entry: /delete](#delete-entry-delete)
+        - [Edit entry: /edit](#edit-entry-edit)
+        - [Show help menu: /help](#show-help-menu-help)
+        - [Terminate program: /bye](#terminate-program-bye)
+    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+        - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-  - [Target user profile](#target-user-profile)
-  - [Value proposition](#value-proposition)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
 - [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
-  - [Documentation](#documentation)
-  - [Storage](#storage-1)
-  - [Unit Tests](#unit-tests-1)
+    - [Documentation](#documentation)
+    - [Storage](#storage-1)
+    - [Unit Tests](#unit-tests-1)
 
 # Design
 
@@ -101,7 +103,6 @@ __Communication between `Frontend` and `Backend`__
   model.
 - Each endpoint takes in a `Request`, and returns a `Response` based on the requested data.
 
-
 __How the architecture components interact with one another__
 
 The following sequence diagram shows how the main components, `Frontend` and `Backend`, interact with one another.
@@ -111,15 +112,17 @@ The following sequence diagram shows how the main components, `Frontend` and `Ba
 Further design details are documented in the [Frontend](#frontend) and [Backend](#backend) sections below.
 
 ## Frontend
-The API of this component is specified in [`Frontend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/frontend/Frontend.java)
+
+The API of this component is specified
+in [`Frontend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/frontend/Frontend.java)
 
 ![Frontend Sequence Diagram](static/frontend/FrontendSequenceDiagram.png)
 
 - User input and output is handled by `Frontend`
 - The application parses the input given by the user in [`Parser`](#parser)
-- If parsed successfully, the corresponding `Command` object is executed, which sends a `Request` to the 
+- If parsed successfully, the corresponding `Command` object is executed, which sends a `Request` to the
   appropriate [`Endpoint`](#endpoints) in [`Backend`](#backend) (Refer to `Backend Request Process` sequence diagram)
-- If the request is successful, the user is updated through `UI`. Otherwise the error message 
+- If the request is successful, the user is updated through `UI`. Otherwise the error message
   corresponding the user's action is printed instead.
 
 <!-- @@author adenteo -->
@@ -143,12 +146,17 @@ Here's a class diagram that shows only the core structure of the `Parser` class.
 
 How `Parser` works:
 
-1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input. 
-2. Parser creates `ParseXYZCommand` (`XYZ` is a placeholder for the various command names[^1] e.g.`ParseAddCommand()`, `ParseDeleteCommand()`, etc.), which inherits the abstract class `ParseCommand`, to parse the input for the corresponding command.
-2. Within `ParseXYZCommand`, other methods are called to extract and check the validity of the required parameters for that particular command. Any exceptions will be thrown and their corresponding error messages will be shown to the user via the `ui` class.
-2. If the user input is valid, an `XCommand` object containing the relevant data is created and returned.
+1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input.
+2. Parser creates `ParseXYZCommand` (`XYZ` is a placeholder for the various command names[^1]
+   e.g.`ParseAddCommand()`, `ParseDeleteCommand()`, etc.), which inherits the abstract class `ParseCommand`, to parse
+   the input for the corresponding command.
+2. Within `ParseXYZCommand`, other methods are called to extract and check the validity of the required parameters for
+   that particular command. Any exceptions will be thrown and their corresponding error messages will be shown to the
+   user via the `UI` class.
+2. If the user input is valid, an `XYZCommand` object containing the relevant data is created and returned.
    E.g. `ParseAddCommand` would return a `AddCommand` object containing the description, price and category.
-3. From there, the `XCommand` is ready to be executed by the program. (All `XCommand` classes inherit from `Command` and
+3. From there, the `XYZCommand` is ready to be executed by the `Backend`. (All `XYZCommand` classes inherit
+   from `Command` and
    have corresponding `execute()` that carry out their specific instructions.)
 
 [^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
@@ -334,11 +342,13 @@ as "true", the while loop of the program will terminate since !isExit is the loo
 <!-- @@author jinxuan-owyong -->
 
 ## Backend
-The API of this component is specified in [`Backend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/backend/Backend.java)
+
+The API of this component is specified
+in [`Backend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src/main/java/pocketpal/backend/Backend.java)
 
 The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
 The following diagram illustrates the relationship between various classes involved in `Backend` as described in
-the [application architecture](#architecture). 
+the [application architecture](#architecture).
 
 ![Backend](./static/backend/BackendClassDiagram.png)
 
@@ -384,12 +394,15 @@ The main callable functions to be used are:
 
 #### Reading from Database
 
-The `readFromDatabase()` method is called from a `Backend` instance upon its instantiation, and reads from the database which comes in the form of a text file.
+The `readFromDatabase()` method is called from a `Backend` instance upon its instantiation, and reads from the database
+which comes in the form of a text file.
 
 ![StorageReadSequenceDiagram](static/backend/storage/StorageSequenceDiagramRead.png)
 
-1. When a `Backend` instance is created, the constructor will call the `readFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
-2. The `readEntryLine()` method reads the data from the database file line by line, until there are no more lines to read. It then returns a list of `Entry` objects which is passed back to the `Backend` instance to be processed.
+1. When a `Backend` instance is created, the constructor will call the `readFromDatabase()` method which first
+   calls `makeFileIfNotExists()` to create a new database file if it does not exist.
+2. The `readEntryLine()` method reads the data from the database file line by line, until there are no more lines to
+   read. It then returns a list of `Entry` objects which is passed back to the `Backend` instance to be processed.
 3. Two possible exceptions to be thrown are the `IOException` and the `InvalidReadFile` exceptions.
 
 #### Writing to Database
@@ -398,8 +411,10 @@ The `writeFromDatabase()` method is called from a `Backend` instance through the
 
 ![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramWrite.png)
 
-1. The `save()` method calls the `writeFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
-2. The `writeEntryLine()` method writes the data into the database file line by line, until there are no more lines to write. If successful, nothing is returned.
+1. The `save()` method calls the `writeFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new
+   database file if it does not exist.
+2. The `writeEntryLine()` method writes the data into the database file line by line, until there are no more lines to
+   write. If successful, nothing is returned.
 3. An `IOException` might be thrown in this method.
 
 #### Resetting Database
@@ -408,7 +423,8 @@ The `reset()` method is called from a `Backend` instance through the `clearData(
 
 ![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramReset.png)
 
-1. The `clearData()` method calls the `reset()` method which first deletes the database file, then calls the `makeFileIfNotExists()` method to create a new database file. If successful, nothing is returned.
+1. The `clearData()` method calls the `reset()` method which first deletes the database file, then calls
+   the `makeFileIfNotExists()` method to create a new database file. If successful, nothing is returned.
 2. An `IOException` might be thrown in this method.
 
 <div style="text-align: right;">
@@ -429,7 +445,7 @@ The sequence diagram for specific request handling at each endpoint can be viewe
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
 | Endpoint   | Method to call             |
-| ---------- | -------------------------- |
+|------------|----------------------------|
 | `/entry`   | `requestEntryEndpoint()`   |
 | `/entries` | `requestEntriesEndpoint()` |
 
@@ -440,8 +456,8 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
 ```java
-Request req = new Request(RequestMethod.PATCH);
-req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
+Request req=new Request(RequestMethod.PATCH);
+        req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 ```
 
 ##### Making a request
@@ -452,14 +468,14 @@ req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 > All request body and parameter data should be serialised with `String.valueOf()` if not specified.
 
 ```java
-Backend backend = new Backend();
-Response res = backend.callEntryEndpoint(req);
+Backend backend=new Backend();
+        Response res=backend.callEntryEndpoint(req);
 
-if (res.getResponseStatus() != ResponseStatus.OK) {
-   // handle status        
-}
+        if(res.getResponseStatus()!=ResponseStatus.OK){
+        // handle status        
+        }
 
-Entry entry = EntryParser.deserialise(res.getData());
+        Entry entry=EntryParser.deserialise(res.getData());
 // process entry
 ```
 
@@ -517,7 +533,7 @@ __`FILTER_BY_TIME_START`__ AND __`FILTER_BY_TIME_END`__ DateTime (dd/MM/yy HH:mm
 __Responses__
 
 | Status Code | Description           | Remarks                                                                                        |
-| ----------- | --------------------- | ---------------------------------------------------------------------------------------------- |
+|-------------|-----------------------|------------------------------------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise`                  |
 | `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid category, date, ID, etc.) |
 
@@ -549,7 +565,7 @@ N/A
 __Responses__
 
 | Status Code | Description           | Remarks                                                                                         |
-| ----------- | --------------------- | ----------------------------------------------------------------------------------------------- |
+|-------------|-----------------------|-------------------------------------------------------------------------------------------------|
 | `201`       | Created               | -                                                                                               |
 | `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid description, amount, etc.) |
 
@@ -575,7 +591,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -601,7 +617,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -637,7 +653,7 @@ __`EDIT_DESCRIPTION`__ string
 __Responses__
 
 | Status Code | Description           | Remarks                                                              |
-| ----------- | --------------------- | -------------------------------------------------------------------- |
+|-------------|-----------------------|----------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |
@@ -754,11 +770,11 @@ in PocketPal.
 
 ---
 
-**Do note that the expenses depicted in the test cases below may vary depending on the expenses you have added.**
+**Do note that the expected output depicted in the test cases below may vary depending on the entries you have added.**
 
 ---
 
-### Add expense: /add
+### Add entry: /add
 
 **Usage:** `/add -d <description> -c <category> -p <price>`
 
@@ -772,7 +788,7 @@ __Test Case 1 (All required flags are provided):__
 
 ```
 ________________________________________________
-The following expenditure has been added:
+The following entry has been added:
 Description: McDonalds
 Price: $10.50
 Category: Food
@@ -802,13 +818,13 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### View expense: /view
+### View entry: /view
 
 **Usage:** `/view [count] [filter_options]`
 
-__Test case 1 (No expenses exist):__
+__Test case 1 (No entries exist):__
 
-- **Prerequisites:** Ensure that there are currently no expenses added.
+- **Prerequisites:** Ensure that there are currently no entries added.
 - __Input:__ `/view`
 
 <details markdown=1>
@@ -824,9 +840,9 @@ Enter a command or /help to see the list of commands available.
 </details>
 
 
-__Test case 2 (Multiple expenses exist):__
+__Test case 2 (Multiple entries exist):__
 
-- **Prerequisites:** At least **3** existing expenses.
+- **Prerequisites:** At least **3** existing entries.
 - __Input:__ ```/view 3```
 
 <details markdown=1>
@@ -848,7 +864,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3 (View entries in price range)__
 
-- **Prerequisites:** At least **2** existing expenses with price range between $120.50 and $210.00 inclusive.
+- **Prerequisites:** At least **2** existing entries with price range between $120.50 and $210.00 inclusive.
 - __Input:__ ```/view -sp 120.50 -ep 210.00```
 
 <details markdown=1>
@@ -867,15 +883,15 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Delete expense: /delete
+### Delete entry: /delete
 
 **Usage:** `/delete <index> [additional_index...]`
 
-You may view the list of existing expenses along with their corresponding indexes with `/view`.
+You may view the list of existing entries along with their corresponding indexes with `/view`.
 
 __Test case 1:__
 
-- **Prerequisites:** At least **3** expenses pre-added into the program.
+- **Prerequisites:** At least **3** entries pre-added into the program.
 - __Input:__ `/delete 3`
 
 <details markdown=1>
@@ -883,7 +899,7 @@ __Test case 1:__
 
 ```
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Birthday Dinner
 Price: $150.00
 Category: Food
@@ -896,7 +912,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2__
 
-- **Prerequisites:** Fewer than **20** expenses pre-added into the program
+- **Prerequisites:** Fewer than **20** entries pre-added into the program
 - __Input:__ `/delete 20`
 
 <details markdown=1>
@@ -915,7 +931,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program
+- **Prerequisites:** At least **2** entries pre-added into the program
 - __Input:__ `/delete 1 2`
 
 <details markdown=1>
@@ -923,13 +939,13 @@ __Test case 3__
 
 ```
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Light bulb
 Price: $10.20
 Category: Utilities
 28 Mar 2023, 01:04:42
 ________________________________________________
-The following expenditure has been deleted:
+The following entry has been deleted:
 Description: Pizza
 Price: $8.30
 Category: Food
@@ -940,13 +956,13 @@ Enter a command or /help to see the list of commands available.
 
 </details>
 
-### Edit expense: /edit
+### Edit entry: /edit
 
 **Usage:** `/edit <index> [options]`
 
 __Test case 1 (Editing all flags)__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program.
+- **Prerequisites:** At least **2** entries pre-added into the program.
 - __Input:__ `/edit 2 -p 300.50 -c others -d MacBook Air`
 
 <details markdown=1>
@@ -954,7 +970,7 @@ __Test case 1 (Editing all flags)__
 
 ```
 ________________________________________________
-The following expenditure has been updated:
+The following entry has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
@@ -967,7 +983,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2 (Editing price only)__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown in
+- **Prerequisites:** At least **2** entries pre-added into the program, with the 2nd entry matching the one shown in
   the example above.
 - __Input:__ `/edit 2 -p 300.50`
 
@@ -976,7 +992,7 @@ __Test case 2 (Editing price only)__
 
 ```
 ________________________________________________
-The following expenditure has been updated:
+The following entry has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
@@ -1001,11 +1017,11 @@ __Test case__
 
 ```
 ________________________________________________
-PocketPal is a expense tracking app, optimised for use via a Command Line Interface. 
+PocketPal is an expense tracking app, optimised for use via a Command Line Interface. 
 Users can take advantage of the input flags for entering entries quickly.
 Listed below are the various commands that are currently supported.
 
-Add - Adds an expense to your current expenditure.
+Add - Adds an entry to your current account.
 Usage: /add -d <description> -c <category> -p <price>
 Options:
 -d <description>
@@ -1015,13 +1031,13 @@ See below for examples
 /add -d Apple Macbook Air -p 1300 -c Personal
 /add -p 1300 -c Personal -d Apple Macbook Air
 
-Delete - Deletes specified expense(s) from your expenditure.
+Delete - Deletes specified entry(s) from your account.
 Usage: /delete <index> [additional_index...]
 See below for examples
 /delete 10 11 13 
 /delete 1
 
-Edit - Edits a specified expense in your current expenditure.
+Edit - Edits a specified entry in your account.
 Usage: /edit <index> [options]
 Options:
 -d <description>
@@ -1030,7 +1046,7 @@ Options:
 See below for examples
 /edit 5 -d Grab to school -c Transportation -p 20.00
 
-View - Displays a list of your current expenditure.
+View - Displays a list of your current entries.
 Usage: /view [count] [filter_options]
 Filter options:
 -c <category>
@@ -1039,8 +1055,8 @@ Filter options:
 -sd <startdate>, -ed <enddate>
 See below for examples
 /view 100 -c Transportation -sp 2.00 -ep 5.00
-/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00
-/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00
+/view -sd 21/11/1997 -ed 22/11/1997 -c Transportation -sp 2.00
+/view 10 -sd 21/11/1997 -ed 22/12/1997 -c Transportation -sp 2.00 -ep 6.00
 
 Help - Displays the help menu.
 Usage: /help
@@ -1083,7 +1099,7 @@ More test cases will be added as more features are introduced.
 ## Testing with sample data (from file)
 
 PocketPal stores data in a *storage.txt* file under the "*data/*" directory. Each row in the "*storage.txt*" file
-represents a single expense Entry. Each column in each row should have 3 columns, representing the *description* of the
+represents a single Entry. Each column in each row should have 3 columns, representing the *description* of the
 Entry, *amount* associated with the Entry and *category* of the Entry in that order, and are separated with the ","
 delimiter. All of them are in the String format.
 
@@ -1155,7 +1171,7 @@ replicated as follows:
 # User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
-| ------- | -------- | ------------- | ----------------- |
+|---------|----------|---------------|-------------------|
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -1171,10 +1187,10 @@ replicated as follows:
 
 # Glossary
 
-- __Request Method__ - The action to be performed by the `Endpoint` requested 
+- __Request Method__ - The action to be performed by the `Endpoint` requested
   ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods))
 - __Request Parameter__ - The details of the action to be performed (Edit category, filter by date, etc.)
-- __Response Code__ - The status of the response after a request is made 
+- __Response Code__ - The status of the response after a request is made
   ([MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status))
 
 <div style="text-align: right;">

@@ -84,7 +84,7 @@ public class ViewCommandTest extends EntryTestUtil {
     void testExecuteMethod() {
         ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT,
                 MiscellaneousConstants.AMOUNT_MIN_DOUBLE, MiscellaneousConstants.AMOUNT_MAX_DOUBLE,
-                "20/11/19 23:30", "20/11/20 23:30");
+                "20/11/1999 23:30", "20/11/2020 23:30");
         assertDoesNotThrow(() -> viewCommand1.execute(TEST_UI, TEST_BACKEND));
     }
 
@@ -93,7 +93,7 @@ public class ViewCommandTest extends EntryTestUtil {
     void testExecuteMethod_invalidNumber() {
         ViewCommand viewCommand2 = new ViewCommand(0, Category.ENTERTAINMENT,
                 MiscellaneousConstants.AMOUNT_MIN_DOUBLE, MiscellaneousConstants.AMOUNT_MAX_DOUBLE,
-                "20/11/19 23:30", "20/11/20 23:30");
+                "20/11/2019 23:30", "20/11/2020 23:30");
         Exception invalidArgumentsException = assertThrows(InvalidArgumentsException.class,
                 () -> viewCommand2.execute(TEST_UI, TEST_BACKEND));
         assertEquals(invalidArgumentsException.getMessage(), MessageConstants.MESSAGE_INVALID_ID);

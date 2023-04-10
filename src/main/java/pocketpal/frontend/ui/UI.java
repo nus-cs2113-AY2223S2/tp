@@ -111,63 +111,63 @@ public class UI {
     }
 
     /**
-     * Print formatted details of expenditure entry added to the UI.
+     * Print formatted details of entry added to the UI.
      *
      * @param description Description of the entry
      * @param priceDouble Amount of the entry
      * @param category    Category of the entry
      */
-    public void printExpenditureAdded(String description, double priceDouble, String category, String dateTime) {
+    public void printEntryAdded(String description, double priceDouble, String category, String dateTime) {
         assert priceDouble >= 0 : "Expected a non-negative price";
-        print(MessageConstants.MESSAGE_EXPENDITURE_ADDED
-                + UIUtil.formatExpenditure(description, priceDouble, category, dateTime));
+        print(MessageConstants.MESSAGE_ENTRY_ADDED
+                + UIUtil.formatEntry(description, priceDouble, category, dateTime));
         printLine();
     }
 
     /**
-     * Print formatted details of expenditure entry added to the UI.
+     * Print formatted details of entry added to the UI.
      *
-     * @param entry Expenditure to be printed
+     * @param entry Entry to be printed
      */
-    public void printExpenditureAdded(Entry entry) {
-        printExpenditureAdded(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
+    public void printEntryAdded(Entry entry) {
+        printEntryAdded(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
                 entry.getDateTimeString());
     }
 
     /**
-     * Print formatted details of expenditure entry edited in the UI.
+     * Print formatted details of entry edited in the UI.
      *
-     * @param entry Expenditure to be printed
+     * @param entry Entry to be printed
      */
     // @@author leonghuenweng
-    public void printExpenditureEdited(Entry entry) {
-        print(MessageConstants.MESSAGE_EXPENDITURE_EDITED
-                + UIUtil.formatExpenditure(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
+    public void printEntryEdited(Entry entry) {
+        print(MessageConstants.MESSAGE_ENTRY_EDITED
+                + UIUtil.formatEntry(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
                 entry.getDateTimeString()));
         printLine();
     }
 
     /**
-     * Print formatted details of expenditure entry deleted to the UI.
+     * Print formatted details of entry deleted to the UI.
      *
      * @param description Description of the entry
      * @param priceDouble Amount of the entry
      * @param category    Category of the entry
      */
-    public void printExpenditureDeleted(String description, double priceDouble, String category, String dateTime) {
+    public void printEntryDeleted(String description, double priceDouble, String category, String dateTime) {
         assert priceDouble >= 0 : "Expected a non-negative price";
-        print(MessageConstants.MESSAGE_EXPENDITURE_DELETED
-                + UIUtil.formatExpenditure(description, priceDouble, category, dateTime));
+        print(MessageConstants.MESSAGE_ENTRY_DELETED
+                + UIUtil.formatEntry(description, priceDouble, category, dateTime));
         printLine();
     }
 
     /**
-     * Print formatted details of expenditure entry deleted to the UI.
+     * Print formatted details of entry deleted to the UI.
      *
-     * @param entry Expenditure to be printed
+     * @param entry Entry to be printed
      */
-    public void printExpenditureDeleted(Entry entry) {
-        printExpenditureDeleted(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
+    public void printEntryDeleted(Entry entry) {
+        printEntryDeleted(entry.getDescription(), entry.getAmount(), entry.getCategoryString(),
                 entry.getDateTimeString());
     }
 
