@@ -407,7 +407,7 @@ Example of usage:
 Expected output:
 
 ```
-Overview for JUNE 2021
+-------------Monthly Overview for JUNE 2021-------------
 
     Total expenses: 80.55 SGD
 
@@ -419,6 +419,7 @@ Overview for JUNE 2021
     ----------------------------
      travel 10.00 SGD
     ----------------------------
+----------------------------END----------------------------
 ```
 
 **Yearly overview**
@@ -435,7 +436,7 @@ Example of usage:
 
 Expected output:
 ```
-Yearly Overview for 2022
+-------Yearly Overview for 2022-------
 
     Total expenses: 35.66 SGD
 
@@ -465,6 +466,7 @@ Yearly Overview for 2022
     ----------------------------
      DECEMBER 0.00 SGD
     ----------------------------
+-----------------END-----------------
 ```
 
 ### Exiting the program (inside the account): `exit`
@@ -499,6 +501,14 @@ your currency is not available for use.
 - Our API only contains exchange rate information starting from 1981. For ET to effectively track expenses in different
 currencies, we require a limit on how far back the date can be set.
 
+### What will happen when other keys are added or when non-compulsory keys are removed from the JSON data file?
+- Newly added keys by the user will be ignored upon initial loading of the expense list to prevent any potential
+  conflict with the other features. The new keys will be deleted subsequently when the JSON file is overwritten
+  with new changes.
+- Non-compulsory keys (rate, currencyType and description) removed from the JSON file will be restored using the 
+  default value.
+  
+
   
 ## Command Summary
 
@@ -509,7 +519,7 @@ currencies, we require a limit on how far back the date can be set.
 | Create a new account         | `signup`                                                                     |
 | Exit ET (inside the account) | `exit`                                                                       |
 | Log out of the account       | `logout`                                                                     |
-E
+
 ### Expense management command
 | Action                        | Command                                                                       |
 |-------------------------------|-------------------------------------------------------------------------------|

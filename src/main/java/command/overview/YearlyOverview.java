@@ -17,10 +17,12 @@ import static common.MessageList.PERIOD;
 
 public class YearlyOverview {
 
-    private static final String TITLE = "Yearly Overview for ";
+    private static final String TITLE = "-------Yearly Overview for ";
+    private static final String TITLE_LINE = "-------";
     private static final String MONTH_DIVIDER = "----------------------------";
     private static final String YEARLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String BREAKDOWN_TITLE = "Breakdown of expenses by month:";
+    private static final String END_OF_OVERVIEW = "-----------------END-----------------";
 
     private String year;
     private ArrayList<Expense> expenses;
@@ -64,13 +66,14 @@ public class YearlyOverview {
             System.out.println("No expenses tracked in " + year + PERIOD);
         } else {
             CommandTotal commandTotal = new CommandTotal(filteredExpenses);
-            System.out.println(TITLE + year);
+            System.out.println(TITLE + year + TITLE_LINE);
             System.out.println();
             System.out.println(TAB + YEARLY_OVERVIEW_TOTAL + commandTotal.calculateTotal()
                     .setScale(2, RoundingMode.HALF_UP) + WHITESPACE + "SGD");
             System.out.println();
             System.out.println(TAB + BREAKDOWN_TITLE);
             printTotalByMonth();
+            System.out.println(END_OF_OVERVIEW);
         }
     }
 

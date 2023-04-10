@@ -28,6 +28,9 @@ Link to RepoSense Code for detailed code contribution:
       and a breakdown of sum of expenses by category. The list of sum by category is sorted in descending order.
     - The currency unit for total expenses and sum by category is SGD.
     - PR: [#91](https://github.com/AY2223S2-CS2113-T13-2/tp/pull/91)
+    
+<div style="page-break-after: always;"></div>
+
   - Yearly Overview
     - Provides a summary of the yearly expenses of a specific year, including total amount of expenses and a monthly 
       breakdown.

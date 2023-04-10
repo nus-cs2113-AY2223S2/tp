@@ -83,7 +83,6 @@ public class CommandAdd extends Command {
             System.out.println("Invalid date. Please input a date before or equal to today's date.\nToday's date is: " +
                     LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         } catch (PastDateException e) {
-
             System.out.println("Dates beyond 1981 are not supported. Please try again.");
         } catch (InvalidDateException e) {
             System.out.println("Date does not exist, please try again.");
