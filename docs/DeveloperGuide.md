@@ -13,7 +13,7 @@
         - [DeleteCommand](#delete-command)
         - [DeleteListCommand](#deletelist-command)
         - EditQuantityCommand
-        - FindCommand
+        - [FindCommand](#find-command)
         - [HelpCommand](#help-command)
         - IncorrectCommand
         - [ListCommand](#list-command)
@@ -29,8 +29,8 @@
         - [InvalidVariablesException](#invalidvariablesexception)</em>
     * **[iohandler Pakage](#iohandler)**
         - <em>[Parser](#parser-class)
-        - Storage
-        - Ui</em>
+        - [Storage](#storage)
+        - [Ui](#ui)</em>
     * **[packingfunc Package]()**
         - <em>Item
         - PackingList</em>
@@ -488,6 +488,32 @@ Some important methods are:
 `printToUser()` - takes variable arity parameter of type `String` to print to the user
 `helpMessage()` - prints out the list of available commands and the respective formats
 `errorMessage()` - shows the error type and help message to the user in the case an error occurs
+
+---
+### Packingfunc
+The `Packingfunc` package consists of `Item` and `PackingList` classes, which are used to manage the main packing list of `BagPacker`, and its individual items.
+
+#### Item
+The `Item` class contains methods used to manage and manipulate the variables `packedQuantity` and `totalQuantity`.
+
+There are two constructors of `Item`:
+
+1. `public Item(int quantity, String description)`
+2. `public Item(int totalQuantity, int packedQuantity, String description)`
+
+The first constructor is used to create `item` objects during an `add` command in `Parser.parse()`.
+The latter is used in [storage](#storage) to create `item` objects from the packing list save file during `load()`.
+
+The `toString()` method returns a `String` containing the packed quantity, total quantity and item name in a specific format. 
+
+It is used in multiple [commands](#commands-package) and [storage](#storage) to save the packing list onto a save file.  
+
+`checkFullyPacked()` is used in [listunpacked](#list-unpacked-command) to return whether the item is fully packed by comparing packedQuantity to totalQuantity. 
+
+`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser-class)) to change the packed quantity of the item.
+
+
+#### PackingList
 
 
 ---
