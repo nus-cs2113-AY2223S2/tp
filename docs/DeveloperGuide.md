@@ -156,7 +156,7 @@ The add pet stat mechanism is facilitated by the `Pet` class. It is stored inter
 These operations are exposed in the `PetList` class as `PetList#addStat()` and `AddStatCommand` class as `AddStatCommand#execute()`.
 
 <p style="text-align:center">
-    <img src="images/AddPetStatFeatureClassDiagram.png" alt="Class Diagram">
+    <img src="images/AddStatClassDiagram.png" alt="Class Diagram">
     <br />
     <i>Figure 5: Class Diagram for Add Pet Stat Feature</i>
 </p>
@@ -166,7 +166,7 @@ Given below is an example usage scenario and how the add pet stat mechanism beha
 Step 1. After the user launches the application and added a pet named "Bob", a `Pet` object will be initialised and saved in the `petList`.
 
 <p style="text-align:center">
-    <img src="images/AddPetStatFeatureObjectDiagram (1).png" alt="Object Diagram">
+    <img src="images/AddStatObjectDiagramInitial.png" alt="Object Diagram">
     <br />
     <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 1</i>
 </p>
@@ -174,7 +174,7 @@ Step 1. After the user launches the application and added a pet named "Bob", a `
 Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. After parsing, the `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
 
 <p style="text-align:center">
-    <img src="images/AddPetStatFeatureObjectDiagram (2).png" alt="Object Diagram">
+    <img src="images/AddStatObjectDiagramAfter.png" alt="Object Diagram">
     <br />
     <i>Figure 7: Object Diagram for Add Pet Stat Feature After Step 2</i>
 </p>
