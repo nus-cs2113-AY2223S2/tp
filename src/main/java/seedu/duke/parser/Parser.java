@@ -214,21 +214,21 @@ public interface Parser {
             if (inputWords.length > 3) {
                 throw new WrongFormatException();
             }
-            if (inputWords.length == 2) {
-                throw new EmptyFieldException("venue size");
-            }
             if (!(inputWords[1].equals("venues"))) {
                 throw new WrongFormatException();
+            } else if (inputWords.length == 2) {
+                throw new EmptyFieldException("venue size field");
+            } else {
+                BigInteger currVenueNum = new BigInteger(inputWords[2]);
+                checkInputLimit(currVenueNum);
+                int venueNum = Integer.parseInt(inputWords[2]);
+                if (venueNum < 0) {
+                    throw new NegativeNumberException();
+                }
+                String commandVenueType = command + " " + inputWords[1];
+                FilterVenueCommand filterVenueCommand = new FilterVenueCommand(commandVenueType, venueNum);
+                return filterVenueCommand;
             }
-            BigInteger currVenueNum = new BigInteger(inputWords[2]);
-            checkInputLimit(currVenueNum);
-            int venueNum = Integer.parseInt(inputWords[2]);
-            if (venueNum < 0) {
-                throw new NegativeNumberException();
-            }
-            String commandVenueType = command + " " + inputWords[1];
-            FilterVenueCommand filterVenueCommand = new FilterVenueCommand(commandVenueType, venueNum);
-            return filterVenueCommand;
         case "help":
             if (inputWords.length > 1) {
                 throw new WrongFormatException();
