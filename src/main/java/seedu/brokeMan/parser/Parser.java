@@ -162,7 +162,7 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
-        assert(!description.equals("")) : "You did not specify your budget\n";
+        assert (!description.equals("")) : "You did not specify your budget\n";
         String[] descriptionByWord = description.split(" t/ ");
         if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
             return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
@@ -172,17 +172,20 @@ public class Parser {
         String budgetInString = descriptionByWord[0];
 
         try {
-            if (budgetInString.length() > 10) {
-                String errorMessage = new ExceedMaximumLengthForAmountException().getMessage();
-                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
-            }
+//            if (budgetInString.length() > 10) {
+//                String errorMessage = new ExceedMaximumLengthForAmountException().getMessage();
+//                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
+//            }
+            budgetInString = checkExceedMaxCharForAmount(budgetInString);
             budget = Double.parseDouble(budgetInString);
             budget = Double.parseDouble(df.format(budget));
-            if (budget < 0) {
+            if (budget <= 0) {
                 String errorMessage = new NegativeAmountException().getMessage();
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
             }
-        } catch (NumberFormatException nfe) {
+        } catch (ExceedMaximumLengthForAmountException e) {
+            return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
+        }catch (NumberFormatException nfe) {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
         }
