@@ -39,9 +39,11 @@ written in Java, and has about 3kLoC
 - Provided Sequence Diagrams for view and setbudget commands
 - Provided Design Considerations for various data structures and commands
 - Provided Instructions for manual testing for view, setbudget, ignore/unignore and help commands
+- Worked with team members to peer-review each other's work on the Developer Guide to ensure correctness and consistency
 
 ### Contributions to team-based tasks
 
+- Set up the GitHub team organisation and repository
 - Provided feedback and review in various Pull Requests
 
 ### Contributions beyond the project team
