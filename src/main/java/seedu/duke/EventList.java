@@ -19,11 +19,13 @@ public class EventList {
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     // exceptions information
-    private static final String WRONG_DATE_TIME_FORMAT_E = 
-        "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
+    private static final String WRONG_DATE_TIME_FORMAT_E =
+            "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
     private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
     private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
     private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";
+    private static final String RECUR_TIME_NOT_POSITIVE_INT_E = "recurring time should ba a positive integer!";
+    private static final String EVENT_CONFLICTION_E = "Event Conflict Detected!";
 
     protected ArrayList<Schedule> taskList;
     protected int listSize;
@@ -108,6 +110,7 @@ public class EventList {
 
     /**
      * Check whether there is overlap between different events.
+     * 
      * @param newEvent the new event to be added.
      * @param index newEvent will not check overlap with index event in event list.
      * @param eventList list of ongoing events.
@@ -116,7 +119,8 @@ public class EventList {
     public static boolean canAddNewEvent(Event newEvent, int index, ArrayList<Schedule> eventList) {
         boolean isOverlap = true;
         for (int i = 0; i < eventList.size(); i++) {
-            if (!eventList.get(i).hasEndInfo() || i == index) {
+            if (!(eventList.get(i).hasEndInfo() && eventList.get(i).hasEndTime()
+                    && eventList.get(i).hasStartTime()) || i == index) {
                 continue;
             }
 
@@ -170,6 +174,7 @@ public class EventList {
 
     /**
      * Add an event.
+     * 
      * @param description Event description, describes what the Event is.
      * @param startTime Start time of the Event. Format "HH:MM".
      * @param startDay Start day of the Event. Format "YYYY/MM/DD".
@@ -232,7 +237,7 @@ public class EventList {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         if (!checkRecurTime(recurTime)) {
-            throw new NPExceptions("recurring time should be a positive integer!");
+            throw new NPExceptions(RECUR_TIME_NOT_POSITIVE_INT_E);
         }
 
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
@@ -244,19 +249,20 @@ public class EventList {
     public void addEvent(Event event, Boolean isCheck) throws NPExceptions{ //for storage checks.
         if (isCheck){
             if (canAddNewEvent(event, -1, this.getFullList())){
-                throw new NPExceptions("Event Conflict Detected!");
+                throw new NPExceptions(EVENT_CONFLICTION_E);
             }
         }
         taskList.add(event);
     }
     /**
      * Add an Event.
+     * 
      * @param description Event description, describes what the event is.
      * @param startTime Start time of the Event. Format "HH:MM".
      * @param startDay Start day of the Event. Format "YYYY/MM/DD".
      * @param endTime End time of the Event. Foramt "HH:MM".
      * @param endDay End day of the Event. Format "YYYY/MM/DD".
-     * @param recurTime Recur time of the Event. 
+     * @param recurTime Recur time of the Event.
      * @throws NPExceptions when start time is after end time or new event has time conflict with events already exist.
      */
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
@@ -302,6 +308,7 @@ public class EventList {
 
     /**
      * Change location(vanue) field of an event.
+     * 
      * @param index Index of the event to be changed in event list.
      * @param location New location.
      */
@@ -326,6 +333,7 @@ public class EventList {
 
     /**
      * Change time field of an event.
+     * 
      * @param index Index of the event to be changed in event list.
      * @param startTime New start time of the event. Format "HH:MM".
      * @param startDay New start day of the event. Format "YYYY/MM/DD".
@@ -336,11 +344,12 @@ public class EventList {
 
         taskList.get(index).changeTimeInfo(startInfo.time, startInfo.hasInfo);
     }
-   
+
     /**
      * Change time field of an event.
-     * @param description Description of the event to be changed. 
-     *     This method will find the event from the event list according to description.
+     * 
+     * @param description Description of the event to be changed. This method will find the event from the event list
+     *        according to description.
      * @param startTime New start time of the event. Format "HH:MM".
      * @param startDay New start day of the event. Format "YYYY/MM/DD".
      * @param endTime New end time of the event. Format "HH:MM".
@@ -358,8 +367,9 @@ public class EventList {
 
     /**
      * Change time field of an event.
-     * @param description Description of the event to be changed. 
-     *     This method will find the event from the event list according to description.
+     * 
+     * @param description Description of the event to be changed. This method will find the event from the event list
+     *        according to description.
      * @param startTime New start time of the event. Format "HH:MM".
      * @param startDay New start day of the event. Format "YYYY/MM/DD".
      * @throws NPExceptions if Event does not exist.
@@ -374,6 +384,7 @@ public class EventList {
 
     /**
      * Get the full event list.
+     * 
      * @return Arraylist of the full event list.
      */
     public ArrayList<Schedule> getFullList() {
@@ -382,6 +393,7 @@ public class EventList {
 
     /**
      * Search an event according to its description in event list.
+     * 
      * @param description description of the task to search.
      * @return index of the task in event list. Return -1 if it's not found.
      */
