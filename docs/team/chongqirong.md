@@ -25,9 +25,11 @@ link
 
 - Implementation of editing an entry
 - Implementation of filtering data
+- Provided instructions for edit and filter command
 
 ### Contributions to team-based tasks
 
+- Released v2.1 on GitHub
 
 ### Review/Mentoring contributions
 
