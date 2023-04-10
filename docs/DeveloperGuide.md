@@ -51,7 +51,7 @@ If you wish to view the source code, you may click on either `Source code (zip)`
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.   
-![startup.png](images/startup.png)
+![startup2.png](images/startup2.png)
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
 Please be advised that we cannot guarantee complete functionality of Meal Companion if you have modified the source code in your own local IDE. If you have any queries, feel free to reach out to any member of the development team and we will do our best to assist you.
@@ -256,13 +256,13 @@ The following sequence diagram shows how the Make Command works:
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
 
-It requires `RecipeList` and `IngredientList` of `MealCompanionSession`.
+It requires `RecipeList`, `IngredientList` and `Arraylist of Allergens`` of `MealCompanionSession`.
 
 Given below is the only example usage scenario and how the recipe possible command behaves at each step.
 
 Step 1: User wants to get a list of recipes that can be made with the current list of ingredients. User calls `recipe possible`.
 
-Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`,`IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
+Step 2: `RecipePossibleCommand` executes by retrieving the `RecipeList`, `IngredientList` and `Arraylist of Allergens` of `MealCompanionSession`.
 
 Step 3: Every `Recipe` in `RecipeList` is checked against all `Ingredient` in `IngredientList` to see if it can be made.
 
@@ -339,14 +339,6 @@ The following activity diagram summarizes what happens when a user executes a co
 ![StoargeActivity.png](images/StorageActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
-
-## Documentation, logging, testing, configuration, dev-ops
-
-{insert Documentation guide link}
-{insert Testing guide link}
-{insert Logging guide link}
-{insert Configuration guide link}
-{insert DevOps guide link}
 
 ## Appendix: Requirements
 
