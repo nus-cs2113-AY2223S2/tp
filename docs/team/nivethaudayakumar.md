@@ -29,7 +29,7 @@ Given below are my contributions to the project:
 #### 4) Contributions to Developer Guide (DG): <br>
 1. [x] Worked on Design and Implementation portion for User Interface (UI): [#54](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/54) 
 2. [x] UML Diagram & Sequence diagrams for Sniff, Command and Archive classes in Sniff Functionalities: [#59](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/59)
-3. [x] Developer Guide (DG) Content for Archive Functionality: [#192](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/192)
+3. [x] Developer Guide (DG) Content for Archive Functionality: [#192](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/192) [#195](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/195)
 
 #### 5) Contributions to Team-Based Tasks: <br>
 1. [x] **Project Management:** Sniff JAR Release for v1.0

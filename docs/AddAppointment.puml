@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":User" as User
+participant ":UI" as UI
+participant ":Parser" as Parser
+participant ":AppointmentCommand" as AppointmentCommand
+participant ":SniffTasks" as Snifftasks
+participant ":SniffException" as SniffException
+activate UI
+activate Snifftasks
+User -> UI: readUserCommand()
+UI -> Parser: parseAppointmentInput()
+activate Parser
+alt Invalid Input Format
+Parser -> SniffException: printInvalidInputMessage()
+activate SniffException
+Parser <-- SniffException
+deactivate SniffException
+else Valid Input Format
+Parser -> AppointmentCommand: create()
+end
+Parser -> SniffException
+activate AppointmentCommand
+AppointmentCommand -> Snifftasks: executeCommand()
+Snifftasks -> Snifftasks: addAppointment()
+activate Snifftasks
+Snifftasks <-- Snifftasks
+deactivate Snifftasks
+AppointmentCommand <-- Snifftasks
+Parser <-- AppointmentCommand
+deactivate AppointmentCommand
+UI <-- Parser
+deactivate Parser
+User <-- UI
+destroy AppointmentCommand
+destroy Parser
+@enduml
