@@ -6,7 +6,7 @@ Reused iP to serve as base code from [jeraldgau/ip](https://github.com/jeraldgau
 
 ## Architecture
 
-![]![image](https://user-images.githubusercontent.com/1620654/230882687-7c5f75d1-9bba-4e3b-8aed-4dd432f165ea.png)
+![image](https://user-images.githubusercontent.com/1620654/230882687-7c5f75d1-9bba-4e3b-8aed-4dd432f165ea.png)
 
 The **Architecture Diagram** given above explains the high-level design of Duck.
 
@@ -77,16 +77,17 @@ The ```TaskList#purge()``` command will be implemented to facilitate the removal
 
 **Given below is an example usage scenario for ```purge()```**
 
-**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialized with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
+**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialized with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![image](https://user-images.githubusercontent.com/1620654/230883139-f664bde2-6c65-45f5-b060-06ec9708c620.png)
+
 
 **Step 2.** The ```TaskList#purge()``` command will be executed. The process is illustrated through two steps:
 
 **Identifying all expired ```Task``` items in ```TaskList```.**
 
-![](https://lh3.googleusercontent.com/Kbz7j3EmMGJGrIX1aQ8DCkHG8Y3gaIx3Ohf-zmYvr-S-LrxRqt8P1wlTMWUnlnna2tnR0i72yUJWB72Z2mWwGuwXiD_RnlIpYEk-MY6k9zMaLqTk_VkyHaRwIuzxi1trXHX1ySdZWBqZFDaCZ6K-QrY)
+![image](https://user-images.githubusercontent.com/1620654/230883393-ef0d4e33-96c9-4e32-a6f6-f30121b953dd.png)
 
 **Removing all expired ```Task``` items in ```TaskList```.**
-![](https://lh4.googleusercontent.com/kVOcvIKAF1nlLSHXQsRPDuG6RwiyaqRXf9CYTLrv2WUezegCNx05GIC1KPYME6Eojid1hRbqUIzHUjKWRpYjUG7zCYE8586kLzbIrVdjZVnC5j_1ke1WBdFZSHoar_MuXKBA9eMARxCOgcja5qjP2_A)
+![image](https://user-images.githubusercontent.com/1620654/230883437-d1c3d47b-ef8b-451a-804e-cc2ce5a74e1b.png)
 
 The user will see this on his terminal after the ```purge``` command has executed.
 
@@ -127,7 +128,7 @@ The ```Storage#clear()``` command was implemented to facilitate the removal of a
 
 Given below is an example usage scenario for ```Storage#clear()```
 
-**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialised with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![](https://lh5.googleusercontent.com/XcnArNZc5ZqHhxXZ1iRuq0aRxNKkcD_snVgDv-dlpMVYFQFQjyGXdtHWvFGzG-k2UW5SXkjQbthIRtkrol_SYsNgmsmKw1kKEkME0vSQ0tfRfUIWj3jZTTVrerHbESuA-AlTpPEkj8JrKl-mMlu-3yM)
+**Step 1.** The user launches the application for the first time. The ```TaskList``` will be initialised with the data from a given pre-existing datafile if it exists, and the ```Task``` items will be inserted into the ```TaskList```.![image](https://user-images.githubusercontent.com/1620654/230883139-f664bde2-6c65-45f5-b060-06ec9708c620.png)
 
 **Step 2.** The user wants to start afresh. The ```Storage#clear()```  command is then executed. The user will see an output in the following format:
 
@@ -145,7 +146,7 @@ Process cancelled.
 
 **Step 3.2.** The user decides upon clearing the ```TaskList```, and inputs a ```Y```. The ```TaskList``` has been cleared.
 
-![](https://lh4.googleusercontent.com/G4PalSoaVQxExSGKCDefJuO4TlyCJwrCfZDT4BsTrrSHMJ8aQSPsaxGoFJYb9YIO1yo3_3nV0Jar3Haqfac90v7G_yfZdx8-OwxSKEART5zLqMZ73k3YW0ssPbIE3kOhkbeusR3jVMdD6kTSkG7rK4s)
+![image](https://user-images.githubusercontent.com/1620654/230883611-5f7c49bd-9e8a-405e-8c96-e55241fa9cca.png)
 
 ```Duck``` resumes after the output in the following format has been displayed:
 
