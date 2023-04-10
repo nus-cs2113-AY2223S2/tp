@@ -1,0 +1,255 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "archive.Archive#saveArchivedAppointments(String)",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "archive.Archive",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_109586094 { 
+   	label=sniff
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1041190780 { 
+   	label=Sniff
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Sniff655660956XXXmain1859653459[
+	label="+ main()"
+	style=filled
+	fillcolor=white
+	tooltip="Sniff
+
+&#10;  Main entry-point for the java.sniff.Sniff application.&#10; "
+	fontcolor=darkgreen
+];
+
+Sniff655660956XXXrun0[
+	label="+ run()"
+	style=filled
+	fillcolor=white
+	tooltip="Sniff
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_1519786164 { 
+   	label=appointments
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1402742336 { 
+   	label=Surgery
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Surgery967792423XXXretrieveStorageInfo0[
+	label="+ retrieveStorageInfo()"
+	style=filled
+	fillcolor=white
+	tooltip="Surgery
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1695540714 { 
+   	label=Appointment
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Appointment967792423XXXretrieveStorageInfo0[
+	label="+ retrieveStorageInfo()"
+	style=filled
+	fillcolor=white
+	tooltip="Appointment
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1811312226 { 
+   	label=Consultation
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Consultation967792423XXXretrieveStorageInfo0[
+	label="+ retrieveStorageInfo()"
+	style=filled
+	fillcolor=white
+	tooltip="Consultation
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_462114672 { 
+   	label=Vaccination
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Vaccination967792423XXXretrieveStorageInfo0[
+	label="+ retrieveStorageInfo()"
+	style=filled
+	fillcolor=white
+	tooltip="Vaccination
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_579021399 { 
+   	label=functionalities
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_203723525 { 
+   	label=SniffTasks
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   SniffTasks579021399XXXarchivedTasks387427025[
+	label="+ archivedTasks()"
+	style=filled
+	fillcolor=white
+	tooltip="SniffTasks
+
+&#10;  Stores the data of archived tasks into SniffArchive file&#10; &#10;  @param archiveSavedFile The SniffArchive file&#10;  @throws SniffException if there are errors when storing appointment data&#10; "
+	fontcolor=darkgreen
+];
+} 
+} 
+
+subgraph cluster_748101438 { 
+   	label=archive
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_159156086 { 
+   	label=Archive
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   Archive748101438XXXsaveArchivedAppointments1808118735[
+	label="+ saveArchivedAppointments()"
+	style=filled
+	fillcolor=white
+	tooltip="Archive
+
+&#10;  Saves the Archived task contents into the SniffArchive File&#10; &#10;  @param filePath The path of the SniffArchive file&#10;  @throws SniffException if Archive file is not found&#10;  "
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+} 
+
+'edges    
+Appointment967792423XXXretrieveStorageInfo0 -> Consultation967792423XXXretrieveStorageInfo0;
+Appointment967792423XXXretrieveStorageInfo0 -> Surgery967792423XXXretrieveStorageInfo0;
+Appointment967792423XXXretrieveStorageInfo0 -> Vaccination967792423XXXretrieveStorageInfo0;
+Archive748101438XXXsaveArchivedAppointments1808118735 -> SniffTasks579021399XXXarchivedTasks387427025;
+Sniff655660956XXXmain1859653459 -> Sniff655660956XXXrun0;
+Sniff655660956XXXrun0 -> Archive748101438XXXsaveArchivedAppointments1808118735;
+SniffTasks579021399XXXarchivedTasks387427025 -> Appointment967792423XXXretrieveStorageInfo0;
+    
+}
+@enduml
