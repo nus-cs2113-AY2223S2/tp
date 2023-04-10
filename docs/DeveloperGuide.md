@@ -15,7 +15,7 @@
     * [*PackAllCommand*]
     * [*UnpackCommand*](#unpack-command)
     * [*UnpackAllCommand*]
-    * [*EditQuantityCommand*]
+    * [*EditQuantityCommand*](#edit-quantity-command)
     * [*HelpCommand*](#help-command)
     * [*ListCommand*](#list-command)
     * [*ListUnpackedCommand*](#list-unpacked-command)
@@ -193,6 +193,26 @@ Lastly `Ui.printToUser(MSG_SUCCESS_UNPACK, item)` from `Ui` class is called to p
 ![ExecuteUnpackCommandSequenceDiagram.png](diagrams%2FExecuteUnpackCommandSequenceDiagram.png)
 
 Sequence Diagram of Successful `UnpackCommand.execute()`
+
+---
+
+#### Edit Quantity Command
+
+`EditQuantityCommand` is used to edit the total quantity of an item in the packing list.
+
+Create Mechanism: Creating of `EditQuantityCommand` object is done in `Parser.createEditQuantityObj()`, which should return a new `EditQuantityCommand` object if there are no exceptions thrown and caught.
+The following conditions will cause an `IncorrectCommand` to be returned instead of a `EditQuantityCommand`, signalling an error had occured.
+1. Empty PackingList.
+2. `QUANTITY` not an integer, is less than 1, or greater than 1,000,000.
+3. `INDEX` is not a positive integer that is at most the size of the PackingList.
+
+This new command created (either `EditQuantityCommand` or `IncorrectCommand`) will then be executed by `BagPacker()`.
+
+Execute Mechanism: `EditQuantityCommand.execute()` calls the `EditQuantityCommand.getTargetItem()` method to retrieve the target item to pack.
+Next, the `PackingList.editTotalQuantity()` method is called in `PackingList`, which calls `Item.setTotalQuantity()` in `Item` class.
+`Item.setTotalQuantity()` will set the `totalQuantity` attribute to the `QUANTITY` input given.
+Last, `Ui.printToUser()` from `Ui` class is called to print a message to the user signifying that the Edit Quantity command has been executed successfully.
+
 
 ---
 
