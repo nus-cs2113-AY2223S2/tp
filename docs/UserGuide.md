@@ -102,6 +102,16 @@ Stand with your feet slightly wider than shoulder width apart and toes pointing 
 
 ________________________________________
 ```
+
+
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> Do note that some exercises may not come with instructions due to their self-explanatory nature. </p>
+</div>
+
+
 **These exercises can be enhanced and filtered using our filter parameters (Please see below)**
 
 <div style="page-break-after: always;"></div>
@@ -152,15 +162,6 @@ e.g. Do not put in both easy and medium in the same generate function, as no exe
 </div>
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
-
-
-<div class="alert alert-warning">
-   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
-   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
-   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
-   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> Do note that some exercises may not come with instructions due to their self-explanatory nature. </p>
-</div>
-
 
 Examples:
 
@@ -334,13 +335,13 @@ For example, if the current workout session started with the following workouts:
 ```
 Exercise ID: 0. 
 Name: 3/4 Sit-Up
-Difficulty Level: beginner
+Difficulty Level: easy
 Workout Type: core
 Lie down on the floor and secure your feet. Your legs should be bent at the knees., Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., Flex your hips and spine to raise your torso toward your knees., At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only Â¾ of the way down., Repeat for the recommended amount of repetitions.
 
 Exercise ID: 828. 
 Name: Tuck Crunch
-Difficulty Level: beginner
+Difficulty Level: easy
 Workout Type: core
 To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your upper body should be lying across your sides with the palms facing down., Your legs should be crossed by wrapping one ankle around the other. Slowly elevate your legs up in the air until your thighs are perpendicular to the floor with a slight bend at the knees. Note: Your knees and toes should be parallel to the floor as opposed to the thighs., Move your upper body from the floor and cross them so they are resting on your upper body. This is the starting position., While keeping your upper body pressed against the floor, slowly lift your torso. Remember to exhale while perform this part of the exercise., Slowly begin to lower your torso back down to the starting position while inhaling., Repeat for the recommended amount of repetitions.
 ```
@@ -349,13 +350,13 @@ Typing the input ```current``` would correspond to the following output, which j
 ````
 Exercise ID: 0. 
 Name: 3/4 Sit-Up
-Difficulty Level: beginner
+Difficulty Level: easy
 Workout Type: core
 Lie down on the floor and secure your feet. Your legs should be bent at the knees., Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., Flex your hips and spine to raise your torso toward your knees., At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only 75¾ of the way down., Repeat for the recommended amount of repetitions.
 
 Exercise ID: 828. 
 Name: Tuck Crunch
-Difficulty Level: beginner
+Difficulty Level: easy
 Workout Type: core
 To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your upper body should be lying across your sides with the palms facing down., Your legs should be crossed by wrapping one ankle around the other. Slowly elevate your legs up in the air until your thighs are perpendicular to the floor with a slight bend at the knees. Note: Your knees and toes should be parallel to the floor as opposed to the thighs., Move your upper body from the floor and cross them so they are resting on your upper body. This is the starting position., While keeping your upper body pressed against the floor, slowly lift your torso. Remember to exhale while perform this part of the exercise., Slowly begin to lower your torso back down to the starting position while inhaling., Repeat for the recommended amount of repetitions.
 
@@ -534,7 +535,7 @@ ________________________________________
       Justification: The data command is meant to store a user's completed exercise history, hence it should be updated. <br>
       <br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
       achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
-      from the feature's <purpose></purpose>
+      from the feature's purpose
    </p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -697,8 +698,6 @@ Format: ```plans```
 
 # Within your fitness planner
 
-<div class="alert alert-info">
-
 ## About
 
 Our planner feature is designed to help you plan your weekly workout schedule in order to achieve your workout goals.
@@ -768,7 +767,6 @@ These are some commands available:
 ===>Planner Mode<===
 ```
 
-</div>
 
 
 <div style="page-break-after: always;"></div>

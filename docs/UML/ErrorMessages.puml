@@ -1,0 +1,20 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+class "<<enumeration>> ErrorMessages" MAIN_COLOUR {
+ERROR_IPPT_INVALID_FORMAT
+ERROR_LOAD_CORRUPT_ACHIVEMENT_DATA
+ERROR_EMPTY_INPUT
+}
+
+class AchievementListHandler STORAGE_COLOUR {
+}
+class CommandHandler LOGIC_COLOUR {
+}
+
+CommandHandler --> "1"  "<<enumeration>> ErrorMessages" : errorMessages >
+AchievementListHandler --> "1"  "<<enumeration>> ErrorMessages": errorMessages >
+IPPTcalc  --> "1" "<<enumeration>> ErrorMessages" : errorMessages >
+
+@enduml
