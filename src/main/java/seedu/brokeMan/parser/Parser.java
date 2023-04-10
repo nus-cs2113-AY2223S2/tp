@@ -172,10 +172,6 @@ public class Parser {
         String budgetInString = descriptionByWord[0];
 
         try {
-//            if (budgetInString.length() > 10) {
-//                String errorMessage = new ExceedMaximumLengthForAmountException().getMessage();
-//                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
-//            }
             budgetInString = checkExceedMaxCharForAmount(budgetInString);
             budget = Double.parseDouble(budgetInString);
             budget = Double.parseDouble(df.format(budget));
