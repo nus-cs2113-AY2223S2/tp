@@ -972,7 +972,8 @@ public class Ui {
     public void printListHelpCommand() {
         System.out.println("Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. " +
                 "`list` automatically sorts the tasks by type, \n" +
-                "then date within each type." + "Format: list");
+                "then date within each type.\n" +
+                "Format: list");
     }
     /**
      * Prints a help message for todo command.
