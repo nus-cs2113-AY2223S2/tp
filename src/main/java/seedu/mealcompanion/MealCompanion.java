@@ -7,6 +7,5 @@ public class MealCompanion {
     public static void main(String[] args) {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
         mealCompanionSession.runRepl();
-
     }
 }

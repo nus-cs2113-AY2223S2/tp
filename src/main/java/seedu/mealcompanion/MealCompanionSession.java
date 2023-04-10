@@ -39,6 +39,8 @@ import seedu.mealcompanion.ui.MealCompanionUI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MealCompanionSession {
 
@@ -83,15 +85,25 @@ public class MealCompanionSession {
     private final MealCompanionControlFlow controlFlow;
     private final IngredientStorage ingredientStorage;
     private final List<IngredientMetadata> allergens;
+    private final Logger logger;
 
 
-    public MealCompanionSession() {
+    public MealCompanionSession(boolean enableLogging) {
         this.ui = new MealCompanionUI(new Scanner(System.in));
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
         this.recipes = new RecipeList("/recipes.json");
         this.ingredientStorage = new IngredientStorage(this.ui);
         this.allergens = new ArrayList<>();
+        this.logger = Logger.getLogger("MealCompanion");
+
+        if (!enableLogging) {
+            this.logger.setLevel(Level.OFF);
+        }
+    }
+
+    public MealCompanionSession() {
+        this(false);
     }
 
     public void setAllergens(List<IngredientMetadata> allergens) {
@@ -152,6 +164,7 @@ public class MealCompanionSession {
         this.ui.printIntroduction();
         ingredientStorage.getFile(this.ingredients);
         while (this.controlFlow.shouldRun()) {
+            logger.log(Level.INFO, "waiting for next command");
             String nextCommand = ui.getNextCommandString();
             CommandTokens tokens = new CommandTokens(nextCommand);
             ExecutableCommandFactory commandFactory = MealCompanionSession.COMMAND_TREE.resolve(tokens);
@@ -160,6 +173,8 @@ public class MealCompanionSession {
                 ui.printMessage("Not a command!");
                 continue;
             }
+
+            logger.log(Level.INFO, "matched to command factory: " + commandFactory.getClass());
 
             try {
                 ExecutableCommand cmd = commandFactory
@@ -173,6 +188,7 @@ public class MealCompanionSession {
             }
             if (!this.controlFlow.shouldRun()) {
                 this.ui.printFarewell();
+                logger.log(Level.INFO, "exiting application");
             }
         }
     }
