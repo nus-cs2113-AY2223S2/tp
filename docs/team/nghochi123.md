@@ -9,15 +9,17 @@ Given below are my contributions to the project.
 ### Storage
 
 Implemented the logic for the serialization and deserialization of Entries and a text format.
-    - **What it does**: Allows for the reading, writing and resetting of a database storage file specified by the code.
-    - **Justification**: This logic streamlines the process of reading and writing entries to a database storage file, as well as provide utility functions like resetting the database easily for error handling purposes.
-    - **Highlights**: The functions for reading and writing were designed to be as easy to use as possible, such that it can be used in any part of the code. Additionally, exceptions are processed and thrown as one that is easily recognizable for easier error handling.
+- **What it does**: Allows for the reading, writing and resetting of a database storage file specified by the code.
+- **Justification**: This logic streamlines the process of reading and writing entries to a database storage file, as well as provide utility functions like resetting the database easily for error handling purposes.
+- **Highlights**: The functions for reading and writing were designed to be as easy to use as possible, such that it can be used in any part of the code. Additionally, exceptions are processed and thrown as one that is easily recognizable for easier error handling.
 
 ## Code Contributed
 
 [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=nghochi123)
 
 ### Project Management
+
+Created issues and closed some issues through pull requests, linking relevant milestones and tags.
 
 ### Enhancements to existing features
 
@@ -31,7 +33,3 @@ Implemented the logic for the serialization and deserialization of Entries and a
 
 - Provided documentation for `Storage` components
 - Provided Class and Sequence diagram for `Storage` components
-
-### Community
-
-### Tools
