@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title EditCommand Sequence Diagram
+
+skinparam style strictuml
+":EditParser" -> ":EditCommand" **:EditCommand()
+activate ":EditCommand"
+":EditCommand" --> ":EditParser"
+deactivate ":EditCommand"
+":EditParser" -> ":EditCommand": run()
+activate ":EditCommand"
+":EditCommand" -> ":EditCommand": setEditInfo()
+activate ":EditCommand" #Cyan
+group sd [Process User Edit Input]
+    ":EditCommand"->":EditCommand": updateItemInfo()
+    activate ":EditCommand" #Green
+    ref over ":EditCommand": Update Item Attributes
+    ":EditCommand"-->":EditCommand"
+    deactivate ":EditCommand"
+    ":EditCommand" -> "<<class>>\nCategoryCommand": updateItemCategory()
+    activate "<<class>>\nCategoryCommand"
+    ref over "<<class>>\nCategoryCommand": Update Category Data
+    "<<class>>\nCategoryCommand" --> ":EditCommand"
+    deactivate "<<class>>\nCategoryCommand"
+    ":EditCommand"->":EditCommand": handleTrie()
+    activate ":EditCommand" #Green
+    ref over ":EditCommand": Update Inventory Data Structure
+    ":EditCommand"-->":EditCommand"
+    deactivate ":EditCommand"
+    alt No Errors
+        ":EditCommand" -> "<<class>>\nUi":printEditDetails()
+        activate "<<class>>\nUi"
+        ref over "<<class>>\nUi":Print Edit Details
+        "<<class>>\nUi" --> ":EditCommand"
+        deactivate "<<class>>\nUi"
+    else Caught Error Exceptions
+        ref over ":EditCommand","<<class>>\nUi": Print Error Message
+    end
+    ":EditCommand" -> "<<class>>\nSessionManager": writeSession()
+    activate "<<class>>\nSessionManager"
+    ref over "<<class>>\nSessionManager": Update CSV File
+    "<<class>>\nSessionManager" --> ":EditCommand"
+    deactivate "<<class>>\nSessionManager"
+
+end
+":EditCommand" --> ":EditCommand"
+deactivate ":EditCommand"
+":EditCommand" --> ":EditParser"
+destroy ":EditCommand"
+@enduml

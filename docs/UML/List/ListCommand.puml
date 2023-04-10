@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title ListCommand Sequence Diagram
+
+skinparam style strictuml
+actor User
+participant ":ListParser"
+User -> ":ListParser": run()
+
+
+        ":ListParser" -> ":ListCommand": run()
+        ":ListCommand" -> ":ListCommand": listItems()
+        activate ":ListCommand"
+        participant "Ui" <<class>>
+        alt inventory is empty
+            ":ListCommand" -> Ui: printEmptyList()
+            activate Ui
+            ref over Ui
+                print empty inventory storage
+            end ref
+            return
+        else inventory is not empty
+            ":ListCommand" -> Ui: printTable()
+            activate Ui
+            ref over Ui
+                print table of items in inventory
+            end ref
+            return
+       end
+       ":ListCommand" --> ":ListParser"
+       deactivate ":ListCommand"
+       destroy ":ListCommand"
+
+@enduml

@@ -1,0 +1,76 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title SearchCommand Sequence Diagram
+
+skinparam style strictuml
+participant ":SearchParser"
+
+group sd [SearchCommand running]
+    ":SearchParser" -> ":SearchCommand": run()
+    activate ":SearchCommand"
+    participant ":SearchCommand"
+    participant Ui <<class>>
+    alt searchType == Types.SearchType.KEYWORD
+        ":SearchCommand" -> ":SearchCommand": searchKeyword()
+        activate ":SearchCommand" #cyan
+        loop for each word in keyword
+            ref over ":SearchCommand"
+                search for word in internal trie
+                add all (items, occurences) with word into HashMap resultItemsCount
+            end ref
+        end
+        loop for each (item, occurences) in resultItemsCount
+            alt occurences == number of keywords
+                ref over ":SearchCommand"
+                    add to results
+                end ref
+            end
+        end
+        alt no items in results
+            ":SearchCommand" -> Ui: printEmptySearch()
+            activate Ui
+            ref over Ui
+                print empty search message
+            end ref
+            return
+            ":SearchCommand" --> ":SearchCommand": null
+        end
+        return results
+        alt results is not null
+            ":SearchCommand" -> Ui: printSearchItems()
+            activate Ui
+            ref over Ui
+                print items in table
+            end ref
+            return
+        end
+    else
+        ":SearchCommand" -> ":SearchCommand": searchUPC()
+        activate ":SearchCommand" #lightgreen
+        alt input not found in upcCodes
+            ":SearchCommand" -> Ui: printEmptySearch()
+            activate Ui
+            ref over Ui
+                print empty search message
+            end ref
+            return
+            ":SearchCommand" --> ":SearchCommand": null
+        end
+        ref over ":SearchCommand"
+            return item from upcCodes
+        end ref
+        return searchResult
+        alt searchResult is not null
+            ":SearchCommand" -> Ui: printSearchUPCItem()
+            activate Ui
+            ref over Ui
+                print items in table
+            end ref
+            return
+        end
+    end
+    return
+    deactivate ":SearchCommand"
+    destroy ":SearchCommand"
+end
+@enduml

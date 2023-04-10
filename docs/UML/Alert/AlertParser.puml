@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title AlertParser Sequence Diagram
+
+skinparam style strictuml
+actor User
+participant ":AlertParser"
+
+User -> ":AlertParser" **:run()
+activate ":AlertParser"
+
+alt rawInput == empty string
+    ref over ":AlertParser"
+        handle input error
+    end
+    ":AlertParser" --> User
+
+
+else rawInput == "add"
+
+    ":AlertParser" -> ":AlertParser": parseAddAlert()
+    activate ":AlertParser" #cyan
+        opt incorrect format or exceeded quantity limit
+            ref over ":AlertParser"
+                handle input error
+            end ref
+        end
+
+    ":AlertParser" --> User
+        ref over ":AlertParser"
+            add alert
+        end ref
+    return
+
+else rawInput == "end"
+
+    ":AlertParser" -> ":AlertParser": parseRemoveAlert()
+     activate ":AlertParser" #cyan
+        opt incorrect format or exceeded quantity limit
+            ref over ":AlertParser"
+                handle input error
+            end ref
+        end
+
+    ":AlertParser" --> User
+        ref over ":AlertParser"
+            remove alert
+        end ref
+    return
+
+
+else rawInput == any other input
+   ref over ":AlertParser"
+    handle input error
+    end ref
+    ":AlertParser" --> User
+end
+return
+destroy ":AlertParser"
+
+
+
+@enduml

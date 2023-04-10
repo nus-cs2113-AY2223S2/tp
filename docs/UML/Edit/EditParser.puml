@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title EditParser Sequence Diagram
+
+skinparam style strictuml
+actor User
+User -> ":EditParser" **:EditParser()
+activate ":EditParser"
+":EditParser" --> User
+deactivate ":EditParser"
+
+alt Contains "upc/" && User input length > 1
+    User -> ":EditParser": run()
+    activate ":EditParser"
+    ":EditParser" -> ":EditCommand" **:EditCommand()
+    activate ":EditCommand"
+    ":EditCommand" --> ":EditParser"
+    deactivate ":EditCommand"
+    ":EditParser" -> ":EditCommand" : run()
+    activate ":EditCommand"
+    ":EditCommand" -> ":EditCommand": setEditInfo()
+    activate ":EditCommand" #Cyan
+    ref over ":EditCommand" : Process User Edit Input
+    ":EditCommand" --> ":EditCommand"
+    deactivate ":EditCommand"
+    ":EditCommand" --> ":EditParser"
+    deactivate ":EditCommand"
+    destroy ":EditCommand"
+else else
+    ":EditParser" -> ":EditParser": EditErrorException()
+    activate ":EditParser" #Cyan
+    ":EditParser" -> "<<class>>\nUi": printInvalidEditCommand()
+    activate "<<class>>\nUi"
+    ref over "<<class>>\nUi": Print Error Message
+    "<<class>>\nUi" --> ":EditParser"
+    deactivate "<<class>>\nUi"
+    ":EditParser" --> ":EditParser"
+    deactivate ":EditParser"
+end
+
+":EditParser" --> User
+deactivate ":EditParser"
+destroy ":EditParser"
+@enduml

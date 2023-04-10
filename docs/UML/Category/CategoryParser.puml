@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title CategoryParser Sequence Diagram
+
+skinparam style strictuml
+actor User
+User -> ":CategoryParser"**: run()
+activate ":CategoryParser"
+alt categoryCommandType is 'list' or 'table
+    ":CategoryParser" -> ":CategoryCommand"**:
+    ":CategoryParser" -> ":CategoryCommand": run()
+    activate ":CategoryCommand"
+    ref over ":CategoryCommand"
+        execute command by categoryCommandType
+    end ref
+    return
+    deactivate ":CategoryCommand"
+    destroy ":CategoryCommand"
+else invalid input
+    ref over ":CategoryParser"
+        throw exception and print error message
+    end ref
+end
+":CategoryParser" --> User
+deactivate ":CategoryParser"
+destroy ":CategoryParser"
+
+@enduml

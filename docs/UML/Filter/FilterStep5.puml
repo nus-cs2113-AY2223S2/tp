@@ -1,0 +1,17 @@
+@startuml
+skinparam classAttributeIconSize 0
+object FilterParser{
+    - rawInput = "f/price p/gt 23.50"
+    - Inventory = inventory
+}
+object FilterCommand{
+    - Inventory = inventory
+    - price = 23.50
+    - FilterPriceMode = "p/gt"
+}
+object Ui{
+    - ArrayList<Item> items = items
+}
+FilterParser -> FilterCommand
+FilterCommand -> Ui
+@enduml

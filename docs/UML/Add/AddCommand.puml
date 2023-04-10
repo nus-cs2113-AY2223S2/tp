@@ -1,0 +1,49 @@
+
+@startuml
+title AddCommand Sequence Diagram
+
+skinparam style strictuml
+participant ":AddParser"
+participant ":AddCommand"
+":AddParser" -> ":AddCommand"**: run()
+
+activate ":AddCommand"
+":AddCommand" -> ":Command"**:Command(inventory)
+activate ":Command"
+participant ":Inventory"
+participant "<<class>>\nUi"
+":AddCommand" -> ":AddCommand": addItem()
+
+alt upcCodes.containsKey(item.getUpc())
+":AddCommand" -> "<<class>>\nUi": printDuplicateAdd()
+activate "<<class>>\nUi"
+"<<class>>\nUi" -->":AddCommand":
+deactivate "<<class>>\nUi"
+else
+ref over ":AddCommand",":Inventory":Store Item's UPC code into upcCodes
+ref over ":AddCommand",":Inventory":Store Item into itemInventory
+ref over ":AddCommand",":Inventory":Add Item into categoryHash
+":Command" -->":AddCommand":
+deactivate ":Command"
+destroy ":Command"
+":AddCommand" -> "<<class>>\nUi": printSuccessAdd()
+activate "<<class>>\nUi"
+"<<class>>\nUi" -->":AddCommand":
+deactivate "<<class>>\nUi"
+participant "<<class>>\nSessionManager"
+participant "<<class>>\nStorage"
+opt "<<class>>\nSessionManager".getAutoSave()
+":AddCommand" ->"<<class>>\nSessionManager":writeSession(inventory)
+activate "<<class>>\nSessionManager"
+"<<class>>\nSessionManager"->"<<class>>\nStorage":writeCSV(inventory)
+activate "<<class>>\nStorage"
+"<<class>>\nStorage" -->"<<class>>\nSessionManager":
+deactivate "<<class>>\nStorage"
+"<<class>>\nSessionManager" -->":AddCommand":
+deactivate "<<class>>\nSessionManager"
+end
+end
+":AddCommand" --> ":AddParser"
+destroy ":AddCommand"
+
+@enduml

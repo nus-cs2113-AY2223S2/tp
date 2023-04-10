@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title RestockParser Sequence Diagram
+
+skinparam style strictuml
+actor User
+participant ":RestockParser"
+User -> ":RestockParser" **:RestockParser()
+activate ":RestockParser"
+":RestockParser" --> User
+deactivate ":RestockParser"
+User->":RestockParser":run()
+activate ":RestockParser"
+":RestockParser" -> ":RestockCommand" **:RestockCommand()
+activate ":RestockCommand"
+":RestockCommand" --> ":RestockParser"
+deactivate ":RestockCommand"
+
+
+alt Contains "upc/" and input length > 1
+    ":RestockParser"->":RestockCommand": run()
+    activate ":RestockCommand"
+    ref over ":RestockCommand","<<class>>\nUi": Increases quantity of the Item
+    ":RestockCommand"-->":RestockParser":
+    deactivate ":RestockCommand"
+    ":RestockParser"-->User:
+    destroy ":RestockCommand"
+
+
+else No "upc/" or input length <= 1
+    ":RestockParser"->":RestockParser": EditErrorException()
+    activate ":RestockParser" #Cyan
+    ":RestockParser"->"<<class>>\nUi":printInvalidSellCommand()
+    activate "<<class>>\nUi"
+    "<<class>>\nUi"-->":RestockParser":
+    deactivate "<<class>>\nUi"
+    ":RestockParser"-->":RestockParser":
+    deactivate ":RestockParser"
+    ":RestockParser"-->User:
+    deactivate ":RestockParser"
+end
+
+
+deactivate ":RestockParser"
+destroy ":RestockParser"
+@enduml
