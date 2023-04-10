@@ -45,10 +45,11 @@
 
 ## Acknowledgements
 
-1. GSON Library for JSON parsing (https://github.com/google/gson)
-2. Retrofit Library for HTTP requests (https://github.com/square/retrofit
-3. AB-3 Developer Guide (https://se-education.org/addressbook-level3/DeveloperGuide.html)
-4. app.diagrams.net for creating diagrams (https://app.diagrams.net/)
+1. GSON Library for JSON parsing ([https://github.com/google/gson](https://github.com/google/gson))
+2. Retrofit Library for HTTP requests ([https://github.com/square/retrofit](https://github.com/square/retrofit))
+3. AB-3 Developer
+   Guide ([https://se-education.org/addressbook-level3/DeveloperGuide.html](https://se-education.org/addressbook-level3/DeveloperGuide.html))
+4. app.diagrams.net for creating diagrams ([https://app.diagrams.net/](https://app.diagrams.net/))
 
 ## Setting up
 
