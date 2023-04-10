@@ -148,14 +148,29 @@ public class AddCommand extends Command {
             break;
         case COMMAND_EVENT_WORD:
             Event event = new Event(desc, from, to);
-            if (isClashingEvent(taskList, event.getToDate(), event.getFromDate())) {
-                ui.printClashingEventMessage();
-            }
+            warnEventTaskClash(taskList, ui, event);
             warnEventModuleClash(ui, calendar, event);
             taskList.add(event);
             break;
         default:
             throw new UnexpectedException("Adding Task");
+        }
+    }
+
+    /**
+     * Checks and print warning message to user when event clashes with other tasks.
+     * Will not print anything if there are no clashes.
+     *
+     * @param taskList Existing tasks.
+     * @param ui For printing warning messages.
+     * @param event The event to be added.
+     */
+    private void warnEventTaskClash(TaskList taskList, Ui ui, Event event) {
+        if (isClashingEvent(taskList, event.getToDate(), event.getFromDate())) {
+            ui.printClashingEventMessage();
+        }
+        if (isClashingEventWithDeadline(taskList, event.getToDate(), event.getFromDate())) {
+            ui.printClashingEventWithDeadlineMessage();
         }
     }
 
@@ -191,6 +206,28 @@ public class AddCommand extends Command {
         ArrayList<CalendarModule> clashLessons = calendar.getLessonsForDay(week, dayNum);
         clashTasks.sortTaskByDay();
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
+    }
+
+    /**
+     * Checks if an event user wants to add clashes with existing deadlines.
+     *
+     * @param taskList The ArrayList containing the tasks.
+     * @param from     The time that event starts.
+     * @param to       The time that event ends.
+     * @return {@code true} if there is a clash, {@code false} otherwise.
+     */
+    private boolean isClashingEventWithDeadline(TaskList taskList, LocalDateTime from, LocalDateTime to) {
+        for (Task task : taskList) {
+
+            if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                if ((deadline.getByDate().isAfter(from)) || deadline.getByDate().isBefore(to)) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

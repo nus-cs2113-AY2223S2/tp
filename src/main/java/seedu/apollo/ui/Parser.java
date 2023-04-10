@@ -277,6 +277,9 @@ public class Parser {
         if (split.length != 2) {
             throw new InvalidDeadline();
         }
+        for (int i = 0; i < 2; i++) {
+            split[i] = split[i].trim();
+        }
         return split;
     }
 
@@ -293,6 +296,9 @@ public class Parser {
 
         if ((split.length != 3)||(!checkFromToOrder[0].startsWith("from") || !checkFromToOrder[1].startsWith("to"))){
             throw new InvalidEvent();
+        }
+        for (int i = 0; i < 3; i++) {
+            split[i] = split[i].trim();
         }
         return split;
     }

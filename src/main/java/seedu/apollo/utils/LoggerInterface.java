@@ -25,7 +25,7 @@ public interface LoggerInterface {
             logger.addHandler(logFile);
 
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
+            logger.log(Level.SEVERE, "Error creating logger.", e);
         }
     }
 }
