@@ -17,6 +17,10 @@ public class ListFoundNusModsCommand extends Command {
         this.universities = universities;
     }
 
+    /**
+     * Executes ListFoundNusModsCommand where it calls the UI class to print out a list of PU's modules that can be
+     * mapped to the user's specific NUS module code and will appear under its respective PU heading
+     */
     @Override
     public void execute() {
         ui.printFoundNusModules(foundNusModList, nusModCode, universities);
