@@ -191,7 +191,7 @@ Example:
 
 ### Adding an exercise: `exercise`
 
-For user to input the exercise done previously
+For user to input the exercise done previously.
 
 Format: `exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]`
 
@@ -204,7 +204,7 @@ Example:
 
 ### Tracking net calorie intake: `track`
 
-For user to track their previous net calorie intake
+For user to track their previous net calorie intake.
 
 Format: `track /start [start date] /end [end date]`
 
@@ -218,7 +218,7 @@ Output:
 
 ### Displaying examples of meals and exercises: `examples`
 
-For the user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
+For user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
 
 Format: `examples [meal/exercise]`
 
