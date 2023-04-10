@@ -73,7 +73,7 @@ The rest of the app consists of four components:
 * `UI`: The UI of the app
 * `Parser`: The command executor
 *  `EventList`: Holds the data of the app in memory
-* `Storage`: Reads data from and writes data to the hard disk
+* `Storage`: Reads data from and writes data to/from the hard disk
 
 
 <br>
@@ -145,11 +145,11 @@ API: `Storage.java`
 
 The storage component reads and writes user data from a local save in the form of a `.json` file.
 The Storage component:
-* Serializes and deserializes user data into a `.json` file format through the use of the Gson library
-* Loads data from `NusMods.json`, a scraped version of the NUSMods API, into a HashMap for use by other classes.
-* Inherits from both `EventListStorage` and `NusModuleLoader`, and can be treated as either one.
-* Saves and loads information from the local hard disk
-* Depends on some classes (the `storage` component saves and retrieves objects)
+> * Serializes and deserializes user data into a `.json` file format through the use of the Gson library
+> * Loads data from `NusMods.json`, a scraped version of the NUSMods API, into a HashMap for use by other classes.
+> * Inherits from both `EventListStorage` and `NusModuleLoader`, and can be treated as either one.
+> * Saves and loads information from the local hard disk
+> * Depends on some classes for serialization/deserialization (since the `storage` component saves and retrieves objects)
 
 The class diagram below illustrates the structure of the storage package
 
