@@ -156,17 +156,17 @@ passed through `parseCommand(String userInput)` inside `Parser`.
 
 In this case, an `UpdateCommand` will be created and returned.
 
-Step 3: The `execute()` function of `UpdateCommand` will run, creating an
-ArrayList of flashcards. Then `findFlashcard(flashcards, query)` is called to
-find flashcards that contain questions or answers that match `query`, after
-which it will call `printFlashCards(matchingFlashcards)` in `UpdateCommand`
-class to display the flashcards found.
+Step 3: The `execute()` function of `UpdateCommand` will run `queryFlashcards(query)`
+of `FlashcardList`, which will query for flashcards in the current deck that matches
+the query inside either the question or answer and return an ArrayList of `Flashcard` 
+called `matchingFlashcards`.
 
-The index of the flashcard to be updated is taken from the user input, which is
-collected by `getUserCommand()`. `implementUpdate(flashcards, userText)` is then
-called to update the question or answer of the flashcard. Finally,
-`printFlashCard(flashcards.get(index))` will be called which prints the
-flashcard that was updated with its new content.
+Step 4: Then, `printFlashCards(matchingFlashcards)` inside class `Ui` is called, which
+prints all questions and answers of the list of flashcards, that matches the query, 
+to the console
+
+Step 5: Lastly, `runUpdateFlashcard(display)` is executed. This method prompts the user
+for input and updates the specified flashcard based on that input.
 
 At this point, the update flashcard process is completed and the program is read
 to take another command.
@@ -180,6 +180,11 @@ Implementing the update flashcard in an `UpdateCommand` class makes it easier
 during the debugging process related to update flashcard feature alone as most
 of the methods and attributes are within this `UpdateCommand` class.
 
+Furthermore, the UpdateCommand has a dedicated function, runUpdateFlashcard(display), 
+which handles the updating of the flashcard. This helps to ensure that the code 
+remains organized and easy to read, with the updating process separated from other 
+code.
+
 #### Alternative Implementation
 
 - Alternative 1: Instead of creating a new arrayList `matchingFlashcards` that
@@ -192,6 +197,16 @@ of the methods and attributes are within this `UpdateCommand` class.
     it will also be more confusing as the index of the user input is not aligned
     with the index of the arrayList that contains all the flashcards
 
+- Alternative 2: An alternative implementation could be to have the updating of 
+  the flashcard handled directly in FlashcardList.
+
+  - Pros: Simple implementation and no need for another function in another 
+    program to differentiate it from other commands
+  - Cons: May lead to increased coupling in the program, as the `UpdateCommand` 
+    will have access to the inner structure of `FlashcardList` and this may make the 
+    code more difficult to read and debug, as the updating process will be 
+    combined with other code
+  
 ### Review Flashcard Feature
 
 #### Current Implementation
@@ -306,7 +321,7 @@ depending on the command, we retrieve the option accordingly with e.g.
 ##### `Parser`
 
 This is now just a matter of wrapping `ParsedInput` with suitable error handling
-and logic such that each command will be used to initiated a corresponding
+and logic such that each command will be used to initiate a corresponding
 command class (e.g. `AddCommand`), while errors are handled gracefully.
 
 #### Reason for Current Implementation

@@ -109,7 +109,7 @@ public class Parser {
         if (query.isEmpty()) {
             throw new NoQueryInInputException();
         }
-        return new UpdateCommand(parsedInput.getBody());
+        return new UpdateCommand(query);
     }
 
     public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
