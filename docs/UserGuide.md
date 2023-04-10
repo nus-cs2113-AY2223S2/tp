@@ -112,6 +112,8 @@ Added other expenditure: [Other] || Date: 31 Jan 2000
 ```
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2. Adding a lend/borrow record
 
 Adds a lending or borrowing transaction to the record
@@ -424,6 +426,8 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The date must be input in YYYY-MM-DD format.
 - If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
 - The input year cannot be earlier than 2000, and the maximum year that can be set is 9999.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.16. Currency rates
 
