@@ -6,11 +6,24 @@ import seedu.badmaths.matrix.exception.ShapeMismatchException;
 
 import java.util.logging.Logger;
 
+/**
+ * This class calculates the various matrix calculation below:
+ * 1. Matrix multiplication
+ * 2. Matrix element wise product
+ * 3. Matrix subtraction
+ * 4. Matrix addition
+ */
 public class Calculate {
     ExceptionChecker check = new ExceptionChecker();
     Logger logger = Logger.getLogger("Exception");
     ExceptionPrinter ep = new ExceptionPrinter();
 
+    /**
+     * Calculate the matrix multiplication.
+     *
+     * @param t1 operand1
+     * @param t2 operand2
+     */
     public Tensor2D mul(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
@@ -38,6 +51,12 @@ public class Calculate {
         }
     }
 
+    /**
+     * Calculate the matrix element wise product.
+     *
+     * @param t1 operand1
+     * @param t2 operand2
+     */
     public Tensor2D dot(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
@@ -60,6 +79,12 @@ public class Calculate {
         }
     }
 
+    /**
+     * Calculate the matrix addition.
+     *
+     * @param t1 operand1
+     * @param t2 operand2
+     */
     public Tensor2D add(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
@@ -82,6 +107,12 @@ public class Calculate {
         }
     }
 
+    /**
+     * Calculate the matrix subtraction.
+     *
+     * @param t1 operand1
+     * @param t2 operand2
+     */
     public Tensor2D sub(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();

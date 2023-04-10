@@ -1,7 +1,16 @@
 package seedu.badmaths.matrix;
 
+/**
+ * This class executes the given expression with given operators and operand parsed from Parser class.
+ */
 public class Execute {
 
+    /**
+     * Execute the given command with calling corresponding executing function.
+     *
+     * @param type type of the operator.
+     * @param command given matrix expression.
+     */
     public Tensor2D execute(Parser.CalType type, String command){
         Tensor2D result = null;
 
@@ -25,6 +34,11 @@ public class Execute {
         return result;
     }
 
+    /**
+     * Execute the matrix multiplication with calling corresponding function from Calculate class.
+     *
+     * @param command given matrix expression.
+     */
     public Tensor2D executeMul(String command) {
         Calculate c = new Calculate();
 
@@ -44,6 +58,11 @@ public class Execute {
         return result;
     }
 
+    /**
+     * Execute the matrix element wise product with calling corresponding function from Calculate class.
+     *
+     * @param command given matrix expression.
+     */
     public Tensor2D executeDot(String command) {
         Calculate c = new Calculate();
 
@@ -63,6 +82,11 @@ public class Execute {
         return result;
     }
 
+    /**
+     * Execute the matrix addition with calling corresponding function from Calculate class.
+     *
+     * @param command given matrix expression.
+     */
     public Tensor2D executeAdd(String command) {
         Calculate c = new Calculate();
 
@@ -82,6 +106,11 @@ public class Execute {
         return result;
     }
 
+    /**
+     * Execute the matrix subtraction with calling corresponding function from Calculate class.
+     *
+     * @param command given matrix expression.
+     */
     public Tensor2D executeSub(String command) {
         Calculate c = new Calculate();
 
@@ -101,6 +130,11 @@ public class Execute {
         return result;
     }
 
+    /**
+     * Execute the matrix transposition with calling corresponding function from Calculate class.
+     *
+     * @param command given matrix expression.
+     */
     public Tensor2D executeTranspose(String command) {
         String operator;
         Tensor2D output;
