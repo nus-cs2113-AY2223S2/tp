@@ -785,7 +785,7 @@ The following are instructions for testers to manual test:
      expenditures, input names should not have slashes.
   
      - Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
-     expenditures cannot to edit lend/borrow expenditures <br></br>
+     expenditures cannot to edit lend/borrow expenditures <br>
     
     Test Case 1 (Editing `food` expenditure):
     ```
@@ -852,7 +852,7 @@ The following are instructions for testers to manual test:
 #### Duplicate an expenditure
 1. Duplicating an expenditure from the list of inputs.
      - Prerequisite: There should be at least one expenditure in the list for `duplicate` to work. The list can be checked
-     in SGD using the `list SGD` command <br></br>
+     in SGD using the `list SGD` command <br>
     
     Test Case 1:
     ```
@@ -960,12 +960,12 @@ The following are instructions for testers to manual test:
     ```
     check y/2023
     ```
-    Expected : Returns the comparison result with the expenditures made in 2023.<br></br>
+    Expected : Returns the comparison result with the expenditures made in 2023.<br><br/>
     Test case 2 (Check with day):
     ```
     check d/2023-01-12
     ```
-    Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.<br></br>
+    Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.<br><br/>
     Test case 3:
     ```
     check m/2023-01-12
@@ -974,10 +974,10 @@ The following are instructions for testers to manual test:
     ```
     Failed to check! Please check the format and try again!
     ```
-    Error occurs due to wrong format for parameter.<br></br>
+    Error occurs due to wrong format for parameter.<br><br/>
 3. Checking the expenditure classified under a certain expenditure type and comparing with set budget
      - `check [expenditure type]` compares all the unmarked expenditures classified under that expenditure type with the set
-     budget so that the user can compare spending with budget. This command does not include borrow and lend expenditures. <br></br>
+     budget so that the user can compare spending with budget. This command does not include borrow and lend expenditures. <br><br/>
     Test case 1:
     ```
     check t/transport
@@ -1039,7 +1039,7 @@ The following are instructions for testers to manual test:
     ```
 
 2. Unmarking an expenditure
-     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br></br>    
+     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br><br/>    
     Test Case 1:
     ```
     unmark 1
@@ -1047,8 +1047,11 @@ The following are instructions for testers to manual test:
     Expected :
     ```
     Unmarked your expenditure!
-    [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.0 || Description: NUS
+    [Accommodation] || [ ] || Date: 3 Feb 2023 || 
+    Value: 200.0 || Description: NUS
     ```
+    <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+
     Test case 2 (Attempt to unmark other expenditures that are not accommodation or tuition):
     ```
     unmark 2
@@ -1106,8 +1109,8 @@ The following are instructions for testers to manual test:
     ```
     viewdate
     ```
-    Expected : Similar to previous, an invalid message with the error will be displayed for the user. <br>
-3. View specific type of expenditure under the expenditure column <br>
+    Expected : Similar to previous, an invalid message with the error will be displayed for the user. <br><br/>
+3. View specific type of expenditure under the expenditure column <br><br/>
     Test case 1:
     ```
     viewtype transport
@@ -1115,7 +1118,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are current expenditures with the `transport` type.
     
     Expected : List of all expenditures under transport expenditure, as well as the total amount spent
-      for that type of expenditure.
+      for that type of expenditure. <br><br/>
     Test case 2:
     ```
     viewtype transport
@@ -1123,7 +1126,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are no current expenditures with the `transport` type.
     
     Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
-      be shown as 0. <br></br>
+      be shown as 0. <br><br/>
     Test case 3:
     ```
     viewtype swimming
