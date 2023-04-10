@@ -275,10 +275,7 @@ public class Parser {
         String newDescription = splitDescriptions[1];
         Category category;
         try {
-            checkSmallerThanMinTime(splitDescriptions[2]);
             category = convertStringToCategory(splitDescriptions[3]);
-        } catch (DateSmallerThanMinimumException sme) {
-            return new InvalidCommand(sme.getMessage(), AddExpenseCommand.MESSAGE_USAGE);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
@@ -312,10 +309,7 @@ public class Parser {
         String newDescription = splitDescriptions[1];
         Category category;
         try {
-            checkSmallerThanMinTime(splitDescriptions[2]);
             category = convertStringToCategory(splitDescriptions[3]);
-        } catch (DateSmallerThanMinimumException sme) {
-            return new InvalidCommand(sme.getMessage(), AddIncomeCommand.MESSAGE_USAGE);
         } catch (CategoryNotCorrectException e) {
             throw new RuntimeException(e);
         }
@@ -380,6 +374,7 @@ public class Parser {
         // 0.00, which is why we call checkDoubleException again.
         checkDoubleException(splitDescriptions[0]);
         checkTimeException(splitDescriptions[2]);
+        checkSmallerThanMinTime(splitDescriptions[2]);
         convertStringToCategory(splitDescriptions[3]);
         return splitDescriptions;
     }
@@ -474,8 +469,8 @@ public class Parser {
 
         try {
             splitDescriptions = checkEditCommandException(description);
-            if (splitDescriptions[2].equals("time")) {
-                checkSmallerThanMinTime(splitDescriptions[3]);
+            if (splitDescriptions[1].equals("time")) {
+                checkSmallerThanMinTime(splitDescriptions[2]);
             }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
@@ -501,8 +496,8 @@ public class Parser {
 
         try {
             splitDescriptions = checkEditCommandException(description);
-            if (splitDescriptions[2].equals("time")) {
-                checkSmallerThanMinTime(splitDescriptions[3]);
+            if (splitDescriptions[1].equals("time")) {
+                checkSmallerThanMinTime(splitDescriptions[2]);
             }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditIncomeCommand.MESSAGE_USAGE);
