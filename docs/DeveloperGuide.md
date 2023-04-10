@@ -616,7 +616,8 @@ If you want to see the overall flow of the Matrix part, click the toggle button 
 
 </div>
 </details>
-
+<br/>
+ 
 Below is an example usage scenario and how the `Matrix` feature behaves at each step.
 
 When user enters an input:
