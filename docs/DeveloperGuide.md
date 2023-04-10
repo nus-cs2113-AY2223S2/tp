@@ -77,6 +77,12 @@ Given below is a quick overview of main components.
 * `Storage`: Read and write data from hard disk
 * `Command`: Specific commands for execution
 
+#### Program Flow
+- The `MealCompanionSession` controls access to the `UI`, `Parsing`, `Model`, and `Storage` components of the app
+- The user will send input to the `MealCompanionSession`.
+- The `MealCompanionSession` will parse the input to produce a `Command`, which will hook back into the
+`MealCompanionSession` to gain access to the other components when running
+
 ### Command Parsing
 
 The system of `Routable` classes is built to allow for a composable setup of commands and subcommands.

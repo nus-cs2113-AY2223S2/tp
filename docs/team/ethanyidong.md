@@ -34,6 +34,9 @@ by the ingredients you already have so that you can easily find recipes you can 
 - Overall application architecture
 - Created v1.0 Release
 - Setup assertions for Gradle
+- Error handling
+  - Note that edits are not attributed under RepoSense as they are too sparse to justify author tags
+  - All edits in question are in this [PR](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/159)
 
 #### Reviewing/Mentoring Contributions
 - Assisted Jia Chen in setting up his local repository workflow
@@ -71,6 +74,30 @@ This is an object diagram representing a portion of the routing tree for MealCom
 The sequence diagram below illustrates the process for resolving the "recipe all" command.
 
 <img src="../images/RouterSequenceUML.png" width="450"/>
+
+#### Command Tokens and Recursive Matching
+
+The `CommandTokens` class represents a rewindable queue of words in the user's input
+which allows for performant matching of nested commands. As the `CommandTokens` instance gets passed to the
+`CommandRouterNode`, it will check if the word at the head matches its name. If it does, the queue is advanced and the
+tokens are passed recursively deeper into the routing tree, and if not the queue is rewound and passed back up the
+routing tree.
+
+#### Argument Extractors
+<img src="../images/Extractors.png" width="450"/>
+
+This is a class diagram representing the `Extractors` system for extracting values from passed arguments. Note that not
+all implementations of `ArgumentExtractor` is included.
+`Extractors` provide validated inputs to the `ExecutableCommand` that is built by the factory.
+
+The `ExecutableCommandFactory` may provide a list of `Extractors` to be run via the `getExtractors()` method.
+The `runExtractors()` function should be called when building the command.
+
+If extraction is run successfully, the factory may pull the validated
+value out of the `ArgumentExtractor` using the `getExtractedValue()` method, and pass it to the `ExecutableCommand`
+constructor.
+
+If extraction yields an exception, the exception will be passed up to the caller of `buildCommand()`.
 <div style="page-break-after: always;"></div>
 
 # Contributions to the User Guide (Extracts)
