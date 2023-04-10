@@ -244,7 +244,6 @@ Lists out all of Partner Universities.
 
 Sequence Diagram of List Pu Command.
 
-
 ![ListPuCommandSequenceDiagram.png](diagrams%2FCommands%2FListPuCommandSequenceDiagram.png)
 
 **Explanation**

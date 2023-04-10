@@ -71,5 +71,5 @@ end
 
 "<<class>>\nui:UI" --> ":ListCurrentPuCommand" : return control
 deactivate "<<class>>\nui:UI"
-
+deactivate ":ListCurrentPuCommand"
 @enduml
