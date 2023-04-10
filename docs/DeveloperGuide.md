@@ -137,6 +137,24 @@ constructor.
 
 If extraction yields an exception, the exception will be passed up to the caller of `buildCommand()`.
 
+### Exception Handling
+
+We have 5 different custom exceptions thrown by our code:
+- `CommandRunException` - thrown only by `ExecutableCommand`s a problem occurs while running a command
+- `InvalidArgumentException` - thrown only by `ArgumentExtractor`s when an argument value is malformed
+- `InvalidCommandException` - thrown only by `Extractor`s when the command is malformed
+- `MealCompanionException` - thrown by code run outside the REPL (for example, loading save data)
+
+`CommandRunException`s and `InvalidCommandException`s are handled in the `MealCompanionSession`. The error message
+is printed for the user and the program will wait for the next command.
+
+`InvalidArgumentException` is never thrown outside the context of a `Extractor` calling its child `ArgumentExtractor`.
+The `Extractor` will always wrap the thrown `InvalidArgumentException` in an `InvalidCommandException`, which is
+handled as above.
+
+`MealCompanionException` should be handled by the caller of the function which throws it. We are in the process of
+shifting this responsibility away from the `ExecutableCommand`s.
+
 ### Ingredient Class
 
 Below shows the class diagram of how ingredients are being stored in our program
