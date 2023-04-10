@@ -16,6 +16,7 @@ import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
+import seedu.exceptions.NoFoodsException;
 import seedu.logger.LogFileHandler;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
@@ -69,6 +70,9 @@ public class AddMealCommand extends Command {
             parseCommand(ui, foodStorage);
         }
 
+        if (foods.size() == 0) {
+            throw new NoFoodsException();
+        }
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);

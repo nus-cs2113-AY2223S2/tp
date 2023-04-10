@@ -8,35 +8,35 @@
   - [Storage Component](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#storage-component)
   - [Interfaces](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#interfaces)
 - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation)
-  - [ Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-1)
+  - [Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-1)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations)
   - [List feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-2)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-2)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-1)
-  - [ Delete feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-3)
+  - [Delete feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-feature)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-3)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-2)
   - [View feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#view-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-4)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-4)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-3)
   - [Update feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#update-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-5)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-5)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-4)
   - [Nutrition feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#nutrition-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-6)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-6)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-5)
   - [Filter feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#filter-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-7)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-7)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-6)
   - [Exercise feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#exercise-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-8)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-8)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-7)
   - [Track feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#track-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-9)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-9)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-8)
   - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
-    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
+    - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-9)
 - [Appendix: Requirements](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#appendix-requirements)
   - [Product Scope](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#product-scope)
@@ -63,15 +63,18 @@
     - [Dealing with missing/corrupted data files](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#dealing-with-missingcorrupted-data-files)
 
 ---
+
 ### Acknowledgements
 
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
 2. The source for the nutritional data is from the following links, [Western](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2022/10/Western-TE-1.pdf), [Nasi Padang](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Nasi-Padang-TE.pdf), [Taiwanese](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Taiwanese-TE.pdf), and [Mala](https://uci.nus.edu.sg/oca/wp-content/uploads/sites/9/2023/03/Mala-TE.pdf).
+
 ---
 
 ## Design
 
 ---
+
 ### Architecture
 
 <img src="uml/architecture.PNG" alt="Sequence Diagram" width="1000">
@@ -90,6 +93,7 @@ The rest of the Application consists of three components:
 - `Storage`: Stores information of the user and meals eaten
 
 ---
+
 ### UI Component
 
 API: ui.java
@@ -100,6 +104,7 @@ The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `Exer
 they improve on the accessibility of the application.
 
 The `UI` component,
+
 - Displays what are the possible inputs at any one time
 - Allows the user to check that a value added is correct
 - Informs the user whenever there is an invalid input
@@ -111,16 +116,16 @@ API: commands.java
 <img src="uml/commands-class-diagram.png" alt="Sequence Diagram" width="1000">
 
 How the `Command` component works:
-1. When a user first enters something into the CLI, the `CommandParser` subclass from the `Parser` class is used to parse the user command. 
+
+1. When a user first enters something into the CLI, the `CommandParser` subclass from the `Parser` class is used to parse the user command.
 2. Based on the results of the parsing, a specific command object is created (e.g. `AddMealCommand`) which inherits from the abstract `Command` and its `execute` method.
-3. Every command uses the `execute` method differently according to its needs. (For example, `AddMealCommand` would require saving of meals to a single database, while 
+3. Every command uses the `execute` method differently according to its needs. (For example, `AddMealCommand` would require saving of meals to a single database, while
    `TrackCalorieCommand` would require reading from various databases for the desired result)
 4. The command can also communicate with the various storage components when it is executed, such as saving and loading of user, meals, foods, exercise data.
-5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
+5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user.
 6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException) is thrown.
 
 <img src="uml/Command-class-diagram.png" alt="Sequence Diagram" width="1000">
-
 
 ### Storage Component
 
@@ -145,6 +150,7 @@ To ensure that each `Storage` component only implements methods for writing and 
 For example, `FoodStorage` is not meant to be edited by user, hence it does not implement `FileWritable`
 
 # Implementation
+
 This section describes some noteworthy details on how certain features are implemented.  
 
 ## Add meal feature
@@ -154,14 +160,15 @@ This section describes some noteworthy details on how certain features are imple
 The proposed mechanism for adding a meal is facilitated by `AddMealCommand`. It extends `Command` and overrides the
 `execute` method in the `Command` class.
 
-In this command, there are 2 ways for the user to add a meal to storage. 
+In this command, there are 2 ways for the user to add a meal to storage.
+
 1. Using a one-line command in their CLI in the format `add [DATE] /on [MEAL_TYPE] /type [FOOD_INDEX] /foods`
 2. Typing `add` into the CLI and following the printed prompts to enter the date in the specified format, type of meal and specific food.
 
 <img src="uml/AddMealCommand1.png" alt="Sequence Diagram" width="500">
 
-Step 1. As seen from the sequence diagram above, when the AddMealCommand is executed via the `execute` method in 
-LifeTracker, the user's input is first parsed to determine how he/she wants to input it. Either method sets the food, 
+Step 1. As seen from the sequence diagram above, when the AddMealCommand is executed via the `execute` method in
+LifeTracker, the user's input is first parsed to determine how he/she wants to input it. Either method sets the food,
 date and meal type features necessary to create a new meal.
 
 Step 2. The constructor for the `Meal` class is called which instantiates a new instance of Meal using the
@@ -176,11 +183,11 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
 - Alternative 1 (current choice): Use a one-line command for the CLI.
   - Pros: Faster to input for experienced users.
   - Cons: Format might be difficult for new users.
-- Alternative 2 (current choice): Follow printed prompts for data. 
+- Alternative 2 (current choice): Follow printed prompts for data.
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
-Therefore, our group chose to implement both ways. 
+Therefore, our group chose to implement both ways.
 
 ## List feature
 
@@ -203,20 +210,20 @@ Step 3: The `ui` will retrieve the relevant information from the storage and pri
 - Alternative 1 (current choice): List information based on input command.
   - Pros: More concise, no unnecessary information.
   - Cons: Slightly slower to input command.
-- Alternative 2: List all meals, exercises, and foods at once. 
+- Alternative 2: List all meals, exercises, and foods at once.
   - Pros: Slightly faster to input command.
-  - Cons: Lots of unnecessary information would be displayed. 
+  - Cons: Lots of unnecessary information would be displayed.
 
 ## Delete feature
 
 ### Implementation
 
-In order to delete a meal or exercise from their meal history, a user has to type either `delete /meal [MEAL_INDEX]` or `delete /exercise [EXERCISE_INDEX]`into the CLI. Users can see 
+In order to delete a meal or exercise from their meal history, a user has to type either `delete /meal [MEAL_INDEX]` or `delete /exercise [EXERCISE_INDEX]`into the CLI. Users can see
 which meal or exercise they want to delete by viewing the respective csv files or using the list command.
 
 <img src="uml/DeleteMealCommand1.png" alt="Sequence Diagram" width="500">
 
-In the above implementation, DeleteMealCommand parses the user input to obtain the index to delete and proceeds to 
+In the above implementation, DeleteMealCommand parses the user input to obtain the index to delete and proceeds to
 delete it via the method from mealStorage() and prints out the deleted meal to the user.
 
 ### Design considerations
@@ -224,7 +231,7 @@ delete it via the method from mealStorage() and prints out the deleted meal to t
 #### Aspect: How to delete meals
 
 - Alternative 1 (current choice): Delete items from list based on index.
-  - Pros: Does not needlessly delete wanted items. 
+  - Pros: Does not needlessly delete wanted items.
   - Cons: Need to get the index from `list` command first.
 - Alternative 2: Clears all data.
   - Pros: Faster input, no need for `list` command to retrieve index.
@@ -234,30 +241,29 @@ delete it via the method from mealStorage() and prints out the deleted meal to t
 
 ### Implementation
 
-The proposed view mechanism is facilitated by `ViewUserCommand`. It extends `Command` and overrides the 
-`execute` method in the `Command` class. 
+The proposed view mechanism is facilitated by `ViewUserCommand`. It extends `Command` and overrides the
+`execute` method in the `Command` class.
 
-It stores the user's data internally as `user` and the meals consumed by the user as `meals`. It also 
+It stores the user's data internally as `user` and the meals consumed by the user as `meals`. It also
 initializes the UI for calories as `calorieUI`.
 
 Given below is an example usage scenario and how the view feature behaves at each step.
 
-Step 1. The user launches the application and calls the `view /[fieldname]` command. The `ViewUserCommand` will be 
-initialized with the current user and meal storage state. `user` and `meals` will point to the user storage 
-and meal state respectively. 
+Step 1. The user launches the application and calls the `view /[fieldname]` command. The `ViewUserCommand` will be
+initialized with the current user and meal storage state. `user` and `meals` will point to the user storage
+and meal state respectively.
 
 The method `parseCommand()` is then called to check and ensure that the `/[fieldname]`
 provided is valid information that can be viewed as well as the number of arguments provided is correct.
 
 <img src="uml/ViewUserCommandSD1.png" alt="Sequence Diagram 1" width = "500">
 
-
 Step 2. Based on the `/[fieldname]` that the user provided the different getter methods will be called in the entity
 `User` to return the appropriate information. In this case, the user has input the command `view /weight` which will
-call the getter method `getWeight()` in the entity `User` to return the current weight of the user and initializes the 
+call the getter method `getWeight()` in the entity `User` to return the current weight of the user and initializes the
 variable `weight` with that value.
 
-If the user's weight is equal to 0.0 then the method `printFieldNotStored()` in `GeneralUi` will be called to notify the 
+If the user's weight is equal to 0.0 then the method `printFieldNotStored()` in `GeneralUi` will be called to notify the
 user that that specific information has not been stored yet. Otherwise, the method `printWeight()` will be called to
 print out the weight of the user.
 
@@ -265,6 +271,7 @@ print out the weight of the user.
 
 For name, weight, height, age and gender there will a check done to see whether the field has information stored in it.
 If the fields are empty the user will be alerted and asked to update it.
+
 ### Design considerations
 
 #### Aspect: How to view user data
@@ -299,13 +306,13 @@ provided is valid information that can be updated as well as the number of argum
 
 Step 2. Based on the `/[fieldname]` that the user provided the different setter methods will be called in the entity
 `User` to update the appropriate information. In this case, the user has input the command `update /weight [newInfo]` which will
-call the setter method `setWeight()` in the entity `User` to return the set the current weight of the user to the newly 
-updated one. 
+call the setter method `setWeight()` in the entity `User` to return the set the current weight of the user to the newly
+updated one.
 
 The caloric limit is then recalculated with the calling of `calculateCaloricNeeds()` static method in User
 based on the new information provided and the caloric limit in `user` is then updated with `setCaloricLimit`.
 
-The new weight difference between the current weight and target weight is also shown with the calling of the static 
+The new weight difference between the current weight and target weight is also shown with the calling of the static
 method `displayNewWeightDifference()`.
 
 The method `updateUser()` in userStorage is then called to update the user's detail in the storage.
@@ -322,7 +329,7 @@ For updates made to weight and targetWeight, there will be a call to the static 
 
 At the end of every update, the userStorage will be updated accordingly.
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to update user data
 
@@ -339,9 +346,9 @@ At the end of every update, the userStorage will be updated accordingly.
 
 The proposed update mechanism is facilitated by `NutritionCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
-Step 1: The user inputs `nutrition` into the command line. 
+Step 1: The user inputs `nutrition` into the command line.
 
-Step 2: The user will then be prompted to enter what food they would like to see the nutrition for. 
+Step 2: The user will then be prompted to enter what food they would like to see the nutrition for.
 
 Step 3: A list of type `food` will then be created called `filteredFoods`, populated by foods from `foodStorage` that contains the user's input.
 
@@ -351,16 +358,16 @@ Step 5: The nutritional information for that food will then be displayed.
 
 <img src="uml/NutritionCommand.png" alt="Sequence Diagram" width="500">
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to view nutritional information for foods
 
 - Alternative 1 (current choice): Follow prompts for information.
-  - Pros: User can get accurate information about the food. 
+  - Pros: User can get accurate information about the food.
   - Cons: Slower input.
 - Alternative 2: Use a one line command for the CLI.
   - Pros: Faster input.
-  - Cons: User might input food that's not in the database and therefore there is no nutritional information available. 
+  - Cons: User might input food that's not in the database and therefore there is no nutritional information available.
 
 ## Filter feature
 
@@ -378,7 +385,7 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
 
 <img src="uml/FilterCaloriesCommand.png" alt="Sequence Diagram" width="500">
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to find foods from the database based on calories
 
@@ -395,14 +402,14 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
 
 The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to add exercises
 
 - Alternative 1 (current choice): Use a one-line command for the CLI.
   - Pros: Faster to input for experienced users.
   - Cons: Format might be difficult for new users.
-- Alternative 2 (current choice): Follow printed prompts for data. 
+- Alternative 2 (current choice): Follow printed prompts for data.
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
@@ -420,14 +427,14 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 
 <img src="uml/TrackCaloriesCommand.PNG" alt="Sequence Diagram" width="500">
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to track the calories of the user
 
 - Alternative 1 (current choice): Use a one-line command for the CLI.
   - Pros: Faster to input for experienced users.
   - Cons: Format might be difficult for new users.
-- Alternative 2 (current choice): Follow printed prompts for data. 
+- Alternative 2 (current choice): Follow printed prompts for data.
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
@@ -435,7 +442,7 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 
 ### Implementation
 
-The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
+The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides
 the `execute` method in the `Command` class.
 
 Step 1. The user calls the `examples` command, specifying whether they wish for `meal` or `exercise` to be displayed.
@@ -448,22 +455,22 @@ Step 4. The examples of `meal` or `exercise` will then be printed out and displa
 
 <img src="uml/ExamplesCommand.png" alt="Sequence Diagram" width="500">
 
-### Design considerations:
+### Design considerations
 
 #### Aspect: How to list examples of exercises and meals
 
 - Alternative 1 (current choice): List examples based on input command.
   - Pros: More concise, no unnecessary information.
   - Cons: Slightly slower to input command.
-- Alternative 2: List all examples. 
+- Alternative 2: List all examples.
   - Pros: Slightly faster to input command.
-  - Cons: Lots of unnecessary information would be displayed. 
+  - Cons: Lots of unnecessary information would be displayed.
 
 # Appendix: Requirements
 
 ## Product scope
 
-### Target user profile:
+### Target user profile
 
 - Is an NUS student
 - Looking to lose/maintain their weight
@@ -472,50 +479,107 @@ Step 4. The examples of `meal` or `exercise` will then be printed out and displa
 - Prefers typing to mouse interactions
 - Is reasonably comfortable using CLI apps
 
-### Value proposition:
-For individuals trying to lose weight, managing their daily caloric intake is crucial. However, many may find it 
+### Value proposition
+
+For individuals trying to lose weight, managing their daily caloric intake is crucial. However, many may find it
 hard to track and manage their calories. _LifeTracker_ allows users to easily automate the tracking of their calories
-and keep a record of their daily caloric intake. 
+and keep a record of their daily caloric intake.
 
 _LifeTracker_ can also keep track of the exercises that users have done and factor it in to their daily calories lost. This allows
 the user to keep track of their net calorie gain on a daily basis.
 
 ### User Stories
-| Version | As a ... | I want to ...                                            | So that I can ...                                           |
-|---------|----------|----------------------------------------------------------|-------------------------------------------------------------|
-| v1.0    | new user | see usage instructions                                   | refer to them when I forget how to use the application      |
-| v1.0    | user     | calculate my caloric needs based on my height and weight | lead a healthy lifestyle within my caloric needs            |
-| v1.0    | user     | add a meal                                               | keep track of the food I have eaten on a particular day     |
-| v1.0    | user     | delete a meal                                            | remove a meal if I entered it in wrongly                    |
-| v1.0    | user     | view my previous meals                                   | track the calories of each meal                             |
-| v1.0    | user     | key in my weight on a daily basis                        | keep track of my weight loss/gain                           |
-| v1.0    | user     | see the amount of calories left I have in the day        | not exceed my daily caloric limit                           |
-| v2.0    | user     | search for a type of food and view its nutritional contents | make a more informed choice about what to eat            |
-| v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
-| v2.0    | user     | enter the type and duration of exercise I have completed | keep better track of my physical activies                   |
-| v2.1    | user     | be inspired to work out                                  | stay in shape                                               |
-| v2.1    | user     | search based on a filter                                 | have results that better suit my needs                      |
+
+<div style="display: grid; grid-template-columns: 100px 100px 420px 420px; grid-row-gap: 0px;">
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Version</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">As a ...</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">I want to ... </p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">So that I can ...</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">new user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">see usage instructions</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">refer to them when I forget how to use the application</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; vertical-align: middle; margin: 0px;">calculate my caloric needs based on my height and weight</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">lead a healthy lifestyle within my caloric needs</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">add a meal</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep track of the food I have eaten on a particular day</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">delete a meal</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">remove a meal if I entered it in wrongly</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">view my previous meals</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">track the calories of each meal</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">key in my weight on a daily basis</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep track of my weight loss/gain</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">see the amount of calories left I have in the day</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">not exceed my daily caloric limit</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search for a type of food and view its nutritional contents</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">make a more informed choice about what to eat</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search for meals within a specific calorie range</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">	decide which meal to consume</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">enter the type and duration of exercise I have completed</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep better track of my physical activies</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.1</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">be inspired to work out	</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">stay in shape</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.1</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search based on a filter</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">have results that better suit my needs</p>
+</div>
 
 ## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` installed.
 2. This app is meant for a single user and will not be able to accurately keep track of the meals, personal information and caloric requirements for different people.
-3. This app is targeted at users who would prefer typing over other input types. Ideally they would have an above-average typing speed and therefore prefer CLI over other interfaces. 
+3. This app is targeted at users who would prefer typing over other input types. Ideally they would have an above-average typing speed and therefore prefer CLI over other interfaces.
 
 ## Glossary
 
-* *glossary item* - Definition
+- _glossary item_ - Definition
+
 ___
+
 ## Instructions for manual testing
 
-Given below are instructions on how to test the application by yourself manually. You can use these instructions as a starting point for your testing. 
+Given below are instructions on how to test the application by yourself manually. You can use these instructions as a starting point for your testing.
 
 ### Launch and Shutdown
+
 - Initial launch
   - Download the jar file from the release page and copy the file into an empty folder
   - Open a cmd terminal and redirect or cd into the folder the jar file was downloaded into.
   - Type "java -jar tp.jar" and press enter to run the file.
- 
+
 - Shutdown
   - Type `bye` into the command line and press enter to exit the application.
 
@@ -565,7 +629,7 @@ Prerequisite: List all meals eaten using the list command. At least 1 meal in th
 
 Test case: `delete 1`
 
-Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message. 
+Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message.
 
 Test case: `delete 0`
 
@@ -591,7 +655,7 @@ Prerequisite: Food needs to exist in the database.
 
 Test case: `nutrition`
 
-Expected: Prompt will ask you to enter the food you would like to see the nutrition for. A menu displaying all foods which contain the food entered will appear, which you can then enter the index to see the specific food. 
+Expected: Prompt will ask you to enter the food you would like to see the nutrition for. A menu displaying all foods which contain the food entered will appear, which you can then enter the index to see the specific food.
 
 ### Add a exericse
 
@@ -601,7 +665,7 @@ Expected: An exercise of running for 5km that burnt 500 calories on 5/5/2023 is 
 
 Test case: `exercise /type dummy /description dummy /calories dummy /on dummy`
 
-Expected: No exercise is added, error message will be displayed. 
+Expected: No exercise is added, error message will be displayed.
 
 ### Track calorie intake
 
@@ -633,12 +697,12 @@ Expected: List of available commands for this application will be displayed.
 
 Test case: `bye`
 
-Expected: Application exits. 
+Expected: Application exits.
 
 ### Saving data
+
 Meal data, user data and exercise data will be saved in ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv respectively.
 
 ### Dealing with missing/corrupted data files
+
 Delete the ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv files for corrupted data and restart the programme.
-
-
