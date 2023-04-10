@@ -15,17 +15,16 @@
     * [4.4. Editing a Lend/Borrow record](#44-editing-a-lendborrow-record)
     * [4.5. Deleting an expenditure record](#45-deleting-an-expenditure-record)
     * [4.6. Duplicating an expenditure record](#46-duplicating-an-expenditure-record)
-    * [4.7. Marking a lend or borrow expenditure record](#47-marking-a-lend-or-borrow-expenditure-record)
-    * [4.8. Unmarking a lend or borrow expenditure record](#48-unmarking-a-lend-or-borrow-expenditure-record)
+    * [4.7. Marking an accommodation or tuition record](#47-marking-an-accommodation-or-tuition-record)
+    * [4.8. Unmarking an accommodation or tuition expenditure record](#48-unmarking-an-accommodation-or-tuition-expenditure-record)
     * [4.9. Setting a budget](#49-setting-a-budget)
     * [4.10. Checking expenditures against the set budget](#410-checking-expenditures-against-the-set-budget)
-    * [4.11. Marking a lend or borrow expenditure record](#411-marking-a-lend-or-borrow-expenditure-record)
-    * [4.12. List out and display the expenditure list](#412-list-out-and-display-the-expenditure-list)
-    * [4.13. Finding expenditure records by keyword](#413-finding-expenditure-records-by-keyword)
-    * [4.14. Sorting the expenditure list](#414-sorting-the-expenditure-list)
-    * [4.15. View the expenditure list by expenditure category or type](#415-view-the-expenditure-list-by-expenditure-category-or-type)
-    * [4.16. View the expenditure list by date](#416-view-the-expenditure-list-by-date)
-    * [4.17. Currency rates](#417-currency-rates)
+    * [4.11. List out and display the expenditure list](#411-list-out-and-display-the-expenditure-list)
+    * [4.12. Finding expenditure records by keyword](#412-finding-expenditure-records-by-keyword)
+    * [4.13. Sorting the expenditure list](#413-sorting-the-expenditure-list)
+    * [4.14. View the expenditure list by expenditure category or type](#414-view-the-expenditure-list-by-expenditure-category-or-type)
+    * [4.15. View the expenditure list by date](#415-view-the-expenditure-list-by-date)
+    * [4.16. Currency rates](#416-currency-rates)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -249,9 +248,9 @@ Duplicates an existing expenditure record from the expenditure list. After a suc
 
 - Providing special characters and indices out of the range of the number of expenditures in the expenditure list are invalid.
 
-### 4.7. Marking a lend or borrow expenditure record
+### 4.7. Marking an accommodation or tuition record
 
-Marks an existing lend or borrow expenditure in the expenditure list as completed.
+Marks an existing accommodation or tuition expenditure in the expenditure list as completed.
 
 **Format:** `mark INDEX`
 
@@ -261,12 +260,12 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 
 **Important Information:**
 
-- Marking expenditures that are not lend or borrow expenditures are invalid.
-- Marking lend or borrow expenditures that is already marked is invalid.
+- Marking expenditures that are not accommodation or tuition expenditures are invalid.
+- Marking accommodation or tuition expenditures that is already marked is invalid.
 
-### 4.8. Unmarking a lend or borrow expenditure record
+### 4.8. Unmarking an accommodation or tuition expenditure record
 
-Unmarks an existing lend or borrow expenditure in the expenditure list as incomplete.
+Unmarks an existing accommodation or tuition expenditure in the expenditure list as incomplete.
 
 **Format:** `unmark INDEX`
 
@@ -276,8 +275,8 @@ Unmarks an existing lend or borrow expenditure in the expenditure list as incomp
 
 **Important Information:**
 
-- Unmarking expenditures that are not lend or borrow expenditures are invalid.
-- Unmarking lend or borrow expenditures that is already marked is invalid.
+- Unmarking expenditures that are not accommodation or tuition expenditures are invalid.
+- Unmarking accommodation or tuition expenditures that is already marked is invalid.
 
 ### 4.9. Setting a budget
 
@@ -317,22 +316,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 - If budget set is 0, message will prompt user to `set` a value before calling `check` again. `check` will not work if budget is 0.
 - Borrowed expenditure amount owed is separated for a better view of expenditures.
 
-### 4.11. Marking a lend or borrow expenditure record
-
-Marks an existing lend or borrow expenditure in the expenditure list as completed.
-
-**Format:** `mark INDEX`
-
-| Parameter     | Description                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| `INDEX`       | A list entry value for the transaction. It is a positive whole number ranging from 1 to 1000000 and must be within the range of the number of items in the expenditure list.       |
-
-**Important Information:**
-
-- Marking expenditures that are not lend or borrow expenditures are invalid.
-- Marking lend or borrow expenditures that is already marked is invalid.
-
-### 4.12. List out and display the expenditure list
+### 4.11. List out and display the expenditure list
 
 Displays all expenditures in the expenditure list. Expenditure value shown can be set to desired currency value.
 
@@ -346,7 +330,7 @@ Displays all expenditures in the expenditure list. Expenditure value shown can b
 
 - It reads saved expenditures from a save file upon launch of MyLedger. Else, the expenditure list is empty by default.
 
-### 4.13. Finding expenditure records by keyword
+### 4.12. Finding expenditure records by keyword
 
 Find expenditures by description 
 
@@ -362,7 +346,7 @@ Find expenditures by description
 - Keyword is case-sensitive
 - Works like "Ctrl-F", the find command is able to search for all characters matching the keyword in the expenditure descriptions.
 
-### 4.14. Sorting the expenditure list
+### 4.13. Sorting the expenditure list
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
@@ -377,7 +361,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of sort must follow with a valid parameter or the command would not be valid.
 
-### 4.15. View the expenditure list by expenditure category or type
+### 4.14. View the expenditure list by expenditure category or type
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
@@ -393,7 +377,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of viewdate must follow with a valid expenditure type or category or the command would not be valid.
 
-### 4.16. View the expenditure list by date
+### 4.15. View the expenditure list by date
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
@@ -411,7 +395,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The date must be input in YYYY-MM-DD format.
 - If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
 
-### 4.17. Currency rates
+### 4.16. Currency rates
 
 Displays list of the other currency available in MyLedger and their value against SGD.
 
@@ -446,7 +430,15 @@ Displays list of the other currency available in MyLedger and their value agains
 
 * Add tuition expenditure: `tuition d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Check expenditure: `check`
+* Check all expenditure with budget: `check`
+
+* Check budget with expenditures made in specific year: `check y/YEAR`
+
+* Check budget with expenditures made in specific month: `check m/YEAR-MONTH`
+
+* Check budget with expenditures made in specific day: `check d/YEAR-MONTH-DAY`
+
+* Check budget with expenditures made under specific expenditure type: `check t/EXPENDITURE TYPE`
 
 * Delete expenditure: `delete INDEX`
 
