@@ -45,7 +45,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
-2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
+2. Download the latest version of `SEPHelper.jar` from [here](https://github.com/AY2223S2-CS2113-T12-3/tp/releases/tag/v2.1).
 3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
 4. Enlarge to fullscreen mode. 
 5. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
@@ -57,8 +57,11 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 #### Notes:
 * **Command words**:
   * Command words are not case-sensitive.
-    * E.g. `eXIT` will be accepted as the `exit` command.
-  * Index is a positive integer number.
+    * E.g. `/eXIT` will be accepted as the `/exit` command.
+  * Index is a positive Integer number.
+* Integer refers to a whole number between -2,147,483,647 to 2,147,483,647 in any of the commands or error messages.
+* Tampering with txt files might cause errors, please delete the entire txt file to reset.
+* Please follow command format closely.
 
 ### 3.1 Help Command
 Provides a list of all the commands and its format, along with the respective
@@ -66,9 +69,9 @@ descriptions.
 
 Format: `/help`
 
-Expected Outcome: A list of all the commands.
+Description of Outcome: A list of all the commands.
 
-Description of Outcome:
+Expected Outcome:
 ```
 Here are the list of commands:
 /LIST PU                                              : Provides the list of Partner Universities available
@@ -124,9 +127,9 @@ Format: `/list current`
 
 Example of usage: `/list current`
 
-Expected outcome: Modules that user has previously selected will be listed sorted by Partner Universities.
+Description of Outcome: Modules that user has previously selected will be listed sorted by Partner Universities.
 
-Description of outcome:
+Expected Outcome:
 ```
 List of Added Modules for: KOREA UNIVERSITY
 [KOREA UNIVERSITY Module] maps to ----> [NUS Module]
@@ -161,10 +164,10 @@ ____________________________________________________________
 
 Format: `/list pu`
 
-Expected outcome:
+Description of Outcome:
 A list of all Partner Universities appears.
 
-Description of outcome:
+Expected Outcome:
 ```
 This is the list of PUs:
 ____________________________________________________________
@@ -188,10 +191,10 @@ Format: `/list [PU ABBREVIATION]` or `/list [PU INDEX]`
 
 Example of usage: `/list ku` or `/list 1`
 
-Expected outcome:
+Description of Outcome:
 * A list of modules under Korea University appears.
 
-Description of outcome:
+Expected Outcome:
 ```
 KOREA UNIVERSITY Modules
 [KOREA UNIVERSITY Module] maps to ----> [NUS Module]
@@ -226,8 +229,9 @@ and displays to the user.
 
 Example of usage: `/list ku /filter /mc 3` 
 
-Expected outcome:
+Description of Outcome: Prints the list of modules with PU module credits equal to `[MC]`
 
+Expected Outcome:
 ```
 KOREA UNIVERSITY Modules
 [KOREA UNIVERSITY Module] maps to ----> [NUS Module]
@@ -256,6 +260,8 @@ to the user.
 
 Example of usage: `/list ku /filter /name bio`
 
+Description of Outcome: Prints the list of modules with PU module description containing `[Name]`
+
 Expected outcome:
 
 ```
@@ -278,9 +284,9 @@ Format: `/list current [PU ABBREVIATION]`
 
 Example of usage: `/list current ku` 
 
-Expected outcome: List of modules for Korea University that user has selected will appear.
+Description of Outcome: List of modules for Korea University that user has selected will appear.
 
-Description of outcome:
+Expected Outcome:
 ```
 List of Added Modules for: KOREA UNIVERSITY
 [KOREA UNIVERSITY Module] maps to ----> [NUS Module]
@@ -302,9 +308,9 @@ Format: `/add [PU ABBREVIATION]/[INDEX]`
 
 Example of usage: `/add KU/1`
 
-Expected outcome: Adds the module IWC311 from Korea University to the list of user selected modules.
+Description of Outcome: Adds the module IWC311 from Korea University to the list of user selected modules.
 
-Description of outcome:
+Expected Outcome:
 
 **Before Command** `/add KU/1`
 
@@ -341,9 +347,9 @@ or ` list current [PU Abbreviation]` command.
 
 Example of usage: `/remove KU/2` 
 
-Expected outcome: Removes module indexed at 2 for Korea University from list of user selected modules.
+Description of Outcome: Removes module indexed at 2 for Korea University from list of user selected modules.
 
-Description of outcome: 
+Expected Outcome: 
 
 **Before Command** `/remove KU/2`
 ```
@@ -384,13 +390,13 @@ Format: `/search [NUS MODULE CODE]`
 
 Example of usage: `/search ME4661`
 
-Expected outcome:
+Description of Outcome:
 * A list of PU's modules that can be mapped to the user's specific NUS module code and it will appear under its 
 respective PU heading
 
-Description of outcome:
+Expected Outcome:
 ```
-Here is/are the list/s of modules that can map this NUS module code: ME4661
+Here is/are the list/s of modules that can map this NUS module code: me4661
 ____________________________________________________________
 ____________________________________________________________
 KU
@@ -425,9 +431,11 @@ Format: `/search /mods`
 
 Example of usage: `/search /mods`
 
-Expected outcome:
+Description of Outcome:
 * A list of NUS modules that can be use for [3.2.4.1](#3241-search-by-specific-nus-module-code).
 
+
+Expected Outcome:
 ```
 ____________________________________________________________
 This is the list of mappable NUS module codes
@@ -495,10 +503,10 @@ Format: `/deadline/add [TASK] /by [DUE DATE]`
 
 Example of Usage: `/deadline/add Take passport photo /by 01-03-2023`
 
-Expected Outcome: Adds a task named: Take passport photo. It is set to due-by
+Description of Outcome: Adds a task named: Take passport photo. It is set to due-by
 01-03-2023. 
 
-Description of Outcome:
+Expected Outcome:
 ```
 This deadline has been added to the current deadlines
 ____________________________________________________________
@@ -511,12 +519,12 @@ Format: `/deadline/remove [INDEX]`
 
 Example of Usage: `/deadline/remove 1`
 
-Expected Outcome: Deletes the first index from the list of saved deadlines
+Description of Outcome: Deletes the first index from the list of saved deadlines
 
-Description of Outcome:
+Expected Outcome:
 
 ```
-This module has been deleted from the current module list!
+This deadline has been deleted from the current deadline list!
 ____________________________________________________________
 ```
 
@@ -542,12 +550,12 @@ Format: `/budget /budget [AMOUNT]`
 Example of Usage:
 `/budget /budget 2000`
 
-Expected Outcome:
+Description of Outcome:
 
 - Changes the budget `AMOUNT` to 2000 SGD.
 - Shows a budget changed successful message to let the user check the budget set corresponds to his input.
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
@@ -569,12 +577,12 @@ Format: `/budget /accommodation [AMOUNT]`
 Example of usage:
 `/budget /accommodation 2000`
 
-Expected outcome:
+Description of Outcome:
 
 - Changes the accommodation cost `AMOUNT` to 2000 SGD.
 - Shows a cost changed successful message to let the user check the cost set corresponds to his/her input.
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
@@ -596,12 +604,12 @@ Format: `/budget /airplane [AMOUNT]`
 Example of usage:
 `/budget /airplane 2000`
 
-Expected outcome:
+Description of Outcome:
 
 - Changes the airplane cost `AMOUNT` to 2000 SGD.
 - Shows a cost changed successful message to let the user check the cost set corresponds to his/her input.
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
@@ -623,12 +631,12 @@ Format: `/budget /food [AMOUNT]`
 Example of usage:
 `/budget /food 2000`
 
-Expected outcome:
+Description of Outcome:
 
 - Changes the food cost `AMOUNT` to 2000 SGD.
 - Shows a cost changed successful message to let the user check the cost set corresponds to his/her input.
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
@@ -650,12 +658,12 @@ Format: `/budget /entertainment [AMOUNT]`
 Example of usage:
 `/budget /entertainment 2000`
 
-Expected outcome:
+Description of Outcome:
 
 - Changes the entertainment cost `AMOUNT` to 2000 SGD.
 - Shows a cost changed successful message to let the user check the cost set corresponds to his/her input.
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
@@ -674,7 +682,7 @@ Format: `/budget /view`
 Example of usage:
 `/budget /view`
 
-Expected outcome:
+Description of Outcome:
 
 - Shows the total budget amount planned for the SEP trip.
 - Shows the Accommodation cost
@@ -683,7 +691,7 @@ Expected outcome:
 - Shows the Entertainment Cost
 - Shows the Surplus, which could be a Deficit if value is negative
 
-Description of outcome:
+Expected Outcome:
 
 ```
 ____________________________________________________________
