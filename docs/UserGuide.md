@@ -263,6 +263,7 @@ Format: `Matrix [Matrix] [operator] [Matrix]`
   ```
   <Exception occurs>
   There is shape mismatch between t1 and t2 : cannot execute matrix calculation.
+  ```
 
 ### 3) Store Notes: `Store`
 * Adds a new item to the Notes list.
