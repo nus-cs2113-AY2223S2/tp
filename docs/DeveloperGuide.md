@@ -611,7 +611,8 @@ The following are instructions for testers to manual test:
     <br> <br/>
     The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
     <br> <br/>
-   
+   <div style="page-break-after: always;"></div>
+
     Test Case 3 (Wrong date-time input):
     ```
     transport d/13-03-2023 a/2 p/Bus
@@ -648,7 +649,8 @@ The following are instructions for testers to manual test:
    Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. 
    Details of all parameters will be shown to the user.
    <br> <br/> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
-   <br> <br/>
+   <div style="page-break-after: always;"></div>
+
    Test Case 2:
    
    ```
@@ -710,7 +712,8 @@ The following are instructions for testers to manual test:
    ```
    food d/2023-02-12 a/8.00 p/Fast Food
    ```
-    
+   <div style="page-break-after: always;"></div>
+
    Test Case 1 (Display in SGD):
    ```
    list SGD
@@ -816,7 +819,8 @@ The following are instructions for testers to manual test:
     ```
     The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
     <br> <br/> 
-   
+    <div style="page-break-after: always;"></div>
+
     Test Case 3 (Editing expenditure with `lend` parameters):
     ```
     edit 1 d/2020-02-02 n/Carlos a/22.2 b/2020-03-03 p/fishing
@@ -964,6 +968,7 @@ The following are instructions for testers to manual test:
     check d/2023-01-12
     ```
     Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.<br><br/>
+    <div style="page-break-after: always;"></div>
     Test case 3:
     ```
     check m/2023-01-12
@@ -1005,9 +1010,11 @@ The following are instructions for testers to manual test:
      - Mark indicates that the expenditure has been paid, otherwise the expenditure will be interpreted as unpaid.
      - Prerequisite: Accommodation expenditure of such is stored at the first index of the list:
     ```
-    1. [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.00 || Description: NUS
+    1. [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.00 
+    || Description: NUS
     ```
-    
+    <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
+
     Test case 1:
     ```
     mark 1
@@ -1045,8 +1052,8 @@ The following are instructions for testers to manual test:
     Expected :
     ```
     Unmarked your expenditure!
-    [Accommodation] || [ ] || Date: 3 Feb 2023 || 
-    Value: 200.0 || Description: NUS
+    [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.0 
+    || Description: NUS
     ```
     <br> The output should be displayed on a single line. However, output in DG has been displayed across 2 lines to format the output in PDF form.
 
@@ -1069,7 +1076,7 @@ The following are instructions for testers to manual test:
     ```
     Prerequisite : There are existing expenditures with the description : `bus`
     
-    Expected : List of items corresponding to the keyword will be displayed.
+    Expected : List of items corresponding to the keyword will be displayed. <br><br/>
     Test case 2:
     ```
     find taxi
@@ -1086,7 +1093,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are current expenditures dated 20 Feb 2023.
     
     Expected : List of all expenditures with the corresponding date value, as well as the total amount spent
-    on that specific date
+    on that specific date <br><br/>
     Test case 2:
     ```
     viewdate 2023-02-20
@@ -1095,6 +1102,8 @@ The following are instructions for testers to manual test:
     
     Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
     be shown as 0. 
+    <div style="page-break-after: always;"></div>
+   
     Test case 3:
     ```
     viewdate 12 Jan 2021
