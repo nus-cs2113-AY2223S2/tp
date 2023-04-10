@@ -14,7 +14,7 @@
   + [Help feature](#help-feature)
   + [Exit feature](#exit-feature)
   + [Storage](#storage)
-+ [Appendix: Requirements](#appendix--requirements)
++ [Appendix: Requirements](#appendix---requirements)
   + [Product Scope](#product-scope)
   + [User Stories](#user-stories)
 
@@ -246,8 +246,8 @@ and right before the program close, the text file will be written with the updat
 **Sequence Diagram** <br>
 ![ClassDiagram](images/StorageSequenceDiagram.png)
 ---
-## Appendix: Requirements
-# Product Scope
+# Appendix - Requirements
+## Product Scope
 **Project Direction**
 - Food Supply Tracker: Main function is to track expiry dates 
 and storage area of foods as to minimise food shortage.
@@ -300,7 +300,7 @@ Currently, the following functionality was implemented:
 
 `help {--COMMAND_WORD}`
 
-# User stories
+## User stories
 
 | Priority | As a...             | I want to ...                                                         | So that I can...                                                | Current Feature Available |
 |----------|---------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------|
@@ -320,7 +320,7 @@ Currently, the following functionality was implemented:
 | `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add --n --e --c --q --u` |
 | `* * *`  | Cook                | remove product                                                        | keep my program updated.                                        | `remove`                  |
 
-# Non-Functional Requirements
+## Non-Functional Requirements
 1) Should work on any mainstream OS as long as it has Java 11 or above installed.
 2) Should be able to hold up to 9999 food products without a noticeable sluggishness in performance for typical usage.
 3) A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
