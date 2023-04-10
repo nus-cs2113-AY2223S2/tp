@@ -3,46 +3,46 @@
 
 hide footbox
 
--> "addCommand:AddCommand" : execute(companyList)
+-> "addCommand: AddCommand" : execute(companyList)
 
-activate "addCommand:AddCommand"
+activate "addCommand: AddCommand"
 
-    activate "companyList:CompanyList"
-    "addCommand:AddCommand" -> "companyList:CompanyList" : add(companyName, industry, contactNumber, contactEmail)
-    "companyList:CompanyList" -> : new Company(companyName, industry, contactNumber, contactEmail)
-                 activate "companyList:CompanyList"
-                 "companyList:CompanyList" <-- :
-                 deactivate "companyList:CompanyList"
+    activate "companyList: CompanyList"
+    "addCommand: AddCommand" -> "companyList: CompanyList" : add(companyName, industry, contactNumber, contactEmail)
+    "companyList: CompanyList" -> : new Company(companyName, industry, contactNumber, contactEmail)
+                 activate "companyList: CompanyList"
+                 "companyList: CompanyList" <-- :
+                 deactivate "companyList: CompanyList"
     alt isDuplicateCompanyName
-            "companyList:CompanyList" -> "companyList:CompanyList" : isDuplicateCompanyName(companyName)
-            activate "companyList:CompanyList"
-                "companyList:CompanyList" -->
-            deactivate "companyList:CompanyList"
+            "companyList: CompanyList" -> "companyList: CompanyList" : isDuplicateCompanyName(companyName)
+            activate "companyList: CompanyList"
+                "companyList: CompanyList" -->
+            deactivate "companyList: CompanyList"
 
     else isDuplicateContactEmail
-            "companyList:CompanyList" -> "companyList:CompanyList" : isDuplicateContactEmail(contactEmail)
-            activate "companyList:CompanyList"
-                "companyList:CompanyList" -->
-            deactivate "companyList:CompanyList"
+            "companyList: CompanyList" -> "companyList: CompanyList" : isDuplicateContactEmail(contactEmail)
+            activate "companyList: CompanyList"
+                "companyList: CompanyList" -->
+            deactivate "companyList: CompanyList"
 
     else isDuplicateContactNumber
-            "companyList:CompanyList" -> "companyList:CompanyList" : isDuplicateContactNumber(contactNumber)
-            activate "companyList:CompanyList"
-                "companyList:CompanyList" -->
-            deactivate "companyList:CompanyList"
+            "companyList: CompanyList" -> "companyList: CompanyList" : isDuplicateContactNumber(contactNumber)
+            activate "companyList: CompanyList"
+                "companyList: CompanyList" -->
+            deactivate "companyList: CompanyList"
 
     else else
-        "companyList:CompanyList" -> : add(newCompany)
-         activate "companyList:CompanyList"
-         "companyList:CompanyList" <-- :
-         deactivate "companyList:CompanyList"
+        "companyList: CompanyList" -> : add(newCompany)
+         activate "companyList: CompanyList"
+         "companyList: CompanyList" <-- :
+         deactivate "companyList: CompanyList"
     end
-    "companyList:CompanyList" --> "addCommand:AddCommand"
-    deactivate "companyList:CompanyList"
+    "companyList: CompanyList" --> "addCommand: AddCommand"
+    deactivate "companyList: CompanyList"
 
-<-- "addCommand:AddCommand" :
+<-- "addCommand: AddCommand" :
 
-destroy "addCommand:AddCommand"
+destroy "addCommand: AddCommand"
 
 
 
