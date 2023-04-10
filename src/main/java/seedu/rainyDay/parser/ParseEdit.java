@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 //@@author ChongQiRong
 public class ParseEdit extends Parser {
+    public static final double MAX_AMOUNT = 21474836.47;
     private static final Logger logger = Logger.getLogger(ParseEdit.class.getName());
 
     public Command editStatement(String userInput) throws RainyDayException {
@@ -112,7 +113,7 @@ public class ParseEdit extends Parser {
             if (editFlagAndField.contains("-v")) {
                 int valueFlagIndex = editFlagAndField.indexOf("-v");
                 double valueToChange = Double.parseDouble(editFlagAndField.get(valueFlagIndex + 1));
-                if (valueToChange <= 0) {
+                if (valueToChange <= 0 || valueToChange > MAX_AMOUNT) {
                     logger.warning("edit value is less than 0");
                     throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
                 }
