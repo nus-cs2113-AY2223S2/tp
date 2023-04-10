@@ -1,0 +1,27 @@
+@startuml
+hide footbox
+!include style.puml
+
+participant "AchievementListHandler" as AchievementListHandler
+participant ":achivementData"
+
+ -> AchievementListHandler : loadAchievementsFromFile()
+activate AchievementListHandler STORAGE_FADED_COLOUR
+    AchievementListHandler -> ":achivementData" ** : checkForListData(achievementTextFile)
+    activate ":achivementData"
+    ":achivementData" --> AchievementListHandler : allAchievements
+
+
+        AchievementListHandler -> ":achivementData" : pushDataToAchievementList
+
+        alt DukeError
+            AchievementListHandler -> ":achivementData" : clearAchievements()
+        end
+    ":achivementData" --> AchievementListHandler : achievementList
+    deactivate ":achivementData"
+    <-- AchievementListHandler
+
+deactivate AchievementListHandler
+
+
+@enduml

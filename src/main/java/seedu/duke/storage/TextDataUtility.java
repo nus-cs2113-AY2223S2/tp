@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class TextDataUtility{
-    protected static final String ACHIEVEMENT_LIST_FILE_LOCATION = "allAchievements.txt";
+    protected static final String ACHIEVEMENT_LIST_FILE_LOCATION = "achievementData.txt";
     private static final Logger logger = LogMaster.getLogger(TextDataUtility.class);
     private static final String achievementListText = "Easy Peasy:Complete your first Easy exercises!:0:E:easy:0:1\n" +
             "Easy Peasy Lemon Squeezy:Complete 3 easy exercises!:0:M:easy:0:3\n" +

@@ -1,0 +1,26 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+class "<<enumeration>> ErrorMessages" MAIN_COLOUR {
+ERROR_FILE_READ
+ERROR_EXCESSIVE_FILTERS
+ERROR_NO_ONGOING_EXERCISE
+asdasd
+asd
+}
+class StorageHandler STORAGE_COLOUR {
+}
+class CommandHandler LOGIC_COLOUR {
+}
+class Ui UI_COLOUR {
+}
+class UserData DATA_COLOUR{
+}
+
+"<<enumeration>> ErrorMessages" --> "1" Ui : formats output\n to user <
+"<<enumeration>> ErrorMessages" --> "1" CommandHandler : Parses and handles\n user commands >
+"<<enumeration>> ErrorMessages" --> "1" StorageHandler : Retrieves Data >
+"<<enumeration>> ErrorMessages" --> "1" UserData : Loads Data >
+
+@enduml

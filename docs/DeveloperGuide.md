@@ -2,20 +2,21 @@
 title: Developer Guide
 ---
 
-* Table of Contents
-{:toc}
-
-# Developer Guide
+# Developer Guide for Fitness Duke
 
 ## Acknowledgements
 
 * The CS2113 Team (Professor and Teaching Assistants) For their guidance in teaching us concepts of Software
   Engineering and OOP
-* [AddressBook3](https://github.com/se-edu/addressbook-level3) Guidance and examples for OOP and project aspects were 
+* [AddressBook3](https://github.com/se-edu/addressbook-level3) Guidance and examples for OOP and project aspects were
   used from this repository.
 
 * Exercise Data retrieved from: [Wrkout](https://github.com/wrkout/exercises.json) (open source MIT license)
   Used to generate the data.json file containing all the exercises data used
+
+* Table of Contents
+{:toc}
+
 
 ## Design & implementation
 
@@ -195,6 +196,15 @@ figure illustrates the interaction of Storage components whenever ```writeToJson
 
 <div style="page-break-after: always;"></div>
 <!-- Eugene's Storage Component End -->
+
+<!--- Dylan AchievementListHandler Start --->
+
+API: ```AchievementListHandler.java```
+
+The storage handler that we have is the achievements list handler, which has seperated logic from the ```Storagejava```
+component.
+
+<!--- Dylan AchievementListHandler End --->
 
 ### Command Handler Component
 
