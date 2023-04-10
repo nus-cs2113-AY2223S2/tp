@@ -74,6 +74,7 @@ These classes will be defined into its own API as an ```interface``` in the upco
 More details on these components will be described below.
 
 <div style="page-break-after: always;"></div>
+
 ### UI Component
 
 Represented by the Ui class, it handles the interactions between the user and the program. In addition, it also displays
@@ -96,6 +97,7 @@ Figure 2.1
 </div>
 
 <!-- Eugene's Storage Component Start -->
+
 <div style="page-break-after: always;"></div>
 
 ### Storage Component
@@ -200,6 +202,7 @@ figure illustrates the interaction of Storage components whenever ```writeToJson
 
 
 <div style="page-break-after: always;"></div>
+
 <!-- Eugene's Storage Component End -->
 
 ### Command Handler Component
@@ -234,6 +237,7 @@ Figure 5.1
 </div>
 
 <div style="page-break-after: always;"></div>
+
 ### PlannerCommandHandler
 The planner Command Handler is engaged when the user enters the workout planner.
 By implementing a separate Command Handler dedicated for the planning of work-outs, 
@@ -302,7 +306,9 @@ Figure 8.1
 
 1. A workout planner for the user to add and customise their desired sequence or schedule of workouts.
 2. An achievement list that will output messages to congratulate the user based on the different milestones of exercises he/she has achieved when using the program.
+
 <div style="page-break-after: always;"></div>
+
 # Appendix A
 
 ## Product scope
@@ -321,7 +327,9 @@ as a form of preventive care, Fitness Duke aims to help Singaporeans to kick-sta
 a healthier lifestyle, regardless of their knowledge in exercises or their individual fitness levels.
 Through this program, it aims to not only help users learn new workouts, while also keep track of their fitness
 progress.
+
 <div style="page-break-after: always;"></div>
+
 # Appendix B
 
 ## User Stories
@@ -336,7 +344,10 @@ progress.
 | V2.0    | - User who wants to stay motivated to workout</br>- User who wants to feel good about my past workouts | - See myself be able to accomplish or achieve incrementally greater goals</br>- Keep track of all my exercises                  | - Continue to stay motivated in making exercise a fun, long-lasting habit      |
 | V2.1    | - User who likes to be motivated by incentive                                                          | - Gain achievements throughout my usage of the app                                                                              | - Be more motivated to keep exercising                                         |                                         
 | V2.1    | - SAF personnel                                                                                        | - Track my IPPT scores over a period of time                                                                                    | - achieve gold ranking in my IPPT                                              |
+
+
 <div style="page-break-after: always;"></div>
+
 # Appendix C
 
 ## Non-Functional Requirements
@@ -355,7 +366,9 @@ progress.
 * *ExerciseData* - Individual Exercise data from the ```data.json``` file
 * *Ui* - User Interface
 * *UserCareer* - The entire usage journey of using our application
+
 <div style="page-break-after: always;"></div>
+
 # Appendix E
 
 ## Instructions for manual testing
@@ -438,7 +451,9 @@ Expected: Pre-existing achievements and data will be removed, details are shown 
 Expected: There will not be an output of a list of current exercises, details will be shown in the terminal.
 3. Test case: ```current ``` with a current workout session
 Expected: There will be an output of a list of current exercises, details will be shown in the terminal.
+
 <div style="page-break-after: always;"></div>
+
 ### ```cancel``` command
 1. Cancels the user's current workout session, and the workout session is registered as incomplete.
 2. Test case: ```cancel``` with no current workout session
