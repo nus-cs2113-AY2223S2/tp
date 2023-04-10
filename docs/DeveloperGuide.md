@@ -59,19 +59,23 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 5. Finally, the parse method returns the command object. If an exception occurs during parsing, it throws a **`SniffException`**.
 
 ### Storage - Class Implementation 
-![img_18.png](img_18.png) <br>
-**Figure 9: UML Diagram of Storage class**
+![img_23.png](img_23.png) <br>
+**Figure 9.1: Sequence Diagram of Storage class** 
+
+![img_24.png](img_24.png) <br>
+**Figure 9.2: Sequence Diagram of Storage class**
 1. The Storage class takes in the path of the Sniff storage file.
 2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
 3. **`load()`** method also calls **`addFileContents`** method.
 4. **`addFileContents`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`readConsultationintoAppointmentList()`** / **`readVaccinationintoAppointmentList()`** / **`readSurgeryintoAppointmentList()`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
 5. If the file is stored in an incorrect format / has missing details, a **`SniffException`** is thrown.
+6. At the end of the application all unmarked appointments are saved into the `SniffAppointments.txt` file using the `saveAppointments` method.
 
 ### Find - Find Implementation
-![img_17.png](img_17.png) <br>
+![img_25.png](img_25.png)<br>
 **Figure 10: Sequence Diagram showing the logical implementation of executeCommand() for the Find Command**
 
-- Find command can be used by the user to find up to 3 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**.
+- Find command can be used by the user to find up to 4 categories, **`Appointment ID`**, **`Appointments Type`**, **`Animal Type`**, **`Date of Appointment`**.
 - If user input is not supported by these three find commands, a **`SniffException`** is thrown.
 
 #### findAppointment()
@@ -90,6 +94,23 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 2. If appointments are found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
 3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
 
+#### findDate()
+1. **`findDate`** loops through arraylist appointments and checks if any appointment is present for the given date.
+2. If appointments are found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
+3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
+
+#### mark()
+![img_21.png](img_21.png)
+1. **`mark`** loops through arraylist appointments and checks if ID is present and finds the appointment index.
+2. If appointments is not previously marked , it calls **`isDone`** and sets the value to true and **`showUserMessage`** is called.
+3. If it is already marked then a corresponding **`showUserMessage`** is called.
+
+#### unmark()
+![img_22.png](img_22.png)`  
+1. **`unmark`** loops through arraylist appointments and checks if ID is present and finds the appointment index.
+2. If appointments is not previously unmarked , it calls **`isDone`** and sets the value to false and **`showUserMessage`** is called.
+3. If it is already unmarked then a corresponding **`showUserMessage`** is called.
+
 ### Appointment - Class Implementation (non UID)
 ![img_19.png](img_19.png)<br>
 **Figure 9: UML Diagram of Appointment Class**
@@ -98,8 +119,6 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
 
 ##### UID Generation
-![img_20.png](img_20.png)<br>
-**Figure 10: UML Diagram of Uid Class**
 
 The UID is generated to produce a 10 character string representing the Appointment ID tagged to each appointment.
 The UID string generated consists of 3 substrings that are concatenated together:
@@ -128,11 +147,19 @@ Other alternatives that was considered are:
    - Cons: We felt that this is counter-intuitive as it increases workload and human error. Automating
      this process will reduce potential errors.
 
+
+### List appointments
+Apart from only each appointment in the appointment list, it also sorts the list by date and time in ascending order.
+This is done using the inbuilt `.sort()` function, while a custom comparator class named `DateTimeComparator` is made to 
+for comparison between dates and times of appointments of different types. Currently `DateTimeComparator` only supports
+the existing appointment classes, namely: `Consultation`, `Vaccination` and `Surgery`.
+
 ## Product scope
 ### Target user profile
 
 Veterinarians in Vet Clinics around Singapore who
 * prefer typing over using a mouse.
+* are using a US keyboard.
 * need to keep track a large number of appointments.
 * prefer Command Line Interface(CLI) over other interfaces.
 
@@ -158,7 +185,8 @@ and helps improve efficiency in running a Vet clinic, while reducing human error
 | v2.0    |user| unmark appointments                         | retrieve appointments marked accidently                  |
 | v2.0    |user| track appointment dates                     | prioritize the upcoming appointments                     |
 | v2.0    |user| track locations                             | inform the doctor                                        |
-| v2.0    |user| track contact information of owner          | contact the owner of the pet                             |
+| v2.1    |user| view all appointments by date               | look at upcoming appointments for the clinic             |
+
 
 ## Non-Functional Requirements
 
@@ -213,12 +241,15 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
- UID: C84120821A
- Date: 2023-12-12 | Time: 19:00
+ Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C28216660A
  Animal Name: Lulu | Animal Type: Cat
  Owner Name: Jon | Contact Number: 91919191
  Consultation added successfully!
 ______________________________________________________________________
+
 ```
 
 3. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
@@ -227,7 +258,7 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
- The consultation description is invalid!
+ Animal Type cannot be empty!
 ______________________________________________________________________
 ```
 
@@ -237,8 +268,11 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
- UID: V12400172X | vaccine: Covid
- Date: 2023-12-12 | Time: 19:00
+ Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V57416751U
+ Vaccine: Covid
  Animal Name: Russ | Animal Type: Dog
  Owner Name: Abel | Contact Number: 92929292
  Vaccination added successfully!
@@ -251,7 +285,7 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
- The date/time description is invalid.
+The date/time description is invalid.
 ______________________________________________________________________
 ```
 
@@ -261,11 +295,14 @@ ______________________________________________________________________
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
- UID: S14837641R | Priority: HIGH
+ Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
  Animal Name: Polly | Animal Type: Hamster
  Owner Name: Sam | Contact Number: 93939393
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
  Surgery added successfully!
 ______________________________________________________________________
 ```
@@ -288,19 +325,30 @@ ______________________________________________________________________
    Example:
 ```
 ______________________________________________________________________
-1.  UID: C84120821A
- Date: 2023-12-12 | Time: 19:00
+ 1.  Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C28216660A
  Animal Name: Lulu | Animal Type: Cat
  Owner Name: Jon | Contact Number: 91919191
-2.  UID: V12400172X | vaccine: Covid
- Date: 2023-12-12 | Time: 19:00
+
+ 2.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V57416751U
+ Vaccine: Covid
  Animal Name: Russ | Animal Type: Dog
  Owner Name: Abel | Contact Number: 92929292
-3.  UID: S14837641R | Priority: HIGH
+
+ 3.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
  Animal Name: Polly | Animal Type: Hamster
  Owner Name: Sam | Contact Number: 93939393
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
+
 ______________________________________________________________________
 ```
 
@@ -312,36 +360,108 @@ ______________________________________________________________________
    Example:
 ```
 ______________________________________________________________________
-1.  UID: V12400172X | vaccine: Covid
- Date: 2023-12-12 | Time: 19:00
+ 1.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V57416751U
+ Vaccine: Covid
  Animal Name: Russ | Animal Type: Dog
  Owner Name: Abel | Contact Number: 92929292
+
 ______________________________________________________________________
 ```
 
-3. Test case: `find t/consultation`
+3. Test case: `find t/surgery`
    Expected output: A list of all previously added appointments with the appointment type.
    Example:
 ```
 ______________________________________________________________________
-1.  UID: C84422868K
- Date: 2023-12-12 | Time: 19:00
- Animal Name: Lulu | Animal Type: 
- Owner Name: Jon | Contact Number: 91919191
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
+ Animal Name: Caramel | Animal Type: Mouse
+ Owner Name: Sam | Contact Number: 93939393
+
+______________________________________________________________________
+
+```
+
+4. Test case: `find d/2023-12-12`
+   Expected output: A list of all previously added appointments with the specified date.
+   Example:
+```
+______________________________________________________________________
+ 1.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V57416751U
+ Vaccine: Covid
+ Animal Name: Russ | Animal Type: Dog
+ Owner Name: Abel | Contact Number: 92929292
+ 2.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
+ Animal Name: Caramel | Animal Type: Mouse
+ Owner Name: Sam | Contact Number: 93939393
+ 3.  Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C40384411E
+ Animal Name: nono | Animal Type: dog
+ Owner Name: jon | Contact Number: 91919191
+______________________________________________________________________
+```
+4. Test case: `find uID/S02547136Q`
+   Expected output: A list of all previously added appointment with the appointment uID.
+   Example:
+```
+______________________________________________________________________
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S02547136Q
+ Animal Name: lulu | Animal Type: dog
+ Owner Name: jon | Contact Number: 91919191
+ 
+______________________________________________________________________
+```
+5. Test case: `find d/2023-12-12`
+   Expected output: A list of all previously added appointments with the same appointment date.
+   Example:
+```
+______________________________________________________________________
+1.  Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V17511055M
+ Vaccine: covid
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ 
 ______________________________________________________________________
 ```
 
 #### Removing appointments
 
 1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
-2. Test case: `remove C84120821A`<br>
+2. Test case: `remove uid/C28216660A`<br>
    Expected output: The appointment with the specified UID is removed, details shown in the status message.
    Example:
 ```
 ______________________________________________________________________
  This appointment has been removed your appointment manager: 
- UID: C84120821A
- Date: 2023-12-12 | Time: 19:00
+ Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C28216660A
  Animal Name: Lulu | Animal Type: Cat
  Owner Name: Jon | Contact Number: 91919191
  Task removed successfully!
@@ -351,27 +471,142 @@ ______________________________________________________________________
 #### Mark/UnMark appointments
 
 1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
-2. Test case: `mark V12400172X`<br>
+2. Test case: `mark uid/S82358005U`<br>
    Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. 
    A corresponding successful mark message is displayed. 
    Example:
 ```
 ______________________________________________________________________
-mark uID/C26135173W
-______________________________________________________________________
+ 1.  Surgery  [X] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
+ Animal Name: Polly | Animal Type: Hamster
+ Owner Name: Sam | Contact Number: 93939393
+
+
 The appointment has been marked successfully
- Task marked successfully!
 ______________________________________________________________________
 ```
-3. Test case: `unmark V12400172X`<br>
+3. Test case: `unmark uid/V12400172X`<br>
    Expected output: If the appointment UID entered is valid and not already unmarked the corresponding appointment is Unmarked on the list.
    A corresponding successful Unmark message is displayed.
    Example:
 ```
 ______________________________________________________________________
-unmark uID/C26135173W
+ 1.  Surgery  [ ] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
+ Animal Name: Polly | Animal Type: Hamster
+ Owner Name: Sam | Contact Number: 93939393
+ 
+
+The appointment has been unMarked successfully
 ______________________________________________________________________
-The appointment has been unmarked successfully
- Task marked successfully!
+
+```
+
+#### Editing appointments
+1. Prerequisites : The UID of the appointment that you want to should already exist. You can find the appointment using `list` or `find` command. 
+2. Test case: `edit uID/C67345117A at/Mouse an/freddy on/muthu cn/91917777 cd/2023-12-12 ct/19:00` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the 
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+Consultation changed successfully!
+______________________________________________________________________
+```
+3. Test case: `edit uID/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+ Surgery changed successfully!
+______________________________________________________________________
+```
+4. Test case: `edit uID/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+Vaccination changed successfully!
+______________________________________________________________________
+```
+
+#### Help function
+1. Example: `help`
+
+```
+______________________________________________________________________
+These are the following Sniff commands available:
+
+Add consultation appointment:
+
+ consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME
+
+Add vaccination appointment:
+
+ vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE vt/TIME
+
+Add surgery appointment:
+
+ surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL
+
+Listing all appointments:
+
+ list
+
+Removing an appointment:
+
+ remove uid/UID
+
+Finding an appointment by animal type, appointment type or uid:
+
+ find a/ANIMAL_TYPE
+
+ find t/APPOINTMENT_TYPE 
+
+ find uid/UID
+
+ find d/DATE
+
+Mark or UnMark an appointment:
+
+ mark uid/UID
+
+ unMark uid/UID
+
+Editing an appointment:
+
+ edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME
+
+ edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATEvt/TIME
+
+ edit uid/UID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATEst/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL
+
+Archiving appointments:
+
+ archive
+
+Exiting the program:
+
+ bye
+
+Additional notes:
+
+ 1. DATES and TIMES format are in (YYYY-MM-DD) and (HH:MM) respectively
+
+ 2. PRIORITY_LEVEL format is in (L, M, H)
 ______________________________________________________________________
 ```

@@ -30,22 +30,23 @@ public class Parser {
 
     public static Command parse(String userCommand) throws SniffException {
         try {
-            String[] task = userCommand.trim().split(" ", 2);
-            if (task[0].equals("consultation")) {
+            String command = getCommand(userCommand);
+            String[] task = userCommand.split(command,2);
+            if (command.equals("consultation")) {
                 parseConsultationCommand(task[1]);
-            } else if (task[0].equals("vaccination")) {
+            } else if (command.equals("vaccination")) {
                 parseVaccinationCommand(task[1]);
-            } else if (task[0].equals("surgery")) {
+            } else if (command.equals("surgery")) {
                 parseSurgeryCommand(task[1]);
-            } else if (task[0].equals("find")) {
+            } else if (command.equals("find")) {
                 parseFindCommand(userCommand.trim());
-            } else if (task[0].equals("remove")) {
+            } else if (command.equals("remove")) {
                 parseRemoveCommand(userCommand.trim());
-            } else if (task[0].equals("mark")) {
+            } else if (command.equals("mark")) {
                 parseMarkCommand(userCommand.trim());
-            } else if (task[0].equals("unmark")) {
+            } else if (command.equals("unmark")) {
                 parseUnmarkCommand(userCommand.trim());
-            } else if (task[0].equals("edit")) {
+            } else if (command.equals("edit")) {
                 parseEditCommand(task[1]);
             } else if (userCommand.equals("list")) {
                 parseListCommand(userCommand.trim());
@@ -62,6 +63,23 @@ public class Parser {
             throw new SniffException(" The Sniff command is incomplete!");
         }
         return command;
+    }
+
+    /**
+     * Parses the user's input command and returns only the first command before any command input descriptions.
+     *
+     * @param input the full user input.
+     * @return the command before any other input descriptions
+     * @throws SniffException if the command is of an invalid format.
+     */
+    private static String getCommand(String input) throws SniffException {
+        try {
+            String[] firstSplit = input.split("(at/|an/|on/|cn/|cd/|ct/|vd/|vn/|v/|" +
+                    "sd/|st/|ed/|et/|p/|a/|t/|uID/|d/|uid/)", 2);
+            return firstSplit[0].trim();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new SniffException("  Not a recognized Sniff command!");
+        }
     }
 
     /**
@@ -251,7 +269,7 @@ public class Parser {
             // find a/dog or find t/surgery or find aID/123
             int animalIndex = task.indexOf("a/");
             int typeIndex = task.indexOf("t/");
-            int aIDIndex = task.indexOf("aID/");
+            int aIDIndex = task.indexOf("uid/");
             int dateIndex = task.indexOf("d/");
             if (animalIndex != -1) {
                 String details = task.substring(animalIndex + 2);
@@ -288,7 +306,7 @@ public class Parser {
 
     private static void parseRemoveCommand(String task) throws SniffException {
         try {
-            String uid = task.split(" ", 2)[1];
+            String uid = splitInputBy(task, "uid/");
             assert uid != null;
             command = new RemoveCommand(uid);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -305,7 +323,7 @@ public class Parser {
 
     private static void parseMarkCommand(String task) throws SniffException {
         try {
-            int markIndex = task.indexOf("uID/");
+            int markIndex = task.indexOf("uid/");
             String markTask = task.substring(markIndex + 4);
             command = new MarkCommand(markTask);
         } catch (StringIndexOutOfBoundsException e) {
@@ -315,13 +333,14 @@ public class Parser {
 
     private static void parseUnmarkCommand(String task) throws SniffException {
         try {
-            int unmarkIndex = task.indexOf("uID/");
+            int unmarkIndex = task.indexOf("uid/");
             String unmarkTask = task.substring(unmarkIndex + 4);
             command = new UnMarkCommand(unmarkTask);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The unmark description is invalid!");
         }
     }
+
     /**
      * Splits the given input command using the specified splitter and returns the specified description.
      *
@@ -337,7 +356,7 @@ public class Parser {
                 throw new SniffException(" The command cannot contain repeated descriptions!");
             }
             String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vn/|v/|" +
-                    "sd/|st/|ed/|et/|p/)", -1);
+                    "sd/|st/|ed/|et/|p/|vt/)", -1);
             return secondSplit[0].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The " + splitter + " description is invalid!");
@@ -346,7 +365,7 @@ public class Parser {
 
     private static void parseEditCommand(String task) throws SniffException {
         try {
-            int uidIndex = task.indexOf("uID/");
+            int uidIndex = task.indexOf("uid/");
             String type = task.substring(uidIndex + 4, uidIndex + 5);
             String uid = task.substring(uidIndex + 4, uidIndex + 14);
             if (type.equals("C")) {
@@ -420,24 +439,24 @@ public class Parser {
                     throw new SniffException("The vaccination description is invalid!");
                 }
             }
-        }catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException("The edit uID/ is invalid!");
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException("The edit uid/ is invalid!");
         }
     }
 
-    private static void parseArchiveCommand () {
+    private static void parseArchiveCommand() {
         command = new ArchiveCommand();
     }
 
-    private static void parseByeCommand () {
+    private static void parseByeCommand() {
         command = new ExitCommand();
     }
 
 
     /**
-     *  Parses the help command and creates a new HelpCommand object to show the help message to the user.
+     * Parses the help command and creates a new HelpCommand object to show the help message to the user.
      */
-    private static void parseHelpCommand () {
+    private static void parseHelpCommand() {
         command = new HelpCommand();
     }
 }
