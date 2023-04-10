@@ -10,7 +10,7 @@ various features for note-taking.
 * [Developer Guide](#developer-guide)
   * [Table of Contents](#table-of-contents)
   * [Acknowledgements](#acknowledgements)
-  * [Design & implementation](#design-implementation)
+  * [Design & implementation](#design--implementation)
     * [Handling Of User Input](#handling-of-user-input)
     * [Solving Quadratic Equations](#solving-quadratic-equations)
     * [Notes](#notes)
@@ -506,10 +506,11 @@ then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-c
 <summary>Sequence Diagram for TrigoGraph class</summary>
 <div markdown="1">
 
-![img_8.png](SequenceDiagrams/Graph_Sequence.png)
+![img_1.png](SequenceDiagrams/GraphSequence.png)!
+
 </div>
 </details>
-
+<br/>
 <details>
 <summary>Class Diagram for TrigoGraph class</summary>
 <div markdown="1">
@@ -518,8 +519,7 @@ then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-c
 
 </div>
 </details>
-
-
+<br/>
 Step 2. Constructor for the TrigoGraph class takes in `2*sin(2*x+5)-1` and assigns it to `trigoEqn` of type String. When `startGraphAnalysis()`
 is called from the command class, a new instance of `TrigoGraphAnalyser` called `analyser` is created in TrigoGraph, which accepts `trigoEqn`
 as the parameter.
