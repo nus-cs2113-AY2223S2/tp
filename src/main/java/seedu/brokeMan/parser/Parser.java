@@ -25,7 +25,7 @@ import seedu.brokeMan.command.ViewBudgetCommand;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 import seedu.brokeMan.exception.InvalidDateTimeException;
 import seedu.brokeMan.exception.InvalidMonthTimeException;
-import seedu.brokeMan.exception.DateSmallerThanMinimumException;
+import seedu.brokeMan.exception.DateOutOfRangeException;
 import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.exception.AmountIsNotADoubleException;
 import seedu.brokeMan.exception.BrokeManException;
@@ -124,11 +124,11 @@ public class Parser {
                 return new ViewBudgetCommand();
             }
             newDescription = checkValidOptionalTimeFlagException(description);
-            checkSmallerThanMinTime(newDescription);
+            checkTimeWithInConstraint(newDescription);
             return new ViewBudgetCommand(newDescription);
         } catch (hasNotSetBudgetException e) {
             return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
-        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateSmallerThanMinimumException ex) {
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateOutOfRangeException ex) {
             return new InvalidCommand(ex.getMessage(), ViewBudgetCommand.MESSAGE_USAGE);
         }
     }
@@ -195,11 +195,11 @@ public class Parser {
         if (descriptionByWord.length == 2) {
             try {
                 StringToTime.checkIfValidDateString(descriptionByWord[1]);
-                checkSmallerThanMinTime(descriptionByWord[1]);
+                checkTimeWithInConstraint(descriptionByWord[1]);
             } catch (DateTimeParseException dtpe) {
                 return new InvalidCommand(new InvalidMonthTimeException().getMessage(),
                         SetBudgetCommand.MESSAGE_USAGE);
-            } catch (DateSmallerThanMinimumException sme) {
+            } catch (DateOutOfRangeException sme) {
                 return new InvalidCommand(sme.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
             }
             descriptionByWord[1] = descriptionByWord[1].trim();
@@ -381,20 +381,20 @@ public class Parser {
         // 0.00, which is why we call checkDoubleException again.
         checkDoubleException(splitDescriptions[0]);
         checkTimeException(splitDescriptions[2]);
-        checkSmallerThanMinTime(splitDescriptions[2]);
+        checkTimeWithInConstraint(splitDescriptions[2]);
         convertStringToCategory(splitDescriptions[3]);
         return splitDescriptions;
     }
 
-    private static void checkSmallerThanMinTime(String date) throws DateSmallerThanMinimumException {
+    private static void checkTimeWithInConstraint(String date) throws DateOutOfRangeException {
         String[] dateByWord = new String[5];
         if (date.contains("/")) {
             dateByWord = date.split("/");
         } else if (date.contains(" ")) {
             dateByWord = date.split(" ");
         }
-        if (Integer.parseInt(dateByWord[0]) < 2000) {
-            throw new DateSmallerThanMinimumException();
+        if (Integer.parseInt(dateByWord[0]) < 2000 || Integer.parseInt(dateByWord[0]) > 9999) {
+            throw new DateOutOfRangeException();
         }
     }
 
@@ -415,8 +415,8 @@ public class Parser {
         String newDescription;
         try {
             newDescription = checkValidOptionalTimeFlagException(description);
-            checkSmallerThanMinTime(newDescription);
-        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateSmallerThanMinimumException e) {
+            checkTimeWithInConstraint(newDescription);
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateOutOfRangeException e) {
             return new InvalidCommand(e.getMessage(), ListExpenseCommand.MESSAGE_USAGE);
         }
         return new ListExpenseCommand(newDescription);
@@ -429,8 +429,8 @@ public class Parser {
         String newDescription;
         try {
             newDescription = checkValidOptionalTimeFlagException(description);
-            checkSmallerThanMinTime(newDescription);
-        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateSmallerThanMinimumException e) {
+            checkTimeWithInConstraint(newDescription);
+        } catch (InvalidOptionalTimeFlagException | InvalidMonthTimeException | DateOutOfRangeException e) {
             return new InvalidCommand(e.getMessage(), ListIncomeCommand.MESSAGE_USAGE);
         }
         return new ListIncomeCommand(newDescription);
@@ -477,7 +477,7 @@ public class Parser {
         try {
             splitDescriptions = checkEditCommandException(description);
             if (splitDescriptions[1].equals("time")) {
-                checkSmallerThanMinTime(splitDescriptions[2]);
+                checkTimeWithInConstraint(splitDescriptions[2]);
             }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
@@ -504,7 +504,7 @@ public class Parser {
         try {
             splitDescriptions = checkEditCommandException(description);
             if (splitDescriptions[1].equals("time")) {
-                checkSmallerThanMinTime(splitDescriptions[2]);
+                checkTimeWithInConstraint(splitDescriptions[2]);
             }
         } catch (BrokeManException bme) {
             return new InvalidCommand(bme.getMessage(), EditIncomeCommand.MESSAGE_USAGE);
