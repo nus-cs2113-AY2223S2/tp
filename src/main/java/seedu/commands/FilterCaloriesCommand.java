@@ -2,8 +2,10 @@ package seedu.commands;
 
 import seedu.entities.Food;
 import seedu.exceptions.ExtraArgumentsException;
+import seedu.exceptions.InvalidArgumentsException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
+import seedu.exceptions.NegativeFieldInfoException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -22,8 +24,26 @@ public class FilterCaloriesCommand extends Command {
         } else if (split.length > 3) {
             throw new ExtraArgumentsException();
         }
-        this.caloriesLowerLimit = Float.parseFloat(split[1]);
-        this.caloriesUpperLimit = Float.parseFloat(split[2]);
+
+        try {
+            this.caloriesLowerLimit = Float.parseFloat(split[1]);
+        } catch (NumberFormatException e) {
+            throw new InvalidArgumentsException(command, "lower calorie value");
+        }
+        try {
+            this.caloriesUpperLimit = Float.parseFloat(split[2]);
+        } catch (NumberFormatException e) {
+            throw new InvalidArgumentsException(command, "upper calorie value");
+        }
+
+        if (caloriesLowerLimit < 0) {
+            throw new NegativeFieldInfoException(command, "lower calorie value");
+        }
+
+        if (caloriesUpperLimit < 0) {
+            throw new NegativeFieldInfoException(command, "upper calorie value");
+        }
+        
     }
     private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods)
             throws LifeTrackerException {
@@ -43,13 +63,13 @@ public class FilterCaloriesCommand extends Command {
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
 
+        if (caloriesLowerLimit > caloriesUpperLimit) {
+            throw new LifeTrackerException("Lower calorie limit should not be greater than upper calorie limit!");
+        }
         System.out.println("This is the lower calorie limit (float):");
         System.out.println(caloriesLowerLimit);
         System.out.println("This is the upper calorie limit (float):");
         System.out.println(caloriesUpperLimit);
-        if (caloriesLowerLimit > caloriesUpperLimit) {
-            throw new LifeTrackerException("Please enter valid lower and upper limits!");
-        }
 
         List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);
         showCaloriesFilteredFoods(foodStorage, caloriesFilteredFoods);

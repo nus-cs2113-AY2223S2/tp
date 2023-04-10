@@ -1,4 +1,4 @@
-# ***LifeTracker user guide***
+# ***LifeTracker User Guide***
 
 ## Introduction
 
@@ -31,7 +31,7 @@ Their net calorie gain/loss can then be viewed.
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar lifetracker.jar` command to run the application.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
@@ -57,16 +57,35 @@ Format: `view /[fieldName]`
 
 Here is a table of the information that the user can choose to view alongside the field name of it:
 
-| Information                  | /[fieldName]  |
-|------------------------------|---------------|
-| Name                         | /name         |
-| Weight                       | /weight       |
-| Height                       | /height       |
-| Age                          | /age          |
-| Gender                       | /gender       |
-| Daily caloric limit          | /caloricLimit | 
-| Calories remaining for today | /caloriesLeft |
-| Target weight                | /targetWeight | 
+<div style="display: grid; grid-template-columns: 200px 200px; grid-row-gap: 0px;">
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Information</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">/[fieldName]</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Name</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/name</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Weight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/weight</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Height</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/height</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Age</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/age</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Gender</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/gender</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Daily caloric limit</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/caloricLimit</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Calories remaining for today</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/caloriesLeft</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Target weight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/targetWeight</p>
+</div>
+<br>
 
 Example:
 
@@ -83,14 +102,36 @@ Format: `update /[fieldName] [newInfo]`
 
 Here is a table of the information that the user can choose to update alongside the field name of it:
 
-| Information   | /[fieldName]  | Comments                                                                    |
-|---------------|---------------|-----------------------------------------------------------------------------|
-| Name          | /name         | For more than one name, separate with an underscore. E.g Firstname_LastName |
-| Weight        | /weight       | Weight can only take in numbers between 0 and 700 kg.                       |
-| Height        | /height       | Height can only take in numbers between 0 and 300 cm.                       |
-| Age           | /age          | Age can only take in numbers between 0 and 120 years old.                   |
-| Gender        | /gender       | Gender can only take in male or female as arguments.                        |
-| Target weight | /targetWeight | TargetWeight can only take in numbers between 0 and 700 kg.                 | 
+<div style="display: grid; grid-template-columns: 130px 130px 700px; grid-row-gap: 0px;">
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Information</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">/[fieldName]</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Comments</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Name</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/name</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">For more than one name, separate with an underscore. E.g Firstname_LastName</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Weight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/weight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Weight can only take in numbers between 0 and 700 kg.</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Height</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/height</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Height can only take in numbers between 0 and 300 cm.</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Age</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/age</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Age can only take in numbers between 0 and 120 years old.</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Gender</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/gender</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Gender can only take in male or female as arguments.</p>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Target weight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">/targetWeight</p>
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">TargetWeight can only take in numbers between 0 and 700 kg.</p>
+</div>
+<br>
 
 Example:
 
@@ -150,11 +191,11 @@ Format `list exercises`
 Example:
 ![list-exercises-example](./UG-images/list-exercises-example.PNG)
 
-### Deleting meals: `delete`
+### Deleting meals and exercises: `delete`
 
 For users to remove previously added meals and exercises
 
-Format: `delete [/meal, /exercise] [index]`
+Format: `delete /[meal, exercise] [index]`
 
 * The `index` should be a positive integer and must be less than number of meals/exercises added
 * It is recommended to run `list meals/exercises` beforehand to get the index of the meal/exercise you want to delete
@@ -193,7 +234,7 @@ Example:
 
 For user to input the exercise done previously.
 
-Format: `exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]`
+Format: `exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]`
 
 * The `exercise name` and `exercise description` accepts any input
 * The `calories` should be in `float` format
@@ -206,12 +247,15 @@ Example:
 
 For user to track their previous net calorie intake.
 
-Format: `track /start [start date] /end [end date]`
+There are 2 options to run this command:
 
-* `/start` and `/end` arguments are optional
+1) For user to view all their calorie history from past meals and exercises input
+Format: `track all`
+
+2) For user to view calorie history within a specified time-frame
+Format: `track /start [start_date] /end [end_date]`
+
 * The dates should be in `d/M/yyyy` format
-* If `/start` command is not provided, defaults to earliest date with meal/exercise added
-* If `/end` command is not provided, defaults to latest date with meal/exercise added
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
@@ -245,19 +289,48 @@ Output:
 
 ## Command Summary
 
-| Action    | Format, Examples                                                                                         |
-|-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view /[fieldName]                                                                                        |
-| Update    | update /[fieldName]                                                                                      |
-| Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list [foods/meals/exercises]                                                                             |
-| Delete    | delete INDEX e.g delete 3                                                                                |
-| Filter    | filter [lower_bound] [upper_bound]                                                                       |
-| Nutrition | nutrition                                                                                                |
-| Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
-| Track     | track                                                                                                    |
-| Examples  | examples [meal/exercise]                                                                                 |
-| Help      | help
-| Bye       | bye                                                                                                      |
+Note: 
+1) Fields within square brackets are variable and are to be changed according to user needs.
+2) Fields with a comma inside the square brackets indicate that any of the multiple options can be input according to user needs.
 
+<div style="display: grid; grid-template-columns: 130px 850px; grid-row-gap: 0px;">
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Action</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Format, Examples</p>
 
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">View</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>view /[fieldName]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Update</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>update /[fieldName]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Add</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>add /on [date] /type [MealType] /foods [foods]</code> OR <code>add</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">List</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>list [foods, meals, exercises]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Delete</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>delete /[meal, exercise] [index]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Filter</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>filter [lower_bound] [upper_bound]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Nutrition</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>nutrition</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Exercise</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Track</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>track all</code> OR <code>track /start [start_date] /end [end_date]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Examples</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>examples [meal, exercise]</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Help</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>help</code></div>
+
+  <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Exit</p>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>bye</code></div>
+</div>
+<br>
