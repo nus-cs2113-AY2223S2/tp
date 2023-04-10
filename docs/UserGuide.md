@@ -105,15 +105,33 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * Please type out your commands and ensure your spelling is accurate
 * Copying and pasting commands from the user guide may cause some issues due to formatting
 
+**Lesson Types Recognized by NUSPlanner**
+
+| Lesson name                | Name on NUSMODS | Lesson type to input into Command line |
+|----------------------------|-----------------|----------------------------------------|
+| Lecture                    | LEC             | `LEC`                                  |
+| Sectional Teaching         | SEC             | `SEC`                                  |
+| Design Lecture             | DLEC            | `DLEC`                                 |
+| Recitation                 | REC             | `REC`                                  |
+| Packaged Lecture           | PLEC            | `PLEC`                                 |
+| Seminar-Style Module Class | SEM             | `SEM`                                  |
+| Tutorial                   | TUT             | `TUT`                                  |
+| Tutorial Type 2            | TUT2            | `TUT2`                                 |
+| Packaged Tutorial          | PTUT            | `PTUT`                                 |
+| Laboratory                 | LAB             | `LAB`                                  |
+
+**Workshops** and **Mini Projects** are excluded from the lesson types as they do not have specific timings. Do add them as individual/recurring
+events should you need to have them.
+
 **Notice**
-> For modules with 10 or more slots per lecture/tutorial/laboratory, please append a '0' infront of the `CLASSNUMBER`.
+> For the lesson number and lesson type, follow the format as displayed on NUSMods. 
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l tutorial`
 > 
-> **GOOD** example: `add -m CS2100 -n 02 -l tutorial`
+> **GOOD** example: `add -m CS2100 -n 02 -l tutorial` or `add -m HSI2016 -n L1 -l Sectional Teaching`
 > 
 > 
-> For `LESSONTYPE` field, only `lecture / tutorial / laboratory` are accepted
+> For `LESSONTYPE` field, only `lecture / tutorial / laboratory` or any of the fields specified in the table above are accepted
 
 Expected outcome:
 ~~~
