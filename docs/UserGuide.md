@@ -8,15 +8,16 @@ is unpacked and travel with an ease of mind.
 ---
 
 ## <span style="color:#00A36C">Table of contents</span>
+
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Help message](#help-message-help)
   * [Adding a new item](#adding-a-new-item-add)
   * [Deleting an item](#deleting-an-item-delete)
   * [Packing an item](#packing-an-item-pack)
-  * [Packing all of an item](#packing-all-of-an-item-packall)
+  * [Packing all of an item](#packing-all-quantities-of-an-item-packall)
   * [Unpacking an item](#unpacking-an-item-unpack)
-  * [Unpacking all of an item](#unpacking-all-of-an-item-unpackall)
+  * [Unpacking all of an item](#unpacking-all-quantities-of-an-item-unpackall)
   * [Editing item quantity](#editing-item-quantity-editquantity)
   * [Listing all items](#listing-all-items-list)
   * [Listing all unpacked items](#listing-all-unpacked-items-listunpacked)
@@ -200,7 +201,7 @@ Example:
   Item packed: [2/3] jackets
   ```
 
-### <span style="color:#6495ED">Packing all of an item:</span> `packall`
+### <span style="color:#6495ED">Packing all quantities of an item:</span> `packall`
 Packs the total quantity of that item in the packing list.
 
 Format: `packall /of INDEX`
@@ -241,7 +242,7 @@ Example:
   Item unpacked: [2/10] shirts
   ```
 
-### <span style="color:#6495ED">Unpacking all of an item:</span> `unpackall`
+### <span style="color:#6495ED">Unpacking all quantities of an item:</span> `unpackall`
 Unpacks the total quantity of that item in the packing list.
 
 Format: `unpackall /of INDEX`
@@ -405,25 +406,31 @@ Example:
 
 **A**: Please check that there are no typos in the command. To check the correct spelling of the commands, please type `help` and hit enter.
 
+
 **Q**: I am following the suggested input, why is it still giving me an error?
 
 **A**: For command inputs that have item quantity and item index, the / character is necessary before the of (e.g. `pack 1 /of 1` is valid but `pack 1 of 1` is not)
+
 
 **Q**: Why are some commands affected by extra random inputs before or after the full command while others aren't?
 
 **A**: The commands that are not affected by extra inputs are those that have no variables (e.g. `list`, `listunpacked`, `bye`, and `help`)
 
+
 **Q**: Why does `editquantity` command give me an error for a positive integer quantity?
 
 **A**: Your new input quantity may be considered invalid as it is smaller than the current packed amount of the item. (You cannot set the total quantity to be less than what is currently packed)
+
 
 **Q**: Why does my list have duplicate items?
 
 **A**: Item names are caps sensitive, you could have accidentally input two items with the same name but differing in capitalisation. 
 
+
 **Q**: Why is the list indexes for `find` command not sequential?
 
 **A**: The index printed for `find` comes from the full packing list which can be retrieved from `list` command.  
+
 
 [⏫ Go to Table of Contents](#table-of-contents) |
 
@@ -431,20 +438,20 @@ Example:
 
 ## <span style="color:#00A36C">Command Summary</span>
 
-| Action description         | Syntax                            | Remarks                                                                                                              |
-|:---------------------------|:----------------------------------|:---------------------------------------------------------------------------------------------------------------------|
-| Help                       | `help`                            | Additional parameters will be ignored                                                                                |
-| Adding a new item          | `add QUANTITY /of NAME`           | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                         |
-| Deleting an item           | `delete INDEX`                    | `INDEX` must be a valid list index                                                                                   |
-| Packing an item            | `pack QUANTITY /of INDEX`         | Adding `QUANTITY` should not cause the quantity to exceed the total quantity<br/> `INDEX` must be a valid list index |
-| Packing all of an item     | `packall /of INDEX`               | `INDEX` must be a valid list index                                                                                   |
-| Unpacking an item          | `unpack QUANTITY /of INDEX`       | Subtracting `QUANTITY` should not cause the quantity to be less than 0<br/> `INDEX` must be a valid list index       |
-| Unpacking all of an item   | `unpackall /of INDEX`             | `INDEX` must be a valid list index                                                                                   |
-| Editing item quantity      | `editquantity QUANTITY /of INDEX` | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000<br/> `INDEX` must be a valid list index | 
-| Listing all items          | `list`                            | Additional parameters will be ignored                                                                                |
-| Listing all unpacked items | `listunpacked`                    | Additional parameters will be ignored                                                                                |
-| Deleting the entire list   | `deletelist`                      | Additional parameters will be ignored                                                                                |
-| Finding an item            | `help`                            | Additional parameters will be ignored                                                                                |
-| Exiting the application    | `bye`                             | Additional parameters will be ignored                                                                                |
+| Action description                  | Syntax                            | Remarks                                                                                                              |
+|:------------------------------------|:----------------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| Help                                | `help`                            | Additional parameters will be ignored                                                                                |
+| Adding a new item                   | `add QUANTITY /of NAME`           | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                         |
+| Deleting an item                    | `delete INDEX`                    | `INDEX` must be a valid list index                                                                                   |
+| Packing an item                     | `pack QUANTITY /of INDEX`         | Adding `QUANTITY` should not cause the quantity to exceed the total quantity<br/> `INDEX` must be a valid list index |
+| Packing all quantities of an item   | `packall /of INDEX`               | `INDEX` must be a valid list index                                                                                   |
+| Unpacking an item                   | `unpack QUANTITY /of INDEX`       | Subtracting `QUANTITY` should not cause the quantity to be less than 0<br/> `INDEX` must be a valid list index       |
+| Unpacking all quantities of an item | `unpackall /of INDEX`             | `INDEX` must be a valid list index                                                                                   |
+| Editing item quantity               | `editquantity QUANTITY /of INDEX` | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000<br/> `INDEX` must be a valid list index | 
+| Listing all items                   | `list`                            | Additional parameters will be ignored                                                                                |
+| Listing all unpacked items          | `listunpacked`                    | Additional parameters will be ignored                                                                                |
+| Deleting the entire list            | `deletelist`                      | Additional parameters will be ignored                                                                                |
+| Finding an item                     | `help`                            | Additional parameters will be ignored                                                                                |
+| Exiting the application             | `bye`                             | Additional parameters will be ignored                                                                                |
 
 [⏫ Go to Table of Contents](#table-of-contents) | [⏫ Go to Features](#features)
