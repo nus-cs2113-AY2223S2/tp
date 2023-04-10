@@ -78,7 +78,7 @@ Within the `code block` you may see segments of text wrapped in `<chevrons>`. Th
 
 2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v2.0). 
 
-    ![jar2.png](images/jar2.png)
+    ![jar3.png](images/jar3.png)
     <sub>Fig 1: Version release page with download links for Meal Companion.</sub>
 
     Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
