@@ -22,6 +22,7 @@
   * [4.6. Sort transactions](#46-Sort-Command)
   * [4.7. View Command](#47-View-Command)
   * [4.8. Set a budget](#48-Set-Budget-Command)
+  * [4.9. Show Currency Rates](#49-Show-Rates-Command)
 
 
 ## 1. Preface
@@ -301,14 +302,28 @@ The sequence diagram below shows the interactions of a successful execution of t
 <p align="center">
     <img src="team/images/parserEdit.png">
     <br />
-    <i>Figure 7: Sequence Diagram for edit Command</i>
+    <i>Figure 8: Sequence Diagram for edit Command</i>
 </p>
 
 ### 4.3. Delete Command
 
+The `delete` command deletes an existing expenditure in the record.
+
+The format for delete is ```delete INDEX```
+
+Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseDelete` is called, which in turn calls `DeleteCommand` that calls `deleteExpenditure` in `ExpenditureList` and returns the string containing the string to print for delete. 
+
 ### 4.4. Find Command
 
+
+
 ### 4.5. Duplicate Command
+
+The `duplicate` command duplicates an existing expenditure in the record, and appends it to the list.
+
+The format for duplicate is ```duplicate INDEX```
+
+Similar to the `delete` command, after `MainInputParser` has recognized the command, `ParseDuplicate` is called, which in turn calls `DuplicateCommand` which calls `duplicateExpenditure` in `ExpenditureList` and returns the string containing the string to print for duplicate.
 
 ### 4.6. Sort Command
 
@@ -355,6 +370,9 @@ accurately represent the check commands.
 ### 4.10. Show Rates Command
 
 `showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
+
+
+`showrates` is a simple command where `MainInputParser` calls `getRates` in the `CurrencyValue` class that returns a string to be printed for `showrates`.
 
 ### 4.11. Mark/Unmark Command
 
