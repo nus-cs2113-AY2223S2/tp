@@ -4,7 +4,7 @@
 1. [Acknowledgements](#acknowledgements) 
 
 2. [Design & Implementation](#design--implementation)
-    * [Main overview of the system](#main-overview-of-the-system-)
+    * [Main overview of the system](#main-overview-of-the-system)
     * [Event Class](#event-class)
     * [Ui](#ui)
     * [Storage](#storage)
@@ -33,7 +33,7 @@ The CS2113 Team (Professor Akshay <3) for the guidance and teaching us concepts 
 
 ## Design & implementation
 
-### Main overview of the system:
+### Main overview of the system
 
 * Main Components
   * Ui: Deals with user input/output
