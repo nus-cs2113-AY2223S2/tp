@@ -219,7 +219,7 @@ public interface StringLib {
     String INGREDIENT_ADD_SUCCESS = "\nThe ingredient has been successfully added to the ingredient list!";
     String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
     String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
-    String STEP_QUIT_MESSAGE = "The step was not added to the step list!";
+    String STEP_QUIT_MESSAGE = "The step was not deleted from the step list!";
     String INVALID_DELETE_FROM_RECIPE_DESCRIPTION = "OOPS!!!\n" +
             "Looks like the description of the command is invalid!\n" +
             "To add elements to the recipe, please follow the following format:\n" +

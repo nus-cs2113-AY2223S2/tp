@@ -85,7 +85,7 @@ Please enter a valid step index!
 Valid range: 1 to 4
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 There are 3 steps in the list
 1. chop beef
@@ -99,7 +99,7 @@ Please enter a valid step index!
 Valid range: 1 to 3
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 OOPS!!!
 Looks like the description of the command is invalid!
@@ -130,7 +130,7 @@ Please enter a valid step index!
 Valid range: 1 to 5
 Enter "quit" to cancel.
 Enter step index below:
-The step was not added to the step list!
+The step was not deleted from the step list!
 __________________________________________________________
 Description of step cannot be empty!
 __________________________________________________________
