@@ -1,6 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide circle
+hide empty members
 
 class Budget {
   - budgetEachMonth: HashMap<Integer, HashMap<Month, Double>>
@@ -13,7 +14,7 @@ class Budget {
 class ViewBudgetCommand {
   - date: Optional<String>
   + ViewBudgetCommand(date: String)
-  + ViewBudgetCommand() throws hasNotSetBudgetException
+  + ViewBudgetCommand()
   + execute(): void
 }
 
@@ -28,7 +29,7 @@ class SetBudgetCommand {
 class hasNotSetBudgetException {
 }
 
-Budget -- ViewBudgetCommand
-Budget -- SetBudgetCommand
-ViewBudgetCommand ..> hasNotSetBudgetException
+Budget <.. ViewBudgetCommand: uses <
+Budget <.. SetBudgetCommand: uses <
+ViewBudgetCommand ..> hasNotSetBudgetException: <<throws>>
 @enduml
