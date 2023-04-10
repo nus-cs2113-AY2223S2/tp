@@ -1,7 +1,6 @@
 theme: minima
 
 header_pages: 
+  - AboutUs.md
   - UserGuide.md
   - DeveloperGuide.md
-  - AboutUs.md
-    
