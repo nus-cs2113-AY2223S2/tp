@@ -64,6 +64,10 @@ public class UI {
     private UI() {
     }
 
+    /**
+     * Returns the one instance of the UI class, OR if there is no such instance yet, instantiates a instance of UI.
+     * @return The Singleton Instance of UI class.
+     */
     public static UI getUiOneInstance() {
         if (uiOneInstance == null) {
             uiOneInstance = new UI();
@@ -116,6 +120,11 @@ public class UI {
         return INVALID_SEARCH_MODULE_MESSAGE;
     }
 
+    /**
+     * Getter function for the Invalid Module Index Message
+     * String: "Module not found :( Please type in a correct index"
+     * @return String of INVALID_MODULE_INDEX_MESSAGE
+     */
     public String getInvalidModuleMessage() {
         return INVALID_MODULE_INDEX_MESSAGE;
     }
@@ -220,6 +229,12 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     *
+     * @param univID Unique integer index corresponding to Partner University.
+     * @param filter String containing filter input from user, filter is yet to be distinguished between
+     *               MC Filter or Name Filter
+     */
     public void printPUModules(int univID, String filter) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
         for (Module puModule : puModules) {

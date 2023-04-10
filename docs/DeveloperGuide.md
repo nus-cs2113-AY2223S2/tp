@@ -334,9 +334,9 @@ The following sequence diagram shows the relationship between the classes involv
 to the indexToDeletePuSpecificListToZeroBased.
 5. indexToDelete is then set to the current Module iteration index, and it will remove the module from the list of 
 modules.
-6. The list is the sorted according to the string length of each module in the list of modules to be printed out in a
+6. The list is then sorted according to the string length of each module in the list of modules to be printed out in a
 readable format.
-7. The list is saved in the modules txt file by overwriting it via writeModListToFile(module) function.
+7. The list is saved in the saved_modules.txt file by overwriting it via writeModListToFile(module) function.
 8. deleteModule function then returns true and DeleteModuleCommand calls UI class to print the successful deletion of
 module message in the User Console.
 
