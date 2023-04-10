@@ -164,20 +164,20 @@ public class UI {
         System.out.println(StringLib.RECIPE_LOADED);
     }
     public void showEditRecipeStepPrompt() {
-        System.out.println("Which step do you want to edit?");
-        System.out.println("Type 'quit' to exit the edit view");
+        System.out.println(StringLib.EDIT_RECIPE_STEP_PROMPT);
     }
     public void showEditErrorMessage (Exception e) {
         if (e instanceof OutOfIndexException) {
             System.out.println(e.getMessage());
+        } else if (e instanceof NumberFormatException) {
+            System.out.println(StringLib.EDIT_NUMBERFORMATEXCEPTION_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_EDITING_DEFAULT_ERROR + e.getMessage());
         }
 
     }
     public void showEditRecipeIngredientPrompt() {
-        System.out.println("Which ingredient do you want to edit?");
-        System.out.println("Type 'quit' to exit the edit view");
+        System.out.println(StringLib.EDIT_RECIPE_INGREDIENT_PROMPT);
     }
     public void showInvalidStepMessage() {
         System.out.println(StringLib.INVALID_STEP);
@@ -288,5 +288,11 @@ public class UI {
     }
     public void showEmptyIngredientList() {
         System.out.println(StringLib.EMPTY_INGREDIENT_LIST);
+    }
+    public void showDefaultCaseError() {
+        System.out.println(StringLib.DEFAULT_CASE_WARNING);
+    }
+    public void showDefaultElseConditionError() {
+        System.out.println(StringLib.DEFAULT_ELSE_CONDITION_WARNING);
     }
 }
