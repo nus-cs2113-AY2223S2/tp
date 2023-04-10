@@ -117,6 +117,8 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
+        } else if (e instanceof RecipeListEmptyException) {
+            System.out.println(StringLib.EMPTY_LIST_MESSAGE);
         } else {
             System.out.println(StringLib.RECIPE_DELETING_FROM_DEFAULT_ERROR + e.getMessage());
         }
