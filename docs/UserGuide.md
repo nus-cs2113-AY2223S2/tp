@@ -86,10 +86,8 @@ academic d/2023-02-02 a/25.10 p/NUS
 Output:
 
 ```
-
 Added academic expenditure: [Academic] || Date: 2 Feb 2023
 || Value: 25.1 || Description: NUS
-
 ```
 
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
@@ -105,14 +103,13 @@ other d/2000-01-31 a/26 p/Eating lunch
 Output:
 
 ```
-
 Added other expenditure: [Other] || Date: 31 Jan 2000
 || Value: 26.0 || Description: Eating lunch
-
 ```
 
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
+<div style="page-break-after: always;"></div>
 ### 4.2. Adding a lend/borrow record
 
 Adds a lending or borrowing transaction to the record
@@ -155,10 +152,8 @@ lend d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 Output:
 
 ```
-
 Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2022
 || Value: 25.1 || Description: CS2113 || by: 14 Jul 2024
-
 ```
 
 The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
@@ -193,9 +188,9 @@ Editing an expenditure
 
 ```
 edit 2 d/2023-02-15 a/20.00 p/Eat Food
-
 Edited! Here is the updated list:
-
+The list is printed subsequent to the command but is omitted as
+different users will have different expenditures
 ```
 
 - Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
@@ -227,17 +222,17 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 
 **Examples:**
 
-- `edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
+- `edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
-
+edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 Edited! Here is the updated list:
-
+The list is printed subsequent to the command but is omitted as
+different users will have different expenditures
 ```
 
 - Take note that the list that is printed subsequent to the command is omitted as different users will have different expenditures and hence different lists.
@@ -315,6 +310,7 @@ Unmarks an existing accommodation or tuition expenditure in the expenditure list
 - Unmarking expenditures that are not accommodation or tuition expenditures are invalid.
 - Unmarking accommodation or tuition expenditures that is already marked is invalid.
 
+<div style="page-break-after: always;"></div>
 ### 4.9. Setting a budget
 
 Sets a budget amount that one would like to keep within.
