@@ -82,10 +82,10 @@ The rest of the app consists of four components:
 
 <p style="page-break-after: always;">&nbsp;</p>
 
-### 2.2 Parser Component
+## 2.2 Parser Component
 The component will return the correct command based on what the user inputs into the application.
 
-#### 2.2.1 How is the feature implemented?
+### 2.2.1 How is the feature implemented?
 
 The Parser component parses the command of the user input and breaks the user input into different parts based on the flags.
 This component also ensures to validate that user input is correct.
@@ -101,7 +101,7 @@ The Parser component handles the following methods:
 * Revise information using index
 * Revise information using name
 
-##### 2.2.2 Add Events Diagram
+### 2.2.2 Add Events Diagram
 The diagram below illustrates the flow of how the application adds events: <br>
 ![Add Module Sequencce Diagram](UML/Images/addEvent.png)
 
@@ -113,8 +113,9 @@ Following that, it will go through another process to check if the event is set 
 
 <p style="page-break-after: always;">&nbsp;</p>
 
-##### 2.2.3 Add Modules Diagram
+### 2.2.3 Add Modules Diagram
 The diagram below illustrates the flow of how the application adds modules:
+
 ![Add Module Sequencce Diagram](UML/Images/addModules.png)
 
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
@@ -124,7 +125,7 @@ Modules are then loaded and the application uses getLesson() to access modules f
 Then, according to the information provided by the user, the application will convert it to fit the event method before adding a new event.
 
 
-#### 2.2.4 Why is the feature implemented this way?
+### 2.2.4 Why is the feature implemented this way?
 
 This component should be able to guide the user to inputting the correct format of the command to do data validation.
 It should be able to perform basic data validation checks to ensure that the user does not enter any invalid commands.
@@ -139,7 +140,7 @@ Here we derive the time of each session of the classes and add them one by one i
 ---
 <p style="page-break-after: always;">&nbsp;</p>
 
-### 2.3 Storage Component
+## 2.3 Storage Component
 API: `Storage.java`
 
 The storage component reads and writes user data from a local save in the form of a `.json` file.
@@ -154,7 +155,7 @@ The class diagram below illustrates the structure of the storage package
 
 ![Storage Class Diagram](UML/Images/StorageClass.png)
 
-#### 2.3.1 How the feature is implemented and design considerations:
+### 2.3.1 How the feature is implemented and design considerations:
 
 The Storage component uses a custom type adapter to serialize and deserialize data from java to json and vice versa using
 a gson, a third party library for Json serialization/deserialization. The custom type adapter allows for finer controls over
@@ -168,19 +169,19 @@ that is likely to see high amounts of usage given the target user.
 <p style="page-break-after: always;">&nbsp;</p>
 
 
-##### 2.3.2 Load Events Sequence Diagram
+### 2.3.2 Load Events Sequence Diagram
 
 ![Load Events Sequence Diagram](UML/Images/loadEvents.png)
 
 When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
 
 
-##### 2.3.3 Load Modules Sequence Diagram
+### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
 
 When any component requires reading the NUS module files, the loadModules() is called.
 
-##### 2.3.4 Save Events Sequence Diagram
+### 2.3.4 Save Events Sequence Diagram
 
 ![Save To File Sequence Diagram](UML/Images/SaveToFile.png)
 
@@ -189,7 +190,7 @@ Similarly, the state of the user's event list is saved when the user exits the a
 
 <p style="page-break-after: always;">&nbsp;</p>
 
-#### 2.3.5 Justification for using gson
+### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
 
@@ -201,13 +202,13 @@ serialization and deserialization of data to be saved.
 
 <p style="page-break-after: always;">&nbsp;</p>
 
-### 2.4 EventList component
+## 2.4 EventList component
 
 API: `EventList.java`
 
 this component maintains a list of Schedule instance. It receives commands from Parser.java and adds/deletes/edits tasks and their information in the list according to the commands.
 
-#### 2.4.1 How is the feature implemented:
+### 2.4.1 How is the feature implemented:
 
 the main functions are
 
@@ -230,7 +231,7 @@ And below is a sequential diagram showing a event being added, revised, checked 
 
 
 
-#### 2.4.2 Why is it implemented in this way:
+### 2.4.2 Why is it implemented in this way:
 
 It is necessary to have a list which contains all the current event/class so that we can show/ batch process events more efficiently. Moreover, this component serves intermediary functions and avoids other classes access deep into the functionality of classes (Event, Schedule e.t.c) inside the ArrayList, thus reduces the coupling of the code base. Additionally, this component also converted all the String parameters parsed by Parser into various Types that required by other classes that the EventList contains, further reducing the coupling.
 
