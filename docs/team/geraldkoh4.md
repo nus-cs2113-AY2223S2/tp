@@ -35,6 +35,8 @@ apps if you can type fast.
     * Created a draft of the add command for UG
     * See [PR#167](https://github.com/AY2223S2-CS2113T-T09-4/tp/pull/167)
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the Developer Guide
 * [Architecture Component](https://github.com/AY2223S2-CS2113T-T09-4/tp/blob/master/docs/DeveloperGuide.md#3-architecture)
   * The following is the UML diagram I added. It is an architecture diagram to illustrate how Modganiser works on a high level.
@@ -42,17 +44,23 @@ apps if you can type fast.
     ![Architecture Diagram](ppp_diagrams/Architecture.png)
     * See [PR#181](https://github.com/AY2223S2-CS2113T-T09-4/tp/pull/181) 
 
+<div style="page-break-after: always;"></div>
+
 * [ModuleList Component](https://github.com/AY2223S2-CS2113T-T09-4/tp/blob/master/docs/DeveloperGuide.md#33-modulelist-component)
   * The following is the UML diagram I added. It is a component diagram to illustrate how the `ModuleList` component works.
   
     ![ModuleList Diagram](ppp_diagrams/ModuleList.png)
       * See [PR#305](https://github.com/AY2223S2-CS2113T-T09-4/tp/pull/305)
 
+<div style="page-break-after: always;"></div>
+
 * [Add Command](https://github.com/AY2223S2-CS2113T-T09-4/tp/blob/master/docs/DeveloperGuide.md#42-add-modules)
   * Created the first draft of the add command for the DG
     * The following is the UML diagram I added. It is a sequence diagram to illustrate how the `Add` command works. 
     ![EditCommand Diagram](ppp_diagrams/AddInputCommand.png)
       * See [PR#182](https://github.com/AY2223S2-CS2113T-T09-4/tp/pull/182)
+
+<div style="page-break-after: always;"></div>
 
 ### Reviewing/Mentoring contributions
 * Pull Requests reviewed: [link](https://github.com/AY2223S2-CS2113T-T09-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
