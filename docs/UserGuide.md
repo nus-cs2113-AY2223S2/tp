@@ -27,7 +27,10 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
 # Table of Contents
 1. [Using this Guide](#using-this-guide)
 1. [Getting Started](#getting-started)
-2. [Features](#features)
+2. [Critical Warnings](#critical-warnings)  
+    1. [Unnecessary Whitespaces](#unnecessary-whitespaces)  
+    2. [Duplicated Flags](#duplicated-flags)
+4. [Features](#features)
    1. [Ingredients](#ingredients)
       - [Add Ingredients](#add-ingredients)
       - [Remove Ingredients](#remove-ingredients)
@@ -52,10 +55,10 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
    7. [Command List](#command-list)
-3. [Upcoming Features](#upcoming-features)
+5. [Upcoming Features](#upcoming-features)
    1. [Add Recipe](#add-recipe)
    2. [New Ingredient](#new-ingredient)
-4. [Conclusion](#conclusion)
+6. [Conclusion](#conclusion)
 
 
 # Using this Guide
@@ -95,6 +98,28 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 #### [Back to table of contents](#table-of-contents)  
 
 
+# Critical Warnings
+Due to the nature of Meal Companion as a CLI-based application, please take care to avoid malformed commands so as to avoid undesirable performance of Meal Companion. Some examples are shown below.
+
+## Unnecessary Whitespaces
+> **Warning**:
+> Meal Companion will not recognize ingredient names if there is an unexpected number (more than 1) of whitespaces between each word in the ingredient name.<br>
+> 
+> For example:<br>
+> ![whitespace.png](images/whitespace.png)<br>
+> <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`</sub> comamnds.</sub><br>
+> 
+> The above-mentioned warnings apply to all commands or ingredient names with whitespaces in between words. We cannot guarantee Meal Companion will function as expected if the warning is not adhered to. 
+
+## Duplicated Flags
+> **Warning**: 
+> Meal Companion will ignore duplicated flags in the `add` and `remove` commands, taking only the last valid `/qty` flag as the validated input. <br>
+> 
+> For example:<br>
+> ![dupflags.png](images/dupflags.png)<br>
+> <sub>Example of duplicated flags being ignored, only the last flag is acknowledged by Meal Companion.</sub>
+
+#### [Back to table of contents](#table-of-contents)
 
 # Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
@@ -111,6 +136,12 @@ For example, `add ground chicken /qty 300`.
 
 > **Note**: Ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredients search`](#search-ingredients) command to figure it out.
 
+<br>
+
+> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) and [Duplicated Flags](#duplicated-flags) for examples specific to the `add` command.
+<br>
+
 > **Note**: Look out for the new [`new ingredient`](#new-ingredient) feature coming out soon!
 
 ![add1.png](images/add1.png)  
@@ -123,6 +154,12 @@ For example, `remove ground chicken /qty 100`.
 
 ![remove1.png](images/remove1.png)  
 <sub>Fig 4: Sample of Remove Ingredients command with user input highlighted.</sub>
+
+<br>
+
+> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) and [Duplicated Flags](#duplicated-flags) for examples specific to the `remove` command.
+<br>
 
 
 ### List Ingredients
@@ -137,6 +174,12 @@ If you would like to search for a specific ingredient that Meal Companion recogn
 
 ![search11.png](images/search11.png)  
 <sub>Fig 6: Sample of Ingredients Search command with user input highlighted.</sub>
+
+<br>
+
+> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `ingredients search` command.
+<br>
 
 Omitting the keyword will return a list of all valid ingredients.
 
@@ -172,12 +215,25 @@ You may inform Meal Companion of any allergens you have by using the command `al
 ![allergenadd.png](images/allergenadd.png)  
 <sub>Fig 9: Sample of Allergen Add command with user input highlighted.</sub>
 
+<br>
+
+> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
+<br>
+
 
 ### Remove Allergens
 If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command `allergen remove water`.
 
 ![allergenremove.png](images/allergenremove.png)  
 <sub>Fig 10: Sample of Allergen Remove command with user input highlighted.</sub>
+
+<br>
+
+> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
+<br>
+
 
 
 ### List Allergens
@@ -251,7 +307,7 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 
 > **Warning**: `recipe random` may generate a recipe containing your allergens. A warning will be displayed in the recipe should it contains your allergen.
 
-> **Tip**: Simple run `recipe random` again to get a different recipe that might not contain your allergen!
+> **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
 ![reciperandom.png](images/reciperandom.png)  
 <sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
@@ -315,6 +371,11 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 > **Warning**:
 > Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
 > We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
+
+
+> **Tip**: If your file is corrupted or you edited it incorrectly, you may start afresh by deleting the `ingredients.txt` file and relaunching Meal Companion.<br>
+
+> **Warning**: This will remove all your stored ingredients and this action is not reversible.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
