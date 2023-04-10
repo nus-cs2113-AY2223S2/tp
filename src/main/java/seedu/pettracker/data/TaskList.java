@@ -53,7 +53,16 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
-    public static void editTask(int taskNumber, String newDescription, LocalDate newTime) {
+    public static void editTask(int taskNumber, String newDescription, LocalDate newTime) throws
+            InvalidTaskNameException, EmptyTaskNameException {
+        if (newDescription.trim().contains("|")) {
+            throw new InvalidTaskNameException();
+        }
+
+        if (newDescription.trim().isEmpty()) {
+            throw new EmptyTaskNameException();
+        }
+
         Task task = taskList.get(taskNumber - 1);
         task.description = newDescription;
         task.deadline = newTime;
