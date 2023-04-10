@@ -192,6 +192,10 @@ Reference prepareBudgetCommand Sequence Diagram:
 
 ![budgetParser.png](diagrams%2Fremove%2FbudgetParser.png)
 
+Reference BudgetCommandType Sequence Diagram:
+
+![BudgetCommandType.png](diagrams%2Fremove%2FBudgetCommandType.png)
+
 Reference listDeadlineCommand Sequence Diagram:
 
 ![deadlinelistParser.png](diagrams%2Fremove%2FdeadlineListParser.png)
@@ -752,5 +756,19 @@ Example of Test cases:
 
 **2. Testing of Budget Features**
 
+Essential Commands:
+
+1. /budget /budget [AMOUNT]
+2. /budget /accommodation [AMOUNT]
+3. /budget /airplane [AMOUNT]
+4. /budget /food [AMOUNT]
+5. /budget /entertainment [AMOUNT]
+6. /budget /view
+
+Example of Test case:
+
+`/budget /budget 3000` -> `/budget /accommodation 600` -> `/budget /food 400` -> `/budget /airplane 600`
+-> `/budget /entertainment 300` -> `/budget /view`
 
 **3. Testing of Deadline Features**
+
