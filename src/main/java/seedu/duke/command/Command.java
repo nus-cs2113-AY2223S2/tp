@@ -78,7 +78,7 @@ public class Command {
                 String recipeName = parsed.get(RECIPE_NAME_INDEX);
                 IngredientList ingredientLists =
                         Parser.parseIngredients(parsed.get(RECIPE_INGREDIENTS_INDEX));
-                String recipeTag = parsed.get(RECIPE_TAG_INDEX).toString();
+                String recipeTag = parsed.get(RECIPE_TAG_INDEX);
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 RecipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
