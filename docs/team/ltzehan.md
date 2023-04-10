@@ -36,9 +36,14 @@ Support for simple comparison of `InkaUUID` classes
 
 ## DG Contributions
 
-- [Architecture diagram](../img/Architecture.svg)
-- Parser design considerations, [class diagram](../img/ParserClass.svg), and [sequence diagram](../img/ParserSequence.svg)
-- CardSelector/TagSelector design considerations and [class diagram](../img/SelectorClass.svg)
+- Architecture diagram
+- Parser design considerations, class diagram, and sequence diagram
+- CardSelector/TagSelector design considerations and class diagram
+
+![](../img/Architecture.svg)
+![](../img/ParserSequence.svg)
+![](../img/ParserClass.svg)
+![](../img/SelectorClass.svg)
 
 ## Review Contributions
 
