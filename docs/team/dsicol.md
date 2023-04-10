@@ -32,6 +32,11 @@ MyLedger is a desktop app for managing finances, designed for university student
    - **Justification**: The `AccommodationExpenditure` and `TuitionExpenditure` are lump sum payments and must be paid within a period of time. The nature of these expenditures are repeating and thus, users can trust MyLedger to unmark the aforementioned expenditures to serve as an annual reminder.
    - **Highlights**: This was a challenging feature as `LocalDate` is used extensively to compare the dates. Additionally, the method must be ran for the check to be ran, thus this is implemented in the main loop logic of the program. After a year has passed, the program will retain the day and month values of the repeat date, and increment the year. This will only run once every year and only ran after the specified date is reached or passed.
 
+   6. **Fix save file reading related bugs**
+   - **What it does**: The save file stores all expenditures from the most recent expenditure list.
+   - **Justification**: Upon corruption of the save file, the program oringally crashes. With the fixes, only individual corrupted expenditures are deleted, uncorrupted expenditures can still be loaded.
+   - **Highlights**: Considering all possible combinations for corruption was challenging. Now the save file reading complies with the input rules defined by the application.
+
 #### Code Contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dsicol&tabRepo=AY2223S2-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 #### Project Management:
@@ -43,6 +48,7 @@ MyLedger is a desktop app for managing finances, designed for university student
 1. Enhancements:
    - Improved `AccommodationExpenditure` and `TuitionExpenditure` to be unmarked 1 year after setting it. This is due to the repeating nature of these expenditures. (Pull request [#132](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/132))
    - Wrote additional tests for the command classes to increase test coverage (Pull request [#40](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/40)).
+   - Fix save file reading bugs (Pull request [#145](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/145), [#153](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/153)).
 
 #### Documentation: 
 1. User Guide:
@@ -51,10 +57,12 @@ MyLedger is a desktop app for managing finances, designed for university student
 
 2. Developer Guide
    - Added documentation and class diagram for **Expenditure categories**.
+   - Added documentation and sequence diagram for `repeatDate` process.
    - Added documentation and class diagram for **Command component**.
    - Added documentation and sequence diagram for **Add expenditure command** in the **Command List** section.
+   - Added documentation and explanations for the `SortCommand`.
 
 #### Team-based Tasks
 1. Initiated, led, and contributed to weekly discussions.
-2. PR reviewed with non-trivial review comments [#22](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/22)
-3. Non-trivial bug fixes: [#127](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/127)
+2. PR reviewed with non-trivial review comments [#22](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/22), [#151](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/151), [144](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/144), 
+3. Non-trivial bug fixes: [#127](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/127), [#145](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/145), [#153](https://github.com/AY2223S2-CS2113-T14-3/tp/pull/153)
