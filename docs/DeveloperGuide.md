@@ -12,12 +12,13 @@
     * [Parser](#parser)
     * [Command](#command)
     * [Features](#features)
-      * [Duplication checker feature](#duplication-checker-feature)
       * [Add feature](#add-feature)
+      * [Duplication checker feature](#duplication-checker-feature)
       * [Delete feature](#delete-feature)
       * [List companies feature](#list-companies-feature)
       * [Store/Load Company information to/from text file feature](#storeload-company-information-tofrom-text-file-feature)
       * [Storing event details feature](#storing-event-details-feature)
+    * [Exceptions](#custom-exceptions)
 3. [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -95,7 +96,7 @@ Parser involves dealing with parsing user input to understand what the user want
 ### Command
 Command classes are executed after the parser class has processed the user input. 
 
-The following <code>Command</code> classes inherits from the main <code>Command</code> class and
+The following Command classes inherits from the main <code>Command</code> class and
 executes different code.
 
 ![AddCommand_Class.png](UML%2FImage%2FAddCommand_Class.png)
@@ -116,7 +117,7 @@ Fig 7: Shows an high level overview of the <code>addCommand</code> execute metho
 
 #### Duplication checker feature
 
-The <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
+The duplicationChecker is facilitated by <code>CompanyList</code>. It will check against the existing
 <code>CompanyList</code> to check if the company has already been added. The check is done in 3 ways: `company name`,
 `contact number`, and `contact email`. If any one of the above-mentioned details are identical to the ones already present
 in the <code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
@@ -150,11 +151,11 @@ stored will be parsed and added to a local ArrayList. If the text file does not 
 
 ![Encoder.png](UML%2FImage%2FEncoder.png)
 
-Fig 6: Shows how the <code>CompanyListEncoder</code> deals with saving the data to the text file.
+Fig 9: Shows how the <code>CompanyListEncoder</code> deals with saving the data to the text file.
 
 ![Decoder.png](UML%2FImage%2FDecoder.png)
 
-Fig 7: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
+Fig 10: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
 
 ####  Storing event details feature
 The eventDetailStorage feature will allow users to save the event details of the current session to hard disk.
@@ -174,8 +175,9 @@ Custom exceptions are created to catch erroneous user inputs that might otherwis
 exceptions are caught, specific error messages are displayed to the user to indicate why their input was unsuccessful.
 These custom exceptions inherit from the Exception Class.
 
-[Exceptions.puml](UML%2FExceptions.puml)
-Fig 9: Shows the class diagram of custom Exceptions used in EveNtUS
+![Exceptions.png](UML%2FImage%2FExceptions.png)
+
+Fig 12: Shows the class diagram of custom Exceptions used in EveNtUS
 
 ## Product scope
 ### Target user profile

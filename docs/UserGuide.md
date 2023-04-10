@@ -20,6 +20,8 @@
       | [purge](#purge)
     * [find companies](#find-companies)
       | [industry](#find-industry)
+    * [filter venues](#filter-venues)
+    * [exit](#exit)
 
 4. [Summary of the Commands](#summary-of-the-commands)
 
@@ -155,7 +157,7 @@ Add the company to the list of companies, and updates the company list text file
 * Format: `add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL]`
 
     * All fields should not be empty.
-    * `[COMPANY_NAME]` can be both letters and numbers.
+    * `[COMPANY_NAME]` can be any character.
     * `[INDUSTRY]` should contain at least one alphabet.
     * `[CONTACT_NUMBER]` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9. Spaces between numbers would be automatically removed.
     * `[EMAIL]` should be valid email address containing but not does not start/end with "@" symbol. No space is allowed.
@@ -189,6 +191,7 @@ To see the list of venues, refer to [list venues](#list-venues)
 
 * Format: `choose venue [INDEX]`
     * `[INDEX]` must be in the range of the list of venues.
+    * There must only be one space between `venue` and `[INDEX]`.
 
 * Example of usage:
 
@@ -229,9 +232,11 @@ ____________________________________________________________
 
 ### Confirm
 Mark the status of a specific company's attendance as confirmed, and
-updates a status icon to [Confirmed] that represents it being marked confirmed.
+updates a status icon to `[Confirmed]` that represents it being marked confirmed.
 
 * Format: `confirm [INDEX]`
+  * There must only be one space between `confirm` and `[INDEX]`.
+
 
 * Example of usage: `confirm 1`
 
@@ -256,9 +261,11 @@ ____________________________________________________________
 
 ### Unconfirm
 Mark the status of a specific company's attendance as unconfirmed, and
-updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
+updates a status icon to `[Unconfirmed]` that represents it being marked unconfirmed.
 
 * Format: `unconfirm [INDEX]`
+  * There must only be one space between `unconfirm` and `[INDEX]`.
+
 
 * Example of usage: `unconfirm 1`
 
@@ -362,6 +369,7 @@ ____________________________________________________________
 Delete a company from the company list, and updates the company list text file.
 
 * Format: `delete [INDEX]`
+    * There must only be one space between `delete` and `[INDEX]`.
 
 * Example of usage: `delete 1`
 
@@ -467,12 +475,24 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
+* If there are no companies in that industry, it will still print a similar message. 
+* Expected outcome if no companies in ABC industry:
+
+```
+____________________________________________________________
+Here are the companies in <ABC> field.
+____________________________________________________________
+
+```
+
+
 
 ### Filter Venues
 Filter the venues based on the capacity specified by the user.
 
 * Format: `filter venues [SIZE]`
-    * `[SIZE]` must be an integer greater than or equal to zero.
+  * `[SIZE]` must be an integer greater than or equal to zero.
+  * There must only be one space between `venues` and [SIZE].
 
 * Example of usage: `filter venues 10`
 
@@ -506,20 +526,21 @@ ____________________________________________________________
 
 ## Summary of the Commands
 
-| Command                                                       | Usage                                              |
-|---------------------------------------------------------------|----------------------------------------------------|
-| help                                                          | display the commands of the application            |
-| list companies                                                | list the companies                                 |
-| list venues                                                   | list the venues                                    |
-| list unconfirmed                                              | list the companies yet to confirm their attendance |
+| Command                                                        | Usage                                              |
+|----------------------------------------------------------------|----------------------------------------------------|
+| help                                                           | display the commands of the application            |
+| list companies                                                 | list the companies                                 |
+| list venues                                                    | list the venues                                    |
+| list unconfirmed                                               | list the companies yet to confirm their attendance |
 | add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL] | add a company to the company list                  |
-| delete [INDEX]                                                | delete a company in the company list               |
-| confirm [INDEX]                                               | confirm a companies' attendance                    |
-| unconfirm [INDEX]                                             | unconfirm a companies' attendance                  |
-| load samples                                                  | load samples company data for manual testing       |
-| purge                                                         | delete the company list data                       |
-| find company [COMPANY_NAME]                                   | find the companies based on a company name         |
-| find industry [INDUSTRY]                                      | find the companies within an industry              | 
-| choose venue [INDEX]                                          | updates the venue of the event                     |
-| update event name [EVENT_NAME]                                | updates the name of the event                      |
-| exit                                                          | exit the application                               |
+| delete [INDEX]                                                 | delete a company in the company list               |
+| confirm [INDEX]                                                | confirm a companies' attendance                    |
+| unconfirm [INDEX]                                              | unconfirm a companies' attendance                  |
+| load samples                                                   | load samples company data for manual testing       |
+| purge                                                          | delete the company list data                       |
+| find company [COMPANY_NAME]                                    | find the companies based on a company name         |
+| find industry [INDUSTRY]                                       | find the companies within an industry              | 
+| filter venues [SIZE]                                           | filter the venues by size                          | 
+| choose venue [INDEX]                                           | updates the venue of the event                     |
+| update event name [EVENT_NAME]                                 | updates the name of the event                      |
+| exit                                                           | exit the application                               |

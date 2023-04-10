@@ -65,7 +65,7 @@ public class Eventus {
                 ui.showLine();
             } catch (NumberFormatException err) {
                 ui.showLine();
-                System.out.println("Number expected! Please type <help> for more information");
+                System.out.println("Integer expected! Please type <help> for more information");
                 ui.showLine();
             } catch (IntegerSizeExceededException err) {
                 ui.showLine();
