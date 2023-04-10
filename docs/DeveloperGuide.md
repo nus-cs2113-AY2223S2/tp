@@ -69,6 +69,7 @@
     - [Storage](#storage-1)
     - [Unit Tests](#unit-tests-1)
 
+<!-- @@author jinxuan-owyong -->
 # Design
 
 ## Architecture
@@ -128,6 +129,7 @@ in [`Frontend.java`](https://github.com/AY2223S2-CS2113-W15-2/tp/blob/master/src
 - If the request is successful, the user is updated through `UI`. Otherwise the error message
   corresponding the user's action is printed instead.
 
+<!-- @@author -->
 <!-- @@author adenteo -->
 
 ### Parser
@@ -172,6 +174,8 @@ command: `/add -d McDonalds -c Food -p 10.50`
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
+
+<!-- @@author -->
 <!-- @@author kaceycsn -->
 
 ### Commands
@@ -242,6 +246,7 @@ The following activity diagram summarizes what happens when a user executes a de
 
 ![DeleteCommandActivityDiagram](static/frontend/commands/DeleteCommandActivityDiagram.png)
 
+<!-- @@author -->
 <!-- @@author leonghuenweng -->
 
 #### Edit Command
@@ -377,6 +382,7 @@ To find out more, visit the following sections:
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author -->
 <!-- @@author nghochi123 -->
 
 ### Storage
@@ -448,7 +454,7 @@ The sequence diagram for specific request handling at each endpoint can be viewe
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
 | Endpoint   | Method to call             |
-|------------|----------------------------|
+| ---------- | -------------------------- |
 | `/entry`   | `requestEntryEndpoint()`   |
 | `/entries` | `requestEntriesEndpoint()` |
 
@@ -536,7 +542,7 @@ __`FILTER_BY_TIME_START`__ AND __`FILTER_BY_TIME_END`__ DateTime (dd/MM/yy HH:mm
 __Responses__
 
 | Status Code | Description           | Remarks                                                                                        |
-|-------------|-----------------------|------------------------------------------------------------------------------------------------|
+| ----------- | --------------------- | ---------------------------------------------------------------------------------------------- |
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise`                  |
 | `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid category, date, ID, etc.) |
 
@@ -568,7 +574,7 @@ N/A
 __Responses__
 
 | Status Code | Description           | Remarks                                                                                         |
-|-------------|-----------------------|-------------------------------------------------------------------------------------------------|
+| ----------- | --------------------- | ----------------------------------------------------------------------------------------------- |
 | `201`       | Created               | -                                                                                               |
 | `422`       | Unprocessable Content | Response message will provide more information on the error (Invalid description, amount, etc.) |
 
@@ -594,7 +600,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-|-------------|-------------|----------------------------------------------------------------------|
+| ----------- | ----------- | -------------------------------------------------------------------- |
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -620,7 +626,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-|-------------|-------------|----------------------------------------------------------------------|
+| ----------- | ----------- | -------------------------------------------------------------------- |
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -656,7 +662,7 @@ __`EDIT_DESCRIPTION`__ string
 __Responses__
 
 | Status Code | Description           | Remarks                                                              |
-|-------------|-----------------------|----------------------------------------------------------------------|
+| ----------- | --------------------- | -------------------------------------------------------------------- |
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |
@@ -691,6 +697,7 @@ operations. The backend returns a `Response`, which is then processed by the fro
 
 <!-- ## [Proposed] Undo/Redo feature -->
 
+<!-- @@author jinxuan-owyong -->
 # Testing
 
 ## Unit Tests
@@ -745,6 +752,8 @@ class TestEntriesGet extends EntryTestUtil {
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
+<!-- @@author -->
+
 <!-- ## Integration Testing
 
 Integration testing in our application is performed by testing `Frontend` and `Backend`, where we ensure that the relevant features 
@@ -760,7 +769,7 @@ for each major component is working, before they are combined and tested through
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div> -->
 
-<!-- @@author adenteo -->
+<!-- D adenteo -->
 
 ## Instructions for manual testing
 
@@ -1098,7 +1107,9 @@ More test cases will be added as more features are introduced.
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
+<!-- @@author -->
 
+<!-- @@author hochi123 -->
 ## Testing with sample data (from file)
 
 PocketPal stores data in a *storage.txt* file under the "*data/*" directory. Each row in the "*storage.txt*" file
@@ -1148,6 +1159,7 @@ replicated as follows:
    > therefore not allowed.
 4. Not enough columns: If a row has insufficient columns compared to what is needed, the Entry cannot be created.
    > Example row: Apple Juice,5.50 - In this case, there are only two categories which is not allowed.
+<!-- @@author -->
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -1179,22 +1191,22 @@ By delivering a comprehensive and automated overview of users' income and expens
 
 ## User Stories
 
-| Version | As a ...                         | I want to ...                                                  | So that I can ...                                                      |
-| ------- | -------------------------------- | ---------------------------------------------------            | ---------------------------------------------------------------------- |
-| v1.0    | user                             | easily input my expenses                                       | add expenses quickly                                                   |
-| v1.0    | user                             | view my total expenditure at a glance                          | plan my finances well                                                  |
-| v1.0    | user                             | edit expenditures                                              | correct my mistakes and track my expenditures properly                 |
-| v1.0    | user                             | delete expenditures                                            | remove wrongly tracked expenditures                                    |
-| v1.0    | business owner                   | have different categories                                      | have better flexibility in planning my budget for different categories |
-| v1.0    | user                             | be able to add my income as well                               | track my net cash flow                                                 |
-| v1.0    | less tech savvy user             | have a help function                                           | get assistance whenever I'm not sure of how to do something in the app |
-| v1.0    | user with many expenses to track | limit the number of expenses displayed                         | see only a limited number of expenses at a time                        |
-| v2.0    | user with many expenses to track | filter an expense item by description                          | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by category                             | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by start and end date                   | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | filter an expense item by minimum and maximum price            | locate an expense without having to go through the entire list         |
-| v2.0    | user with many expenses to track | delete multiple expenses at once                               | save time by not needing to delete expenses one by one                 |
-| v2.0    | careless user                    | get accurate feedback and errors when I enter wrong commands   | intuitively know how to correct my command                             |
+| Version | As a ...                         | I want to ...                                                | So that I can ...                                                      |
+| ------- | -------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| v1.0    | user                             | easily input my expenses                                     | add expenses quickly                                                   |
+| v1.0    | user                             | view my total expenditure at a glance                        | plan my finances well                                                  |
+| v1.0    | user                             | edit expenditures                                            | correct my mistakes and track my expenditures properly                 |
+| v1.0    | user                             | delete expenditures                                          | remove wrongly tracked expenditures                                    |
+| v1.0    | business owner                   | have different categories                                    | have better flexibility in planning my budget for different categories |
+| v1.0    | user                             | be able to add my income as well                             | track my net cash flow                                                 |
+| v1.0    | less tech savvy user             | have a help function                                         | get assistance whenever I'm not sure of how to do something in the app |
+| v1.0    | user with many expenses to track | limit the number of expenses displayed                       | see only a limited number of expenses at a time                        |
+| v2.0    | user with many expenses to track | filter an expense item by description                        | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by category                           | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by start and end date                 | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | filter an expense item by minimum and maximum price          | locate an expense without having to go through the entire list         |
+| v2.0    | user with many expenses to track | delete multiple expenses at once                             | save time by not needing to delete expenses one by one                 |
+| v2.0    | careless user                    | get accurate feedback and errors when I enter wrong commands | intuitively know how to correct my command                             |
 
 
 <div style="text-align: right;">
