@@ -8,6 +8,11 @@ import seedu.duke.ui.Ui;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Handles saving company information from ArrayList to text file so that saved data can be retrieved even if the user
+ * exits the program
+ */
+
 public class CompanyListEncoder extends Storage {
 
     private static final String filePath = "data/companyList.txt";
@@ -17,7 +22,8 @@ public class CompanyListEncoder extends Storage {
         try {
             FileWriter fw = new FileWriter(filePath);
             int numberOfCompanies = companyList.getNumberOfCompanies();
-            if (numberOfCompanies == 0) { //If the last company in the array list is deleted clear the entire text file
+            // If the last company in the array list is deleted clear the entire text file
+            if (numberOfCompanies == 0) {
                 fw.write("");
                 fw.close();
             }

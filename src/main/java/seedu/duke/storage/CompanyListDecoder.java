@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles copying company information from text file to ArrayList so that the user can access their saved data
+ */
+
 public class CompanyListDecoder extends Storage {
 
     private static final String filePath = "data/companyList.txt";
@@ -52,6 +56,7 @@ public class CompanyListDecoder extends Storage {
         return parsedline;
     }
 
+    // Packages parsed input into Company object and stores company object in ArrayList
     private static void writeToCompanyList(CompanyList companyList, String[] parsedInput)
             throws InvalidIndexException, java.io.IOException{
         Ui ui = new Ui();
@@ -61,6 +66,7 @@ public class CompanyListDecoder extends Storage {
             String contactEmail = parsedInput[2];
             int status = Integer.parseInt(parsedInput[3]);
             String industry = parsedInput[4];
+            // Converts status to confirmed if status == 1, else leaves company as unconfirmed
             Company company = new Company(companyName, industry,
                     contactNumber, contactEmail, (status == 1 ? true : false ));
             ArrayList<Company> companyList1 = companyList.getCompanyList();
