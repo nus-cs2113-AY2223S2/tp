@@ -10,12 +10,14 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Ingredient Class](#ingredient-class)
    - [Recipe Class](#recipe-class)
 4. [Implementation](#implementation)
-   - [Add and Remove Command](#add-and-remove-command)
-   - [Clear Command](#clear-command)
-   - [Make Command](#make-command)
-   - [Recipe Detail Command](#recipe-detail-command)
-   - [Recipe Possible Command](#recipe-possible-command)
-   - [Recipe All Command](#recipe-all-command)
+   - [Ingredients](#ingredients)
+     - [Add and Remove Command](#add-and-remove-command)
+     - [Clear Command](#clear-command)
+   - [Recipes](#recipe)
+     - [Make Command](#make-command)
+     - [Recipe Detail Command](#recipe-detail-command)
+     - [Recipe Possible Command](#recipe-possible-command)
+     - [Recipe All Command](#recipe-all-command)
    - [Storage Feature](#storage-feature)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 6. [Appendix: Requirements](#appendix-requirements)
@@ -120,7 +122,12 @@ The current `MealCompanionSession` would keep track of the `RecipeList` which is
 
 ## Implementation
 
-### Add and Remove Command
+### Ingredients
+The following sections will cover the implementation of features related to ingredients.
+
+###### [Back to table of contents](#table-of-contents)
+
+#### Add and Remove Command
 
 The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient` of `MealCompanionSession`.
 
@@ -152,7 +159,7 @@ Below shows the sequence diagram for the above RemoveCommand:
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Clear Command
+#### Clear Command
 
 The clear command is facilitated by "ClearCommand"
 
@@ -162,11 +169,20 @@ The clear commands clears all ingredients currently in inventory
 
 The following sequence diagram shows how the Clear Command works:
 
-![ClearSequenceUML.png](images/ClearSequenceUML.png)
+![ClearSequenceUML.png](images\ClearSequenceUML.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Make Command
+### Recipes
+The following sections will cover the implementation of features related to recipes.
+
+The activity diagram summarises how a user can use these features. 
+
+![RecipeActivity.png](images\RecipeActivity.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+#### Make Command
 
 The make command is facilitated by `MakeCommand`.
 
@@ -184,25 +200,7 @@ The following sequence diagram shows how the Make Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Storage Feature
-
-The proposed storage mechanism of ingredients is facilitated by `IngredientStorage`. 
-
-It requires `IngredientList` of `MealCompanionSession`.
-
-This features saves ingredient list data in json format and reads them back into ingredient objects.
-
-The following sequence diagram shows how data storage works:
-
-![StorageSequenceUML.png](images/StorageSequenceUML.png)
-
-The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
-
-![StoargeActivity.png](images/StorageActivity.png)
-
-###### [Back to table of contents](#table-of-contents)
-
-### Recipe Detail Command
+#### Recipe Detail Command
 
 The recipe command is facilitated by `RecipeDetailCommand`. 
 
@@ -218,7 +216,7 @@ The following sequence diagram shows how the Recipe Detail Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Recipe Possible Command
+#### Recipe Possible Command
 
 The recipe possible command is facilitated by `RecipePossibleCommand`. 
 
@@ -240,7 +238,7 @@ The following sequence diagram shows how the Recipe Possible Command works:
 
 ###### [Back to table of contents](#table-of-contents)
 
-### Recipe All Command
+#### Recipe All Command
 
 The recipe possible command is facilitated by `RecipeAllCommand`.
 
@@ -257,6 +255,52 @@ Step 3: Every `Recipe` in `RecipeList` is outputted.
 The following sequence diagram shows how the Recipe All Command works:
 
 ![RecipeAllCommandSequence.png](images%2FRecipeAllCommandSequence.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+#### Recipe Almost Command
+
+The recipe almost command is facilitated by `RecipeAlmostCommand`.
+
+It requires `RecipeList` and `IngredientList` of `MealCompanionSession`.
+
+Given below is the only example usage scenario and how the recipe possible command behaves at each step.
+
+Step 1: User wants to get a list of recipes that can almost be made with the current list of ingredients, i.e. the user is missing less than 4 ingredients to make the recipe. User calls `recipe almost`.
+
+Step 2: `RecipeAlmostCommand` executes by retrieving the `RecipeList` and `IngredientList` of `MealCompanionSession`.
+
+Step 3: Each `Recipe` in `RecipeList` is checked by the ingredients it needs against the `Ingredient` in `IngredientList`, to determine how many missing ingredients there are.
+
+Step 4: `Recipe` that contain less than 4 missing ingredients are listed.
+
+###### [Back to table of contents](#table-of-contents)
+
+#### Recipe Need Command
+
+The recipe need command is facilitated by `RecipeNeedCommand`.
+
+It requires `RecipeList` and `IngredientList` of `MealCompanionSession`.
+
+It takes in a recipe index, retrieves the `Recipe` from the `RecipeList` and outputs the additional `Ingredients` required to make the `Recipe` that are missing from the `IngredientList`.
+
+###### [Back to table of contents](#table-of-contents)
+
+### Storage Feature
+
+The storage mechanism of ingredients is facilitated by `IngredientStorage`.
+
+It requires `IngredientList` of `MealCompanionSession`.
+
+This features saves ingredient list data in json format and reads them back into ingredient objects.
+
+The following sequence diagram shows how data storage works:
+
+![StorageSequenceUML.png](images/StorageSequenceUML.png)
+
+The following activity diagram summarizes what happens when a user executes a command which alters the ingredients list:
+
+![StoargeActivity.png](images/StorageActivity.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -349,8 +393,6 @@ Our product targets students who would like to save money on buying or ordering 
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
-
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should respond to a command within a second.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -396,7 +438,7 @@ Expected: Similar to previous.
 
 ### Saving Data
 1. Dealing with corrupted data file
-   * To simulate a corrupted data file, <br>
-   Expected: MealCompanion to throw error message notifying users of corrupted data file.
+   * To simulate a corrupted data file, modify the format of the data stored in `ingredients.txt` file. <br>
+   Expected: MealCompanion to throw error message notifying users of corrupted data file, program still runs normally.
 
 ###### [Back to the top](#developer-guide)
