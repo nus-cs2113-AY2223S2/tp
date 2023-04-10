@@ -1,6 +1,1 @@
-remote_theme: chrisrhymes/bulma-clean-theme
-
-header_pages: 
-  - AboutUs.md
-  - UserGuide.md
-  - DeveloperGuide.md
+theme: minima
