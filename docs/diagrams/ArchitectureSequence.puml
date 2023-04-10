@@ -10,42 +10,49 @@ Participant ":Command" as command COMMAND_COLOR
 Participant ":Userdata" as userdata USERDATA_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-activate ui UI_COLOR
 activate main #grey
+main ->ui : readUserCommand()
+activate ui UI_COLOR
 user -[USER_COLOR]> ui : delete 1
-ui --> main : :String
+ui --> main : : String
 deactivate ui
 
-main -> parser : parseUserInput(userInput:String)
+main -> parser : parseUserInput( : String)
 activate parser #black
 
 create command
-parser -> command : new DeleteCommand
+parser -> command : DeleteCommand( : int)
 activate command COMMAND_COLOR
 
 command --> parser : : DeleteCommand
 deactivate command
 parser --> main : : DeleteCommand
 deactivate parser
+parser <-[hidden]- parser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy parser
 
 main -> command : execute()
 activate command COMMAND_COLOR
-command -> userdata :deleteStatement\n(statementIndex:int)
+command -> userdata :deleteStatement( : int)
 activate userdata USERDATA_COLOR
 userdata --> command
 deactivate userdata
-command --> main
+command --> main: : CommandResult
 deactivate command
 command <-[hidden]- command
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 destroy command
 
+main -> ui: printToUser( : String)
+
 activate ui UI_COLOR
-ui --> user
-main -> storage : writeToFile(savedData:SavedData, filePath:String)
+ui -> user : Print result
+ui --> main
 deactivate ui
+main -> storage : writeToFile( : SavedData, : String)
+
 activate storage STORAGE_COLOR_T1
 storage --> main
 deactivate storage
-
 @enduml

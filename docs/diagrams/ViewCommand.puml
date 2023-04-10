@@ -12,13 +12,20 @@ loop sizeOfFinancialReport
     UserData --> ViewCommand: FinancialStatement[i]
     deactivate UserData
     end
-        alt sortingRequired
-        ViewCommand -> ViewCommand : sortByValue
-        else
-        ViewCommand -> ViewCommand : sortByDate
+
+    alt sortingRequired
+        ViewCommand -> ViewCommand : sortByValue(validIndexes : ArrayList<Integer>)
+        activate ViewCommand
+        ViewCommand --> ViewCommand
+        deactivate ViewCommand
+    else else
+        ViewCommand -> ViewCommand : sortByDate(validIndexes : ArrayList<Integer>)
+        activate ViewCommand
+        ViewCommand --> ViewCommand
+        deactivate ViewCommand
     end
 
-    ViewCommand -> ViewResult : printReport(validIndexes  :  arrayList<Integer>)
+    ViewCommand -> ViewResult : printReport(validIndexes : ArrayList<Integer>)
     activate ViewResult
 
 ViewResult ->] : Print Table Header to User
@@ -27,7 +34,6 @@ loop sizeOfArrayList
     activate UserData
     UserData --> ViewResult: FinancialStatement[i]
     deactivate UserData
-    ViewResult -> ViewResult : Convert to Valid String
     ViewResult ->] : Print Statement to User
     end
     ViewResult ->] : Print Summary to User

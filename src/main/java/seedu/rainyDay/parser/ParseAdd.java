@@ -30,16 +30,16 @@ public class ParseAdd extends Parser {
                 logger.info("returning new AddCommand object");
                 return new AddCommand(description.trim(), direction, amount, category, date);
             }
-            if (!addInput.contains("-c") && !addInput.contains("-date")) {
+            if (!addInput.contains("-c ") && !addInput.contains("-date ")) {
                 logger.info("returning new InvalidCommand object");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
             logger.info("checking for presence of -c");
-            if (addInput.contains("-c")) {
+            if (addInput.contains("-c ")) {
                 remainingInformation = setCategory(remainingInformation);
             }
             logger.info("checking for presence of -date");
-            if (addInput.contains("-date")) {
+            if (addInput.contains("-date ")) {
                 date = setDate(remainingInformation);
             }
             logger.info("returning new AddCommand object");
@@ -55,11 +55,11 @@ public class ParseAdd extends Parser {
     private String returnRemainingInformation(String input) throws RainyDayException {
         try {
             int flag = 0;
-            Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)");
+            Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\s+\\$([\\d.]+)");
             Matcher matcher = pattern.matcher(input);
             if (!matcher.matches()) {
                 flag = 1;
-                pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
+                pattern = Pattern.compile("-(in|out)\\s+(.+)\\s+\\$([\\d.]+)\\s+(.*)");
                 matcher = pattern.matcher(input);
                 if (!matcher.matches()) {
                     logger.warning("add command given by user in the wrong format");
@@ -68,24 +68,9 @@ public class ParseAdd extends Parser {
             }
             direction = matcher.group(1);
             description = matcher.group(2);
-            if (description.contains("-")) {
-                logger.warning("unsupported description name");
-                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
-            }
-            if (description.trim().isEmpty()) {
-                logger.warning("unsupported description name");
-                throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
-            }
 
-            double exactAmount = Double.parseDouble(matcher.group(3));
-            if (exactAmount > MAX_AMOUNT) {
-                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
-            }
-            exactAmount = (int) (exactAmount * 100);
-            if (exactAmount == 0) {
-                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
-            }
-            amount = exactAmount / 100;
+            checkDescription();
+            setValue(matcher.group(3));
 
             if (flag == 0) {
                 logger.info("obtaining mandatory information");
@@ -97,6 +82,29 @@ public class ParseAdd extends Parser {
             logger.warning("add command given by user in the wrong format");
             throw new RainyDayException(e.getMessage());
         }
+    }
+
+    private void checkDescription() throws RainyDayException {
+        if (description.contains("-")) {
+            logger.warning("unsupported description name");
+            throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
+        }
+        if (description.trim().isEmpty()) {
+            logger.warning("unsupported description name");
+            throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
+        }
+    }
+
+    private void setValue(String value) throws RainyDayException {
+        double exactAmount = Double.parseDouble(value);
+        if (exactAmount > MAX_AMOUNT) {
+            throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
+        }
+        exactAmount = (int) (exactAmount * 100);
+        if (exactAmount == 0) {
+            throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
+        }
+        amount = exactAmount / 100;
     }
 
     //@@author lil1n

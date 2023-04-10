@@ -39,4 +39,5 @@ loop editFlagAndField.size()
     deactivate EditCommand
     end
 end
+
 @enduml

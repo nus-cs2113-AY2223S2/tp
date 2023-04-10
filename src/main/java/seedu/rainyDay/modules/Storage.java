@@ -109,13 +109,13 @@ public class Storage {
     }
 
     /**
-     * Checks if the loaded savedData is valid.
+     * Checks if the loaded saved data is valid.
      *
-     * @param savedData The user data being loaded of JsonObject type.
+     * @param savedData The saved data being loaded of JsonObject type.
      * @throws RainyDayException If savedData is invalid.
      */
     private static void checkValidSavedData(JsonObject savedData) throws RainyDayException {
-        // check that UserData has the required fields
+        // check that the saved data has the required fields
         if (!savedData.has("financialReport")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_FINANCIAL_REPORT.toString());
         }
@@ -138,7 +138,7 @@ public class Storage {
     }
 
     /**
-     * Checks if the financialReport in the UserData is valid.
+     * Checks if the financialReport in the saved data is valid.
      *
      * @param financialReport The financialReport being loaded of JsonObject type.
      * @throws RainyDayException If financialReport is invalid.
@@ -161,7 +161,7 @@ public class Storage {
     }
 
     /**
-     * Checks if the financialStatements in the UserData is valid.
+     * Checks if the financialStatements in the saved data is valid.
      *
      * @param financialStatements The financialStatements being loaded of JsonObject type.
      * @throws RainyDayException If financialStatements is invalid.
@@ -218,7 +218,7 @@ public class Storage {
     }
 
     /**
-     * Checks if the shortcutCommands in the UserData is valid.
+     * Checks if the shortcutCommands in the Saved data is valid.
      *
      * @param shortcutCommands The shortcutCommands being loaded of JsonObject type.
      * @throws RainyDayException If shortcutCommands is invalid.
@@ -239,7 +239,7 @@ public class Storage {
     /**
      * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
-     * @param savedData The object containing the UserData to save.
+     * @param savedData The object containing the saved data to save.
      * @param filePath  The file path where the FinancialReport will be saved to.
      */
     public static void writeToFile(SavedData savedData, String filePath) {
@@ -247,11 +247,11 @@ public class Storage {
         logger.log(Level.INFO, "starting writeToFile");
         try {
             Files.createDirectories(Paths.get("./data"));
-            String jsonUserData = gson.toJson(savedData);
+            String jsonSavedData = gson.toJson(savedData);
             FileWriter fileWriter = new FileWriter(filePath);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(jsonUserData);
+            bufferedWriter.write(jsonSavedData);
             bufferedWriter.close();
             logger.log(Level.INFO, "writeToFile successfully executed");
 
