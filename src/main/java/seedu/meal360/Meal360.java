@@ -305,11 +305,15 @@ public class Meal360 {
         String line;
         Scanner userInput = new Scanner(System.in);
 
-        do {
-            line = userInput.nextLine();
-            receiveInput(line);
-        } while (!canExit);
-
-        exitApp();
+        try {
+            do {
+                line = userInput.nextLine();
+                receiveInput(line);
+            } while (!canExit);
+        } catch (Exception error) {
+            ui.printMessage("Force exit detected, attempting to save data...");
+        } finally {
+            exitApp();
+        }
     }
 }
