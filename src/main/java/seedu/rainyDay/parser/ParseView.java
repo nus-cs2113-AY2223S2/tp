@@ -50,6 +50,9 @@ public class ParseView extends Parser {
             try {
                 logger.info("obtaining relevant data");
                 int minusAmount = Integer.parseInt(matcher.group(1));
+                if (minusAmount == 0) {
+                    throw new RainyDayException(ErrorMessage.WRONG_VIEW_FORMAT.toString());
+                }
                 String dateType = matcher.group(2);
                 boolean sortRequired = matcher.group(3).equals("-sort");
                 if (dateType.equals("d") && minusAmount < 32) {
@@ -68,7 +71,6 @@ public class ParseView extends Parser {
                     startDate = startDate.minusYears(minusAmount);
                     return new ViewCommand(startDate, endDate, sortRequired, false);
                 }
-                logger.warning("view command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_VIEW_FORMAT.toString());
             } catch (Exception e) {
                 logger.warning("view command given by user in the wrong format");

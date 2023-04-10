@@ -631,6 +631,10 @@ inside it?
 **A**: The "logs" folder contains files that record the processes and status of rainyDay. The files are non-malicious 
 and their contents do not affect rainyDay's functions. The "logs" folder and its contents can be ignored or deleted.
 
+**Q**: I want to view my transactions for today, but `view 0d` does not work. What should I do?
+
+**A**: You can use the filter feature! To do that, you can type `filter -date [TODAY'S DATE]`
+
 ## Command Summary
 
 | Action                                          | Format <br> Example input                                                                                                                                                                                                                                    |
