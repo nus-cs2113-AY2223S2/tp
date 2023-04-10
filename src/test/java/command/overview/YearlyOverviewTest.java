@@ -19,10 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class YearlyOverviewTest {
 
-    private static final String TITLE = "Yearly Overview for ";
+    private static final String TITLE = "-------Yearly Overview for ";
+    private static final String TITLE_LINE  = "-------";
     private static final String MONTH_DIVIDER = "----------------------------";
     private static final String YEARLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String BREAKDOWN_TITLE = "Breakdown of expenses by month:";
+    private static final String END_OF_OVERVIEW = "-----------------END-----------------";
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -67,7 +69,7 @@ class YearlyOverviewTest {
 
         YearlyOverview yearlyOverview = new YearlyOverview(testExpenses, "2012");
         yearlyOverview.printYearlyOverview();
-        String expectedOutput = TITLE + "2012" + System.lineSeparator() + System.lineSeparator() +
+        String expectedOutput = TITLE + "2012" + TITLE_LINE + System.lineSeparator() + System.lineSeparator() +
                 TAB + YEARLY_OVERVIEW_TOTAL + "20.00 SGD" + System.lineSeparator() + System.lineSeparator() +
                 TAB + BREAKDOWN_TITLE + System.lineSeparator() +
                 TAB + MONTH_DIVIDER + System.lineSeparator() +
@@ -94,7 +96,8 @@ class YearlyOverviewTest {
                 TAB + WHITESPACE + "NOVEMBER 0.00 SGD" + System.lineSeparator() +
                 TAB + MONTH_DIVIDER + System.lineSeparator() +
                 TAB + WHITESPACE + "DECEMBER 0.00 SGD" + System.lineSeparator() +
-                TAB + MONTH_DIVIDER;
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                END_OF_OVERVIEW;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
 

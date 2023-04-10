@@ -15,13 +15,15 @@ import static common.MessageList.PERIOD;
 
 public class MonthlyOverview {
 
-    private static final String TITLE = "Monthly Overview for ";
+    private static final String TITLE = "-------------Monthly Overview for ";
+    private static final String TITLE_LINE = "-------------";
     private static final String MONTHLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String CATEGORY_TITLE =
-            "Breakdown of expenses by category in descending order by category sum:";
+            "Breakdown of expenses by category in descending order\n    by category sum:";
     private static final String CATEGORY_DIVIDER = "----------------------------";
     private static final String EMPTY_MONTH = "No expenses tracked in ";
     private static final String PERIOD = ".";
+    private static final String END_OF_OVERVIEW = "----------------------------END----------------------------";
 
     private String month;
     private String year;
@@ -57,13 +59,14 @@ public class MonthlyOverview {
             System.out.println(EMPTY_MONTH + month.toUpperCase() + WHITESPACE + year + PERIOD);
         } else {
             CommandTotal commandTotal = new CommandTotal(filteredExpenses);
-            System.out.println(TITLE + month.toUpperCase() + WHITESPACE + year);
+            System.out.println(TITLE + month.toUpperCase() + WHITESPACE + year + TITLE_LINE);
             System.out.println();
             System.out.println(TAB + MONTHLY_OVERVIEW_TOTAL +
                     commandTotal.calculateTotal().setScale(2, RoundingMode.HALF_UP) + WHITESPACE + "SGD");
             System.out.println();
             System.out.println(TAB + CATEGORY_TITLE);
             printCategoryBreakdown(filteredExpenses);
+            System.out.println(END_OF_OVERVIEW);
         }
     }
 
