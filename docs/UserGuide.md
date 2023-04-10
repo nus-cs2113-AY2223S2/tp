@@ -516,25 +516,25 @@ currencies, we require a limit on how far back the date can be set.
 ## Command Summary
 
 ### Account-related command 
-| Action                       | Command  |
-|------------------------------|----------|
-| Log in your account          | `login`  |
-| Create a new account         | `signup` |
-| Exit ET (inside the account) | `exit`   |
-| Log out of the account       | `logout` |
+|             Action             |  Command   |
+|:------------------------------:|:----------:|
+|      Log in your account       |  `login`   |
+|      Create a new account      |  `signup`  |
+|  Exit ET (inside the account)  |   `exit`   |
+|     Log out of the account     |  `logout`  |
 
 
 ### Expense management command
-| Action                        | Command                                                                       |
-|-------------------------------|-------------------------------------------------------------------------------|
-| Add an expense                | `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]` |
-| Delete an expense             | `delete INDEX`                                                                |
-| List all expenses             | `list`                                                                        |
-| Calculate total expenditure   | `total`                                                                       |
-| Sort                          | sort by category: `sort C`<br/>sort by date: `sort D`                         |
-| View expenses by category     | `category CATEGORY`                                                           |
-| Overview                      | monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`  |
-| Find expenses                 | `find KEYWORD`                                                                |
-| Exit ET (outside the account) | `exit`                                                                        |
+|             Action              |                                     Command                                     |
+|:-------------------------------:|:-------------------------------------------------------------------------------:|
+|         Add an expense          |  `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`  |
+|        Delete an expense        |                                 `delete INDEX`                                  |
+|        List all expenses        |                                     `list`                                      |
+|   Calculate total expenditure   |                                     `total`                                     |
+|              Sort               |              sort by category: `sort C`<br/>sort by date: `sort D`              |
+|    View expenses by category    |                               `category CATEGORY`                               |
+|            Overview             |  monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`   |
+|          Find expenses          |                                 `find KEYWORD`                                  |
+|  Exit ET (outside the account)  |                                     `exit`                                      |
 
 
