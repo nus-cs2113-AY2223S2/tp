@@ -323,20 +323,20 @@ public class SniffTasks {
      * Searches through APPOINTMENTS arraylist and checks if appointment with matching uID is stored
      * Prints out appointment details if found
      *
-     * @param uId the appointment ID to find in stored appointments
+     * @param uid the appointment ID to find in stored appointments
      * @throws SniffException if no appointment ID is given by user
      */
-    public void findAppointment(String uId) throws SniffException {
+    public void findAppointment(String uid) throws SniffException {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
             assert appointment.uid != null;
-            if (uId.equalsIgnoreCase(appointment.uid)) {
+            if (uid.equalsIgnoreCase(appointment.uid)) {
                 Ui.formatPrintList(counter, appointment.toString());
                 Ui.printBlankLine();
                 counter++;
             }
         }
-        if (uId.equals("")) {
+        if (uid.equals("")) {
             throw new SniffException(" No appointment ID provided!");
         }
         if (counter == 1) {

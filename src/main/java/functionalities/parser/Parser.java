@@ -269,7 +269,7 @@ public class Parser {
             // find a/dog or find t/surgery or find aID/123
             int animalIndex = task.indexOf("a/");
             int typeIndex = task.indexOf("t/");
-            int aIDIndex = task.indexOf("uID/");
+            int aIDIndex = task.indexOf("uid/");
             int dateIndex = task.indexOf("d/");
             if (animalIndex != -1) {
                 String details = task.substring(animalIndex + 2);
@@ -323,7 +323,7 @@ public class Parser {
 
     private static void parseMarkCommand(String task) throws SniffException {
         try {
-            int markIndex = task.indexOf("uID/");
+            int markIndex = task.indexOf("uid/");
             String markTask = task.substring(markIndex + 4);
             command = new MarkCommand(markTask);
         } catch (StringIndexOutOfBoundsException e) {
@@ -333,7 +333,7 @@ public class Parser {
 
     private static void parseUnmarkCommand(String task) throws SniffException {
         try {
-            int unmarkIndex = task.indexOf("uID/");
+            int unmarkIndex = task.indexOf("uid/");
             String unmarkTask = task.substring(unmarkIndex + 4);
             command = new UnMarkCommand(unmarkTask);
         } catch (StringIndexOutOfBoundsException e) {
@@ -365,7 +365,7 @@ public class Parser {
 
     private static void parseEditCommand(String task) throws SniffException {
         try {
-            int uidIndex = task.indexOf("uID/");
+            int uidIndex = task.indexOf("uid/");
             String type = task.substring(uidIndex + 4, uidIndex + 5);
             String uid = task.substring(uidIndex + 4, uidIndex + 14);
             if (type.equals("C")) {
@@ -440,7 +440,7 @@ public class Parser {
                 }
             }
         } catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException("The edit uID/ is invalid!");
+            throw new SniffException("The edit uid/ is invalid!");
         }
     }
 

@@ -183,15 +183,37 @@ Example of usage: Displays the marked appointments from Sniff Task List.
 ______________________________________________________________________
 archive
 ______________________________________________________________________
-1.  UID: S67775112T [X] | Priority: HIGH
+ 1.  Consultation   [X]
+ Date: 2023-11-03
+ Time: 10:00
+ UID: C64016488E
+ Animal Name: Mona | Animal Type: Cat
+ Owner Name: Becks | Contact Number: 90199000
+
+ 2.  Consultation   [X]
+ Date: 2023-11-12
+ Time: 19:00
+ UID: C41606700F
+ Animal Name: Peepoo | Animal Type: Dog
+ Owner Name: Ken | Contact Number: 99999999
+
+ 3.  Vaccination   [X]
+ Date: 2023-11-31
+ Time: 15:00
+ UID: V77751751P
+ Vaccine: Polyomavirus
+ Animal Name: Birdy | Animal Type: Bird
+ Owner Name: Ben | Contact Number: 10002999
+
+ 4.  Surgery  [X] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S44657158O
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
-2.  UID: V34624451A [X] | vaccine: covid
- Date: 2023-12-12 | Time: 19:00
- Animal Name: lulu | Animal Type: cat
- Owner Name: jon | Contact Number: 91919191
+
 ______________________________________________________________________
 ```
 
@@ -256,9 +278,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 ### Find by appointment UID / appointment type / animal type / date: <br>
-Format: `find a/dog` `find t/surgery` `find uID/123` `find d/2023-12-12` <br>
+Format: `find a/dog`, `find t/surgery`, `find uid/S02547136Q`, `find d/2023-12-12` <br>
 Retrieves specific appointments requested by user <br>
-Can filter by appointment ID, appointment type, animal type, date of appointment<br>
+Can filter by appointment UID, appointment type, animal type, date of appointment<br>
 Example of usage: Displays the requested appointments <br>
 
 ```
@@ -293,7 +315,7 @@ ______________________________________________________________________
 ```
 ```
 ______________________________________________________________________
-find uID/S02547136Q
+find uid/S02547136Q
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
  Start Date: 2023-12-12
@@ -323,90 +345,128 @@ ______________________________________________________________________
 ### Mark Appointment : `mark ` <br>
 
 This feature marks the appointment as done and is denoted by an `[X]`.
-The tasks are marked depending on the uID input the by user.
-If the uID entry is not valid it displays a corresponding error message.<br>
+The tasks are marked depending on the UID input the by user.
+If the UID entry is not valid it displays a corresponding error message.<br>
 
-Format : `mark uID/ `
-Example : `mark uID/V14082745S`
+Format : `mark uid/ `
+Example : `mark uid/V14082745S`
 
 Example of Valid Command:
 
 ```
-mark uID/C26135173W
+mark uid/C26135173W
 ______________________________________________________________________
+ 1.  UID: C67345117A [X]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Oreo | Animal Type: Cat
+ Owner Name: fred | Contact Number: 91919191
+
+
 The appointment has been marked successfully
-Task marked successfully!
 ______________________________________________________________________
 ```
 Example of Invalid Command :
 ```
-mark uID/C26135173W
+mark uid/ggggg
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
- There are no appointments with this ID.
+ Here are possible places where you could have gone wrong: 
+1. Check if the entered UID is valid.
+2. Check if you have left the UID field empty.
+3. Lastly check if the format is correct mark uid/UID
 ______________________________________________________________________
 
 ```
-Marked in the list:
-```
-list
-______________________________________________________________________
-1.  UID: S53144505J [ ] | Priority: LOW
-    Animal Name: Lulu | Animal Type: Cat
-    Owner Name: Jon | Contact Number: 91919191
-    Start Date: 2023-12-12 | Start Time: 19:00
-    End Date: 2023-12-12 | End Time: 20:00
-2.  UID: V48152237H [ ] | vaccine: Covid
-    Date: 2023-12-12 | Time: 19:00
-    Animal Name: Lulu | Animal Type: Cat
-    Owner Name: Jon | Contact Number: 91919191
-3.  UID: C26135173W [X]
-    Date: 2023-12-12 | Time: 19:00
-    Animal Name: Lulu | Animal Type: Cat
-    Owner Name: Jon | Contact Number: 91919191
-______________________________________________________________________
-```
+
 
 ### UnMark Appointment : `unmark ` <br>
 
 This feature Unmarks the appointment as not done and is denoted by an `[ ]`.
-The tasks are Unmarked depending on the uID input the by user. 
-If the uID entry is not valid it displays a corresponding error message.<br>
+The tasks are Unmarked depending on the UID input the by user. 
+If the UID entry is not valid it displays a corresponding error message.<br>
 
 Example of Valid Command :
+Format : `mark uid/ `
+Example : `mark uid/V14082745S`
 ```
 
-unmark uID/C26135173W
+unmark uid/C26135173W
 ______________________________________________________________________
-The appointment has been unmarked successfully
-Task unmarked successfully!
+ 1.  UID: C67345117A [ ]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Oreo | Animal Type: Cat
+ Owner Name: fred | Contact Number: 91919191
+
+
+The appointment has been unMarked successfully
 ______________________________________________________________________
 ```
 Example of InValid Command :
 ```
-unmark uID/C26135173E
+unmark 
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
- There are no appointments with this ID.
+ Here are possible places where you could have gone wrong: 
+1. Check if the entered UID is valid.
+2. Check if you have left the UID field empty.
+3. Lastly check if the format is correct unmark uid/UID
 ______________________________________________________________________
 ```
-Corresponding list :
+
+### Editing a consultation appointment: `edit`
+Edits an already existing consultation appointment 
+
+Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
+
+* The `UID` should be a valid already existing ID
+* The `ANIMAL_TYPE`, `ANIMAL_NAME` and `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
+* The `DATE` must be in *YYYY-MM-DD* format.
+* The `TIME` must be in *HH:MM* format.
+
+Example:
+` edit uid/C28026345F at/Monkey an/Milo on/Smriti cn/91999999 cd/2023-12-12 ct/19:00`
 ```
-list
 ______________________________________________________________________
-1.  UID: S53144505J [ ] | Priority: LOW
- Animal Name: Lulu | Animal Type: Cat
- Owner Name: Jon | Contact Number: 91919191
- Start Date: 2023-12-12 | Start Time: 19:00
- End Date: 2023-12-12 | End Time: 20:00
-2.  UID: V48152237H [ ] | vaccine: Covid
- Date: 2023-12-12 | Time: 19:00
- Animal Name: Lulu | Animal Type: Cat
- Owner Name: Jon | Contact Number: 91919191
-3.  UID: C26135173W [ ]
- Date: 2023-12-12 | Time: 19:00
- Animal Name: Lulu | Animal Type: Cat
- Owner Name: Jon | Contact Number: 91919191
+Consultation changed successfully!
+______________________________________________________________________
+```
+
+### Editing a surgery appointment: `edit`
+Edits an already existing consultation appointment
+
+Format: `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
+
+* The `UID` should be a valid already existing ID
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
+* The `START_DATE` and `END_DATE` must be in *YYYY-MM-DD* format.
+* The `START_TIME` and `END_TIME` must be in *HH:MM* format.
+* The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
+
+Example:
+` edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
+```
+______________________________________________________________________
+ Surgery changed successfully!
+______________________________________________________________________
+```
+### Editing a Vaccination appointment: `edit`
+Edits an already existing consultation appointment
+
+Format:   `edit uid/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME`
+
+* The `UID` should be a valid already existing ID
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
+* The `DATE` must be in *YYYY-MM-DD* format.
+* The `TIME` must be in *HH:MM* format.
+
+Example:
+`  edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
+```
+______________________________________________________________________
+Vaccination changed successfully!
 ______________________________________________________________________
 ```
 
@@ -509,8 +569,7 @@ ______________________________________________________________________
 {Give a 'cheat sheet' of commands here}
 
 * Add consultation :
-  `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
-
+  `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
 * Add surgery :
   `surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL` 
@@ -523,6 +582,8 @@ ______________________________________________________________________
 * List :
   `list`
 
+* Archived appointments :
+  `archive`
 
 * Remove appointment :
   `remove uid`
@@ -541,12 +602,19 @@ ______________________________________________________________________
 
 
 * Mark appointment :
-  `mark uID/ `
+  `mark uID/UID `
 
 
 * UnMark appointment :
-  `unmark uID/ `
+  `unmark uID/UID`
+
+* Edit Consultation :
+  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
+
+* Edit Surgery :
+  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
 
- 
- 
+* Edit vaccination :
+  `edit uID/ID at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+

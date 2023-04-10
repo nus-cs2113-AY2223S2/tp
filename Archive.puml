@@ -1,0 +1,7 @@
+@startuml
+class archive.Archive {
++ {static} void saveArchivedAppointments(String)
++ {static} void openArchiveFile(String)
++ {static} void extractArchiveData(File)
+}
+@enduml
