@@ -1,0 +1,74 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+hide empty members
+
+class "{abstract}\nEntryList" as entryList
+
+class entryList {
+    +addEntry(newEntry: Entry, entryList: LinkedList<Entry>): void
+    +listEntry(entryList: List<Entry>): void
+    +deleteEntry(entryIndex: int, entryList, LinkedList<Entry>): void
+    +editEntryCost(entryIndex: int, newAmount: double, entryList: LinkedList<Entry> entryList): void
+    +editEntryDescription(entryIndex: int, newDescription: String, entryList: LinkedList<Entry>): void
+    +editEntryTime(entryIndex: int, newTime, LocalDateTime, entryList: LinkedList<Entry>): void
+    +editEntryCategory(entryIndex: int, newCategory: Category, entryList: LinkedList<Entry>): void
+    +sortEntriesByAmount(entryList: LinkedList<Entry>): void
+    +sortEntriesByDate(entryList: LinkedList<Entry>): void
+    +findEntriesByCategory(category: Category, entryList: LinkedList<Entry>): void
+    +selectEntryForDate(year: int, month: Month, entryList: LinkedList<Entry>): Link<Entry>
+    +getEntryListSum(entryList: List<Entry>): double
+}
+
+class IncomeList {
+    +incomeList: LinkedList<Entry>
+    +addIncome(newIncome Income): void
+    +deleteIncome(index: int): void
+    +listIncome(date: Optional<String>): void
+    +listIncome(): void
+    +editIncome(index: int, newEntry: String): void
+    +editIncome(index: int, newEntry: Double): void
+    +editIncome(index: int, newEntry: LocalDateTime): void
+    +editIncome(index: int, newEntry: Category): void
+    +sortIncomeByAmount(): void
+    +sortIncomeByDate(): void
+    +findIncomeByCategory(category: Category):
+    +getIncomeMadeInMonth(year: int, month: Month): Link<Entry>
+}
+
+class ExpenseList {
+    +expenseList: LinkedList<Entry>
+    +addExpense(newExpense Expense): void
+    +deleteExpense(index: int): void
+    +listExpense(date: Optional<String>): void
+    +ListExpense(): void
+    +editExpense(index: int, newEntry: String): void
+    +editExpense(index: int, newEntry: Double): void
+    +editExpense(index: int, newEntry: LocalDateTime): void
+    +editExpense(index: int, newEntry: Category): void
+    +sortExpenseByAmount(): void
+    +sortExpenseByDate(): void
+    +findExpenseByCategory(category: Category):
+    +getExpenseMadeInMonth(year: int, month: Month): Link<Entry>
+}
+
+class Category <<enumeration>> {
+    FOOD
+    SHOPPING
+    GROCERIES
+    TRANSPORTATION
+    ENTERTAINMENT
+    TRAVEL
+    SALARY
+    INVESTMENT
+    OTHERS
+}
+
+entryList <|-- IncomeList
+entryList "1" .left.> "*" "{abstract}\nEntry"
+entryList <|-- ExpenseList
+entryList "1" .right> "*" Category
+IncomeList "1" -> "*" "{abstract}\nEntry"
+ExpenseList "1" -> "*" "{abstract}\nEntry"
+
+@enduml

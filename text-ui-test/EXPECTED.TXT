@@ -1,9 +1,303 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
-| | | | | | | |/ / _ \
-| |_| | |_| |   <  __/
-|____/ \__,_|_|\_\___|
-
-What is your name?
-Hello James Gosling
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------
+|
+|  $$$$$___ ______ _______ $$_____ _______ $$___$$_ _______ _______
+|  $$__$$__ ______ _______ $$__$$_ _$$$$__ $$$_$$$_ $$$$$__ _______
+|  $$$$$___ $$_$$_ _$$$$__ $$_$$__ $$__$$_ $$$$$$$_ ____$$_ $$$$$__
+|  $$___$$_ $$$_$_ $$__$$_ $$$$___ $$$$$$_ $$_$_$$_ _$$$$$_ $$__$$_
+|  $$___$$_ $$____ $$__$$_ $$_$$__ $$_____ $$___$$_ $$__$$_ $$__$$_
+|  $$$$$$__ $$____ _$$$$__ $$__$$_ _$$$$$_ $$___$$_ _$$$$$_ $$__$$_
+|  Welcome to BrokeMan!
+|  Your personal budget manager to prevent you to become broke like me...
+|
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$4.00 spent on lunch - 2022-09-08 @ 12:14 [FOOD]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the expenses you have made.
+|  1. $4.00 spent on lunch - 2022-09-08 @ 12:14 [FOOD]
+|  2. $6.00 spent on dinner - 2023-06-12 @ 20:01 [FOOD]
+|  Total expenses: $10.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited amount.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited description.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited time.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited category.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully deleted.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the expenses you have made.
+|  1. $6.00 spent on dinner - 2023-06-10 @ 00:10 [OTHERS]
+|  Total expenses: $6.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully added [$600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the income you have made.
+|  1. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1000.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited amount.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid optional time flag format.
+|
+|  listExpense: lists expenses made in the current month.
+|  listExpense t/ <date in YYYY/MM>: : lists expenses made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: listExpense
+|  Example: listExpense t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the expenses you have made for 2022/SEPTEMBER.
+|  The requested list is empty
+|
+|  Total expenses: $0.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the income you have made.
+|  1. $700.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1300.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid optional time flag format.
+|
+|  listIncome: lists incomes made in the current month.
+|  listIncome t/ <date in YYYY/MM>: : lists incomes made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: listIncome
+|  Example: listIncome t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the income you have made for 2023/MARCH.
+|  1. $700.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  2. $600.00 earned on stocks - 2023-03-15 @ 15:10 [INVESTMENT]
+|  Total income: $1300.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Type specified is incorrect.
+|
+|  editIncome: edits the income from the list.
+|  Parameter: i/ <index> t/ <type> n/ <newEntry>
+|  There are 4 types that can be changed, amount, info, time, category
+|  Example: editIncome i/ 1 t/ info n/ stocks
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited description.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited time.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully edited category.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Successfully deleted.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Here are the income you have made.
+|  1. $700.00 earned on pay - 2023-03-12 @ 15:01 [SALARY]
+|  Total income: $700.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have not set your budget for this month.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Amount cannot be less than or equals to 0.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully set $500.00 as your budget for 2023/APRIL.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
+|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.
+|  The earliest date available is 2000/01, and the latest date available is 9999/12.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  The budget you have set is not a double.
+|  If you are trying to enter date information, please use the 't/' flag.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have successfully set $2000.00 as your budget for 2023/APRIL.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  You have set your budget as $2000.00 for 2023/APRIL.
+|  The amount of budget left is $2000.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid optional time flag format.
+|
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
+|  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: viewBudget
+|  Example: viewBudget t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
+|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.
+|  The earliest date available is 2000/01, and the latest date available is 9999/12.
+|
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
+|  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: viewBudget
+|  Example: viewBudget t/ 2023/03
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Budget information for the given month does not exist!
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid add command format.
+|
+|  addExpense: add expense to the expense list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 03 22 20 12 c/ FOOD
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Invalid add command format.
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  1. $6.00 spent on dinner - 2023-06-10 @ 00:10 [OTHERS]
+|  Total expenses: $6.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  1. $6.00 spent on dinner - 2023-06-10 @ 00:10 [OTHERS]
+|  Total expenses: $6.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  1. $700.00 earned on pay - 2023-03-12 @ 15:01 [SALARY]
+|  Total income: $700.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  1. $700.00 earned on pay - 2023-03-12 @ 15:01 [SALARY]
+|  Total income: $700.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command: |  Exiting program...
+|
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------
+|
+|     ___                       _              ___     _  _
+|    / __|    ___     ___    __| |     o O O  | _ )   | || |   ___
+|   | (_ |   / _ \   / _ \  / _` |    o       | _ \    \_, |  / -_)
+|    \___|   \___/   \___/  \__,_|   TS__[O]  |___/   _|__/   \___|
+|  _|"""""|_|"""""|_|"""""|_|"""""| {======|_|"""""|_| """"|_|"""""|
+|  "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'
+|
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------

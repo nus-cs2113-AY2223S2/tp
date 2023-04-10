@@ -1,0 +1,38 @@
+@startuml
+!include <office/Users/user>
+hide circle
+hide member
+
+
+
+Package "BrokeMan"<<Rectangle>>{
+    class Ui
+    class Command
+    class Parser
+    class Save
+    class EntryList
+    class Budget
+    Package " " <<Rectangle>> {
+        class Exception
+        class Common
+    }
+}
+
+class "<$user>" as User
+
+User <-> Ui
+Ui -> Parser
+Parser --> Command
+Command --> EntryList
+Command -left-> Budget
+Command -right-> Save
+Save <-> Data
+Save -left> EntryList
+Save --> Budget
+EntryList -> Ui
+Budget -> Ui
+Parser -[hidden]> Common
+Common -[hidden]> Exception
+
+
+@enduml

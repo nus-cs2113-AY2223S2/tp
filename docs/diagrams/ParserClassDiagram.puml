@@ -1,0 +1,50 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class "{abstract}\nParser" as parser
+class "{abstract}\nCommand" as command
+class "{abstract}\nUserInput" as userInput
+
+class parser {
+    -prepareViewBudgetCommand(description: String): Command
+    -prepareSetBudgetCommand(description: String): Command
+    -prepareDeleteExpenseCommand(description: String): Command
+    -prepareDeleteIncomeCommand(description: String): Command
+    -prepareAddExpenseCommand(description: String): Command
+    -prepareAddIncomeCommand(description: String): Command
+    -prepareListExpenseCommand(description: String): Command
+    -prepareListIncomeCommand(description: String): Command
+    -prepareEditExpenseCommand(description: String): Command
+    -prepareEditIncomeCommand(description: String): Command
+    -checkAddCommandException(description: String): String[]
+    -checkExceedMaxCharForAmount(description: String): String
+    -checkValidOptionalTimeFlagException(description: String): String
+    -checkEmptyAddFlag(splitDescriptions: String[]): void
+    -checkSmallerThanMinTime(date: String): void
+    -checkEmptyFlag(splitDescriptions: String[]): void
+    -checkTimeException(timeToCheck: String): void
+    -checkDoubleException(cost: String): void
+    -checkEditCommandException(description: String): String[]
+    -checkContainFlagsException(newDescription: String): void
+    -checkIsIntegerIndex(index: String): void
+    -checkCorrectType(type: String): void
+    +parseCommand(userFullInput: String): Command
+}
+
+class command {
+    {abstract} +execute(): void
+}
+
+class userInput {
+    #userCommand: String
+    #userDescription: String
+
+    #UserInput(String, String)
+    #splitUserInput(): UserInput
+}
+
+parser --> "1" command
+parser .> "1" userInput : uses >
+
+@enduml

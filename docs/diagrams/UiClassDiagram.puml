@@ -1,0 +1,37 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide empty members
+
+class BrokeMan {
+    -run(): void
+    -runCommandUntilExit(): void
+    +main(args: String[]): void
+}
+
+class Ui <<abstract>> {
+    -in: Scanner
+    -out: PrintStream
+    -LINE_DIVIDER: String
+    -LINE_PREFIX: String
+
+    +getUserCommand(): String
+    +showWelcomeMessages(): void
+    +showGoodByeMessages(): void
+    +showToUserWithLineBreak(messages: String...): void
+    +showToUser(messages: String...): void
+}
+
+class Scanner {
+    +nextLine()
+}
+
+class PrintStream {
+    +println()
+}
+
+BrokeMan .> "1" Ui
+Ui .. Scanner : gets input from >
+Ui .. PrintStream : prints to >
+
+@enduml

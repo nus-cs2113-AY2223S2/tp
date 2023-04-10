@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+hide member
+
+class "{abstract}\nEntryList" as entryList
+
+entryList *-left-> "1" ExpenseList
+
+entryList *--> EntryXYZComparator
+note left of EntryXYZComparator: EntryXYZComparator = EntryAmountComparator, \nEntryDateComparator
+
+entryList *-left-> "1" IncomeList
+
+IncomeList -[hidden]down- ExpenseList
+
+
+ExpenseList -right-> "*" Expense
+IncomeList -right-> "*" Income
+
+
+Expense -down-> "1" category
+Income -down-> "1" category
+
+
+
+@enduml

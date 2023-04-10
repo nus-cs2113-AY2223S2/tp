@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide empty members
+
+class Budget {
+  - budgetEachMonth: HashMap<Integer, HashMap<Month, Double>>
+  + viewBudget(dateInString: Optional<String>): void
+  + viewBudgetOfMonth(yearOfInterest: int, monthOfInterest: Month): void
+  + hasSetBudgetThisMonth(): boolean
+  + setBudget(budgetAmount: double, dateInString: Optional<String>): void
+}
+
+class ViewBudgetCommand {
+  - date: Optional<String>
+  + ViewBudgetCommand(date: String)
+  + ViewBudgetCommand()
+  + execute(): void
+}
+
+class SetBudgetCommand {
+  - budget: double
+  - date: Optional<String>
+  + SetBudgetCommand(budget: double)
+  + SetBudgetCommand(budget: double, date: String)
+  + execute(): void
+}
+
+class hasNotSetBudgetException {
+}
+
+Budget <.. ViewBudgetCommand: uses <
+Budget <.. SetBudgetCommand: uses <
+ViewBudgetCommand ..> hasNotSetBudgetException: <<throws>>
+@enduml
