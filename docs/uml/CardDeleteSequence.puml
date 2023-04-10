@@ -2,6 +2,7 @@
 
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":DeleteCardCommand" as DeleteCardCommand
 participant ":CardList" as CardList
 participant ":CardSelector" as CardSelector
@@ -11,14 +12,19 @@ participant ":Card" as Card
 participant ":UserInterface" as UserInterface
 participant ":CardKeywordParser" as CardKeywordParser
 
+Inka -> CardKeywordParser : parseCommand()
+
 Create CardSelector
 CardKeywordParser -> CardSelector : create cardSelector to identify card
 return cardSelector
 
 Create DeleteCardCommand
 CardKeywordParser -> DeleteCardCommand : DeleteCardCommand(cardSelector)
+return
 
-DeleteCardCommand -> DeleteCardCommand : execute()
+return DeleteCardCommand
+
+Inka -> DeleteCardCommand : execute()
 DeleteCardCommand -> CardList : findCard()
 
 alt index is specified in cardSelector
@@ -49,8 +55,6 @@ DeleteCardCommand -> CardList : delete cardToDelete
 return
 
 DeleteCardCommand -> UserInterface : print success message and number of cards left
-return
-
 return
 
 return

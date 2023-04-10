@@ -2,23 +2,26 @@
 
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":ListCardCommand" as ListCardCommand
 participant ":CardList" as CardList
 participant ":UserInterface" as UserInterface
 participant ":CardKeywordParser" as CardKeywordParser
 
+Inka -> CardKeywordParser : parseCommand()
 
 Create ListCardCommand
 CardKeywordParser -> ListCardCommand : ListCardCommand()
 
-ListCardCommand -> ListCardCommand : execute()
+return
+
+return ListCardCommand
+
+
+Inka -> ListCardCommand : execute()
 ListCardCommand -> UserInterface : printCardList()
 
-loop until all cards are printed
-  UserInterface -> CardList : print card
-  return
-end loop
-
+UserInterface -> CardList : print all cards
 return
 
 return

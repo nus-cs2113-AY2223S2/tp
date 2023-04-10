@@ -1,6 +1,7 @@
 @startuml
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
@@ -14,20 +15,23 @@ participant ":Deck" as Deck
 participant ":UserInterface" as UserInterface
 participant ":CardKeywordParser" as CardKeywordParser
 
-
-Create RemoveTagFromCardCommand
-CardKeywordParser -> RemoveTagFromCardCommand : RemoveTagFromCardCommand()
-activate RemoveTagFromCardCommand
+Inka -> CardKeywordParser : parseCommand()
 
 Create CardSelector
-RemoveTagFromCardCommand -> CardSelector : CardSelector()
-return
+CardKeywordParser -> CardSelector : create cardSelector to identify card
+return cardSelector
 
 Create TagSelector
-RemoveTagFromCardCommand -> TagSelector : TagSelector()
+CardKeywordParser -> TagSelector : create tagSelector to identify tag
+return tagSelector
+
+Create RemoveTagFromCardCommand
+CardKeywordParser -> RemoveTagFromCardCommand : RemoveTagFromCardCommand(cardSelector, tagSelector)
 return
 
-RemoveTagFromCardCommand -> RemoveTagFromCardCommand: execute()
+return RemoveTagFromCardCommand
+
+Inka -> RemoveTagFromCardCommand: execute()
 RemoveTagFromCardCommand -> CardList : findCard(cardSelector)
 
 alt index is specified
@@ -87,6 +91,8 @@ end ref
 return
 
 RemoveTagFromCardCommand -> UserInterface : printRemoveTagFromCard()
+return
+
 return
 
 @enduml

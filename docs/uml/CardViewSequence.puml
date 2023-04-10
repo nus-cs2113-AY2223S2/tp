@@ -2,6 +2,7 @@
 
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":ViewCardCommand" as ViewCardCommand
 participant ":CardList" as CardList
 participant ":CardSelector" as CardSelector
@@ -15,16 +16,18 @@ participant ":DeckUUID" as DeckUUID
 participant ":UserInterface" as UserInterface
 participant ":CardKeywordParser" as CardKeywordParser
 
+Inka -> CardKeywordParser : parseCommand()
+
+Create CardSelector
+CardKeywordParser -> CardSelector : create cardSelector to identify card
+return cardSelector
 
 Create ViewCardCommand
 CardKeywordParser -> ViewCardCommand : ViewCardCommand()
-activate ViewCardCommand
-
-Create CardSelector
-ViewCardCommand -> CardSelector : CardSelector()
 return
+return ViewCardCommand
 
-ViewCardCommand -> ViewCardCommand : execute()
+Inka -> ViewCardCommand : execute()
 ViewCardCommand -> CardList : findCard()
 
 alt index is specified
@@ -81,6 +84,8 @@ end ref
 return decksFound
 
 ViewCardCommand -> UserInterface : printDecks(decksFound)
+return
+
 return
 
 @enduml

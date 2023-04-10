@@ -1,28 +1,29 @@
 @startuml
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":AddCardToDeckCommand" as AddCardToDeckCommand
-participant ":TagList" as TagList
 participant ":CardList" as CardList
 participant ":CardSelector" as CardSelector
-participant ":TagSelector" as TagSelector
-participant ":TagList" as TagList
 participant ":DeckList" as DeckList
-participant ":Tag" as Tag
 participant ":Deck" as Deck
 
 participant ":UserInterface" as UserInterface
-participant ":DeckKeywordParser" as DeckKeywordParser
 
-Create AddCardToDeckCommand
-TagKeywordParser -> AddCardToDeckCommand : AddCardToDeckCommand()
-activate AddCardToDeckCommand
+Inka -> CardKeywordParser : parseCommand()
 
 Create CardSelector
-AddCardToDeckCommand -> CardSelector : cardSelector()
+CardKeywordParser -> CardSelector : create cardSelector to identify card
+return cardSelector
+
+Create AddCardToDeckCommand
+CardKeywordParser -> AddCardToDeckCommand : AddCardToDeckCommand(cardSelector)
+
 return
 
-AddCardToDeckCommand -> AddCardToDeckCommand : execute()
+return AddCardToDeckCommand
+
+Inka -> AddCardToDeckCommand : execute()
 AddCardToDeckCommand -> CardList : findCard(cardSelector)
 return cardToAdd
 
@@ -63,4 +64,7 @@ return cardUUID
 AddCardToDeckCommand -> UserInterface : printAddCardToDeckSuccess(cardUUID, deckName)
 return
 
+return
+
+return
 @enduml

@@ -2,20 +2,25 @@
 
 autoactivate on
 
+participant ":Inka" as Inka
 participant ":AddCardCommand" as AddCardCommand
 participant ":Card" as Card
 participant ":CardList" as CardList
 participant ":UserInterface" as UserInterface
 participant ":CardKeywordParser" as CardKeywordParser
 
+Inka -> CardKeywordParser : parseCommand()
 Create Card
 CardKeywordParser -> Card : create card to add
 return cardToAdd
 
 Create AddCardCommand
 CardKeywordParser -> AddCardCommand : AddCardCommand(cardToAdd)
+return
 
-AddCardCommand -> AddCardCommand : execute()
+return AddCardCommand
+
+Inka -> AddCardCommand : execute()
 AddCardCommand -> CardList : addCard(cardToAdd)
 return
 
@@ -24,5 +29,4 @@ return
 
 return
 
-return
 @enduml
