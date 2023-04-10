@@ -133,7 +133,7 @@ public class TestUi {
                 "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                 "[filters]\r\n" +
                 "\tView all available filters\r\n" +
-                "ippt AGE RUNTIME PUSHUPS SITUPS\r\n" +
+                "[ippt AGE RUNTIME PUSHUPS SITUPS]\r\n" +
                 "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,\r\n" +
                 "\twhere AGE is a valid positive integer from 16-60;\r\n" +
                 "\tRUNTIME is in the format of 'mm:ss' where mm is minute (positive integer) " +
@@ -176,7 +176,7 @@ public class TestUi {
                 "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                 "[filters]\n" +
                 "\tView all available filters\n" +
-                "ippt AGE RUNTIME PUSHUPS SITUPS\n" +
+                "[ippt AGE RUNTIME PUSHUPS SITUPS]\n" +
                 "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,\n" +
                 "\twhere AGE is a valid positive integer from 16-60;\n" +
                 "\tRUNTIME is in the format of 'mm:ss' where mm is minute " +
@@ -639,7 +639,7 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                     "[filters]\r\n" +
                     "\tView all available filters\r\n" +
-                    "ippt AGE RUNTIME PUSHUPS SITUPS\r\n" +
+                    "[ippt AGE RUNTIME PUSHUPS SITUPS]\r\n" +
                     "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,\r\n" +
                     "\twhere AGE is a valid positive integer from 16-60;\r\n" +
                     "\tRUNTIME is in the format of 'mm:ss' where mm is minute (positive integer) " +
@@ -682,7 +682,7 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
-                    "ippt AGE RUNTIME PUSHUPS SITUPS\n" +
+                    "[ippt AGE RUNTIME PUSHUPS SITUPS]\n" +
                     "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,\n" +
                     "\twhere AGE is a valid positive integer from 16-60;\n" +
                     "\tRUNTIME is in the format of 'mm:ss' where mm is minute " +
