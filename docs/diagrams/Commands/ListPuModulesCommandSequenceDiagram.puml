@@ -72,7 +72,9 @@ loop for each puModuleToPrint in puModulestoPrint
     "<<class>>\nui:UI" <-- UserConsole
 
 end
-
+"<<class>>\nui:UI" --> ":ListPuModulesCommand": return control
+deactivate "<<class>>\nui:UI"
+deactivate ":ListPuModulesCommand"
 
 'activate ":ListCurrentCommand"
 '

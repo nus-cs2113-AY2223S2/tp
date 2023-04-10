@@ -99,11 +99,11 @@ Here are the list of commands:
 ### 3.2 Modules
 #### 3.2.1 List Commands
 
-All List commands start with `list`.
-1. List Current
-2. List PU
-3. List [PU Abbreviation/PU INDEX]
-4. List Current [PU Abbreviation/PU INDEX]
+All List commands start with `/list`.
+1. /list current
+2. /list pU
+3. /list [PU Abbreviation/PU INDEX]
+4. /list current [PU Abbreviation/PU INDEX]
 
 ****
 ##### 3.2.1.1 Listing Modules User Has Selected
@@ -117,31 +117,30 @@ Expected outcome: Modules that user has previously selected will be listed sorte
 Description of outcome:
 ```
 List of Added Modules for: KOREA UNIVERSITY
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[AE320][Aerodynamics II][3]
-maps to ----> [ME4231][Aerodynamics][4]
+1.[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 
-List of Added Modules for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY
+The current module list is empty for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY
 ____________________________________________________________
-1.[IE321][PRODUCTION MANAGEMENT I][0]
-maps to ----> [ME3662][Technical Elective][4]
 ____________________________________________________________
 
 The current module list is empty for: POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY
 ____________________________________________________________
 ____________________________________________________________
 
-The current module list is empty for: SEOUL NATIONAL UNIVERSITY
+List of Added Modules for: SEOUL NATIONAL UNIVERSITY
+[SEOUL NATIONAL UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
+1.[446.781][DECISION MAKING FOR AUTONOMOUS AEROSPACE SYSTEMS][0]   maps to ----> [ME3661][Technical Elective][4]
 ____________________________________________________________
 
 List of Added Modules for: YONSEI UNIVERSITY
+[YONSEI UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[DAA3250][CHEM ENG THERMODYNAMICS I][0]
-maps to ----> [ME3221][Sustainable Energy Conversion][4]
-2.[MEU3680][MECHANICAL SYSTEM CONTROL][3]
-maps to ----> [ME2142][Feedback Control Systems][4]
+1.[MEU3700][BIOMECHANICS][3]   maps to ----> [ME3661][Technical Elective][4]
+2.[MEU3010][Micro Mechanical system][3]   maps to ----> [ME3281][Microsystems Design and Applications][4]
 ____________________________________________________________
 ```
 
@@ -157,11 +156,12 @@ Description of outcome:
 ```
 This is the list of PUs:
 ____________________________________________________________
-1. KOREA UNIVERSITY KU
-2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST
-3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH
-4. SEOUL NATIONAL UNIVERSITY SNU
-5. YONSEI UNIVERSITY YU
+   Partner University Name                           PU Abb    
+1. KOREA UNIVERSITY                                  KU
+2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY  KAIST
+3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY         POSTECH
+4. SEOUL NATIONAL UNIVERSITY                         SNU
+5. YONSEI UNIVERSITY                                 YU
 ____________________________________________________________
 ```
 ***
@@ -174,7 +174,7 @@ Format: `/list [PU Abbreviation Name]` or `/list [PU Index]`
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 * The `PU Index` is the university index of the PU as shown in the universities list.
 
-Example of usage: `list ku` or `list 1`
+Example of usage: `/list ku` or `/list 1`
 
 Expected outcome:
 * A list of modules under Korea University appears.
@@ -182,15 +182,15 @@ Expected outcome:
 Description of outcome:
 ```
 KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1. [AMSE216][Introduction to biomaterials][3]
-   maps to ----> [ME4253][Biomaterials Engineering][4]
-2. [IWC311][Heat Transfer][3]
-   maps to ----> [ME3122][Heat Transfer][4]
-3. [AE320][Aerodynamics II][3]
-   maps to ----> [ME4231][Aerodynamics][4]
-4. [IWC109][Engineering Design][3]
-   maps to ----> [ME4661][Exchange Elective][4]
+1. [IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
+2. [AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]
+3. [IWC109][Engineering Design][3]   maps to ----> [ME4661][Exchange Elective][4]
+4. [AMSE216][Introduction to biomaterials][3]   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
 ```
 ****
@@ -264,18 +264,17 @@ Format: `/list current [PU Abbreviation]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 
-Example of usage: `list current ku` 
+Example of usage: `/list current ku` 
 
 Expected outcome: List of modules for Korea University that user has selected will appear.
 
 Description of outcome:
 ```
 List of Added Modules for: KOREA UNIVERSITY
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[AE320][Aerodynamics II][3]
-maps to ----> [ME4231][Aerodynamics][4]
-2.[IWC311][Heat Transfer][3]
-maps to ----> [ME3122][Heat Transfer][4]
+1.[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
+2.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]
 ____________________________________________________________
 ```
 
@@ -295,16 +294,18 @@ Expected outcome: Adds the module IWC311 from Korea University to the list of us
 
 Description of outcome:
 
-```
-This module has been added to the current module list!
-____________________________________________________________
-```
-
 **Before Command** `/add KU/1`
 
 ```
 The current module list is empty for: KOREA UNIVERSITY
 ____________________________________________________________
+____________________________________________________________
+```
+
+**Command** `/add KU/1`
+```
+[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
+This module has been added to the current module list!
 ____________________________________________________________
 ```
 
@@ -335,20 +336,25 @@ Description of outcome:
 **Before Command** `/remove KU/2`
 ```
 List of Added Modules for: KOREA UNIVERSITY
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[AE320][Aerodynamics II][3]
-maps to ----> [ME4231][Aerodynamics][4]
-2.[IWC311][Heat Transfer][3]
-maps to ----> [ME3122][Heat Transfer][4]
+1.[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
+2.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]
 ____________________________________________________________
 ```
 
+**Command** `/remove KU/2`
+```
+[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]
+This module has been deleted from the current module list!
+____________________________________________________________
+```
 **After Command** `/remove KU/2`
 ```
 List of Added Modules for: KOREA UNIVERSITY
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[AE320][Aerodynamics II][3]
-maps to ----> [ME4231][Aerodynamics][4]
+1.[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
 

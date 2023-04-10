@@ -31,5 +31,5 @@ end
 
 "<<class>>\nui:UI" --> ":ListCurrentCommand" : return control
 deactivate "<<class>>\nui:UI"
-
+deactivate ":ListCurrentCommand"
 @enduml
