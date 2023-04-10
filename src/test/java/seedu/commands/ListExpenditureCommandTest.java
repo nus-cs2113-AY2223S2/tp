@@ -30,10 +30,10 @@ class ListExpenditureCommandTest {
 
         ListExpenditureCommand listExpenditure = new ListExpenditureCommand("SGD");
         assertEquals("Here is your list of expenditures in SGD:\n" +
-                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
-                "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n"
+                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.10 || Description: pen\n" +
+                "2. [Food] || Date: 21 Mar 2023 || Value: 4.50 || Description: chicken rice\n"
                 +
-                "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line",
+                "3. [Transport] || Date: 21 Mar 2023 || Value: 2.10 || Description: circle line",
                 listExpenditure.execute(testExpenditures).getCommandResult());
     }
 
