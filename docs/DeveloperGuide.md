@@ -271,7 +271,7 @@ ______________________________________________________________________
 
 ```
 
-3. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00` <br>
+    Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00` <br>
    Expected output: A consultation appointment is not added due to invalid description. <br>
    Example: <br>
 ```
@@ -281,7 +281,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+    Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
    Expected output: A vaccination appointment has been added successfully, details show in the status message. <br>
    Example: <br>
 ```
@@ -298,7 +298,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-5. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00` <br>
+    Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00` <br>
    Expected output: A vaccination appointment is not added due to invalid date description. <br>
    Example: <br>
 ```
@@ -308,7 +308,7 @@ The date/time description is invalid.
 ______________________________________________________________________
 ```
 
-6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+    Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
    Expected output: A surgery appointment has been added successfully, details shown in the status message. <br>
    Example: <br>
 ```
@@ -326,7 +326,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-7. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H` <br>
+    Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H` <br>
    Expected output: A surgery appointment is not added due to dates and times being the same. <br>
    Example: <br>
 ```
@@ -342,6 +342,7 @@ ______________________________________________________________________
 2. Test case: `list`<br>
    Expected output: A list of all unmarked appointments. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Consultation   [ ]
@@ -373,10 +374,11 @@ ______________________________________________________________________
 
 #### Archiving appointments
 
-1. Prerequisites: Shift an appointment using any of the add commands. At least one appointment in the archive.
+1. Prerequisites: Shift an appointment using any of the add commands. At least one appointment in the archive. <br>
 2. Test case: `archive`<br>
-   Expected output: A list of all marked appointments.
-   Example:
+   Expected output: A list of all marked appointments. <br>
+   Example:<br>
+
 ```
 ______________________________________________________________________
  1.  Consultation   [X]
@@ -405,12 +407,14 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 ```
+
 #### Finding appointments
 
 1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list. <br>
 2. Test case: `find a/Dog` <br>
    Expected output: A list of all previously added appointments with the animal type. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Vaccination   [ ]
@@ -424,9 +428,10 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-3. Test case: `find t/surgery` <br>
+Test case: `find t/surgery` <br>
    Expected output: A list of all previously added appointments with the appointment type. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
@@ -442,9 +447,10 @@ ______________________________________________________________________
 
 ```
 
-4. Test case: `find d/2023-12-12` <br>
+Test case: `find d/2023-12-12` <br>
    Expected output: A list of all previously added appointments with the specified date. <br>
    Example: <br>
+    
 ```
 ______________________________________________________________________
  1.  Vaccination   [ ]
@@ -470,9 +476,11 @@ ______________________________________________________________________
  Owner Name: jon | Contact Number: 91919191
 ______________________________________________________________________
 ```
-4. Test case: `find uid/S02547136Q` <br>
+
+Test case: `find uid/S02547136Q` <br>
    Expected output: A list of all previously added appointment with the appointment uid. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
@@ -486,9 +494,11 @@ ______________________________________________________________________
  
 ______________________________________________________________________
 ```
-5. Test case: `find d/2023-12-12` <br>
+
+Test case: `find d/2023-12-12` <br>
    Expected output: A list of all previously added appointments with the same appointment date. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
 1.  Vaccination   [ ]
@@ -508,6 +518,7 @@ ______________________________________________________________________
 2. Test case: `remove uid/C28216660A`<br>
    Expected output: The appointment with the specified UID is removed, details shown in the status message. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  This appointment has been removed your appointment manager: 
@@ -528,6 +539,7 @@ ______________________________________________________________________
    Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. <br>
    A corresponding successful mark message is displayed. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Surgery  [X] | Priority: HIGH
@@ -543,10 +555,12 @@ ______________________________________________________________________
 The appointment has been marked successfully
 ______________________________________________________________________
 ```
-3. Test case: `unmark uid/V12400172X`<br>
+
+Test case: `unmark uid/V12400172X`<br>
    Expected output: If the appointment UID entered is valid and not already unmarked the corresponding appointment is unmarked on the list.
    A corresponding successful Unmark message is displayed. <br>
    Example: <br>
+
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
@@ -568,29 +582,34 @@ ______________________________________________________________________
 1. Prerequisites : The UID of the appointment that you want to should already exist. You can find the appointment using `list` or `find` command. 
 2. Test case: `edit uid/C67345117A at/Mouse an/freddy on/muthu cn/91917777 cd/2023-12-12 ct/19:00` <br>
    Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the 
-                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message. <br>
 
-Example:
+Example:<br>
+
 ```
 ______________________________________________________________________
 Consultation changed successfully!
 ______________________________________________________________________
 ```
-3. Test case: `edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
-   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
-                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
 
-Example:
+Test case: `edit uid/S03044138U at/Mouse an/Caramel on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message. <br>
+
+Example: <br>
+
 ```
 ______________________________________________________________________
  Surgery changed successfully!
 ______________________________________________________________________
 ```
-4. Test case: `edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
-   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
-                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
 
-Example:
+Test case: `edit uid/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message. <br>
+
+Example:<br>
+
 ```
 ______________________________________________________________________
 Vaccination changed successfully!
@@ -598,7 +617,7 @@ ______________________________________________________________________
 ```
 
 #### Help function
-1. Example: `help`
+1. Example: `help` <br>
 
 ```
 ______________________________________________________________________
