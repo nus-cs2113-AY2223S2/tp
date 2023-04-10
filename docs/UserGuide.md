@@ -162,8 +162,6 @@ MoneyGoWhere will prompt you to enter your instructions, such as:
 9. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
    the `X` on the top right hand corner of the CLI.
 
-<div style="page-break-after: always;"></div>
-
 [Back to table of contents](#table-of-contents)
 
 ## MoneyGoWhere [Commands](#glossary)
