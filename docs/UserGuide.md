@@ -675,8 +675,6 @@ Format: ```plans```
 
 # Within your fitness planner
 
-<div class="alert alert-info">
-
 ## About
 
 Our planner feature is designed to help you plan your weekly workout schedule in order to achieve your workout goals.
@@ -746,7 +744,6 @@ These are some commands available:
 ===>Planner Mode<===
 ```
 
-</div>
 
 
 
