@@ -1,4 +1,4 @@
-# ***LifeTracker user guide***
+# ***LifeTracker User Guide***
 
 ## Introduction
 
@@ -31,7 +31,7 @@ Their net calorie gain/loss can then be viewed.
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar lifetracker.jar` command to run the application.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
@@ -150,11 +150,11 @@ Format `list exercises`
 Example:
 ![list-exercises-example](./UG-images/list-exercises-example.PNG)
 
-### Deleting meals: `delete`
+### Deleting meals and exercises: `delete`
 
 For users to remove previously added meals and exercises
 
-Format: `delete [/meal, /exercise] [index]`
+Format: `delete /[meal, exercise] [index]`
 
 * The `index` should be a positive integer and must be less than number of meals/exercises added
 * It is recommended to run `list meals/exercises` beforehand to get the index of the meal/exercise you want to delete
@@ -193,7 +193,7 @@ Example:
 
 For user to input the exercise done previously.
 
-Format: `exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]`
+Format: `exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]`
 
 * The `exercise name` and `exercise description` accepts any input
 * The `calories` should be in `float` format
@@ -206,12 +206,15 @@ Example:
 
 For user to track their previous net calorie intake.
 
-Format: `track /start [start date] /end [end date]`
+There are 2 options to run this command:
 
-* `/start` and `/end` arguments are optional
+1) For user to view all their calorie history from past meals and exercises input
+Format: `track all`
+
+2) For user to view calorie history within a specified time-frame
+Format: `track /start [start_date] /end [end_date]`
+
 * The dates should be in `d/M/yyyy` format
-* If `/start` command is not provided, defaults to earliest date with meal/exercise added
-* If `/end` command is not provided, defaults to latest date with meal/exercise added
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
@@ -245,19 +248,22 @@ Output:
 
 ## Command Summary
 
-| Action    | Format, Examples                                                                                         |
-|-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view /[fieldName]                                                                                        |
-| Update    | update /[fieldName]                                                                                      |
-| Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list [foods/meals/exercises]                                                                             |
-| Delete    | delete INDEX e.g delete 3                                                                                |
-| Filter    | filter [lower_bound] [upper_bound]                                                                       |
-| Nutrition | nutrition                                                                                                |
-| Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
-| Track     | track                                                                                                    |
-| Examples  | examples [meal/exercise]                                                                                 |
-| Help      | help
-| Bye       | bye                                                                                                      |
+Note: 
+1) Fields within square brackets are variable and are to be changed according to user needs.
+2) Fields with a comma inside the square brackets indicate that any of the multiple options can be input according to user needs.
 
+| Action    | Format, Examples                                                                                           |
+|-----------|----------------------------------------------------------------------------------------------------------  |
+| View      | `view /[fieldName]`                                                                                        |
+| Update    | `update /[fieldName]`                                                                                      |
+| Add       | `add /on [date] /type [MealType] /foods [foods]` OR `add`                                                  |
+| List      | `list [foods, meals, exercises]`                                                                           |
+| Delete    | `delete /[meal, exercise] [index]`                                                                         |
+| Filter    | `filter [lower_bound] [upper_bound]`                                                                       |
+| Nutrition | `nutrition`                                                                                                |
+| Exercise  | `exercise /type [exercise_name] /description [exercise_description] /calories [calories_burnt] /on [date]` |
+| Track     | `track all` OR `track /start [start_date] /end [end_date]`                                                 |
+| Examples  | `examples [meal, exercise]`                                                                                |
+| Help      | `help`                                                                                                     |
+| Exit      | `bye`                                                                                                      |
 
