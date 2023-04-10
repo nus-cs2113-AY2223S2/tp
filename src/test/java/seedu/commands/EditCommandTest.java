@@ -39,7 +39,7 @@ class EditCommandTest {
     public void test_editCommand_onOneIndex() {
         EditCommand testEditOneIndex = new EditCommand(1, "edit 2 d/2023-02-15 a/20 p/Eat Food");
         assertEquals("Edited! Here is the updated list:\n" +
-                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.10 || Description: pen\n" +
+                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
                 "2. [Food] || Date: 15 Feb 2023 || Value: 20.0 || Description: Eat Food\n"
                 + "3. [Transport] || Date: 21 Mar 2023 || Value: 2.1 || Description: circle line",
                 testEditOneIndex.execute(testExpenditures).getCommandResult());
@@ -49,8 +49,8 @@ class EditCommandTest {
     public void test_editCommand_onTwoIndex() {
         EditCommand testEditTwoIndex = new EditCommand(2, "edit 3 d/2023-02-15 a/20 p/Eat Food");
         assertEquals("Edited! Here is the updated list:\n" +
-                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.10 || Description: pen\n" +
-                "2. [Food] || Date: 21 Mar 2023 || Value: 4.50 || Description: chicken rice\n"
+                "1. [Academic] || Date: 1 Jan 2023 || Value: 2.1 || Description: pen\n" +
+                "2. [Food] || Date: 21 Mar 2023 || Value: 4.5 || Description: chicken rice\n"
                 + "3. [Transport] || Date: 15 Feb 2023 || Value: 20.0 || Description: Eat Food",
                 testEditTwoIndex.execute(testExpenditures).getCommandResult());
     }
