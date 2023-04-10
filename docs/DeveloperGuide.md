@@ -42,7 +42,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v2.0). 
 
-![jar2.png](images/jar2.png)
+![jar3.png](images/jar3.png)
 
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
