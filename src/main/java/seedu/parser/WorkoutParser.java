@@ -38,7 +38,6 @@ public class WorkoutParser {
      */
     static Command parseAddExerciseCommand(String arguments)
             throws InvalidSyntaxException, InvalidArgumentException {
-        //exercise name 100kg 5 5 5 5
         String[] exerciseDetails = new String[ADD_ARGUMENT_COUNT];
         Matcher matcher = Pattern.compile("\\d+").matcher(arguments);
         matcher.find();
