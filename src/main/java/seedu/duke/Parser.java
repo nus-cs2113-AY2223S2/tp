@@ -170,6 +170,8 @@ public class Parser {
             }
             if (eventList.getSize() < index + 1){
                 throw new NPExceptions("Index is larger than current Event List size!");
+            } else if (index == -1){
+                throw new NPExceptions("invalid event index!");
             }
 
             String deletedTask = eventList.getDetails(index);
