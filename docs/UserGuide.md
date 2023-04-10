@@ -45,6 +45,8 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 **Notice:** 
 
 > date/time formats like 8:00 or 2023/4/1 are not accepted. The format should be strictly	`two digits`:`two digits`	(08:00 and 2023/04/01 in this case).
+>
+> the app will omit possible negative recurring time that users might input and consider the current event non-recurring.
 
 
 Expected outcome:
@@ -258,7 +260,7 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 * other fields are optional.
 
 #### Examples of usage
-1. Edit the start time of an event: `edit –i 1 –st 16:00` 
+1. Edit the start time of an event: `edit –i 1 -sd 2023/04/01 –st 16:00` 
 
 2. Edit the start date, start time and end time of an event: `edit -i 1 –sd 2023/02/11 –st 08:00 –et 10:00 `
 
@@ -267,6 +269,8 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 > Similar to add command, the app will also check whether there is any confliction between the new revised time and other events/classes with **full details of time information** if and only if the revised time information also have **starting date & time and ending date & time**
 >
 > The app will also only check confliction within the current semester. 
+>
+> **User cannot change recurring time using edit command once they add it.**
 
 Expected outcome:
 1. ~~~
