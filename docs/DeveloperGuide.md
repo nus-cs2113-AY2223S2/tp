@@ -179,7 +179,8 @@ When the application starts up, the storage loadEvents() function will be called
 ### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
 
-When any component requires reading the NUS module files, the loadModules() method is called.
+When any component requires reading the NUS module files, the loadModules() method is called. Data from nusmods.json
+is accurate as of March 17, 2023. 
 
 ### 2.3.4 Save Events Sequence Diagram
 
