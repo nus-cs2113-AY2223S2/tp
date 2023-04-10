@@ -97,7 +97,7 @@ The Parser component handles the following methods:
 <p style="page-break-after: always;">&nbsp;</p>
 
 ##### 2.2.2 Add Events Diagram
-The diagram below illustrates the flow of how the application adds events:
+The diagram below illustrates the flow of how the application adds events: <br>
 <img src="https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UML/Images/addEvent.png" width="373" height="789"/>
 
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
