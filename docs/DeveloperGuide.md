@@ -16,13 +16,13 @@
     - [tag feature](#tag-feature)
     - [deck feature](#deck-feature)
 
-- [Appendix: Requirements](#appendix-requirements)
-    - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
+- [Appendix](#appendix)
+    - [Target User Profile](#target-user-profile)
+    - [Value Proposition](#value-proposition)
     - [User Stories](#user-stories)
     - [Non-Functional Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
+    - [Instructions for Manual Testing](#instructions-for-manual-testing)
 
 ---
 
@@ -33,12 +33,14 @@ Third-party libraries:
 - [Apache Commons CLI](https://commons.apache.org/proper/commons-cli/)
 - [gson](https://github.com/google/gson)
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries --
-include links to the original source as well}
 
 ---
 
-## Setting up, getting started
+## Setting up, Getting started
+
+This repository was developed using [IntelliJ IDEA](https://www.jetbrains.com/idea/), and can be set up as per any regular IntelliJ project.
+
+For compliance with code style, developers may find it useful to import the `CS2113-codestyle.xml` formatter configuration.
 
 ---
 
@@ -62,7 +64,8 @@ The following diagram describes the architecture of Inka:
 
 ### UI Component
 
-API: Ui.java
+API: `UserInterface.java`
+
 
 ### Parser Component
 
@@ -100,11 +103,29 @@ When the user's input is passed to `Parser`:
    the `UserInterface` and `Storage` objects to print output or save the program state respectively.
 
 The following is the sequence diagram for parsing `card add -q QN -a ANS`:
+
 ![Parser Sequence Diagram](img/ParserSequence.svg)
+
+### Selector Component
+
+API: `CardSelector.java`, `TagSelector.java` 
+
+Complimentary to the parser design is the use of _selectors_ to allow the user more flexibility in how they choose to specify a `Card` or a `Tag`.
+
+- Aim: Allow the user to refer to a `Card` either by its `CardUUID` or its index in `card list`, and to refer to a `Tag` either by its name or its index in `tag list`
+- Difficulties: 
+  - By design, the parsers should not require access to `CardList` or `TagList` to decouple the user input parsing and the actual application logic
+  - The parsed `Command` should only fetch the corresponding `Card`/`Tag` once `Command::execute()` is run, hence requiring an intermediate representation
+
+By encapsulating the identifier in a selector class, retrieving the actual instance of `Card`/`Tag` from `CardList`/`TagList` can be deferred until `Command::execute()` is run.
+
+The class diagram for the selector-style classes are as follows:
+
+![Selector Class Diagram](img/SelectorClass.svg)
 
 ### Storage Component
 
-API: Storage.java
+API: `Storage.java`
 
 Inka's storage functions operate in the `JsonStorage` class that extends the `Storage` class, that implements
 the `IDataStorage` interface.
@@ -118,7 +139,7 @@ data respectively.
 
 ### CardList Component
 
-API: CardList.java
+API: `CardList.java`
 
 Inka's Cards are stored inside `CardList` Component. Each Card has a reference to its own randomly generated `uuid` as
 well as a reference to `tags` and `decks`, which are essentially the UUIDs of the tags and decks that each card is
@@ -437,7 +458,7 @@ file.
 3. The Json is written into the filesystem.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/SaveSequence.png)
+![export feature](img/SaveSequence.PNG)
 
 ### Load
 
@@ -451,7 +472,7 @@ is corrupted, `load()` is called to read a file `backup.json` instead.
 3. The memory object is returned to be read from by Inka.
 
 The sequence diagram below illustrates this feature:
-![export feature](img/LoadSequence.png)
+![export feature](img/LoadSequence.PNG)
 
 Reference Frames :
 ![Add Cards to foundCardList](img/AddCardsToFoundCardListRef.png)
@@ -577,17 +598,15 @@ The reference frames provided are very similar to the ones provided above in the
 
 ---
 
-## Appendix: Requirements
+## Appendix
 
-### Product scope
-
-### Target user profile
+### Target User Profile
 
 - Person who wants a convenient, versatile and portable way to revise concepts while doing coding assignments
 - Person who wants to effectively learn a new language while doing coding assignments
 - Person who wants to be challenged to come up with answers quickly against time pressure.
 
-### Value proposition
+### Value Proposition
 
 User will be able to revise while coding or using the terminal so they don&#39;t have to switch between apps. This will
 maximize their productivity and refresh their memory instantly whenever they want to recall some topics suddenly appear
@@ -614,13 +633,21 @@ on their mind.
 
 ### Non-Functional Requirements
 
-{Give non-functional requirements}
+- The program should be able to run on any OS
+- The program should be able to handle invalid/corrupted save files
+- The program should have intuitive commands
+- The program should scale properly even as the amount of data increases
 
 ### Glossary
 
-- _glossary item_ - Definition
+- _Inka_ - The name of this application
+- _IntelliJ IDEA_ - The Integrated Development Environment (IDE) used for this project
+- _CLI_ - Command Line Interface; usable from a terminal as opposed to a graphical interface
 
-### Instructions for manual testing
+### Instructions for Manual Testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used
-for testing}
+Running the program:
+- Download the latest version of the `.jar` file from the [release page](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
+- Move the executable to a folder of your choice. The folder should have write permissions as it will generate save files in this directory.
+- Run the executable either by double-clicking on it, or using `java -jar FILENAME.jar`
+- An introduction to the supported commands are provided in the User Guide
