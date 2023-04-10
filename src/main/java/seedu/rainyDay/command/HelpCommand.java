@@ -205,8 +205,8 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in $10000 salary         |\n" +
-            "| -in $10000 salary           |                                                                      |\n" +
+            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in salary $10000         |\n" +
+            "| -in salary $10000           |                                                                      |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
             "|                             |                                                                      |\n" +
