@@ -225,9 +225,7 @@ Editing an expenditure
 
 ```
 edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
-
 Edited! Here is the updated list:
-
 The list is printed subsequent to the command but is omitted as
 different users will have different expenditures
 ```
