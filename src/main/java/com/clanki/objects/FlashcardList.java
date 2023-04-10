@@ -28,6 +28,7 @@ public class FlashcardList {
         return flashcards;
     }
 
+    //@@author javienneyeo
     /**
      * Query for flashcards in the current deck that matches the query inside
      * questions and answers (case-insensitive).

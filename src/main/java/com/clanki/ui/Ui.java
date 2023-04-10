@@ -128,6 +128,7 @@ public class Ui {
         printFlashCard(updatedFlashcard);
     }
 
+    //@@author javienneyeo
     /**
      * Display that the contents of list have been successfully cleared.
      */
