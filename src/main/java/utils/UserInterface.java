@@ -233,7 +233,7 @@ public class UserInterface {
         System.out.println("Backup Loaded!");
     }
 
-    public void CorruptedBackup() {
+    public void corruptedBackup() {
         System.out.println("Corrupted backup file! making a new file");
     }
 

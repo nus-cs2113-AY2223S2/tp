@@ -126,7 +126,7 @@ public class JsonStorage extends Storage {
             return savedMemory;
         } catch (IOException | NullPointerException | JsonSyntaxException | InkaException ex) {
             String absolutePath = this.backupFile.getAbsolutePath();
-            JsonStorage.ui.CorruptedBackup();
+            JsonStorage.ui.corruptedBackup();
             throw new StorageCorrupted(absolutePath);
         }
     }

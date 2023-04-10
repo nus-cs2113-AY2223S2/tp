@@ -5,9 +5,10 @@ import utils.UserInterface;
 
 public abstract class Storage implements IDataStorage {
 
+    public static UserInterface ui;
     protected File saveFile;
 
-    public static UserInterface ui;
+
 
     public Storage(String filePath,  UserInterface ui) {
         saveFile = new File(filePath);
