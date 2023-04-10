@@ -215,7 +215,9 @@ public class EditCommand extends Command {
         if (currentLabel.equals(NAME_LABEL)) {
             item.setName(item.getName() + SPACING + data[dataSequence]);
         } else if (currentLabel.equals(CATEGORY_LABEL)) {
+            CategoryCommand.removeItemFromCategory(item, item.getCategory());            
             item.setCategory(item.getCategory() + SPACING + data[dataSequence]);
+            CategoryCommand.addItemToCategory(item.getCategory(), item);            
         } else {
             throw new MissingParametersException();
         }
@@ -230,7 +232,9 @@ public class EditCommand extends Command {
      */
     private static void setItemName(Item item, String newName) throws MissingParametersException {
         if (!newName.isBlank()) {
+            CategoryCommand.removeItemFromCategory(item, item.getCategory());            
             item.setName(newName);
+            CategoryCommand.addItemToCategory(item.getCategory(), item);            
         } else {
             throw new MissingParametersException();
         }
@@ -250,7 +254,9 @@ public class EditCommand extends Command {
             double newPrice = Double.parseDouble(updatedPrice);
             BigDecimal newPriceRange = new BigDecimal(updatedPrice);
             if (newPrice >= MIN_VALUE_RANGE && newPrice <= Types.MAX_QTY) {
+                CategoryCommand.removeItemFromCategory(item, item.getCategory());                
                 item.setPrice(newPrice);
+                CategoryCommand.addItemToCategory(item.getCategory(), item);                
             } else if (newPriceRange.compareTo(BigDecimal.valueOf(0.01)) < ZERO ||
                     newPriceRange.compareTo(BigDecimal.valueOf(Types.MAX_QTY)) > ZERO) {
                 throw new OutOfRangeException();
@@ -278,7 +284,9 @@ public class EditCommand extends Command {
             int newQuantity = Integer.parseInt(updatedQuantity);
             BigInteger newQuantityRange = new BigInteger(updatedQuantity);
             if (newQuantity >= MIN_VALUE_RANGE && newQuantity <= Types.MAX_QTY) {
+                CategoryCommand.removeItemFromCategory(item, item.getCategory());
                 item.setQuantity(newQuantity);
+                CategoryCommand.addItemToCategory(item.getCategory(), item);
             } else if (newQuantityRange.compareTo(BigInteger.ONE) < ZERO ||
                     newQuantityRange.compareTo(BigInteger.valueOf(Types.MAX_QTY)) > ZERO) {
                 throw new OutOfRangeException();
@@ -304,6 +312,7 @@ public class EditCommand extends Command {
         if (!updatedCategory.isBlank()) {
             CategoryCommand.removeItemFromCategory(item, item.getCategory());
             item.setCategory(updatedCategory);
+            CategoryCommand.addItemToCategory(item.getCategory(), item);
         } else {
             throw new MissingParametersException();
         }
@@ -317,10 +326,7 @@ public class EditCommand extends Command {
         try {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
             Item oldItem = new Item(updatedItem);
-            Item oldItemForCat = new Item(updatedItem);
             updateItemInfo(updatedItem, oldItem, editInfo);
-            CategoryCommand.updateItemCategory(oldItemForCat, oldItemForCat.getCategory().toLowerCase(),
-                    updatedItem.getCategory().toLowerCase());
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory());
             handleTrie(updatedItem, oldItem);
@@ -339,8 +345,6 @@ public class EditCommand extends Command {
             Ui.printInvalidEditCommand();
         } catch (NumberFormatException nfe) {
             Ui.printInvalidPriceOrQuantityEditInput();
-        } catch (CategoryFormatException e) {
-            Ui.printInvalidCategory();
         } catch (OutOfRangeException ore) {
             ore.printEditOutOfRange();
         }
