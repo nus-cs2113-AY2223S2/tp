@@ -6,7 +6,7 @@ import functionalities.SniffTasks;
 /**
  * Command to execute find feature
  * Supports 4 types of find operations
- * Find by appointment uID, animal type, type of appointment and date of appointment
+ * Find by appointment uid, animal type, type of appointment and date of appointment
  */
 public class FindCommand extends Command {
 
