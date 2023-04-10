@@ -8,6 +8,7 @@ import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -184,6 +185,7 @@ public class UI {
 
     public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
                                      ArrayList<University> universities) {
+        foundNusModList.sort(Comparator.comparingInt(Module::getUnivId));
         System.out.println(FOUND_LIST_MESSAGE + nusModCode);
         System.out.println(LINE);
         int foundModIndex = 0;
@@ -215,6 +217,7 @@ public class UI {
             }
             foundModIndex++;
         }
+        System.out.println(LINE);
     }
 
     public void printPUModules(int univID, String filter) {
