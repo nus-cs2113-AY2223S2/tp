@@ -19,8 +19,8 @@ Given below are my contributions to the project.
 
 - **New Feature**: Created the `TaskList` sorting function.
   - What it does: Sorts the TaskList based on the predicate and comparator
-  - Justification: This allows the list command to be sorted by its various functions to display to the user.
-  - 
+  - Justification: This allows the list command to be sorted by its various requirements before displaying to the user.
+
 ### Code Contributed:
 
 - [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=kedrian&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=KedrianLoh&tabRepo=AY2223S2-CS2113-T11-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false
