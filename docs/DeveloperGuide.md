@@ -1,5 +1,13 @@
 # Developer Guide
 
+<div style="width:30%; height:auto; margin-left: auto; margin-right: auto;">
+
+
+<img src="https://i.imgur.com/ptkwkny.png">
+
+
+</div>
+
 ## Table of Contents
 
 * [Acknowledgements](#acknowledgements)
@@ -16,6 +24,8 @@
     * [Glossary](#glossary)
 * [Appendix](#appendix)
     * [Instructions for manual testing](#instructions-for-manual-testing)
+
+<div style="page-break-after: always;"></div>
 
 ## Acknowledgements
 
@@ -36,6 +46,8 @@ with the [Parser](#glossary) and Router classes as it is implied that all inputs
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 ## Design
 
@@ -109,7 +121,7 @@ with the [Parser](#glossary) and Router classes as it is implied that all inputs
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
-
+<div style="page-break-after: always;"></div>
 ### MoneyGoWhere Component
 
 ![](./images/developersGuide/MoneyGoWhereComponent.png)
@@ -307,6 +319,8 @@ Each class within the `Validation` component is dedicated to validating a specif
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ## Implementation
 
 ### Item Commands
@@ -414,6 +428,8 @@ The general workflow of `additem` is as follows:
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 #### Delete an Item
 
 ##### Experienced Mode Delete an Item
@@ -483,6 +499,8 @@ The general workflow of `deleteitem` is as follows:
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 #### List all Items
 
@@ -608,6 +626,8 @@ The general workflow of `updateitem` is as follows:
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 #### Find an Item
 
 ##### Experienced Mode Find an Item
@@ -656,6 +676,8 @@ The general workflow of finditem is as follows:
 ###### [Back to table of contents](#table-of-contents)
 
 <hr> 
+
+<div style="page-break-after: always;"></div>
 
 ### Order Commands
 
@@ -753,6 +775,7 @@ The general workflow of the `/addorder` command is as follows:
 
 <hr>
 
+
 ##### New User Mode Add an Order
 
 This sequence diagram models the interaction between various components in MoneyGoWhere when the user inputs the
@@ -777,6 +800,8 @@ The general workflow of `addorder` is as follows:
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 #### Make payment
 
@@ -832,6 +857,7 @@ The general workflow of `pay` is as follows:
 
 <hr>
 
+
 #### List all Orders
 
 This sequence diagram models the interaction between various components in MoneyGoWhere when the user inputs the
@@ -853,6 +879,8 @@ The general workflow of `/listorder` is as follows:
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 #### Refund an Order
 
@@ -915,6 +943,8 @@ The general workflow of `refundorder` is as follows:
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Report Commands
 
 #### Overview
@@ -961,6 +991,8 @@ The general workflow of `/report -s <type> {-y <year>} {-f <start-date> -t <end-
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 #### Generate rank report
 
 This sequence diagram models the interaction between various components in MoneyGoWhere when the user inputs the command
@@ -994,6 +1026,8 @@ The general workflow of `/report -r <type> {-y <year>} {-f <start-date> -t <end-
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ## Requirements
 
 ### Project Scope
@@ -1017,6 +1051,8 @@ is an ideal solution for canteens of any size.
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 ### User Stories
 
@@ -1042,6 +1078,8 @@ is an ideal solution for canteens of any size.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Non-functional Requirements
 
 1. The application should be able to run on any operating system with `Java 11` installed.
@@ -1052,6 +1090,8 @@ is an ideal solution for canteens of any size.
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
@@ -1067,6 +1107,8 @@ The glossary is shown in alphabetical order. If you have any additional question
 ###### [Back to table of contents](#table-of-contents)
 
 <hr>
+
+<div style="page-break-after: always;"></div>
 
 ### Appendix
 
@@ -1090,7 +1132,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### Launch and shutdown
 
-1. Initial launch
+Initial launch
 
 ```
 1. Ensure that Java 11 or above is installed.
@@ -1102,7 +1144,7 @@ Below are some instructions to test MoneyGoWhere manually.
 7. When launched for the first time, a folder will be created for file storage.
 ```
 
-2. Shutting down
+Shutting down
 
 ```
 1. Quit the application using the command `exit`.
@@ -1113,11 +1155,13 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Menu Testing
 
 ### Adding a menu item
 
-1. Adding an item when menu is empty.
+Adding an item when menu is empty.
 
 ```
 1. Test case: `/additem -n "chicken rice" -p 3.50`
@@ -1132,7 +1176,7 @@ Below are some instructions to test MoneyGoWhere manually.
 3. Other incorrect add commands to test: `/additem`, `/additem "name"`, `/additem -n "name"` and `/additem -p 2.50`
 ```
 
-2. Adding an item when menu is not empty.
+Adding an item when menu is not empty.
 
 ```
 1.  Test case: `/additem -n "chicken rice" -p 3.50`
@@ -1143,7 +1187,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### Deleting a menu item
 
-1. Deleting an item when menu is empty.
+Deleting an item when menu is empty.
 
 ```
 1. Test case: `/deleteitem -i 1`
@@ -1152,7 +1196,7 @@ Below are some instructions to test MoneyGoWhere manually.
    There are no items on the menu
 ```
 
-2. Deleting an item when menu is not empty.
+Deleting an item when menu is not empty.
 
 ```
 1.  Test case: `/deleteitem -i 1`
@@ -1169,7 +1213,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### Updating a menu item
 
-1. Updating an item when menu is empty.
+Updating an item when menu is empty.
 
 ```
 1. Test case: `/updateitem -i 1 `
@@ -1178,7 +1222,7 @@ Below are some instructions to test MoneyGoWhere manually.
    Index does not exist.
 ```
 
-2. Updating an item when menu is not empty.
+Updating an item when menu is not empty.
 
 ```
 1.  Test case: `/updateitem -i 1 -p 5.50`
@@ -1197,7 +1241,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### Finding a menu item
 
-1. Finding an item when menu is empty.
+Finding an item when menu is empty.
 
 ```
 1. Test case: `/finditem "something"`
@@ -1205,7 +1249,7 @@ Below are some instructions to test MoneyGoWhere manually.
    Expected: No menu items matching something were found.
 ```
 
-2. Finding an item when menu is not empty.
+Finding an item when menu is not empty.
 
 ```
 1.  Test case: `/finditem "rice"`
@@ -1220,7 +1264,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### List items
 
-1. Menu list is empty
+Menu list is empty
 
 ```
 1. Test case: `listitem`
@@ -1228,7 +1272,7 @@ Below are some instructions to test MoneyGoWhere manually.
    Expected: There are no items on the menu
 ```
 
-2. Menu list is not empty
+Menu list is not empty
 
 ```
 1. Test case: `listitem`
@@ -1243,11 +1287,13 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Order Testing
 
 ### Adding an order
 
-1. Add single order.
+Add single order.
 
 ```
 1. Test case: `/addorder -i 1`
@@ -1268,7 +1314,7 @@ Below are some instructions to test MoneyGoWhere manually.
 4. Other incorrect add commands to test: `/addorder`, `/addorder -i something` and `/addorder -i 1 -q name`
 ```
 
-2. Add multiple orders.
+Add multiple orders.
 
 ```
 1. Test case: `/addorder -I [1:1]`
@@ -1291,7 +1337,7 @@ Below are some instructions to test MoneyGoWhere manually.
 
 ### List orders
 
-1. Order list is empty
+Order list is empty
 
 ```
 1. Test case: `listorder`
@@ -1299,7 +1345,7 @@ Below are some instructions to test MoneyGoWhere manually.
    Expected: Order list is empty.
 ```
 
-2. Order list is not empty
+Order list is not empty
 
 ```
 1. Test case: `listorder`
@@ -1313,9 +1359,11 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Payment testing
 
-1. Paying an order
+Paying an order
 
 > Test case:
 >
@@ -1343,11 +1391,13 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Refund testing
 
 ### Refunding an order
 
-1. Refund an order when order list is empty.
+Refund an order when order list is empty.
 
 ```
 1. Test case: `/refundorder -i 204vfenefnef03nf0`
@@ -1356,7 +1406,7 @@ Below are some instructions to test MoneyGoWhere manually.
    There is no order to refund.
 ```
 
-2. Refund an order when order list is not empty.
+Refund an order when order list is not empty.
 
 ```
 1. Test case: `/refundorder -i b0d70428-c5b2-4024-82e9-ce77cf89dc0c`
@@ -1378,9 +1428,11 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Statistic testing
 
-1. Rank by sales
+Rank by sales
 
 ```
 1. Test case: `/report -s daily -y 2023`
@@ -1399,7 +1451,7 @@ Below are some instructions to test MoneyGoWhere manually.
 4. Other incorrect commands to test: `/report`, `/report -s` and `/report -s yearly`
 ```
 
-2. Rank by popularity
+Rank by popularity
 
 ```
 1. Test case: `/report -r sales -y 2023`
@@ -1422,9 +1474,11 @@ Below are some instructions to test MoneyGoWhere manually.
 
 <hr>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage Testing
 
-1. MoneyGoWhere.jar is placed in a location where read and write permissions are given.
+MoneyGoWhere.jar is placed in a location where read and write permissions are given.
 
 ```
 1. Test case: First time launched
@@ -1435,7 +1489,7 @@ Below are some instructions to test MoneyGoWhere manually.
    Expected: The application will detect it as a corrupted file, correct the format and restore the data.
 ```
 
-2. MoneyGoWhere.jar is placed in a location with no read and write permissions
+MoneyGoWhere.jar is placed in a location with no read and write permissions
 
 ```
 1. Test case: First time launched
@@ -1444,3 +1498,20 @@ Below are some instructions to test MoneyGoWhere manually.
 ```
 
 ###### [Back to table of contents](#table-of-contents)
+
+
+<div style="page-break-after: always;"></div>
+
+
+### Final Comments
+
+If you have read until the end, thank you! We hope you have understood the inner mechanisms of MoneyGoWhere, and that 
+you had a relatively easy time reading through this Developer Guide. 
+
+We (the original MoneyGoWhere team) put in a considerable amount of effort to make the guide as detailed 
+and correct as possible. We hope that the information in this guide will be useful in improving MoneyGoWhere, 
+and we look forward to seeing it being continuously loved and improved upon. 
+
+Once again, thank you for reading the guide!
+
+<hr>
