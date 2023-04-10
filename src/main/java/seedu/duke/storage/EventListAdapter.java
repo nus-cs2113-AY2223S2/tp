@@ -198,6 +198,9 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Schedule>> {
         if (!hasStartTime){
             throw new NPExceptions("No Start Time detected. File is corrupted");
         }
+        if (description.trim().equals("")){
+            throw new NPExceptions("Empty Description! File corrupted.");
+        }
         return createEvent(description, startTime, endTime, hasStartTime, hasEndTime, hasLocation,
                 isRecurring, timeInterval, location);
     }
