@@ -23,64 +23,76 @@ public class OptionsBuilder {
     protected static final String FLAG_LONG_ANSWER = "answer";
 
     private String model;
-    private String keyword;
+    private String action;
 
     public OptionsBuilder(String model, String action) {
         this.model = model;
-        this.keyword = action;
+        this.action = action;
     }
 
     public Options buildOptions() {
         switch (model) {
         case Parser.CARD_KEYWORD:
-            switch (keyword) {
-            case CardKeywordParser.ADD_ACTION:
-                return buildAddOptions();
-            case CardKeywordParser.TAG_ACTION:
-                return buildTagOptions();
-            case CardKeywordParser.UNTAG_ACTION:
-                return buildUntagOptions();
-            case CardKeywordParser.VIEW_ACTION:
-                return buildViewOptions();
-            case CardKeywordParser.DELETE_ACTION:
-                return buildDeleteOptions(Parser.CARD_KEYWORD);
-            case CardKeywordParser.DECK_ACTION:
-                return buildDeckOptions(Parser.CARD_KEYWORD);
-            default:
-                // Should be exhaustive
-                assert false;
-                return null;
-            }
+            return buildCardModelOptions(action);
         case Parser.TAG_KEYWORD:
-            switch (keyword) {
-            case TagKeywordParser.DELETE_ACTION:
-                return buildDeleteOptions(Parser.TAG_KEYWORD);
-            case TagKeywordParser.DECK_ACTION:
-                return buildDeckOptions(Parser.TAG_KEYWORD);
-            case TagKeywordParser.EDIT_ACTION:
-                return buildEditOptions(Parser.TAG_KEYWORD);
-            case TagKeywordParser.LIST_ACTION:
-                return buildListOptions(Parser.TAG_KEYWORD);
-            default:
-                // Should be exhaustive
-                assert false;
-                return null;
-            }
+            return buildTagModelOptions(action);
         case Parser.DECK_KEYWORD:
-            switch (keyword) {
-            case DeckKeywordParser.DELETE_ACTION:
-                return buildDeleteOptions(Parser.DECK_KEYWORD);
-            case DeckKeywordParser.EDIT_ACTION:
-                return buildEditOptions(Parser.DECK_KEYWORD);
-            case DeckKeywordParser.LIST_ACTION:
-                return buildListOptions(Parser.DECK_KEYWORD);
-            case DeckKeywordParser.RUN_ACTION:
-                return buildRunOptions();
-            default:
-                // Should be exhaustive
-                assert false;
-                return null;
-            }
+            return buildDeckModelOptions(action);
+        default:
+            // Should be exhaustive
+            assert false;
+            return null;
+        }
+    }
+
+    private Options buildDeckModelOptions(String action) {
+        switch (action) {
+        case DeckKeywordParser.DELETE_ACTION:
+            return buildDeleteOptions(Parser.DECK_KEYWORD);
+        case DeckKeywordParser.EDIT_ACTION:
+            return buildEditOptions(Parser.DECK_KEYWORD);
+        case DeckKeywordParser.LIST_ACTION:
+            return buildListOptions(Parser.DECK_KEYWORD);
+        case DeckKeywordParser.RUN_ACTION:
+            return buildRunOptions();
+        default:
+            // Should be exhaustive
+            assert false;
+            return null;
+        }
+    }
+
+    private Options buildTagModelOptions(String action) {
+        switch (action) {
+        case TagKeywordParser.DELETE_ACTION:
+            return buildDeleteOptions(Parser.TAG_KEYWORD);
+        case TagKeywordParser.DECK_ACTION:
+            return buildDeckOptions(Parser.TAG_KEYWORD);
+        case TagKeywordParser.EDIT_ACTION:
+            return buildEditOptions(Parser.TAG_KEYWORD);
+        case TagKeywordParser.LIST_ACTION:
+            return buildListOptions(Parser.TAG_KEYWORD);
+        default:
+            // Should be exhaustive
+            assert false;
+            return null;
+        }
+    }
+
+    public static Options buildCardModelOptions(String action) {
+        switch (action) {
+        case CardKeywordParser.ADD_ACTION:
+            return buildAddOptions();
+        case CardKeywordParser.TAG_ACTION:
+            return buildTagOptions();
+        case CardKeywordParser.UNTAG_ACTION:
+            return buildUntagOptions();
+        case CardKeywordParser.VIEW_ACTION:
+            return buildViewOptions();
+        case CardKeywordParser.DELETE_ACTION:
+            return buildDeleteOptions(Parser.CARD_KEYWORD);
+        case CardKeywordParser.DECK_ACTION:
+            return buildDeckOptions(Parser.CARD_KEYWORD);
         default:
             // Should be exhaustive
             assert false;
@@ -193,7 +205,7 @@ public class OptionsBuilder {
 
     private static Options buildRunOptions() {
         Options options = new Options();
-        options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK,true, "name of the deck to review");
+        options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK, true, "name of the deck to review");
         return options;
     }
 
