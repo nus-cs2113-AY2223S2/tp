@@ -35,7 +35,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_MONTH = "Invalid time information. " +
             "Please present your time as [YYYY/MM]\n" +
             "|  Do not enter invalid dates, such as entering 14 for MM. Only months 1~12 are accepted.\n" +
-            "|  The earliest date available is 2000/01, and the latest date available is 9999/12";
+            "|  The earliest date available is 2000/01, and the latest date available is 9999/12.";
 
     public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
     public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
