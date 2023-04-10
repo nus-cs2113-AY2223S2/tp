@@ -15,7 +15,7 @@ public class StoreTest {
     @Test
     void checkIsInvalidToDo() throws IOException {
         Path temporaryFile = Files.createTempFile("TempFile", ".txt");
-        String contentsFile = "HIGH\tN\t0\tThis is a test \nMEDIUM\tY\t2\tThi is another test\n";
+        String contentsFile = "HIGH\tN\t0\tThis is a first test \nMEDIUM\tY\t2\tThis is a second test\n";
         Files.writeString(temporaryFile, contentsFile);
         String todo = "82738232";
         ArrayList<Note> notesArray = new ArrayList<>();
@@ -29,7 +29,7 @@ public class StoreTest {
     @Test
     void storeValidInputCommand() throws IOException {
         Path temporaryFile = Files.createTempFile("TempFile", ".txt");
-        String contentsFile = "HIGH\tN\t0\tThis is a test \nMEDIUM\tY\t2\tThi is another test\n";
+        String contentsFile = "HIGH\tN\t0\tThis is a first test \nMEDIUM\tY\t2\tThis is a second test\n";
         Files.writeString(temporaryFile, contentsFile);
         ArrayList<Note> notesArray = new ArrayList<>();
         String toDo = "index";
