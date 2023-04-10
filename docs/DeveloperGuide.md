@@ -90,6 +90,18 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 2. If appointments are found, it calls **`toString`** and **`formatPrintList`** to print out appointments to user.
 3. If no matching appointments are stored, ui method, **`showUserMessage`** is called.
 
+#### mark()
+![img_21.png](img_21.png)
+1. **`mark`** loops through arraylist appointments and checks if ID is present and finds the appointment index.
+2. If appointments is not previously marked , it calls **`isDone`** and sets the value to true and **`showUserMessage`** is called.
+3. If it is already marked then a corresponding **`showUserMessage`** is called.
+
+#### unmark()
+![img_22.png](img_22.png)`  aqΩΩ
+1. **`unmark`** loops through arraylist appointments and checks if ID is present and finds the appointment index.
+2. If appointments is not previously unmarked , it calls **`isDone`** and sets the value to false and **`showUserMessage`** is called.
+3. If it is already unmarked then a corresponding **`showUserMessage`** is called.
+
 ### Appointment - Class Implementation (non UID)
 ![img_19.png](img_19.png)<br>
 **Figure 9: UML Diagram of Appointment Class**
@@ -412,4 +424,13 @@ ______________________________________________________________________
  Surgery changed successfully!
 ______________________________________________________________________
 ```
-4. 
+4. Test case: `edit uID/V01087221W at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+   Expected output : Editing consultation : Enter the edit command with uID/ of the appointment that you want to edit. If the
+                                            appointment exists then the appointment is changed. If it does not exist it gives an error message.
+
+Example:
+```
+______________________________________________________________________
+Vaccination changed successfully!
+______________________________________________________________________
+```
