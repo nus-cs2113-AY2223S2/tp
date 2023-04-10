@@ -361,8 +361,6 @@ The sequence diagram below shows how this feature works:
 
 ![](./UML/Implementation/ListAvailableFunction/availableSequenceDiagram.drawio.png)
 
-<!-- @@author gurmankalkat -->
-
 ### Delete Recipes Feature
 
 The current implementation:
@@ -376,15 +374,20 @@ It is implemented through the following step:
 1. When the user enters an input with the first word being `delete`, the input is passed to
    the `Parser` component.
 2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all
-   recipes, a single
-   recipe, or range of recipes.
+   recipes, a single recipe, or range of recipes.
+
+    - If user inputs `delete /r {some recipe or all}`, assume user has inputted a recipe name or all. 
+    - If user inputs `delete {index or range}`, assume user has inputted an index or range. 
+    - Checks in place to ensure user has inputted recipe(s) in the correct format.
+    - Checks in place to ensure user is inputting a recipe that is currently in the list, a valid range, or a
+        valid index.
+
+    `parseDeleteRecipe()` will return the name of the recipe that was just deleted.
+    
 3. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as
-   a parameter,
-   and return the `Recipe` object at that index/the one just deleted.
+   a parameter, and return the `Recipe` object at that index/the one just deleted.
 
 ![](./UML/Implementation/DeleteFunction/DeleteFunction.jpg)
-
-<!-- @@author gurmankalkat -->
 
 ### Add Recipes Feature
 
