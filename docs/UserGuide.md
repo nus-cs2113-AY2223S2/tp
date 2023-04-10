@@ -348,7 +348,7 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 
 > **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
-![reciperandom.png](images/reciperandom.png)  
+![reciperandom2.png](images/reciperandom2.png)  
 <sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
 
 ##### [Back to Recipes](#recipes)
