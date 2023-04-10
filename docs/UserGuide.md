@@ -9,29 +9,26 @@ This helps with planning future exercises.
 ## Table of Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
-  - [Setting Up](setting-up)
-  - [Viewing Help](viewing-help)
-  - [List of valid workout commands : /whelp](#list-valid-commands--help)
-  - [List of valid calorie commands : /chelp](#list-of-valid-commands--help)
+  - [Setting Up](#setting-up)
 - [Features](#features)
-  - [Workout Recorder](#workout-recorder)
-      - [Start a workout: /wstart](#start-a-workout--wstart)
-      - [Add exercises to current workout: /wadd](#add-exercises-to-current-workout--wadd)
-      - [List workout dates: /wlist](#list-workout-dates--wlist)
-      - [View workout details: /wview](#view-a-workout--wview)
-      - [Delete workout record: /wdelete](#delete-a-workout--wdelete)
-      - [Count sets and reps for a week: /wcount](#count-sets-and-reps-over-a-week--wcount)
-      - [End current workout: /wend](#end-a-workout--wend)
-  - [Calories Recorder](calories-recorder)
-    - [Add calories consumed: /cadd](#add-calories-consumed--cadd)
-    - [List all the datesof Calories consumed: /clist](#list-calories-clist)
-    - [View calorie consumption: /cview](#view-calorie-consumption--cview)
-    - [Delete calories record: /cdelete](#delete-a-workout--delete)
-  - [Exit the app: /exit](#exit-the-app--exit)
+  - [Start a workout: /wstart](#start-a-workout-wstart)
+  - [Add exercises to current workout: /wadd](#add-exercises-to-current-workout-wadd)
+  - [List workout dates: /wlist](#list-workout-dates-wlist)
+  - [View workout details: /wview](#view-a-workout-wview)
+  - [Delete workout record: /wdelete](#delete-a-workout-wdelete)
+  - [Count sets and reps for a week: /wcount](#count-sets-and-reps-over-a-week-wcount)
+  - [End current workout: /wend](#end-a-workout-wend)
+  - [Viewing workout help: /whelp](#viewing-workout-help-whelp)
+  - [Add calories consumed: /cadd](#add-calories-consumed-cadd)
+  - [List all calories consumption: /clist](#list-all-calorie-consumption-clist)
+  - [View calorie consumption of day: /cview](#view-calorie-consumption-of-day-cview)
+  - [Delete calories record: /cdelete](#delete-a-workout-wdelete)
+  - [Viewing workout help: /chelp](#viewing-calories-help-chelp)
+  - [Exit the app: /exit](#exit-the-app-exit)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-## Introduction 
+## Introduction
 
 Fitz - the ultimate fitness app for individuals who are passionate about their health and fitness.
 With Fitz, you can achieve your fitness goals and track your progress with ease.
@@ -53,53 +50,6 @@ The data saved during the application will reside in your <home_folder>/data fol
 4. Launch a command prompt or terminal and run the command java -jar duke.jar to start the application.
 5. Fitz will display a greeting message.
 6. If you encounter any issues when setting up and hereon, do check out the [FAQ](#faq) section.
-
-### Viewing Workout Help
-
-Display basic or detailed help information explaining the commands available in the application.
-
-Format: `/whelp`
-
-Example of usage:
-
-`/whelp`
-
-Expected output:
-```
-Here are the list of commands that you can use for workout record:
-=======================================
-- [Start a workout: /wstart])
-- [Add exercise: /wadd]
-- [Display all the days: /wlist]
-- [Display workouts information for a specific day: /wview]
-- [Display total amount of reps and set for one week /wcount]
-- [Delete workouts: /wdelete]
-- [End current workout: /wend]
-- [Exit app: /exit]
-=======================================
-```
-### Viewing Calories Help
-
-Display basic or detailed help information explaining the commands available in the application.
-
-Format: `/chelp`
-
-Example of usage:
-
-`/chelp`
-
-Expected output:
-```
-Here are the list of commands that you can use for calories record:
-=======================================
-- [Add food and calories: /cadd]
-- [Display total calories consumption: /clist]
-- [Display calories consumed on a specific date : /cview]
-- [Delete calories record for one food: /cdelete]
-- [Exit app: /exit]
-=======================================
-```
-
 
 ## Features
 
@@ -214,6 +164,32 @@ Expected output:
 ```
 Great job completing your workout!
 ```
+
+### Viewing Workout Help: `/whelp`
+
+Display basic or detailed help information explaining the commands available in the application.
+
+Format: `/whelp`
+
+Example of usage:
+
+`/whelp`
+
+Expected output:
+```
+Here are the list of commands that you can use for workout record:
+=======================================
+- [Start a workout: /wstart])
+- [Add exercise: /wadd]
+- [Display all the days: /wlist]
+- [Display workouts information for a specific day: /wview]
+- [Display total amount of reps and set for one week /wcount]
+- [Delete workouts: /wdelete]
+- [End current workout: /wend]
+- [Exit app: /exit]
+=======================================
+```
+
 ### Add calories consumed: `/cadd`
 Add record of calories consumed.
 
@@ -229,7 +205,7 @@ Expected output:
 ```
 Added chicken(100 kcal) to 11/02/23.
 ```
-### View calorie consumption: `/clist`
+### List all calorie consumption: `/clist`
 Display the list of dates and total calorie consumption.
 
 Format: `/clist`
@@ -243,7 +219,8 @@ Here is your list of daily calorie consumption:
 1. 11/02/23: 100kcal
 =======================================
 ```
-### View calorie consumption: `/cview`
+
+### View calorie consumption of day: `/cview`
 View the total calorie consumption in a specified date.
 
 Format: `/cview DD/MM/YY`
@@ -259,6 +236,30 @@ Here are the foods consumed on 11/02/23:
 1. chicken - 100kcal
 =======================================
 ```
+
+
+### Viewing Calories Help: `/chelp`
+
+Display basic or detailed help information explaining the commands available in the application.
+
+Format: `/chelp`
+
+Example of usage:
+
+`/chelp`
+
+Expected output:
+```
+Here are the list of commands that you can use for calories record:
+=======================================
+- [Add food and calories: /cadd]
+- [Display total calories consumption: /clist]
+- [Display calories consumed on a specific date : /cview]
+- [Delete calories record for one food: /cdelete]
+- [Exit app: /exit]
+=======================================
+```
+
 ### Exit the App: `/exit`
 Exit the program.
 
