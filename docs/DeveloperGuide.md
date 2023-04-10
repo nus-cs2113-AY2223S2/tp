@@ -175,12 +175,18 @@ that is likely to see high amounts of usage given the target user.
 
 When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
 
+The save file can be edited and modified, however, if certain field is changed in a manner that may cause the application to fail 
+when running at a later stage, the storage will discard all the data in the EventList and provide the user with an empty Event List. 
+
 
 ### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
 
 When any component requires reading the NUS module files, the loadModules() method is called. Data from nusmods.json
-is accurate as of March 17, 2023. 
+is correct as of March 17, 2023. 
+
+It should be noted that Modules that are **Mini Projects** or **Workshops** are not supported by this application as they
+do not have any semester data. As such they cannot be added as an event. 
 
 ### 2.3.4 Save Events Sequence Diagram
 
