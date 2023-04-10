@@ -89,10 +89,15 @@ public class EventList {
     }
 
     private static boolean checkSingleOverlap(Schedule eventA, Schedule eventB) {
-        return ((eventA.getStartTime().compareTo(eventB.getStartTime()) >= 0
-                && eventA.getStartTime().compareTo(eventB.getEndTime()) <= 0)
-                || (eventA.getEndTime().compareTo(eventB.getStartTime()) >= 0
+        boolean conflictCase1 = ((eventA.getStartTime().compareTo(eventB.getStartTime()) >= 0
+                && eventA.getStartTime().compareTo(eventB.getEndTime()) < 0)
+                || (eventA.getEndTime().compareTo(eventB.getStartTime()) > 0
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
+
+        boolean conflictCase2 = eventA.getStartTime().compareTo(eventB.getStartTime()) <= 0
+                && eventA.getEndTime().compareTo(eventB.getEndTime()) >= 0;
+
+        return conflictCase1 && conflictCase2;
     }
 
     public static boolean canAddNewEvent(Event newEvent, int index, ArrayList<Schedule> eventList) {
@@ -145,7 +150,7 @@ public class EventList {
                 if (breakFlag) {
                     break;
                 }
-            }   
+            }
         }
         return isOverlap;
     }
@@ -169,7 +174,7 @@ public class EventList {
         String[] details = recur.split(" ");
 
         if (details[0].trim().matches("^[0-9]*$")) {
-            if(Integer.parseInt(details[0].trim()) <=0 ) {
+            if (Integer.parseInt(details[0].trim()) <= 0) {
                 return false;
             }
             return true;
@@ -204,7 +209,7 @@ public class EventList {
             throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
-        if(!checkRecurTime(recurTime)) {
+        if (!checkRecurTime(recurTime)) {
             throw new NPExceptions("recurring time should be a positive integer!");
         }
 
@@ -219,14 +224,14 @@ public class EventList {
 
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
-        
-        if(!checkRecurTime(recurTime)) {
+
+        if (!checkRecurTime(recurTime)) {
             throw new NPExceptions("recurring time should be a positive integer!");
         }
 
         Event newEvent = new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo,
                 endInfo.hasInfo, recurTime);
-        
+
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
