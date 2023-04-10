@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class CommandTotal
+class Command
+class Expense
+
+
+Command <|-- CommandTotal
+Expense " *  " <-- CommandTotal
+
+class Command {
++CommandType: String
++execute()
+}
+
+class CommandTotal{
+{static} +COMMANDTYPE : String = "total"
+#total : BigDecimal
++getTotal(): BigDecimal
++calculateTotal(): BigDecimal
+}
+
+class Expense{
+#expenseAmount : BigDecimal
+#expenseTime: Time
+#description:String
+#curencyType:String
+#rate: BigDecimal
+}
+
+@enduml

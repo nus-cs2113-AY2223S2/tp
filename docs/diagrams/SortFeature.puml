@@ -1,0 +1,68 @@
+@startuml
+package command {
+    class Command
+    class CommandSort {
+        - expenseList: ArrayList<Expense>
+        - sortBy: String
+        - expenseListDate: ArrayList<Expense>
+        - expenseListCategory: ArrayList<Expense>
+        + CommandSort(expenseList: ArrayList<Expense>)
+        + CommandSort(expenseList: ArrayList<Expense>, sortBy: String)
+        + execute(): CommandRes
+        - sortByDate()
+        - displayByDate()
+        - sortByCategory()
+    }
+}
+
+package data {
+    class Expense {
+        - expenseAmount: double
+        - expenseTime: String
+        - description: String
+        - currencyType: String
+        - rate: double
+        + Expense(expenseAmount: double, expenseTime: String, description: String, currencyType: String, rate: double)
+        + getExpenseAmount(): double
+        + getExpenseTime(): String
+        + getDescription(): String
+        + getCurrencyType(): String
+        + getRate(): double
+        + sortedDisplay(sortBy: String): String
+    }
+
+    class Time {
+        - hour: int
+        - minute: int
+        + toTime(time: String): Time
+        + compareTo(otherTime: Time): int
+    }
+}
+
+class ArrayList<T> {
+    + size(): int
+    + get(index: int): T
+    + set(index: int, element: T): T
+}
+
+class Comparator<T> {
+    + compare(o1: T, o2: T): int
+}
+
+class CommandRes {
+}
+
+class MessageList {
+    - MESSAGE_DIVIDER: String
+    - MESSAGE_DIVIDER_SORTEDLIST: String
+}
+
+Command --> CommandSort
+Command --> CommandRes
+CommandSort --> Expense
+CommandSort --> Time
+CommandSort --> ArrayList
+CommandSort --> Comparator
+CommandSort --> CommandRes
+CommandSort --> MessageList
+@enduml

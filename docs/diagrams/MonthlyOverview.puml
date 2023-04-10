@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+box Monthly Overview
+
+participant ":Duke" as Duke
+participant ":CommandOverview" as CommandOverview
+participant ":MonthlyOverview" as MonthlyOverview
+participant "yearFilter:YearFilter" as YearFilter
+participant "monthFilter:MonthFilter" as MonthFilter
+
+activate Duke
+
+create CommandOverview
+Duke -> CommandOverview
+activate CommandOverview
+CommandOverview --> Duke
+deactivate CommandOverview
+
+Duke -> CommandOverview : execute()
+activate CommandOverview
+
+create MonthlyOverview
+CommandOverview -> MonthlyOverview
+activate MonthlyOverview
+MonthlyOverview -> MonthlyOverview : obtainFilteredExpenses()
+activate MonthlyOverview
+create YearFilter
+MonthlyOverview -> YearFilter
+activate YearFilter
+YearFilter --> MonthlyOverview
+deactivate YearFilter
+
+create MonthFilter
+MonthlyOverview -> MonthFilter
+activate MonthFilter
+MonthFilter -> YearFilter : getYearlyExpenses()
+activate YearFilter
+YearFilter --> MonthFilter : ArrayList<Expense>
+deactivate YearFilter
+MonthFilter -->MonthlyOverview
+deactivate MonthFilter
+
+MonthlyOverview -> MonthFilter : getMonthlyExpenses()
+activate MonthFilter
+MonthFilter --> MonthlyOverview : filteredExpenses
+deactivate MonthFilter
+MonthlyOverview --> MonthlyOverview
+deactivate MonthlyOverview
+MonthlyOverview --> CommandOverview
+deactivate MonthlyOverview
+
+CommandOverview -> MonthlyOverview : printOverview()
+activate MonthlyOverview
+MonthlyOverview -> MonthlyOverview : printCategoryBreakdown()
+activate MonthlyOverview
+MonthlyOverview --> MonthlyOverview
+deactivate MonthlyOverview
+MonthlyOverview --> CommandOverview
+deactivate MonthlyOverview
+
+CommandOverview --> Duke
+deactivate CommandOverview
+
+
+@enduml

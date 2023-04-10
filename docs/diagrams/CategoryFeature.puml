@@ -1,0 +1,32 @@
+@startuml
+box Category
+
+participant ":Duke" as Duke
+participant ":CommandCategory" as CommandCategory
+participant "parser:Parser" as Parser
+participant "categorySet:HashSet" as categorySet
+
+-> Duke: input
+activate Duke
+Duke -> Parser: extractCategory(input)
+Activate Parser
+Parser --> Duke
+Deactivate Parser
+Duke -> CommandCategory: execute()
+Activate CommandCategory
+CommandCategory -> categorySet
+Activate categorySet
+
+alt no expenses tracked
+    CommandCategory --> Duke: "Sorry, there are no expenses tracked currently."
+else category not found
+    CommandCategory --> Duke: "Sorry, none of your previous expenses corresponds to this category."
+    CommandCategory -> CommandCategory: displayAllCategories()
+else
+    CommandCategory -> CommandCategory: displayAllCategories()
+    CommandCategory -> CommandCategory: displayCorrespondingCategory(category)
+end
+Deactivate CommandCategory
+Deactivate categorySet
+
+@enduml

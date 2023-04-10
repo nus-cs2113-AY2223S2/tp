@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+box Yearly Overview
+
+participant ":Duke" as Duke
+participant ":CommandOverview" as CommandOverview
+participant ":YearlyOverview" as YearlyOverview
+participant "yearFilter:YearFilter" as YearFilter
+
+activate Duke
+
+create CommandOverview
+Duke -> CommandOverview
+activate CommandOverview
+CommandOverview --> Duke
+deactivate CommandOverview
+
+Duke -> CommandOverview : execute()
+activate CommandOverview
+
+create YearlyOverview
+CommandOverview -> YearlyOverview
+activate YearlyOverview
+YearlyOverview -> YearlyOverview : obtainedFilteredExpenses()
+activate YearlyOverview
+create YearFilter
+YearlyOverview -> YearFilter
+activate YearFilter
+YearFilter --> YearlyOverview
+deactivate YearFilter
+
+YearlyOverview -> YearFilter : getYearlyExpenses()
+activate YearFilter
+YearFilter --> YearlyOverview
+deactivate YearFilter
+YearlyOverview --> YearlyOverview
+deactivate YearlyOverview
+YearlyOverview --> CommandOverview
+deactivate YearlyOverview
+
+CommandOverview -> YearlyOverview : printYearlyOverview()
+activate YearlyOverview
+YearlyOverview -> YearlyOverview : printTotalByMonth()
+activate YearlyOverview
+YearlyOverview -> YearlyOverview : totalByMonth()
+activate YearlyOverview
+YearlyOverview --> YearlyOverview
+deactivate YearlyOverview
+YearlyOverview --> YearlyOverview
+deactivate YearlyOverview
+
+YearlyOverview --> CommandOverview
+deactivate YearlyOverview
+
+CommandOverview --> Duke
+deactivate CommandOverview
+
+@enduml
