@@ -7,29 +7,29 @@ MyLedger is a desktop app for managing finances, designed for university student
 ### Summary of Contributions
 #### Main Features Implemented:
 
-1. **The expenditure package**
+**The expenditure package**
    - **What it does** : Contains all the classes and operations for the fixed expenditure types and expenditure list.
    - **Justification**: The fixed expenditures in the program can be instantiated as real world expenditure, and kept track of in the application's expenditure list. Since the application aims to help users add and to manage expenditures, the package of classes forms the core of MyLedger.
    - **Highlights**: This feature sets the direction of MyLedger. Thus, deciding the attributes of each class played an important role in setting the trajectory of the application; brainstorming the important information the target user would need in their expenditure record.
 
-2. **The Command Classes for all fixed expenditure types**
+**The Command Classes for all fixed expenditure types**
    - **What it does**: Contains all the command classes for the fixed expenditure types and to display expenditure list. Additionally, the `CommandResult.java`class displays to the user the result of the command after each successful execution.
    - **Justification**: With the help of MyLedger's parsing unit, the user's input are broken down and fed into their respective command class. The execution of these command classes produces the user's desired outcome (i.e. adding an academic expenditure into the current expenditure list).
    - **Highlights**: The implementation of the command classes requires good coordination with the implementor of the parsing class as they would need information on how each expenditure command is instantiated; it was done well.
 
 <div style="page-break-after: always;"></div>
 
-3. **The Sort Command**
+**The Sort Command**
    - **What it does**: Sorts the expenditure list in ascending or descending amount, or from the latest or earliest dates. 
    - **Justification**: This allows users to sort their expenditures to gain better insight to manage them; to rank the expenditures that spent the most/least money, or ones that have added the most recently/earliest.
    - **Highlights**: The feature will change the order of the expenditure list for future reference. This is done to improve user experience while navigating the sorted list after calling the command.
 
-4. **The repeating date of the Accommodation and Tuition Expenditures**
+**The repeating date of the Accommodation and Tuition Expenditures**
    - **What it does**: The `AccommodationExpenditure` and `TuitionExpenditure` takes in a date of repeat. Whether or not the aforementioned expenditures have been marked beforehand, this feature ensures the the expenditures are unmarked after 1 full year.
    - **Justification**: The `AccommodationExpenditure` and `TuitionExpenditure` are lump sum payments and must be paid within a period of time. The nature of these expenditures are repeating and thus, users can trust MyLedger to unmark the aforementioned expenditures to serve as an annual reminder.
    - **Highlights**: This was a challenging feature as `LocalDate` is used extensively to compare the dates. Additionally, the method must be ran for the check to be ran, thus this is implemented in the main loop logic of the program. After a year has passed, the program will retain the day and month values of the repeat date, and increment the year. This will only run once every year and only ran after the specified date is reached or passed.
 
-5. **Fix save file reading related bugs**
+**Fix save file reading related bugs**
    - **What it does**: The save file stores all expenditures from the most recent expenditure list.
    - **Justification**: Upon corruption of the save file, the program oringally crashes. With the fixes, only individual corrupted expenditures are deleted, uncorrupted expenditures can still be loaded.
    - **Highlights**: Considering all possible combinations for corruption was challenging. Now the save file reading complies with the input rules defined by the application.
