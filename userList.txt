@@ -1,7 +1,0 @@
-pn,abcdhjkl
-abc,bcddddddd
-abcd,abcdhjkl
-jfjfjfjf,fjjfjfjfjfjf
-login,abcdhjjk
-abcdjk,abcdhjkl
-acoount,newaccount
