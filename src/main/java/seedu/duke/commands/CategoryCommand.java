@@ -96,7 +96,7 @@ public class CategoryCommand extends Command {
      * @param categoryToAdd the specified category to add item to.
      * @param item the item to be added to a category.
      */
-    private static void addItemToCategory(String categoryToAdd, Item item) {
+    public static void addItemToCategory(String categoryToAdd, Item item) {
         categoryToAdd = categoryToAdd.toLowerCase();
         if (!categoryHash.containsKey(categoryToAdd)) {
             categoryHash.put(categoryToAdd, new ArrayList<>());
