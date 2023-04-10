@@ -59,8 +59,6 @@ I implemented most of the read logic for the Store class, allowing the program t
     * [Food Supply Tracker](https://github.com/nus-cs2113-AY2223S2/tp/pull/9)
     * [WellNUS++](https://github.com/bawfen/ped/issues)
 
-<div style="page-break-after: always;"></div>
-
 ### Documentation
 
 * User Guide
@@ -73,6 +71,10 @@ I implemented most of the read logic for the Store class, allowing the program t
     * Added Appendix - Requirements
     * Added Appendix - Instructions for Manual Testing
     * Added Appendix - Instructions for updating the API Key
+
+<div style="page-break-after: always;"></div>
+
+#### Contributions to Developer Guide Extracts
 
 ##### Architecture
 
