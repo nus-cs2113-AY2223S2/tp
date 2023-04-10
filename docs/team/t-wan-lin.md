@@ -16,7 +16,7 @@ It is written in Java, and has about 5kLoC.
 - Revamped Help menu.
 - Created specific help commands for each module command to give a shorter summary of each command’s format and purpose.
 - Display the total modular credits taken by user and display the modular credit for each module in module list.
-- Wrote JUnit tests for the following classes: `Parser`, `ModifyCommand`, `DateCommand`, `FindCommand`, `AddModuleCommand` and `SpecificHelpCommand`.
+- Wrote JUnit tests for the following classes: `Parser`,`Ui`, `ModifyCommand`, `DateCommand`, `FindCommand`, `AddModuleCommand` and `SpecificHelpCommand`.
 - Patches and bug fixes for v2.0.
 
 ### Contributions to the UG
@@ -40,7 +40,7 @@ It is written in Java, and has about 5kLoC.
 - Appendix B - User Stories
 - Appendix C - Non-Functional Requirements
 - Appendix D - Glossary
-- Appendix E - Invalid command, Help command and saving data sample test cases
+- Appendix E - Instructions for Manual Testing
 #### Added the following PlantUML diagrams:
 - System Architecture Component Diagram
 - Unmark Task Command Sequence Diagram
@@ -57,5 +57,6 @@ It is written in Java, and has about 5kLoC.
 - Assisted in release management (v1.0)
 - Stress tested and documented bugs before v2.0 release on Apollo v1.0
   - [Bugs found](https://github.com/AY2223S2-CS2113-T13-4/tp/issues?q=is%3Aissue+author%3A%40me+is%3Aclosed+label%3Atype.Bug)
-- Sought approval for using NUSMods API on course forum
+- Sought approval for using NUSMods API on course [forum](https://github.com/nus-cs2113-AY2223S2/forum/issues/42)
+- Wrote the script for video demo
 - Most instances of helping team members were done offline during our weekly meetings.
