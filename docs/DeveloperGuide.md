@@ -194,6 +194,8 @@ Messages used by multiple components are in the [`seedu.brokeMan.common`](https:
 
 ### Exception classes
 
+Exceptions are used mainly by the parser to restrict commands from entering undesirable/unusable inputs provided by the user. 
+
 Possible exceptions in multiple components are defined in the [`seedu.brokeMan.exception`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/exception) package.
 
 [back to contents](#table-of-contents)
@@ -251,7 +253,7 @@ addEntry(), listEntry(), deleteEntry(), editEntry()
 
 * Underlying methods of the add, edit, view, and delete features of Expense and Income class. 
 * Edit entry has different methods for each data stored in an entry. (E.g. amount, time...etc).
-   - Edit method makes use of the private edit methods of the entry class. 
+   - Edit method makes use of the private edit methods of the Entry class. 
 
    
 getTotalAmount(), sortEntriesByAmount(), sortEntriesByDate(), findEntriesByCategory(), selectEntryForDate(), getEntryListSum()
