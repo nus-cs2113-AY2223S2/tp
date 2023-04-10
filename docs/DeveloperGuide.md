@@ -563,6 +563,10 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 
 ![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
 
+#### Design considerations
+- A hashmap is used to store the mapping between the shortcuts and the command that the shortcut maps to. 
+- A hashmap is an appropriate data structure as it provides a one to one mapping and allows shortcut access in O(1).
+
 ### Saving Data
 
 - The "savedData" object will contain all the data of the user, such as the `FinancialReport`, the
