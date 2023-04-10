@@ -37,7 +37,7 @@ public class Ui {
             "\n5. Edit a Lend/Borrow record\n"
             + "Format: edit INDEX d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION\n" +
             "Cannot change a lend record to a borrow record\n" +
-            "Example: edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2040\n" +
+            "Example: edit 17 d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113\n" +
             HORIZONTAL_LINE +
             "\n6. List all expenditures in the record in the specified currency\n"
             + "Format: list CURRENCY \n" + "A currency has to be specified for list to display.\n"
@@ -50,15 +50,15 @@ public class Ui {
             "latest: sort from latest date || earliest: sort from earliest date\n" +
             "Example: sort latest\n" +
             HORIZONTAL_LINE +
-            "\n8. List all expenditures and their total amount in the record BY DATE\n"
-            + "Format: viewdate DATE\n"
-            + "Example: viewdate 2023-03-29\n" +
+            "\n8. View all expenditures and their total amount in the record BY DATE\n"
+            + "Format: viewdate DATE CURRENCY\n"
+            + "Example: viewdate 2023-03-29 SGD\n" +
             HORIZONTAL_LINE +
-            "\n9. List all expenditures and their total amount in the record BY CATEGORY\n"
-            + "Format: viewtype CATEGORY\n"
+            "\n9. View all expenditures and their total amount in the record BY CATEGORY\n"
+            + "Format: viewtype CATEGORY CURRENCY\n"
             + "There are 9 CATEGORIES: 'academic', 'accommodation', 'entertainment'," +
             "'food', 'transport', 'tuition', 'other', 'borrow', 'lend'\n" 
-            + "Example: viewtype food\n" +
+            + "Example: viewtype food SGD\n" +
             HORIZONTAL_LINE +
             "\n10. Set a fixed budget for money management\n"
             + "Format: set AMOUNT\n"
@@ -74,8 +74,20 @@ public class Ui {
             "By expenditure category \n" + "Format: check t/CATEGORY\n" +
             "Example of checking budget by category: check t/academic\n" +
             HORIZONTAL_LINE +
-            "\n12. Display the conversion rates used in MyLedger\n"
+            "\n12. Finding expenditure records by description keyword\n"
+            + "Format: find keyword\n" +
+            HORIZONTAL_LINE +
+            "\n13. Duplicates an existing expenditure record from the expenditure list and append to the list\n"
+            + "Format: duplicate INDEX\n" +
+            HORIZONTAL_LINE +
+            "\n14. Display the conversion rates used in MyLedger\n"
             + "Format: showrates\n" +
+            HORIZONTAL_LINE +
+            "\n15. Marking a lend or borrow expenditure record\n"
+            + "Format: mark INDEX\n" +
+            HORIZONTAL_LINE +
+            "\n16. Unmarking a lend or borrow expenditure record\n"
+            + "Format: unmark INDEX\n" +
             HORIZONTAL_LINE;
 
         
