@@ -13,7 +13,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Ingredients](#ingredients)
      - [Add and Remove Command](#add-and-remove-command)
      - [Clear Command](#clear-command)
-   - [Recipes](#recipe)
+   - [Recipes](#recipes)
      - [Make Command](#make-command)
      - [Recipe Detail Command](#recipe-detail-command)
      - [Recipe Possible Command](#recipe-possible-command)
