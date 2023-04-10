@@ -139,7 +139,7 @@ This is how the ListPetCommand works:
 7. The program is now ready to receive another command.
 
 <p style="text-align:center">
-    <img src="images/ListPetCommand(1).png" alt="Sequence Diagram">
+    <img src="images/ListPetCommand.png" alt="Sequence Diagram">
     <br />
     <i>Figure 4: Sequence Diagram for List Pet Command</i>
 </p>
