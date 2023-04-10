@@ -7,39 +7,48 @@ If you have any enquiries, feel free to reach out to me at wilsonleejunwei@u.nus
 
 ## Product Overview - BadMaths
 BadMaths is a Mathematical Study Tool that aims to help users to perform Mathematical Operations 
-effectively and efficiently and contains various functionalities for note-taking.
+effectively and efficiently and contains various functionalities for note-taking
 
 ## Summary of Contributions
 ### 1) Code Contributed:
 Click [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=WilsonLee2000&zR=AY2223S2-CS2113-F10-2%2Ftp%5Bmaster%5D&zACS=147.97863924050634&zS=2023-02-17&zFS=&zU=2023-04-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
-to view my codes contributed for this project.
+to view my codes contributed for this project
 
 ### 2) Enhancements Implemented:
-* Implemented `Store` Function for notes taking.
-* Implemented `List` Function for displaying items stored in notes.
-* Implemented `Delete` Function for removing items stored in notes.
-* Implemented `History` Function for displaying a list of all commands input by users
-* Refactoring codes as classes (more OOP).
-* Implemented JUnit Tests for `Store`, `List`, `Delete` and `CommandHistory`.
-* Made improvements towards `HelpManual.txt`.
+* Added `Store` Feature for notes taking
+* Added `List` Feature for displaying items stored in notes
+* Added `Delete` Feature for removing items stored in notes
+* Added `History` Feature for displaying a list of all commands input by users
+* Refactoring codes as classes for `Store`, `List`, `Delete` and `CommandHistory` 
+* Implemented JUnit Tests for `Store`, `List`, `Delete` and `CommandHistory`
+* Added improvements towards `HelpManual.txt`
+* Improve codes to more OOP
 
 ### 3) UserGuide Contributions:
 * Contributed to overall formatting of UserGuide
 * Contributed to documentation for `Store`, `List`, `Delete`, `Clear`, `Mark`, `Unmark`,
-`FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`.
+`FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`
 * Contributed to Command Summary for `Notes` and `General`
 
 ### 4) DeveloperGuide Contributions:
 * Added Introduction
 * Added Table of Contents 
 * Added Sequence Diagram for `Store`
-* Added design & implementation details for `Store` class
-* Added design & implementation details for `Delete` class
-* Added design & implementation details for `Command` class
-* Added design & implementation details for `List` class
-* Added design & implementation details for `CommandHistory` class
-* Added design & implementation details for `Ui` class
-* Added design & implementation details for `notes.txt` file
+* Added Design & implementation details for `Store` class
+* Added Design & implementation details for `Delete` class
+* Added Design & implementation details for `Command` class
+* Added Design & implementation details for `List` class
+* Added Design & implementation details for `CommandHistory` class
+* Added Design & implementation details for `Ui` class
+* Added Design & implementation details for `notes.txt` file
 
-### 5) Review/Mentoring Contributions:
+### 5) Contributions to team-based tasks: 
+* Tracked `v1.0`, `v2.0`, and `v2.1` milestones
+* Assist in reviewing and approving team members' Pull Request before merging to team's master branch
+* Contributed to team's brainstorming and discussion of ideas and features for BadMaths
+* Management of issues created on GitHub
+* Contributed to team's Google documents and Google sheets for BadMaths implementation
+* Helped team members in understanding Github properties such as `push` and `pull`
+
+### 6) Review / Mentoring Contributions:
 * Link to PRs reviewed [here](https://github.com/AY2223S2-CS2113-F10-2/tp/pulls?q=is%3Apr+reviewed-by%3AWilsonLee2000)
