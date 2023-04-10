@@ -332,12 +332,15 @@ This provides an insight on their financial health when compared to their curren
 The check command allows the user to compare their expenditure with their budget.
 The user can either check with the total expenditure using the `check` command, or provide an optional field to filter their comparison.
 
-The sequence diagram for check can be observed as follows.
+The sequence diagram for `check` without parameters can be observed as follows.
 <p align="center">
     <img src="team/images/checkCommand.png">
     <br/>
     <i>Figure 9: UML diagram of check command </i>
 </p>
+
+The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check y/03-04-2023`) are the same but with slightly different method name, thus the above can 
+accurately represent the check commands.
 
 ### 4.10. Show Rates Command
 
