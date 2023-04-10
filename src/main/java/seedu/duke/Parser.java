@@ -46,7 +46,7 @@ public class Parser {
     }
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                    ArrayList<Module> puModules, ModuleStorage modueStorage,
+                                    ArrayList<Module> puModules, ModuleStorage moduleStorage,
                                     DeadlineStorage deadlineStorage, BudgetPlanner budgetPlanner,
                                     ArrayList<Deadline> deadlines) {
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
@@ -69,10 +69,10 @@ public class Parser {
                 return new ExitCommand();
             case "/add":
                 userInput3WordsException(userInputWords);
-                return prepareAddModuleCommand(modueStorage, userCommandSecondKeyword, puModules, universities);
+                return prepareAddModuleCommand(moduleStorage, userCommandSecondKeyword, puModules, universities);
             case "/remove":
                 userInput3WordsException(userInputWords);
-                return prepareRemoveModuleCommand(modueStorage, userCommandSecondKeyword, universities);
+                return prepareRemoveModuleCommand(moduleStorage, userCommandSecondKeyword, universities);
             case "/help":
                 userInput2WordsException(userInputWords);
                 return new HelpCommand();
@@ -252,7 +252,9 @@ public class Parser {
             throws InvalidPuException {
         String universityName = "";
         int univID = 0;
-        if (isUnivAbbr) { // list [Univ Abbr]
+
+        // list [Univ Abbr]
+        if (isUnivAbbr) {
             for (University university : universities) {
                 if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
                     univID = university.getUnivId();
@@ -277,10 +279,20 @@ public class Parser {
         }
     }
 
-    private Command prepareAddModuleCommand(ModuleStorage modueStorage, String abbreviationAndCode,
+    /**
+     * Returns handleAddModuleCommand. Should an error occur, returns Command object for exceptions instead.
+     *
+     * @param moduleStorage        moduleStorage Class that holds user added modules.
+     * @param abbreviationAndIndex String containing university abbreviation and Index of module to add relative
+     *                             to the specific PU module list.
+     * @param allModules           ArrayList of Module that contains all the modules for all PUs.
+     * @param universities         ArrayList of University that contains all the PUs University object.
+     * @return handleAddModuleCommand function. Returns ExceptionHandleCommand if error is caught.
+     */
+    private Command prepareAddModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                             ArrayList<Module> allModules, ArrayList<University> universities) {
         try {
-            return handleAddModuleCommand(modueStorage, abbreviationAndCode, allModules, universities);
+            return handleAddModuleCommand(moduleStorage, abbreviationAndIndex, allModules, universities);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         } catch (InvalidModuleException e) {
@@ -296,7 +308,7 @@ public class Parser {
      * Handles User input for Add function. Splits the string into two parts and matches PU Abbreviation to a specific
      * PU and finds the Module corresponding to the Index relative to the module list of the PU selected.
      *
-     * @param modueStorage         moduleStorage Class that holds user added modules.
+     * @param moduleStorage        moduleStorage Class that holds user added modules.
      * @param abbreviationAndIndex String containing university abbreviation and Index of module to add relative
      *                             to the specific PU module list.
      * @param allModules           ArrayList of Module that contains all the modules for all PUs.
@@ -307,7 +319,7 @@ public class Parser {
      * @throws InvalidPuException      Thrown when Abbreviation given cannot be matched with any PUs.
      * @throws InvalidModuleException  Thrown when no Module can be found at the inputted Index.
      */
-    private Command handleAddModuleCommand(ModuleStorage modueStorage, String abbreviationAndIndex,
+    private Command handleAddModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                            ArrayList<Module> allModules, ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException, InvalidModuleException {
         String[] stringSplit = abbreviationAndIndex.split("/");
@@ -342,9 +354,16 @@ public class Parser {
         if (moduleToAdd == null) {
             throw new InvalidModuleException(ui.getInvalidModuleMessage());
         }
-        return new AddModuleCommand(moduleToAdd, modueStorage);
+        return new AddModuleCommand(moduleToAdd, moduleStorage);
     }
 
+    /**
+     * Returns handleAddDeadlineCommand. Should an error occur, return Command object for exceptions instead.
+     *
+     * @param deadlineStorage deadlineStorage Class that holds user added deadlines.
+     * @param userInputWords  ArrayList of String of user's input.
+     * @return handleAddDeadlineCommand function. Returns ExceptionHandleCommand if error is caught.
+     */
     private Command prepareAddDeadlineCommand(DeadlineStorage deadlineStorage, ArrayList<String> userInputWords) {
         try {
             return handleAddDeadlineCommand(deadlineStorage, userInputWords);
@@ -353,11 +372,18 @@ public class Parser {
         }
     }
 
-    // Format of user input is: task /by dueDate
-    // Format of dueDate is: dd-MM-yyyy
-    //@@author Darrenlsx
+    /**
+     * Checks if user input is in the correct format and returns Command object for adding a new deadline.
+     *
+     * @param deadlineStorage deadlineStorage Class that holds user added deadlines.
+     * @param userInputWords  ArrayList of String of user's input.
+     * @return AddDeadlineCommand object if user input format is correct.
+     * @throws InvalidCommandException when user input format is incorrect.
+     */
     private Command handleAddDeadlineCommand(DeadlineStorage deadlineStorage, ArrayList<String> userInputWords)
             throws InvalidCommandException {
+        // Format of user input is: task /by dueDate
+        // Format of dueDate is: dd-MM-yyyy
         if (userInputWords.size() < 2) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
@@ -380,6 +406,15 @@ public class Parser {
         return new AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage);
     }
 
+    /**
+     * Checks if the due date given is a valid date in terms of Date, Month and Year. Exception is thrown
+     * should an error occur.
+     *
+     * @param dueDateDate  Date to be checked for validity.
+     * @param dueDateMonth Month to be checked for validity.
+     * @param dueDateYear  Year to be checked for validity.
+     * @throws InvalidCommandException when either the date, month or year is invalid.
+     */
     private void checkIsValidDate(String dueDateDate, String dueDateMonth, String dueDateYear) throws
             InvalidCommandException {
         if (dueDateDate.length() != 2 || dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
@@ -475,33 +510,22 @@ public class Parser {
         }
     }
 
-    private Command prepareListCurrentPUModulesCommand(String univAbbNameOrIndex, ArrayList<University> universities,
+    private Command prepareListCurrentPUModulesCommand(String univAbbName, ArrayList<University> universities,
                                                        ArrayList<Module> modules) {
-        char digitChecker = univAbbNameOrIndex.charAt(0);
-        String universityAbbName = "";
-        int univIndex = -1;
-        // remember handle exception for numberformatexception use stringtoint instead?
-        if (Character.isDigit(digitChecker)) {
-            univIndex = Integer.parseInt(univAbbNameOrIndex) - 1;
-        } else {
-            universityAbbName = univAbbNameOrIndex;
-        }
         try {
-            return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules);
+            return handleListCurrentPuModulesCommand(universities, univAbbName, modules);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         }
     }
 
     private Command handleListCurrentPuModulesCommand(ArrayList<University> universities, String universityAbbName,
-                                                      int univIndex, ArrayList<Module> modules)
+                                                      ArrayList<Module> modules)
             throws InvalidPuException {
         int univID = 0;
-        if (univIndex == -1) {
-            for (University university : universities) {
-                if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
-                    univID = university.getUnivId();
-                }
+        for (University university : universities) {
+            if (universityAbbName.equalsIgnoreCase(university.getUnivAbbName())) {
+                univID = university.getUnivId();
             }
         }
         if (univID == 0) {
@@ -510,7 +534,7 @@ public class Parser {
         return new ListCurrentPuCommand(modules, univID);
     }
 
-    private Command handleRemoveModuleCommand(ModuleStorage modueStorage, String abbreviationAndIndex,
+    private Command handleRemoveModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                               ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException {
         String[] stringSplit = abbreviationAndIndex.split("/");
@@ -531,13 +555,13 @@ public class Parser {
         if (univID == -1) {
             throw new InvalidPuException(ui.getInvalidPuMessage());
         }
-        return new DeleteModuleCommand(modueStorage, indexToDelete, univID);
+        return new DeleteModuleCommand(moduleStorage, indexToDelete, univID);
     }
 
-    private Command prepareRemoveModuleCommand(ModuleStorage modueStorage, String abbreviationAndIndex,
+    private Command prepareRemoveModuleCommand(ModuleStorage moduleStorage, String abbreviationAndIndex,
                                                ArrayList<University> universities) {
         try {
-            return handleRemoveModuleCommand(modueStorage, abbreviationAndIndex, universities);
+            return handleRemoveModuleCommand(moduleStorage, abbreviationAndIndex, universities);
         } catch (InvalidPuException e) {
             return new ExceptionHandleCommand(e);
         } catch (InvalidCommandException e) {

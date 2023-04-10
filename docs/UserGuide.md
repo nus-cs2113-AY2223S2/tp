@@ -56,6 +56,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
   * Command words are not case-sensitive.
     * E.g. `eXIT` will be accepted as the `exit` command.
   * Index is a positive integer number.
+
 ### 3.1 Help Command
 Provides a list of all the commands and its format, along with the respective
 descriptions.
@@ -101,9 +102,9 @@ Here are the list of commands:
 
 All List commands start with `/list`.
 1. /list current
-2. /list pU
-3. /list [PU Abbreviation/PU INDEX]
-4. /list current [PU Abbreviation/PU INDEX]
+2. /list pu
+3. /list [PU ABBREVIATION/PU INDEX]
+4. /list current [PU ABBREVIATION/PU INDEX]
 
 ****
 ##### 3.2.1.1 Listing Modules User Has Selected
@@ -169,10 +170,10 @@ ____________________________________________________________
 
 **PU Module List** - Get a list of all the modules provided by the specific PU
 
-Format: `/list [PU Abbreviation Name]` or `/list [PU Index]`
+Format: `/list [PU ABBREVIATION]` or `/list [PU INDEX]`
 
-* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
-* The `PU Index` is the university index of the PU as shown in the universities list.
+* The `PU ABBREVIATION` is the abbreviation name of the PU as shown in the universities list.
+* The `PU INDEX` is the university index of the PU as shown in the universities list.
 
 Example of usage: `/list ku` or `/list 1`
 
@@ -196,17 +197,17 @@ ____________________________________________________________
 ****
 #### 3.2.1.4 Listing Out PU Module List With filters
 
-Format: `/list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+Format: `/list [PU ABBREVIATION/PU INDEX] /filter [FILTER]`
 
 ***
 
 **Filter by Module Credits**
 
-Format: `/list [PU Abbreviation/PU INDEX] /filter /mc [MC]`
+Format: `/list [PU ABBREVIATION/PU INDEX] /filter /mc [MC]`
 
-- `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
-- `PU Index` is the university index of the PU as shown in the universities list.
-- `[MC]` refers to the number of Modular Credits of the Partner University.
+- `PU ABBREVIATION` is the abbreviation name of the PU as shown in the universities list.
+- `PU INDEX` is the university index of the PU as shown in the universities list.
+- `MC` refers to the number of Modular Credits of the Partner University.
 
 
 Filters all modules from the Partner University that modular credits are equivalent to `[MC]`
@@ -233,11 +234,11 @@ ____________________________________________________________
 
 **Filter by Name**
 
-Format: `/list [PU Abbreviation/PU INDEX] /filter /name [Name]`
+Format: `/list [PU ABBREVIATION/PU INDEX] /filter /name [NAME]`
 
 - `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 - `PU Index` is the university index of the PU as shown in the universities list.
-- `[Name]` refers to the Partner University's module name to filter by.
+- `NAME` refers to the Partner University's module name to filter by.
 
 Filters all modules from the Partner University that module name contains the String `[Name]` and displays 
 to the user.
@@ -260,9 +261,9 @@ ____________________________________________________________
 
 ##### 3.2.1.5 Listing Modules User Has Selected for Specific Partner University
 
-Format: `/list current [PU Abbreviation]`
+Format: `/list current [PU ABBREVIATION]`
 
-* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+* The `PU ABBREVIATION` is the abbreviation name of the PU as shown in the universities list.
 
 Example of usage: `/list current ku` 
 
@@ -284,9 +285,9 @@ ____________________________________________________________
 
 Format: `/add [PU ABBREVIATION]/[INDEX]`
 
-* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
-* The  `MODULE CODE` is the Partner University's module code provided by ` list current`
-  or ` list current [PU Abbreviation]` command.
+* The `PU ABBREVIATION` is the abbreviation name of the PU as shown in the universities list.
+* The  `INDEX` is the index of the Partner University's module code provided by `/list [PU Abbreviation]` or 
+`/list [PU INDEX]` command.
 
 Example of usage: `/add KU/1`
 

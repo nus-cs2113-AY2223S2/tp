@@ -13,10 +13,16 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class DeadlineStorage implements DatabaseInterface {
+
+    /** DeadlineStorage has a Singleton Design Pattern */
     private static DeadlineStorage instance = null;
     private static final String SAVED_DEADLINES_FILE_PATH = "data/deadlines.txt";
     private ArrayList<Deadline> deadlines;
 
+    /**
+     * Constructor of the DeadlineStorage class that initialises the DeadlineStorage database.
+     * Prints a failure message when there is an IOException when trying to initialise.
+     */
     private DeadlineStorage() {
         this.deadlines = new ArrayList<>();
         try {
@@ -33,6 +39,13 @@ public class DeadlineStorage implements DatabaseInterface {
         return instance;
     }
 
+    /**
+     * Initialises the DeadlineStorage database for deadline saving.
+     * It creates a new directory and file being data/deadlines.txt when there is no file found.
+     * If there is already an existing file, it loads the data into the ArrayList of deadlines.
+     *
+     * @throws IOException when the file path does not exist but commands are being given to load from the file path.
+     */
     @Override
     public void initialiseDatabase() throws IOException {
         File savedDeadlinesFile = new File(SAVED_DEADLINES_FILE_PATH);
@@ -50,6 +63,13 @@ public class DeadlineStorage implements DatabaseInterface {
         writeDeadlinesToFile(deadlines);
     }
 
+    /**
+     * Reads deadline information from the txt file line by line and adding it into the deadline list.
+     * Prints error message if deadline read is incorrect format.
+     *
+     * @param deadlineFilePath is the deadlineFilePath to read data from.
+     * @param deadlines        is the ArrayList of deadlines to add the txt file deadlines data into.
+     */
     private void readDeadlineData(String deadlineFilePath, ArrayList<Deadline> deadlines) {
         try (BufferedReader br = new BufferedReader(new FileReader(deadlineFilePath))) {
             String line;
@@ -134,6 +154,13 @@ public class DeadlineStorage implements DatabaseInterface {
         fw.close();
     }
 
+    /**
+     * Compares the given deadline and the user's system's current time.
+     * Prints message in welcome message section if the due date of the deadline is
+     * less than or equals to 7 days.
+     *
+     * @param deadlines The deadline to be checked against.
+     */
     public void compareDeadlines(ArrayList<Deadline> deadlines) {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -163,6 +190,13 @@ public class DeadlineStorage implements DatabaseInterface {
         }
     }
 
+    /**
+     * Returns true if deadlines.txt file is corrupted.
+     * Returns false if deadlines.txt file is not corrupted.
+     * Corruption occurs when there might be tampering of the txt file in an incorrect way.
+     *
+     * @return a boolean value, either true or false on whether the deadlines.txt file is corrupted.
+     */
     @Override
     public boolean checkDatabaseCorrupted() {
         boolean isCorrupted = false;
@@ -192,6 +226,14 @@ public class DeadlineStorage implements DatabaseInterface {
         return isCorrupted;
     }
 
+    /**
+     * Checks if the due date given is a valid date in terms of Date, Month and Year.
+     *
+     * @param dueDateDate  Date to be checked for validity.
+     * @param dueDateMonth Month to be checked for validity.
+     * @param dueDateYear  Year to be checked for validity.
+     * @return false if invalid date, return true if valid date.
+     */
     private boolean checkValidDate(String dueDateDate, String dueDateMonth, String dueDateYear) {
         if (dueDateDate.length() != 2 || dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
             return false;
