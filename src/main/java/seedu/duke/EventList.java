@@ -165,11 +165,23 @@ public class EventList {
         return newEvent;
     }
 
+    private boolean checkRecurTime(String recur) {
+        String[] details = recur.split(" ");
+
+        if (details[0].trim().matches("^[0-9]*$")) {
+            if(Integer.parseInt(details[0].trim()) <=0 ) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
 
         Event newEvent = getInEventType(description, startTime, startDay, endTime, endDay);
-                
+
         if (!canAddNewEvent(newEvent, -1, taskList)) {
             throw new NPExceptions("Events/classes conflition!");
         }
@@ -192,6 +204,10 @@ public class EventList {
             throws NPExceptions {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
+        if(!checkRecurTime(recurTime)) {
+            throw new NPExceptions("recurring time should be a positive integer!");
+        }
+
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
         taskList.add(newEvent);
         listSize++;
@@ -203,10 +219,14 @@ public class EventList {
 
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
+        
+        if(!checkRecurTime(recurTime)) {
+            throw new NPExceptions("recurring time should be a positive integer!");
+        }
 
         Event newEvent = new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo,
                 endInfo.hasInfo, recurTime);
-
+        
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
@@ -219,17 +239,17 @@ public class EventList {
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
-    public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions{
-        for(int i =0; i <allClasses.size(); i++) {
+    public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions {
+        for (int i = 0; i < allClasses.size(); i++) {
             Event curClass = (Event) allClasses.get(i);
-            if(!canAddNewEvent(curClass, -1, taskList)){
+            if (!canAddNewEvent(curClass, -1, taskList)) {
                 throw new NPExceptions("class clashes with events/other modules!");
             }
         }
-        for(int i =0; i <allClasses.size(); i++) {
+        for (int i = 0; i < allClasses.size(); i++) {
             Event curClass = (Event) allClasses.get(i);
             taskList.add(curClass);
-            reviseLocation(taskList.size()-1, allVenues.get(i));
+            reviseLocation(taskList.size() - 1, allVenues.get(i));
         }
         listSize = taskList.size();
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
