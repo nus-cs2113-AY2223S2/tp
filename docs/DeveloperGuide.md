@@ -181,8 +181,6 @@ This mechanism is facilitated by `ParserAccount`, with just a simple task - exit
 - `ParserAccount#initialize()` -- Call the `exit(0)` function to exit the program immediately when the user typed `exit`
 before logged in or after logged out.
 
-  Given below is an example usage of the feature. 
-
 <div style="page-break-after: always;"></div>
 
 ## Feature Implementation
@@ -207,6 +205,8 @@ Step 2. `Duke` instantiates a new `CommandList` and calls `CommandList#run()`, w
 `expenseList.size()`, `expenseList.get(i).toString()` and `ExpenseList.getAllMessage(expenseList)`.
 
 Step 3. `CommandList#run()` list all the expenses existing in the account for the user.
+
+<div style="page-break-after: always;"></div>
 
 ### 'Add' Feature
 
