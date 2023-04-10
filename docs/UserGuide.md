@@ -427,7 +427,7 @@ Displays list of the other currency available in MyLedger and their value agains
 
 * Add food expenditure: `food d/DATE a/AMOUNT p/DESCRIPTION`
 
-* Add lend expenditure: `academic d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
+* Add lend expenditure: `lend d/DATE n/LENT_NAME a/AMOUNT b/DEADLINE p/DESCRIPTION`
 
 * Add other expenditure: `other d/DATE a/AMOUNT p/DESCRIPTION`
 
