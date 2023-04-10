@@ -515,12 +515,12 @@ currencies, we require a limit on how far back the date can be set.
 ## Command Summary
 
 ### Account-related command 
-| Action                       | Command                                                                      |
-|------------------------------|------------------------------------------------------------------------------|
-| Log in your account          | `login`                                                                      |
-| Create a new account         | `signup`                                                                     |
-| Exit ET (inside the account) | `exit`                                                                       |
-| Log out of the account       | `logout`                                                                     |
+| Action                       | Command  |
+|------------------------------|----------|
+| Log in your account          | `login`  |
+| Create a new account         | `signup` |
+| Exit ET (inside the account) | `exit`   |
+| Log out of the account       | `logout` |
 
 ### Expense management command
 | Action                        | Command                                                                       |
