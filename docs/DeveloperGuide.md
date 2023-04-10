@@ -127,7 +127,7 @@ account list file. If it is taken already, the function return true, and return 
 
   Given below is an example usage of the feature. 
 
-![](diagrams/SignUpFeature.png)
+![](diagrams/SignupFeature.png)
 
 Step 1. The user executes `signup` command to sign up for a new account. `Duke` then calls `ParserAccount#initialize()` 
 to detect the command, and calls `PaserAccount#caseSignUp()`.
