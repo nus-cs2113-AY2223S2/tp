@@ -421,6 +421,8 @@ The command is able to search for all characters matching the keyword in the exp
 Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseFind` is called, which in turn calls `FindCommand` which loops through the Expenditure
 list and compares the keyword provided with the the descriptions. 
 
+<div style="page-break-after: always;"></div>
+
 ### 4.5. Duplicate Command
 
 The `duplicate` command duplicates an existing expenditure in the record, and appends it to the list.
@@ -454,6 +456,8 @@ Upon calling of the `execute` command, the `SortCommand` takes the set attribute
 
 After which, the instance of SortCommand is ready for Java's Garbage Collection.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.7. View Command
 
 The view command filters and lists the expenditures of a specified date or type.
@@ -476,6 +480,8 @@ also in Expenditure used previously.
 The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
 that converts the input string into a string recognisable for comparison in the opt block. 
 
+<div style="page-break-after: always;"></div>
+
 ### 4.8. Set Budget Command
 The set budget command allows the user to insert a temporary budget which they can use to compare their expenditures with.
 This provides an insight on their financial health when compared to their current budget for the month, day or even for the type of expenditure.
@@ -494,6 +500,8 @@ The sequence diagram for `check` without parameters can be observed as follows.
 The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check d/03-04-2023`) are the same but with slightly different method name, thus the above can 
 accurately represent the check commands.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.10. Show Rates Command
 
 `showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
@@ -511,6 +519,8 @@ For other types of expenses, they will be marked as paid right after they are ad
 
 <div style="page-break-after: always;"></div>
 
+<div style="page-break-after: always;"></div>
+
 ## Product scope
 ### Target user profile
 
@@ -522,6 +532,8 @@ For other types of expenses, they will be marked as paid right after they are ad
 ### Value proposition
 
 Manage finances more efficiently than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ## User Stories
 
@@ -566,6 +578,8 @@ The following are instructions for testers to manual test:
 - Open the command terminal on your device.
 - Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
 - Alternatively, double-click on the JAR file to run the app.
+
+<div style="page-break-after: always;"></div>
 
 #### Adding a record
 1. Adding an expenditure
