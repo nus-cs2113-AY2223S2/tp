@@ -19,7 +19,7 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
-<div style="page-break-after: always;"></div>
+1. [Greeting](#1-greeting)
 
 ## Features
 - [Adding an item: `add`](#adding-an-item-add-)
@@ -38,6 +38,8 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 - [Autosave of Inventory: `autosave`](#change-auto-save-mode-autosave-)
 - [Exiting the program: `exit`](#exiting-the-program-exit-)
 
+<div style="height: 100px;"></div>
+
 ---
 ### Adding an item: `add` <a name = "add"></a>
 Adds a new item to the inventory list.
@@ -55,6 +57,8 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 
 !> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
+
+
 #### Example of usage
 
 `add n/HP Laptop upc/2142535453 qty/10 p/1299.99`
@@ -68,6 +72,10 @@ ____________________________________________________________
 Successfully added the item(s) into the system!
 ____________________________________________________________
 ```
+
+## 1. Greeting
+
+
 ---
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
@@ -84,6 +92,7 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 * The `c/` parameter where `[category]` field must be alphanumeric.
 
 !> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
+
 
 #### Example of usage
 
@@ -125,6 +134,7 @@ Format: `remove f/upc [UPC]` or `remove f/index [index]`
 
 * The `[UPC]` must be a **non-negative numerical value**.
 * The `[index]` can only be a **non-negative whole number**.
+
 
 !> **index** follows 0-indexing. (i.e. the first item in the list is at index 0.)
 
@@ -199,6 +209,7 @@ __________________________________________________________________________
 
 ```
 
+
 **Case II:** When there is no items in the inventory
 ```
 list
@@ -206,6 +217,9 @@ __________________________________________________________________________
 There are no items in your inventory.
 __________________________________________________________________________
 ```
+
+<div style="height: 50px;"></div>
+
 ---
 ### Search for an item: `search` / `searchupc` <a name = "search"></a>
 Search for item(s) in the inventory list by keywords or UPC.
@@ -250,7 +264,9 @@ Here is your item:
 
 __________________________________________________________________________
 ```
----
+
+<div style="height: 310px;"></div>
+
 ### Filtering items: `filter` <a name = "filter"></a>
 Filters items from the inventory list by price OR category.
 
@@ -492,6 +508,8 @@ Quantity Available: 105
 __________________________________________________________________________
 ```
 
+<div style="height: 30px;"></div>
+
 ---
 ### Dashboard: `db` <a name = "db"></a>
 Shows a dashboard of information related to the system's inventory, user insights and 
@@ -731,6 +749,7 @@ available command for the application.
 Answer: Ensure that the formatting of your commands are correct. Square brackets and curly brackets are not needed
 for command input, so make sure that your user input do not contain them. Conditions returned by the error messages
 should also be followed in order for the program to respond favourably to your command inputs.
+
 
 <a name = "command_summary"></a>
 ## Command Summary
