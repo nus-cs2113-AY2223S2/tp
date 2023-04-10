@@ -54,6 +54,7 @@ commands I have worked on.
 
 ## Project Management
 * Managed release `v2.0` on GitHub
+* Managed release `v2.0c` on GitHub
 
 ## UG/DG
 * Added the introduction to the UG as well as a framework of explanation for the other members to build off
