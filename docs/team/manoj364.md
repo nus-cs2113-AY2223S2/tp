@@ -46,7 +46,8 @@ operation through the Command-Line Interface(CLI).
 - DG contribution
     - Added documentation for `Ui`
     - Class diagram for `Ui` class
-    - Sequence diagram for a `Ui` method
+      - ![Ui_class.png](..%2FUML%2FImage%2FUi_class.png)
+    - Sequence diagram for the `showWelcome` method in `Ui` class
         - ![Ui_sequence_diagram.png](..%2FUML%2FImage%2FUi_sequence_diagram.png)
     - Added documentation for Duplication Checker feature
     - Sequence diagram for Duplication Checker feature
