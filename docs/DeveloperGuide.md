@@ -723,8 +723,6 @@ Korea in the following areas.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 **Setting up SEP Helper**
 
 Follow Quick Start Instructions in User Guide. 
