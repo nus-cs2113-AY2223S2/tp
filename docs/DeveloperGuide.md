@@ -173,11 +173,11 @@ that is likely to see high amounts of usage given the target user.
 
 ![Load Events Sequence Diagram](UML/Images/loadEvents.png)
 
-When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
+When the application starts up, the storage's loadEvents() function will be called to load contents in the save.json file in the local folder directory. 
 
-The save file can be edited and modified, however, if certain field is changed in a manner that may cause the application to fail 
-when running at a later stage, the storage will discard all the data in the EventList and provide the user with an empty Event List. 
-One such example would be the deletion of a certain field's key.
+The save file can be edited and modified as it is stored in a JSON format. However, if certain field is changed in a manner 
+that may cause the application to fail when running at a later stage, the storage will discard all the data in the EventList 
+and provide the user with an empty Event List. One such example would be the deletion of a certain field's key without replacing it.
 
 In the case where there are duplicate names within a JSON object, lexically preceding values for the same key shall be overwritten,
 and the last value for the key will be taken as the accurate value. 
