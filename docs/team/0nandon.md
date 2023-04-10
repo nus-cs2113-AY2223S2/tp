@@ -31,11 +31,6 @@ If you want to see my code contributions more specifically, click [[here]](https
 
 - Added JUnit tests for the `Calculate`, `Parser`, `Execute` classes.
 - Improve code more defensive with handling various possible exceptions:
-
-  1. `ShapeMismatchException` : This exception is called when the shape of the two matrices don't match to be calculated.
-  2. `UnknownOperatorException` : This exception is called when the user enters the unsupported operator.
-  3. `MatrixShapeException` : This exception is called when the user declares the matrix with inappropriate shape.
-  4. `MatrixFormatException` : This exception is called when the user declares the matrix with inappropriate format.
 - Refined the code to be more OOP with following [[code standard]](https://se-education.org/guides/conventions/java/basic.html).
 - Added comments with `JavaDoc` style for the readability.
 - Added `logging`, `assert` statement for making debugging more easily.
