@@ -1,11 +1,10 @@
 ---
 title: Developer Guide
 ---
-# Developer Guide
-
-## Table of Contents
 
 # Developer Guide for Fitness Duke
+
+## Table of Contents
 * Table of Contents
 {:toc}
 
@@ -228,7 +227,7 @@ Key Aspects:
 <div align="center">
 <img src="UML/Images/AchievementStorage.png"/>
 <p>
-Figure PLEASE CHANGE THIS
+Figure 3.5a
 </p>
 </div>
 
@@ -250,17 +249,21 @@ is more parsing to do due to the object oriented nature of achievements.
 <div align="center">
 <img src="UML/Images/AchievementHandling.png"/>
 <p>
-Figure PLEASE CHANGE THIS
+Figure 3.5b
 </p>
 </div>
 
 Above shows how there are actually 3 classes (i.e. ```AchievementBodyPart```, ```AchievementGymStatic```, ```AchievementLevel```) that 
-extend the abstract ```Achievements``` class. 
+extend the abstract ```Achievements``` class.
 
+The reason why we need to do this is that the way we extract and update data for each achievement is different 
+due to the 3 different categories of filters that we have applied to our generate function.
+Hence we have 3 different classes.
 
-This process is similar for the loading of the ```UserPlan``` object except where we loop through seven times
-(number of days in a week) and for each loop, iterate and parse through each plan from the local hard disk into the
-newly instantiated ```UserPlan``` object.
+The AchievementListHandler class uses the parseAchievement() function to parse each line in the text file into their 
+respective classes and types, creating an achievement for each line. The current pre-loaded list of achievements has
+24 achievements, but advanced users can manually add more achievements should they know how to manipulate the data.
+<br> (The current 24 filters are attributed to the 8 filters * 3 different diffculties = 24 achievements.)
 
 <!--- Dylan AchievementListHandler End --->
 
@@ -324,6 +327,24 @@ Figure 6.2
 </div>
 
 ### Achievements
+Achievements are mainly updated upon finishing a workout session. 
+
+<div align="center">
+<img src="UML/Images/AchievementUpdate.png"/>
+<p>
+Figure 7.1
+</p>
+</div>
+
+When the ```finish``` command is called during a workout session, the updateWorkoutAchivements() function is called.
+This calls the ```ExerciseStateHandler``` class to loop through all the achievements in the achievementList in the 
+```AchievementListHandler``` class for every single exercise accomplished. This is required as a single exercise can 
+apply to multiple achievements. For example, an exercise can be both have the "easy" difficulty and "legs" body part 
+attribute, hence completing that exercise would add to both "legs" and "easy" related exercises.
+<br><br>
+If an exercise is completed during that specific session, then it is added to an array list in the ExerciseStateHandler
+class. Once all the achievements and exercises have been iterated through, the ```ExercuseStateHandler``` will print 
+out all the achieved achievements in the list, congratulating the user. 
 
 ### Exceptions
 
@@ -349,7 +370,7 @@ The diagram below shows some, but not all of the use cases of Error Messages.
 <div align="center">
 <img src="UML/Images/ErrorMessages.png"/>
 <p>
-Figure 7.1
+Figure 8.1
 </p>
 </div>
 
@@ -371,7 +392,7 @@ they then have access to the ```add PLAN_NAME```, ```delete PLAN_NAME```, ```hel
 <div align="center">
 <img src="UML/Images/CommandList.png"/>
 <p>
-Figure 8.1
+Figure 9.1
 </p>
 </div>
 
@@ -513,12 +534,23 @@ Expected: The IPPT exercise session will not be added. Error details will be sho
 Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
 
 ### ```achievements``` and ```clear_achievements``` commands and use Cases
-1. Calling the ```achievements``` command will list out all the details of all the available achievements.
-2. Test case: ```achievements``` 
-Expected: List of the details of all achievements and their corresponding details
-3. For testing purposes, calling the ```clear_achievements``` command will clear all the data for a user. This means that all the exercises logged by the achievements is erased, and all completed achievements are removed.
-4. Test case: ```clear_achievements```
-Expected: Pre-existing achievements and data will be removed, details are shown in the terminal.
+For testing purposes, calling the ```clear_achievements``` command will clear all the data for a user. 
+This means that all of the counts of exercises logged by the achievements file is reset to 0, and all completed 
+achievements are reset to be not achieved.<br>
+1. Test case: ```achievements```  <br>
+Expected: List of the details of all achievements and their corresponding details<br>
+2. Test case: ```clear_achievements``` <br>
+Expected: clear_achievement message is shown in the terminal. <br>
+3. Test case: ```clear_achievements``` <br> ```achievements``` <br>
+The achievements data should show that there are 0 logged exercises/ 0 exercises done in the achievements list.
+4. Test case: ```clear_achievements``` ```generate easy 3``` ```start``` ```finish``` ```achievements``` <br>
+Expected: At least the "Easy Peasy" and the "Easy Peasy Lemon Squeezy" achievements should be printed out in the 
+command line after the ```finish``` command. 
+Other achievements might be printed out depending on the exercises generated.
+The new logged data should show that you have completed 3 easy achievements in the easy related achievements when the 
+```achievements``` command is called.
+
+
 
 ### ```current ``` command
 1. Displays a list of the user's current workout exercises.

@@ -26,7 +26,7 @@ Some example commands you can try:
    * ```filters```: Displays available filters for users to customise their workout.
    * ```history```: Lists all finished exercises.
 6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
-7. 
+
 <div style="page-break-after: always;"></div>
 
 # FitnessDuke's Features
@@ -314,7 +314,6 @@ ________________________________________
 
 # Within your workout session
 
-<div class="alert alert-info">
 
 ## Feature : *Performing a workout*
 
@@ -399,7 +398,6 @@ Calling the ```finish``` command will provide the following outputs:
 4) (If any achievements are accomplished) <br> Prints out a motivating message to further motivate the user to continue
    using Fitness Duke <br>
    ```Keep on working out with Fitness Duke!```
-</div>
 <div style="page-break-after: always;"></div>
 
 ## Seeing your workout history: ```history```
@@ -844,8 +842,11 @@ Advanced users are welcome to update data directly by editing that data file.
 file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.** 
 </p>
 <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">Altering the contents 
-of the achievement list data will possibly cause the achievements features not to work. Altering the 
-contents might also give rise to discrepancies between completed achievements and non-completed achievements.** </p>
+of the achievement list data will possibly cause the achievements list to either not load a specific achievement, or 
+clear your achievement data. <br><br> If the achievement data has been tampered with, achievements could be lost
+(if entire lines of code are deleted), or if
+invalid code is written in, the achievement data could be cleared entirely, resetting and reloading pre-loaded 
+achievments, but your data will be lost.** </p>
 <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">
 We here at Fitness Duke PTE LTD are not liable for any problems with our product should the 
 data files be tampered with. </p>
