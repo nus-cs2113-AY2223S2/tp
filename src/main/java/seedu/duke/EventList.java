@@ -103,7 +103,7 @@ public class EventList {
         boolean conflictCase2 = eventA.getStartTime().compareTo(eventB.getStartTime()) <= 0
                 && eventA.getEndTime().compareTo(eventB.getEndTime()) >= 0;
 
-        return conflictCase1 && conflictCase2;
+        return conflictCase1 || conflictCase2;
     }
 
     /**
@@ -241,6 +241,14 @@ public class EventList {
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
+    public void addEvent(Event event, Boolean isCheck) throws NPExceptions{ //for storage checks.
+        if (isCheck){
+            if (canAddNewEvent(event, -1, this.getFullList())){
+                throw new NPExceptions("Event Conflict Detected!");
+            }
+        }
+        taskList.add(event);
+    }
     /**
      * Add an Event.
      * @param description Event description, describes what the event is.

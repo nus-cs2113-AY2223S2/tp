@@ -72,19 +72,19 @@ class StorageManagerTest {
         user.setSemester(2);
         original.addEvent("testing", "10:00", "2023/03/21",
                 "10:00", "2023/03/21"); //Normal Start and EndTime
-        original.addEvent("testing1", "10:00", "2023/03/20", "12:00",
+        original.addEvent("testing1", "11:00", "2023/03/20", "12:00",
                 "2023/03/20", "1 W"); //Normal with Recur Time
         original.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
-        original.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
+        original.addEvent("testing4", "11:00", "2023/03/20", "1 W"); //recurring
         //only start time.
         storage.saveToFile(original);
         EventList testListCheck = new EventList();
         testListCheck.addEvent("testing", "10:00", "2023/03/21",
                 "10:00", "2023/03/21"); //Normal Start and EndTime
-        testListCheck.addEvent("testing1", "10:00", "2023/03/20", "12:00",
+        testListCheck.addEvent("testing1", "11:00", "2023/03/20", "12:00",
                 "2023/03/20", "1 W"); //Normal with Recur Time
         testListCheck.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
-        testListCheck.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
+        testListCheck.addEvent("testing4", "11:00", "2023/03/20", "1 W"); //recurring
         EventList testList = new EventList(storage.loadEvents());
         String a = testListCheck.getFullList().toString();
         String b = testList.getFullList().toString();
