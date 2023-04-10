@@ -33,7 +33,7 @@ activate ":ParserHandler"
 deactivate ":ParserHandler"
 ":MagusStock" -> ":MagusStock": run()
 activate ":MagusStock"
-loop user send input "bye" or "exit"
+loop until user send input "bye" or "exit"
 ":MagusStock" -> ":ParserHandler": run()
 activate ":ParserHandler"
 ":ParserHandler" -> ":Inventory":
