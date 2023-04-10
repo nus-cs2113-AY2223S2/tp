@@ -93,7 +93,7 @@ Expected outcome:
 Adds a module to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
-* All fields are compulsory
+* All fields are **<u>compulsory</u>**
 
 #### Examples of usage
 * Add a lecture of module: `add -m AC5001 -n 1 -l LEC`
@@ -137,7 +137,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 events should you need to have them.
 
 **Notice**
-> For the lesson number and lesson type, follow the EXACT format as displayed on NUSMods. 
+> For the lesson number and lesson type, follow the <u>**EXACT**</u> format as displayed on NUSMods. 
 > 
 > ~~**BAD** example~~: `add -m CS2100 -n 2 -l TUT`
 > 
