@@ -12,6 +12,7 @@ package seedu.badmaths;
 import java.util.ArrayList;
 
 public class CommandHistory {
+
     ArrayList<String> historyCommand = new ArrayList<>();
 
     public CommandHistory(ArrayList<String> historyCommand) {
