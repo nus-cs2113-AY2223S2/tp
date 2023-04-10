@@ -2,33 +2,25 @@ package seedu.mealcompanion.command.allergen;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
-import seedu.mealcompanion.recipe.IngredientDatabase;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 
 /**
  * Represents the "add" command.
  */
 public class AllergenAddCommand extends ExecutableCommand {
-    String name;
+    IngredientMetadata ingredient;
 
-    public AllergenAddCommand(String arguments) {
-        this.name = arguments;
+    public AllergenAddCommand(IngredientMetadata ingredient) {
+        this.ingredient = ingredient;
     }
 
     public void execute(MealCompanionSession mealCompanionSession) {
-        try {
-            IngredientDatabase db = IngredientDatabase.getDbInstance();
-            IngredientMetadata newIngredient = db.getKnownIngredient(this.name);
 
-            if (mealCompanionSession.getAllergens().contains(newIngredient)) {
-                mealCompanionSession.getUi().printMessage("You are already allergic to: " + this.name);
-                return;
-            }
-            mealCompanionSession.getAllergens().add(newIngredient);
-            mealCompanionSession.getUi().printMessage("Added allergy to: " + this.name);
-
-        } catch (Exception e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+        if (mealCompanionSession.getAllergens().contains(ingredient)) {
+            mealCompanionSession.getUi().printMessage("You are already allergic to: " + ingredient.getName());
+            return;
         }
+        mealCompanionSession.getAllergens().add(ingredient);
+        mealCompanionSession.getUi().printMessage("Added allergy to: " + ingredient.getName());
     }
 }

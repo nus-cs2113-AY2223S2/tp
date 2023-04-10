@@ -1,18 +1,23 @@
-package seedu.mealcompanion.command.factory.misc;
+package seedu.mealcompanion.command.factory.recipe;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
-import seedu.mealcompanion.command.recipe.RecipeAllCommand;
+import seedu.mealcompanion.command.recipe.RecipePossibleCommand;
 import seedu.mealcompanion.parser.CommandArguments;
 
 //@@author ngyida
+
 /**
- * Represents a factory for the "recipe all" command.
+ * Represents a factory for the "recipe possible" command.
  */
-public class RecipeAllCommandFactory extends ExecutableCommandFactory {
+public class RecipePossibleCommandFactory extends ExecutableCommandFactory {
     @Override
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
-        return new RecipeAllCommand();
+        return new RecipePossibleCommand();
+    }
+
+    public String getCommandFormat() {
+        return "recipe possible";
     }
 }

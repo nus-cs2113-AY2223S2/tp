@@ -16,7 +16,7 @@ public class IngredientsSearchCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         IngredientDatabase db = IngredientDatabase.getDbInstance();
-        for(IngredientMetadata ingredient : db.getKnownIngredients().values()) {
+        for (IngredientMetadata ingredient : db.getKnownIngredients().values()) {
             if (this.searchTerm != null && !ingredient.getName().contains(this.searchTerm)) {
                 continue;
             }

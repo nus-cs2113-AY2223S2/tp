@@ -1,6 +1,6 @@
 package seedu.mealcompanion.ingredient;
 
-import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.exception.MealCompanionException;
 import seedu.mealcompanion.recipe.IngredientDatabase;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 
@@ -17,9 +17,15 @@ public class Ingredient {
         this.metadata = db.getKnownIngredients().get(name.toLowerCase());
         this.quantity = quantity;
     }
+
+    public Ingredient(IngredientMetadata metadata, int quantity) {
+        this.metadata = metadata;
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        if (this.metadata.getUnitLabel() == null ){
+        if (this.metadata.getUnitLabel() == null) {
             return this.quantity + " " + this.metadata.getName();
         }
         return this.quantity + " " + this.metadata.getUnitLabel() + " " + this.metadata.getName();

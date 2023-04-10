@@ -10,4 +10,8 @@ public class AllergenListCommandFactory extends ExecutableCommandFactory {
     public AllergenListCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new AllergenListCommand();
     }
+
+    public String getCommandFormat() {
+        return "allergen list";
+    }
 }

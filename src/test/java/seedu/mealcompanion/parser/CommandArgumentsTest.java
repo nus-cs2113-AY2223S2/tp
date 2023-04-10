@@ -17,6 +17,7 @@ class CommandArgumentsTest {
         CommandArguments args = new CommandArguments(new CommandTokens("test"));
         assertEquals(args.getPositionalArgument(), "test");
     }
+
     @Test
     public void parseArgumentsPositionalOnlyMultipleWords() {
         CommandArguments args = new CommandArguments(new CommandTokens("test test2"));
