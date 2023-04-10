@@ -430,6 +430,10 @@ public class Parser {
         } else {
             try {
                 int itemIndex = getPackAllIndex();
+                if (PackingList.getItemList().get(itemIndex - 1).getUnpackedQuantity() == 0) {
+                    return new IncorrectCommand("Item Fully Packed",
+                            "You are done packing this item");
+                }
                 return new PackAllCommand(itemIndex);
             } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
                 return new IncorrectCommand("Invalid Packall Command Input",
@@ -498,6 +502,10 @@ public class Parser {
         } else {
             try {
                 int itemIndex = getPackAllIndex();
+                if (PackingList.getItemList().get(itemIndex - 1).getPackedQuantity() == 0) {
+                    return new IncorrectCommand("Item Not Packed",
+                            "You have not packed this item at all");
+                }
                 return new UnpackAllCommand(itemIndex);
             } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
                 return new IncorrectCommand("Invalid Unpackall Command Input",
