@@ -73,7 +73,9 @@ The rest of the app consists of four components:
 * `Storage`: Reads data from and writes data to the hard disk
 <br>
 [Back to contents page](#table-of-contents)
----
+
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### 2.2 Parser Component
 The component will return the correct command based on what the user inputs into the application.
 
@@ -92,6 +94,7 @@ The Parser component handles the following methods:
 * Format checker
 * Revise information using index
 * Revise information using name
+<p style="page-break-after: always;">&nbsp;</p>
 
 ##### 2.2.2 Add Events Diagram
 The diagram below illustrates the flow of how the application adds events:
@@ -106,7 +109,7 @@ Following that, it will go through another process to check if the event is set 
 ##### 2.2.3 Add Modules Diagram
 The diagram below illustrates the flow of how the application adds modules:
 ![Add Event Class Diagram](UML/Images/addModules.png)
-
+<img src="UML/Images/addModules.png" width = "500" height = "600">
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
 
 Modules are then loaded and the application uses getLesson() to access modules from a Hash Map. 
