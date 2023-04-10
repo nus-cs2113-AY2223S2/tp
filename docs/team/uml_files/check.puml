@@ -31,5 +31,5 @@ deactivate CheckBudgetCommand
 CheckBudgetCommand-> CheckBudgetCommand : getCheckCommandResult
 return
 CheckBudgetCommand --> MainInputParser : CommandResult(String)
-
+destroy CheckBudgetCommand
 @enduml
