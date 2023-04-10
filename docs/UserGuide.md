@@ -29,6 +29,8 @@
   * [Command Summary](#command-summary)
 <!-- TOC -->
 
+<div style="page-break-after: always;"></div>
+
 ## Introduction
 
 MyLedger is a desktop app for managing finances, designed for university students studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and monitor their budget and expenses, managing their transactions more effciently. 
@@ -400,6 +402,8 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 Displays list of the other currency available in MyLedger and their value against SGD.
 
 **Format:** `showrates`
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
