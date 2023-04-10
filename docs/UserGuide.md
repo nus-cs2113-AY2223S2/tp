@@ -164,8 +164,6 @@ MoneyGoWhere will prompt you to enter your instructions, such as:
 9. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
    the `X` on the top right hand corner of the CLI.
 
-<div style="page-break-after: always;"></div>
-
 [Back to table of contents](#table-of-contents)
 
 ## MoneyGoWhere [Commands](#glossary)
@@ -461,6 +459,8 @@ If you decide to stop selling a particular item, you can remove it from the menu
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">💡By using this <a href="#glossary"><i>command</i></a>, you may potentially change the other <a href="#glossary"><i>index</i></a> numbers of your other menu items. This may or may not affect the way you add items to orders. It is recommended that you use <code>listitem</code> to confirm if there are any changes.</blockquote>
 
 To view more about listitem, [click here](#list-all-items).
+
+<div style="page-break-after: always;"></div>
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  As per the previous example, John currently plans to sell Fried Rice. However, after asking his friends, he realized that no one wants to buy Fried Rice from a Chicken Rice stall. The menu currently looks like this: 
