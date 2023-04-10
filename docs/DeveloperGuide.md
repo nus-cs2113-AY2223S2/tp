@@ -82,10 +82,10 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 ### Archive - Class Implementation
 ![img_30.png](img_30.png) <br>
-**Figure 9.1: Sequence Diagram of Storage class**
+**Figure 9.1: Sequence Diagram of Archive Class**
 
 ![img_29.png](img_29.png) <br>
-**Figure 9.2: Sequence Diagram of Storage class**
+**Figure 9.2: Sequence Diagram of Archive Class**
 1. The Archive class takes in the path of the SniffArchive storage file.
 2. **`openArchiveFile(String filePath)`** method reads and adds the Archived task contents into the Appointments task list.
 3. **`saveArchivedAppointments(String filePath)`** method saves the Archived task contents into the SniffArchive File.
