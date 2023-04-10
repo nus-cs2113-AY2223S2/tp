@@ -51,6 +51,13 @@ public class Ui {
     public void showWelcomeMessage() {
         showLine();
         System.out.println(" Hello! I'm Sniff, your personal appointment manager.");
+        System.out.print( "     _______."    + " .__   __."  + "  __ "  + "  _______ " + "  _______\n" +
+                          "    /       |"    + " |  \\ |  |"  + " |  |"  + " |   ____|" + " |   ____|\n" +
+                          "   |   (----`"    + " |   \\|  |"  + " |  |"  + " |  |__  "  + "  |  |__\n" +
+                          "    \\   \\    "  + " |  . `  |"   + " |  |" + " |   __| "  + "  |   __|\n" +
+                          ".----)   |   "    + " |  |\\   |"  + " |  |"  + " |  |   "   + "   |  |\n" +
+                          "|_______/    "    + " |__| \\__|"  + " |__|"  + " |__|   " +   "   |__|\n");
+        printBlankLine();
         System.out.println(" What can I do for you?");
         showLine();
     }
