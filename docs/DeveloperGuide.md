@@ -233,7 +233,7 @@ Step 3. When `execute()` method is called, a `Request` object is created.
 Step 4. From there, the `Request` is ready to be handled. `deleteEntry()` method is called and the `Entry` is removed
 from `EntryLog`.
 
-Step 5. A success message is after the `Entry` is removed from `EntryLog`.
+Step 5. A success message is printed after the `Entry` is removed from `EntryLog`.
 
 The following activity diagram summarizes what happens when a user executes a delete command:
 
@@ -266,7 +266,9 @@ to a method in the EntryEndpoint class.
 **Step 5.** The EntryEndpoint class then finds and modifies the entry as specified by the user.
 
 **Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the
-Backend class. The Response object contains the updated fields of the entry.
+Backend class. The Response object contains the updated fields of the entry. 
+
+However, if the edit operation fails, the response object will contain the relevant exception message which would be printed to the user.
 
 **Step 7.** The Backend class calls the save() method to update the Storage class with the edited entry.It then returns
 the Response object to the execute function in the EditCommand object.
@@ -282,7 +284,7 @@ acknowledgement message is printed to the user.
 
 ##### Class diagram of view command
 
-![ViewCommandClassDiagram.png](./static/viewCommandClassDiagram.png)
+![ViewCommandClassDiagram.png](./static/frontend/commands/ViewCommandClassDiagram.png)
 Class diagram above shows the methods called in the execute method of the
 View Command object.
 
@@ -314,8 +316,8 @@ details of each entry to the user.
 
 **Step 2.** The execute method of the returned HelpCommand object is then called.
 
-**Step 3.** In the execute method, the printHelp method of the UI Class is called and a fixed string displaying all
-available commands is called.
+**Step 3.** In the execute method, the printHelp method of the UI Class is called and a string displaying all
+available commands, as well as examples of how to use them, is called. 
 
 #### Exit/Bye Command
 
