@@ -27,7 +27,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Use cases](#use-cases)
    - [Non-Functional Requirements](#non-functional-requirements)
    - [Glossary](#glossary)
-7. [Appendix: Instructions for manual testing](#appendix--instructions-for-manual-testing)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 
 ## Acknowledgements
