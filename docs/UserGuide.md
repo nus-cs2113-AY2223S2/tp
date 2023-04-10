@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction) 
+1. [Introduction](#introduction)
 2. [Quick Start](#quick-start)
 3. [Features](#features):
 
@@ -11,14 +11,15 @@
     * [add](#add)
     * [choose venue](#choose-venue)
     * [update event name](#update-event-name)
-    * [confirm](#confirm) 
-    | [unconfirm](#unconfirm)
+    * [confirm](#confirm)
+      | [unconfirm](#unconfirm)
     * [list companies](#list-companies)
-    | [venues](#list-venues)
-    | [unconfirmed](#list-unconfirmed)
-    * [delete](#delete) | [purge](#purge)
+      | [venues](#list-venues)
+      | [unconfirmed](#list-unconfirmed)
+    * [delete](#delete)
+      | [purge](#purge)
     * [find companies](#find-companies)
-    | [industry](#find-industry)
+      | [industry](#find-industry)
 
 4. [Summary of the Commands](#summary-of-the-commands)
 
@@ -30,7 +31,7 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed. 
+1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `EvenNtUS` from [here](https://github.com/AY2223S2-CS2113-W12-2/tp/releases/tag/V2.0).
 3. Copy the jar file to a folder.
 4. Open Command Prompt in the folder and enter the command <code>java -jar tp.jar</code>
@@ -42,7 +43,7 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ### Help
 
-Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
+Shows the help guide that contains the features that are available for use, as well as the features' corresponding
 syntax for user input
 
 * Format: `help`
@@ -50,8 +51,8 @@ syntax for user input
 * Example of usage: `help`
 
 * Expected outcome:
+
 ```
-help
 ____________________________________________________________
 Here are the functions of the application!
 To display this guide at any time, type:
@@ -105,7 +106,7 @@ To exit the program, type:
 ____________________________________________________________
 ____________________________________________________________
 ```
-<br>
+
 
 ### Load Samples
 Populate the company list with sample companies, and updates the company list text file
@@ -171,7 +172,7 @@ ____________________________________________________________
 ```
 
 * The same company cannot be added twice. If a company with existing name or contact detail is added, a warning will be displayed to the user
-instead.
+  instead.
 
 * Expected outcome:
 ```
@@ -182,7 +183,7 @@ ____________________________________________________________
 
 
 ### Choose Venue
-Updates the venue of the event from a list of venues, and updates the event details file. 
+Updates the venue of the event from a list of venues, and updates the event details file.
 
 To see the list of venues, refer to [list venues](#list-venues)
 
@@ -227,7 +228,7 @@ ____________________________________________________________
 ```
 
 ### Confirm
-Mark the status of a specific company's attendance as confirmed, and 
+Mark the status of a specific company's attendance as confirmed, and
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
 * Format: `confirm [INDEX]`
@@ -242,17 +243,16 @@ This company has been successfully confirmed!
 ____________________________________________________________
 
 ```
+
 * If the company has already been marked as confirmed
 * Expected outcome:
+
 ```
 ____________________________________________________________
 This company is already confirmed!
 ____________________________________________________________
 
 ```
-
-<br>
-
 
 ### Unconfirm
 Mark the status of a specific company's attendance as unconfirmed, and
@@ -270,16 +270,16 @@ This company has been successfully unconfirmed!
 ____________________________________________________________
 
 ```
+
 * If the company has already been marked as unconfirmed
 * Expected outcome:
+
 ```
 ____________________________________________________________
 This company is already unconfirmed!
 ____________________________________________________________
 
 ```
-
-<br>
 
 ### List Companies
 Shows all companies currently stored in the company list.
@@ -310,7 +310,7 @@ Company industry: BANKING AND FINANCE
 [Confirmed]
 ____________________________________________________________
 ```
-<br>
+
 
 ### List Venues
 Shows all venues available for the user to choose
@@ -330,7 +330,6 @@ ____________________________________________________________
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
-<br>
 
 ### List Unconfirmed
 Shows all the unconfirmed companies that are stored in the company list.
@@ -357,7 +356,7 @@ Company industry: BANKING AND FINANCE
 [Unconfirmed]
 ____________________________________________________________
 ```
-<br>
+
 
 ### Delete
 Delete a company from the company list, and updates the company list text file.
@@ -373,15 +372,17 @@ ____________________________________________________________
 Company information successfully deleted!
 ____________________________________________________________
 ```
+
 * If the company list is empty
 * Expected outcome:
+
 ```
 ____________________________________________________________
 Nothing inside company list
 ____________________________________________________________
 
 ```
-<br>
+
 
 ### Purge
 Delete the company list data, and updates the company list text file
@@ -397,15 +398,17 @@ ____________________________________________________________
 Data has been deleted successfully!
 ____________________________________________________________
 ```
+
 * If the company list is empty
 * Expected outcome:
+
 ```
 ____________________________________________________________
 Nothing inside company list
 ____________________________________________________________
 
 ```
-<br>
+
 
 ### Find Companies
 Find the companies based on a company name, or any of the alphabets in keyword provided by the user.
@@ -434,13 +437,13 @@ Company industry: TECH
 [Unconfirmed]
 ____________________________________________________________
 ```
-<br>
+
 
 ### Find Industry
 Find the companies within an industry based on the keyword provided by the user.
 
 * Format: `find industry [KEYWORD]`
-  * `[KEYWORD]` must be the exact industry that the company is in.
+    * `[KEYWORD]` must be the exact industry that the company is in.
 
 * Example of usage: `find industry tech`
 
@@ -463,7 +466,7 @@ Company industry: TECH
 [Unconfirmed]
 ____________________________________________________________
 ```
-<br>
+
 
 ### Filter Venues
 Filter the venues based on the capacity specified by the user.
@@ -484,7 +487,7 @@ ____________________________________________________________
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
-<br>
+
 
 ### Exit
 Exit the application
