@@ -47,7 +47,7 @@ public class ExceptionChecker {
     public static void checkDate(LocalDate startDate, LocalDate endDate)
             throws InvalidDateException, InvalidDeadlineException {
         LocalDate currentDate = LocalDate.now();
-        if (startDate.isAfter(endDate)) {
+        if (startDate.isAfter(endDate) || startDate.equals(endDate)) {
             throw new InvalidDateException();
         }
         if (endDate.isBefore(currentDate)) {
@@ -101,10 +101,11 @@ public class ExceptionChecker {
             }
         }
     }
+
     public static void checkIfMoreThanTwoDecimalPlaces(String userInput, String dot, String blank)
             throws WrongPrecisionException, EmptyStringException {
         if (userInput.contains(dot)) {
-            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput,dot,blank);
+            String twoDecimalPlaces = ParseIndividualValue.parseIndividualValue(userInput, dot, blank);
             if (twoDecimalPlaces.length() > TWO_DECIMAL_PLACE) {
                 throw new WrongPrecisionException();
             }

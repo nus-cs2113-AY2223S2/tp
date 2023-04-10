@@ -5,8 +5,8 @@ public class Ui {
             + "( \\/ )( \\/ )(  )  (  __)(    \\ / __)(  __)(  _ \\\n" +
             "/ \\/ \\ )  / / (_/\\ ) _)  ) D (( (_ \\ ) _)  )   / \n" +
             "\\_)(_/(__/  \\____/(____)(____/ \\___/(____)(__\\_)\n";
-    public static final String HORIZONTAL_LINE = "===================================================" + 
-        "=====================================================================\n";
+    public static final String HORIZONTAL_LINE = "===================================================" +
+            "=====================================================================\n";
     public static final String WELCOME_MESSAGE = "Hello there, Welcome to\n";
     public static final String INSTRUCTIONS = "\nMyLedger is a University financial manager made for students!\n";
     public static final String HELP_MESSAGE = "If this is your first time here, "
@@ -15,16 +15,16 @@ public class Ui {
             + "Please take note of the FORMAT that is stated below\n"
             + HORIZONTAL_LINE +
             "\n1. Add an expenditure to the record\n" +
-            "Format: EXPENDITURE_TYPE d/DATE a/AMOUNT p/DESCRIPTION\n" + 
+            "Format: EXPENDITURE_TYPE d/DATE a/AMOUNT p/DESCRIPTION\n" +
             "There are 7 EXPENDITURE_TYPE: 'Academic', 'Accommodation', 'Entertainment', " +
             "'Food', 'Transport', 'Tuition', 'Other'\n" +
             "Example: academic d/2023-02-02 a/25.10 p/NUS\n" +
             HORIZONTAL_LINE +
             "\n2. Add a lend/borrow record\n" +
             "Format: TYPE d/DATE n/NAME a/AMOUNT b/DEADLINE p/DESCRIPTION\n" +
-            "TYPE should be either 'lend' or 'borrow'\n"+
-            "Example: lend d/2023-02-02 n/Akshay Narayan a/25.10 b/2023-04-02 p/CS2113\n" +
-             HORIZONTAL_LINE +
+            "TYPE should be either 'lend' or 'borrow'\n" +
+            "Example: lend d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113\n" +
+            HORIZONTAL_LINE +
             "\n3. Delete a specified expenditure from the record\n" +
             "Format: delete INDEX\n" +
             "Example: delete 1 \n" +
@@ -57,7 +57,7 @@ public class Ui {
             "\n9. View all expenditures and their total amount in the record BY CATEGORY\n"
             + "Format: viewtype CATEGORY CURRENCY\n"
             + "There are 9 CATEGORIES: 'academic', 'accommodation', 'entertainment'," +
-            "'food', 'transport', 'tuition', 'other', 'borrow', 'lend'\n" 
+            "'food', 'transport', 'tuition', 'other', 'borrow', 'lend'\n"
             + "Example: viewtype food SGD\n" +
             HORIZONTAL_LINE +
             "\n10. Set a fixed budget for money management\n"
@@ -89,8 +89,6 @@ public class Ui {
             "\n16. Unmarking a lend or borrow expenditure record\n"
             + "Format: unmark INDEX\n" +
             HORIZONTAL_LINE;
-
-        
 
     public static void greetUser() {
         System.out.println(WELCOME_MESSAGE + LOGO + INSTRUCTIONS + HELP_MESSAGE);
