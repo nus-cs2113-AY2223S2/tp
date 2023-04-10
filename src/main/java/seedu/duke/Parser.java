@@ -156,8 +156,22 @@ public class Parser {
         }
 
         String information = details[1].substring(0, 1).trim();
+        
         if (information.equals("s")) {
-            int index = Integer.parseInt(details[1].substring(1).trim()) - OFFSET;
+            if (details[1].length() < 2){
+                throw new NPExceptions("No index entered!");
+            }
+            
+            int index = -1;    
+            try {
+                index = Integer.parseInt(details[1].substring(1).trim()) - OFFSET;
+            } catch(NumberFormatException e) {
+                throw new NPExceptions("invalid event index!");
+            }
+            if (eventList.getSize() < index + 1){
+                throw new NPExceptions("Index is larger than current Event List size!");
+            }
+
             String deletedTask = eventList.getDetails(index);
             eventList.deleteThisTask(index);
             // TODO: Show successful add on UI. (For all cases)
@@ -372,7 +386,6 @@ public class Parser {
                 }
             }
 
-            // add location(venue)
             int eventNum = eventList.getSize() - 1;
             if (duplicity[6] == true) {
                 eventList.reviseLocation(eventNum, information[6]);
