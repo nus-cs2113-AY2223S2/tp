@@ -400,6 +400,10 @@ Calling the ```finish``` command will provide the following outputs:
    ```Keep on working out with Fitness Duke!```
 <div style="page-break-after: always;"></div>
 
+*<font size='6'>End of Commands within workout session </font>*
+
+**The commands listed below are used outside of an active workout session.**
+
 ## Seeing your workout history: ```history```
 
 Displays your entire career history in using Fitness Duke.
