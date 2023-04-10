@@ -261,13 +261,9 @@ public class Storage {
         return petDetail;
     }
 
-    private String getTaskName(String line) throws EmptyTaskNameException {
-        String[] words = line.split("\\|", 3);
+    private String getTaskName(String line) {
+        String[] words = line.split("\\|", EXPECTED_TASK_SEP_MAX_COUNT + 1);
         String taskName = words[1];
-
-        if (taskName.trim().isEmpty()) {
-            throw new EmptyTaskNameException();
-        }
 
         return taskName;
     }
@@ -284,7 +280,7 @@ public class Storage {
     }
 
     private LocalDate getDeadline(String line) throws ArrayIndexOutOfBoundsException, DateTimeParseException {
-        String[] words = line.split("\\|", 3);
+        String[] words = line.split("\\|", EXPECTED_TASK_SEP_MAX_COUNT + 1);
         LocalDate deadline = LocalDate.parse(words[2]);
         return deadline;
     }
@@ -292,7 +288,8 @@ public class Storage {
     private void validatePetDataSep(String line) throws InvalidSeparatorException {
         int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
 
-        if (sepCount != EXPECTED_PET_SEP_COUNT) {
+        boolean isSeparatorCountIncorrect = sepCount != EXPECTED_PET_SEP_COUNT;
+        if (isSeparatorCountIncorrect) {
             throw new InvalidSeparatorException();
         }
     }
@@ -300,7 +297,10 @@ public class Storage {
     private void validateTaskDataSep(String line) throws InvalidSeparatorException {
         int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
 
-        if (sepCount != EXPECTED_TASK_SEP_MIN_COUNT && sepCount != EXPECTED_TASK_SEP_MAX_COUNT) {
+
+        boolean isSeparatorCountIncorrect = sepCount != EXPECTED_TASK_SEP_MIN_COUNT
+                && sepCount != EXPECTED_TASK_SEP_MAX_COUNT;
+        if (isSeparatorCountIncorrect) {
             throw new InvalidSeparatorException();
         }
     }
