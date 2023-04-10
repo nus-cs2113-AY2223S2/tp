@@ -669,7 +669,7 @@ and their contents do not affect rainyDay's functions. The "logs" folder and its
 | [View Shortcuts](#viewing-a-shortcut)           | `shortcut_view`                                                                                                                                                                                                                                              |
 | [Delete Shortcut](#deleting-a-shortcut)         | `shortcut_delete [SHORTCUTNAME]`<br><br> **Example:** <br> `shortcut_delete FavLunch`                                                                                                                                                                        |
 | [Export to CSV](#exporting-to-csv)              | `export`                                                                                                                                                                                                                                                     |              
-| [Exit](#exiting-the-application)                | `bye`                                                                                                                                                                                                                                                        |
+| [Exit](#exiting-rainyday)                       | `bye`                                                                                                                                                                                                                                                        |
 
 [Jump back to Table of Contents](#content-page)
 
