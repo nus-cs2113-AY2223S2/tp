@@ -448,9 +448,9 @@ Step 4. The examples of `meal` or `exercise` will then be printed out and displa
 
 <img src="uml/ExamplesCommand.png" alt="Sequence Diagram" width="500">
 
-### Design considerations: How to list examples of exercises and meals
+### Design considerations:
 
-#### Aspect:
+#### Aspect: How to list examples of exercises and meals
 
 - Alternative 1 (current choice): List examples based on input command.
   - Pros: More concise, no unnecessary information.
