@@ -17,6 +17,7 @@ Given below are my contributions to the project:
 2. [x] Implemented Appointments and Commands Class: [#39](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/39)
 3. [x] Implemented JUnit Testing for Commands Class: [#46](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/46)
 4. [x] Implemented Date Time feature for Appointments Class: [#51](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/51)
+5. [x] Implemented Parser for Adding Appointments: [#138](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/138)
 
 #### 3) Contributions to User Guide (UG): <br>
 1. [x] User Guide for Adding Appointments Feature: [#67](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/67)
