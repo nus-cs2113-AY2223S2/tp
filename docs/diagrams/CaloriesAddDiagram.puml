@@ -1,0 +1,16 @@
+@startuml
+
+!include Style.puml
+
+actor User
+participant AddCalorieCommand
+participant CalorieTracker
+participant FoodList
+
+User -> AddCalorieCommand: execute(date, foodName, foodCalories)
+AddCalorieCommand -> CalorieTracker: addCalories(date, foodName, foodCalories)
+CalorieTracker -> FoodList: addFood(foodName, foodCalories)
+FoodList -> CalorieTracker: updateTotalCalories(date)
+CalorieTracker -> AddCalorieCommand: return result
+AddCalorieCommand -> User: return result
+@enduml

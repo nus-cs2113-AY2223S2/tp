@@ -30,4 +30,3 @@ public class EndWorkoutCommand extends Command {
         return WORKOUT_COMPLETE_MESSAGE;
     }
 }
-

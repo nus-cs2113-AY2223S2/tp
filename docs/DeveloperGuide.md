@@ -191,6 +191,69 @@ The following are the explanation for each of them:
 <img src="images/CaloriesComponentClassDiagram.png" width="1153" />
 </p>
 
+### Implementation of Calories
+
+#### Adding Calories
+The AddCaloriesCommand component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
+`Command` and `AddCaloriesCommand`, where the user will
+enter a FOOD_NAME and CALORIE_COUNT, and it will be recorded into the `CalorieTracker`
+
+Below are the specific steps on how to use the AddCaloriesCommand function and how the mechanism will flow:
+
+* Step 1: We will assume that the user has started the App, the user will then type it in this format
+`/cadd FOOD_NAME CALORIE COUNT` for example `/cadd chicken 100`. The input will be taken into the parser
+  and will return a string mentioning that it has been added.
+
+<p align="center">
+<img src="images/CaloriesAddDiagram.png" width="1000"/>
+</p>
+
+#### Listing Calorie Dates
+The ListCalories component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
+`Command` and `ListCaloriesCommand`, where the user will
+enter a command `/clist` and it will return all the dates in the list
+
+Below are the specific steps on how to use the ListCaloriesCommand function and how the mechanism will flow:
+
+* Step 1: We will assume that the user has started the App and added calories via `/cadd chicken 100`. 
+* Step 2: The user will then type it in this format `/clist`. The input will be taken into the parser
+and will return a string listing out the dates.
+
+<p align="center">
+<img src="images/ListCalorieDiagram.png" width="900" height="850">
+</p>
+
+#### Viewing Calories in a Day
+
+The ViewCaloriesCommand component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
+`Command` and `ViewCaloriesCommand`, where the user will
+enter a command `/cview INDEX` and it will return all the dates in the list
+
+Below are the specific steps on how to use the ListCaloriesCommand function and how the mechanism will flow:
+
+* Step 1: We will assume that the user has started the App and added calories via `/cadd chicken 100`.
+* Step 2: The user will then type it in this format `/cview INDEX` e.g `/cview 1`. The input will be taken into the parser
+  and will return a string listing out the foods that were eaten on that day.
+
+<p align="center">
+<img src="images/ViewCalorieDiagram.png" width="1814" height="819">
+</p>
+
+#### Deleting Calories Date
+
+The DeleteCaloriesCommand component is facilitated by `Parser`,`CalorieParser`,`Ui`,`CalorieTracker`,`Food`,`FoodDictionary`,`Foodlist`,
+`Command` and `DeleteCaloriesCommand`, where the user will
+enter a command `/cdelete INDEX` and it will return all the dates in the list
+
+Below are the specific steps on how to use the ListCaloriesCommand function and how the mechanism will flow:
+
+* Step 1: We will assume that the user has started the App and added calories via `/cadd chicken 100`.
+* Step 2: The user will then type it in this format `/cdelete INDEX` e.g `/cdelete 1`. The input will be taken into the parser
+  and will return a string confirming the deletion of the date.
+
+<p align="center">
+<img src="images/DeleteLCalorieDiagram.png" width="1337" height="558">
+</p>
 
 ### Workout Component
 The class diagram below illustrates how the Workout component interact with each others.
@@ -202,10 +265,7 @@ and the WorkoutList consists of list of Workout.
 </p>
 
 ###### [Back to table of contents](#table-of-contents)
-
-
-
-
+ 
 The add mechanism is facilitated by `AddCommand`. 
 It extends `Command` and modifies the execute function to add an exercise.
 
@@ -239,7 +299,11 @@ Step 2: The user input of /list will be taken in for the parser and an object of
 Step 3: The execute method in the ListWorkoutCommand class that is overrides will be called and print out all the dates that while iterating the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
+### Workout view component
+=======
 ### Calories Component
+=======
+### Workout view component
 The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
 enter a specific workout date and the number of exercises on that date will be displayed
 
@@ -266,6 +330,7 @@ Step 1: Assume that the user has already added a workout on 21/03/23 into the Wo
 Step 2: The user input of /delete 21/03/23 will be taken in for the parser and an object of class DeleteCommand will be returned.
 
 Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
+### Calories view component
 ###### [Back to table of contents](#table-of-contents)
 
 ### Exit component

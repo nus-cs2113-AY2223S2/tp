@@ -1,0 +1,36 @@
+@startuml
+!include Style.puml
+
+actor User
+
+User -> ListCaloriesCommand: execute()
+activate ListCaloriesCommand
+
+ListCaloriesCommand -> calorieTracker: getDailyFoodConsumption()
+activate calorieTracker
+calorieTracker -> TreeMap: TreeMap()
+activate TreeMap
+calorieTracker <-- TreeMap: sortedMap
+deactivate TreeMap
+deactivate calorieTracker
+
+alt list is empty
+    ListCaloriesCommand --> User: "Calorie consumption list is empty!"
+end
+    ListCaloriesCommand -> TreeMap: keySet()
+    activate TreeMap
+
+    loop through daily food consumption
+        TreeMap -> FoodList: getTotalCalories()
+        activate FoodList
+        TreeMap <-- FoodList: totalCalories
+        FoodList <-- TreeMap
+        TreeMap --> ListCaloriesCommand: display data
+        deactivate FoodList
+    end
+
+
+    ListCaloriesCommand --> User: display data
+
+deactivate ListCaloriesCommand
+@enduml
