@@ -24,6 +24,8 @@ public class EventList {
     private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
     private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
     private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";
+    private static final String RECUR_TIME_NOT_POSITIVE_INT_E = "recurring time should ba a positive integer!";
+    private static final String EVENT_CONFLICTION_E = "Event Conflict Detected!";
 
     protected ArrayList<Schedule> taskList;
     protected int listSize;
@@ -235,7 +237,7 @@ public class EventList {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
 
         if (!checkRecurTime(recurTime)) {
-            throw new NPExceptions("recurring time should be a positive integer!");
+            throw new NPExceptions(RECUR_TIME_NOT_POSITIVE_INT_E);
         }
 
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
@@ -247,7 +249,7 @@ public class EventList {
     public void addEvent(Event event, Boolean isCheck) throws NPExceptions{ //for storage checks.
         if (isCheck){
             if (canAddNewEvent(event, -1, this.getFullList())){
-                throw new NPExceptions("Event Conflict Detected!");
+                throw new NPExceptions(EVENT_CONFLICTION_E);
             }
         }
         taskList.add(event);

@@ -78,7 +78,7 @@ public class Ui {
         System.out.println("Continue reading for quick help:");
         printDash();
         System.out.println("Add an event:\n" +
-                "add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE" +
+                "add -e EVENTNAME -st STARTTIME -sd STARTDATE -et ENDTIME -ed ENDDATE -v VENUE" +
                 "-r RECURRING TIME\n" +
                 "• sd and ed must be of the format YYYY/MM/DD\n" +
                 "• e, sd and st are compulsory fields\n" +
@@ -89,16 +89,16 @@ public class Ui {
                 "EXAMPLE -> add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11");
         printDash();
         System.out.println("Add a module:\n" +
-                "add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE\n" +
+                "add -m MODULECODE -n CLASSNUMBER -l LESSONTYPE\n" +
                 "• For the lesson number and lesson type, follow the format as" +
                 "displayed on NUSMods.\n\n" +
                 "EXAMPLE -> add -m CS2100 -n 02 -l LAB");
         printDash();
         System.out.println("Delete a single event:\n" +
-                "delete –s INDEX_OF_EVENT\n\n" +
+                "delete -s INDEX_OF_EVENT\n\n" +
                 "EXAMPLE -> delete -s 1\n\n" +
                 "Delete all events:\n" +
-                "delete –all");
+                "delete -all");
         printDash();
         System.out.println("List all events:\n" +
                 "list\n\n" +
@@ -107,14 +107,14 @@ public class Ui {
                 "EXAMPLE -> list -w 7");
         printDash();
         System.out.println("Edit an event:\n" +
-                "edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME" +
-                "–ed ENDDATE -v VENUE -r x D/W\n" +
+                "edit -i INDEX_OF_EVENT -st STARTTIME -sd STARTDATE -et ENDTIME" +
+                "-ed ENDDATE -v VENUE -r x D/W\n" +
                 "• sd and ed must be of the format YYYY/MM/DD\n" +
                 "• e, sd and st are compulsory fields\n" +
                 "• ed and et are optional, but they must be written together" +
                 "if you use them\n" +
                 "• other fields are optional\n\n" +
-                "EXAMPLE -> edit –i 1 -sd 2023/04/01 –st 16:00");
+                "EXAMPLE -> edit -i 1 -sd 2023/04/01 -st 16:00");
         printDash();
         System.out.println("WARNING! Please do not copy/paste commands.\n" +
                 "Type them out to ensure there are no formatting issues.");
