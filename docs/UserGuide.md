@@ -30,6 +30,8 @@ Before we get started, here's what you need to do:
 
 [Back to Contents Page](#table-of-contents)
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ## 3.0 Features
 
 Read this section to find out how NUSPlanner can make your life easier!
@@ -83,6 +85,7 @@ Expected outcome:
 - NUSPlanner will only check for conflicts between events and classes that have **starting date & time and ending date & time, within the time period of selected semester.**
 - Users need to check themselves whether the events will clash with each other during vacation periods.
 
+<p style="page-break-after: always;">&nbsp;</p>
 
 ### Adding a module: `add`
 Adds a module to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
@@ -403,6 +406,10 @@ NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored i
 **A**: Our team of developers are always on the look-out to fix such bugs.
 Please add a description of the bug found under our [Issue Tracker](https://github.com/AY2223S2-CS2113-F13-3/tp/issues).
 
+<br>
+
+[Back to Contents Page](#table-of-contents)
+
 ## Command Summary
 👉 Words in **CAPITAL LETTERS** are user input
 
@@ -416,3 +423,7 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 * `delete -all` | Delete all events
 * `list` | List all events
 * `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
+
+<br>
+
+[Back to Contents Page](#table-of-contents)
