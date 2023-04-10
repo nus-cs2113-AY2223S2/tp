@@ -62,7 +62,7 @@ The Sequence Diagram for `save()` is shown here:
 ![save sequence diagram](../img/SaveSequence.png)
 
 The class diagram for storage is shown here:
-![Storage Class Diagram](img/StorageClass.png)
+![Storage Class Diagram](../img/StorageClass.png)
 
 #### UG contribution
 
