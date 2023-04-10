@@ -190,8 +190,6 @@ public class Parser {
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
-        // Method is still broken, someone will have to fix it fully later on when handling exceptions
-        // Note no "-" anywhere else.
         String[] details = remainder.split("-");
 
         boolean isModuleFlag = false;
@@ -378,9 +376,6 @@ public class Parser {
     private static void addFormatChecker(String[] information) throws NPExceptions {
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
                 && !information[1].equalsIgnoreCase("");
-
-        // String recurFlag = information[5].split(" ")[2].trim();
-        // isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
 
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");
