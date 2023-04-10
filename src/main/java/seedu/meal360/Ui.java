@@ -154,7 +154,7 @@ public class Ui {
         printMessage("2. Edit Recipe: edit /r {RECIPE_NAME}");
         printMessage("3. View Recipe: view {RECIPE_INDEX}");
         printMessage("4. Delete Recipe: delete {RECIPE_INDEX} or delete {START_INDEX-END_INDEX} or");
-        printMessage("                  delete /r {RECIPE_INDEX} or delete /r all");
+        printMessage("                  delete /r {RECIPE_NAME} or delete /r all");
         printMessage("5. List All Recipes: list");
         printMessage("6. List Available Recipes: available");
         printMessage("7. View Weekly Plan: weeklyplan");
