@@ -46,9 +46,10 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
 2. Download the latest version of `SEPHelper.jar` from [here](https://github.com/AY2223S2-CS2113-T12-3/tp/releases/tag/v2.1).
-3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
-4. Enlarge to fullscreen mode. 
-5. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
+3. Create a new empty folder, and place SEPHelper.jar file into that folder.
+4. Using command prompt, change directory to that folder and type `"java -jar [FILE PATH OF JAR]"` to start app.
+5. Enlarge to fullscreen mode. 
+6. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
 
 
 ---

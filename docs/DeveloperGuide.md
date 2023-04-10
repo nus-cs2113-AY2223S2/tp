@@ -750,8 +750,9 @@ Follow Quick Start Instructions in User Guide.
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
 2. Download the latest version of `SEPHelper.jar` from [here](https://github.com/AY2223S2-CS2113-T12-3/tp/releases/tag/v2.1).
-3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
-4. Enlarge to fullscreen mode.
+3. Create a new empty folder, and place SEPHelper.jar file into that folder.
+4. Using command prompt, change directory to that folder and type `"java -jar [FILE PATH OF JAR]"` to start app.
+5. Enlarge to fullscreen mode.
 
 **Overview of Manual Testing**
 
