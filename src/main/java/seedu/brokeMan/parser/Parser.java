@@ -1,5 +1,8 @@
 package seedu.brokeMan.parser;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import seedu.brokeMan.command.AddExpenseCommand;
 import seedu.brokeMan.command.AddIncomeCommand;
 import seedu.brokeMan.command.Command;
@@ -60,6 +63,7 @@ public class Parser {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
+    private static Logger logger = Logger.getLogger("Invalid Input Tracker");
 
     /**
      * parse the inputs entered by user into command for execution
@@ -180,7 +184,9 @@ public class Parser {
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
             }
         } catch (ExceedMaximumLengthForAmountException e) {
+            logger.log(Level.WARNING, "Excessively Large Input");
             return new InvalidCommand(e.getMessage(), SetBudgetCommand.MESSAGE_USAGE);
+
         }catch (NumberFormatException nfe) {
             String errorMessage = new BudgetNotADoubleException().getMessage();
             return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
@@ -276,6 +282,7 @@ public class Parser {
         try {
             category = convertStringToCategory(splitDescriptions[3]);
         } catch (CategoryNotCorrectException e) {
+            logger.log(Level.INFO, "Unregistered Category:" + splitDescriptions[3]);
             throw new RuntimeException(e);
         }
         LocalDateTime time = StringToTime.convertStringToTime(splitDescriptions[2]);
@@ -301,6 +308,7 @@ public class Parser {
         try {
             splitDescriptions = checkAddCommandException(description);
         } catch (BrokeManException bme) {
+            logger.log(Level.WARNING, bme.getMessage());
             return new InvalidCommand(bme.getMessage(), AddIncomeCommand.MESSAGE_USAGE);
         }
 
