@@ -24,11 +24,7 @@ public class CompanyList {
         companyName = companyName.strip().toUpperCase();
         contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
-        if (!isDuplicateCompanyName(companyName) && !isDuplicateContactEmail(contactEmail)
-                && !isDuplicateContactNumber(contactNumber)) {
-            companyList.add(newCompany);
-            ui.showSuccessfulAdditionMessage(companyName);
-        } else if (isDuplicateCompanyName(companyName)) {
+        if (isDuplicateCompanyName(companyName)) {
             ui.showLine();
             System.out.println("Company already exists in the list!");
             ui.showLine();
@@ -40,6 +36,9 @@ public class CompanyList {
             ui.showLine();
             System.out.println("Contact Number already exists in the list!");
             ui.showLine();
+        } else {
+            companyList.add(newCompany);
+            ui.showSuccessfulAdditionMessage(companyName);
         }
     }
 
