@@ -25,8 +25,12 @@ Given below are my contributions to the project.
 - Created `CaloricIntake` entity to hold the calculation of the user's the daily caloric intake.
 
 ## Contributions to the UG:
+- Added documentation for `Nutrition` and `help` commands.
+- Added FAQ and command summary sections.
 
 ## Contributions to the DG:
+- UI component UML.
+- Command component description and 2nd UML.
 - Added documentation for `Nutrition` command.
 - Instructions for manual testing section.
 - Design and considerations for all proposed implementations.
@@ -35,7 +39,6 @@ Given below are my contributions to the project.
 - Target user profile of DG.
 - Non-Functional Requirements section of DG.
 - Update user stories of DG.
-- Content page for both DG and UG. 
 
 ## Review/mentoring contributions:
 - Fixed gradle errors.
