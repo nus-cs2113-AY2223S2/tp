@@ -371,6 +371,7 @@ Else, press enter to continue
 
 4. cook 5 minutes
 
+End of Recipe Steps!
 __________________________________________________________
 ```
 
@@ -401,6 +402,7 @@ Else, press enter to continue
 
 4. cook 5 minutes
 
+End of Recipe Steps!
 __________________________________________________________
 ```
 
