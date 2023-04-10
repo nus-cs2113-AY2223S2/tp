@@ -145,9 +145,7 @@ public class ExerciseStateHandler {
                 }
             }
         }
-
         achievementListHandler.saveAchievementList();
-
         if (completedAchievements.size() != 0) {
             System.out.println("Congradulations! You have achieved the following achievements:");
             for (int i = 0; i < completedAchievements.size(); i++) {

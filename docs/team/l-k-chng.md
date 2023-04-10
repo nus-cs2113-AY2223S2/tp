@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Eugene's Project Portfolio Page
+title: Lip Kuang's Project Portfolio Page
 ---
 
 # Lip Kuang - Project Portfolio Page

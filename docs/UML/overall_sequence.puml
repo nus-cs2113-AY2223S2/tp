@@ -13,6 +13,10 @@ session --> commandHandler --  : Session
 commandHandler --> main -- : Session
 
 main -> commandHandler ++ LOGIC_COLOUR : endWorkout()
+commandHandler -> ":achievementListHandler" : saveAchievementList
+activate ":achievementListHandler"
+":achievementListHandler" --> commandHandler
+deactivate ":achievementListHandler"
 commandHandler -> ":Storage" ++ STORAGE_COLOUR : writeToJson()
 ":Storage" --> commandHandler
 deactivate ":Storage"

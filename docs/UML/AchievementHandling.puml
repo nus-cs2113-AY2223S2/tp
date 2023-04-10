@@ -1,0 +1,47 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+!include style.puml
+
+class AchievementListHandler MAIN_COLOUR {
+
++ loadAchievementsFromFile() : void
++ printAchievementsList() : void
++ getAchievementList() : ArrayList<Achievement>
+- achievementList
+
+}
+abstract TextDataUtility <<abstract>> STORAGE_COLOUR {
+# checkForAchievementListData(File data) : void
++ clearAchievementsData() : void
+- appendToFile (String textToAppend, String fileLocation): void
+}
+
+
+File achievementData {
+}
+
+abstract Achievement {
+}
+
+class AchievementBodyPart {
+}
+
+class AchievementGymStatic {
+}
+
+class AchievementLevel {
+}
+
+AchievementListHandler .d.|> TextDataUtility
+AchievementListHandler --|> achievementData.achievementSaveDataText
+achievementData.achievementSaveDataText <|-l- TextDataUtility : checks and writes to
+AchievementListHandler --> "0..8" AchievementLevel : parseAchivement
+AchievementListHandler --> "0..6" AchievementGymStatic : parseAchivement
+AchievementListHandler --> "0..8" AchievementBodyPart : parseAchivement
+
+AchievementLevel .d.|> Achievement
+AchievementGymStatic .d.|> Achievement
+AchievementBodyPart .d.|> Achievement
+
+@enduml
