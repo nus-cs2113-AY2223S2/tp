@@ -193,7 +193,7 @@ public class ParserTest {
     }
 
     @Test
-    public void createUnpackAllObjTest_successful() {
+    public void createUnpackAllObjTest_unsuccessful() {
         String userInput1 = "  add 2468 /of this item  ";
         String userInput2 = "  unpackall /of 1  ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -202,7 +202,7 @@ public class ParserTest {
         Parser.parse().execute(dummyPackingList);
         inStream = new ByteArrayInputStream(userInput2.getBytes());
         System.setIn(inStream);
-        assertEquals(UnpackAllCommand.class, Parser.parse().getClass());
+        assertEquals(IncorrectCommand.class, Parser.parse().getClass());
         DeleteListCommand delList = new DeleteListCommand();
         delList.execute(dummyPackingList);
     }
