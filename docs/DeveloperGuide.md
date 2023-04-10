@@ -140,7 +140,8 @@ It uses a `Memory` object as an intermediary to contain app data during serializ
 It uses methods contained within the classes `JsonToMemory` and `MemoryToJson` to deserialize and serialize app save
 data respectively.
 
-![Storage Class Diagram](img/StorageClass.svg)
+The class diagram is as seen below:
+![Storage Class Diagram](img/StorageClass.png)
 
 ### CardList Component
 
