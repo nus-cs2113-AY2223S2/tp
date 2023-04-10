@@ -1456,12 +1456,12 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 
 1. Dealing with missing data files
 
-* Ensure data files are created: Add a new atomic habit using the `add --name Test data file` command in the `hb`
-  session
-* Quit `WellNUS++`: Issue `home` command in the `hb` session followed by `exit` command in the `main` session
-* Delete data files: Delete the `data` folder created in the same folder as the `WellNUS++` jar file you just executed
-* Relaunch `WellNUS++`: Run the `WellNUS++` jar file, issue `hb` command and then issue `list` command. Verify that no
-  atomic habits are now recorded, i.e. `WellNUS++` should output:
+   Ensure data files are created: Add a new atomic habit using the `add --name Test data file` command in the `hb`
+   session<br>
+   Quit `WellNUS++`: Issue `home` command in the `hb` session followed by `exit` command in the `main` session<br>
+   Delete data files: Delete the `data` folder created in the same folder as the `WellNUS++` jar file you just executed<br>
+   Relaunch `WellNUS++`: Run the `WellNUS++` jar file, issue `hb` command and then issue `list` command. Verify that no
+   atomic habits are now recorded, i.e. `WellNUS++` should output:<br>
 
     ```
     
@@ -1474,9 +1474,9 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
 
 2. Dealing with corrupted data files
 
-* Quit `WellNUS++`
-* Open the `data/habit.txt` file located in the same directory as the `WellNUS++` jar file
-* Replace the contents of the `habit.txt` file with the following lines:
+   Quit `WellNUS++`<br>
+   Open the `data/habit.txt` file located in the same directory as the `WellNUS++` jar file<br>
+   Replace the contents of the `habit.txt` file with the following lines:<br>
 
     ```
     
@@ -1485,7 +1485,8 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
     
     ```
 
-* Run the `WellNUS++` jar file. You should see the warning below after the `WellNUS++` greeting logo and message:
+   Run the `WellNUS++` jar file. You should see the warning below after the `WellNUS++` greeting logo and message:<br>
+
     ```
     
     !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
@@ -1496,7 +1497,8 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
     !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
     
     ```
-* View the saved atomic habits: Issue `hb` followed by `list`. Expected output should be:
+
+   View the saved atomic habits: Issue `hb` followed by `list`. Expected output should be:<br>
 
     ```
     
@@ -1507,7 +1509,7 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
     
     ```
 
-* Explanation: Upon relaunch, `WellNUS++` detected the invalid line `--corrupted Data --test to be ignored --`(hence
-  the warning message) and cleaned the contents of the data file, leaving no atomic habits recorded
+   Explanation: Upon relaunch, `WellNUS++` detected the invalid line `--corrupted Data --test to be ignored --`(hence
+   the warning message) and cleaned the contents of the data file, leaving no atomic habits recorded
 
 <!-- @@author -->
