@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+":Parser" -> ":Parser": prepareListCommands(userInputWords, universities, modules)
+activate ":Parser"
+":Parser" -> ":Parser": handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
+activate ":Parser"
+alt pu
+    create ":ListPuCommand"
+    ":Parser" -> ":ListPuCommand" : ListPuCommand()
+    activate ":ListPuCommand"
+    ":Parser" <-- ":ListPuCommand"
+    deactivate ":ListPuCommand"
+    ":Parser" --> ":Parser": ListPuCommand
+    deactivate ":Parser"
+else current
+    ":Parser" -> ":Parser":prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules)
+    activate ":Parser"
+    ":Parser" -> ":Parser": handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
+    activate ":Parser"
+    create ":ListCurrentPuCommand"
+    ":Parser" -> ":ListCurrentPuCommand" : ListCurrentPuCommand(modules, univID)
+    activate ":ListCurrentPuCommand"
+    ":Parser" <-- ":ListCurrentPuCommand"
+    deactivate ":ListCurrentPuCommand"
+    ":Parser" --> ":Parser": ListCurrentPuCommand
+    deactivate ":Parser"
+else
+    ":Parser" -> ":Parser":prepareListPuModulesCommand(userCommandSecondKeyword, universities)
+    activate ":Parser"
+    ":Parser" -> ":Parser":handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
+    activate ":Parser"
+    create ":ListPuModulesCommand"
+    ":Parser" -> ":ListPuModulesCommand":ListPuModulesCommand(univID, universityName)
+    activate ":ListPuModulesCommand"
+    ":Parser" <-- ":ListPuModulesCommand"
+    deactivate ":ListPuModulesCommand"
+    ":Parser" --> ":Parser": ListPuModulesCommand
+    deactivate ":Parser"
+end
+deactivate ":Parser"
+deactivate ":Parser"
+deactivate ":Parser"
+deactivate ":Parser"
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+create ":ExitCommand"
+":Parser" -> ":ExitCommand": ExitCommand()
+activate ":ExitCommand"
+":Parser" <-- ":ExitCommand"
+deactivate ":ExitCommand"
+":Parser" --> ":Parser": ExitCommand:ExitCommand
+deactivate ":Parser"
+@enduml

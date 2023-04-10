@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":Parser"
+":Parser" -> ":Parser":prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities)
+activate ":Parser"
+":Parser" -> ":Parser":handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities)
+activate ":Parser"
+create ":AddModuleCommand"
+":Parser" -> ":AddModuleCommand": AddModuleCommand(moduleToAdd, storage)
+activate ":AddModuleCommand"
+":Parser" <-- ":AddModuleCommand"
+deactivate ":AddModuleCommand"
+":Parser" --> ":Parser": AddModuleCommand:AddModuleCommand
+deactivate ":Parser"
+":Parser" --> ":Parser": AddModuleCommand:AddModuleCommand
+deactivate ":Parser"
+":Parser" --> ":Parser": AddModuleCommand:AddModuleCommand
+deactivate ":Parser"
+
+@enduml
