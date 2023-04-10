@@ -68,7 +68,7 @@ This developer guide provides a detailed view of the overall structure of MyLedg
 ## 2. Acknowledgements
 
 The format of this developer guide was adapted from SE-EDU AddressBook Level 3 Developer Guide. The class and sequence diagrams are styled using draw.io
-
+<div style="page-break-after: always;"></div>
 ## 3. Design & implementation
 
 ### 3.1. Architecture
@@ -98,6 +98,8 @@ The other components of MyLedger include:
 * ```Storage```: Uses ```MyLedger_inputs.txt``` to initialize ```ExpenditureList```, updates ```MyLedger_inputs.txt``` whenever ```ExpenditureList```
   changed.
 
+<div style="page-break-after: always;"></div>
+
 ### Main Components of MyLedger
 `Parser:` Processes the inputs made by the user and converts into a sensible form for further processing.
 
@@ -108,6 +110,8 @@ The other components of MyLedger include:
 `Storage:` Stores, reads and updates the user input into their local storage.
 
 The following section describes the implementation of certain features.
+
+<div style="page-break-after: always;"></div>
 
 ### 3.2. Parser
 #### Processing an input
@@ -136,6 +140,7 @@ will be displayed
 It must be noted that not all the existing parser commands are included in this sequence diagram for parsing as other commands have a similar sequence diagram as the commands `exit` and 
 `parseLendBorrow`. The only difference is the condition and the number of times the loop occurs for each separate command. 
 
+<div style="page-break-after: always;"></div>
 
 ### 3.3. Expenditure Categories
 The list of **[methods](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/Expenditure.java)** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes in the `expenditure` package. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. After which, the expenditure is added to the expenditure list.
@@ -169,6 +174,8 @@ In the diagram, the aforementioned expenditure categories inherit from the `Expe
 
 `Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
 
+<div style="page-break-after: always;"></div>
+
 #### 3.3.1 Repeat dates for Accommodation and Tuition Expenditures
 
 It must be noted that the date input field for `AccommodationExpenditure` and `TuitionExpenditure` is the `date` of repeat. This is due to the fact that they are lump sum expenditure types as explained in the section [before](#33-expenditure-categories).
@@ -193,6 +200,7 @@ For example, taking the current date as `2023-04-10`, the user can instantiate t
 
 It must be noted that to be able to store the `repeatDate` separetely to trigger the aforementioned events, it is saved in the txtfile as part of the `AccommodationExpenditure` or `TuitionExpenditure` information. The `repeatDate` is given a delimiter of `r/` for the txtfile. 
 
+<div style="page-break-after: always;"></div>
 
 ### 3.4. Command Component
 
@@ -226,6 +234,8 @@ Below represents the UML class diagram representing all the command classes that
 Next follows the command classes that interact with pre-existing expenditure records stored in the expenditure list. The table below describes the commands.
 
 A more detailed coverage is explored in [Command List](#4-command-list).
+
+<div style="page-break-after: always;"></div>
 
 ### 3.5. Storage
 
@@ -262,6 +272,8 @@ Below shows the sequence diagram for the reading of the save file upon launch.
     <i>Figure 7: Sequence diagram for the reading feature of TxtFileStatus</i>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 #### 3.5.3 Corruption of saved expenditures
 
 Expenditures in the saved file are deemed as corrupted when one of the following conditions are met:
@@ -277,6 +289,8 @@ Expenditures in the saved file are deemed as corrupted when one of the following
 - `repeatDate`, as all other dates, is stored in `yyyy-MM-DD` format.
 - Corruption for the year segment is **not** deemed as a corruption, as MyLedger's repeating date feature   will automatically set it forward to the correct year it is supposed to repeat on. 
 - Corruption for the day and month implies the difference between the first user-initialised date and repeat dates. Thus, **is** deemed as a corruption.
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Command List
 
@@ -302,6 +316,7 @@ When the user inputs one of the 7 expenditure commands into the application, the
 
 Upon `execute()`, The command classes then instantiates the respective `expenditure` and adds it to the expenditure list. For example the execution of the `AcademicExpenditureCommand` instantiates the `AcademicExpenditure` and adds it to the expenditure list belonging to the `ExpenditureList` class.
 
+<div style="page-break-after: always;"></div>
 
 #### 4.1.1 Add regular and lump sum expenditure valid inputs
 
@@ -332,6 +347,8 @@ Below shows the sequence diagram for the `AcademicExpenditure` for the aforement
 </p>
 
 This diagram is applicable to all **regular and lump sum** expenditure categories.
+
+<div style="page-break-after: always;"></div>
 
 #### 4.1.2 Add lend borrow expenditure valid inputs
 
@@ -364,6 +381,8 @@ borrow d/2023-04-07 n/Teddy a/400 b/2023-07-01 p/Flight ticket
 
 The sequence diagram for lend and borrow has been previously shown as an example for the `Parser` class.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.2. Edit Command
 
 The ```EditCommand``` edits an existing expenditure in the record.
@@ -383,6 +402,8 @@ The sequence diagram below shows the interactions of a successful execution of t
     <i>Figure 9: Sequence Diagram for edit Command</i>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3. Delete Command
 
 The `delete` command deletes an existing expenditure in the record.
@@ -399,6 +420,8 @@ The command is able to search for all characters matching the keyword in the exp
 
 Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseFind` is called, which in turn calls `FindCommand` which loops through the Expenditure
 list and compares the keyword provided with the the descriptions. 
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5. Duplicate Command
 
@@ -433,6 +456,8 @@ Upon calling of the `execute` command, the `SortCommand` takes the set attribute
 
 After which, the instance of SortCommand is ready for Java's Garbage Collection.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.7. View Command
 
 The view command filters and lists the expenditures of a specified date or type.
@@ -455,6 +480,8 @@ also in Expenditure used previously.
 The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
 that converts the input string into a string recognisable for comparison in the opt block. 
 
+<div style="page-break-after: always;"></div>
+
 ### 4.8. Set Budget Command
 The set budget command allows the user to insert a temporary budget which they can use to compare their expenditures with.
 This provides an insight on their financial health when compared to their current budget for the month, day or even for the type of expenditure.
@@ -473,6 +500,8 @@ The sequence diagram for `check` without parameters can be observed as follows.
 The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check d/03-04-2023`) are the same but with slightly different method name, thus the above can 
 accurately represent the check commands.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.10. Show Rates Command
 
 `showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
@@ -490,6 +519,8 @@ For other types of expenses, they will be marked as paid right after they are ad
 
 <div style="page-break-after: always;"></div>
 
+<div style="page-break-after: always;"></div>
+
 ## Product scope
 ### Target user profile
 
@@ -501,6 +532,8 @@ For other types of expenses, they will be marked as paid right after they are ad
 ### Value proposition
 
 Manage finances more efficiently than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ## User Stories
 
@@ -545,6 +578,8 @@ The following are instructions for testers to manual test:
 - Open the command terminal on your device.
 - Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
 - Alternatively, double-click on the JAR file to run the app.
+
+<div style="page-break-after: always;"></div>
 
 #### Adding a record
 1. Adding an expenditure
@@ -892,7 +927,7 @@ check
 Expected : Similar to previous test case, amount of money exceeded by and other information will be
 displayed in the message.
 
-2. Checking the expenditure on a certain day/month/year with the intended budget
+2. Checking the expenditure on a certain day/year with the intended budget
 - `check` compares the budget with the spending of a certain time period that the user wants to check with
 
 Test case 1 (Check with year):
@@ -901,19 +936,13 @@ check y/2023
 ```
 Expected : Returns the comparison result with the expenditures made in 2023.
 
-Test case 2 (Check with month):
-```
-check m/2023-01
-```
-Expected : Returns the comparison result with the expenditures made in Jan 2023. 
-
-Test case 3 (Check with day):
+Test case 2 (Check with day):
 ```
 check d/2023-01-12
 ```
 Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.
 
-Test case 4:
+Test case 3:
 ```
 check m/2023-01-12
 ```
@@ -966,6 +995,7 @@ mark 1
 Expected : 
 ```
 Marked your expenditure!
+[Accommodation] || [X] || Date: 3 Feb 2023 || Value: 200.0 || Description: NUS
 ```
 
 Test case 2 (Attempt to mark other expenditures that are not accommodation or tuition):
@@ -996,6 +1026,7 @@ unmark 1
 Expected :
 ```
 Unmarked your expenditure!
+[Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.0 || Description: NUS
 ```
 Test case 2 (Attempt to unmark other expenditures that are not accommodation or tuition):
 ```
