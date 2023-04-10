@@ -6,7 +6,7 @@
 
 * [**Acknowledgements**](#acknowledgements)
 * [**Setting up, getting started**](#setting-up-getting-started)
-* [**Design**](#design)
+* [**Design**](#span-stylecolor00a36c-design-span)
   * [Architecture](#architecture)
   * [*Commands Package*](#commands-package)
     * [*Command*](#command)
@@ -83,7 +83,7 @@ The Architecture of BagPacker Application can be seen from the diagrams above co
 Run Condition: ByeCommand.isBagPackerRunning
 
 While Loop (if Run Condition is true):
-1. `Parser.parse()` the user input which involves reading, getting command variables, and creating of relevant command object. (more info in [Parser](#parser-class))
+1. `Parser.parse()` the user input which involves reading, getting command variables, and creating of relevant command object. (more info in [Parser](#parser))
 2. execute the relevant command returned from `Parser.parse()`
 
 This can be seen from the interactions between `:BagPacker` and `:Parser` in the diagram below.
@@ -101,7 +101,7 @@ For all valid commands, the mechanism of implementation are as follows:
 4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
-Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker---mechanism) for a visual aid of the above explanation.
+Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker-mechanism) for a visual aid of the above explanation.
 
 
 #### Command
@@ -156,7 +156,8 @@ The following conditions will cause an `IncorrectCommand` to be returned instead
 
 
 Execute Mechanism: ```PackCommand.execute()``` calls the ```Command.getTargetItem()``` method to retrieve the target item to pack. 
-After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. `Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
+After which the ```PackingList.PackItem(item, packQuantity)``` method is called in ```PackingList``` which calls ```Item.setPacked(packQuantity)```in `Item` class. 
+`Item.setPacked()` will add the `packedQuantity` to the current pack quantity of the item `toPack`.
 Lastly `Ui.printToUser(MSG_SUCCESS_PACK, item)` from `Ui` class is called to print a message to the user signifying that the `pack` command has been executed successfully.
 
 ![ExecutePackCommandSequenceDiagram.png](diagrams%2FExecutePackCommandSequenceDiagram.png)
@@ -440,7 +441,7 @@ all createCommandObj methods except for commands without input variables (i.e. e
 
 ### IOHandler Package
 
-The `IOHandler` package contains three main classes, which are [Parser](#parser-class), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
 while managing the storage and retrieval of the associated `item`'s in the user's `packingList`.
 
 ---
@@ -471,33 +472,33 @@ All erroneous inputs will instead return `IncorrectCommand()` with respective er
 
 The following show the respective create methods for each command. The `command` object they return will be executed in `BagPacker()`
 
-`createAddObj()` - returns new `AddCommand(item)`
+- `createAddObj()` - returns new `AddCommand(item)`
 
-`createDeleteObj()` - returns new `DeleteCommand(itemIndex)`
+- `createDeleteObj()` - returns new `DeleteCommand(itemIndex)`
 
-`createPackObj()` - returns new `PackCommand(itemQuantity, itemIndex)`
+- `createPackObj()` - returns new `PackCommand(itemQuantity, itemIndex)`
 
-`createUnpackObj()` - returns new `UnpackCommand(itemQuantity, itemIndex)`
+- `createUnpackObj()` - returns new `UnpackCommand(itemQuantity, itemIndex)`
 
-`createListObj()` - returns new `ListCommand()`
+- `createListObj()` - returns new `ListCommand()`
 
-`createListUnpackedObj()` - returns new `ListUnpackedCommand()`
+- `createListUnpackedObj()` - returns new `ListUnpackedCommand()`
 
-`createHelpObj()` - returns new `HelpCommand()`
+- `createHelpObj()` - returns new `HelpCommand()`
 
-`createDeleteListObj()` - returns new `DeleteListCommand()`
+- `createDeleteListObj()` - returns new `DeleteListCommand()`
 
-`createPackAllObj()` - returns new `PackAllCommand(itemIndex)`
+- `createPackAllObj()` - returns new `PackAllCommand(itemIndex)`
 
-`createUnpackAllObj()` - returns new `UnpackAllCommand(itemIndex)`
+- `createUnpackAllObj()` - returns new `UnpackAllCommand(itemIndex)`
 
-`createEditQuantityObj()` - returns new `EditQuantityCommand(newTotalQuantity, itemIndex)`
+- `createEditQuantityObj()` - returns new `EditQuantityCommand(newTotalQuantity, itemIndex)`
 
-`createFindObj()` - returns new `FindCommand(keyword)`
+- `createFindObj()` - returns new `FindCommand(keyword)`
 
-`createByeObj()` - returns new `ByeCommand()`
+- `createByeObj()` - returns new `ByeCommand()`
 
-`IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
+- `IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
 
 
 
@@ -513,11 +514,11 @@ The constructor of this class, which is called in `BagPacker`, will set the `fil
 Each `item` is written on a newline with a format using `.toString()`, which is `[PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`. 
 
 Example:
-    ```
-    [0/4] jackets
-    [2/4] cats
-    [0/3] toothbrush
-    ```
+```
+[0/4] jackets
+[2/4] cats
+[0/3] toothbrush
+```
 
 `load()` is called at the start of `main()` in `BagPacker`.
 This method reads in the file in `file_path` and translates each line to construct an `item`. 
@@ -541,7 +542,7 @@ Some important methods are:
 
 ---
 
-### Packingfunc package
+### Packingfunc Package
 
 The `Packingfunc` package consists of `Item` and `PackingList` classes, which are used to manage the main packing list of `BagPacker`, and its individual items.
 
@@ -563,11 +564,39 @@ It is used in multiple [commands](#commands-package) and [storage](#storage) to 
 
 `checkFullyPacked()` is used in [listunpacked](#list-unpacked-command) to return whether the item is fully packed by comparing packedQuantity to totalQuantity. 
 
-`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser-class)) to change the packed quantity of the item.
+`setPacked()` and `setUnpacked()` is used in `packItem()` and `unpackItem()` (both methods in [Parser](#parser)) to change the packed quantity of the item.
 
 
 #### PackingList
 
+`PackingList()` contains a `static ArrayList<Item> itemList` which is the user's packing list.
+The `PackingList()` class' methods are used to search through and manipulate this `itemList`.
+
+Methods:
+
+- `getItemList()` and `setItemList(ArrayList<Item> itemList)` - normal getter and setter for `itemList`
+
+- `itemFinder(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns true if found
+
+- `getItemByName(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns the pointer to item 
+
+- `keywordFinder(String keyword)` - checks if items contain keyword in their names in the current packing list, returns true if any item contains the keyword
+
+- `getExistingItem(String itemName)` - checks if item of the same name as itemName is found in the current packing list and returns true if found
+
+- `addToItemQuantity(String itemName, int addQty)` - adds `addQty` to the current total quantity of an item matching the `itemName` in the itemList
+
+- `editTotalQuantity(String itemName, int addQty)` - adds `addQty` to the current total quantity of an item matching the `itemName` in the itemList
+
+- `addItem(Item toAdd)` - adds `toAdd` of class `Item` to the packing list
+
+- `deleteItem(Item toDelete)` - deletes `toDelete` of class `Item` from the packing list
+
+- `packItem(Item toPack, int quantity)` - packs the item `toPack` by a certain `quantity` by increasing the packed quantity of `toPack` by `quantity`'s value 
+
+- `unpackItem(Item toPack, int quantity)` - unpacks the item `toUnpack` by a certain `quantity` by reducing the packed quantity of `toUnpack` by `quantity`'s value
+
+- `size()` - returns size of packing list
 
 
 ---
@@ -647,7 +676,7 @@ No save files detected. Hello new user!
 ________________________________________________________________________________________________________________________
 
 ```
-You can run a few commands; refer to the [User Guide]() for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
+You can run a few commands; refer to the [User Guide](https://ay2223s2-cs2113-t14-2.github.io/tp/UserGuide.html) for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
 
 * Try adding a few items using the `add` command 
   * Example:  `add 4 /of jackets`
