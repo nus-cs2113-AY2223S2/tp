@@ -47,8 +47,8 @@ to view my codes contributed for this project
 * Assist in reviewing and approving team members' Pull Request before merging to team's master branch
 * Contributed to team's brainstorming and discussion of ideas and features for BadMaths
 * Management of issues created on GitHub
-* Contributed to team's Google documents and Google sheets for BadMaths implementation
-* Helped team members in understanding Github properties such as `push` and `pull`
+* Contributed to team's Google documents and Google sheet for BadMaths implementation
+* Helped team members in understanding GitHub properties such as `push` and `pull`
 
 ### 6) Review / Mentoring Contributions:
 * Link to PRs reviewed [here](https://github.com/AY2223S2-CS2113-F10-2/tp/pulls?q=is%3Apr+reviewed-by%3AWilsonLee2000)
