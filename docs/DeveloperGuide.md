@@ -428,20 +428,23 @@ list that store the account data inside the 'account process'.
 
 ## User Stories
 
-| Version | As a ...          | I want to ...                                               | So that I can ...                                                                        |
-|---------|-------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| v1.0    | new user          | add a new entry for my expenses                             | -                                                                                        |
-| v1.0    | user              | delete specific expenses                                    | -                                                                                        |
-| v1.0    | user              | add expenses with dates                                     | track how much I spend each day                                                          |
-| v1.0    | user              | add expenses of different categories                        | keep track of what I spend on                                                            |
-| v1.0    | user              | see all my past expenses                                    | plan my budget accordingly                                                               |
-| v2.0    | user              | save all expenses added                                     | -                                                                                        |
-| v2.0    | user              | add expenses with specified currencies                      | know the exact amount I spent in different currencies                                    |
-| v2.0    | user              | sort my expenses by category/date                           | better keep track of my expenses through either date or category                         |
-| v2.0    | user in Singapore | see my total spending in SGD                                | -                                                                                        |
-| v2.0    | user in Singapore | see an overview of my expenses in a particular month in SGD | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
-| v2.1    | user in Singapore | see an overview of my expenses in a particular year         | my monthly spending pattern.                                                             |
-
+| Version  | As a ...          | I want to ...                                                      | So that I can ...                                                                        |
+|----------|-------------------|--------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| v1.0     | new user          | add a new entry for my expenses                                    | -                                                                                        |
+| v1.0     | user              | delete specific expenses                                           | -                                                                                        |
+| v1.0     | user              | add expenses with dates                                            | track how much I spend each day                                                          |
+| v1.0     | user              | add expenses of different categories                               | keep track of what I spend on                                                            |
+| v1.0     | user              | see all my past expenses                                           | plan my budget accordingly                                                               |
+| v2.0     | user              | save all expenses added                                            | -                                                                                        |
+| v2.0     | user              | add expenses with specified currencies                             | know the exact amount I spent in different currencies                                    |
+| v2.0     | user              | sort my expenses by category/date                                  | better keep track of my expenses through either date or category                         |
+| v2.0     | user in Singapore | see my total spending in SGD                                       | -                                                                                        |
+| v2.0     | user in Singapore | see an overview of my expenses in a particular month in SGD        | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
+| v2.1     | user in Singapore | see an overview of my expenses in a particular year                | my monthly spending pattern.                                                             |
+| v2.1     | user              | create my unique account with a strong password                    | manage my expenses separately from others.                                               | 
+| v2.1     | user              | log in to my account easily                                        | access my expenses.                                                                      | 
+| v2.1     | user              | log out from my account when I finished using it                   | be sure that others cannot access my expenses.                                           | 
+| v2.1     | user              | save my expense easily in case I close the program unintentionally | be sure that I haven't lost my expenses.                                                 | 
 ## Non-Functional Requirements
 
 {Give non-functional requirements}

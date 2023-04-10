@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +65,7 @@ public class AccountTest {
     void deleteAccountAfterTest(Account newAccount) {
         boolean found = false;
         try {
+            Files.createDirectories(Paths.get(DIRECTORY));
             FileReader reader = new FileReader(DIRECTORY + "/" + SECURITY_STORAGE_FILE_PATH);
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
