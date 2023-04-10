@@ -105,7 +105,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * For example, user wants to take these 3 slots:
 
 <p align = "center">
-<img src="NUSModsEG.png" style="zoom:60%;" >
+<img src="NUSModsEG.png" style="zoom:40%;" >
 </p>
 
 > `MODULECODE`: Module code
@@ -162,6 +162,8 @@ Event successfully added:
 ____________________________________________________________
 ~~~
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### Deleting an event: `delete`
 Delete a single event or all events from the schedule. Use –s to specify the events to delete, or –all to delete all events.
 
@@ -187,7 +189,8 @@ Expected outcome:
 	    > all events are deleted!
 	____________________________________________________________
    ~~~
-	
+
+<p style="page-break-after: always;">&nbsp;</p>	
 	
 ### List an event: `list`
 Displays a list of all events that have been added to the schedule.
@@ -329,6 +332,8 @@ TIME      |MONDAY         |TUESDAY        |WEDNESDAY      |THURSDAY       |FRIDA
 
 ____________________________________________________________
 ~~~
+
+<p style="page-break-after: always;">&nbsp;</p>
 
 ### Editing an event: `edit`
 Edit an event that has been added to the schedule. Use –x to specify the attributes to edit.
