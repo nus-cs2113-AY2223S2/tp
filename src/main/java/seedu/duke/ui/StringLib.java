@@ -236,4 +236,5 @@ public interface StringLib {
     String EDIT_NUMBERFORMATEXCEPTION_MESSAGE = "Error! Input should be a positive integer value!";
     String MIN_NUM_INGREDIENT_ERROR = "There must be at least one ingredient in the recipe!";
     String MATCHING_ITEM_SINGLE = "Here is the matching item:";
+    String DELETED_TO_EMPTY = "Your recipe list is now empty.";
 }
