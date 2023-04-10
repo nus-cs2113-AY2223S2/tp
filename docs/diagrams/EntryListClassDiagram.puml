@@ -4,12 +4,12 @@
 hide circle
 hide member
 
-class "EntryList" as entryList <<abstract>>
+class "{abstract}\nEntryList" as entryList
 
 entryList *-left-> "1" ExpenseList
 
 entryList *--> EntryXYZComparator
-note left of EntryXYZComparator: EntryXYZComparatord = EntryAmountComparator, \nEntryDateComparator
+note left of EntryXYZComparator: EntryXYZComparator = EntryAmountComparator, \nEntryDateComparator
 
 entryList *-left-> "1" IncomeList
 

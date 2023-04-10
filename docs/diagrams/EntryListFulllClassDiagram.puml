@@ -65,10 +65,10 @@ class Category <<enumeration>> {
 }
 
 entryList <|-- IncomeList
-entryList "1" .left.> "*" Entry
+entryList "1" .left.> "*" "{abstract}\nEntry"
 entryList <|-- ExpenseList
 entryList "1" .right> "*" Category
-IncomeList "1" -> "*" Entry
-ExpenseList "1" -> "*" Entry
+IncomeList "1" -> "*" "{abstract}\nEntry"
+ExpenseList "1" -> "*" "{abstract}\nEntry"
 
 @enduml

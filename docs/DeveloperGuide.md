@@ -115,7 +115,7 @@ How the `Parser` component works:
 ### Command component
 
 The `Command` component consists of many `Command` classes that executes different commands of the program
-when called. It is stored in the `seedu.brokeMan.command` package.
+when called. It is stored in the [`seedu.brokeMan.command`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/command) package.
 
 The sequence diagram below shows how the components interact with each other for the scenarios where the user
 issues the commands `deleteExpense 1` and `exit`.
@@ -186,7 +186,7 @@ Here is a UML diagram of the `Budget` component:
 
 ### Common class
 
-Messages used by multiple components are in the [`seedu.brokeMan.commmon`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/common) package.
+Messages used by multiple components are in the [`seedu.brokeMan.common`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/common) package.
 
 [back to contents](#table-of-contents)
 
