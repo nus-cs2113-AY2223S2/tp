@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 1. [x] User guide for find command and storage
 
 #### 4) Contributions to Developer Guide (DG): <br>
-1. [x] Added UML diagram for Storage class.
+1. [x] Added sequence diagram for Storage class.
 2. [x] Added sequence diagrams for `find` command.
 
 #### 5) Contributions to Team-Based Tasks: <br>

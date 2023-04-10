@@ -2,20 +2,23 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+1) [x] Used IDE Sequence Diagram tool for Sequence Diagrams.
+2) [x] Used [Draw.io](https://www.draw.io/index.html) to draw our UML diagram.
 
 ## Design & implementation
 
+![img_31.png](img_31.png) <br>
+**Figure 1: High Level UML Diagram of Sniff Appointment Manager** <br>
+
+![img_27.png](img_27.png) <br>
+**Figure 2: Sequence Diagram for .run() method of Sniff Appointment Manager** <br>
+
 ### User Interface (UI) - Class Implementation
-![img.png](img.png) <br>
-**Figure 1: UML Diagram of User Interface (UI) Class**
 1. The **`UI class`** named `Ui` belongs to the package functionalities.ui. The class contains several static and non-static methods that display messages to the user such as **`showUserMessage()`**, **`showErrorMessage()`**, and **`showWelcomeMessage()`**. The class is also used to read user input, format and print appointment lists, and add or remove appointments from the **`sniff appointment manager`**. The **`Ui`** class has a **`showLine()`** method that displays a divider line to the user.
 2. The **`UI class`** has a private static final String DOT_THEN_SPACE field that is used as a constant string value to format user messages. It has a **`readUserCommand()`** method that returns a string value that is entered by the user through the Command Line Interface (CLI).
 3. The class imports the **`SniffException`** class from the exception package and utilizes it in the **`showErrorMessage()`** method to display an error message to the user.
 
 ### Command - Class Implementation
-![img_16.png](Updated%20Command%20UML.png) <br>
-**Figure 2: UML Diagram of Command Class** <br>
 1. The **`Command class`** named `Command` belongs to the package functionalities.commands. The class is an abstract class that provides a basic template for implementing commands in the command-line interface. This class is designed to be extended by subclasses that implement specific commands, such as **`ListCommand`** and **`ConsultationCommand`**.
 2. The **`Command class`** has a boolean isExit field that can be set to true to exit the entire programme, or remain as false to continue running the programme. It has a **`isExit()`** method that sets that field to false initially. It also has a **`executeCommand()`** method that takes an instance of SniffTasks as a parameter and throws a SniffException if an error occurs during execution. Subclasses override this method in order to run other commands.
 
@@ -47,11 +50,9 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 1. The Mark command will mark the appointment input by the user as done. It will set isDone as true and will be used in the Storage class.
 
 **UnMark Command**
-1. The UnMark command will unmark the appointment input by the user as not done or pending. It will se the isDone as false and will be updated accordingly in the Storage class.
+1. The UnMark command will unmark the appointment input by the user as not done or pending. It will set isDone as false and will be updated accordingly in the Storage class.
 
 ### Parser - Class Implementation
-![img_16.png](img_16.png) <br>
-**Figure 8: UML Diagram of Parser Class**
 1. The Parser class takes in a user command and generates a corresponding Command object for veterinary management system tasks such as **add consultation, vaccination or surgery, find, remove, list, and exit**. This implementation makes use of the Command design pattern to encapsulate the behavior of different types of commands, and the parser serves as a factory for creating these commands based on the user input.
 2. The Parser class contains several static methods that parse different types of commands, such as **`ConsultationCommand`**, **`VaccinationCommand`**, **`SurgeryCommand`**, **`FindCommand`**, **`RemoveCommand`**, **`ListCommand`**, and **`ExitCommand`**.
 3. The **`parse()`** method takes a user command as a String named **`task`** and determines the type of command based on the first word of the command. If it matches any of the known command types, it delegates parsing to the corresponding parse method.
@@ -60,16 +61,29 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 
 ### Storage - Class Implementation 
 ![img_23.png](img_23.png) <br>
-**Figure 9.1: Sequence Diagram of Storage class** 
+**Figure 8.1: Sequence Diagram of Storage class** 
 
 ![img_24.png](img_24.png) <br>
-**Figure 9.2: Sequence Diagram of Storage class**
+**Figure 8.2: Sequence Diagram of Storage class**
 1. The Storage class takes in the path of the Sniff storage file.
 2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
 3. **`load()`** method also calls **`addFileContents`** method.
 4. **`addFileContents`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`readConsultationintoAppointmentList()`** / **`readVaccinationintoAppointmentList()`** / **`readSurgeryintoAppointmentList()`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
 5. If the file is stored in an incorrect format / has missing details, a **`SniffException`** is thrown.
 6. At the end of the application all unmarked appointments are saved into the `SniffAppointments.txt` file using the `saveAppointments` method.
+
+### Archive - Class Implementation
+![img_30.png](img_30.png) <br>
+**Figure 9.1: Sequence Diagram of Storage class**
+
+![img_29.png](img_29.png) <br>
+**Figure 9.2: Sequence Diagram of Storage class**
+1. The Archive class takes in the path of the SniffArchive storage file.
+2. **`load()`** method loads the contents of the saved file. It calls **`printFileContents(File)`** which will print out all the stored appointments.
+3. **`load()`** method also calls **`addFileContents`** method.
+4. **`addFileContents`** method parses the saved file and identify stored appointments. Depending on the type of appointments, it will then call either **`readConsultationintoAppointmentList()`** / **`readVaccinationintoAppointmentList()`** / **`readSurgeryintoAppointmentList()`** to add these appointment objects into **`ArrayList<Appointment> APPOINTMENTS`**.
+5. If the file is stored in an incorrect format / has missing details, a **`SniffException`** is thrown.
+6. At the end of the application all marked appointments are saved into the `SniffAppointments.txt` file using the `saveArchivedAppointments` method.
 
 ### Find - Find Implementation
 ![img_25.png](img_25.png)<br>
@@ -112,8 +126,6 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If it is already unmarked then a corresponding **`showUserMessage`** is called.
 
 ### Appointment - Class Implementation (non UID)
-![img_19.png](img_19.png)<br>
-**Figure 9: UML Diagram of Appointment Class**
 1. The appointment class takes in the user input of adding an appointment to the list of appointments.
 2. The **`Appointment class`** named `Appointment` takes in input such as uid, name, type of appointment, animal type, and date of appointment. This appointment will then  be added to the list.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
@@ -167,8 +179,7 @@ Veterinarians in Vet Clinics around Singapore who
 
 Veterinary Clinics have a large number of appointments for the veterinarians and their admin staff to handle.
 
-Sniff is a
-appointment manager that helps clinics keep track of their appointments. This eases the workload of the clinic staff
+Sniff is an appointment manager that helps clinics keep track of their appointments. This eases the workload of the clinic staff
 and helps improve efficiency in running a Vet clinic, while reducing human errors occurring in the workplace.
 
 ## User Stories
@@ -216,6 +227,13 @@ Given below are the instructions to test Sniff manually
 ```
 ______________________________________________________________________
  Hello! I'm Sniff, your personal appointment manager.
+     _______. .__   __.  __   _______   _______ 
+    /       | |  \ |  | |  | |   ____| |   ____|
+   |   (----` |   \|  | |  | |  |__    |  |__  
+    \   \     |  . `  | |  | |   __|   |   __| 
+.----)   |    |  |\   | |  | |  |      |  |   
+|_______/     |__| \__| |__| |__|      |__|   
+
  What can I do for you?
 ______________________________________________________________________
 ```
