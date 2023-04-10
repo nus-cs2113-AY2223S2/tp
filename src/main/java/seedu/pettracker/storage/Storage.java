@@ -14,7 +14,6 @@ import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.DuplicatePetException;
-import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
@@ -218,38 +217,23 @@ public class Storage {
                 validateTaskDataSep(line);
                 LocalDate deadline = getDeadline(line);
                 String taskName = getTaskName(line);
-                try {
-                    TaskList.addTask(taskName);
-                } catch (EmptyArgException x) {
-                    System.out.println("A task in output file has empty description");
-                }
                 String taskStatus = getTaskStatus(line);
 
                 TaskList.addTask(taskName, deadline);
-                if (taskStatus.equals("1")) {
-                    int taskNumber = TaskList.getNumberOfTasks();
-                    TaskList.markTask(taskNumber, true);
-                }
+                setTaskStatus(taskStatus);
             } catch (ArrayIndexOutOfBoundsException e) {
-                try {
-                    parseTaskWithoutDeadline(line);
-                } catch (EmptyArgException x) {
-                    System.out.println("A task in output file has empty description");
-                }
+                parseTaskWithoutDeadline(line);
             }
         }
     }
 
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
-            InvalidMarkTaskSymbolException, InvalidTaskNameException, EmptyArgException {
+            InvalidMarkTaskSymbolException, InvalidTaskNameException {
         String taskName = getTaskName(line);
         String taskStatus = getTaskStatus(line);
 
         TaskList.addTask(taskName);
-        if (taskStatus.equals("1")) {
-            int taskNumber = TaskList.getNumberOfTasks();
-            TaskList.markTask(taskNumber, true);
-        }
+        setTaskStatus(taskStatus);
     }
 
     private String getPetName(String line) {

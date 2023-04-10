@@ -15,7 +15,7 @@ public class Ui {
     private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not Found";
     private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
     private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
-    private static final String EMPTY_TASK_ERROR = "ERROR: Task description is empty";
+    private static final String EMPTY_TASK_NAME_ERROR = "ERROR: Task description is empty";
     private static final String NON_INTEGER_FILE_ERROR = "ERROR: Pet save file has non-integer values for age" +
             "/weight. File loading aborted.";
     private static final String NON_POSITIVE_INTEGER_FILE_ERROR = "ERROR: Pet save file has non-positive " +
@@ -34,8 +34,8 @@ public class Ui {
             "separator/invalid number of separator. File loading aborted.";
     private static final String INVALID_DATE_FILE_ERROR = "ERROR: Task save file has invalid date format. " +
             "File loading aborted.";
-    private static final String EMPTY_TASK_NAME_FILE_ERROR = "ERROR: Task save file has empty task name. File " +
-            "loading aborted.";
+    private static final String EMPTY_TASK_NAME_FILE_ERROR = "ERROR: Task save file has empty task description. " +
+            "File loading aborted.";
     private static final String INVALID_MARK_TASK_SYMBOL_FILE_ERROR = "ERROR: Task save file has invalid mark task " +
             "symbol. File loading aborted.";
     private static final String INVALID_PET_NAME_ERROR = "ERROR: Invalid pet name. Pet name cannot contain pipes.";
@@ -244,9 +244,9 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void emptyTaskMessage() {
+    public void printEmptyTaskMessage() {
         System.out.println(DIVIDER);
-        System.out.println(EMPTY_TASK_ERROR);
+        System.out.println(EMPTY_TASK_NAME_ERROR);
         System.out.println(DIVIDER);
     }
 

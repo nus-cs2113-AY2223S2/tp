@@ -1,7 +1,7 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.EmptyTaskNameException;
 import seedu.pettracker.exceptions.InvalidTaskNameException;
-import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -41,8 +41,8 @@ public class AddTaskCommand extends Command {
             ui.addTodoCommandMessage();
         } catch (InvalidTaskNameException e) {
             ui.printInvalidTaskNameMessage();
-        } catch (EmptyArgException e) {
-            ui.emptyTaskMessage();
+        } catch (EmptyTaskNameException e) {
+            ui.printEmptyTaskMessage();
         }
     }
 
