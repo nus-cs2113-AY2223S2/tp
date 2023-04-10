@@ -40,9 +40,7 @@ The rest of the App consists of five components:
 + Command: The command executor.
 + CommandResult: The command result display, displaying the command result.
 + Storage: Reads data from, and writes data to, the hard disk.
-<<<<<<< HEAD
 + Parser: The command parser. Identify the various command type.
-=======
 + CommandResult: Prints response to users.
 
 ### UML Sequence Diagram
