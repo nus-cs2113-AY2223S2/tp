@@ -1,4 +1,5 @@
 //@@author WilsonLee2000
+
 package seedu.badmaths;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,6 +55,6 @@ public class ListTest {
         String correctListOutput = "";
         System.setOut(new PrintStream(listDisplayed));
         String stringListDisplayed = listDisplayed.toString();
-        assertEquals(correctListOutput, stringListDisplayed); // (expected, actual)
+        assertEquals(correctListOutput, stringListDisplayed);
     }
 }

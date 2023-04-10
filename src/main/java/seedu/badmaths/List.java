@@ -44,13 +44,13 @@ public class List {
                 throw new IllegalTodoException();
             }
 
-            if (isInvalidTodo(toDo)) { // means there is no toDo
-                Ui.printNotes(notes.getAll()); // print all
+            if (isInvalidTodo(toDo)) {
+                Ui.printNotes(notes.getAll());
                 return;
             }
             int index = Integer.parseInt(toDo) - 1;
 
-            if (isInvalidIndex(index, notes)) { // list 10 if got 5 notes only
+            if (isInvalidIndex(index, notes)) {
                 throw new IllegalIndexException();
             }
             notes.review(index);

@@ -287,43 +287,54 @@ Step 2. The `isInvalidTodo` static boolean method will check for the validity of
 
 Step 3. The `storeNotes` public method will then store the note item input by users into the notes list.
 
+<details>
+<summary>Sequence Diagram for Store</summary>
+<div markdown="1">
+
+![img_4.png](img_4.png)
+
+</div>
+</details>
+
 ### List class:
-The `List` class takes in inputs from users and list either all the notes stored in notes list or specific notes
+The `List` class takes in inputs from users and list either all the notes stored in notes list or a specific note
 based on the index that users have input to BadMaths.
 It consists of a few public boolean method that detects invalid `todo` input entered by users,
 detects if `todo` provided is not an integer, and detects if `todo` provided is an invalid index.
 It also consists of a public method that list notes stored in notes list.
 
-Step 1. The `List` class takes in two variables `notes` and `todo`, and constructs a new `List` instance
+Step 1. The `List` class takes in two variables `notes` and `toDo`, and constructs a new `List` instance
 using the two variables.
 
 Step 2. The `isInvalidTodo`, `isInvalidIndex` and `isAnInt` boolean method will check for the validity of the `todo` string input.
 
-Step 3. The `listNotes` public method will then list either all the notes stored in notes list or specific notes
+Step 3. The `listNotes` public method will then list either all the notes stored in notes list or a specific note
 based on the index that users have input to BadMaths.
 
 
 ### Delete class:
-The `Delete` class takes in inputs from users and deletes the respective specific notes in the notes list
+The `Delete` class takes in inputs from users and deletes a specific note in the notes list
 based on the index that users have input to BadMaths.
 It consists of two static boolean methods that detects whether `todo` provided by users
 is not an integer, and detects whether `todo` provided is an invalid index.
 It also consists of a public method that deletes notes stored in notes list.
 
-Step 1. The `Delete` class takes in two variables `notes` and `todo`, and constructs a new `Delete`
+Step 1. The `Delete` class takes in two variables `notes` and `toDo`, and constructs a new `Delete`
 instance using the two variables.
 
-Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the validity of the `todo` string input.
+Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the 
+validity of the `toDo` string input by users.
 
-Step 3. The `deleteNotes` public method will then delete the respective specific notes in the notes list
+Step 3. The `deleteNotes` public method will then delete the specific note in the notes list
 based on the index that users have input to BadMaths.
 
 ### CommandHistory class:
 The `CommandHistory` class stores a list of all inputs entered by users during the current programme run session.
-It consists of only a two public class methods, `storeCommand` and `displayHistory`. 
+It consists of two public class methods, `storeCommand` and `displayHistory`. 
 
-Step 1. The `CommandHistory` class takes in only one variable `historyCommand`, 
-and constructs a new `CommandHistory` instance using that one variable.
+Step 1. An ArrayList `historyCommand` is created at the start.
+The `CommandHistory` class takes in an ArrayList `historyCommand`, 
+and constructs a new `CommandHistory` instance using that ArrayList.
 
 Step 2. The `storeCommand` public method adds the input command given by users into the 
 `historyCommand` ArrayList.
@@ -333,7 +344,7 @@ the current programme run.
 
 ### Command class:
 The `Command` class takes in inputs from users
-and executes relevant functions based on the inputs of the users. It consists of 
+and executes the relevant functions based on the inputs of the users. It consists of 
 public methods such as `isInvalidTodo` and `executeCommand`.
 
 Step 1. The `Command` class takes in a `command` and a `toDo` item and
@@ -341,7 +352,7 @@ based on both of these inputs, the `Command` class then identifies the relevant 
 to be executed.
 
 Step 2. The `executeCommand` method does the executing of the relevant functions depending on the `command` that
-was being input by users. There are several functionalities provided in the `executeCommand` for users, including but
+is being input by users. There are several functionalities provided in the `executeCommand` for users, including but
 not limited to the Storing and Deleting of Notes, Marking and Unmarking of notes items as completed or incomplete, and
 the searching for notes through keywords or priorities of the notes. 
 
@@ -364,6 +375,8 @@ user that an incorrect command format for badMaths has been entered.
 
 `printFrequency(Double freq)`: prints out the frequency of the Mathematical function provided by the user.
 
+`printInvalidNumberEntered()` : prints out a warning message to alert that the user has input a non-numerical input.
+
 `printMark(String text)`: prints out a message indicating that a note has been marked as done by the user.
 
 `printUnmark(String text)`: prints out a message indicating that a note has been unmarked as incomplete by the user.
@@ -377,7 +390,7 @@ and displays to the user the total current number of notes stored in the list.
 `printNotes(ArrayList<Note> notes)`: prints out all the notes currently stored in the list by the user.
 
 `printSpecificNote(int index, ArrayList<Note> notes)`: prints out a specific note in the list based on 
-its index provided by user.
+an index provided by user.
 
 `printFindNotes(ArrayList<Note> notes)`: prints out all the notes in the list
 that matches the keyword provided by the user.
@@ -389,20 +402,11 @@ priority of a note item has been changed based on the user's preference.
 review counts for each note item in a list format.
 
 `printNotesByPriority(ArrayList<Note> notes)`: prints out all the notes sorted based on the
-priority (high, medium, low) of the note items in a list format.
+priority (HIGH, MEDIUM, LOW) of the note items in a list format.
 
 ### NotePriority class:
 The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIGH)
 of the notes stored in the Notes List by users.
-
-<details>
-<summary>Sequence Diagram for Store</summary>
-<div markdown="1">
-
-![img_4.png](img_4.png)
-
-</div>
-</details>
 
 ### Help
 The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.

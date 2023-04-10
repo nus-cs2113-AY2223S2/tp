@@ -1,11 +1,8 @@
 //@@author WilsonLee2000
 
 package seedu.badmaths;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
@@ -30,6 +27,6 @@ public class CommandHistoryTest {
         commandHistoryTest.displayHistory();
         System.setOut(new PrintStream(historyDisplayed));
         String stringHistoryDisplayed = historyDisplayed.toString();
-        assertEquals(correctDisplayOutput, stringHistoryDisplayed); // expected, actual
+        assertEquals(correctDisplayOutput, stringHistoryDisplayed);
     }
 }
