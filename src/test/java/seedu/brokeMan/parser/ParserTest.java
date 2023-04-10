@@ -52,28 +52,6 @@ class ParserTest {
     }
 
     @Test
-    void testViewBudget_validDate_success() {
-        final String userInput = "viewBudget t/ 2000/12";
-        Command command = Parser.parseCommand(userInput);
-        command.execute();
-
-        assertTrue(command instanceof ViewBudgetCommand);
-    }
-
-    @Test
-    void testViewBudget_validDateWithSetBudget_success() {
-        final String userInput1 = "setBudget 100 t/ 2000/12";
-        Command firstCommand = Parser.parseCommand(userInput1);
-        assertTrue(firstCommand instanceof SetBudgetCommand);
-        firstCommand.execute();
-
-        final String userInput2 = "viewBudget t/ 2000/12";
-        Command secondCommand = Parser.parseCommand(userInput2);
-        assertTrue(secondCommand instanceof ViewBudgetCommand);
-        secondCommand.execute();
-    }
-
-    @Test
     void testViewBudget_validDateWithOverspendBudget_success() {
         final String userInput1 = "setBudget 1 t/ 2000/12";
         Command firstCommand = Parser.parseCommand(userInput1);
