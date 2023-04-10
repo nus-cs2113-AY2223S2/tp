@@ -1,22 +1,22 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 actor User
-User -> ":Duke" : start program
-activate ":Duke"
+User -> ":SEPHelper" : start program
+activate ":SEPHelper"
 create ":Scanner"
-":Duke" -> ":Scanner" : Scanner(System.in)
+":SEPHelper" -> ":Scanner" : Scanner(System.in)
 activate ":Scanner"
-":Duke" <-- ":Scanner" : in:Scanner
+":SEPHelper" <-- ":Scanner" : in:Scanner
 deactivate ":Scanner"
-ref over ":Duke"
+ref over ":SEPHelper"
 initialisation
 end
 loop isContinue == true
-":Duke" -> ":Scanner" : nextline()
+":SEPHelper" -> ":Scanner" : nextline()
 activate ":Scanner"
-":Duke" <-- ":Scanner" : userInput:String
+":SEPHelper" <-- ":Scanner" : userInput:String
 deactivate ":Scanner"
-":Duke" -> ":Parser" : parseUserCommand(userInput, universities, modules, allModules, moduleStorage, deadlineStorage, budgetPlanner, deadlines)
+":SEPHelper" -> ":Parser" : parseUserCommand(userInput, universities, modules, allModules, moduleStorage, deadlineStorage, budgetPlanner, deadlines)
 activate ":Parser"
 create ":Command"
 ":Parser" -> ":Command" : creates Command based on userInput
@@ -26,19 +26,19 @@ Parser logic
 end
 ":Parser" <-- ":Command" : command: Command
 deactivate ":Command"
-":Duke" <-- ":Parser" : command: Command
+":SEPHelper" <-- ":Parser" : command: Command
 deactivate ":Parser"
-":Duke" -> ":Command" : execute()
+":SEPHelper" -> ":Command" : execute()
 activate ":Command"
-":Duke" <-- ":Command"
+":SEPHelper" <-- ":Command"
 deactivate ":Command"
-":Duke" -> ":Command" : getIsExit()
+":SEPHelper" -> ":Command" : getIsExit()
 activate ":Command"
-":Duke" <-- ":Command" : isContinue = !isExit:boolean
+":SEPHelper" <-- ":Command" : isContinue = !isExit:boolean
 deactivate ":Command"
 end
-":Duke" --> User
-deactivate ":Duke"
+":SEPHelper" --> User
+deactivate ":SEPHelper"
 
 
 @enduml
