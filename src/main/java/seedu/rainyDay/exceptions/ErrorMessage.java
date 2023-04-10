@@ -51,7 +51,7 @@ public enum ErrorMessage {
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
     SHORTCUT_DOES_NOT_EXIST("The shortcut does not exist."),
-    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47"),
+    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47\n\n"),
     INVALID_GOAL("Unsupported amount provided, note that amount has to be a number >= 0 and <= 21,474,836.47"),
     INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
     INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n\n"),
