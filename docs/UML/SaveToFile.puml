@@ -32,6 +32,6 @@ activate ":Storage"
     deactivate ":EventListStorage"
     <-- ":Storage"
     deactivate ":Storage"
-
+    destroy ":FileWriter"
 
 @enduml
