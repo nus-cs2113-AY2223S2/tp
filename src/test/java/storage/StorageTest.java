@@ -49,7 +49,6 @@ class StorageTest {
     public void moreDPWarning() throws IOException {
         ExpenseList testExpenses = storage.loadExpenses("src/test/moreDPRoundingWarning.json");
         String expectedOutput = "Welcome back!" + System.lineSeparator() +
-
                 "More than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
         String jsonString =

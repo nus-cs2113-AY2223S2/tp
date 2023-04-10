@@ -5,8 +5,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.MalformedJsonException;
-
-import data.Account;
 import data.Expense;
 import data.ExpenseList;
 import utils.GsonLocalDateAdaptor;
@@ -46,8 +44,6 @@ public class Storage {
             .create();
 
     private ExpenseList expenseList;
-    private Account user;
-
 
     public Storage(ExpenseList expenseList) {
         this.expenseList = expenseList;
