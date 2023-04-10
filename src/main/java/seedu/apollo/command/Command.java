@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public abstract class Command implements LoggerInterface {
 
-    protected static Logger logger;
+    protected Logger logger;
     public Boolean isExit = false;
 
     public Command(String commandName) {
