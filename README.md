@@ -10,6 +10,22 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
 1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
    ```
+<<<<<<< .merge_file_jy7ubC
+   > Task :compileJava
+   > Task :processResources NO-SOURCE
+   > Task :classes
+   
+   > Task :Duke.main()
+   Hello from
+    ____        _        
+   |  _ \ _   _| | _____ 
+   | | | | | | | |/ / _ \
+   | |_| | |_| |   <  __/
+   |____/ \__,_|_|\_\___|
+   
+   What is your name?
+   ```
+=======
    > Task :compileJava UP-TO-DATE
    > Task :processResources NO-SOURCE
    > Task :classes UP-TO-DATE
@@ -28,6 +44,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
    ______________________________________________________________________
    ```
    
+>>>>>>> .merge_file_gwbyzj
    Type some word and press enter to let the execution proceed to the end.
 
 ## Build automation using Gradle.
