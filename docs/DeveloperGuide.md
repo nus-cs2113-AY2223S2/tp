@@ -664,5 +664,5 @@ Running the program:
   the [release page](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
 - Move the executable to a folder of your choice. The folder should have write permissions as it will generate save
   files in this directory.
-- Run the executable either by double-clicking on it, or using `java -jar FILENAME.jar`
+- Run the executable either by double-clicking on it, or using `java -jar Inka.jar`
 - An introduction to the supported commands are provided in the User Guide
