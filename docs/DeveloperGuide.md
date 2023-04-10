@@ -1,11 +1,10 @@
 ---
 title: Developer Guide
 ---
-# Developer Guide
-
-## Table of Contents
 
 # Developer Guide for Fitness Duke
+
+## Table of Contents
 * Table of Contents
 {:toc}
 

@@ -26,7 +26,7 @@ Some example commands you can try:
    * ```filters```: Displays available filters for users to customise their workout.
    * ```history```: Lists all finished exercises.
 6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
-7. 
+
 <div style="page-break-after: always;"></div>
 
 # FitnessDuke's Features
@@ -314,7 +314,6 @@ ________________________________________
 
 # Within your workout session
 
-<div class="alert alert-info">
 
 ## Feature : *Performing a workout*
 
@@ -396,7 +395,6 @@ Calling the ```finish``` command will provide the following outputs:
 4) (If any achievements are accomplished) <br> Prints out a motivating message to further motivate the user to continue
    using Fitness Duke <br>
    ```Keep on working out with Fitness Duke!```
-</div>
 <div style="page-break-after: always;"></div>
 
 ## Seeing your workout history: ```history```
