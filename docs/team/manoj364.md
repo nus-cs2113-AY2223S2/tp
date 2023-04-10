@@ -26,7 +26,7 @@ operation through the Command-Line Interface(CLI).
 #### Enhancements to existing features:
 - Improved feature: Duplication checker for each field
     - Enhancement: The Duplication checker now checks each field to make sure that the company name, contact number, or
-      contact email are not the same for any 2 entries in the `CompanyList` arraylist. If such a scenario exists, the
+      contact email are not the same as any entry in the `CompanyList` arraylist. If such a scenario exists, the
       program will inform the user of the duplication error. ([#125](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/125))
 - Improved feature: Formatting for input fields
     - Enhancement: For the `add` feature, the fields that are filled in by the user get formatted before being passed as
