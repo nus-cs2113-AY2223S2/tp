@@ -1,64 +1,64 @@
 @startuml
 activate System
 
---> NotesFileParser: loadFile(path)
-activate NotesFileParser
-NotesFileParser -> ArrayList: ArrayList()
-activate ArrayList
-ArrayList --> NotesFileParser
-deactivate ArrayList
-NotesFileParser -> Scanner: new Scanner(path)
-activate Scanner
-NotesFileParser -> Scanner: scanner.hasNextLine()
+--> ":NotesFileParser": loadFile(path)
+activate ":NotesFileParser"
+":NotesFileParser" -> ":ArrayList": ArrayList()
+activate ":ArrayList"
+":ArrayList" --> ":NotesFileParser"
+deactivate ":ArrayList"
+":NotesFileParser" -> ":Scanner": Scanner(path)
+activate ":Scanner"
+":NotesFileParser" -> ":Scanner": scanner.hasNextLine()
 loop for each line
-    Scanner -> Scanner: scanner.nextLine()
-    NotesFileParser -> NoteParser: parseNoteString(noteScanner)
-    activate NoteParser
-    NoteParser -> String: split()
-    activate String
-    String --> NoteParser
-    deactivate String
+    ":Scanner" -> ":Scanner": scanner.nextLine()
+    ":NotesFileParser" -> ":NoteParser": parseNoteString(noteScanner)
+    activate ":NoteParser"
+    ":NoteParser" -> ":String": split()
+    activate ":String"
+    ":String" --> ":NoteParser"
+    deactivate ":String"
     alt noteInfo.length == 4
-        NoteParser -> Note: Note()
-        activate Note
-        Note --> NoteParser
-        deactivate Note
-        NoteParser --> NotesFileParser: note
-        NotesFileParser -> ArrayList: add()
-        activate ArrayList
-        ArrayList --> NotesFileParser
-        deactivate ArrayList
+        ":NoteParser" -> ":Note": Note()
+        activate ":Note"
+        ":Note" --> ":NoteParser"
+        deactivate ":Note"
+        ":NoteParser" --> ":NotesFileParser": note
+        ":NotesFileParser" -> ":ArrayList": add()
+        activate ":ArrayList"
+        ":ArrayList" --> ":NotesFileParser"
+        deactivate ":ArrayList"
     else noteInfo.length != 4
-            NoteParser -> InvalidFormatException: throw exception
-            activate InvalidFormatException
-            InvalidFormatException --> NoteParser
-            deactivate InvalidFormatException
+            ":NoteParser" -> ":InvalidFormatException": throw exception
+            activate ":InvalidFormatException"
+            ":InvalidFormatException" --> ":NoteParser"
+            deactivate ":InvalidFormatException"
     end
 end
-deactivate NoteParser
-deactivate Scanner
+deactivate ":NoteParser"
+deactivate ":Scanner"
 
 alt file is invalid
-    NotesFileParser -> InvalidNotesFileHandler: responseHandler(path, notes)
-    activate InvalidNotesFileHandler
+    ":NotesFileParser" -> ":InvalidNotesFileHandler": responseHandler(path, notes)
+    activate ":InvalidNotesFileHandler"
     alt userInput is "y"
-        InvalidNotesFileHandler -> PrintWriter: PrintWriter(path)
-        activate PrintWriter
-        PrintWriter --> InvalidNotesFileHandler
-        deactivate PrintWriter
-        InvalidNotesFileHandler -> ArrayList: clear()
-        activate ArrayList
-        ArrayList --> InvalidNotesFileHandler
-        deactivate ArrayList
+        ":InvalidNotesFileHandler" -> ":PrintWriter": PrintWriter(path)
+        activate ":PrintWriter"
+        ":PrintWriter" --> ":InvalidNotesFileHandler"
+        deactivate ":PrintWriter"
+        ":InvalidNotesFileHandler" -> ":ArrayList": clear()
+        activate ":ArrayList"
+        ":ArrayList" --> ":InvalidNotesFileHandler"
+        deactivate ":ArrayList"
     else userInput is "n"
-        InvalidNotesFileHandler -> System: exit(0)
-            deactivate InvalidNotesFileHandler
+        ":InvalidNotesFileHandler" -> System: exit(0)
+            deactivate ":InvalidNotesFileHandler"
     end
 else file is valid
-    <-- NotesFileParser: notes
+    <-- ":NotesFileParser": notes
 end
 
-deactivate NotesFileParser
+deactivate ":NotesFileParser"
 
 deactivate System
 
