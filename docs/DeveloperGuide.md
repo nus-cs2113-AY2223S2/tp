@@ -98,7 +98,7 @@ The Parser component handles the following methods:
 
 ##### 2.2.2 Add Events Diagram
 The diagram below illustrates the flow of how the application adds events:
-![Add Event Class Diagram](UML/Images/addEvent.png)
+![Add Event Sequence Diagram](UML/Images/addEvent.png =373x789)
 
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
 
@@ -108,7 +108,7 @@ Following that, it will go through another process to check if the event is set 
 
 ##### 2.2.3 Add Modules Diagram
 The diagram below illustrates the flow of how the application adds modules:
-![Add Event Class Diagram](UML/Images/addModules.png = 373x789)
+![Add Module Sequencce Diagram](UML/Images/addModules.png)
 
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
 
