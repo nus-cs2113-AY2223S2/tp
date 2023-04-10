@@ -1,0 +1,25 @@
+@startuml
+!pragma layout smetana
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class Duke {
+    + main(args: String[])
+}
+
+class Ui {
+    +printInstructions()
+    +printHorizontalLines()
+    +getFormattedList(ArrayList<Expense> expenses): String[]
+    +printLines()
+    +printFalseInput()
+    +printGreeting()
+    +printGoodbye()
+    +printChoice()
+}
+
+Duke -- Ui : uses >
+
+@enduml
+
