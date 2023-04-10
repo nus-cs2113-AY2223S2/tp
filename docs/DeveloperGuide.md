@@ -265,6 +265,8 @@ and the WorkoutList consists of list of Workout.
 </p>
 
 ###### [Back to table of contents](#table-of-contents)
+
+#### Deleting a workout
  
 The add mechanism is facilitated by `AddCommand`. 
 It extends `Command` and modifies the execute function to add an exercise.
@@ -319,25 +321,42 @@ Below are the specific steps on how to use the view function and how the mechani
 ###### [Back to table of contents](#table-of-contents)
 
 ### Workout Component
-The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
-<img src="images/DeleteWorkoutDiagram.png" width="450" />
-
-Below is an example usage scenario and how the deletion mechanism behaves at each step:
-
-Step 1: Assume that the user has already added a workout on 21/03/23 into the WorkoutList using the following command, /start 21/03/23
-
-Step 2: The user input of /delete 21/03/23 will be taken in for the parser and an object of class DeleteCommand will be returned.
-
-Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
 ### Calories view component
 ###### [Back to table of contents](#table-of-contents)
 
 ### Exit component
 
 ###### [Back to table of contents](#table-of-contents)
+## Implementation
 
+### Workout Record
 
+#### Delete Command
+The deletion mechanism is facilitated by 'Parser', 'WorkoutParser', 'DeleteWorkoutCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
+
+<img src="images/DeleteWorkoutDiagram.png" width="450" />
+
+Below is an example usage scenario and how the deletion mechanism behaves at each step:
+
+Step 1: Assume that the user has already added a workout into the WorkoutList using the following command, /wstart upper body training
+
+Step 2: The user input of /wdelete 1 will be taken in for the parser and an object of class DeleteCommand will be returned.
+
+Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter index and will remove the matching workout from workoutList. It will then return a successful message that will be displayed to the user.
+
+#### Count Command
+The count mechanism is facilitated by 'Parser', 'WorkoutParser', 'DeleteWorkoutCommand', 'WorkoutList' and 'UI', where a recap of the total sets and reps done for each exercise will be displayed according to the command inputted by the user.
+
+<img src="images/CountSetsRepsDiagram.png" width="450" />
+
+Below is an example usage scenario and how the count mechanism behaves at each step:
+
+Step 1: Assume that the user has already added at least one workout into the WorkoutList using the following command, /wstart upper body training on the 10/04/23.
+
+Step 2: The user input of /wcount 10/04/23 will be taken in for the parser and an object of class CountSetsRepsCommand will be returned.
+
+Step 3: The execute method in the CountSetsRepsCommand class that is overrides will be called with parameter dayInSpecificWeekDate and will agglomerate all the workouts done during the specific week. It will then create a list of exercises with all the distinct exercises and grouped by name. Finally, the reps and sets will be summed and the recap will be displayed to the user.
 ## User Stories
 ### V1.0
 

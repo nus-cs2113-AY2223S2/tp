@@ -1,0 +1,36 @@
+@startuml
+!include Style.puml
+
+autonumber
+actor User
+participant Duke
+participant Ui
+participant Parser
+participant WorkoutParser
+participant CountSetsRepsCommand
+participant WorkoutList
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser -> WorkoutParser : parseSetsRepsCountCommand(arguments)
+activate WorkoutParser
+WorkoutParser -> CountSetsRepsCommand : countSetsRepsCommand(date)
+activate CountSetsRepsCommand
+CountSetsRepsCommand -> WorkoutList : countSetsReps(dayInSpecificWeekDate)
+activate WorkoutList
+WorkoutList -> WorkoutList : displayCountSetsReps \n(distinctExercises,dayInSpecificWeekDate)
+return output
+deactivate WorkoutList
+CountSetsRepsCommand --> WorkoutParser : output
+deactivate CountSetsRepsCommand
+WorkoutParser --> Parser : output
+deactivate WorkoutParser
+Parser --> Duke : output
+deactivate Parser
+Duke -> Duke : display(output)
+@enduml
