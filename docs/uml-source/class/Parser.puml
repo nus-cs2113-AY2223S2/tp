@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+Apollo --> Parser : interprets \ncommands for <
+Storage --> Parser : interprets locally \nsaved data for <
+
+class Parser {
++ getCommand(userCommand: String, ui: Ui,
+size: int, moduleData: ModuleList): Command
+- parseCommand(split: String[], size: int,
+moduleData: ModuleList): Command
+- parseDeadline(param: String): String[]
+- parseEvent(param: String): String[]
+}
+
+Parser -> ModuleList : access moduleData >
+ModuleList "1" *--> "*" Module : contains >
+
+abstract class "{abstract}\nCommand" as Command
+Parser --> Ui : calls for printing >
+Parser --> Command: creates >
+
+@enduml

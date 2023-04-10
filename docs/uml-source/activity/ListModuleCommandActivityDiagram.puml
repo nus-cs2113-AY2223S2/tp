@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User executes list command;
+
+:Create new ListCommand Object;
+:Execute ListCommand;
+:Iterate to through ModuleList;
+
+if (ModuleList is empty) then (yes)
+    :Print empty message;
+else (no)
+    :Print Modules in ModuleList;
+    :Print total number of MCs taken;
+endif
+
+stop
+
+@enduml

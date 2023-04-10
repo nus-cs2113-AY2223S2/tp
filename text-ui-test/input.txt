@@ -1,1 +1,52 @@
-James Gosling
+list
+todo
+todo eat lunch
+deadline
+deadline submit tutorial
+deadline submit tutorial -by tomorrow
+deadline submit tutorial -by 12-23-2023-23:59
+deadline submit tutorial -by 03-02-2023-23:59
+deadline submit tutorial -by 03-05-2023-23:59
+event
+event lecture -from 03-05-2023-09:00
+event lecture -from 03-05-2023-11:00 -to 03-05-2023-09:00
+event lecture -from 03-05-2023-11:00 -to 1 hour later
+event lecture -from 03-02-2022-09:00 -to 03-02-2022-11:00
+event lecture -from 03-05-2023-09:00 -to 03-05-2023-11:00
+list
+mark eat lunch
+mark 8
+mark 2
+list
+unmark 2
+todo sleep
+list
+delete eat lunch
+delete 0
+delete 4
+list
+find
+find cat
+find c
+date
+date 01-01-2025
+date 03-05-2023
+showmod cs1231
+showmod cg2023
+showmod cs1010 -st
+addmod software engineering
+addmod cs2113
+addmod cs2113
+addmod cs2113 -lec 1
+addmod cs2113 -tut 01
+addmod cs2040c
+listmod
+delmod 2
+delmod cs2040c
+listmod
+addmod st2334 -lec 1
+event dummy -from 01-04-2023-00:00 -to 01-06-2023-00:00
+deadline dummy2 -by 02-05-2023-00:00
+help add mod
+hello
+bye

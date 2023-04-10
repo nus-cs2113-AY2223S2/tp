@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+title for Module Commands
+
+class Parser {
++ getCommand(): Command
+}
+Parser --> Command : creates >
+
+abstract class "{abstract}\nCommand" as Command {
++ isExit: Boolean
+# logger: Logger
++ Command(commandName: String)
++ execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
+allModules: ModuleList, calendar: Calendar): void
+# setExit(): void
+# getLessonType(arg: String): LessonType
+}
+
+interface LoggerInterface {
+setUpLogger(logger: Logger): void
+}
+
+note left of Command::execute
+    All Command subclasses
+    overwrite the execute() method
+end note
+LoggerInterface <|.. Command : sets up logger for >
+
+class AddModuleCommand {
+- module: ModuleList
+- args: String[]
++ AddModuleCommand(param: String,
+allModules: ModuleList)
+- addTimeTable(searchModule: Module, lessonType:
+LessonType, args: String, ui: Ui, calendar: Calendar): void
+}
+Command <|-- AddModuleCommand
+
+class DeleteModuleCommand{
+# args: String[]
++ DeleteModuleCommand(params: String)
+- deleteTimetable(module: Module, lessonType:
+LessonType, lessonNumber: String): void
+}
+Command <|-- DeleteModuleCommand
+
+class ListModuleCommand
+Command <|-- ListModuleCommand
+
+class ListModuleWithLessonCommand {
+- args: String[]
+- module: Module
++ ListModuleWithLessonCommand(
+params: String, allModules: ModuleList)
+}
+Command <|-- ListModuleWithLessonCommand
+
+class ShowModuleCommand {
+- args: String[]
+- module: Module
++ ShowModuleCommand(params: String,
+allModules: ModuleList)
+}
+Command <|-- ShowModuleCommand
+Storage <-- Command : updates <
+Ui <-- Command : calls for \nprinting <
+
+ModuleList "2" <-- Command : reads and writes to <
+Module "     *" <--* "1 " ModuleList : contains <
+
+Command -> "    1" Calendar : reads and writes to >
+class "ArrayList<CalendarModule>" as ALModules
+ALModules "         *" <--* "1 " Calendar : contains <
+CalendarModule "*" <--* "1" ALModules : contains <
+
+enum "<<enum>>\nLessonType" as LessonType
+Module <|- CalendarModule
+CalendarModule -> "1 " Timetable
+Timetable --> "1 " LessonType
+
+@enduml

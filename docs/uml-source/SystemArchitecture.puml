@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+skinparam maxMessageSize 150
+skinparam wrapWidth 150
+
+skinparam component {
+  BackgroundColor FloralWhite
+  BorderColor Black
+  ArrowColor Crimson
+}
+
+
+node "Apollo (Application)" {
+  [Apollo]
+  [UI]
+  [Parser]
+  [Command]
+  [Data Storage]
+  [Resources]
+}
+
+actor NUS_Student
+database NUSMods_API
+folder "local save files" {
+    [save.txt]
+    [moduleData.txt]
+}
+
+[Apollo] --> [UI]
+[Apollo] --> [Data Storage]
+[Apollo] --> [Parser]
+[Apollo] --> [Command]
+NUS_Student <-.-> [UI]
+[UI] --> [Parser]
+[Parser] --> [Command]
+[Command] --> [UI]
+[Command] --> [Data Storage]
+NUSMods_API -right-> [Resources]
+[Resources] -right-> [Data Storage]
+"local save files"<-->[Data Storage]
+
+
+@enduml

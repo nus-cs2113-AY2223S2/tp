@@ -15,3 +15,11 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+save.txt
+test.txt
+moduleData.txt
+testModuleData.txt
+
+*.log
+*.lck
+*.log.*

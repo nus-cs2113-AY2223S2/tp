@@ -1,0 +1,103 @@
+@startuml
+'https://plantuml.com/class-diagram
+scale 2.0
+
+interface LoggerInterface {
+    + setUpLogger(): void
+}
+class Storage {
+    - filePath: String
+    - moduleDataFilePath: String
+
+
+    + Storage(String, String)
+    + setUpLogger(): void
+    + updateTask(TaskList): void
+    + loadTaskList(Ui): TaskList
+    + updateModule(ModuleList, Calendar): void
+    - writeModules(FileWriter, Module): void
+}
+note left of Storage::moduleDataFilePath
+    Other static variables for Storage
+    words have been omitted for brevity.
+end note
+
+class TaskList {
+    -tasks: Task[*]
+    + addTask(Task): void
+    + deleteTask(int): Task
+    + markTaskAsDone(int): Task
+
+}
+
+abstract class Task {
+    - description: String
+    - isDone: boolean
+    - storePattern: DateTimeFormatter
+
+    + Task(String)
+    + getDescription(): String
+
+}
+
+class Todo extends Task {
+- description: String
++getDescription(): String
+}
+
+class Deadline extends Task {
+    - by: LocalDateTime
+
+    + Deadline(String, LocalDateTime)
+    + getBy(DateTimeFormatter): String
+}
+
+class Event extends Task {
+    - from: LocalDateTime
+    - to: LocalDateTime
+
+    + Event(String, LocalDateTime, LocalDateTime)
+    + getFrom(DateTimeFormatter): String
+    + getTo(DateTimeFormatter): String
+}
+
+class Ui {
+
+}
+
+class ModuleList  {
+     -modules: Module[*]
+    + ModuleList()
+    + addModule(Module): void
+    + deleteModule(int): Module
+
+}
+
+class Module {
+    - code: String
+    - moduleTimetable: List<Timetable>
+
+    + addTimetable(Timetable): void
+    + getModuleTimetable(): List<Timetable>
+}
+
+class Timetable {
+    - lessonType: String
+    - classNumber: String
+
+    + getLessonType(): String
+    + getClassNumber(): String
+}
+
+Storage ..|> LoggerInterface
+Storage -> TaskList
+Storage -> Task
+Storage -> Todo
+Storage -> Deadline
+Storage -> Event
+Storage -> Ui
+Storage -> ModuleList
+Storage -> Module
+Storage -> Timetable
+
+@enduml
