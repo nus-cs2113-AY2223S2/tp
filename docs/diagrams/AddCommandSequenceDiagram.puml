@@ -14,13 +14,13 @@ activate FinancialStatement
 FinancialStatement --> AddCommand : : FinancialStatement
 deactivate FinancialStatement
 
-AddCommand -> UserData: addStatement(statement:Financial Statement)
+AddCommand -> UserData: addStatement(statement:FinancialStatement)
 activate UserData
 
-UserData -> FinancialReport : addStatement(statement:Financial Statement)
+UserData -> FinancialReport : addStatement(statement:FinancialStatement)
 activate FinancialReport
 
-FinancialReport -> FinancialReport : addToMonthlyExpenditure\n(statement:Financial Statement)
+FinancialReport -> FinancialReport : addToMonthlyExpenditure\n(statement:FinancialStatement)
 activate FinancialReport
 
 FinancialReport --> FinancialReport
@@ -32,7 +32,7 @@ deactivate FinancialReport
 UserData --> AddCommand
 deactivate UserData
 
-AddCommand -> UserData : checkUserBudgetLimit(statement:Financial Statement)
+AddCommand -> UserData : checkUserBudgetLimit(statement:FinancialStatement)
 activate UserData
 
 UserData --> AddCommand : : String

@@ -37,7 +37,7 @@ deactivate FinancialReport
 UserData --> DeleteCommand
 deactivate UserData
 
-DeleteCommand -> UserData : checkUserBudgetLimit(statement\n:Financial Statement)
+DeleteCommand -> UserData : checkUserBudgetLimit(statement\n:FinancialStatement)
 activate UserData
 
 UserData -> FinancialReport : getMonthlyExpenditure\n(currentStatement:FinancialStatement)
