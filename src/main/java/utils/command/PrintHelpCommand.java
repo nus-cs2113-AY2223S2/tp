@@ -16,6 +16,7 @@ public class PrintHelpCommand extends Command {
     public static final String CARD_KEYWORD = "card";
     public static final String TAG_KEYWORD = "tag";
     public static final String DECK_KEYWORD = "deck";
+    public static final String EXPORT_KEYWORD = "export";
     public static final String GENERAL_KEYWORD = "general";
     public static final String EXIT_KEYWORD = "bye";
     public static final String HELP_KEYWORD = "help";
@@ -142,6 +143,7 @@ public class PrintHelpCommand extends Command {
         helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality");
         helpMessage += formatHelpLine(DECK_KEYWORD, "Deck-related functionality");
         helpMessage += "================== Miscellaneous Commands =================" + System.lineSeparator();
+        helpMessage += formatHelpLine(EXPORT_KEYWORD, "Manually exports to save file");
         helpMessage += formatHelpLine(EXIT_KEYWORD, "Exits Inka");
 
         return helpMessage;
