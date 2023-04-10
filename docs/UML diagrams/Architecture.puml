@@ -4,37 +4,33 @@
 
 Rectangle {
     agent UI #green
-    package Logic #blue [
+    package Parsing #purple [
     Router
-    Parser
+    Extractor
     ]
     agent Storage #orange
     package Model [
     Ingredient
     Recipe
     ]
-    agent MealCompanion #grey
+    agent MealCompanionSession #grey
     agent Command #pink
 }
 
 actor user
-user .down.> MealCompanion
+user .down.> MealCompanionSession : > send command
 
-Command .[#pink].> Storage
-Command .left[#pink].> Model
-Command .right[#pink].> UI
-MealCompanion -[#grey]-> UI
-MealCompanion -[#grey]-> Logic
-MealCompanion -[#grey]-> Storage
-MealCompanion -[#grey]-> Command
-MealCompanion -[#grey]-> Model
-Storage .up[#orange].> UI
-Storage .left[#orange].> Model
+MealCompanionSession -[#grey]-> UI
+MealCompanionSession -[#grey]-> Parsing
+MealCompanionSession -[#grey]-> Storage
+MealCompanionSession -[#grey]-> Model
+Command .up[#pink].> MealCompanionSession
+
+Parsing -[#purple]-> Command
+Storage .up[#orange].> MealCompanionSession
 
 folder folder [
 ingredients.txt
-
-
 ]
 
 Storage .[#orange].> folder

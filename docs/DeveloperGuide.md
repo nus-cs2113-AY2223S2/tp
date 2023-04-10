@@ -77,6 +77,12 @@ Given below is a quick overview of main components.
 * `Storage`: Read and write data from hard disk
 * `Command`: Specific commands for execution
 
+#### Program Flow
+- The `MealCompanionSession` controls access to the `UI`, `Parsing`, `Model`, and `Storage` components of the app
+- The user will send input to the `MealCompanionSession`.
+- The `MealCompanionSession` will parse the input to produce a `Command`, which will hook back into the
+`MealCompanionSession` to gain access to the other components when running
+
 ### Command Parsing
 
 The system of `Routable` classes is built to allow for a composable setup of commands and subcommands.
@@ -130,6 +136,24 @@ value out of the `ArgumentExtractor` using the `getExtractedValue()` method, and
 constructor.
 
 If extraction yields an exception, the exception will be passed up to the caller of `buildCommand()`.
+
+### Exception Handling
+
+We have 5 different custom exceptions thrown by our code:
+- `CommandRunException` - thrown only by `ExecutableCommand`s a problem occurs while running a command
+- `InvalidArgumentException` - thrown only by `ArgumentExtractor`s when an argument value is malformed
+- `InvalidCommandException` - thrown only by `Extractor`s when the command is malformed
+- `MealCompanionException` - thrown by code run outside the REPL (for example, loading save data)
+
+`CommandRunException`s and `InvalidCommandException`s are handled in the `MealCompanionSession`. The error message
+is printed for the user and the program will wait for the next command.
+
+`InvalidArgumentException` is never thrown outside the context of a `Extractor` calling its child `ArgumentExtractor`.
+The `Extractor` will always wrap the thrown `InvalidArgumentException` in an `InvalidCommandException`, which is
+handled as above.
+
+`MealCompanionException` should be handled by the caller of the function which throws it. We are in the process of
+shifting this responsibility away from the `ExecutableCommand`s.
 
 ### Ingredient Class
 
