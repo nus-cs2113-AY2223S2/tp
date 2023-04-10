@@ -99,7 +99,7 @@ public class ParserTest {
     public void findTest() {
         String findCommand = "find a/dog";
         String findCommand1 = "find t/surgery";
-        String findCommand2 = "find uID/123";
+        String findCommand2 = "find uid/123";
         Command findParsedCommand = null;
         try {
             findParsedCommand = Parser.parse(findCommand);
