@@ -199,7 +199,7 @@ public class Storage {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
             }
             String category = financialStatement.get("category").getAsString();
-            if (category.isEmpty() || category.contains("-") || category.charAt(0) == ' ') {
+            if (category.isEmpty() || category.contains("-") || category.charAt(0) == ' ' || category.contains("$")) {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
             }
 
