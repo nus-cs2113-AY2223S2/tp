@@ -1,0 +1,13 @@
+@startuml
+
+object PetList
+object Pet
+
+Pet : petName = "Bob"
+Pet : petType = ""
+Pet : age = ""
+Pet : weight = "5"
+
+PetList --> "petList" Pet
+
+@enduml

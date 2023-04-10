@@ -1,0 +1,17 @@
+@startuml
+ !include style.puml
+
+ Participant ":CommandParser" as CommandParser
+ Participant ":AddStatParser" as AddStatParser
+
+-> CommandParser:parseCommand("add-stat PETNAME STAT VALUE")
+ activate CommandParser
+
+ 	CommandParser -> AddStatParser ** :parse("PETNAME STAT VALUE")
+ 	activate AddStatParser
+ 	return :AddStatCommand
+ 	destroy AddStatParser
+
+return :AddStatCommand
+
+@enduml

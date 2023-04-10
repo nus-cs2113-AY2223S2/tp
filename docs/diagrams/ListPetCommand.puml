@@ -1,0 +1,52 @@
+@startuml
+ !include style.puml
+
+ Participant ":Main" as Main
+ Participant "ui:Ui" as Ui
+ Participant ":CommandParser" as CommandParser
+ Participant "command:ListPetCommand" as ListPetCommand
+ Participant ":Petlist" as PetList
+ Participant "pet:Pet" as Pet
+
+ -> Main
+ activate Main
+
+ 	Main -> Ui:getUserInput()
+ 	activate Ui
+ 	return commandString
+
+ Main -> CommandParser:parseCommand("list")
+ activate CommandParser
+
+ 	CommandParser -> CommandParser:newCommand("list")
+ 	activate CommandParser
+ 	return
+
+ 	create ListPetCommand
+ 	CommandParser -> ListPetCommand
+ 	activate ListPetCommand
+
+
+        ListPetCommand -> PetList
+        activate PetList
+        loop for "pet:Pet"
+            PetList -> Pet: getPetName()
+            activate Pet
+            PetList -> Pet: getPetType()
+            PetList -> Pet: getAge()
+            PetList -> Pet: getWeight()
+            Pet --> PetList
+            deactivate Pet
+
+        end
+
+        PetList --> ListPetCommand
+        deactivate PetList
+
+        return
+
+    return
+
+    return
+
+@enduml

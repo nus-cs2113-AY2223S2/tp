@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+Participant ":Main" as Main
+Participant "ui:Ui" as Ui
+Participant ":CommandParser" as CommandParser
+Participant "command:ExitCommand" as ExitCommand
+
+-> Main
+activate Main
+
+Main -> Main:runCommandTillExit()
+activate Main
+
+    Main -> Ui:getUserInput()
+    activate Ui
+    return commandString
+
+Main -> CommandParser:parseCommand("exit")
+activate CommandParser
+
+    CommandParser -> CommandParser:newCommand("exit")
+    activate CommandParser
+
+        CommandParser -> CommandParser:parseKeyword("exit")
+        activate CommandParser
+        return
+
+    create ExitCommand
+    CommandParser -> ExitCommand
+    activate ExitCommand
+    return
+
+return command:ExitCommand
+
+return command:ExitCommand
+
+Main -> ExitCommand:isExit()
+activate ExitCommand
+return
+
+return
+
+Main -> Ui:showEndingMessage()
+activate Ui
+return
+
+
+@enduml
