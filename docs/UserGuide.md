@@ -20,7 +20,8 @@
 * [Frequently Asked Questions (FAQ)](#FAQ)
 * [Command Summary](#command-summary)
 
----
+--------------------------------------------------------------------------------------------------------------------
+
 <a id="quick-start"></a>
 ## Quick-start guide
 
