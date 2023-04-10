@@ -430,7 +430,6 @@ list that store the account data inside the 'account process'.
 - Our expense tracker is a simple program that allows users to track their expenses
 - With simple commands and ease of use, users are able to use our tracker with little to no experience.
 
-<div style="page-break-after: always;"></div>
 
 ## User Stories
 
