@@ -248,8 +248,8 @@ ______________________________________________________________________
    9. Priority: `p/`, in the format of **H**, **M**, or **L**.
    
 2. Test case: `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
-   Expected output: A consultation appointment has been added successfully, details shown in the status message.
-   Example:
+   Expected output: A consultation appointment has been added successfully, details shown in the status message. <br>
+   Example: <br>
 
 
 ```
@@ -266,9 +266,9 @@ ______________________________________________________________________
 
 ```
 
-3. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`<br>
-   Expected output: A consultation appointment is not added due to invalid description.
-   Example:
+3. Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00` <br>
+   Expected output: A consultation appointment is not added due to invalid description. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
@@ -276,9 +276,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00`
-   Expected output: A vaccination appointment has been added successfully, details show in the status message.
-   Example:
+4. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+   Expected output: A vaccination appointment has been added successfully, details show in the status message. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
@@ -293,9 +293,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-5. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00`
-   Expected output: A vaccination appointment is not added due to invalid date description.
-   Example: 
+5. Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00` <br>
+   Expected output: A vaccination appointment is not added due to invalid date description. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
@@ -303,9 +303,9 @@ The date/time description is invalid.
 ______________________________________________________________________
 ```
 
-6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H`
-   Expected output: A surgery appointment has been added successfully, details shown in the status message.
-   Example:
+6. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+   Expected output: A surgery appointment has been added successfully, details shown in the status message. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  This appointment has been added to your appointment manager: 
@@ -321,9 +321,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-7. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H`
-   Expected output: A surgery appointment is not added due to dates and times being the same .
-   Example:
+7. Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H` <br>
+   Expected output: A surgery appointment is not added due to dates and times being the same. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  Sorry, an error was encountered! Here is the error description:
@@ -333,10 +333,10 @@ ______________________________________________________________________
 
 #### Listing appointments
 
-1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
+1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list. <br>
 2. Test case: `list`<br>
-   Expected output: A list of all previously added appointments.
-   Example:
+   Expected output: A list of all previously added appointments. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Consultation   [ ]
@@ -368,10 +368,10 @@ ______________________________________________________________________
 
 #### Finding appointments
 
-1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
-2. Test case: `find a/Dog`
-   Expected output: A list of all previously added appointments with the animal type.
-   Example:
+1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list. <br>
+2. Test case: `find a/Dog` <br>
+   Expected output: A list of all previously added appointments with the animal type. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Vaccination   [ ]
@@ -385,9 +385,9 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-3. Test case: `find t/surgery`
-   Expected output: A list of all previously added appointments with the appointment type.
-   Example:
+3. Test case: `find t/surgery` <br>
+   Expected output: A list of all previously added appointments with the appointment type. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
@@ -403,9 +403,9 @@ ______________________________________________________________________
 
 ```
 
-4. Test case: `find d/2023-12-12`
-   Expected output: A list of all previously added appointments with the specified date.
-   Example:
+4. Test case: `find d/2023-12-12` <br>
+   Expected output: A list of all previously added appointments with the specified date. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Vaccination   [ ]
@@ -431,9 +431,9 @@ ______________________________________________________________________
  Owner Name: jon | Contact Number: 91919191
 ______________________________________________________________________
 ```
-4. Test case: `find uid/S02547136Q`
-   Expected output: A list of all previously added appointment with the appointment uID.
-   Example:
+4. Test case: `find uid/S02547136Q` <br>
+   Expected output: A list of all previously added appointment with the appointment uid. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
@@ -447,9 +447,9 @@ ______________________________________________________________________
  
 ______________________________________________________________________
 ```
-5. Test case: `find d/2023-12-12`
-   Expected output: A list of all previously added appointments with the same appointment date.
-   Example:
+5. Test case: `find d/2023-12-12` <br>
+   Expected output: A list of all previously added appointments with the same appointment date. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
 1.  Vaccination   [ ]
@@ -465,10 +465,10 @@ ______________________________________________________________________
 
 #### Removing appointments
 
-1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
+1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID. <br>
 2. Test case: `remove uid/C28216660A`<br>
-   Expected output: The appointment with the specified UID is removed, details shown in the status message.
-   Example:
+   Expected output: The appointment with the specified UID is removed, details shown in the status message. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  This appointment has been removed your appointment manager: 
@@ -484,11 +484,11 @@ ______________________________________________________________________
 
 #### Mark/UnMark appointments
 
-1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
+1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID. <br> 
 2. Test case: `mark uid/S82358005U`<br>
-   Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. 
-   A corresponding successful mark message is displayed. 
-   Example:
+   Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. <br>
+   A corresponding successful mark message is displayed. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Surgery  [X] | Priority: HIGH
@@ -505,9 +505,9 @@ The appointment has been marked successfully
 ______________________________________________________________________
 ```
 3. Test case: `unmark uid/V12400172X`<br>
-   Expected output: If the appointment UID entered is valid and not already unmarked the corresponding appointment is Unmarked on the list.
-   A corresponding successful Unmark message is displayed.
-   Example:
+   Expected output: If the appointment UID entered is valid and not already unmarked the corresponding appointment is unmarked on the list.
+   A corresponding successful Unmark message is displayed. <br>
+   Example: <br>
 ```
 ______________________________________________________________________
  1.  Surgery  [ ] | Priority: HIGH
