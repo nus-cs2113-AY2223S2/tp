@@ -32,7 +32,7 @@ with a reminder system in place for overdue tasks.
     * Validation of User Input to Ensure No Pipes are Inside Due to Program Storage Saving Format for v2.1
       [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203), [\#212](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/212)
     * Displaying Which Task is Marked/Unmarked When Marking/Unmarking Tasks for v2.1  [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
-    * Handling of Upper/Lowercase for Commands [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
+    * Handling of Upper/Lowercase for Commands for v2.1 [\#203](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/203)
 
 
 * **Documentations**:
