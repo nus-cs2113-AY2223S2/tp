@@ -51,6 +51,7 @@ critical to the app's function. We hope that this document will serve you well i
 
 Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UserGuide.md).
 <br>
+
 [Back to contents page](#table-of-contents)
 
 <p style="page-break-after: always;">&nbsp;</p>
@@ -108,6 +109,8 @@ It will then go through different processes depending on if the event has an end
 
 Following that, it will go through another process to check if the event is set to be recurring before finally creating a new event and displaying a success message to the user.
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ##### 2.2.3 Add Modules Diagram
 The diagram below illustrates the flow of how the application adds modules:
 ![Add Module Sequencce Diagram](UML/Images/addModules.png)
@@ -126,7 +129,10 @@ It should be able to perform basic data validation checks to ensure that the use
 This makes life easier to developers in the future if they wish to add new features that requires users to use new commands.
 
 [Back to contents page](#table-of-contents)
+
 ---
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### 2.3 Storage Component
 API: `Storage.java`
 
@@ -153,12 +159,15 @@ hash map was used to prevent the slow processing of the program each time a modu
 that is likely to see high amounts of usage given the target user.
 
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 
 ##### 2.3.2 Load Events Sequence Diagram
 
 ![Load Events Sequence Diagram](UML/Images/loadEvents.png)
 
 When the application starts up, the storage loadEvents() function will be called to load contents in the save file. 
+
 
 ##### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
