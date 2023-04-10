@@ -11,7 +11,7 @@ effectively and efficiently and contains various functionalities for note-taking
 
 ## Summary of Contributions
 ### 1) Code Contributed:
-Click [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=WilsonLee2000&zR=AY2223S2-CS2113-F10-2%2Ftp%5Bmaster%5D&zACS=147.97863924050634&zS=2023-02-17&zFS=&zU=2023-04-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+Click [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=WilsonLee&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=WilsonLee2000&tabRepo=AY2223S2-CS2113-F10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 to view my codes contributed for this project
 
 ### 2) Enhancements Implemented:
