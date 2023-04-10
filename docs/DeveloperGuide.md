@@ -14,11 +14,12 @@
     * ['List' Feature](#-list-feature)
     * ['Add' Feature](#-add-feature)
     * ['Delete' Feature](#-delete-feature)
-    * [Monthly Overview](#monthly-overview)
-    * [Yearly Overview](#yearly-overview)
+    * ['Overview' Feature](#-overview-feature)
+      * [Monthly Overview](#monthly-overview)
+      * [Yearly Overview](#yearly-overview)
     * ['Sort' Feature](#-sort-feature)
-    * ["Category" feature](#-category--feature)
-    * ['Total' feature](#-total-feature)
+    * ['Category' Feature](#-category-feature)
+    * ['Total' Feature](#-total-feature)
     * ['Storage' Feature](#-storage-feature)
     * ['Exit' Feature (Inside the Account)](#-exit-feature--inside-the-account-)
   * [Product scope](#product-scope)
@@ -26,8 +27,6 @@
     * [Value proposition](#value-proposition)
   * [User Stories](#user-stories)
   * [Non-Functional Requirements](#non-functional-requirements)
-  * [Glossary](#glossary)
-  * [Instructions for Manual Testing](#instructions-for-manual-testing)
 <!-- TOC -->
 
 ## Acknowledgements
@@ -271,7 +270,8 @@ Step 2. `Duke` instantiates a new `CommandDelete` and calls `CommandDelete#execu
 
 Step 3. `CommandDelete#execute()` removes the expense at index specified by the user.
 
-### Monthly Overview
+### 'Overview' Feature
+#### Monthly Overview
 
 This mechanism is facilitated by `CommandOverview`, which extends `Command`. It makes use of output from `Parser`
 to extract `month` and `year` from user input. It then calls on `MonthlyOverview` if both `month` and `year`
@@ -282,7 +282,7 @@ in the intended format.
 Given below is the partial sequence diagram to explain how the 'monthly overview' mechanism behaves once being called.
 ![](diagrams/MonthlyOverview.png)
 
-### Yearly Overview
+#### Yearly Overview
 
 Similar to `MonthlyOverview`, this mechanism is facilitated by `CommandOverview`, which extends `Command`.
 It makes use of outputs from `Parser` to extract `month` and `year` from user input. It then calls on `YearlyOverview`
@@ -327,7 +327,7 @@ or `CommandSort#sortByCategory()`, then display the result to user by calling `C
 or `CommandSort#displayByCategory()`
 accordingly.
 
-### "Category" feature
+### 'Category' Feature
 
 This mechanism is facilitated by `CommandCategory`, it will first traverse the expense list and decide how many categories
 are contained inside, no matter case sensitivity. If the expense doesn't indicate a specific category, it is named 
@@ -354,7 +354,7 @@ what are they and how many of them. Then return to Duke.
 Step 3. If neither the above two conditions, it will call `CommandCategory#displayAllCategory` with mechanism mentioned above, and then it will call
 `CommandCategory#displayCorrespondingCategory`, which traverse the expense list and display all expenses with corresponding categories no matter the case sensitivity.
 
-### 'Total' feature
+### 'Total' Feature
 
 This mechanism is facilitated by `CommandTotal`.
 
@@ -365,6 +365,7 @@ This mechanism is facilitated by `CommandTotal`.
 - `CommandTotal#getTotal()` -- Returns the total in 2 decimal places.
 
 Displayed below is a part of the class diagram for `CommandTotal`.
+
 ![](diagrams/TotalFeature.png)
 
 Given below is an example usage of the feature.
@@ -422,8 +423,6 @@ list that store the account data inside the 'account process'.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
-
 - Our expense tracker is a simple program that allows users to track their expenses
 - With simple commands and ease of use, users are able to use our tracker with little to no experience.
 
@@ -449,11 +448,3 @@ list that store the account data inside the 'account process'.
 
 * Expense tracker should function with or without an internet connection.
 * Expense tracker should work even on days where the forex market is closed
-
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for Manual Testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
