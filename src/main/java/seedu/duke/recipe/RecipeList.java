@@ -1,6 +1,7 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.DuplicateRecipeNameException;
+import seedu.duke.exceptions.ListEmptyException;
 import seedu.duke.exceptions.NoMatchingRecipeFound;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.EditFormatException;
@@ -217,6 +218,9 @@ public class RecipeList {
             throw new IncompleteInputException(OVERFLOW_NUMBER_ERROR);
         }
         int recipeListIndex = Integer.parseInt(term);
+        if (getCurrRecipeNumber() == 0) {
+            throw new RecipeListEmptyException();
+        }
         if (recipeListIndex <= 0 || recipeListIndex > getCurrRecipeNumber()) {
             throw new OutOfIndexException(INVALID_RANGE + "1 to " + getCurrRecipeNumber() + '\n');
         }
