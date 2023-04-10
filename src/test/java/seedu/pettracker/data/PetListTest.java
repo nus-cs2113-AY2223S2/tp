@@ -5,6 +5,7 @@ import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.InvalidStatValueException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 
@@ -49,7 +50,7 @@ public class PetListTest {
     @Test
     public void addStatToPet_correctStat_success() throws NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException,
-            InvalidPetNameException {
+            InvalidPetNameException, InvalidStatValueException {
         PetList.addPet("Candy");
         PetList.addStat("Candy", "Weight", "10");
     }
@@ -90,7 +91,7 @@ public class PetListTest {
     @Test
     public void editStatToPet_correctStat_success() throws NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException,
-            InvalidPetNameException {
+            InvalidPetNameException, InvalidStatValueException {
         PetList.addPet("EditStat1");
         PetList.addStat("EditStat1", "Weight", "10");
         PetList.editPetStats("EditStat1", "Weight", "20");

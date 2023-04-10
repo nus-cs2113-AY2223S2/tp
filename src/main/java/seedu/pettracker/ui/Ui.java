@@ -46,7 +46,10 @@ public class Ui {
             "Task name cannot contain pipes. File Loading aborted";
     private static final String TASK_ALREADY_COMPLETE = "ERROR: This task is already complete.";
     private static final String TASK_ALREADY_INCOMPLETE = "ERROR: This task is already incomplete";
-
+    private static final String INVALID_STAT_VALUE_ERROR = "ERROR: Invalid stat value. Stat value cannot contain " +
+            "pipes";
+    private static final String INVALID_STAT_VALUE_FILE_ERROR = "ERROR: Pet save file has Invalid stat value. " +
+            "Stat value cannot contain pipes. File Loading aborted";
 
     private Scanner in;
 
@@ -341,6 +344,19 @@ public class Ui {
         System.out.println(INVALID_TASK_NAME_FILE_ERROR);
         System.out.println(DIVIDER);
     }
+
+    public void printInvalidStatValueMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(INVALID_STAT_VALUE_ERROR);
+        System.out.println(DIVIDER);
+    }
+
+    public void printFileInvalidStatValueMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(INVALID_STAT_VALUE_FILE_ERROR);
+        System.out.println(DIVIDER);
+    }
+
 
     /**
      * Print out help for all commands
