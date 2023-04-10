@@ -378,6 +378,7 @@ Find expenditures by description
 - Keyword is case-sensitive
 - Works like "Ctrl-F", the find command is able to search for all characters matching the keyword in the expenditure descriptions.
 
+<div style="page-break-after: always;"></div>
 ### 4.13. Sorting the expenditure list
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
