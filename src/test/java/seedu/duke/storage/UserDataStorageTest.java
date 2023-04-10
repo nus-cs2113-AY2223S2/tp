@@ -82,8 +82,8 @@ public class UserDataStorageTest {
         ArrayList<String> samplePlan = new ArrayList<>();
         samplePlan.add("Upper");
         samplePlan.add("easy");
-        Plan plan = new Plan(samplePlan, "Sample Plan Name");
         for (int i = 0; i < 7; i++) {
+            Plan plan = new Plan(samplePlan, Integer.toString(i) + "Sample plan");
             userPlan.addDayPlan(plan, i);
         }
         storage.writeToJson(userPlan);
@@ -124,11 +124,11 @@ public class UserDataStorageTest {
         ArrayList<String> samplePlan = new ArrayList<>();
         samplePlan.add("Upper");
         samplePlan.add("easy");
-        Plan plan = new Plan(samplePlan, "Sample Plan Name");
+        Plan plan = new Plan(samplePlan, "Sample plan");
         userPlan = storage.loadUserPlans();
         for (int i = 0; i < 7; i++) {
             Plan todayPlans = userPlan.getDayPlans(i).get(0);
-            assertEquals(todayPlans.getPlanName(), plan.getPlanName());
+            assertEquals(todayPlans.getPlanName(), Integer.toString(i) + plan.getPlanName());
             ArrayList<String> exercisePlans = todayPlans.getExercisePlans();
             assertEquals(exercisePlans.get(0), samplePlan.get(0));
             assertEquals(exercisePlans.get(1), samplePlan.get(1));
