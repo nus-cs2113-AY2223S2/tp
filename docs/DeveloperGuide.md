@@ -326,7 +326,7 @@ allowing them to take charge of their schedules and ensure that they have their 
 ## Glossary
 
 * *NUSPlanner* - The name of our application
-* *OS* - Operating System (ie Windows, Linux, AppleOS) of the computer
+* *OS* - Operating System (ie Windows, Linux, macOS) of the computer
 * *CLI* - Command Line Interface, the terminal of an OS
 * *Ui* - User Interface
 * *NUSMods* - NUSMods is a module manager and organiser tool used by NUS Students.
