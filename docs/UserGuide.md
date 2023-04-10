@@ -38,7 +38,7 @@ Some example commands you can try:
 
 * Items with `…`​ after them must minimally be used once, but can also be used multiple times, according to how the 
 feature is designed.<br>
-e.g. `[ARGUMENT]…​` can be used as  `ARGUMENT1`, `ARGUMENT1 ARGUMENT2` etc.
+e.g. `ARGUMENT…​` can be used as  `ARGUMENT1`, `ARGUMENT1 ARGUMENT2` etc.
 
 * All commands you enter are not case-sensitive. For instance, Help is equivalent to help.
 
