@@ -285,6 +285,14 @@ public class Storage {
         return deadline;
     }
 
+    private static void setTaskStatus(String taskStatus) {
+        boolean isTaskDone = taskStatus.equals("1");
+        if (isTaskDone) {
+            int taskNumber = TaskList.getNumberOfTasks();
+            TaskList.markTask(taskNumber, true);
+        }
+    }
+
     private void validatePetDataSep(String line) throws InvalidSeparatorException {
         int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
 
