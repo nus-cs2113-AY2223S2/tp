@@ -124,28 +124,50 @@ public class Ui {
         System.out.println("\t Here are your tasks today");
         for (Task task : tasks) {
             if (task instanceof Deadline) {
-                if (task instanceof RecurringDeadline) {
-                    if (((RecurringDeadline) task).getDay() == dayToday) {
-                        System.out.println(task);
-                    }
-                } else {
-                    if (((Deadline) task).getDeadline().startsWith(dateToday)) {
-                        System.out.println(task);
-                    }
-                }
+                listTodayDeadline(dayToday, dateToday, task);
             } else if (task instanceof Event) {
-                if (task instanceof RecurringEvent) {
-                    if (((RecurringEvent) task).getDay() == dayToday) {
-                        System.out.println(task);
-                    }
-                } else {
-                    if (((Event) task).getStart().startsWith(dateToday)) {
-                        System.out.println(task);
-                    }
-                }
+                listTodayEvent(dayToday, dateToday, task);
             }
         }
         borderLine();
+    }
+
+    /**
+     * checks if an event happens today and prints the task if yes
+     *
+     * @param dayToday the DayOfWeek today
+     * @param dateToday the date today
+     * @param task the task (event specifically) to be checked
+     */
+    private static void listTodayEvent(DayOfWeek dayToday, String dateToday, Task task) {
+        if (task instanceof RecurringEvent) {
+            if (((RecurringEvent) task).getDay() == dayToday) {
+                System.out.println(task);
+            }
+        } else {
+            if (((Event) task).getStart().startsWith(dateToday)) {
+                System.out.println(task);
+            }
+        }
+    }
+
+    /**
+     * checks if a deadline happens today and prints the task if yes
+     *
+     * @param dayToday the DayOfWeek today
+     * @param dateToday the date today
+     * @param task the task (deadline specifically) to be checked
+     */
+    private static void listTodayDeadline(DayOfWeek dayToday, String dateToday, Task task) {
+        if (task instanceof RecurringDeadline) {
+            if (((RecurringDeadline) task).getDay() == dayToday) {
+                System.out.println(task);
+            }
+        } else {
+            if (((Deadline) task).getDeadline().startsWith(dateToday)) {
+                System.out.println(task);
+            }
+        }
     }
 
     /**
