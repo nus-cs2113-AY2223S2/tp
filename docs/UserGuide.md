@@ -438,14 +438,14 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 👉 Each word is separated by only a **single whitespace**
 
 
-| Action                                      | Command                                                                                        |
-|---------------------------------------------|------------------------------------------------------------------------------------------------|
-| [Add Event](#adding-an-event)               | `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`       |
-| [Add Module](#adding-a-module)              | `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`                                               |
-| [Delete a single event](#deleting-an-event) | `delete –s 1`                                                                                  |
-| [Delete all events](#deleting-an-event)     | `delete -all`                                                                                  |
-| [List all events](#list-an-event)           | `list`                                                                                         |
-| [Edit event](#editing-an-event)             | `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` |
+| Action                                             | Command                                                                                        |
+|----------------------------------------------------|------------------------------------------------------------------------------------------------|
+| [Add Event](#adding-an-event-add)                  | `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W`       |
+| [Add Module](#adding-a-module-add)                 | `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`                                               |
+| [Delete a single event](#deleting-an-event-delete) | `delete –s 1`                                                                                  |
+| [Delete all events](#deleting-an-event-delete)     | `delete -all`                                                                                  |
+| [List all events](#list-an-event-list)             | `list`                                                                                         |
+| [Edit event](#editing-an-event-edit)               | `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` |
 
 <br>
 
