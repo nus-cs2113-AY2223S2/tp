@@ -23,7 +23,7 @@ public class IntegerExtractor extends ArgumentExtractor {
             throw new InvalidArgumentException("is empty");
         }
         if (!isNum(argument)) {
-            throw new InvalidArgumentException("is not a number");
+            throw new InvalidArgumentException("is not an integer");
         }
         try {
             this.extracted = Integer.parseInt(argument);
