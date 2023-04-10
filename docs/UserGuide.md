@@ -258,6 +258,6 @@ Output:
 | Track     | track                                                                                                    |
 | Examples  | examples [meal/exercise]                                                                                 |
 | Help      | help
-| Bye       | bye                                                                                                      |
+| Exit      | bye                                                                                                      |
 
 
