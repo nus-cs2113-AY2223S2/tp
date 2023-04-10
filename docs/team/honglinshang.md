@@ -24,6 +24,9 @@ My code contributions: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp
   - Includes Duke's commands (help, list, add tasks, mark/unmark tasks, delete tasks, find with keyword/date)
 - [Week Command](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/UserGuide.md#week---viewing-weekly-schedule)
 - Reorganisation
+
+<div style="page-break-after: always;"></div>
+
 #### Contributions to the DG
 - [Command Component](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/DeveloperGuide.md#command-component)
 - [Parser Component](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/DeveloperGuide.md#parser-component)  (Class diagram only)
@@ -35,4 +38,5 @@ My code contributions: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3Ahonglinshang+)
 - Created issues and assisted in maintaining issue tracker
 - Cleaned up most leftover warnings in project towards end of development
+- Edited tP Demo Video
 - Most instances of helping team members were done offline during our weekly meetings
