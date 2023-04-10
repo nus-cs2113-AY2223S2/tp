@@ -68,8 +68,15 @@
   * [Launch](#launch)
   * [Sample test cases](#sample-test-cases)
     * [Help command](#help-command)
-    * [Get reflection questions](#get-reflection-questions)
-    * [Add atomic habits](#add-atomic-habits)
+    * [Atomic habits feature](#atomic-habits-feature)
+      * [Add atomic habits](#add-atomic-habits)
+    * [Reflection feature](#reflection-feature)
+      * [Get reflection questions](#get-reflection-questions)
+      * [Favorite reflection questions](#favorite-reflection-questions)
+    * [Focus Timer feature](#focus-timer-feature)
+      * [Start Session](#start-session)
+    * [Gamification feature](#gamification-feature)
+      * [Gain XP and level up](#gain-xp-and-level-up)
   * [Saving data](#saving-data)
 <!-- TOC -->
 
