@@ -497,7 +497,7 @@ Expected: Error message for invalid recipe is shown.
 
 ### Command lists for testing  
 | Correct Command | Expected behaviour |
-| --------------- | ----------------- |
+| --------------- | ------------------ |
 | `add apple /qty 3` | Success message is printed, 3 apples added to ingredients list and `ingredients.txt` |
 | `remove ground chicken /qty 100` | Success message is printed, 100 grams of ground chicken removed from ingredients list and `ingredients.txt` |
 | `ingredients list` | All stored ingredients listed out |
