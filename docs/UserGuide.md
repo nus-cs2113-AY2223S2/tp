@@ -119,100 +119,150 @@ Format: `Matrix [Matrix] [operator] [Matrix]`
   ```
   [1,2;3,4]
   ```
-   * You should separate the elements with comma (,) in the single row.
-   * You should separate the rows with the semicolons.
+    * You should separate the elements with comma (,) in the single row.
+    * You should separate the rows with the semicolons.
 
   ```
   [1,2;3,4].T
   ```
-   * You can declare transposed matrix with the transpose annotation `.T`.
-   * Transposed matrix above is equal with matrix `[1,3;2,4]`.
+    * You can declare transposed matrix with the transpose annotation `.T`.
+    * Transposed matrix above is equal with matrix `[1,3;2,4]`.
+
+  > NOTE : The entities of matrix should be all integer.
+
+  > NOTE : The length of every rows in matrix should be the same with each other.
 
 * `[operator]` is the matrix operator. You can use 4 operators below:
-   * `.*` : matrix multiplication
-   * `*` : element wise product
-   * `+` : matrix addition
-   * `-` : matrix subtraction
+    * `.*` : matrix multiplication
+    * `*` : element wise product
+    * `+` : matrix addition
+    * `-` : matrix subtraction
 
-#### Examples for the matrix multiplication
+  > NOTE : Shape of the two operands should be properly matched with each other for the given operator.
+  > For the `.*` operator, the number of the columns of operand1 should be the same with the number of the rows of operand2.
+  > For the `*`, `+`, and `-` operators, the shape of the two operands should be identical.
 
-Input:
- ```
- Matrix [1,2;3,4] .* [4,5;6,7]
- ```
+#### You can see the right examples of the matrx calculation below:
+* Examples for the matrix multiplication
 
-Expected output:
- ```
- Result.
-     1. shape : 2 x 2
-     2. value : 
-         0) 16 19 
-         1) 36 43 
- ```
+  *Input* :
+  ```
+  Matrix [1,2;3,4] .* [4,5;6,7]
+  ```
 
-#### Examples for the matrix multiplication with transpose
+  *Output* :
+  ```
+  Result.
+      1. shape : 2 x 2
+      2. value : 
+          0) 16 19 
+          1) 36 43 
+  ```
+* Examples for the matrix multiplication with transpose
 
-Input:
- ```
- Matrix [1,2;3,4] .* [4,5;6,7].T
- ```
+  *Input* :
+  ```
+  Matrix [1,2;3,4] .* [4,5;6,7].T
+  ```
 
-output:
- ```
- Result.
-     1. shape : 2 x 2
-     2. value : 
-         0) 14 20 
-         1) 32 46 
- ```
+  *Output* :
+  ```
+  Result.
+      1. shape : 2 x 2
+      2. value : 
+          0) 14 20 
+          1) 32 46 
+  ```
+* Examples for the matrix element wise product
 
-#### Examples for the matrix element wise product
+  *Input* :
+  ```
+  Matrix [1,2;3,4] * [4,5;6,7]
+  ```
 
-Input:
- ```
- Matrix [1,2;3,4] * [4,5;6,7]
- ```
-
-output:
- ```
- Result.
+  *Output* :
+  ```
+  Result.
      1. shape : 2 x 2
      2. value : 
          0) 4 10 
          1) 18 28 
- ```
+  ```
+* Examples for the matrix addition
 
-#### Examples for the matrix addition
+  *Input* :
+  ```
+  Matrix [1,2;3,4] + [4,5;6,7]
+  ```
 
-Input:
- ```
- Matrix [1,2;3,4] + [4,5;6,7]
- ```
-
-output:
- ```
- Result.
+  *Output* :
+  ```
+  Result.
      1. shape : 2 x 2
      2. value : 
          0) 5 7 
          1) 9 11 
- ```
+  ```
+* Examples for the matrix subtraction
 
-#### Examples for the matrix subtraction
+  *Input* :
+  ```
+  Matrix [1,2;3,4] - [4,5;6,7]
+  ```
 
-Input:
- ```
- Matrix [1,2;3,4] - [4,5;6,7]
- ```
-
-output:
- ```
- Result.
+  *Output* :
+  ```
+  Result.
      1. shape : 2 x 2
      2. value : 
          0) -3 -3 
          1) -3 -3 
- ```
+  ```
+
+#### You can see the examples for common mistakes below:
+* Every entities of the matrix should be integer.
+
+  *Input* :
+  ```
+  Matrix [1,2;3,4] .* [4,5;6,a]
+  ```
+  ```
+  Matrix [1,2;3,4] .* [4,5;6,7.1]
+  ```
+
+  *Output* :
+  ```
+  <Exception occurs>
+  Every entities of matrix should be integer.
+  ```
+
+* Length of every rows should be the same with each other.
+
+  *Input* :
+  ```
+  Matrix [1,2;3,4,5] * [4,5;6,7]
+  ```
+
+  *Output* :
+  ```
+  <Exception occurs>
+  Length of every rows should be the same with each other.
+  ```
+
+* There is shape mismatch between t1 and t2 : cannot execute matrix calculation.
+
+  *Input* :
+  ```
+  Matrix [1,2;3,4] .* [1,2,3;3,4,5]
+  ```
+  ```
+  Matrix [1,2;3,4] + [1,2,3;3,4,5]
+  ```
+
+  *Output* :
+  ```
+  <Exception occurs>
+  There is shape mismatch between t1 and t2 : cannot execute matrix calculation.
 
 ### 3) Store Notes: `Store`
 * Adds a new item to the Notes list.
@@ -574,9 +624,9 @@ Goodbye!
 
 ## FAQ
 
-**Q**: How do I start and run BadMaths?
+**Q1**: How do I start and run BadMaths?
 
-**A**: 
+**A1**: 
 
 - Download the latest release of BadMaths [here](https://github.com/AY2223S2-CS2113-F10-2/tp/releases).
 - Save the java file to a new folder.
@@ -585,14 +635,14 @@ Goodbye!
 - Type `java -jar BadMaths.jar` to run BadMaths.
 - Follow the `User Guide` to begin testing.
 
-**Q**: How do I exit and leave BadMaths?
+**Q2**: How do I exit and leave BadMaths?
 
-**A**: You can terminate the MathHelp programme by simply typing
+**A2**: You can terminate the MathHelp programme by simply typing
 `Bye` in the command.
 
-**Q**: What should I do if the file is corrupted?
+**Q3**: What should I do if the file is corrupted?
 
-**A**:
+**A3**:
 
 - When BadMaths detects that the target file is corrupted, BadMaths will request whether you want to clear the file for 
 continual use by print the prompt message
@@ -605,6 +655,19 @@ Do you want to reset the file? (y/n)
 `10 seconds`. In such cases, please correct the file format manually before continuing to use BadMaths.
 - By typing `y` to empty the file, BadMaths will prompt you when the target file is successfully emptied, 
 and you will be able to continue using BadMaths by then.
+
+**Q4**: In the matrix calculation, can I declare matrix with 3D dimension or above?
+
+**A4**: No. Badmaths only supports 2D matrix in the calculation.
+
+**Q5**: In the matrix calculation, can I declare 1D matrix?
+
+**A5**: No. Badmaths only supports 2D matrix in the calculation. But you can treat 2D matrix with the single row as 1D matrix.
+If you declare matrix like `[1, 2, 3]`, the program would recognize it as 2D matrix with shape of `1 * 3`.
+
+**Q6**: In the matrix calculation, can I use multiple operators in single expression like `Matrix [1,2;3,4] + [1,2;3,4] + [1,2;3,4]`?
+
+**A6**: No. Only single operator should be contained in the single expression with two operands.
 
 ## Command Summary
 
@@ -690,3 +753,20 @@ Quadratic 2x^2 + x - 5
 ````
 Quadratic -x^2 - x + 2.5
 ````
+
+### Matrix
+```
+Matrix [1,2;3,4] .* [1,2;3,4]
+```
+```
+Matrix [1,2;3,4] .* [1,2;3,4].T
+```
+```
+Matrix [1,2;3,4] * [1,2;3,4]
+```
+```
+Matrix [1,2;3,4] + [1,2;3,4]
+```
+```
+Matrix [1,2;3,4] - [1,2;3,4]
+```

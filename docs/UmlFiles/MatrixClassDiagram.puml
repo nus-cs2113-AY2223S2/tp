@@ -1,0 +1,106 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!pragma layout smetana
+
+class Calculator {
+    + logger : Logger
+    + run()
+}
+
+class Parser {
+    + check : ExceptionChecker
+    + ep : ExceptionPrinter
+    + parse() : Tensor2D
+    + parseOp() : CalType
+    + parseMatrix() : Tensor2D
+}
+
+class Execute {
+    + execute() : Tensor2D
+    + executeMul() : Tensor2D
+    + executeAdd() : Tensor2D
+    + executeSub() : Tensor2D
+    + executeDot() : Tensor2D
+    + executeTranspose() : Tensor2D
+}
+
+class Calculate {
+    + check : ExceptionChecker
+    + ep : ExceptionPrinter
+    + logger : Logger
+    + mul() : Tensor2D
+    + add() : Tensor2D
+    + sub() : Tensor2D
+    + dot() : Tensor2D
+}
+
+class Tensor2D {
+    + tensor : int[][]
+    + shape : Shape
+    + shape() : Shape
+    + row() : int
+    + column() : int
+    + tensor() : int[][]
+    + get() : int
+    + t() : Tensor2D
+    + toString()
+}
+
+class Shape {
+    + row : int
+    + column : int
+    + getRow() : int
+    + getColumn() : int
+    + toString()
+}
+
+class ExceptionChecker{
+    + checkShapeMismatch()
+    + checkUnknownOperator()
+    + checkMatrixFormat()
+}
+
+class ExceptionPrinter{
+    + printShapeMismatchExceptionLog()
+    + printUnknownOperatorExceptionLog()
+    + printMatrixShapeExceptionLog()
+    + printMatrixFormatExceptionLog()
+    + printMatrixNumericExceptionLog()
+}
+
+class Ui{
+    + printResult()
+}
+
+class MatrixFormatException
+class MatrixShapeException
+class ShapeMismatchException
+class UnknownOperatorException
+
+abstract Tensor {
+    + shape()
+    + toString()
+}
+
+Ui <-- "print 0..1"Calculator
+Parser <-- "parser 0..1"Calculator
+Execute <-- "execute 0..1"Parser
+Parser <.. Execute
+Tensor2D <-- "2D tensor 1..*"Parser
+Tensor2D "2D tensor 1..*"<-- Execute
+Tensor2D "2D tensor 1..*"<.. Calculate
+Calculate "calculate 0..1"<-- Execute
+Tensor2D "2D tensor 1..*"<-- Tensor2D
+Shape "shape 1"<-- Tensor2D
+Tensor2D <|-- Tensor
+ExceptionChecker "0..1"<-- Parser
+ExceptionChecker "0..1"<-- Calculate
+ExceptionPrinter "0..1"<-- Parser
+ExceptionPrinter "0..1"<-- Calculate
+MatrixFormatException "exception 0..1"<..ExceptionChecker
+MatrixShapeException "exception 0..1"<..ExceptionChecker
+ShapeMismatchException "exception 0..1"<..ExceptionChecker
+UnknownOperatorException "exception 0..1"<..ExceptionChecker
+
+@enduml
