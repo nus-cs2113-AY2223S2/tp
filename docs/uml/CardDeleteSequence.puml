@@ -1,0 +1,55 @@
+@startuml CardDeleteSequence
+
+autoactivate on
+
+participant ":DeleteCardCommand" as DeleteCardCommand
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Card" as Card
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+Create CardSelector
+CardKeywordParser -> CardSelector : create cardSelector to identify card
+return cardSelector
+
+Create DeleteCardCommand
+CardKeywordParser -> DeleteCardCommand : DeleteCardCommand(cardSelector)
+
+DeleteCardCommand -> DeleteCardCommand : execute()
+DeleteCardCommand -> CardList : findCard()
+
+alt index is specified in cardSelector
+CardList -> CardSelector : getIndex()
+return cardIndex
+else uuid is specified in cardSelector
+CardList -> CardSelector : getUUID()
+return cardUUID
+end
+return cardToDelete
+
+DeleteCardCommand -> Card : getTagsUUID()
+return tagsUUID
+DeleteCardCommand -> Card : getDecksUUID()
+return decksUUID
+
+DeleteCardCommand -> DeleteCardCommand : cardRemovalFromDeck()
+DeleteCardCommand -> DeckList : find deck from decksUUID and delete cardToDelete from it
+return
+return
+
+DeleteCardCommand -> DeleteCardCommand : cardRemovalFromTag()
+DeleteCardCommand -> TagList : find tag from tagsUUID and delete cardToDelete from it
+return
+return
+
+DeleteCardCommand -> CardList : delete cardToDelete
+return
+
+DeleteCardCommand -> UserInterface : print success message and number of cards left
+return
+
+return
+@enduml
