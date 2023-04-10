@@ -9,7 +9,6 @@
    - [Contributions to DG](#contributions-to-the-dg)
    - [Contributions to UG](#contributions-to-the-ug)
    - [Contribution to team-tasks](#contribution-to-team-tasks)
-   - [Contributions beyond the project team](#contributions-beyond-the-project-team)
 
 ## Overview
 
@@ -73,10 +72,6 @@ I also added UML diagram that represents the Budget Class and its dependencies.
 I led discussion on how the Entry package will be implemented in our program, from the super/sub class relationships and the data structure to store the information. 
 
 I have initiated team meetings and proposed features to be implemented in each iterations. 
-
----
-
-### Contributions beyond the project team
 
 I have set up the github repository for our team, and managed the development goals of each iterations. 
 
