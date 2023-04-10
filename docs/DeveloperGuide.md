@@ -22,6 +22,9 @@
    - [Wishlist (COMING SOON)](#wishlist-coming-soon)
    - [Spending Advisor (COMING SOON)](#spending-advisor-coming-soon)
 4. [Appendix: Requirements](#appendix-requirements)
+   - [Product Scope](#product-scope)
+   - [User Stories](#user-stories)
+   - [Use cases](#use-cases)
 5. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 ---
