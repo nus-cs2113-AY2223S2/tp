@@ -26,7 +26,7 @@ Line Interface (CLI).
 * Add 3 different types of tasks : todos, deadlines, events
 * Mark them as done or not done
 * Search for tasks by keyword
-* Filter tasks chronologically
+* See tasks chronologically and by type
 * Find tasks by date
 * See list of tasks
 * Delete tasks
@@ -37,7 +37,7 @@ Line Interface (CLI).
 * Know how many Modular Credits (MCs) they are taking for the semester
 * See the list of modules they are taking
 * Remove modules
-* Be warned about clashing classes
+* Be warned about clashing classes, events and deadlines
 
 #### Timetable
 
@@ -50,7 +50,7 @@ Prerequisites: java 11 (use the exact version)
 1. Download the jar file from the releases below
 2. Copy the jar file into an empty folder
 3. Open a command window in that folder
-4. Run the command `java -jar {filename}.jar` e.g `java -jar tp.jar`.
+4. Run the command `java -jar {filename}.jar` e.g `java -jar Apollo.jar`.
 
 If the set-up is correct you should see something like this below
 
@@ -80,5 +80,4 @@ ____________________________________________________________
 * [About Us](AboutUs.md)
 
 ## Releases:
-
-* [v1.0](https://github.com/AY2223S2-CS2113-T13-4/tp/releases/tag/v1.0)
+Download the latest jar file (v2.1) from [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases)
