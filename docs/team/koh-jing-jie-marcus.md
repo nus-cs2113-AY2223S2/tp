@@ -1,6 +1,5 @@
 # Koh Jing Jie Marcus - Project Portfolio Page
 
-## Overview
 ## Project: [LifeTracker](https://github.com/AY2223S2-CS2113-W15-1/tp)
 Our project, LifeTracker, is a calorie tracker CLI program. It allows the user to record down their daily net calorie gain, where the user can input the meals
 he has consumed as well as the exercises that he has done.
