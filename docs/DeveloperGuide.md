@@ -29,6 +29,8 @@
   * [Non-Functional Requirements](#non-functional-requirements)
 <!-- TOC -->
 
+<div style="page-break-after: always;"></div>
+
 ## Acknowledgements
 
 List here sources of all reused/adapted ideas, code, documentation, and third-party libraries
@@ -39,9 +41,6 @@ with links to the original sources included.
 * [Requesting and Parsing of data from API into Java](https://www.youtube.com/watch?v=lDEfoSwyYFg)
 * [Gson Type Adaptor](https://www.youtube.com/watch?v=Gf-Hx-Q0rOs)
 
-## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ## Design
 
@@ -55,6 +54,8 @@ Our overall project design is split into 5 components, `command`, `common`,`data
 - `parser`: Reads data from the user input and parses it into an 'executable' command.
 - `common`: Holds mainly static data that is used by multiple components.
 - `storage`: Handles the reading and storing of our data.
+
+<div style="page-break-after: always;"></div>
 
 ## Account Implementation
 
@@ -182,7 +183,9 @@ before logged in or after logged out.
 
   Given below is an example usage of the feature. //TODO: img
 
-## Implementation
+<div style="page-break-after: always;"></div>
+
+## Feature Implementation
 
 ### 'List' Feature
 
@@ -409,6 +412,7 @@ list that store the account data inside the 'account process'.
 
 - `Storage#saveExpenses(filePath)` -- Save the expense list to the json file with given file path.
 
+<div style="page-break-after: always;"></div>
 
 ## Product scope
 
@@ -425,6 +429,8 @@ list that store the account data inside the 'account process'.
 
 - Our expense tracker is a simple program that allows users to track their expenses
 - With simple commands and ease of use, users are able to use our tracker with little to no experience.
+
+<div style="page-break-after: always;"></div>
 
 ## User Stories
 
@@ -447,8 +453,6 @@ list that store the account data inside the 'account process'.
 |   v2.1    |        user         |  save my expense easily in case I close the program unintentionally  |                          be sure that I haven't lost my expenses.                          | 
 
 ## Non-Functional Requirements
-
-{Give non-functional requirements}
 
 * Expense tracker should function with or without an internet connection.
 * Expense tracker should work even on days where the forex market is closed
