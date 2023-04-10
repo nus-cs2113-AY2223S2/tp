@@ -82,7 +82,7 @@ Expected outcome:
 
 
 
-**Confliction Checking: ** 
+**Confliction Checking:** 
 
 - NUSPlanner will only check for conflicts between events and classes that have **starting date & time and ending date & time, within the time period of selected semester.**
 - Users need to check themselves whether the events will clash with each other during vacation periods.
@@ -100,7 +100,7 @@ Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * Add a tutorial of module: `add -m CS2100 -n 11 -l TUT`
 
 #### How to find the correct `MODULECODE`, `CLASSNUMBER` and `LESSONTYPE`?
-* Head over to [NUSMods](www.nusmods.com)
+* Head over to [NUSMods](https://nusmods.com/timetable/sem-2)
 * Find the class and slot that you want
 * For example, user wants to take these 3 slots:
 
@@ -144,7 +144,7 @@ events should you need to have them.
 > **GOOD** example: `add -m CS2100 -n 02 -l TUT` or `add -m AC5001 -l LEC -n 1`
 > 
 > 
-> For `LESSONTYPE` field, only `lecture / tutorial / laboratory` or any of the fields specified in the table above are accepted
+> For `LESSONTYPE` field, only inputs specified in the table above are accepted
 
 Expected outcome:
 ~~~
