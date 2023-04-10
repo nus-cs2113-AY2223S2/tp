@@ -107,7 +107,7 @@ public class UpdateUserCommand extends Command {
     public String updateName() throws LifeTrackerException{
         String nameString = updatedInfo;
         Pattern p = Pattern.compile("[^a-zA-Z_]");
-        String replaced = nameString.replace("_", " ");
+        String replaced = nameString.replaceAll("_+", " ");
         boolean hasSpecialChar = p.matcher(nameString).find();
         if (hasSpecialChar || replaced.isBlank()) {
             throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
