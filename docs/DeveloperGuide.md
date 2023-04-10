@@ -297,6 +297,9 @@ View Command object.
 
 ![ViewCommandSequenceDiagram.png](static/frontend/commands/ViewCommandOverallSequenceDiagram.png)
 
+More elaboration about the reference frame [Endpoint /entries - Handle GET] can be found 
+[here](#Get-recent-or-all-entries).
+
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
 
 **Step 2.** The various filters such as price and dateTime are extracted from the argument String and fed into the
