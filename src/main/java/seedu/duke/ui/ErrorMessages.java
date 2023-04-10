@@ -1,7 +1,6 @@
 package seedu.duke.ui;
 
 //@@author ChubbsBunns
-
 /**
  * Provides enum variables for storing custom program error messages.
  */

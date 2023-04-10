@@ -37,7 +37,7 @@ public class AchievementListHandler extends TextDataUtility {
 
     public void loadAchievementsFromFile() {
         File achievementTextFile = new File(ACHIEVEMENT_LIST_FILE_LOCATION);
-        super.checkForListData(achievementTextFile);
+        super.checkForAchievementListData(achievementTextFile);
         try {
             pushDataToAchievementList(achievementList, achievementTextFile);
         } catch (DukeError e) {

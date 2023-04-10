@@ -95,6 +95,16 @@ Stand with your feet slightly wider than shoulder width apart and toes pointing 
 
 ________________________________________
 ```
+
+
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> Do note that some exercises may not come with instructions due to their self-explanatory nature. </p>
+</div>
+
+
 **These exercises can be enhanced and filtered using our filter parameters (Please see below)**
 ## View filters used in generating workouts: ```filters```
 
@@ -142,15 +152,6 @@ e.g. Do not put in both easy and medium in the same generate function, as no exe
 </div>
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
-
-
-<div class="alert alert-warning">
-   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
-   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
-   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
-   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> Do note that some exercises may not come with instructions due to their self-explanatory nature. </p>
-</div>
-
 
 Examples:
 
@@ -516,7 +517,7 @@ ________________________________________
       Justification: The data command is meant to store a user's completed exercise history, hence it should be updated. <br>
       <br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
       achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
-      from the feature's <purpose></purpose>
+      from the feature's purpose
    </p>
 </div>
 
