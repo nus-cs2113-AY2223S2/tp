@@ -739,7 +739,7 @@ Sample output :
 
 **A**: You do so by following these steps:
 
-1. Export the deck as a Json file using the command "export"
+1. Export the deck as a Json file using the command "export". It may take a moment for the file to be written, so please wait, or try refreshing your file explorer!
 2. Navigate to the directory of your Inka installation.
 3. The file will be named savedata.json. Copy this file.
 4. Paste this file in the Inka's directory in the new computer
