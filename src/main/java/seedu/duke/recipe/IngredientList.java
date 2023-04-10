@@ -77,7 +77,11 @@ public class IngredientList {
         assert (currIngredientNumber == list.size());
     }
     public void showList() {
-        System.out.println("There are " + currIngredientNumber + " ingredients in the list:");
+        if(currIngredientNumber == 1){
+            System.out.println("There is " + currIngredientNumber + " ingredient in the list:");
+        } else {
+            System.out.println("There are " + currIngredientNumber + " ingredients in the list:");
+        }  
         for (int i = 0; i < currIngredientNumber; i++) {
             System.out.println((i + 1) + ". " + list.get(i).getName());
         }
