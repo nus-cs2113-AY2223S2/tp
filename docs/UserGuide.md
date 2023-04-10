@@ -362,7 +362,7 @@ Do you want to view step-by-step?
 Type "yes" if so
 yes
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. chop beef
 
 2. add potatoes
@@ -392,7 +392,7 @@ Do you want to view step-by-step?
 Type "yes" if so
 yes
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. chop beef
 
 2. add potatoes
