@@ -14,11 +14,11 @@ public final class MessageConstants {
 
     // Command Messages
     public static final String MESSAGE_EXIT = "Bye. See you again :)" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_ADDED = "The following expenditure has been added:" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_DELETED = "The following expenditure has been deleted:" + NEWLINE;
-    public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_ADDED = "The following entry has been added:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_DELETED = "The following entry has been deleted:" + NEWLINE;
+    public static final String MESSAGE_ENTRY_EDITED = "The following entry has been updated:" + NEWLINE;
     public static final String MESSAGE_NO_ENTRIES = "There are no entries available." + NEWLINE;
-    public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current expenditure." + NEWLINE
+    public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current account." + NEWLINE
             + "Usage: /add -d <description> -c <category> -p <price>" + NEWLINE
             + "Options:" + NEWLINE
             + "-d <description>" + NEWLINE
@@ -108,7 +108,8 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_ID = "Please specify a valid integer from 1 to 2147483647!";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
             + "1. Value should be between 0.01 and 999999999.99" + NEWLINE
-            + "2. All non-zero integers in \"amount\" field mustn't exceed the second decimal point (20.40, 2023.0000)";
+            + "2. All non-zero integers specified after the -p option mustn't exceed the second decimal " +
+            "point (20.40, 2023.0000)";
     public static final String MESSAGE_INVALID_AMOUNT_RANGE = "Please specify a valid range!" + NEWLINE
             + "Values should be between 0 and 1000000000";
     public static final String MESSAGE_UNKNOWN_OPTION = "Unknown option: ";
@@ -120,8 +121,11 @@ public final class MessageConstants {
             "edit!";
     public static final String MESSAGE_MISSING_ID_DELETE = "Please specify the ID of the item you would like to " +
             "delete!";
-    public static final String MESSAGE_INVALID_DATE = "Please specify date in dd/MM/yy format" +
-            " and make sure the date exists!";
+    public static final String MESSAGE_INVALID_DATE =
+            "Please specify date in dd/MM/yyyy format!" + System.lineSeparator()
+                    + "dd - Day of month, from 01 - 31" + System.lineSeparator()
+                    + "MM - Month of the year, from 01 - 12" + System.lineSeparator()
+                    + "yyyy - Supported year, from 0001 - 9999";
     public static final String MESSAGE_MIXED_DATE = "Start date should not be after end date!";
     public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
     public static final String MESSAGE_INVALID_DATE_READ = "Date format not recognised.";

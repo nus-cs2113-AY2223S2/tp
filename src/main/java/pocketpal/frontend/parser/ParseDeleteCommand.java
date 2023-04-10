@@ -11,17 +11,17 @@ import java.util.logging.Logger;
 
 
 public class ParseDeleteCommand extends ParseCommand {
-    Integer[] expenseIds;
+    Integer[] entryIds;
     private Logger logger = Logger.getLogger(ParseDeleteCommand.class.getName());
 
     /**
      * Returns an DeleteCommand object to be executed by the backend. The
-     * DeleteCommand takes in an integer index of the expense to be deleted.
+     * DeleteCommand takes in an integer index of the entry to be deleted.
      *
      * @param input User input after the delete command.
      * @return Command DeleteCommand object to be executed.
-     * @throws InvalidArgumentsException If entered expense ID does not exist.
-     * @throws MissingArgumentsException If required expense ID is not entered.
+     * @throws InvalidArgumentsException If entered entry ID does not exist.
+     * @throws MissingArgumentsException If required entry ID is not entered.
      * @throws UnknownOptionException    If an unknown option is used.
      */
     @Override
@@ -33,13 +33,13 @@ public class ParseDeleteCommand extends ParseCommand {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ID_DELETE);
         }
         String[] argumentsArray = input.trim().split(" ");
-        expenseIds = new Integer[argumentsArray.length];
+        entryIds = new Integer[argumentsArray.length];
         for (int i = 0; i < argumentsArray.length; i++) {
-            String expenseId = argumentsArray[i];
-            checkIdValidity(expenseId);
-            expenseIds[i] = Integer.parseInt(expenseId);
+            String entryId = argumentsArray[i];
+            checkIdValidity(entryId);
+            entryIds[i] = Integer.parseInt(entryId);
         }
         logger.exiting(ParseDeleteCommand.class.getName(), "parseArguments()");
-        return new DeleteCommand(expenseIds);
+        return new DeleteCommand(entryIds);
     }
 }

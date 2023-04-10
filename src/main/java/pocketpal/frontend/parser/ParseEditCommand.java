@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 
 public class ParseEditCommand extends ParseCommand {
-    String expenseId;
+    String entryId;
     String description;
     String price;
     String category;
@@ -22,7 +22,7 @@ public class ParseEditCommand extends ParseCommand {
 
     /**
      * Returns an EditCommand object to be executed by the backend. The object
-     * contains the new data to be updated for the specified expense. If the new
+     * contains the new data to be updated for the specified entry. If the new
      * data is in incorrect format, error is raised to the user.
      *
      * @param input User input after edit command.
@@ -37,22 +37,22 @@ public class ParseEditCommand extends ParseCommand {
             MissingArgumentsException, UnknownOptionException {
         logger.entering(ParseEditCommand.class.getName(), "parseArguments()");
         checkUnknownOptionExistence(input.trim(), ParserConstants.EDIT_OPTIONS);
-        expenseId = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
+        entryId = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
         price = extractDetail(input, ParserConstants.PRICE_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);
-        checkIdValidity(expenseId);
+        checkIdValidity(entryId);
         checkDescriptionValidity(description);
         checkPriceValidity(price);
         checkCategoryValidity(category);
-        if (expenseId == null || expenseId.isEmpty()) {
+        if (entryId == null || entryId.isEmpty()) {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ID_EDIT);
         }
         if (description == null && price == null && category == null) {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_OPTION_EDIT);
         }
         logger.exiting(ParseEditCommand.class.getName(), "parseArguments()");
-        return new EditCommand(expenseId, description, category, price);
+        return new EditCommand(entryId, description, category, price);
     }
 
 }
