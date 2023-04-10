@@ -49,7 +49,7 @@ critical to the app's function. We hope that this document will serve you well i
 
 ## 1.2 Getting started
 
-Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UserGuide.md).
+Refer to the user guide [here](https://matthew-liu-zhenjie.github.io/tp/UserGuide.html).
 <br>
 
 [Back to contents page](#table-of-contents)
@@ -187,8 +187,6 @@ When any component requires reading the NUS module files, the loadModules() is c
 
 Similarly, the state of the user's event list is saved when the user exits the application by calling saveToFile().
 
-
-<p style="page-break-after: always;">&nbsp;</p>
 
 ### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
