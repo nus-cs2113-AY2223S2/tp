@@ -1,22 +1,24 @@
 [LinusPortfolio.md](linuspuah.md) # portfolio
 
-# Linus Puah Jia He - Project Portfolio Page
 
-## Overview
-
-### Summary of Contributions
+# <span style="color:#00C34C">Linus Puah Jia He - Project Portfolio Page</span>
+## <span style="color:#00A36C">Overview</span>
+BagPacker is a desktop Command Line Interface (CLI) application used to manage a user's packing list.
+It stores a packing list, edit the quantities packed and the total quantity packed of an item, and searches the packing list for items.
+It is written in Java, and has about 4k LoC.
 
 ---
+## <span style="color:#00A36C">Summary of Contributions</span>
 
-##### Code contributed
+
+### <span style="color:darkGreen">Code Contributed</span>
 2266 LOC contributed ([tP Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linuspuah&tabRepo=AY2223S2-CS2113-T14-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
-   - 71 lines documentation
-   - 483 function-code
-   - 534 test-code
+   - 628 lines documentation
+   - 868 function-code
+   - 770 test-code
 
 ---
-
-##### Enhancements implemented
+### <span style="color:darkGreen">Enhancements implemented</span>
 1. Added `ioHandler` package
    - Reading in from CLI in `Parser` class ([#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
    - Printing out to CLI in `Ui` class ([#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
@@ -33,23 +35,22 @@
    - `listunpacked` ([#151](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/151))
    - `deletelist` ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
 7. Add JavaDocs ([#163](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/163/commits))
----
 
-##### Contributions to the [UG](../UserGuide.md)
+---
+### <span style="color:darkGreen">Contributions to the [UG](../UserGuide.md)</span>
 1. Update UG to include max integer supported by BagPacker ([#154](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/154))
 ---
-##### Contribution to the [DG](../DeveloperGuide.md)
+### <span style="color:darkGreen">Contribution to the [DG](../DeveloperGuide.md)</span>
 1. Update User Stories ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits))
 2. Add explanation of overall command mechanism for the whole application ([#44](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/44/commits)) 
 3. Add explanation for Exceptions ([#179](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/179/files#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b))
 4. Add explanation for Parser Class ([#184](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/184/files))
-4. Add explanation and [sequence diagram](#contributions-to-the-developer-guide--extracts--) for feature of
+5. Add explanation and [sequence diagram](#contributions-to-the-developer-guide--extracts--) for feature of
 - adding repeated items in `AddCommand` ([#138](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/138),[#158](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/158/commits/6d154b8464ba4d57e8d19a958e8be0b554e73cd6#diff-60cb84c47c48c2d69d1f587d9c9ed3af7d99acf2c3b11cd94c8d86eb532e32e2))
 - `runBagPacker()` overall Sequence Diagram ([#176](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/176/commits/0ae5782514e02b5c755b689550d1c595449d1128))
-
-
 ---
-##### Contributions to team-based tasks
+### <span style="color:darkGreen">Contributions to team-based tasks</span>
+
 Plan and create the framework for BagPacker application
 - `exception`, `iohandler`, `packingfunc` and the relevant j-unit test packages ([#7](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/7/files), [#8](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/8/commits))
 
@@ -61,18 +62,13 @@ Issues tracking IC
 Managed internal deadlines for group tasking
 
 ---
-##### Review/mentoring contributions
+### <span style="color:darkGreen">Review/mentoring contributions</span>
 - Maintain code standard before merging ([#139](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/139))
 - Suggest improvements to code ([#22](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22))
 ---
-##### Contributions beyond the project team
-
----
-
-##### Contributions to the Developer Guide (Extracts):
+### <span style="color:darkGreen">Contributions to the Developer Guide (Extracts):</span>
 ![AddExistingItemDiagram.png](..%2Fdiagrams%2FAddExistingItemDiagram.png)![BagPackerClassDiagram.png](..%2Fdiagrams%2FBagPackerClassDiagram.png)![BagPackerSequenceDiagram.png](..%2Fdiagrams%2FBagPackerSequenceDiagram.png)
 ![ExceptionClassDiagram.png](..%2Fdiagrams%2FExceptionClassDiagram.png)![ExecutePackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecutePackCommandSequenceDiagram.png)![ExecuteUnpackCommandSequenceDiagram.png](..%2Fdiagrams%2FExecuteUnpackCommandSequenceDiagram.png)
 ---
 
-##### Contributions to the User Guide (Extracts):
 

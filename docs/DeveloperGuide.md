@@ -1,6 +1,6 @@
 [DeveloperGuide.md](DeveloperGuide.md)
 # Developer Guide
-## Table of Contents
+## <span style="color:#00A36C">Table of contents</span>
 * **Acknowledgements**
 * **Setting up, getting started**
 * **Design**
@@ -56,7 +56,7 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 Refer to the [UserGuide.md](UserGuide.md) for more details
 
 ---
-## Design
+## <span style="color:#00A36C">Design</span>
 ##### Architecture
 ![BagPackerClassDiagram.png](diagrams%2FBagPackerClassDiagram.png)
 ![ExceptionClassDiagram.png](diagrams%2FExceptionClassDiagram.png)
@@ -483,11 +483,10 @@ Each `item` is returned to `load()` and added to the packingList.
 
 
 ---
+## <span style="color:#00A36C">Documentation, logging, testing, configuration, dev-ops</span>
 
-## Documentation, logging, testing, configuration, dev-ops
-
-
-### Appendix: Requirements
+---
+## <span style="color:#00A36C">Appendix: Requirements</span>
 #### Product scope
 
 **Target user profile**
