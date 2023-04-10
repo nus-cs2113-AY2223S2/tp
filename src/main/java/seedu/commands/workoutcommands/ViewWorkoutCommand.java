@@ -39,8 +39,8 @@ public class ViewWorkoutCommand extends Command {
      */
     @Override
     public String execute() throws InvalidArgumentException {
-        if (workoutToViewIndex >= workoutList.getWorkouts().size()) {
-            throw new InvalidArgumentException("Index cannot be more than " + workoutList.getWorkouts().size());
+        if (workoutToViewIndex >= workoutList.getWorkouts().size() || workoutToViewIndex==-1) {
+            throw new InvalidArgumentException("index, indexes range from 1 to " + workoutList.getWorkouts().size());
         }
         Workout toView = workoutList.getWorkout(workoutToViewIndex);
         return toView.toString();

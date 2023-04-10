@@ -33,9 +33,10 @@ public class DeleteWorkoutCommand extends Command {
     //@@author calebcjl
     @Override
     public String execute() throws InvalidArgumentException {
-        if (workoutToDeleteIndex >= workoutList.getWorkouts().size()) {
-            throw new InvalidArgumentException("index");
+        if (workoutToDeleteIndex==-1 || workoutToDeleteIndex >= workoutList.getWorkouts().size()) {
+            throw new InvalidArgumentException("index, indexes range from 1 to " + workoutList.getWorkouts().size());
         }
+
         String workoutName = workoutList.getWorkout(workoutToDeleteIndex).getWorkoutName();
         Date workoutDate = workoutList.getWorkout(workoutToDeleteIndex).getDate();
         workoutList.deleteWorkout(workoutToDeleteIndex);
