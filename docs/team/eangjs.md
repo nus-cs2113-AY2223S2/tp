@@ -2,7 +2,6 @@
 layout: page
 title: Eugene's Project Portfolio Page
 ---
-
 # Eugene - Project Portfolio Page
 
 ## Overview
@@ -44,29 +43,32 @@ Tests the saving and reading of data to and from the local hard disk and checks 
 * Wrote JUnit tests for generating exercises from resources file ```GenerateExerciseTest.java```.
 * Fixed certain bugs causing the program to crash or inefficient methods. Such as removing random next index in 
   while loop to generate a random exercise and bugs causing null pointer exceptions.
+* Help source and organise data for exercises and ippt scores
 
 ### Contributions to the DG
-* Wrote the plantUML file for the Storage API sequence and class diagrams
 * Wrote the section on the ```Storage.java API``` in the DG that explains the key aspects on how our storage 
-  mechanism works.
+  mechanism works (includeing the UML diagrams). 
 * Add descriptions to the value proposition of our project.
-* Add some user stories.
+* Add user stories.
 
 ### Contributions to the UG
 * Contributed to the Getting Started portion of the UG
 * Helped to develop the skeleton of the UG
-* Contributed to the explanations of the usage of certain commands.
+* Contributed to the explanations of the usage of certain commands i.e. Generate and IPPT.
 
-### Contributions to the team tasks
-* Helped review PRs and made comments to them throughout the project
-* Helped maintain the issue tracker
-  - Close issues that have been completed
-  - Link issues with pull request
-  - Add new issues and elaborated on it
-  - Tagged issues with their appropriate tags
-* Developed the ```_layouts/default.html```
-  - Add bootstrap features
-  - Night light mode toggle
-  - Custom theming
+### Contributions to team tasks
 * Release management
   - Made releases for V1.0, V2.0 of FitnessDuke
+* Necessary code enhancements (i.e. formatting)
+* Helped maintain the issue tracker
+  - Add and close issues that have been completed
+  - Tagged issues with their appropriate tags
+
+### Review/mentoring contributions
+* Helped review PRs and made comments to them throughout the project
+* Helped debug code and issues faced by team members
+
+### Contributions beyond the project team:
+* Developed the ```_layouts/default.html```
+  - Add theming with bootstrap
+  - Night light mode toggle
