@@ -196,6 +196,8 @@ edit 2 d/2023-02-15 a/20.00 p/Eat Food
 
 Edited! Here is the updated list:
 
+The list is printed subsequent to the command but is omitted as different users will have different expenditures
+
 ```
 
 ### 4.4. Editing a Lend/Borrow record
@@ -225,16 +227,18 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 
 **Examples:**
 
-- `edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
+- `edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
 Editing an expenditure
 
 ```
-edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
+edit 3 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113
 
 Edited! Here is the updated list:
+
+The list is printed subsequent to the command but is omitted as different users will have different expenditures
 
 ```
 
