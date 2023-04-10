@@ -10,7 +10,6 @@ import command.CommandSort;
 import command.CommandHelp;
 import command.CommandFind;
 
-import common.MessageList;
 import common.WelcomeMessage;
 import command.overview.CommandOverview;
 
