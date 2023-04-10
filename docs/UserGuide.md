@@ -87,7 +87,7 @@ This guide uses **three different colored blocks** and **associated icons** to i
     * [Item Features](#item-features)
     * [Order Features](#order-features)
     * [Statistics and Report](#statistics-and-report)
-* [Frequently Asked Questions](#Frequently-Asked-Questions)
+* [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
 <!---
