@@ -1,5 +1,31 @@
 # Developer Guide
 
+## Table of Contents
+1. [Acknowledgements](#acknowledgements)
+
+2. [Design & Implementation](#design--implementation)
+   
+    * [Main overview of the system](#main-overview-of-the-system-)
+    * [Event Class](#event-class)
+    * [Ui](#ui)
+    * [Storage](#storage)
+    * [Parser](#parser)
+    * [Command](#command)
+    * [Features](#features)
+      * [Duplication checker feature](#duplication-checker-feature)
+      * [Add feature](#add-feature)
+      * [Delete feature](#delete-feature)
+      * [List companies feature](#list-companies-feature)
+      * [Store/Load Company information to/from text file feature](#storeload-company-information-tofrom-text-file-feature)
+      * [Storing event details feature](#storing-event-details-feature)
+3. [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+4. [User Stories](#user-stories)
+5. [Non-Functional Requirements](#non-functional-requirements)
+6. [Glossary](#glossary)
+7. [Instructions for manual testing](#instructions-for-manual-testing)
+
 ## Acknowledgements
 
 The CS2113 Team (Professor Akshay <3) for the guidance and teaching us concepts of Software Engineering and OOP
@@ -166,7 +192,7 @@ The Company object is then printed out with
 an integer denoting its index, and four parameters, <code>companyName</code>, <code>industry</code>,
 <code>contactNumber</code>, and <code>contactEmail </code>, and its confirmation status.
 
-####  Store/Load Company information to text file feature
+####  Store/Load Company information to/from text file feature
 The Storing company list feature will allow the user to save the information of companies to disk. A text file will be
 created to store all the company information the user wishes to save. This text file will be overwritten everytime the
 user makes changes to the stored information. 
@@ -245,4 +271,4 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 1. To load sample company data, run <code>load samples</code> to load some companies into company list
 2. Type <code>help</code> for more information on the commands
-2. To reset the company list and purge all company list data, run <code>purge</code>
+3. To reset the company list and purge all company list data, run <code>purge</code>
