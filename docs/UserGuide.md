@@ -264,7 +264,8 @@ __________________________________________________________
 
 <h2 id="deleting-elements-from-recipe"> Deleting an element from a recipe: <code class="language-plaintext highlighter-rouge">deletefromrecipe</code></h2>
 
-Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+Deletes either a step or an ingredient from a particular recipe in the recipe list.<br> 
+As shown in the format the flag for `--[s/i]` can be used interchangeably, `s` to delete a step and `i` to delete an ingredient.<br>
 **Format**: `deletefromrecipe --[s/i] id/[index]`<br>
 **Examples**:<br>
 ```
