@@ -120,7 +120,7 @@ to the user.
 <summary>Sequence Diagram for solving Quadratic Equations</summary>
 <div markdown="1">
 
-![img_3.png](SequenceDiagrams/img_3.png)
+![img.png](SequenceDiagrams/Quadratic.png)
 
 </div>
 </details>
