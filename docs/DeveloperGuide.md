@@ -301,6 +301,9 @@ The `runBagPacker()` method will continually parse and execute relevant commands
 
 `IncorrectCommand` is a special type command that is returned by `Parser.parse()` when an exception is thrown by one of the methods in `Parse`. 
 These exceptions are thrown when an error is detected in the user's input, consist of many types, such as a blank input, incorrect command format, or a missing parameter. See [Exceptions](#exceptions).
+Depending on the error, `IncorrectCommand` will be constructed with an `errorType` and `helpMessage`.
+
+Mechanism: `IncorrectCommand.execute()` will print the relevant error message to the user by calling `Ui.errorMessage`.
 
 ---
 
@@ -366,6 +369,43 @@ Caught by:
 all createCommandObj methods except for commands without input variables (i.e. excluding `help`, `list`, `bye`, `deletelist` and `listunpacked` commands)
 
 ---
+
+### IOHandler
+The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+while managing the storage and retrieval of the associated `item`s in the user's `packingList`.
+
+---
+#### Parser
+
+
+---
+#### Storage
+The `Storage` class consists of two main methods: `save()` and `load()`.
+The constructor of this class, which is called in `BagPacker`, will set the `file_path` of storage, which is default at "packingList.txt".
+
+`save()` calls the method `writeToFile`, which loops through the `packingList` to write every `item` to a file in the `file_path` using a `FileWriter`.
+
+Each `item` is written on a newline with a format using `.toString()`, which is `[PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`. 
+Example:
+```text
+[0/4] jackets
+[2/4] cats
+[0/3] toothbrush
+```
+
+`load()` is called at the start of `main()` in `BagPacker`.
+This method reads in the file in `file_path` and translates each line to construct an `item`. 
+
+This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses the overloaded constructor method in `Item` class to form an item. 
+
+Each `item` is returned to `load()` and added to the packingList.
+
+---
+#### Ui
+
+
+---
+
 ## Product scope
 
 ### Target user profile

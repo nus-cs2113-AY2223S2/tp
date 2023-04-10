@@ -39,6 +39,8 @@ public class Storage {
      * @return item containing relevant packedQuantity, totalQuantity and item description
      */
     private static Item readItem(String line) {
+        assert (line.matches("\\[\\d+/\\d+\\] .+")) :
+                "the format of this savefile is incorrect.";
         int openBracketIndex = line.indexOf('[');
         int forwardSlashIndex = line.indexOf('/');
         int closeBracketIndex = line.indexOf(']');
