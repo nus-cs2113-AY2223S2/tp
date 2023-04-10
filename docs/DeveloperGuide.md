@@ -452,8 +452,8 @@ unless specified otherwise)
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
-1. Download the latest .jar file from this link (**to be added**).
-2. Open the folder that the .jar file is in and run the program in your terminal using `java -jar [CS2113-F13-2][BrokeMan].jar`.
+1. Download the latest .jar file from [here](https://github.com/AY2223S2-CS2113-F13-2/tp/releases/tag/v2.1).
+2. Open the folder that the .jar file is in and run the program in your terminal using `java -jar CS2113-F13-2_BrokeMan.jar`.
 3. Read through the user guide to get the detailed instructions for the various features of the program.
 4. Additional, user can see all the available commands and a less detailed description of them by entering `help`.
 5. Add an expense at 2023/04/01 at 12:00 using the command `addExpense a/ 5.0 d/ lunch t/ 2023 04 01 12 00 c/ FOOD`.

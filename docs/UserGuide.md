@@ -40,9 +40,9 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `BrokeMan` from [here](https://github.com/AY2223S2-CS2113-F13-2/tp/releases/tag/v2.0).
+2. Download the latest version of `BrokeMan` from [here](https://github.com/AY2223S2-CS2113-F13-2/tp/releases/tag/v2.1).
 3. Copy the file to the folder you want to use as the home folder for your BrokeMan.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar [CS2113-F13-2][BrokeMan].jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar CS2113-F13-2_BrokeMan.jar` command to run the application.
 
     A welcome message as shown below should appear.
 
