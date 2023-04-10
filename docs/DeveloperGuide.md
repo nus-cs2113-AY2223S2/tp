@@ -1097,38 +1097,38 @@ WellNUS++ is a CLI app, primarily due to the following reasons:
    Expected output: A list of commands with their usage
    Example:
 
-```
-
-------------------------------------------------------------
-    WellNUS++ is a Command Line Interface (CLI) app for you to keep track, manage and improve your physical and mental wellness.
-    Input `help` to see all available commands.
-    Input `help [command-to-check]` to get usage help for a specific command.
-    Here are all the commands available for you!
+    ```
     
-    1. hb - Atomic Habits - Track and manage your habits with our suite of tools to help you grow and nurture a better you!
-    2. reflect - Self Reflection - Take some time to pause and reflect with our specially curated list of questions and reflection management tools.
-    3. ft - Focus Timer - Set a configurable 'Pomodoro' timer with work and rest cycles to keep yourself focused and productive!
-    4. gamif - Gamification - Gamification gives you the motivation to continue improving your wellness by rewarding you for your efforts!
-    5. exit - Close WellNUS++ and return to your terminal.
-    6. help - Get help on what commands can be used in WellNUS++.
-------------------------------------------------------------
-
-```
+    ------------------------------------------------------------
+        WellNUS++ is a Command Line Interface (CLI) app for you to keep track, manage and improve your physical and mental wellness.
+        Input `help` to see all available commands.
+        Input `help [command-to-check]` to get usage help for a specific command.
+        Here are all the commands available for you!
+        
+        1. hb - Atomic Habits - Track and manage your habits with our suite of tools to help you grow and nurture a better you!
+        2. reflect - Self Reflection - Take some time to pause and reflect with our specially curated list of questions and reflection management tools.
+        3. ft - Focus Timer - Set a configurable 'Pomodoro' timer with work and rest cycles to keep yourself focused and productive!
+        4. gamif - Gamification - Gamification gives you the motivation to continue improving your wellness by rewarding you for your efforts!
+        5. exit - Close WellNUS++ and return to your terminal.
+        6. help - Get help on what commands can be used in WellNUS++.
+    ------------------------------------------------------------
+    
+    ```
 
 3. Test case: `help me`<br>
    Expected output: The list of commands will not be generated as it is an invalid command<br>
    Example:
 
-```
-
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-Error Message:
-    Invalid payload given to 'help'!
-Note:
-    help command usage: help [command-to-check]
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-
-```
+    ```
+    
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    Error Message:
+        Invalid payload given to 'help'!
+    Note:
+        help command usage: help [command-to-check]
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    
+    ```
 
 4. To get a list of available commands, any command other than `help` is invalid
 <!-- @@author -->
@@ -1142,29 +1142,29 @@ Note:
    Expected output: A new atomic habit is successfully added<br>
    Example:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Yay! You have added a new habit:
-    'make bed every morning' was successfully added
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Yay! You have added a new habit:
+        'make bed every morning' was successfully added
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 3. Test case: `add name make bed every morning`<br>
    Expected output: The atomic habit will not be added in as this is an invalid command<br>
    Example:
 
-```
-
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-Error Message:
-    Invalid arguments given to 'add'!
-Note:
-    add command usage: add --name (your habit name)
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-
-```
+    ```
+    
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    Error Message:
+        Invalid arguments given to 'add'!
+    Note:
+        add command usage: add --name (your habit name)
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    
+    ```
 
 4. Any commands that does not follow the format of `add --name ATOMIC_HABIT_NAME` is invalid
 <!-- @@author -->
@@ -1178,32 +1178,32 @@ Note:
    Expected output: Get a set of 5 random introspective questions<br>
    Example:
 
-```
-
-============================================================
-    1.What is my purpose in life?
-    2.What is my personality type?
-    3.Did I make time for myself this week?
-    4.What scares me the most right now?
-    5.What is something that brings me joy?
-============================================================
-
-```
+    ```
+    
+    ============================================================
+        1.What is my purpose in life?
+        2.What is my personality type?
+        3.Did I make time for myself this week?
+        4.What scares me the most right now?
+        5.What is something that brings me joy?
+    ============================================================
+    
+    ```
 
 3. Test case: `get reflect`<br>
    Expected output: Introspective questions will not be generated as this is an invalid command <br>
    Example:
 
-```
-
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-Error Message:
-    Invalid payload given to 'get'!
-Note:
-    get command usage: get
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-
-```
+    ```
+    
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    Error Message:
+        Invalid payload given to 'get'!
+    Note:
+        get command usage: get
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    
+    ```
 
 4. Any command other than `get` is invalid
 
@@ -1213,53 +1213,53 @@ Note:
    Expected output: Empty favorite reflection questions list is printed<br>
    Example:
 
-```
-
-============================================================
-    There is nothing in favorite list, please get reflection questions first!
-============================================================
-
-```
+    ```
+    
+    ============================================================
+        There is nothing in favorite list, please get reflection questions first!
+    ============================================================
+    
+    ```
 
 3. Test case: `get`<br>
    Expected output: Get a set of 5 random introspective questions<br>
    Example:
 
-```
-
-============================================================
-    1.What is my purpose in life?
-    2.What is my personality type?
-    3.Did I make time for myself this week?
-    4.What scares me the most right now?
-    5.What is something that brings me joy?
-============================================================
-
-```
+    ```
+    
+    ============================================================
+        1.What is my purpose in life?
+        2.What is my personality type?
+        3.Did I make time for myself this week?
+        4.What scares me the most right now?
+        5.What is something that brings me joy?
+    ============================================================
+    
+    ```
 
 4. Test case: `like 3`<br>
    Expected output: "Did I make time for myself this week?" is added to your favorite reflection questions list<br>
    Example:
 
-```
-
-============================================================
-    You have added question: "Did I make time for myself this week?" Into favorite list!!
-============================================================
-
-```
+    ```
+    
+    ============================================================
+        You have added question: "Did I make time for myself this week?" Into favorite list!!
+    ============================================================
+    
+    ```
 
 5. Test case: `fav`<br>
    Expected output: "Did I make time for myself this week?" is listed as a favorite reflection question<br>
    Example:
 
-```
-
-============================================================
-    1.Did I make time for myself this week?
-============================================================
-
-```
+    ```
+    
+    ============================================================
+        1.Did I make time for myself this week?
+    ============================================================
+    
+    ```
 
 <!-- @@author nichyjt -->
 ### Focus Timer feature
@@ -1270,66 +1270,66 @@ Note:
    Expected output: Session begins and work timer counts down<br>
    Example:
 
-```
-
-************************************************************
-    Your session has started. All the best!
-************************************************************
-************************************************************
-    Task Cycle: Do your task now!
-************************************************************
-
-```
+    ```
+    
+    ************************************************************
+        Your session has started. All the best!
+    ************************************************************
+    ************************************************************
+        Task Cycle: Do your task now!
+    ************************************************************
+    
+    ```
 
 3. Test case: `check`<br>
    Expected output: Time left in current timer will be printed<br>
    Example:
 
-```
-
-************************************************************
-    Time left: 0:27
-************************************************************
-
-```
+    ```
+    
+    ************************************************************
+        Time left: 0:27
+    ************************************************************
+    
+    ```
 
 4. Test case: `pause`<br>
    Expected output: Timer will be paused and time left will be printed<br>
    Example:
 
-```
-
-************************************************************
-    Timer paused at: 0:23
-************************************************************
-
-```
+    ```
+    
+    ************************************************************
+        Timer paused at: 0:23
+    ************************************************************
+    
+    ```
 
 5. Test case: `resume`<br>
    Expected output: Timer will resume counting down and time left will be printed<br>
    Example:
 
-```
-
-************************************************************
-    Timer resumed at: 0:23
-************************************************************
-
-```
+    ```
+    
+    ************************************************************
+        Timer resumed at: 0:23
+    ************************************************************
+    
+    ```
 
 6. Test case: `stop`<br>
    Expected output: Focus session will end and all timers will stop<br>
    Example:
 
-```
-
-************************************************************
-    Your focus session has ended.
-    To start a new session, `start` it up!
-    You can also configure the session to your liking with `config`!
-************************************************************
-
-```
+    ```
+    
+    ************************************************************
+        Your focus session has ended.
+        To start a new session, `start` it up!
+        You can also configure the session to your liking with `config`!
+    ************************************************************
+    
+    ```
 <!-- @@author -->
 
 <!-- @@author haoyangw -->
@@ -1340,115 +1340,115 @@ Note:
    Expected output: Default XP points and XP level is printed<br>
    Example:
 
-```
-
-######################################################################
-#                 Current XP: Level 0 [>           ]                 #
-#                       10 more XP to Level 1                        #
-######################################################################
-
-```
+    ```
+    
+    ######################################################################
+    #                 Current XP: Level 0 [>           ]                 #
+    #                       10 more XP to Level 1                        #
+    ######################################################################
+    
+    ```
 
 3. Test case: `home`<br>
    Expected output: Goodbye message of gamification feature is printed<br>
    Example:
 
-```
-
-######################################################################
-#    Thank you for using the gamification feature! Return anytime    #
-######################################################################
-
-```
+    ```
+    
+    ######################################################################
+    #    Thank you for using the gamification feature! Return anytime    #
+    ######################################################################
+    
+    ```
 
 4. Test case: `hb`<br>
    Expected output: Enters the atomic habit feature<br>
    Example:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    _  _             _      _  _      _    _ _      
-   /_\| |_ ___ _ __ (_)__  | || |__ _| |__(_) |_ ___
-  / _ \  _/ _ \ '  \| / _| | __ / _` | '_ \ |  _(_-<
- /_/ \_\__\___/_|_|_|_\__| |_||_\__,_|_.__/_|\__/__/
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Welcome to WellNUS++ Atomic Habits section!
-    Track and inculcate good habits into your life with us!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        _  _             _      _  _      _    _ _      
+       /_\| |_ ___ _ __ (_)__  | || |__ _| |__(_) |_ ___
+      / _ \  _/ _ \ '  \| / _| | __ / _` | '_ \ |  _(_-<
+     /_/ \_\__\___/_|_|_|_\__| |_||_\__,_|_.__/_|\__/__/
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Welcome to WellNUS++ Atomic Habits section!
+        Track and inculcate good habits into your life with us!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 5. Test case: `add --name My First Habit`<br>
    Expected output: Adds a new atomic habit called "My First Habit"<br>
    Example:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Yay! You have added a new habit:
-    'My First Habit' was successfully added
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Yay! You have added a new habit:
+        'My First Habit' was successfully added
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 6. Test case: `update --id 1 --by 10`<br>
    Expected output: Completes the "My First Habit" 10 times, which leads to levelling up<br>
    Example:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    The following habit has been incremented! Keep up the good work!
-    1.My First Habit [10]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-######################################################################
-#                     Congratulations! Level up                      #
-######################################################################
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        The following habit has been incremented! Keep up the good work!
+        1.My First Habit [10]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ######################################################################
+    #                     Congratulations! Level up                      #
+    ######################################################################
+    
+    ```
 
 7. Test case: `home`<br>
    Expected output: Returns to main `WellNUS++` session<br>
    Example:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Thank you for using atomic habits. Do not forget about me!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Thank you for using atomic habits. Do not forget about me!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 8. Test case: `gamif`<br>
    Expected output: Enters the gamification feature<br>
    Example:
 
-```
-
-######################################################################
-    Welcome to
-    ______                _ _____            __  _           
-   / ____/___ _____ ___  (_) __(_)________ _/ /_(_)___  ____ 
-  / / __/ __ `/ __ `__ \/ / /_/ / ___/ __ `/ __/ / __ \/ __ \
- / /_/ / /_/ / / / / / / / __/ / /__/ /_/ / /_/ / /_/ / / / /
- \____/\__,_/_/ /_/ /_/_/_/ /_/\___/\__,_/\__/_/\____/_/ /_/ 
-######################################################################
-
-```
+    ```
+    
+    ######################################################################
+        Welcome to
+        ______                _ _____            __  _           
+       / ____/___ _____ ___  (_) __(_)________ _/ /_(_)___  ____ 
+      / / __/ __ `/ __ `__ \/ / /_/ / ___/ __ `/ __/ / __ \/ __ \
+     / /_/ / /_/ / / / / / / / __/ / /__/ /_/ / /_/ / /_/ / / / /
+     \____/\__,_/_/ /_/ /_/_/_/ /_/\___/\__,_/\__/_/\____/_/ /_/ 
+    ######################################################################
+    
+    ```
 
 9. Test case: `stats`<br>
    Expected output: Prints the latest XP points and XP level<br>
    Example:
 
-```
-
-######################################################################
-#                 Current XP: Level 1 [>           ]                 #
-#                       10 more XP to Level 2                        #
-######################################################################
-
-```
+    ```
+    
+    ######################################################################
+    #                 Current XP: Level 1 [>           ]                 #
+    #                       10 more XP to Level 2                        #
+    ######################################################################
+    
+    ```
 <!-- @@author -->
 
 <!-- @@author haoyangw -->
@@ -1463,14 +1463,14 @@ Note:
 * Relaunch `WellNUS++`: Run the `WellNUS++` jar file, issue `hb` command and then issue `list` command. Verify that no
   atomic habits are now recorded, i.e. `WellNUS++` should output:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    You have no habits in your list!
-    Start adding some habits by using 'add'!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        You have no habits in your list!
+        Start adding some habits by using 'add'!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 2. Dealing with corrupted data files
 
@@ -1478,34 +1478,34 @@ Note:
 * Open the `data/habit.txt` file located in the same directory as the `WellNUS++` jar file
 * Replace the contents of the `habit.txt` file with the following lines:
 
-```
-
---description Valid atomic habit --count 1 --
---corrupted Data --test to be ignored --
-
-```
+    ```
+    
+    --description Valid atomic habit --count 1 --
+    --corrupted Data --test to be ignored --
+    
+    ```
 
 * Run the `WellNUS++` jar file. You should see the warning below after the `WellNUS++` greeting logo and message:
-```
-
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-Error Message:
-    Invalid habit data '--corrupted Data --test to be ignored' found in storage!
-Note:
-    Previous atomic habit data will not be restored.
-!!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
-
-```
+    ```
+    
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    Error Message:
+        Invalid habit data '--corrupted Data --test to be ignored' found in storage!
+    Note:
+        Previous atomic habit data will not be restored.
+    !!!!!!-------!!!!!--------!!!!!!!------!!!!!---------!!!!!!!
+    
+    ```
 * View the saved atomic habits: Issue `hb` followed by `list`. Expected output should be:
 
-```
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    You have no habits in your list!
-    Start adding some habits by using 'add'!
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-```
+    ```
+    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        You have no habits in your list!
+        Start adding some habits by using 'add'!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    ```
 
 * Explanation: Upon relaunch, `WellNUS++` detected the invalid line `--corrupted Data --test to be ignored --`(hence
   the warning message) and cleaned the contents of the data file, leaving no atomic habits recorded
