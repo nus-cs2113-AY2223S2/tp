@@ -40,7 +40,6 @@ userdata --> command
 deactivate userdata
 command --> main: : CommandResult
 deactivate command
-
 command <-[hidden]- command
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 destroy command
