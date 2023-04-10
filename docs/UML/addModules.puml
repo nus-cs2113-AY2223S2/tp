@@ -1,6 +1,6 @@
 @startuml
-Actor -> Parser : parseAddCommand()
-Parser -> Parser : addFormatChecker()
+":Actor" -> Parser : parseAddCommand()
+":Parser" -> Parser : addFormatChecker()
 Parser -> NusmodConverter : loadModules()
 NusmodConverter --> Parser : HashMap<String, NusModule> nusmodules
 Parser -> NusModule : getLesson()
@@ -18,4 +18,5 @@ loop lesson: Lessons
     end
 end
 Parser --> Actor
+hide footbox
 @enduml
