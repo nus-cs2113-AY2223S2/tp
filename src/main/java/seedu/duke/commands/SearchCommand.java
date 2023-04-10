@@ -51,13 +51,7 @@ public class SearchCommand extends Command {
         for(String currentInput: inputs) {
             ArrayList<String> resultNames = itemsTrie.prefixFind(currentInput);
             ArrayList<Item> resultItems = new ArrayList<>();
-            for (String name : resultNames) {
-                for (Item item : itemNameHash.get(name)) {
-                    if (!resultItems.contains(item)) {
-                        resultItems.add(item);
-                    }
-                }
-            }
+            getResultItems(resultNames, resultItems);
             for(Item item: resultItems){
                 if(!resultItemsCount.containsKey(item)){
                     resultItemsCount.put(item, FIRST_FOUND);
@@ -78,6 +72,17 @@ public class SearchCommand extends Command {
         }
         return results;
     }
+
+    private void getResultItems(ArrayList<String> resultNames, ArrayList<Item> resultItems) {
+        for (String name : resultNames) {
+            for (Item item : itemNameHash.get(name)) {
+                if (!resultItems.contains(item)) {
+                    resultItems.add(item);
+                }
+            }
+        }
+    }
+
 
     /**
      * Delegate and executes search command for an item in the inventory by keyword or upc

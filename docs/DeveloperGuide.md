@@ -542,5 +542,362 @@ use the application once it is downloaded and transferred to an empty folder.
 interact with the computer.
 
 ## Instructions for manual testing
+### **Startup and Termination of Program**
+  * #### Starting up MagusStock
+  1. Ensure that you have Java `11` or above installed.
+  2. Download the latest version of `MagusStock`from [here](https://github.com/AY2223S2-CS2113-W12-3/tp/releases).
+  3. Move the .jar file to an **empty** folder.
+  4. After changing directory to your folder in the command terminal, run the file with the
+     command `java -jar magusstock.jar`.
+  5. Upon successful **First** launch of the program, the screen should look similar to what is shown below. A new CSV 
+     file will automatically be created by the program for storage purposes.
+  6. Output should look as followed:   
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+````
+java -jar magusstock.jar
+__________________________________________________________________________
+
+███╗░░░███╗░█████╗░░██████╗░██╗░░░██╗░██████╗░██████╗████████╗░█████╗░░█████╗░██╗░░██╗
+████╗░████║██╔══██╗██╔════╝░██║░░░██║██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║░██╔╝
+██╔████╔██║███████║██║░░██╗░██║░░░██║╚█████╗░╚█████╗░░░░██║░░░██║░░██║██║░░╚═╝█████═╝░
+██║╚██╔╝██║██╔══██║██║░░╚██╗██║░░░██║░╚═══██╗░╚═══██╗░░░██║░░░██║░░██║██║░░██╗██╔═██╗░
+██║░╚═╝░██║██║░░██║╚██████╔╝╚██████╔╝██████╔╝██████╔╝░░░██║░░░╚█████╔╝╚█████╔╝██║░╚██╗
+╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░╚═════╝░╚═════╝░░░░╚═╝░░░░╚════╝░░╚════╝░╚═╝░░╚═╝
+Welcome to MagusStock. How may I assist you today?
+__________________________________________________________________________
+INFO: Empty/No Session Inventory file found.
+__________________________________________________________________________
+INFO: Empty/No Session Alerts file found.
+__________________________________________________________________________
+````
+
+  * #### Terminating MagusStock
+  1. To terminate the program, simply type `bye` or `exit` in the command line.
+  2. The expected result of the program is as followed:
+
+````
+exit
+__________________________________________________________________________
+Hope you had an enjoyable experience. See you next time!
+__________________________________________________________________________
+````
+
+### Testing of Commands
+The following shows a series of positive and negative test cases that can be used to test each feature of the program.
+A description of the expected output as well as an example will also be provided.
+#### List Testing
+  * **Positive** Test Case Input: `list`
+    * Expected Output: Print string stating that there are no items in the inventory if no items are added. Else,
+      print a table showing all items found in the database.
+    * Output Example:
+
+````
+__________________________________________________________________________
+There are no items in your inventory.
+__________________________________________________________________________
+````
+  * **Negative** Test Case Input: `list all` (Too many parameters for `list`)
+    * Expected Output: An error message which shows the correct format for usage of the `list` command will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Wrong/Incomplete Format! Please list items in the following format :
+Sample Format: "list"
+__________________________________________________________________________
+````
+    
+
+#### Add Testing
+  * **Positive** Test Case Input: `add n/Orange upc/123 qty/5 p/2.00 c/fruit`
+    * Expected Output: A string informing the user that item has been added to the list will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Successfully added the item(s) into the system!
+__________________________________________________________________________
+````
+  * **Negative** Test Case Input: `add n/Orange upc/123` (Incomplete `Add` format)
+    * Expected Output: Due to wrong format, a string informing the user of wrong `add` command format will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Wrong/Incomplete Entry For Add! Please refer to UG for more information
+Sample Format: "add n/[name] upc/[UPC] qty/[quantity] p/[price] c/[category]"
+__________________________________________________________________________
+````
+
+#### Edit Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before 
+attempting to test this feature.
+  * **Positive** Test Case Input: `edit upc/123 qty/10 p/3.00`
+    * Expected Output: A series of strings which shows the attributes of the item before and after the `edit` will be
+      printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Successfully edited the following item:
+
+Before Update:
+Name: Orange
+UPC: 123
+Price: 2.0
+Quantity: 5
+Category: fruit
+
+After Update:
+Name: Orange
+UPC: 123
+Price: 3.0
+Quantity: 10
+Category: fruit
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `edit upc/123 qty/999999999` (Quantity out of range)
+    * Expected Output: Due to an invalid quantity of `999999999`, an error message informing the user of an invalid 
+    quantity will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+The number you have entered should be between 0 and 99,999,999.
+__________________________________________________________________________
+````
+
+#### Restock Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `restock upc/123 qty/100`
+    * Expected Output: A series of strings showing both the old and new quantity of the item after executing the
+      `restock` command will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Successfully restocked the following item:
+
+Before Restocking:
+Item Name: Orange
+UPC Code: 123
+Quantity Available: 5
+
+After Restocking:
+Item Name: Orange
+UPC Code: 123
+Quantity Available: 105
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `restock upc/123 qty/0.1` (Decimal inputs for quantity are not allowed)
+    * Expected Output: An error message informing user of the conditions of using the `restock` command will be 
+      printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Unable to restock item. REASON: Quantity inputs SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!
+Also ensure that the desired quantity to be added does not cause current stock levels to exceed MAX
+quantity limit of 99,999,999.
+__________________________________________________________________________
+````
+
+#### Sell Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `sell upc/123 qty/2`
+    * Expected Output: A series of strings showing both the old and new quantity of the item after executing the
+      `sell` command will be printed. The amount sold and the price it's sold at will also be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Successfully sold the following item:
+
+Before Selling:
+Item Name: Orange
+UPC Code: 123
+Quantity Available: 105
+
+After Selling:
+Item Name: Orange
+UPC Code: 123
+Quantity Available: 103
+
+Sold 2 Orange at a price of $2.0.
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `sell upc/123 qty/two` (String input for quantity is not allowed)
+    * Expected Output: An error message informing the user of the conditions of using the `sell` command will 
+      be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Unable to sell item. REASON: Quantity inputs SHOULD NOT contain NEGATIVE integers, DECIMALS, ZERO(0), or STRING inputs!
+Also ensure that the desired quantity to be deducted is LESS THAN current stock levels.
+__________________________________________________________________________
+````
+
+#### Remove Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `remove f/index 0` (Assuming index 0 contains an item)
+    * Expected Output: A series of strings showing the item removed from the inventory will be printed.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Successfully removed the following item:
+Name: Orange
+UPC: 123
+Price: 2.0
+Quantity: 103
+Category: fruit
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `remove f/index 9999999` (Index does not exist)
+    * Expected Output: Prints an error message to inform that the index is invalid. If inventory is empty, print a
+      string to inform the user about an empty inventory list instead.
+    * Output Example (If inventory is not empty):
+
+````
+__________________________________________________________________________
+This index is invalid.
+Please enter number 0 to remove item successfully.
+__________________________________________________________________________
+````
+
+#### Search Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `search or`
+    * Expected Output: Return a table containing a list of items whose name starts with `or`. If it does not exist,
+      print a string that says item does not exist.
+    * Output Example (Found three items that starts with `or`):
+
+````
+__________________________________________________________________________
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | Orcas           | 2            | 1        | $1000.00 | Animal          |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | Oreo            | 1234         | 5        | $2.00    | Snacks          |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 2     | orange          | 1            | 1        | $1.00    | Uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `search` (Incomplete command format)
+    * Expected Output: A message informing the user of incorrect usage of the search command will be printed.
+    * Output Example:
+
+````
+Wrong/Incomplete Entry For Search by Keywords! Please refer to UG for more information
+Sample Format: "search [KEYWORDS]"
+__________________________________________________________________________
+````
+
+#### Filter Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `filter f/price p/lt 999`
+    * Expected Output: Generates a table containing a list of items that are less than the price of `999`. If there is
+      no such item, print a string to inform the user that no results can be found.
+    * Output Example (Assuming there are items with prices below $999):
+
+````
+__________________________________________________________________________
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | orange          | 1            | 1        | $1.00    | Uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | Oreo            | 1234         | 5        | $2.00    | Snacks          |
++-------+-----------------+--------------+----------+----------+-----------------+
+
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `filter f/price p/lt one` (String as a price input)
+    * Expected Output: An error message informing the user to change the price input to a numerical input will be 
+      printed.
+    * Output Example:
+
+````
+Please enter a number for the price!
+````
+
+#### History Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+  * **Negative** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+
+#### Alert Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+  * **Negative** Test Case Input:
+    * Expected Output:
+    * Output Example:
+
+````
+
+````
+
+#### Category Testing
+!> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
+attempting to test this feature.
+  * **Positive** Test Case Input: `cat list`
+    * Expected Output: Shows all categories that are currently in use to classify the items added.
+    * Output Example:
+
+````
+__________________________________________________________________________
+Here is the list of categories you have:
+Fruit
+Uncategorized
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `cat` (Invalid command format)
+    * Expected Output: A message to inform the user of an incorrect `category` command format will be printed.
+    * Output Example: 
+
+````
+Wrong/Incomplete Entry For Category! Please refer to UG for more information
+Sample Format:
+List all categories: "cat list"
+List all items and all categories: "cat table"
+__________________________________________________________________________
+````
