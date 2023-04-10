@@ -12,7 +12,7 @@ MyLedger is a desktop app for managing finances, designed for university student
    - **Justification**: The fixed expenditures in the program can be instantiated as real world expenditure, and kept track of in the application's expenditure list. Since the application aims to help users add and to manage expenditures, the package of classes forms the core of MyLedger.
    - **Highlights**: This feature sets the direction of MyLedger. Thus, deciding the attributes of each class played an important role in setting the trajectory of the application; brainstorming the important information the target user would need in their expenditure record.
 
-   2. **The Command Classes for all fixed expenditure types**
+2. **The Command Classes for all fixed expenditure types**
    - **What it does**: Contains all the command classes for the fixed expenditure types and to display expenditure list. Additionally, the `CommandResult.java`class displays to the user the result of the command after each successful execution.
    - **Justification**: With the help of MyLedger's parsing unit, the user's input are broken down and fed into their respective command class. The execution of these command classes produces the user's desired outcome (i.e. adding an academic expenditure into the current expenditure list).
    - **Highlights**: The implementation of the command classes requires good coordination with the implementor of the parsing class as they would need information on how each expenditure command is instantiated; it was done well.
