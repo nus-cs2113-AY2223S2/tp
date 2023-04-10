@@ -50,7 +50,7 @@ public class Ui {
      * Prints a welcome message for users when application is launched
      */
     public static void showWelcome() {
-        String logo = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
+        final String LOGO = ("888b      88  88        88   ad88888ba   88888888ba   88\n"
                 + "8888b     88  88        88  d8\"     \"8b  88      \"8b  88\n"
                 + "88 `8b    88  88        88  Y8,          88      ,8P  88\n"
                 + "88  `8b   88  88        88  `Y8aaaaa,    88aaaaaa8P'  88  ,"
@@ -63,7 +63,7 @@ public class Ui {
                 + "    ,88  88       88  88       88  \"8b,   ,aa  88          \n"
                 + "88      `888   `\"Y8888Y\"'    \"Y88888P\"   88           88 "
                 + " `\"8bbdP\"Y8  88       88  88       88   `\"Ybbd8\"'  88          \n" + "\n");
-        System.out.println(logo);
+        System.out.println(LOGO);
         printDash();
     }
 
