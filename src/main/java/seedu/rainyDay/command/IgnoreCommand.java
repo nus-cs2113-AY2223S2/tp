@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class IgnoreCommand extends Command {
     private static final Logger logger = Logger.getLogger(IgnoreCommand.class.getName());
     private int index;
-    private String command;
+    private final String command;
 
     public IgnoreCommand(int index, String command) {
         this.index = index;

@@ -68,8 +68,8 @@ public class FilterCommand extends Command {
         if (filterFlagAndField.contains("-date")) {
             int sizeOfFilterFlagAndField = filterFlagAndField.size();
             String possibleDate1 = filterFlagAndField.get(sizeOfFilterFlagAndField - 2);
-            String possibleDate2 = "";
-            if (hasInOutFlag == true) {
+            String possibleDate2;
+            if (hasInOutFlag) {
                 possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 3);
             } else {
                 possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 1);
@@ -101,7 +101,7 @@ public class FilterCommand extends Command {
                     filterByCategory(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
                 }
             } else if (filterFlagAndField.get(i).equalsIgnoreCase("-date")) {
-                if (hastwoDates == false) {
+                if (!hastwoDates) {
                     if (isFirstFlag) {
                         isFirstFlag = false;
                         filterByDateFirstFlag(filteredList, statementIndex, i);
@@ -195,9 +195,9 @@ public class FilterCommand extends Command {
     private void filterByDate(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
                               ArrayList<FinancialStatement> listToFilter, ArrayList<Integer> listToFilterStatementIndex,
                               int i) {
+        LocalDate dateFlag = LocalDate.parse(filterFlagAndField.get(i + 1), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         for (int j = 0; j < listToFilter.size(); j += 1) {
-            if (listToFilter.get(j).getDate().equals(LocalDate.parse(filterFlagAndField.get(i + 1),
-                    DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+            if (listToFilter.get(j).getDate().equals(dateFlag)) {
                 filteredList.add(listToFilter.get(j));
                 statementIndex.add(listToFilterStatementIndex.get(j));
             }
@@ -206,11 +206,10 @@ public class FilterCommand extends Command {
 
     private void filterByDateFirstFlag(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
                                        int i) {
+        LocalDate dateFlag = LocalDate.parse(filterFlagAndField.get(i + 1), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         for (int j = 0; j < savedData.getStatementCount(); j += 1) {
             if (savedData.getStatementDate(j) != null &&
-                    savedData.getStatementDate(j).equals(
-                            LocalDate.parse(filterFlagAndField.get(i + 1),
-                                    DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
+                    savedData.getStatementDate(j).equals(dateFlag)) {
                 filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
@@ -220,8 +219,9 @@ public class FilterCommand extends Command {
     private void filterByCategory(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
                                   ArrayList<FinancialStatement> listToFilter,
                                   ArrayList<Integer> listToFilterStatementIndex, int i) {
+        String categoryFlag = filterFlagAndField.get(i + 1);
         for (int j = 0; j < listToFilter.size(); j += 1) {
-            if (listToFilter.get(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
+            if (listToFilter.get(j).getCategory().contains(categoryFlag)) {
                 filteredList.add(listToFilter.get(j));
                 statementIndex.add(listToFilterStatementIndex.get(j));
             }
@@ -230,8 +230,9 @@ public class FilterCommand extends Command {
 
     private void filterByCategoryFirstFlag(ArrayList<FinancialStatement> filteredList,
                                            ArrayList<Integer> statementIndex, int i) {
+        String categoryFlag = filterFlagAndField.get(i + 1);
         for (int j = 0; j < savedData.getStatementCount(); j += 1) {
-            if (savedData.getStatement(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
+            if (savedData.getStatement(j).getCategory().contains(categoryFlag)) {
                 filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
@@ -240,8 +241,9 @@ public class FilterCommand extends Command {
 
     private void filterByDescriptionFirstFlag(ArrayList<FinancialStatement> filteredList,
                                               ArrayList<Integer> statementIndex, int i) {
+        String descriptionFlag = filterFlagAndField.get(i + 1);
         for (int j = 0; j < savedData.getStatementCount(); j += 1) {
-            if (savedData.getStatement(j).getDescription().contains(filterFlagAndField.get(i + 1))) {
+            if (savedData.getStatement(j).getDescription().contains(descriptionFlag)) {
                 filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }

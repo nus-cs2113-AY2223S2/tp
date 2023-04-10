@@ -52,10 +52,10 @@ public class Parser {
                 return new ExportCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
                 logger.info("shortcut command executing");
-                return new ParseShortcut().generateShortcut(action[1].trim());
+                return new ParseShortcut().generateShortcut(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
-                return new ParseSetBudget().setUserBudgetGoal(action[1].trim());
+                return new ParseSetBudget().setUserBudgetGoal(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
                 return new ShortcutDeleteCommand(action[1].trim());

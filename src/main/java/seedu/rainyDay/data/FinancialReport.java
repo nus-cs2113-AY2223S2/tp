@@ -3,7 +3,6 @@ package seedu.rainyDay.data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class FinancialReport {
     private final ArrayList<FinancialStatement> financialStatements;
     private String reportOwner;

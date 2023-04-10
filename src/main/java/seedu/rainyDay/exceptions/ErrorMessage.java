@@ -51,6 +51,8 @@ public enum ErrorMessage {
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
     SHORTCUT_DOES_NOT_EXIST("The shortcut does not exist."),
+    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and <= 21,474,836.47"),
+    INVALID_GOAL("Unsupported amount provided, note that amount has to be a number >= 0 and <= 21,474,836.47"),
     INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
     INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n\n"),
     INVALID_DAY("Day provided needs to be in the form DD or D, where day is a number from 1 to 31!\n\n"),
@@ -72,8 +74,8 @@ public enum ErrorMessage {
     INVALID_SAVED_DATE("Your saved data for financialStatements has an invalid date"),
     INVALID_SAVED_IS_IGNORED("Your saved data for financialStatements has an invalid isIgnored field"),
     CSV_EXPORT_ERROR("Error exporting to CSV, please close the CSV file if you currently have it open."),
-    CSV_EMPTY_STATEMENT("Your financial statements are empty, export to CSV will not be performed."),
-    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and < 21,474,836.47\n\n");
+    CSV_EMPTY_STATEMENT("Your financial statements are empty, export to CSV will not be performed.");
+
     private final String error;
 
     ErrorMessage(String error) {

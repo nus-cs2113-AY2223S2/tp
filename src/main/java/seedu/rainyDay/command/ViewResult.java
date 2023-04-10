@@ -73,7 +73,7 @@ public class ViewResult {
         index = index.substring(index.length() - 6);
 
         if (currentStatement.isIgnored()) {
-            value = " Ignored      ";
+            value = "Ignored       ";
         } else {
             value = String.format("%s$%.2f               ", statementDirection, statementValue);
             value = value.substring(0, 14);
