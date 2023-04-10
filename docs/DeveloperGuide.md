@@ -178,6 +178,7 @@ When the application starts up, the storage loadEvents() function will be called
 The save file can be edited and modified, however, if certain field is changed in a manner that may cause the application to fail 
 when running at a later stage, the storage will discard all the data in the EventList and provide the user with an empty Event List. 
 
+<br>
 
 ### 2.3.3 Load Modules Sequence Diagram
 ![Load Modules Sequence Diagram](UML/Images/LoadModules.png)
@@ -188,6 +189,8 @@ is correct as of March 17, 2023.
 It should be noted that Modules that are **Mini Projects** or **Workshops** are not supported by this application as they
 do not have any semester data. As such they cannot be added as an event. 
 
+<p style="page-break-after: always;">&nbsp;</p>
+
 ### 2.3.4 Save Events Sequence Diagram
 
 ![Save To File Sequence Diagram](UML/Images/SaveToFile.png)
@@ -195,6 +198,7 @@ do not have any semester data. As such they cannot be added as an event.
 Similarly, the state of the user's event list is saved when the user exits the application by calling the saveToFile() 
 method.
 
+<br>
 
 ### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
