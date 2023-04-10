@@ -112,8 +112,13 @@ of Modules available in the PUs, and provides this information to other componen
 
 **7. Budget Storage**
 
+BudgetStorage class reads from the budget.txt file to acquire the stored budget details from the user when
+saving their budget. This data is then passed to the BudgetPlanner to control.
+
 **8. Deadline Storage**
 
+DeadlineStorage class reads from deadlines.txt to acquire the stored deadline details from the user when
+saving new deadlines to be added. It stores both the deadline and the description of the task.
 
 ### ModuleStorage
 
@@ -191,6 +196,10 @@ Reference HelpCommand Sequence Diagram:
 Reference prepareBudgetCommand Sequence Diagram:
 
 ![budgetParser.png](diagrams%2Fremove%2FbudgetParser.png)
+
+Reference BudgetCommandType Sequence Diagram:
+
+![BudgetCommandType.png](diagrams%2Fremove%2FBudgetCommandType.png)
 
 Reference listDeadlineCommand Sequence Diagram:
 
@@ -465,6 +474,8 @@ called.
 ### Budget Commands
 Class Diagram of Budget Commands
 ![budgetClassDiagram.png](diagrams%2Fbudget%2FbudgetClassDiagram.png)
+
+The 
 
 #### View Budget Command (View)
 
@@ -752,5 +763,40 @@ Example of Test cases:
 
 **2. Testing of Budget Features**
 
+Essential Commands:
+
+1. /budget /budget [AMOUNT]
+2. /budget /accommodation [AMOUNT]
+3. /budget /airplane [AMOUNT]
+4. /budget /food [AMOUNT]
+5. /budget /entertainment [AMOUNT]
+6. /budget /view
+
+Example of Test case:
+
+`/budget /budget 3000` -> `/budget /accommodation 600` -> `/budget /food 400` -> `/budget /airplane 600`
+-> `/budget /entertainment 300` -> `/budget /view`
 
 **3. Testing of Deadline Features**
+
+Essential Commands:
+
+1. /deadline/list
+2. /deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY]
+3. /deadline/remove [DEADLINE INDEX]
+
+Example of Test case:
+
+Step 1: `/deadline/list`
+Step 2: `/deadline/add task1 /by 01-01-2023`
+Step 3: `/deadline/add task2 /by 02-01-2023`
+Step 4: `/deadline/list`
+Step 5: `/deadline/remove 1`
+Step 6: `/deadline/list`
+
+Example : Todays date is 10-04-2023, you will receive a notification if the deadline is between
+10-04-2023 - 17/04-2023
+Step 7: `/deadline/add task3 /by 15-04-2023`
+Step 8: reboot the application to see notification
+
+

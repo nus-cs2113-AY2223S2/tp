@@ -5,7 +5,7 @@ activate ":Parser"
 ":Parser" -> ":Parser":prepareBudgetCommand(userInput, budgetPlanner)
 activate ":Parser"
 ref over ":Parser", ":BudgetCommand"
-prepareBudgetCommand
+BudgetCommandType
 end
 deactivate ":BudgetCommand"
 ":Parser" --> ":Parser" :budgetCommand:BudgetCommand

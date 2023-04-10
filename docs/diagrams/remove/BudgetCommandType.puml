@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Parser"
+":Parser" -> ":Parser" : BudgetCommandType
+activate ":Parser"
+alt budgetCommand = "budget"
+":Parser" -> ":EditBudgetCommand" : EditBudgetCommand(amount, budgetPlanner)
+activate ":EditBudgetCommand"
+":Parser" <-- ":EditBudgetCommand" : editBudgetCommand:EditBudgetCommand
+deactivate ":EditBudgetCommand"
+else budgetCommand = "accommodation"
+":Parser" -> ":EditAccommodationCommand" : EditAccommodationCommand(amount, budgetPlanner)
+activate ":EditAccommodationCommand"
+":Parser" <-- ":EditAccommodationCommand" : "editAccommodationCommand:EditBudgetCommand
+deactivate ":EditAccommodationCommand"
+else budgetCommand = "airplane"
+":Parser" -> ":EditAirplaneCommand" : EditAirplaneCommand(amount, budgetPlanner)
+activate ":EditAirplaneCommand"
+":Parser" <-- ":EditAirplaneCommand" : "editAirplaneCommand:EditBudgetCommand
+deactivate ":EditAirplaneCommand"
+else budgetCommand = "food"
+":Parser" -> ":EditFoodCommand" : EditFoodCommand(amount, budgetPlanner)
+activate ":EditFoodCommand"
+":Parser" <-- ":EditFoodCommand" : "editFoodCommand:EditBudgetCommand
+deactivate ":EditFoodCommand"
+else budgetCommand = "entertainment"
+":Parser" -> ":EditEntertainmentCommand" : EditEntertainmentCommand(amount, budgetPlanner)
+activate ":EditEntertainmentCommand"
+":Parser" <-- ":EditEntertainmentCommand" : "editEntertainmentCommand:EditBudgetCommand
+deactivate ":EditEntertainmentCommand"
+":Parser" --> ":Parser" : BudgetCommand
+deactivate ":Parser"
+":Parser" --> ":Parser" : BudgetCommand
+deactivate ":Parser"
+@enduml
