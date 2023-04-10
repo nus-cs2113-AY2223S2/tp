@@ -325,6 +325,11 @@ public class EventList {
 
         Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
                 startInfo.hasInfo, endInfo.hasInfo);
+        
+        if (eventToCheck.getStartTime().isAfter(eventToCheck.getEndTime())) {
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
+        }        
+        
         if (!canAddNewEvent(eventToCheck, index, taskList)) {
             throw new NPExceptions(TIME_CONFLICTION_E);
         }
