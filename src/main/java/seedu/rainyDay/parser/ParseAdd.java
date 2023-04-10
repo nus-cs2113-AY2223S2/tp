@@ -30,16 +30,16 @@ public class ParseAdd extends Parser {
                 logger.info("returning new AddCommand object");
                 return new AddCommand(description.trim(), direction, amount, category, date);
             }
-            if (!addInput.contains("-c") && !addInput.contains("-date")) {
+            if (!addInput.contains("-c ") && !addInput.contains("-date ")) {
                 logger.info("returning new InvalidCommand object");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
             logger.info("checking for presence of -c");
-            if (addInput.contains("-c")) {
+            if (addInput.contains("-c ")) {
                 remainingInformation = setCategory(remainingInformation);
             }
             logger.info("checking for presence of -date");
-            if (addInput.contains("-date")) {
+            if (addInput.contains("-date ")) {
                 date = setDate(remainingInformation);
             }
             logger.info("returning new AddCommand object");
@@ -55,11 +55,11 @@ public class ParseAdd extends Parser {
     private String returnRemainingInformation(String input) throws RainyDayException {
         try {
             int flag = 0;
-            Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)");
+            Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\s+\\$([\\d.]+)");
             Matcher matcher = pattern.matcher(input);
             if (!matcher.matches()) {
                 flag = 1;
-                pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
+                pattern = Pattern.compile("-(in|out)\\s+(.+)\\s+\\$([\\d.]+)\\s+(.*)");
                 matcher = pattern.matcher(input);
                 if (!matcher.matches()) {
                     logger.warning("add command given by user in the wrong format");
