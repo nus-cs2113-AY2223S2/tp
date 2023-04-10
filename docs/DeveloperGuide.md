@@ -2,24 +2,32 @@
 
 <!-- TOC -->
 * [Developer Guide](#developer-guide)
-    * [Acknowledgements](#acknowledgements)
-    * [Design & implementation](#design--implementation)
-    * [Design](#design)
-    * [Implementation](#implementation)
-        * ['Add' Feature](#add-feature)
-        * ['Delete' Feature](#delete-feature)
-        * [Monthly Overview](#monthly-overview)
-        * [Yearly Overview](#yearly-overview)
-        * ['Sort' Feature](#sort-feature)
-        * ['Total' Feature](#total-feature)
-        * ['Storage' Feature](#storage-feature)
-    * [Product scope](#product-scope)
-        * [Target user profile](#target-user-profile)
-        * [Value proposition](#value-proposition)
-    * [User Stories](#user-stories)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-    * [Instructions for Manual Testing](#instructions-for-manual-testing)
+  * [Acknowledgements](#acknowledgements)
+  * [Design & implementation](#design--implementation)
+  * [Design](#design)
+  * [Account Implementation](#account-implementation)
+    * ['Login' Feature](#-login-feature)
+    * ['Signup' Feature](#-signup-feature)
+    * ['Logout' Feature](#-logout-feature)
+    * ['Exit' Feature (Outside the Account)](#-exit-feature--outside-the-account-)
+  * [Implementation](#implementation)
+    * ['List' Feature](#-list-feature)
+    * ['Add' Feature](#-add-feature)
+    * ['Delete' Feature](#-delete-feature)
+    * [Monthly Overview](#monthly-overview)
+    * [Yearly Overview](#yearly-overview)
+    * ['Sort' Feature](#-sort-feature)
+    * ["Category" feature](#-category--feature)
+    * ['Total' feature](#-total-feature)
+    * ['Storage' Feature](#-storage-feature)
+    * ['Exit' Feature (Inside the Account)](#-exit-feature--inside-the-account-)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for Manual Testing](#instructions-for-manual-testing)
 <!-- TOC -->
 
 ## Acknowledgements
@@ -249,7 +257,7 @@ proceeds to remove the respective expense from the list of expenses stored in `e
 - `Parser#extractIndex(userInput)` -- Extracts the index of the expense to be deleted, as specified by the user.
 
 The `CommandDelete#execute()` operation is exposed in the main `Duke` class. The `Parser#extractIndex(userInput)`
-is exposed in the `parser` class.
+is exposed in the `Parser` class.
 
 Given below is an example usage scenario and how the 'delete' mechanism behaves at each step.
 
@@ -433,6 +441,7 @@ list that store the account data inside the 'account process'.
 | v2.0    | user              | sort my expenses by category/date                           | better keep track of my expenses through either date or category                         |
 | v2.0    | user in Singapore | see my total spending in SGD                                | -                                                                                        |
 | v2.0    | user in Singapore | see an overview of my expenses in a particular month in SGD | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
+| v2.1    | user in Singapore | see an overview of my expenses in a particular year         | my monthly spending pattern.                                                             |
 
 ## Non-Functional Requirements
 
