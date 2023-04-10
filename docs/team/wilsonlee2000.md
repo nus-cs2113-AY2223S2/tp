@@ -21,7 +21,7 @@ to view my codes contributed for this project
 * Added `History` Feature for displaying a list of all commands input by users
 * Refactoring codes as classes for `Store`, `List`, `Delete` and `CommandHistory` 
 * Implemented JUnit Tests for `Store`, `List`, `Delete` and `CommandHistory`
-* Added improvements towards `HelpManual.txt`
+* Added details and improvements towards `HelpManual.txt`
 * Improve codes to more OOP
 
 ### 3) UserGuide Contributions:
