@@ -43,7 +43,7 @@ public enum ErrorMessage {
     WRONG_IGNORE_FORMAT("Sorry, your ignore command is invalid. Please include a ignore index! \n" +
             "ignore format is as follows :\n" + "ignore/unignore [INDEX]"),
     UNSUPPORTED_DESCRIPTION_NAME("Sorry, character \"-\" is not supported for description name\n\n"),
-    UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n"),
+    UNSUPPORTED_CATEGORY_NAME("Sorry, characters \"-\" and \"$\" are not supported for category name\n\n"),
     EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n"),
     SHORTCUT_ALREADY_EXISTS("The shortcut already exists."),
     SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
