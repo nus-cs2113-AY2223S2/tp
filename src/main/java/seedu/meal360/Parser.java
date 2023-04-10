@@ -20,9 +20,22 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly!" +
-            "[eg:chicken=100]";
+    String recipeErrorMessage1 =
+            "Wrong Format or Invalid Quantity. Please enter ingredients properly " + "[eg:chicken=100]";
 
+    String recipeErrorMessage2 = "Enter \"done\" when finished entering ingredients!";
+
+    /**
+     * This method is designed to combine multiple words into a single sentence
+     * after trimming the spaces.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param startIndex index to start from
+     * @param length length of substring
+     *
+     * @return an array of strings representing the user input
+     */
     public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex].trim());
         for (int i = startIndex + 1; i < length; i++) {
@@ -32,22 +45,26 @@ public class Parser {
         return word.toString();
     }
 
-    // @@author jaredoong
+    /**
+     * Parses the user input into an array of strings. Trims away leading and trailing whitespaces, and
+     * converts all words to lowercase.
+     *
+     * @author jaredoong
+     * @param input the user input
+     * @return an array of strings representing the user input
+     */
     public String[] cleanUserInput(String input) {
         input = input.replaceAll("\\s+", " ");
         input = input.toLowerCase();
         return input.trim().split(" ");
     }
 
-    // @@author
-
     /**
      * Parses an array of strings representing ingredients and their quantities.
      *
      * @param commands an array of strings in the format "name=quantity"
      * @return a map of ingredient names to their quantities
-     * @throws IllegalArgumentException if an ingredient quantity is negative or an
-     *                                  ingredient name is empty
+     * @throws IllegalArgumentException if an ingredient quantity is negative or an ingredient name is empty
      */
     public HashMap<String, Integer> parseIngredientName(String[] commands) {
         HashMap<String, Integer> ingredients = new HashMap<>();
@@ -85,11 +102,25 @@ public class Parser {
                     throw new IllegalArgumentException("Ingredient name cannot be empty");
                 }
                 ingredients.put(currentIngredient, quantity);
+                currentIngredient = null;
             }
         }
         return ingredients;
     }
 
+
+    /**
+     * This method is designed to add in a recipe to the user's
+     * recipe list.
+     * The method will also check if a recipe already exists or not
+     * to prevent duplicate recipes.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param recipeList the recipe list of the user containing all recipes
+     *
+     * @return Recipe the recipe that has been added
+     */
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
@@ -100,14 +131,16 @@ public class Parser {
         }
         HashMap<String, Integer> ingredients = new HashMap<>();
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Please Enter The Ingredients & Quantity (enter \"done\" when complete): ");
+        ui.printMessage("Please Enter The Ingredients & Quantity (enter \"done\" when complete): ");
+        ui.printSeparator();
         while (true) {
             try {
                 String line = userInput.nextLine();
                 if (line.equals("done")) {
                     ui.printSeparator();
                     if (addedIngredient == 0 || ingredients.size() == 0) {
-                        ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                        ui.printMessage(
+                                "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                         ui.printSeparator();
                     } else {
                         break;
@@ -118,13 +151,15 @@ public class Parser {
                     ingredients = parseIngredientName(command);
                     if (ingredients.size() == 0) {
                         ui.printSeparator();
-                        ui.printMessage(recipeErrorMessage);
+                        ui.printMessage(recipeErrorMessage1);
+                        ui.printMessage(recipeErrorMessage2);
                         ui.printSeparator();
                     }
                 }
             } catch (IllegalArgumentException e) {
                 ui.printSeparator();
-                ui.printMessage(e.getMessage());
+                ui.printMessage(recipeErrorMessage1);
+                ui.printMessage(recipeErrorMessage2);
                 ui.printSeparator();
             }
         }
@@ -133,6 +168,21 @@ public class Parser {
         return newRecipe;
     }
 
+    /**
+     * This method is designed to edit an already existing recipe
+     * to the user's recipe list.
+     *
+     * There are 3 types of editing operations:
+     * 1. Edit the ingredient list fully.
+     * 2. edit the ingredient list partially (1 recipe at a time).
+     * 3. Add new ingredients to the ingredient list.
+     *
+     * @author AbijithRam
+     * @param input the user input,
+     * @param recipeList the recipe list of the user containing all recipes
+     *
+     * @return Recipe the recipe that has been edited
+     */
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
@@ -143,8 +193,10 @@ public class Parser {
             return null;
         }
         recipeToEdit = recipeList.findByName(recipeName);
-        System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        ui.printSeparator();
+        ui.printMessage("Do you want to edit recipe fully or partially or add new ingredients?");
+        ui.printMessage("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        ui.printSeparator();
         int index;
         Scanner getNum = new Scanner(System.in);
         while (true) {
@@ -164,14 +216,18 @@ public class Parser {
             }
         }
         if (index == 1) {
-            System.out.println("Please Enter New Ingredients & Quantity: ");
+            ui.printSeparator();
+            ui.printMessage("Please Enter New Ingredients & Quantity: ");
+            ui.printSeparator();
             while (true) {
                 try {
                     String line = userInput.nextLine();
                     if (line.equals("done")) {
                         ui.printSeparator();
                         if (addedIngredient == 0 || ingredients.size() == 0) {
-                            ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                            ui.printSeparator();
+                            ui.printMessage(
+                                    "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                             ui.printSeparator();
                         } else {
                             break;
@@ -184,23 +240,27 @@ public class Parser {
                             recipeList.editRecipe(recipeToEdit, ingredients);
                         } else {
                             ui.printSeparator();
-                            ui.printMessage(recipeErrorMessage);
+                            ui.printMessage(recipeErrorMessage1);
+                            ui.printMessage(recipeErrorMessage2);
                             ui.printSeparator();
                         }
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage(recipeErrorMessage2);
                     ui.printSeparator();
                 }
             }
         } else if (index == 2) {
-            System.out.println("These are the ingredients for the recipe:");
+            ui.printSeparator();
+            ui.printMessage("These are the ingredients for the recipe:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println("Which ingredient do you want to change?");
+            ui.printMessage("Which ingredient do you want to change?");
+            ui.printSeparator();
             int ingredientIndex = 0;
             Scanner getIndex = new Scanner(System.in);
             while (true) {
@@ -225,7 +285,8 @@ public class Parser {
             for (String ingredient : recipeToEdit.getIngredients().keySet()) {
                 if (ingredientIndex == count) {
                     ingredientToRemove = ingredient;
-                    System.out.println("Ingredient to be changed:");
+                    ui.printSeparator();
+                    ui.printMessage("Ingredient to be changed:");
                     ui.printSeparator();
                     String toPrint = String.format("%s(%d)", ingredient,
                             recipeToEdit.getIngredients().get(ingredient));
@@ -235,7 +296,9 @@ public class Parser {
                 }
                 count++;
             }
-            System.out.println("Please enter the new ingredient:");
+            ui.printSeparator();
+            ui.printMessage("Please enter the new ingredient:");
+            ui.printSeparator();
 
             while (true) {
                 try {
@@ -256,25 +319,30 @@ public class Parser {
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage("Enter only 1 ingredient!");
                     ui.printSeparator();
                 }
             }
         } else {
             HashMap<String, Integer> newIngredientList = recipeToEdit.getIngredients();
-            System.out.println("These are the current ingredients:");
+            ui.printSeparator();
+            ui.printMessage("These are the current ingredients:");
             ui.printSeparator();
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println("Please Enter Additional Ingredients & Quantity: ");
+            ui.printMessage("Please Enter Additional Ingredients & Quantity: ");
+            ui.printSeparator();
             while (true) {
                 try {
                     String line = userInput.nextLine();
                     if (line.equals("done")) {
                         ui.printSeparator();
                         if (addedIngredient == 0 || ingredients.size() == 0) {
-                            ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                            ui.printSeparator();
+                            ui.printMessage(
+                                    "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                             ui.printSeparator();
                         } else {
                             break;
@@ -288,13 +356,15 @@ public class Parser {
                             recipeList.editRecipe(recipeToEdit, newIngredientList);
                         } else {
                             ui.printSeparator();
-                            ui.printMessage(recipeErrorMessage);
+                            ui.printMessage(recipeErrorMessage1);
+                            ui.printMessage(recipeErrorMessage2);
                             ui.printSeparator();
                         }
                     }
                 } catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
                     ui.printSeparator();
-                    ui.printMessage(recipeErrorMessage);
+                    ui.printMessage(recipeErrorMessage1);
+                    ui.printMessage(recipeErrorMessage2);
                     ui.printSeparator();
                 }
             }
@@ -302,14 +372,30 @@ public class Parser {
         return recipeToEdit;
     }
 
+    //@@author gurmankalkat
+
+    /**
+     * This method deletes a single, range, or all recipes.
+     *
+     * @author gurmankalkat
+     * @param input array containing string of inputs
+     * @param recipeList list containing all recipes data
+     * @return a String of the recipe name deleted
+     * @throws ArrayIndexOutOfBoundsException If users enters an invalid recipe name.
+     * @throws RecipeNotFoundInTagException If users entered a recipe index or range that is out of bounds.
+     */
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
-        // user inputted recipe name
         try {
+            // make sure user inputted recipe name or number
             if (!input[1].equals("/r") && !input[1].contains("-")) {
                 Integer.parseInt(input[1]);
             }
         } catch (NumberFormatException e) {
-            throw new IndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException(
+                    "Please enter a valid recipe number, name, or range in the " + "correct format.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException(
+                    "Please enter a valid recipe number, name, or range in " + "the correct format.");
         }
         if (input[1].contains("/r")) {
             // skip over /r in recipe name
@@ -328,26 +414,37 @@ public class Parser {
                 return allRecipes;
             } else {
                 int recipeIndex = 0;
+                boolean recipeFound = false;
                 for (Recipe recipe : recipeList) {
                     // find index of recipe we want to delete
                     if (recipe.getName().equals(recipeToDelete)) {
+                        recipeFound = true;
                         break;
                     }
                     recipeIndex++;
+                }
+                if (!recipeFound) {
+                    throw new ArrayIndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range in " + "the correct format.");
                 }
                 return recipeList.deleteRecipe(recipeIndex).getName();
             }
             // user inputted index of recipe in list
         } else {
             // deleting a range of recipes
-            if (input[1].length() >= 3) {
+            if (input[1].length() >= 3 && input[1].contains("-")) {
                 String[] range = input[1].trim().split("-");
+                if (range.length != 2) {
+                    throw new ArrayIndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range in " + "the correct format.");
+                }
                 int startIndex = Integer.parseInt(range[0]);
                 int endIndex = Integer.parseInt(range[1]);
                 startIndex -= 1;
                 endIndex -= 1;
                 if (startIndex < 0 || endIndex >= recipeList.size() || endIndex < startIndex) {
-                    throw new IndexOutOfBoundsException();
+                    throw new IndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range.");
                 }
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
                 String rangeRecipes = "";
@@ -357,9 +454,13 @@ public class Parser {
                 rangeRecipes = String.valueOf(
                         new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
                 return rangeRecipes;
+                // deleting a single recipe
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
-                ;
+                if (recipeIndex <= 0 || recipeIndex > recipeList.size()) {
+                    throw new IndexOutOfBoundsException(
+                            "Please enter a valid recipe number, name, or range.");
+                }
                 recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
                 return recipeList.deleteRecipe(recipeIndex - 1).getName();
@@ -367,8 +468,23 @@ public class Parser {
         }
     }
 
-    public String parseTagRecipe(String[] inputs, RecipeList recipeList) throws RecipeNotFoundInTagException,
-            TagNotFoundException, NoRecipeException {
+    //@@author junenita
+
+    /**
+     * Extract inputs from users whether it is adding recipes to a tag or removing recipe from a tag.
+     * Then, proceed to add or remove the recipes from the tag, and returns a string whether
+     * the recipes are successfully add to or remove from the tag.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs
+     * @param recipeList list containing all recipes data
+     * @return a string whether successfully added or remove recipes from the tag
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList)
+            throws RecipeNotFoundInTagException, TagNotFoundException, NoRecipeException {
         String returnMessage;
         String tag;
         boolean isOnlyTagWordInCommand = inputs.length == 1;
@@ -400,6 +516,18 @@ public class Parser {
         return returnMessage;
     }
 
+    //@@author junenita
+
+    /**
+     * Extract the tag label and recipes. Then, proceed to add the recipes to the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to add
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     */
     public String parseAddRecipeTag(String command, RecipeList recipeList) throws NoRecipeException {
         String tag;
         Recipe recipe;
@@ -429,8 +557,22 @@ public class Parser {
         return tag;
     }
 
-    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws RecipeNotFoundInTagException,
-            TagNotFoundException, NoRecipeException {
+    //@@author junenita
+
+    /**
+     * Extract the tag label and recipes. Then, proceed to remove the recipes from the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to remove
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList)
+            throws RecipeNotFoundInTagException, TagNotFoundException, NoRecipeException {
         String tag;
         Recipe recipe;
         String[] recipesToRemove;
@@ -447,7 +589,7 @@ public class Parser {
         isUnableToFindTag = !recipeList.tags.containsKey(tag);
         if (isUnableToFindTag) {
             throw new TagNotFoundException("There is no \"" + tag + "\" tag found. Please make sure you have "
-                            + "entered the correct tag.");
+                    + "entered the correct tag.");
         }
 
         recipesToRemove = args[1].split("&&");
@@ -468,14 +610,27 @@ public class Parser {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully removed from the tag.";
-                throw new RecipeNotFoundInTagException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new RecipeNotFoundInTagException(
+                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
         }
         return tag;
     }
 
-    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) throws TagNotFoundException,
-            NoRecipeException {
+    //@@author junenita
+
+    /**
+     * Extract the filters from users' input. Then, proceed to extract the recipes by the filters.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs, including the filter
+     * @param recipeList list containing all recipes data
+     * @return list of recipes that are filtered by the input
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList)
+            throws TagNotFoundException, NoRecipeException {
         String[] filters;
         RecipeList recipeListToPrint;
         boolean hasTagArgs = inputs.length > 2;
@@ -504,7 +659,20 @@ public class Parser {
         return recipeListToPrint;
     }
 
-    // @@author jaredoong
+    //@@author jaredoong
+
+    /**
+     * Extract the recipe index that the users wishes to view. Then, proceed to extract the recipe and returns
+     * the recipe.
+     *
+     * @author jaredoong
+     * @param command string contain `view` and recipe index
+     * @param recipes list containing all recipes data
+     * @return recipe that user wishes to view
+     * @throws NumberFormatException          If users entered invalid recipe index.
+     * @throws ArrayIndexOutOfBoundsException If users did not enter a recipe index.
+     * @throws IndexOutOfBoundsException      If users entered a recipe index that is out of bounds.
+     */
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
         assert command[0].equals("view");
         Recipe requestedRecipe;
@@ -529,7 +697,17 @@ public class Parser {
         return requestedRecipe;
     }
 
-    // @@author
+    //@@author AbijithRam
+
+    /**
+     * This method is designed to find the index of a recipe from
+     * the recipe list of the user and return the recipe.
+     *
+     * @author AbijithRam
+     * @param recipeName name of recipe
+     * @param recipes recipe list of user
+     * @return Recipe
+     */
     public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {
         int recipeIndex = 1;
         for (Recipe recipe : recipes) {
@@ -541,6 +719,16 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
+    //@@author junenita
+
+    /**
+     * Returns a Recipe object that contain a recipe's name and ingredients.
+     *
+     * @author junenita
+     * @param recipes an object containing all recipes data
+     * @return a random recipe from the input recipes.
+     * @throws NoRecipeException If recipes.size() == 0.
+     */
     public Recipe parseRandomRecipe(RecipeList recipes) throws NoRecipeException {
         if (recipes.size() == 0) {
             throw new NoRecipeException("There is no recipe in the list for random.");
@@ -548,9 +736,23 @@ public class Parser {
         return recipes.randomRecipe();
     }
 
-    // @@author jaredoong
+    //@@author jaredoong
+
+    /**
+     * Checks whether the user wants to edit single, multiple, or clear all the recipes in the weekly plan.
+     * Then, return a WeeklyPlan object that contains the recipes that the user wants to add or delete.
+     *
+     * @author jaredoong
+     * @param command an array containing the user input
+     * @param recipes an object containing all recipes data
+     * @return a WeeklyPlan object that contains the recipes that the user wants to add or delete
+     * @throws NumberFormatException      If users entered invalid character for the quantity.
+     * @throws InvalidRecipeNameException If users entered invalid recipe name.
+     * @throws InvalidValueException      If users entered invalid quantity.
+     * @throws IllegalArgumentException   If users did not enter a valid command.
+     **/
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes)
-            throws ArrayIndexOutOfBoundsException, NumberFormatException, InvalidRecipeNameException,
+            throws IllegalArgumentException, NumberFormatException, InvalidRecipeNameException,
             InvalidValueException {
         WeeklyPlan updatedWeeklyPlan;
         switch (command[1]) {
@@ -563,6 +765,7 @@ public class Parser {
             updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
             break;
         case "/clear":
+        case "/done":
             updatedWeeklyPlan = new WeeklyPlan();
             break;
         default:
@@ -574,8 +777,25 @@ public class Parser {
         return updatedWeeklyPlan;
     }
 
+    //@@author jaredoong
+
+    /**
+     * Parses the user input to extract the single recipe that the user wants to add or delete from the weekly
+     * plan.
+     *
+     * @author jaredoong
+     * @param command an array containing the user input
+     * @param recipes an object containing all recipes data
+     * @return a WeeklyPlan object that contains the single recipe and the quantity that the user wants to add
+     *     or delete
+     * @throws NumberFormatException      If users entered invalid character for the quantity.
+     * @throws InvalidRecipeNameException If users entered invalid recipe name.
+     * @throws InvalidValueException      If users entered invalid quantity.
+     * @throws IllegalArgumentException   If users did not enter a valid command.
+     */
     private WeeklyPlan parseEditSingleWeeklyPlan(String[] command, RecipeList recipes)
-            throws InvalidValueException, InvalidRecipeNameException {
+            throws IllegalArgumentException, NumberFormatException, InvalidValueException,
+            InvalidRecipeNameException {
         int numDays;
 
         if (command.length < 4) {
@@ -607,8 +827,25 @@ public class Parser {
         }
     }
 
+    //@@author jaredoong
+
+    /**
+     * Parses the user input to extract the multiple recipes that the user wants to add or delete from the
+     * weekly plan.
+     *
+     * @author jaredoong
+     * @param command an array containing the user input
+     * @param recipes an object containing all recipes data
+     * @return a WeeklyPlan object that contains the multiple recipes and the quantities that the user wants
+     *     to add or delete
+     * @throws NumberFormatException      If users entered invalid character for the quantity.
+     * @throws InvalidRecipeNameException If users entered invalid recipe name.
+     * @throws InvalidValueException      If users entered invalid quantity.
+     * @throws IllegalArgumentException   If users did not enter a valid command.
+     */
     private WeeklyPlan parseEditMultiWeeklyPlan(String[] command, RecipeList recipes)
-            throws InvalidValueException, InvalidRecipeNameException {
+            throws IllegalArgumentException, NumberFormatException, InvalidValueException,
+            InvalidRecipeNameException {
         int quantity;
         if (command.length < 6) {
             throw new IllegalArgumentException("Please enter the command in the correct format.");
@@ -669,8 +906,9 @@ public class Parser {
         return recipesToEdit;
     }
 
+    //@@author jaredoong
     private StringBuilder getRecipeNames(String[] command, ArrayList<String> recipeNames,
-                                         StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
+            StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
         recipeName.append(command[nameStartIndex].toLowerCase().trim());
         for (int j = nameStartIndex + 1; j <= nameEndIndex; j++) {
             recipeName.append(" ").append(command[j].toLowerCase().trim());
@@ -680,7 +918,7 @@ public class Parser {
         return recipeName;
     }
 
-    // @@author
+    //@@author notbingsu
     // parser to read dd/mm/yyyy format as local date catching invalid date format
     public LocalDate parseDate(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -693,9 +931,21 @@ public class Parser {
         }
     }
 
-    // @@author jaredoong
-    public void parseAddUserIngredients(String[] command, IngredientList ingredientList)
-            throws InvalidValueException {
+    //@@author jaredoong
+
+    /**
+     * Parses the user input to extract the ingredient name, quantity, and expiry date that the user wants to
+     * add to the ingredient list. Returns the Ingredient object that contains parsed data.
+     *
+     * @author jaredoong
+     * @param command an array containing the user input
+     * @return an Ingredient object that contains the ingredient name, quantity, and expiry date
+     * @throws NumberFormatException    If users entered invalid character for the quantity.
+     * @throws InvalidValueException    If users entered invalid quantity.
+     * @throws IllegalArgumentException If users did not enter a valid command.
+     */
+    public Ingredient parseAddUserIngredients(String[] command)
+            throws NumberFormatException, IllegalArgumentException, InvalidValueException {
         String ingredientName = null;
         Integer ingredientCount = null;
         String expiryDate = null;
@@ -739,11 +989,26 @@ public class Parser {
             throw new IllegalArgumentException("Missing required information. Please use /n, /c, and /d.");
         }
 
-        ingredientList.addIngredient(new Ingredient(ingredientName, ingredientCount, expiryDate));
+        return new Ingredient(ingredientName, ingredientCount, expiryDate);
     }
 
-    public void parseDeleteUserIngredients(String[] command, IngredientList userIngredients)
-            throws IngredientNotFoundException, InvalidValueException {
+    //@@author jaredoong
+
+    /**
+     * Parses the user input to extract the ingredient name and quantity that the user wants to delete from
+     * the ingredient list. Returns the Ingredient object that contains parsed data.
+     *
+     * @author jaredoong
+     * @param command an array containing the user input
+     * @return an Ingredient object that contains the ingredient name, quantity, and dummy expiry date
+     * @throws NumberFormatException       If users entered invalid character for the quantity.
+     * @throws IngredientNotFoundException If users entered invalid ingredient name.
+     * @throws InvalidValueException       If users entered invalid quantity.
+     * @throws IllegalArgumentException    If users did not enter a valid command.
+     */
+    public Ingredient parseDeleteUserIngredients(String[] command)
+            throws NumberFormatException, IllegalArgumentException, IngredientNotFoundException,
+            InvalidValueException {
         String ingredientName = null;
         Integer ingredientCount = null;
 
@@ -783,11 +1048,30 @@ public class Parser {
             throw new IllegalArgumentException("Missing required information. Please use /n and /c.");
         }
 
-        userIngredients.deleteIngredient(ingredientName, ingredientCount);
+        return new Ingredient(ingredientName, ingredientCount, "01/01/2020");
     }
 
-    public void parseMarkDone(String[] command, IngredientList userIngredients, WeeklyPlan weeklyPlan,
-                              RecipeList recipes) throws IngredientNotFoundException, InvalidRecipeNameException {
+    //@@author jaredoong
+
+    /**
+     * Parses the user input to extract the recipe which the user wants to mark as done. Returns the recipe
+     * name to be deleted from the weekly plan.
+     *
+     * @author jaredoong
+     * @param command         an array containing the user input
+     * @param userIngredients an object containing all ingredients data
+     * @param weeklyPlan      an object containing all weekly plan data
+     * @param recipes         an object containing all recipes data
+     * @return a string containing the recipe name to be deleted from the weekly plan.
+     * @throws NumberFormatException       If users entered invalid character for the quantity.
+     * @throws IngredientNotFoundException If users entered invalid ingredient name.
+     * @throws IllegalArgumentException    If users enter a recipe name that does not exist in the weekly
+     *                                     plan, or if the user does not have enough ingredients to make the
+     *                                     recipe.
+     */
+    public String parseMarkDone(String[] command, IngredientList userIngredients, WeeklyPlan weeklyPlan,
+            RecipeList recipes)
+            throws IllegalArgumentException, IngredientNotFoundException, InvalidRecipeNameException {
         if (command.length == 2) {
             throw new IllegalArgumentException("Please enter a recipe name.");
         }
@@ -809,16 +1093,6 @@ public class Parser {
             }
         }
 
-        // If all ingredients are present, mark recipe as done
-        for (String ingredient : ingredients.keySet()) {
-            userIngredients.deleteIngredient(ingredient, ingredients.get(ingredient));
-        }
-
-        // Remove count of recipe from weekly plan
-        if (weeklyPlan.get(recipeName) == 1) {
-            weeklyPlan.remove(recipeName);
-        } else {
-            weeklyPlan.put(recipeName, weeklyPlan.get(recipeName) - 1);
-        }
+        return recipeName;
     }
 }

@@ -8,7 +8,12 @@ public class IngredientList extends HashMap<String, Ingredient> {
 
     private static final Parser parser = new Parser();
 
-    // public method to find count of ingredient
+    /**
+     * This method is designed to find the count of a particular ingredient.
+     *
+     * @param ingredientName name of ingredient
+     *
+     **/
     public Integer findIngredientCount(String ingredientName) throws IngredientNotFoundException {
         if (this.containsKey(ingredientName)) {
             return this.get(ingredientName).ingredientCount;
@@ -16,7 +21,12 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
-    // public method to find expiry date of ingredient
+    /**
+     * This method is designed to find the expiry date of a particular ingredient,
+     *
+     * @param ingredientName name of ingredient
+     *
+     **/
     public LocalDate findExpiryDate(String ingredientName) throws IngredientNotFoundException {
         if (this.containsKey(ingredientName)) {
             return this.get(ingredientName).expiryDate;
@@ -24,6 +34,13 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
+    /**
+     * Adds an ingredient to the ingredient list. If the ingredient already exists, the count of the
+     * ingredient is updated, and the expiry date is also updated.
+     *
+     * @author jaredoong
+     * @param ingredient Ingredient to be added.
+     */
     public void addIngredient(Ingredient ingredient) {
         if (this.containsKey(ingredient.ingredientName)) {
             int currentCount = this.get(ingredient.ingredientName).ingredientCount;
@@ -35,6 +52,15 @@ public class IngredientList extends HashMap<String, Ingredient> {
         }
     }
 
+    /**
+     * This method is designed to edit the ingredient count and expiry date.
+     * It also checks if the ingredient is expired or not.
+     *
+     * @param ingredient the ingredient we want to check
+     * @param ingredientCount count of ingredient
+     * @param expiryDate expiry date of ingredient
+     *
+     **/
     public void editIngredient(Ingredient ingredient, Integer ingredientCount, String expiryDate)
             throws IngredientNotFoundException {
         if (this.containsKey(ingredient.ingredientName)) {
@@ -46,22 +72,37 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
-    public void deleteIngredient(String ingredient, Integer ingredientCount)
-            throws IngredientNotFoundException {
-        if (this.containsKey(ingredient)) {
-            int currentCount = this.get(ingredient).ingredientCount;
+    /**
+     * Deletes an ingredient from the ingredient list. If the ingredient count is greater than the count to be
+     * deleted, the count of the ingredient is updated. If the ingredient count is equal or less than to the
+     * count to be deleted, the ingredient is removed from the list.
+     *
+     * @author jaredoong
+     * @param ingredient Ingredient to be deleted.
+     * @throws IngredientNotFoundException If the ingredient is not found in the list.
+     */
+    public void deleteIngredient(Ingredient ingredient) throws IngredientNotFoundException {
+        String ingredientName = ingredient.ingredientName;
+        int ingredientCount = ingredient.ingredientCount;
+
+        if (this.containsKey(ingredientName)) {
+            int currentCount = this.get(ingredientName).ingredientCount;
             int newCount = currentCount - ingredientCount;
             if (newCount > 0) {
-                this.put(ingredient, new Ingredient(ingredient, newCount, this.get(ingredient).expiryDate));
+                this.put(ingredientName,
+                        new Ingredient(ingredientName, newCount, this.get(ingredientName).expiryDate));
             } else {
-                this.remove(ingredient);
+                this.remove(ingredientName);
             }
         } else {
             throw new IngredientNotFoundException("Ingredient not found");
         }
     }
 
-    // private indexed list of ingredients, count and expiry date
+    /**
+     * This method is designed to print the contents of an ingredient.
+     *
+     **/
     private String listIngredients() {
         String ingredientList = "";
         int index = 1;

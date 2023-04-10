@@ -183,7 +183,7 @@ class Meal360Test {
         }
     }
 
-    //@@author
+    //@@author gurmankalkat
     @Test
     public void testDeleteRecipe() {
         HashMap<String, Integer> testIngredients = new HashMap<>();
@@ -198,6 +198,118 @@ class Meal360Test {
         int newRecipeListSize = recipes.size();
         // check if recipe list size is 1 less than before
         assertEquals((oldRecipeListSize - 1), newRecipeListSize);
+
+        // No recipe inputted
+        try {
+            String userInput = "delete";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Recipe in incorrect format
+        try {
+            String userInput = "delete pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Index out of bounds
+        try {
+            String userInput = "delete 100000";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Index out of bounds
+        try {
+            String userInput = "delete -5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Range invalid
+        try {
+            String userInput = "delete 0-2000000";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Range invalid
+        try {
+            String userInput = "delete 1---------";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.",
+                    e.getMessage());
+        }
+
+        // Range invalid
+        HashMap<String, Integer> testIngredients1 = new HashMap<>();
+        testIngredients1.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR1 = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR1);
+
+        HashMap<String, Integer> testIngredients2 = new HashMap<>();
+        testIngredients2.put("test ingredient", 100);
+        // create a fake recipe
+        Recipe testR2 = new Recipe("test recipe name", testIngredients);
+        recipes.addRecipe(testR2);
+        try {
+            String userInput = "delete 2-1";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range.", e.getMessage());
+        }
+
+        // Delete all
+        try {
+            String userInput = "delete /r all";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assertEquals(0, recipes.size());
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Recipe does not exist in recipe list)
+        try {
+            String userInput = "delete /r pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteRecipe(command, recipes);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(ArrayIndexOutOfBoundsException.class, e.getClass());
+            assertEquals("Please enter a valid recipe number, name, or range in the correct format.", e.getMessage());
+        }
     }
 
     //@@author jaredoong
@@ -801,14 +913,18 @@ class Meal360Test {
         }
     }
 
-    //@@author
+    //@@author gurmankalkat
     @Test
     public void testClearWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 1);
         weeklyPlan.put("pizza", 3);
-
         // Testing clearing weekly plan
+        weeklyPlan.clearPlan();
+        assertEquals(weeklyPlan.size(), 0);
+
+        // weekly plan of size 0
+        weeklyPlan = new WeeklyPlan();
         weeklyPlan.clearPlan();
         assertEquals(weeklyPlan.size(), 0);
     }
@@ -841,11 +957,12 @@ class Meal360Test {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 1);
         ui.printWeeklyPlan(weeklyPlan);
-        assertEquals(ui.formatMessage("Here is your weekly plan:") + System.lineSeparator() + ui.formatMessage(
+        assertEquals(
+                ui.formatMessage("Here is your weekly plan:") + System.lineSeparator() + ui.formatMessage(
                         "salad x1"), outContent.toString().trim());
     }
 
-    //@@author
+    //@@author junenita
     @Test
     public void testListRecipe() {
         RecipeList recipeListToPrint;
@@ -931,7 +1048,7 @@ class Meal360Test {
             String addTagReturnMessage = parser.parseTagRecipe(addTagInputs, recipes);
             ui.printTagMessage(addTagReturnMessage);
             assertEquals(ui.formatMessage("You have successfully added the recipe(s) to \"breakfast\" tag."),
-                outContent.toString().trim());
+                    outContent.toString().trim());
         } catch (Exception e) {
             assert false;
         }
@@ -945,7 +1062,8 @@ class Meal360Test {
             String[] removeTagInputs = new String[]{"tag", "breakfast", ">>", "salad"};
             String removeTagReturnMessage = parser.parseTagRecipe(removeTagInputs, recipes);
             ui.printTagMessage(removeTagReturnMessage);
-            assertEquals(ui.formatMessage("You have successfully removed the recipe(s) from \"breakfast\" tag."),
+            assertEquals(
+                    ui.formatMessage("You have successfully removed the recipe(s) from \"breakfast\" tag."),
                     outContent.toString().trim());
         } catch (Exception e) {
             assert false;
@@ -1007,8 +1125,7 @@ class Meal360Test {
         assertThrows(TagNotFoundException.class, () -> parser.parseTagRecipe(invalidTagInputs, recipes));
 
         String[] noRecipeInTagInputs = new String[]{"tag", "western", ">>", "random"};
-        assertThrows(NoRecipeException.class,
-                () -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
+        assertThrows(NoRecipeException.class, () -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
 
         try {
             inputs = new String[]{"tag", "western", ">>", "pizza"};
@@ -1047,7 +1164,8 @@ class Meal360Test {
         try {
             String userInput = "weekly /done burger";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assertEquals(8, userIngredients.findIngredientCount("buns"));
             assertEquals(9, userIngredients.findIngredientCount("meat patty"));
             assertEquals(7, userIngredients.findIngredientCount("lettuce"));
@@ -1060,7 +1178,8 @@ class Meal360Test {
         try {
             String userInput = "weekly /done Pizza";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assertEquals(9, userIngredients.findIngredientCount("dough"));
             assertEquals(9, userIngredients.findIngredientCount("tomato sauce"));
             assertEquals(9, userIngredients.findIngredientCount("cheese"));
@@ -1074,7 +1193,8 @@ class Meal360Test {
         try {
             String userInput = "WEEKLY /DONE pizza";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assertEquals(8, userIngredients.findIngredientCount("dough"));
             assertEquals(8, userIngredients.findIngredientCount("tomato sauce"));
             assertEquals(8, userIngredients.findIngredientCount("cheese"));
@@ -1088,7 +1208,8 @@ class Meal360Test {
         try {
             String userInput = "weekly /done chicken rice";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assertEquals(9, userIngredients.findIngredientCount("chicken"));
             assertEquals(9, userIngredients.findIngredientCount("rice"));
             assertEquals(99, weeklyPlan.get("chicken rice"));
@@ -1100,7 +1221,8 @@ class Meal360Test {
         try {
             String userInput = "weekly /done pizzaandburgers";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidRecipeNameException.class, e.getClass());
@@ -1111,7 +1233,8 @@ class Meal360Test {
         try {
             String userInput = "weekly /done salad";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
@@ -1122,9 +1245,10 @@ class Meal360Test {
         try {
             String userInput = "weekly /done burger";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
-            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            for (int i = 0; i < 3; i++) {
+                String recipeToDelete = parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+                weeklyPlan.markDone(recipeToDelete, recipes, userIngredients);
+            }
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
@@ -1139,7 +1263,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n fish /c 10 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assertEquals(10, userIngredients.findIngredientCount("fish"));
         } catch (Exception e) {
             assert false;
@@ -1149,7 +1274,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 10 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assertEquals(20, userIngredients.findIngredientCount("chicken"));
         } catch (Exception e) {
             assert false;
@@ -1159,7 +1285,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n CHICKEN /c 10 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assertEquals(30, userIngredients.findIngredientCount("chicken"));
         } catch (Exception e) {
             assert false;
@@ -1169,7 +1296,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 10 /d 21/10/2025";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assertEquals(40, userIngredients.findIngredientCount("chicken"));
             assertEquals(parser.parseDate("21/10/2025"), userIngredients.findExpiryDate("chicken"));
         } catch (Exception e) {
@@ -1180,7 +1308,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n peas and corn and carrot /c 10 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assertEquals(10, userIngredients.findIngredientCount("peas and corn and carrot"));
         } catch (Exception e) {
             assert false;
@@ -1190,7 +1319,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 0 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1202,7 +1332,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c -10 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1214,7 +1345,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 1001 /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1226,7 +1358,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c abc /d 10/10/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
@@ -1238,7 +1371,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 10 /d 10/10/202";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
@@ -1249,7 +1383,8 @@ class Meal360Test {
         try {
             String userInput = "add_i /n chicken /c 10 /d 10/13/2024";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseAddUserIngredients(command, userIngredients);
+            Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+            userIngredients.addIngredient(ingredientToAdd);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(IllegalArgumentException.class, e.getClass());
@@ -1264,7 +1399,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c 5";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assertEquals(5, userIngredients.findIngredientCount("chicken"));
         } catch (Exception e) {
             assert false;
@@ -1274,7 +1410,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n CHEESE /c 5";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assertEquals(5, userIngredients.findIngredientCount("cheese"));
         } catch (Exception e) {
             assert false;
@@ -1284,7 +1421,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n peas and corn /c 5";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assertEquals(5, userIngredients.findIngredientCount("peas and corn"));
         } catch (Exception e) {
             assert false;
@@ -1294,7 +1432,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c 100";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assertNull(userIngredients.get("chicken"));
         } catch (Exception e) {
             assert false;
@@ -1304,7 +1443,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c 0";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1316,7 +1456,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c -5";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1328,7 +1469,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c 1001";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(InvalidValueException.class, e.getClass());
@@ -1340,7 +1482,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n chicken /c abc";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(NumberFormatException.class, e.getClass());
@@ -1352,7 +1495,8 @@ class Meal360Test {
         try {
             String userInput = "del_i /n beef /c 5";
             String[] command = parser.cleanUserInput(userInput);
-            parser.parseDeleteUserIngredients(command, userIngredients);
+            Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+            userIngredients.deleteIngredient(ingredientToDelete);
             assert false; // should not reach here
         } catch (Exception e) {
             assertEquals(IngredientNotFoundException.class, e.getClass());
@@ -1389,16 +1533,16 @@ class Meal360Test {
         assertDoesNotThrow(database::loadRecipesDatabase);
     }
 
-
+    //@@author AbijithRam
     @Test
-    public void testCombineWords(){
-        String[] input1 = {"One", "Two" , "Three"};
+    public void testCombineWords() {
+        String[] input1 = {"One", "Two", "Three"};
         assertEquals("One Two Three", parser.combineWords(input1, 0, 3));
 
-        String[] input2 = {"Pizza  ", "Burger  " , "   Ice Cream"};
+        String[] input2 = {"Pizza  ", "Burger  ", "   Ice Cream"};
         assertEquals("Pizza Burger Ice Cream", parser.combineWords(input2, 0, 3));
 
-        String[] input3 = {"1 1 1", "2  2  2" , "3   3   3"};
+        String[] input3 = {"1 1 1", "2  2  2", "3   3   3"};
         assertEquals("1 1 1 2  2  2 3   3   3", parser.combineWords(input3, 0, 3));
 
     }

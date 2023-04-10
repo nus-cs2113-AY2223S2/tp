@@ -1,15 +1,16 @@
 # User Guide
 
-
 ## Introduction
 
 Meal360 is a desktop app for managing your recipes and weekly meal plans, optimized for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If
 you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI
 apps.
+
 * [Quick Start](#quick-start)
 * [Features](#features)
 * [Command Summary](#command-summary)
+
 ___
 
 ## Quick Start
@@ -21,20 +22,34 @@ ___
    `tp.jar` file. This folder will contain all the data files that the app will use. Please do not
    touch these files to ensure smooth operation of the app.
 4. To allow for immediate testing of features, the app comes preloaded with 10 recipes.
+5. Take note that changes to the ingredient list, recipe list, and weekly meal plan would be saved
+   only when exiting the program properly using `bye` command.
 
 ___
 
 ## Features
 
-* [View recipes](#viewing-recipes--view)
-* [List relevant recipes](#listing-recipes--list)
-* [Tag/Categorise recipes](#taggingcategorising-recipes--tag)
-* [Add single recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
-* [Add multiple recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
-* [Remove single recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
-* [Remove multiple recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
-* [View weekly plan](#view-this-weeks-plan--weeklyplan)
-* [Random a recipe](#random-a-recipe--random)
+* [Add Recipes](#add-recipes)
+* [Edit Recipes](#edit-recipes)
+* [Delete Recipes](#delete-recipes)
+* [View recipes](#view-recipes)
+* [List Relevant Recipes](#list-recipes)
+* [Tag/Categorize Recipes](#tagcategorize-recipes)
+* [Add Single Recipe To Weekly Plan](#add-single-recipe-to-weekly-plan)
+* [Add Multiple Recipe To Weekly Plan](#add-multiple-recipes-to-weekly-plan)
+* [Remove Single Recipe From Weekly Plan](#delete-single-recipe-from-weekly-plan)
+* [Remove Multiple Recipe From Weekly Plan](#delete-multiple-recipes-from-weekly-plan)
+* [Clear Weekly Plan](#clear-weekly-plan)
+* [Mark Recipe In Weekly Plan As Done](#mark-recipe-in-weekly-plan-as-done)
+* [View Weekly Plan Ingredients](#view-weekly-plan-ingredients)
+* [View User Ingredients](#view-user-ingredients)
+* [View Weekly Plan](#view-weekly-plan)
+* [Random A Recipe](#random-a-recipe)
+* [Exit Program](#exit-the-program)
+* [Add User Ingredient](#add-user-ingredient)
+* [Delete User Ingredient](#delete-user-ingredient)
+* [View Available Ingredients](#view-available-ingredients)
+* [Help Tab](#help-tab)
 
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
@@ -42,13 +57,24 @@ ___
 
 Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
 
-* Examples: `chicken=100 oil and sauce=200 vegetables=300`
-  `meat=200 salt and spices=400`
+Examples of usage:
+
+* `chicken=100 meat and oil=200`
+* `white rice=300 vegetables=400 pepper,chilli and seeds=500`
+
+
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
+* There is no `and` between two separate ingredients.
+  * If user types, `meat=100 and chicken=200`, it will get stored as `meat=100`, `and chicken=200`.
+  * Use `and` only in cases like: `pepper and spices=100`, `meat and vegetables=200`.
+* After the ingredients are key-in in, please type `done` in the next line to finish the process.
+    * **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient
+      and the recipe
+      manager knows that you have entered 1 ingredient. No need to type `done`.
 
 <br>
 
-### Adding recipes: `add`
+### Add Recipes
 
 Add new recipes to your list.
 
@@ -64,7 +90,7 @@ Example of usage:
 
 <br>
 
-### Editing recipes: `edit`
+### Edit Recipes
 
 Edit recipes in your list partially, fully or add new ingredients to already existing recipe.
 
@@ -74,6 +100,8 @@ Format: `edit /r [RECIPE_NAME]`
 * Type the recipe name after typing `/r `.
 * If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
 * Follow the proper format while editing/adding ingredients.
+* **NOTE:** If you add the same ingredient while editing, then the quantity will be the only one
+that will be changed to avoid duplicates.
 
 Example of usage:
 
@@ -82,7 +110,7 @@ Example of usage:
 
 <br>
 
-### Listing recipes: `list`
+### List Recipes
 
 List all recipes or filtered list recipes by the name or ingredients.
 
@@ -107,7 +135,7 @@ Example of usage:
 
 <br>
 
-### Viewing recipes: `view`
+### View Recipes
 
 Views the list of ingredients and their quantities for a recipe.
 
@@ -123,7 +151,7 @@ Example of usage:
 
 <br>
 
-### Deleting recipes: `delete`
+### Delete Recipes
 
 Deletes one, a range, or all recipes currently in list.
 
@@ -132,6 +160,7 @@ Format: `delete INDEX/RANGE` or `delete /r NAME`
 * Deletes the recipe(s) specified by the user either through the recipe index or name.
 * The index refers to the index number shown in the displayed person list.
 * The name refers to the recipe name in the list.
+*
 
 Example of usage:
 
@@ -142,7 +171,7 @@ Example of usage:
 
 <br>
 
-### Tagging/Categorising recipes: `tag`
+### Tag/Categorize Recipes
 
 __Categorize recipes into a specific tag__
 
@@ -182,7 +211,7 @@ Example of usage:
 
 <br>
 
-### Adding single recipe this week's plan: `weekly /add`
+### Add single recipe to weekly plan
 
 Adds an existing recipe to this week's plan.
 
@@ -201,7 +230,7 @@ Example of usage:
 
 <br>
 
-### Adding multiple recipes to this week's plan: `weekly /multiadd`
+### Add multiple recipes to weekly plan
 
 Adds multiple existing recipe to this week's plan.
 
@@ -223,7 +252,7 @@ Example of usage:
 
 <br>
 
-### Deleting from this week's plan: `weekly /delete`
+### Delete single recipe from weekly plan
 
 Deletes an existing recipe from this week's plan.
 
@@ -242,7 +271,7 @@ Example of usage:
 
 <br>
 
-### Deleting multiple recipes from this week's plan: `weekly /multidelete`
+### Delete multiple recipes from weekly plan
 
 Deletes multiple existing recipe from this week's plan.
 
@@ -267,7 +296,7 @@ Example of usage:
 
 <br>
 
-### Clearing this week's plan: `weekly /clear`
+### Clear weekly plan
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
@@ -275,7 +304,7 @@ Format: `weekly /clear`
 
 <br>
 
-### Mark recipe in this week's plan as done: `weekly /done`
+### Mark recipe in weekly plan as done
 
 Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
 ingredients will be removed from the weekly plan and the list of ingredients.
@@ -293,7 +322,7 @@ Example of usage:
 
 <br>
 
-### View this week's plan: `weeklyplan`
+### View weekly plan
 
 View this week's plan.
 
@@ -301,7 +330,7 @@ Format: `weeklyplan`
 
 <br>
 
-### View this week's ingredients: `weeklyingredients`
+### View weekly plan ingredients
 
 View this week's ingredients.
 
@@ -309,7 +338,7 @@ Format: `weeklyingredients`
 
 <br>
 
-### Random a recipe: `random`
+### Random a recipe
 
 Random a recipe from all the recipes that user have, and show the list of
 ingredients and their quantities for a recipe.
@@ -318,7 +347,7 @@ Format: `random`
 
 <br>
 
-### Exit the program: `bye`
+### Exit the program
 
 Exits the program.
 
@@ -326,7 +355,7 @@ Format: `bye`
 
 <br>
 
-### Add user ingredient: `add_i`
+### Add user ingredient
 
 Add user's ingredients into the ingredient list.
 Format : `add_i /n INGREDIENT_NAME /c QUANTITY /d DATE`
@@ -343,7 +372,7 @@ Example of usage:
 
 <br>
 
-### Delete user ingredient: `del_i`
+### Delete user ingredient
 
 Delete user's ingredients from the ingredient list.
 Format : `del_i /n INGREDIENT_NAME /c QUANTITY`
@@ -360,12 +389,24 @@ Example of usage:
 
 <br>
 
-### View user ingredients: `view_ingredients`
+### View user ingredients
 
 View user's ingredients from the ingredient list.
 Format : `view_ingredients`
 
----
+<br>
+
+### View available ingredients
+
+View the available ingredients.
+Format: `available`
+
+<br>
+
+### Help Tab
+
+View all the 21 proper commands used in the recipe manager.
+Format: `help`
 
 ## Command Summary
 
@@ -389,3 +430,6 @@ Format : `view_ingredients`
 | View user ingredients              | `view_ingredients`                                                                                          |
 | Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
 | Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |
+| Available ingredients              | `available`                                                                                                 |
+| Exit the program                   | `bye`                                                                                                       |
+| Help Tab                           | `help`                                                                                                      |

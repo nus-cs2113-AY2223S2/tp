@@ -31,6 +31,12 @@ public class Ui {
         System.out.println(outputMessage);
     }
 
+    /**
+     * This method is designed to print the contents of a recipe.
+     *
+     * @param recipe recipe whose contents are to be printed.
+     *
+     **/
     public void printRecipe(Recipe recipe) {
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         int index = 1;
@@ -42,6 +48,12 @@ public class Ui {
         }
     }
 
+    /**
+     * This method is designed to print the weeklyplan.
+     *
+     * @param weeklyPlan weeklyPlan whose contents are to be printed.
+     *
+     **/
     public void printWeeklyPlan(WeeklyPlan weeklyPlan) {
         if (weeklyPlan.isEmpty()) {
             printMessage("Your weekly plan is empty!");
@@ -55,6 +67,13 @@ public class Ui {
 
     }
 
+    /**
+     * This method is designed to print the weekly ingredients.
+     *
+     * @param weeklyPlan weeklyPlan whose contents are to be printed.
+     * @param recipeList recipeList of user
+     *
+     **/
     public void printWeeklyIngredients(WeeklyPlan weeklyPlan, RecipeList recipeList) {
         if (weeklyPlan.isEmpty()) {
             printMessage("Your weekly plan is empty!");
@@ -72,16 +91,39 @@ public class Ui {
 
     }
 
+
+    /**
+     * This method is designed to print all the recipes in the user's recipe list.
+     *
+     * @param recipeListToPrint recipeList of user
+     *
+     **/
     public void listRecipe(RecipeList recipeListToPrint) {
         listRecipes(recipeListToPrint, "There is nothing to list.",
                 "These are the recipes you have");
     }
 
+
+    /**
+     * This method is designed to print all the available recipes in the user's recipe list.
+     *
+     * @param recipeListToPrint recipeList of user
+     *
+     **/
     public void listAvailableRecipes(RecipeList recipeListToPrint) {
         listRecipes(recipeListToPrint, "There are no available recipes.",
                 "These are the recipes you can cook");
     }
 
+    /**
+     * Print ordered list of recipes including recipes' name and ingredients
+     *
+     * @author notbingsu
+     * @author junenita
+     * @param recipeListToPrint list containing recipes to be printed
+     * @param emptyListMsg      error message for empty list
+     * @param listHeaderMsg     print list header message
+     */
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg, String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
@@ -97,35 +139,54 @@ public class Ui {
         }
     }
 
+    /**
+     * This method is designed to display all the commands used by the
+     * recipe manager to assist the user in executing the required
+     * operations.
+     *
+     * @author AbijithRam
+     */
     public void printHelp() {
-        printMessage("These are the operations you can do. Please follow the proper input"
-                + " formats while typing.");
-        printMessage("1. Add Recipe: add /r {recipe name}");
-        printMessage("2. View Recipe: view {index number}");
-        printMessage("3. Edit Recipe: edit {recipe name}");
-        printMessage("4. Delete Recipe: delete {index number} or delete {starting index-ending index} or");
-        printMessage("delete /r {recipe name} or delete /r all");
+        printMessage("These are the 21 operations you can do. Please follow the proper input"
+                   + " formats while typing.");
+        printSeparator();
+        printMessage("1. Add Recipe: add /r {RECIPE_NAME}");
+        printMessage("2. Edit Recipe: edit /r {RECIPE_NAME}");
+        printMessage("3. View Recipe: view {RECIPE_INDEX}");
+        printMessage("4. Delete Recipe: delete {RECIPE_INDEX} or delete {START_INDEX-END_INDEX} or");
+        printMessage("                  delete /r {RECIPE_INDEX} or delete /r all");
         printMessage("5. List All Recipes: list");
-        printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
-        printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
-        printMessage("   /r {recipe2 name} /q {quantity2}");
-        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
-        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
-        printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
-        printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Marking recipe in weekly plan as done: weekly /done RECIPE_NAME");
-        printMessage("12. Clearing weekly plan: weekly /clear");
-        printMessage("13. View Weekly Ingredients: weeklyingredients");
-        printMessage("14. Give a random recipe: random");
-        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && "
-                + "...}");
-        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ."
-                + "..}");
-        printMessage("17. Exit: bye");
-        printMessage("HOW TO ADD INGREDIENTS?");
-        printMessage("ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...");
+        printMessage("6. List Available Recipes: available");
+        printMessage("7. View Weekly Plan: weeklyplan");
+        printMessage("8. View Weekly Ingredients: weeklyingredients");
+        printMessage("9. Add Single Recipe to Weekly Plan: weekly /add {RECIPE_NAME} {QUANTITY}");
+        printMessage("10. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {RECIPE1_NAME} /q {QUANTITY1}");
+        printMessage("                                        /r {RECIPE2_NAME} /q {QUANTITY2}");
+        printMessage("11. Delete Single Recipe from Weekly Plan: weekly /delete {RECIPE_NAME} {QUANTITY}");
+        printMessage("12. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {RECIPE1_NAME}");
+        printMessage("                                             /q {QUANTITY1} /r {RECIPE2_NAME} /q {QUANTITY2}");
+        printMessage("13. Marking recipe in weekly plan as done: weekly /done {RECIPE_NAME}");
+        printMessage("14. Clear weekly plan: weekly /clear");
+        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("17. Add User Ingredient: add_i /n {INGREDIENT_NAME} /c {QUANTITY} /d {DATE}");
+        printMessage("18. Delete User Ingredient: del_i /n {INGREDIENT_NAME} /c {QUANTITY}");
+        printMessage("19. View User Ingredients: view_ingredients");
+        printMessage("20. Exit Recipe Manager: bye");
+        printMessage("21. Help Tab: help");
+        printSeparator();
+        printMessage("NOTE:");
+        printMessage("* Curly brackets {} are just to indicate what goes inside the command!");
+        printMessage("* No need to type them while entering commands!");
     }
 
+
+    /**
+     * This method is designed to print the user ingredients.
+     *
+     * @param userIngredients ingredient list of user
+     *
+     **/
     public void printUserIngredients(IngredientList userIngredients) {
         if (userIngredients.isEmpty()) {
             printMessage("Your ingredient list is empty!");
@@ -141,6 +202,13 @@ public class Ui {
         }
     }
 
+    /**
+     * Extract message received whether users added or removed recipes from a tag.
+     * Then, proceed to print a successful message.
+     *
+     * @author junenita
+     * @param receivedMessage string containing 'add' or 'remove' tag and tag label
+     */
     public void printTagMessage(String receivedMessage) {
         String[] args = receivedMessage.split(" ", 2);
         String command = args[0].trim();
@@ -152,14 +220,31 @@ public class Ui {
         }
     }
 
+    /**
+     * Print successfully add recipes to the tag
+     *
+     * @author junenita
+     * @param tag tag label
+     */
     public void printSuccessfullyAddTag(String tag) {
         printMessage("You have successfully added the recipe(s) to \"" + tag + "\" tag.");
     }
 
+    /**
+     * Print successfully remove recipes from the tag
+     *
+     * @author junenita
+     * @param tag tag label
+     */
     public void printSuccessfullyRemoveTag(String tag) {
         printMessage("You have successfully removed the recipe(s) from \"" + tag + "\" tag.");
     }
 
+    /**
+     * Print random result header
+     *
+     * @author junenita
+     */
     public void printRandomMessage() {
         printMessage("Random Result.....");
     }
