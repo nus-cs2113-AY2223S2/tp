@@ -2,19 +2,31 @@
 
 * [Acknowledgements](#acknowledgements)
 * [Setting Up, Getting Started](#setting-up-getting-started)
-* [Design & Implementation](#design-and-implementation)
+* [Design](#design-and-implementation)
     * [Architecture](#architecture)
-    * [UI Component](#UI-Component)
+    * [UI Component](#ui-component)
     * [Parser Component](#parser-component)
     * [BankWithUs Component](#bankwithus-component)
     * [Account Component](#account-component)
     * [AccountList Component](#accountlist-component)
-    * [SaveGoal Component](#saveGoal-Component)
+    * [SaveGoal Component](#savegoal-component)
     * [Storage Component](#storage-component)
-    * [Withdrawal Limit Component](#withdraw-limit-checker-Component)
+    * [Withdrawal Limit Component](#withdraw-limit-checker-component)
     * [Transaction Component](#transaction-component)
     * [TransactionList Component](#transactionlist-component)
-
+* [Implementation](#design-and-implementation)
+  * [Add Account](#command--add-account-)
+  * [Delete](#command--delete)
+  * [Deposit](#command--deposit-)
+  * [Check Withdrawal Limit](#command--check-wl)
+  * [Setting Save Goal](#command--set-save-goal-)
+  * [Set Withdrawal Limit](#command--set-wl)
+  * [Show Save Goal](#command--show-save-goal-)
+  * [Withdraw](#command--withdraw-)
+  * [Switch Account](#command--switch-to)
+  * [View accounts](#command--view-account-)
+  * [Help](#command--help)
+  * [Summary of overall architecture](#summary-of-overall-architecture)
 * [Appendix](#appendix)
     * [Product Scope](#product-scope)
     * [Target User Profile](#target-user-profile)
@@ -53,7 +65,8 @@ a normal Java project <br />
 * Run the `seedu/bankwithus/BankWithUs.java` and try a few commands. 
 You may want to refer to our User Guide for the list of commands <br />
 * Run the tests to ensure they all pass
----
+
+<div style="page-break-after: always;"></div>
 
 ## Design and Implementation
 
@@ -65,11 +78,13 @@ Given below is a quick overview of main components and how they interact with ea
 
 For a quick link to a summary refer to: [Summary of overall architecture](#summary-of-overall-architecture)
 
+<div style="page-break-after: always;"></div>
+
 **Interactions**
 
 The sequence diagram below shows how components interact with each other when the user issues the command `deposit 100`.
 
-<img src="images/deposit100SeqDiagram.png" width="700" />
+<img src="images/deposit100SeqDiagram.png" width="900" />
 
 Note: The lifeline of the Transaction class does not end after the cross due to a limitation with PlantUML. 
 
@@ -80,13 +95,19 @@ Class: `Ui.java`
 
 *  Contains all code that interfaces directly with the CLI
 
+<div style="page-break-after: always;"></div>
+
 ### Parser-Component
 Class: `Parser.java`
+
+<img src="images/UML_CLASS_DIAGS/PARSER_CLASS.png" width="700" />
 
 * Determines what the program would do with the input retrieved from the CLI
 
 ### Account-Component
 Class: `Account.java`
+
+<img src="images/UML_CLASS_DIAGS/ACCOUNT_CLASS.png" width="700" />
 
 The `Account` component:
 
@@ -106,6 +127,8 @@ different accounts that the user has
 
 ### BankWithUs-Component
 Class: `BankWithUs.java`
+
+<img src="images/UML_CLASS_DIAGS/BWU_CLASS.png" width="700" />
 
 The `BankWithUs` component:
 
@@ -154,154 +177,177 @@ that contains the various different transactions that the user has
 
 ## Command: `help`
 
-* If a user command begins with help, it will call a method in the UI class to print the help screen.
-* Feature with the most basic implementation
+* If a user command begins with help, it will call a method in the UI class to print the help screen. 
+*  Feature with the most basic implementation
 
 ## Command: `view-account` :
 
 **Step 1**:
 
---> Calls `getAllAccountDetails()` method from the AccountList class. 
+*  Calls `getAllAccountDetails()` method from the AccountList class. 
 
---> The `getAllAccountDetails()` method parses the `ArrayList<Account>` from the AccountLits class
+*  The `getAllAccountDetails()` method parses the `ArrayList<Account>` from the AccountLits class
 
---> This builds a String where each Account is separated by a newline character and the attributes of an Account is separated by `;`
+*  This builds a String where each Account is separated by a newline character and the attributes of an Account is separated by `;`
 
 **Step 2**:
 
---> This string is then passed to the `viewAccount()` class in UI, where the string is decoded and print to screen
+*  This string is then passed to the `viewAccount()` class in UI, where the string is decoded and print to screen
 
---> Identifies attributes that belong to a particular user by splitting the string based on a new line
+*  Identify attributes that belong to a particular user by splitting the string based on a new line
 
---> The relevant attributes(Name, balance) of the account can ge identified by separating the string again by `;` and accessing index 0 and 1 respectively
+*  The relevant attributes(Name, balance) of the account can ge identified by separating the string again by `;` and accessing index 0 and 1 respectively
 
 ## Command: `withdraw` :
 
 **Step 1**:
 
---> Checks the args(AMOUNT to withdraw) for a negative sign in the `checkNegative()` method
+*  Checks the args(AMOUNT to withdraw) for a negative sign in the `checkNegative()` method
 
 **Step 2**:
 
---> Calls the `withdrawMoney` method in the AccountList class
+*  Calls the `withdrawMoney` method in the AccountList class
 
---> Checks if the AMOUNT entered is empty, number of decimal places(accepts only 2 d.p) and checks if the AMOUNT to be withdrawn is less than or equal to the available balance
+*  Checks if the AMOUNT entered is empty, number of decimal places(accepts only 2 d.p) and checks if the AMOUNT to be withdrawn is less than or equal to the available balance
 
 **Step 3**:
 
---> Checks if the AMOUNT to withdraw exceeds the set withdrawal limit, if any, in the `willExceedWithdrawalLimit` method of the withdrawalChecker class
+*  Checks if the AMOUNT to withdraw exceeds the set withdrawal limit, if any, in the `willExceedWithdrawalLimit` method of the withdrawalChecker class
 
 **Step 4**:
 
---> Checks if the AMOUNT to withdraw will cause the user to default on their set savings goal; though, users can proceed at their own discretion
+*  Checks if the AMOUNT to withdraw will cause the user to default on their set savings goal; though, users can proceed at their own discretion
 
 **Step 5**:
 
---> If it passes all the above checks or if the users decide to continue despite defaulting on save goal then it will call the `subtractBalance` method in the Account class
+*  If it passes all the above checks or if the users decide to continue despite defaulting on save goal then it will call the `subtractBalance` method in the Account class
 
---> The `subtractBalance` will deduct the AMOUNT withdrawn from the users balance
+*  The `subtractBalance` will deduct the AMOUNT withdrawn from the users balance
 
 Note: Withdrawal will be cancelled if it fails to meet withdrawal limit or if users choose to meet savings goal 
 
 **Step 6**:
 
---> New balance is displayed to the user via the `showBal()` method from AccountList class that makes use of the UI class' method to print to screen
+*  New balance is displayed to the user via the `showBal()` method from AccountList class that makes use of the UI class' method to print to screen
+
+**Sequence Diagram**
+
+General sequence diagram
+
+<img src="images/WithdrawFunction.png" width="700" />
+
+*Note: Many details especially from the SaveGoal and WithdrawalChecker classes have been omitted for brevity.*
+
+<div style="page-break-after: always;"></div>
+
+Exceed withdrawal limit case
+
+<img src="images/ExceedWLCase.png" width="700" />
+
+<div style="page-break-after: always;"></div>
+
+Fail save goal case
+
+<img src="images/FailSaveGoalCase.png" width="800" />
+
+<div style="page-break-after: always;"></div>
+
 
 ## Command: `add-account`:
 
 **Step 1**:
 
---> Calls the `createNewAccount` method in AccountList class
+*  Calls the `createNewAccount` method in AccountList class
 
 **Step 2**:
 
---> The `createNewAccount` request from the user via the interface for their username(name) and password
+*  The `createNewAccount` request from the user via the interface for their username(name) and password
 
---> The method will continuously prompt users to enter a unique name, if a unique one wasnt already provided
+*  The method will continuously prompt users to enter a unique name, if a unique one wasnt already provided
 
 **Step 3**:
 
---> Based on the name and balance provided, a new account is created via the `addAccount` method
+*  Based on the name and balance provided, a new account is created via the `addAccount` method
 
 **Step 4**:
 
---> Add account creates a new instance of an Account class with the specified attributes and appends to the current ArrayList
+*  Add account creates a new instance of an Account class with the specified attributes and appends to the current ArrayList
 
 ## Command: `deposit`:
 
 **Step 1**:
 
---> Checks the args(AMOUNT to deposit) for a negative sign in the `checkNegative()` method
+*  Checks the args(AMOUNT to deposit) for a negative sign in the `checkNegative()` method
 
 **Step 2**:
 
---> Calls the `depositMoney` method in the AccountList class
+*  Calls the `depositMoney` method in the AccountList class
 
---> Checks if the AMOUNT entered is empty, number of decimal places(accepts only 2 d.p) 
+*  Checks if the AMOUNT entered is empty, number of decimal places(accepts only 2 d.p) 
 
 **Step 3**:
 
---> inside the `depositMoney` method, once it passes all the checks will call the `addBalance` method from the Account class to increment the balance as appropriate
+*  inside the `depositMoney` method, once it passes all the checks will call the `addBalance` method from the Account class to increment the balance as appropriate
 
 ## Command: `set-save-goal`:
 
 **Step 1**:
 
---> Checks the args(minimum AMOUNT to save in balance) for a negative sign in the `checkNegative()` method
+*  Checks the args(minimum AMOUNT to save in balance) for a negative sign in the `checkNegative()` method
 
 **Step 2**:
 
---> If the AMOUNT to save is not empty then it request the user to enter a deadline for their savings goal
+*  If the AMOUNT to save is not empty then it request the user to enter a deadline for their savings goal
 
---> The parser then calls the `handleSaveGoal` method from the AccountList class
+*  The parser then calls the `handleSaveGoal` method from the AccountList class
 
 **Step 3**:
 
---> Checks if the date format entered complies with the dd-MM-yyyy format in the `isDateFormatValid` method in AccountList class
+*  Checks if the date format entered complies with the dd-MM-yyyy format in the `isDateFormatValid` method in AccountList class
 
---> If data entered matches the specified formats, then it will call the `setSaveGoal` method from the Account class which will set the relevant Save goal for the main account
+*  If data entered matches the specified formats, then it will call the `setSaveGoal` method from the Account class which will set the relevant Save goal for the main account
 
 ## Command: `show-save-goal`:
 
 **Step 1**:
 
---> Calls the `showGoal` method in the AccountList class which then prints the Save Goal attributes to the UI, if save goal amount is greater than 0
+*  Calls the `showGoal` method in the AccountList class which then prints the Save Goal attributes to the UI, if save goal amount is greater than 0
 
 ## Command: `switch-to`
 
 **Step 1**:
 
---> Calls the `switchMainAccount` method from teh AccountList class with the NAME of the account to switch into.
+*  Calls the `switchMainAccount` method from teh AccountList class with the NAME of the account to switch into.
 
---> If that account is found the method uses the `swap` method from `Collections` to swap the account that matches the NAME into index 0
+*  If that account is found the method uses the `swap` method from `Collections` to swap the account that matches the NAME into index 0
 
 ## Command: `delete`
 
 **Step 1**:
 
---> Calls the `deleteAccount` method from AccountList
+*  Calls the `deleteAccount` method from AccountList
 
---> This find the index of the account that matches the NAME of the account to be deleted and removes it from the ArrayList
+*  This find the index of the account that matches the NAME of the account to be deleted and removes it from the ArrayList
 
 ## Command: `set-wl`
 
 **Step 1**:
 
---> Calls the `setWithdrawalLimit` method in the AccountList class
+*  Calls the `setWithdrawalLimit` method in the AccountList class
 
---> The method will check for a number format exception and negative number exception before setting the specified AMOUNT as the withdrawal limit
+*  The method will check for a number format exception and negative number exception before setting the specified AMOUNT as the withdrawal limit
 
 ## Command: `check-wl`
 
 **Step 1**:
 
---> Calls the `checkWithdrawalLimit` method in AccountList class
+*  Calls the `checkWithdrawalLimit` method in AccountList class
 
---> Calls the getter method which then returns the Withdrawal limit
+*  Calls the getter method which then returns the Withdrawal limit
 
 **Step 2**:
 
---> Adds the attributes to a String array of size 2 which is then returned to the parser, where it then accesses the UI method to print to screen
+*  Adds the attributes to a String array of size 2 which is then returned to the parser, where it then accesses the UI method to print to screen
 
 ## Summary of overall architecture
 
@@ -333,6 +379,7 @@ list of accounts, and the Account class represents the individual accounts and t
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix
 
@@ -394,11 +441,58 @@ Windows: Command Prompt <br />
 ## Instructions for manual testing
 ### Launch
 1. Ensure you have Java 11 installed in your Computer
-2. Download the latest release `BankWithUs.jar` from here
-3. Copy the file to the folder you want to use as the home folder for BankWithUs
+2. Download the latest release from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases)
+3. Copy the file to the folder you want to use as the home folder for BankWithUs, and rename the file to `BankWithUs.jar`
 4. Open a command terminal, cd into the folder you put the `BankWithUs.jar` file in, and use `java -jar BankWithUs.jar` 
 command to run the application. A CLI should appear in a few seconds
 
 ### Sample Test Cases
-Please refer to the Features section in our [UserGuide](UserGuide.md) for more details on the test cases
+
+#### Withdraw
+For these test cases, you need to have an account with a balance of at least 100 but not greater than 1000, 
+and a withdrawal limit of 500. <br />
+
+* Test case: `withdraw 100` <br />
+Expected: A successful message and the new balance will be shown, and the balance of the account should be reduced by 100 <br />
+  ```
+  Withdrawal successful!
+  You have $600.00 remaining!
+  ```
+* Test case: `withdraw 1001` <br />
+Expected: An alert message `You do not have sufficient Balance` will be shown, and the balance of the account should not be changed <br />
+* Test case: `withdraw 501` <br />
+Expected: An alert message will be shown, including the current withdrawal limit 
+ and the amount you have withdrawn in this month. The balance of the account should not be changed <br />
+The alert message should be similar to this: <br />
+  ```
+  Apologies! Your transaction did not go through as it will result
+  in you exceeding your withdrawal limit!
+  Withdrawal limit is currently $500.
+  You have withdrawn $100 this month.
+  ```
+
+* Test case: `withdraw abcd` <br />
+Expected: An error message `The input is not a valid number! Please try again.` will be shown, and the balance of the account should not be changed <br />
+* Test case: `withdraw -100` <br />
+Expected: An error message `Negative amount entered!` will be shown, and the balance of the account should not be changed <br />
+
+
+#### Deposit
+Similar to withdraw, you can try out the following test cases: <br />
+
+* Test case: `deposit 100` <br />
+Expected: A successful message and the new balance will be shown, 
+ and the balance of the account should be increased by 100 <br />
+The successful message should be similar to this: <br />
+  ```
+  New deposit added!
+  You have $800.00 remaining!
+  ```
+* Test case: `deposit abc` <br />
+Expected: An error message  `The input is not a valid number! Please try again.` will be shown, and the balance of the account should not be changed <br />
+* Test case: `deposit -100` <br />
+Expected: An error message`Negative amount entered!`will be shown, and the balance of the account should not be changed <br />
+
+
+Please refer to the Features section in our [UserGuide](UserGuide.md) for more details on other test cases
 that you can try out.
