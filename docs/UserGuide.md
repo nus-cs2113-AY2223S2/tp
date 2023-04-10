@@ -32,6 +32,7 @@
     * [Expense management command](#expense-management-command)
 <!-- TOC -->
 
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -67,6 +68,8 @@ them keep track of their expense based on category, date, amount, and currency.
    automatically.
 10. Else, if you haven't logged in, or have already logged out, and you want to close the application, typing `exit`
     will end the application immediately.
+
+<div style="page-break-after: always;"></div>
 
 ## Account instructions
 ### Create Account: `signup`
@@ -195,6 +198,7 @@ Example of usage:
 
 `exit`
 
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -484,6 +488,8 @@ Saved successfully.
 Goodbye! Hope to see you again soon!
 ```
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
 ### Do I require an internet connection to use ET?
@@ -510,8 +516,8 @@ currencies, we require a limit on how far back the date can be set.
   with new changes.
 - Non-compulsory keys (rate, currencyType and description) removed from the JSON file will be restored using the 
   default value.
-  
 
+<div style="page-break-after: always;"></div>
   
 ## Command Summary
 
@@ -538,5 +544,4 @@ currencies, we require a limit on how far back the date can be set.
 |            Overview             |  monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`   |
 |          Find expenses          |                                 `find KEYWORD`                                  |
 |  Exit ET (outside the account)  |                                     `exit`                                      |
-
 
