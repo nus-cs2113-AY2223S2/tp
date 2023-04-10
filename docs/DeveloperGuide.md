@@ -103,7 +103,25 @@ When the user's input is passed to `Parser`:
    the `UserInterface` and `Storage` objects to print output or save the program state respectively.
 
 The following is the sequence diagram for parsing `card add -q QN -a ANS`:
+
 ![Parser Sequence Diagram](img/ParserSequence.svg)
+
+### Selector Component
+
+API: `CardSelector.java`, `TagSelector.java` 
+
+Complimentary to the parser design is the use of _selectors_ to allow the user more flexibility in how they choose to specify a `Card` or a `Tag`.
+
+- Aim: Allow the user to refer to a `Card` either by its `CardUUID` or its index in `card list`, and to refer to a `Tag` either by its name or its index in `tag list`
+- Difficulties: 
+  - By design, the parsers should not require access to `CardList` or `TagList` to decouple the user input parsing and the actual application logic
+  - The parsed `Command` should only fetch the corresponding `Card`/`Tag` once `Command::execute()` is run, hence requiring an intermediate representation
+
+By encapsulating the identifier in a selector class, retrieving the actual instance of `Card`/`Tag` from `CardList`/`TagList` can be deferred until `Command::execute()` is run.
+
+The class diagram for the selector-style classes are as follows:
+
+![Selector Class Diagram](img/SelectorClass.svg)
 
 ### Storage Component
 
