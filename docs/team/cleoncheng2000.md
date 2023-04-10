@@ -27,6 +27,7 @@ Given below are my contributions to the project:
 
 #### 5) Contributions to Team-Based Tasks: <br>
 1. [x] Implementing Bug Fixes for **`adding appointments feature`** from PE-D. Github Issues: [#138](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/138)
+2. [x] Set up Issues and milestone tags for the project.
 
 **COMMUNITY** <br>
 #### 1) Review/Mentoring Contributions: <br>
