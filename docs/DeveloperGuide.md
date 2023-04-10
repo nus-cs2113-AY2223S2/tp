@@ -100,7 +100,6 @@ The Parser component handles the following methods:
 * Format checker
 * Revise information using index
 * Revise information using name
-<p style="page-break-after: always;">&nbsp;</p>
 
 ##### 2.2.2 Add Events Diagram
 The diagram below illustrates the flow of how the application adds events: <br>
@@ -130,6 +129,8 @@ Then, according to the information provided by the user, the application will co
 This component should be able to guide the user to inputting the correct format of the command to do data validation.
 It should be able to perform basic data validation checks to ensure that the user does not enter any invalid commands.
 This makes life easier to developers in the future if they wish to add new features that requires users to use new commands.
+
+<br>
 
 [Back to contents page](#table-of-contents)
 
@@ -183,11 +184,14 @@ When any component requires reading the NUS module files, the loadModules() is c
 
 Similarly, the state of the user's event list is saved when the user exits the application by calling saveToFile().
 
+
 <p style="page-break-after: always;">&nbsp;</p>
 
 #### 2.3.5 Justification for using gson
 The Gson library was chosen as it allowed for flexible adaptation of its TypeAdapter class, allowing for custom 
 serialization and deserialization of data to be saved. 
+
+<br>
 
 [Back to contents page](#table-of-contents)
 
@@ -234,7 +238,7 @@ It is necessary to have a list which contains all the current event/class so tha
 
 <p style="page-break-after: always;">&nbsp;</p>
 
-# 3 Testing the application
+# 3. Testing the application
 ## 3.1 Instructions for manual testing
 
 ### Launching and shutdown of program
@@ -281,6 +285,8 @@ manage their schedule.
 NUSPlanner aims to help students who are studying in the National University of Singapore better manage their hectic schedules, 
 allowing them to take charge of their schedules and ensure that they have their upcoming events well-planned out. 
 
+<br>
+
 [Back to contents page](#table-of-contents)
 
 ---
@@ -296,6 +302,8 @@ allowing them to take charge of their schedules and ensure that they have their 
 | v2.0    | As a user    | Set an event to be recurring                                        | Easily add recurring events to my schedule                                         |
 | v2.0    | As a user    | Save the location of an event                                       | Remember where I need to go for the next event                                     |
 
+<br>
+
 [Back to contents page](#table-of-contents)
 
 ---
@@ -306,6 +314,8 @@ allowing them to take charge of their schedules and ensure that they have their 
 2. The program should be able to handle data corruption.
 3. The program is not required to return an accurate timetable for modules that only have one or two lectures in the whole semester.
 4. The program should be lightweight and fast.
+
+<br>
 
 [Back to contents page](#table-of-contents)
 
@@ -320,6 +330,8 @@ allowing them to take charge of their schedules and ensure that they have their 
 * *Ui* - User Interface
 * *NUSMods* - NUSMods is a module manager and organiser tool used by NUS Students.
 
+<br>
+
 [Back to contents page](#table-of-contents)
 
 ---
@@ -331,5 +343,7 @@ allowing them to take charge of their schedules and ensure that they have their 
 Special thanks to the following libraries and APIs for making the development of **NUSPlanner** possible
 1. GSON (Third Party Library) - [Documentation](https://sites.google.com/site/gson/gson-user-guide)
 2. NUSMods API - [Documentation](https://api.nusmods.com/v2/)
+
+<br>
 
 [Back to contents page](#table-of-contents)
