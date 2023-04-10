@@ -14,9 +14,9 @@ import static seedu.duke.UserUtility.getUser;
 
 
 public class EventList {
-    private static final String DTINIT = "2000/01/01 01:01";
+    private static final String DATETIME_INIT = "2000/01/01 01:01";
     private static final String TIMEPLACEHOLDER = " 00:00";
-    private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+    private static DateTimeFormatter formatterWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
     // exceptions information
     private static final String WRONG_DATE_TIME_FORMAT_E =
@@ -24,7 +24,8 @@ public class EventList {
     private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
     private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
     private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";
-    private static final String RECUR_TIME_NOT_POSITIVE_INT_E = "recurring time should ba a positive integer!";
+    private static final String RECUR_TIME_NOT_POSITIVE_INT_E =
+            "recurring time should ba a positive integer!";
     private static final String EVENT_CONFLICTION_E = "Event Conflict Detected!";
 
     protected ArrayList<Schedule> taskList;
@@ -63,11 +64,11 @@ public class EventList {
 
     private static LocalDateTime changeToDate(String time, String date) {
         String combination = date + " " + time;
-        return LocalDateTime.parse(combination, dfWithTime);
+        return LocalDateTime.parse(combination, formatterWithTime);
     }
 
     private static LocalDateTime changeToDate(String date) {
-        return LocalDateTime.parse(date + TIMEPLACEHOLDER, dfWithTime);
+        return LocalDateTime.parse(date + TIMEPLACEHOLDER, formatterWithTime);
     }
 
     /**
@@ -80,7 +81,7 @@ public class EventList {
     public static TimeAndFlag convertToTimeInfo(String time, String day) throws NPExceptions {
         try {
             boolean hasTime = true;
-            LocalDateTime combinedTime = LocalDateTime.parse(DTINIT, dfWithTime);
+            LocalDateTime combinedTime = LocalDateTime.parse(DATETIME_INIT, formatterWithTime);
 
             if (time.equals("")) {
                 hasTime = false;
@@ -246,14 +247,15 @@ public class EventList {
         assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
-    public void addEvent(Event event, Boolean isCheck) throws NPExceptions{ //for storage checks.
-        if (isCheck){
-            if (canAddNewEvent(event, -1, this.getFullList())){
+    public void addEvent(Event event, Boolean isCheck) throws NPExceptions { // for storage checks.
+        if (isCheck) {
+            if (canAddNewEvent(event, -1, this.getFullList())) {
                 throw new NPExceptions(EVENT_CONFLICTION_E);
             }
         }
         taskList.add(event);
     }
+
     /**
      * Add an Event.
      * 
@@ -323,6 +325,11 @@ public class EventList {
 
         Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
                 startInfo.hasInfo, endInfo.hasInfo);
+        
+        if (eventToCheck.getStartTime().isAfter(eventToCheck.getEndTime())) {
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
+        }        
+        
         if (!canAddNewEvent(eventToCheck, index, taskList)) {
             throw new NPExceptions(TIME_CONFLICTION_E);
         }
