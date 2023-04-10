@@ -5,8 +5,9 @@
 * **Setting up, getting started**
 * **Design**
     * [Architecture](#architecture)
-    * [commands Package](#bagpacker-command-mechanisms-) 
-        - <em>Command
+    * [BagPacker Mechanism](#runbagpacker---mechanism)
+    * [commands Package](#commands-package) 
+        - <em>[Command](#command)
         - [AddCommand](#add-command)
         - [ByeCommand](#bye-command)
         - [DeleteCommand](#delete-command)
@@ -26,20 +27,19 @@
         - [InvalidIndexException](#invalidindexexception)
         - [InvalidQuantityException](#invalidquantityexception)
         - [InvalidVariablesException](#invalidvariablesexception)</em>
-    * **[iohandler Pakage](#iohandler-package)**
-        - <em>Parser
+    * **[iohandler Pakage](#iohandler)**
+        - <em>[Parser](#parser-class)
         - Storage
         - Ui</em>
-    * **[packingfunc Package](#packingfunc-package)**
+    * **[packingfunc Package]()**
         - <em>Item
         - PackingList</em>
-* **Documentation, logging, testing, configuration, dev-ops**
-* **Appendix: Requirements**
-    * Product scope
-    * User stories
-    * Use cases
-    * Non-Functional Requirements
-    * Glossary
+* **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
+* **[Appendix: Requirements](#appendix--requirements)**
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
 
 
 
@@ -53,7 +53,7 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 
 ---
 ### Setting up, getting started
-Refer to the [user guide]([UserGuide.md](UserGuide.md)) for more details
+Refer to the [UserGuide.md](UserGuide.md) for more details
 
 
 ##### Architecture
@@ -62,12 +62,27 @@ Refer to the [user guide]([UserGuide.md](UserGuide.md)) for more details
 
 The Architecture of BagPacker Application can be seen  from the diagram above
 
-BagPacker components of the architecture (similar to a standard main() class)
+BagPacker() role is similar to a how a standard main() class acts in Java programs
 
-`BagPacker` is responsible for
+`BagPacker` is responsible for, 
 
+- At app launch: Initializes the components in the correct sequence. Retrieves saved packing list if any.
+- Running the main app: Calls 'BagPacker.runBagPacker()' which runs the main program for BagPacker application. (including execution of commands)
+- At shut down: Shuts down the components and invokes cleanup methods where necessary. Saves the current packing list.
 
-### Commands component
+##### runBagPacker() Mechanism
+
+Run Condition: ByeCommand.isBagPackerRunning
+
+While Loop (if Run Condition is true):
+1. `Parser.parse()` the user input which involves reading, getting command variables, and creating of relevant command object. (more info in [Parser](#parser-class))
+2. execute the relevant command returned from `Parser.parse()`
+
+This can be seen from the interactions between `:BagPacker` and `:Parser` in the diagram below.
+
+![BagPackerSequenceDiagram.png](diagrams%2FBagPackerSequenceDiagram.png)
+
+### Commands Package
 
 For all valid commands, the mechanism of implementation are as follows:
 1. If `ByeCommand.isBagPackerRunning` is true, keep looping through steps 2-4
@@ -76,9 +91,7 @@ For all valid commands, the mechanism of implementation are as follows:
 4. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
-Below shows a sequence diagram of the above explanation
-
-![BagPackerSequenceDiagram.png](diagrams%2FBagPackerSequenceDiagram.png)
+Refer to the sequence diagram in [runBagPacker() Mechanism](#runbagpacker---mechanism) for a visual aid of the above explanation.
 
 ---
 
@@ -297,7 +310,7 @@ Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to
 #### Bye Command
 `ByeCommand` is used to exit the BagPacker application.
 
-Mechanism: `ByeCommand.execute()`updates the static boolean `isBagPackerRunning` to be false. 
+Mechanism: `ByeCommand.execute()` updates the static boolean `isBagPackerRunning` to be false. 
 The `runBagPacker()` method will continually parse and execute relevant commands (refer to Command Mechanisms in DG) until 
 `isBagPackerRunning == false` which occurs upon the execution of the `byeCommand`.
 
@@ -380,11 +393,63 @@ all createCommandObj methods except for commands without input variables (i.e. e
 
 
 ### IOHandler
-The `IOHandler` package contains three main classes, which are [Parser](#parser), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
-while managing the storage and retrieval of the associated `item`s in the user's `packingList`.
+The `IOHandler` package contains three main classes, which are [Parser](#parser-class), [Storage](#storage) and [Ui](#ui). These classes are used to handle input from and output to the user through the CLI, 
+while managing the storage and retrieval of the associated `item`'s in the user's `packingList`.
 
----
-#### Parser
+### Parser Class
+The Parser class has 2 main functions:
+1. Reading and retrieving the relevant command, and command variables from the users input (get*CommandVariable()*)
+2. Creating a command object based on the retrieved command and command variables (create*Command*Obj())
+
+##### get*CommandVariable*() methods:
+`getCommand()` - returns the command from user input by finding the first word and changing it to lower case.
+
+`getItemIndex()` - returns a string which represents the index of the item from the user input. Used by `createDeleteObj()`.
+
+`getKeyword()` - return the keyword Used by `createFindObj()`.
+
+`getAddVariables()` - returns the relevant components of an add command from the user input. Used by `createAddObj()`.
+
+`getEditQuantityVariables()` - returns the target item's quantity and item index. Used by `createEditQuantityObj()`.
+
+`getPackVariables()` - returns the target item's quantity to be packed and item index. Used by `createPackObj()` and `createUnpackObj`.
+
+`getPackAllIndex()` - returns the item Index of the item to set as fully packed. Used by `createPackAllObj()` and `createUnpackAllObj`. .
+
+##### create*Command*Obj() methods:
+
+All erroneous inputs will instead return `IncorrectCommand()` with respective error messages. Go to [Exceptions](#exceptions) to see more details 
+
+The following show the respective create methods for each command. The `command` object they return will be executed in `BagPacker()`
+
+`createAddObj()` - returns new `AddCommand(item)`
+
+`createDeleteObj()` - returns new `DeleteCommand(itemIndex)`
+
+`createPackObj()` - returns new `PackCommand(itemQuantity, itemIndex)`
+
+`createUnpackObj()` - returns new `UnpackCommand(itemQuantity, itemIndex)`
+
+`createListObj()` - returns new `ListCommand()`
+
+`createListUnpackedObj()` - returns new `ListUnpackedCommand()`
+
+`createHelpObj()` - returns new `HelpCommand()`
+
+`createDeleteListObj()` - returns new `DeleteListCommand()`
+
+`createPackAllObj()` - returns new `PackAllCommand(itemIndex)`
+
+`createUnpackAllObj()` - returns new `UnpackAllCommand(itemIndex)`
+
+`createEditQuantityObj()` - returns new `EditQuantityCommand(newTotalQuantity, itemIndex)`
+
+`createFindObj()` - returns new `FindCommand(keyword)`
+
+`createByeObj()` - returns new `ByeCommand()`
+
+`IncorrectCommand()` - of format `IncorrectCommand(errorType, helpMessage)` is returned for any [Exceptions](#exceptions) caught. 
+
 
 
 ---
