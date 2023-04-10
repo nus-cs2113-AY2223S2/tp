@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
 
-//@@author calebcjl
+
 /**
  * Represents a calorie tracker.
  */
@@ -55,6 +55,7 @@ public class CalorieTracker {
         return dailyFoodConsumption;
     }
 
+    //@@author calebcjl
     /**
      * Add calorie consumption to CalorieTracker.
      *

@@ -21,7 +21,7 @@ public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandName>\\S+)(?<arguments>.*)");
 
-    public static Command processCommand(String userInput) throws InvalidSyntaxException, InvalidArgumentException {
+    public static Command parseCommand(String userInput) throws InvalidSyntaxException, InvalidArgumentException {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new InvalidSyntaxException("user input");

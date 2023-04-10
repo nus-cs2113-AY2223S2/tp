@@ -5,7 +5,7 @@ import seedu.ui.Ui;
 import java.util.ArrayList;
 import java.util.Date;
 
-//@@author calebcjl
+
 /**
  * Represents a workout. It stores the date, name and list of exercises of the workout.
  */
@@ -53,6 +53,7 @@ public class Workout {
         exercises.add(exercise);
     }
 
+    //@@author calebcjl
     /**
      * Returns the list of exercises in the workout.
      *

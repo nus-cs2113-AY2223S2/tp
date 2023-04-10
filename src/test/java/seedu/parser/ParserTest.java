@@ -24,7 +24,7 @@ public class ParserTest {
         Parser testList = new Parser();
         Command result;
         try {
-            result = testList.processCommand(userInput);
+            result = testList.parseCommand(userInput);
         } catch (InvalidSyntaxException e) {
             result = new ExitCommand();
         } catch (InvalidArgumentException e) {

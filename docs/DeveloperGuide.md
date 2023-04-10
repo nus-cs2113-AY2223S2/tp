@@ -3,41 +3,40 @@
 ## Table of Contents
 
 <!-- TOC -->
-* [Acknowledgements](#acknowledgements)
-* [Product Scope](#product-scope) 
-  * [Target User Profile](#target-user-profile)
-  * [Value Proposition](#value-proposition)
-* [Design](#design)
-  * [Architecture](#architecture)
-  * [Duke](#duke)
-  * [UI Component](#ui-component)
-  * [Command Component](#command-component)
-  * [Storage Component](#storage-component)
-  * [Calories Component](#calories-component)
-  * [Workout Component](#workout-component)
-* [Implementation](#implementation)
-  * [Calories Record](#user-related-features)
-    * [Add Command](#calories-related-features)
-    * [View Command](#calories-related-features)
-    * [List Command](list-command)
-    * [Delete Command](delete-command)
-    * [Help Command](help-command)
-  * [Workout Record](workout-recording)
-    * [Start Command](start-command)
-    * [Add Command](add-command)
-    * [End Command](end-command)
-    * [View Command](view-command)
-    * [List Command](list-command)
-    * [Delete Command](delete-command)
-    * [Count Command](count-command )
-    * [Help Command](help-command) 
-* [User Stories](#user-stories)
-  * [V1.0](#v10)
-  * [V2.0](#v20)
-  * [V2.1](#v21)
-* [Non-Functional Requirements](#non-functional-requirements)
-* [Glossary](#glossary)
-* [Instruction for Manual Testing](#instructions-for-manual-testing)
+* [Fitz - Developer Guide](#fitz---developer-guide)
+  * [Table of Contents](#table-of-contents)
+  * [Acknowledgements](#acknowledgements)
+  * [Product Scope](#product-scope)
+    * [Target User Profile](#target-user-profile)
+    * [Value Proposition](#value-proposition)
+          * [Back to table of contents](#back-to-table-of-contents)
+  * [Design](#design)
+    * [Architecture](#architecture)
+    * [Duke](#duke)
+    * [UI Component](#ui-component)
+    * [Command Component](#command-component)
+    * [Storage Component](#storage-component)
+    * [Calories Component](#calories-component)
+    * [Workout Component](#workout-component)
+  * [Implementation](#implementation)
+    * [Implementation of Calories](#implementation-of-calories)
+      * [Adding Calories](#adding-calories)
+      * [Listing Calorie Dates](#listing-calorie-dates)
+      * [Viewing Calories in a Day](#viewing-calories-in-a-day)
+      * [Deleting Calories Date](#deleting-calories-date)
+    * [Implementation of Workout](#implementation-of-workout)
+      * [Start Workout](#start-workout)
+      * [Add Exercise](#add-exercise)
+      * [List workout](#list-workout)
+      * [View workout](#view-workout)
+      * [Delete workout](#delete-workout)
+    * [Exit command](#exit-command)
+  * [User Stories](#user-stories)
+    * [V1.0](#v10)
+    * [V2.0](#v20)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
 <!-- TOC -->
 
 
@@ -169,8 +168,6 @@ However, `FoodDictionaryStorage` will store all the food and calories that had b
 <img src="images/StorageComponentDiagram.png" width="1731" />
 </p>
 
-
-
 ### Calories Component
 
 The class diagram below illustrate how the `Calories` component interact with each others. 
@@ -190,6 +187,17 @@ The following are the explanation for each of them:
 <p align="center">
 <img src="images/CaloriesComponentClassDiagram.png" width="1153" />
 </p>
+
+### Workout Component
+The class diagram below illustrates how the Workout component interact with each others.
+From the diagram, it is clear to see that the Workout consists of a list of exercises
+and the WorkoutList consists of list of Workout.
+
+<p align="center">
+<img src="images/WorkoutComponentClassDiagram.png" width="658" />
+</p>
+
+## Implementation
 
 ### Implementation of Calories
 
@@ -255,39 +263,53 @@ Below are the specific steps on how to use the ListCaloriesCommand function and 
 <img src="images/DeleteLCalorieDiagram.png" width="1337" height="558">
 </p>
 
-### Workout Component
-The class diagram below illustrates how the Workout component interact with each others.
-From the diagram, it is clear to see that the Workout consists of a list of exercises 
-and the WorkoutList consists of list of Workout.
+### Implementation of Workout
 
-<p align="center">
-<img src="images/WorkoutComponentClassDiagram.png" width="658" />
-</p>
+#### Start Workout
 
-###### [Back to table of contents](#table-of-contents)
+The start mechanism is facilitated by `StartWorkoutCommand`.
+It extends `Command` and modifies the execute function to start a new Workout and add it to the workout list.
+
+<img src="images/StartWorkoutCommandDiagram.png" width="850" height="550"/>
+Given below is an example usage scenario and how the start mechanism behaves at each step.
+
+Step 1. When `StartWorkoutCommand#execute()` is called, `StartWorkoutCommand` calls `WorkList#getCurrentWorkout()` 
+to get `currentWorkoutIndex`.
+
+Step 2. If `currentWorkoutIndex` indicates that there is an ongoing workout, `StartWorkoutCommand` returns a message
+to prompt the user to end the workout first.
+
+Step 3. If `currentWorkoutIndex` indicates that there is no ongoing workout. It calls 
+`WorkList#startWorkout(date, Workoutname)` to start a new workout.
+
+Step 4. This initialises a new `Workout`, workout, and adds it to the workout list with `WorkList.add(workout)`.
+It then lets the user know that a new workout has started.
+
+#### Add Exercise
  
-The add mechanism is facilitated by `AddCommand`. 
-It extends `Command` and modifies the execute function to add an exercise.
+The add mechanism is facilitated by `AddExerciseCommand`. 
+It extends `Command` and modifies the execute function to add an exercise to the current workout.
 
-<img src="images/AddExerciseDiagram.png" width="450" />
+<img src="images/AddExerciseCommandDiagram.png" width="850" height="550"/>
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-Step 1. The user enters the add command with the necessary arguments.
+Step 1. When `AddExerciseCommand#execute()` is called, `AddExerciseCommand` calls `WorkList#getCurrentWorkout()`
+to get `currentWorkoutIndex`.
 
-Step 2. The input is processed by the `Parser` to separate out the arguments and creates the exercise to be added, 
-`toAdd`.
+Step 2. If `currentWorkoutIndex` indicates that there is no ongoing workout, `AddExerciseCommand` returns a message
+to prompt the user to start a workout first.
 
-Step 3. The `AddCommand` calls `execute()` which calls `WorkList#getCurrentWorkout()` to return `currentWorkout`.
+Step 3. If `currentWorkoutIndex` indicates that there is an ongoing workout. It calls
+`WorkList#getCurrentWorkout()` and `Workout#addExercise` to add the `Exercise`, toAdd, to the current workout.
+It then lets the user know that the exercise has been added.
 
-Step 4. Finally, `addExercise()` is called and `toAdd` is added to `currentWorkout`.
 
-###### [Back to table of contents](#table-of-contents)
+#### List workout
+The list mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be 
+deleted according to the command inputted by the user and removed from the workout list.
 
-### Storage Component
-The deletion mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
-
-<img src="images/ListWorkoutDiagram.png" width="450" />
+<img src="images/ListWorkoutDiagram.png" width="750" height="558"/>
 
 Below is an example usage scenario and how the List mechanism behaves at each step:
 
@@ -297,13 +319,8 @@ Step 1: Assume that the user has already added a workout on 21/03/23 into the Wo
 Step 2: The user input of /list will be taken in for the parser and an object of class ListCommand will be returned.
 
 Step 3: The execute method in the ListWorkoutCommand class that is overrides will be called and print out all the dates that while iterating the workoutList.
-###### [Back to table of contents](#table-of-contents)
 
-### Workout view component
-=======
-### Calories Component
-=======
-### Workout view component
+#### View workout
 The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
 enter a specific workout date and the number of exercises on that date will be displayed
 
@@ -316,9 +333,8 @@ Below are the specific steps on how to use the view function and how the mechani
 
 <img src="images/ViewDiagram.png" width="450" />
 
-###### [Back to table of contents](#table-of-contents)
 
-### Workout Component
+#### Delete workout
 The deletion mechanism is facilitated by 'Parser', 'DeleteCommand', 'Workout', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
 <img src="images/DeleteWorkoutDiagram.png" width="450" />
@@ -330,13 +346,24 @@ Step 1: Assume that the user has already added a workout on 21/03/23 into the Wo
 Step 2: The user input of /delete 21/03/23 will be taken in for the parser and an object of class DeleteCommand will be returned.
 
 Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
-### Calories view component
-###### [Back to table of contents](#table-of-contents)
 
-### Exit component
 
-###### [Back to table of contents](#table-of-contents)
+### Exit command
 
+The exit mechanism is facilitated by `Duke`, `Parser`, and `ExitCommand`.
+
+<img src="images/ExitCommandDiagram.png" width="750" height="550"/>
+
+Below is an example usage scenario and how the deletion mechanism behaves at each step:
+
+Step 1: As the program runs `Duke#executeCommandUntilExit()`, it will get user input with `Ui#getUserInput()`
+which returns the userInput.
+
+Step 2: The userInput will then be parsed with `Parser#parrseCommand(userInput)` and it will return the command
+based on the command the user entered.
+
+Step 3: If command is an instance of `ExitCommand`, the user has entered the exit command. This will break the
+loop and the program will exit.
 
 ## User Stories
 ### V1.0
@@ -361,23 +388,17 @@ Step 3: The execute method in the DeleteCommand class that is overrides will be 
 | user | know the amount of calories I have consumed for one month | have better insights of my calories intake |
 
 
-###### [Back to table of contents](#table-of-contents)
-
 
 ## Non-Functional Requirements
 
 {Give non-functional requirements}
-###### [Back to table of contents](#table-of-contents)
 
 ## Glossary
 
 * *glossary item* - Definition
 
-###### [Back to table of contents](#table-of-contents)
 
 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
-###### [Back to table of contents](#table-of-contents)

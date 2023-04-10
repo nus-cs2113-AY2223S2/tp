@@ -4,6 +4,7 @@ import seedu.commands.Command;
 
 import static seedu.workout.WorkoutList.NO_CURRENT_WORKOUT;
 
+//@@author calebcjl
 /**
  * Represents command to end the current workout.
  */
