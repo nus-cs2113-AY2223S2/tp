@@ -107,7 +107,8 @@ __________________________________________________________
 ```
 <h2 id="adding-elements-to-recipe"> Adding an element to a recipe: <code class="language-plaintext highlighter-rouge">addtorecipe</code></h2>
 
-Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+Adds a step or ingredient to a particular recipe in the recipe list.<br>
+App will prompt you to enter the exact index at which the element is to be added. Existing elements will be shifted down if there is any.<br>
 **Format**: `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`<br>
 **Examples**:<br>
 ```
@@ -361,7 +362,7 @@ Do you want to view step-by-step?
 Type "yes" if so
 yes
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. chop beef
 
 2. add potatoes
@@ -370,6 +371,7 @@ Else, enter any key to continue
 
 4. cook 5 minutes
 
+End of Recipe Steps!
 __________________________________________________________
 ```
 
@@ -391,7 +393,7 @@ Do you want to view step-by-step?
 Type "yes" if so
 yes
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. chop beef
 
 2. add potatoes
@@ -400,6 +402,7 @@ Else, enter any key to continue
 
 4. cook 5 minutes
 
+End of Recipe Steps!
 __________________________________________________________
 ```
 
@@ -472,4 +475,5 @@ The first line is the name of the dish. And the second line is the tag of the di
 | [**list**](#listing-all-recipes-list)                             | `list`                                                                                                     |                                                                                                 |
 | [**clear**](#clearing-all-entries-clear)                          | `clear`                                                                                                    |                                                                                                 |
 | [**exit**](#exiting-the-program-exit)                             | `exit`                                                                                                     |                                                                                                 |
+
 
