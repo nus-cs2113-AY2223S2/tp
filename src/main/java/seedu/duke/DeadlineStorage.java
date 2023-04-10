@@ -41,7 +41,7 @@ public class DeadlineStorage implements DatabaseInterface {
 
     /**
      * Initialises the DeadlineStorage database for deadline saving.
-     * It creates a new directory and file being data/deadlines.txt when there is no file found.
+     * Creates a new directory and file being data/deadlines.txt when there is no file found.
      * If there is already an existing file, it loads the data into the ArrayList of deadlines.
      *
      * @throws IOException when the file path does not exist but commands are being given to load from the file path.

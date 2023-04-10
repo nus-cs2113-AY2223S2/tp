@@ -10,8 +10,8 @@ class DeadlineStorage implements DatabaseInterface {
   - instance: DeadlineStorage
   - SAVED_DEADLINES_FILE_PATH: String
   - deadlines: ArrayList<Deadline>
-    initialiseDatabase(): void
-    checkDatabaseCorrupted(): boolean
+  + initialiseDatabase(): void
+  + checkDatabaseCorrupted(): boolean
   + DeadlineStorage()
   + getInstance(): DeadlineStorage
   + deleteDeadline(int, ArrayList<Deadline>, DeadlineStorage): boolean
@@ -34,20 +34,6 @@ class Deadline {
   + toString(): String
 }
 
-class UI {
-  + printAddDeadlineFailureMessage(): void
-  + printDeadlineStorageCorruptedMessage(): void
-  + printDeleteNumError(): void
-  + printWriteToDatabaseFailureMessage(): void
-  + printReminderMessage(): void
-  + printReminderDeadline(Deadline, int): void
-  + printLine(): void
-}
-
-DeadlineStorage --> Deadline
-DeadlineStorage --> UI
-Deadline --> "*" DeadlineStorage
-Deadline --> "*" Task
-UI --> DeadlineStorage
+DeadlineStorage -* "1" Deadline
 
 @enduml
