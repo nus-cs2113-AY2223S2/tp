@@ -35,6 +35,7 @@ Code Contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dash
     - "Back to table of contents" button at the end of every section
     - "Back to top" button
     - Back and forth navigability between "Allergens" and "Recipe Possible" section
+    - Back and forth navigability within each section ie. Ingredients section has "Back to Ingredients" button for each section on the command
 - Screenshots
     - High-fidelity screenshots for all features with edits to highlight user inputs
 - Feature instructions
