@@ -841,8 +841,11 @@ Advanced users are welcome to update data directly by editing that data file.
 file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.** 
 </p>
 <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">Altering the contents 
-of the achievement list data will possibly cause the achievements features not to work. Altering the 
-contents might also give rise to discrepancies between completed achievements and non-completed achievements.** </p>
+of the achievement list data will possibly cause the achievements list to either not load a specific achievement, or 
+clear your achievement data. <br><br> If the achievement data has been tampered with, achievements could be lost
+(if entire lines of code are deleted), or if
+invalid code is written in, the achievement data could be cleared entirely, resetting and reloading pre-loaded 
+achievments, but your data will be lost.** </p>
 <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">
 We here at Fitness Duke PTE LTD are not liable for any problems with our product should the 
 data files be tampered with. </p>

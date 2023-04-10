@@ -1,0 +1,29 @@
+@startuml
+hide footbox
+!include style.puml
+
+participant ":ExerciseStateHandler" as ExerciseStateHandler
+participant ":AchievementListHandler"
+
+ -> ExerciseStateHandler : updateWorkoutAchievements()
+    activate ExerciseStateHandler STORAGE_FADED_COLOUR
+  loop achievements of achievementList
+        activate ":AchievementListHandler" LAPIS
+            loop num of exercises from Session
+                ExerciseStateHandler -> ":AchievementListHandler" : updateIndex(exerciseData)
+                alt exerciseCompleted
+                    ":AchievementListHandler" --> ExerciseStateHandler : completedAchievements.add
+                    deactivate ":AchievementListHandler"
+                end
+            end
+    end
+
+    loop achievement of completedAchievements
+        ExerciseStateHandler --> ExerciseStateHandler : System.out.println(achievement.toString())
+    end
+    <-- ExerciseStateHandler :
+
+deactivate ExerciseStateHandler
+
+
+@enduml

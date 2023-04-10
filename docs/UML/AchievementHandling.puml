@@ -36,9 +36,9 @@ class AchievementLevel {
 AchievementListHandler .d.|> TextDataUtility
 AchievementListHandler --|> achievementData.achievementSaveDataText
 achievementData.achievementSaveDataText <|-l- TextDataUtility : checks and writes to
-AchievementListHandler --> "0..8" AchievementLevel : parseAchivement
-AchievementListHandler --> "0..6" AchievementGymStatic : parseAchivement
-AchievementListHandler --> "0..8" AchievementBodyPart : parseAchivement
+AchievementListHandler --> "0..1" AchievementLevel : parseAchivement()
+AchievementListHandler --> "0..1" AchievementGymStatic : parseAchivement()
+AchievementListHandler --> "0..1" AchievementBodyPart : parseAchivement()
 
 AchievementLevel .d.|> Achievement
 AchievementGymStatic .d.|> Achievement
