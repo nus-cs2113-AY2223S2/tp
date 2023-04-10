@@ -4,7 +4,10 @@ title: User Guide
 ---
 <h1> User Guide </h1>
 <h2> Introduction </h2>
-Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managing recipes, optimized for use via a Command Line Interface</strong> (CLI). 
+Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managing recipes, optimized for use via a Command Line Interface</strong> (CLI). <br>
+
+Our application will help students to **keep track and modify recipes** which they can learn to cook, so that they can enjoy the same taste of food made like as if they were at home as they live on campus.
+It also helps them filter recipes with ease.
 <h2> Table of Contents </h2>
 
 * **[Quick Start](#quick-start)**
@@ -32,7 +35,7 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
 
 1. Ensure you have `Java 11` installed on your Computer.
 2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
-3. Copy the file to the folder you want to use as home folder for the recipe manager.
+3. Copy the file to an **empty folder** you want to use as home folder for the recipe manager.
 4. Open the command prompt.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`.
 6. Type `java -jar tp.main.jar` and press Enter to start the program.
@@ -261,7 +264,8 @@ __________________________________________________________
 
 <h2 id="deleting-elements-from-recipe"> Deleting an element from a recipe: <code class="language-plaintext highlighter-rouge">deletefromrecipe</code></h2>
 
-Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+Deletes either a step or an ingredient from a particular recipe in the recipe list.<br> 
+As shown in the format, the flag for `--[s/i]` can be used interchangeably, `s` to delete a step and `i` to delete an ingredient.<br>
 **Format**: `deletefromrecipe --[s/i] id/[index]`<br>
 **Examples**:<br>
 ```
@@ -452,20 +456,20 @@ The first line is the name of the dish. And the second line is the tag of the di
 <h2 id='command-summary'> Command Summary </h2>
 
 
-| Action                                                            | 	Format                                                   | Example                                                                                         |
-|-------------------------------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| [**help**](#viewing-help-help)                                    | `help`                                                    |                                                                                                 |
-| [**add**](#adding-a-recipe-add)                                   | `add n/NAME i/INGREDIENT ... t/TAG s/SUMOFSTEP [STEP]...` | `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/2` <br/>`add carrots` <br/>`cook 5 minutes` |
-| [**addtorecipe**](#adding-elements-to-recipe)    | `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`                          | `addtorecipe --i id/1 desc/mala sauce`                                                                          |
-| [**editingredient**](#editing-a-recipe-ingredient-editingredient) | `editingredient INDEX`                                    | `editingredient 1`                                                                                                |
-| [**editstep**](#editing-steps-editstep)                           | `editstep INDEX`                                          | `editstep 1`                                                                                               |
-| [**edit**](#editing-a-recipe-edit)                                | `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`  `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP`                                             |                       `edit --i 1 2 i/pork` `edit --s 1 1 s/wash beef`                                                                        |
-| [**delete**](#deleting-a-recipe-delete)                           | `delete INDEX`                                            | `delete 1`                                                                                      |
-| [**deletefromrecipe**](#deleting-elements-from-recipe)                      | `deletefromrecipe --[s/i] id/[index]`                                       | `deletefromrecipe --i id/1`                                        |
-| [**findname**](#finding-recipes-findname)                                 | `find KEYWORD `                                           | `find Hotpot`                                                                                   |
-| [**findtag**](#finding-recipes-findtag)                                 | `find KEYWORD `                                           | `find Chinese`                                                                                   |
-| [**view**](#viewing-a-recipe-view)                                | `view INDEX`<br/>`view NAME`                              | `view 1`<br/>`view Hotpot`                                                                      |
-| [**list**](#listing-all-recipes-list)                             | `list`                                                    |                                                                                                 |
-| [**clear**](#clearing-all-entries-clear)                          | `clear`                                                   |                                                                                                 |
-| [**exit**](#exiting-the-program-exit)                             | `exit`                                                    |                                                                                                 |
+| Action                                                            | 	Format                                                                                                    | Example                                                                                         |
+|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| [**help**](#viewing-help-help)                                    | `help`                                                                                                     |                                                                                                 |
+| [**add**](#adding-a-recipe-add)                                   | `add n/NAME i/INGREDIENT ... t/TAG s/SUMOFSTEP [STEP]...`                                                  | `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/2` <br/>`add carrots` <br/>`cook 5 minutes` |
+| [**addtorecipe**](#adding-elements-to-recipe)                     | `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`                                     | `addtorecipe --i id/1 desc/mala sauce`                                                          |
+| [**editingredient**](#editing-a-recipe-ingredient-editingredient) | `editingredient INDEX`                                                                                     | `editingredient 1`                                                                              |
+| [**editstep**](#editing-steps-editstep)                           | `editstep INDEX`                                                                                           | `editstep 1`                                                                                    |
+| [**edit**](#editing-a-recipe-edit)                                | `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`  `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP` | `edit --i 1 2 i/pork` `edit --s 1 1 s/wash beef`                                                |
+| [**delete**](#deleting-a-recipe-delete)                           | `delete INDEX`                                                                                             | `delete 1`                                                                                      |
+| [**deletefromrecipe**](#deleting-elements-from-recipe)            | `deletefromrecipe --[s/i] id/[index]`                                                                      | `deletefromrecipe --i id/1`                                                                     |
+| [**findname**](#finding-recipes-findname)                         | `find KEYWORD `                                                                                            | `find Hotpot`                                                                                   |
+| [**findtag**](#finding-recipes-findtag)                           | `find KEYWORD `                                                                                            | `find Chinese`                                                                                  |
+| [**view**](#viewing-a-recipe-view)                                | `view INDEX`<br/>`view NAME`                                                                               | `view 1`<br/>`view Hotpot`                                                                      |
+| [**list**](#listing-all-recipes-list)                             | `list`                                                                                                     |                                                                                                 |
+| [**clear**](#clearing-all-entries-clear)                          | `clear`                                                                                                    |                                                                                                 |
+| [**exit**](#exiting-the-program-exit)                             | `exit`                                                                                                     |                                                                                                 |
 
