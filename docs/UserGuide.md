@@ -89,6 +89,8 @@ Added academic expenditure: [Academic] || Date: 2 Feb 2023
 
 ```
 
+The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form. 
+
 Adding a Other Expenditure
 
 Input:
@@ -105,6 +107,7 @@ Added other expenditure: [Other] || Date: 31 Jan 2000
 || Value: 26.0 || Description: Eating lunch
 
 ```
+The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.2. Adding a lend/borrow record
 
@@ -151,6 +154,7 @@ Added lend expenditure: [Lend] || Lent to: Akshay Narayan || Date: 2 Feb 2023
 || Value: 25.1 || Description: CS2113 || by: 2 Apr 2023
 
 ```
+The output should be displayed on a single line. However, output in UG has been displayed across 2 lines to format the output in PDF form.
 
 ### 4.3. Editing an Expenditure
 
