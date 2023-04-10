@@ -5,6 +5,7 @@
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
 - [Features](#features)
+- [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 ## Introduction
@@ -708,6 +709,8 @@ __________________________________________________________________________
 ---
 
 <a name = "faq"></a>
+## FAQ
+1. How do I transfer my
 <a name = "command_summary"></a>
 ## Command Summary
 | Action                                                     | Format                                                                     |
