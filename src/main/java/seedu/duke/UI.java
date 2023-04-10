@@ -65,7 +65,7 @@ public class UI {
     }
 
     /**
-     * Returns the one instance of the UI class, OR if there is no such instance yet, instantiates a instance of UI.
+     * Returns the one instance of the UI class, OR if there is no such instance yet, instantiates an instance of UI.
      *
      * @return The Singleton Instance of UI class.
      */

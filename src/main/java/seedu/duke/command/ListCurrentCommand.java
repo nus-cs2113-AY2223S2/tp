@@ -11,6 +11,10 @@ public class ListCurrentCommand extends Command {
         this.modules = modules;
     }
 
+    /**
+     * Executes ListCurrentCommand, where it calls UI class to print out all user added modules
+     * for all Partner Universities.
+     */
     @Override
     public void execute() {
         ui.printAllCurrentModList(modules);
