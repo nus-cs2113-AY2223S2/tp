@@ -1,5 +1,7 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.EmptyTaskNameException;
+import seedu.pettracker.exceptions.InvalidTaskNameException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -44,6 +46,10 @@ public class EditTaskCommand extends Command {
             ui.editTaskCommandMessage(taskNumber, newDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
+        } catch (InvalidTaskNameException e) {
+            ui.printInvalidTaskNameMessage();
+        } catch (EmptyTaskNameException e) {
+            ui.printEmptyTaskMessage();
         }
     }
 

@@ -28,9 +28,9 @@ public class AddPetCommand extends Command {
             PetList.savePetsToStorage(storage, ui);
             ui.addPetCommandMessage(petName);
         } catch (EmptyPetNameException e) {
-            ui.petNameEmptyMessage();
+            ui.printPetNameEmptyMessage();
         } catch (DuplicatePetException e) {
-            ui.duplicatePetMessage();
+            ui.printDuplicatePetMessage();
         } catch (InvalidPetNameException e) {
             ui.printInvalidPetNameMessage();
         }

@@ -26,19 +26,26 @@
  	CommandParser -> ListPetCommand
  	activate ListPetCommand
 
-        activate PetList
+
         ListPetCommand -> PetList
+        activate PetList
         loop for "pet:Pet"
-            activate Pet
             PetList -> Pet: getPetName()
+            activate Pet
             PetList -> Pet: getPetType()
             PetList -> Pet: getAge()
             PetList -> Pet: getWeight()
-        end
-        deactivate Pet
+            Pet --> PetList
+            deactivate Pet
 
+        end
+
+        PetList --> ListPetCommand
         deactivate PetList
+
         return
+
+    return
 
     return
 
