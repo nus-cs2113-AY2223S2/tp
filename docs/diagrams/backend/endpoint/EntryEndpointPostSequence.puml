@@ -7,6 +7,10 @@ participant ":EntryLog" as EntryLog
 
 -> EntryEndpoint : handlePost(Request)
 
+group opt [Invalid description or amount]
+    <-- EntryEndpoint: Response(UNPROCESSABLE_CONTENT)
+end group
+
 EntryEndpoint -> EntryLog : addEntry()
 return
 

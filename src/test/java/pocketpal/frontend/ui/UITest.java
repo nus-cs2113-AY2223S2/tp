@@ -70,12 +70,52 @@ public class UITest {
         }
 
         @Test
-        void testPrintHelp() {
-            ui.printHelp();
-            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_ADD_COMMAND
-                    + MessageConstants.MESSAGE_DELETE_COMMAND + MessageConstants.MESSAGE_EDIT_COMMAND
-                    + MessageConstants.MESSAGE_VIEW_COMMAND + MessageConstants.MESSAGE_HELP_COMMAND
-                    + MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE, outContent.toString());
+        void testPrintHelpMenu() {
+            ui.printHelpMenu();
+            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU
+                    + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+                    + MessageConstants.MESSAGE_HELP_MENU_EXMPLES+ UIConstants.LINE,
+                    outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpAdd() {
+            ui.printHelpAdd();
+            assertEquals(MessageConstants.MESSAGE_ADD_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                    + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_ADD_COMMAND_EXMPLES
+                    + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpDelete() {
+            ui.printHelpDelete();
+            assertEquals(MessageConstants.MESSAGE_DELETE_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpView(){
+            ui.printHelpView();
+            assertEquals(MessageConstants.MESSAGE_VIEW_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpEdit(){
+            ui.printHelpEdit();
+            assertEquals(MessageConstants.MESSAGE_EDIT_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                    + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_EDIT_COMMAND_EXMPLE
+                    + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpBye(){
+            ui.printHelpBye();
+            assertEquals(MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpHelp(){
+            ui.printHelpHelp();
+            assertEquals(MessageConstants.MESSAGE_HELP_COMMAND + UIConstants.LINE, outContent.toString());
         }
 
         @Test
@@ -102,12 +142,12 @@ public class UITest {
         }
 
         @Test
-        void testAddExpenditure() {
-            ui.printExpenditureAdded(testEntry.getDescription(),
+        void testAddEntry() {
+            ui.printEntryAdded(testEntry.getDescription(),
                     testEntry.getAmount(),
                     testEntry.getCategoryString(), testEntry.getDateTimeString());
-            assertEquals(MessageConstants.MESSAGE_EXPENDITURE_ADDED
-                            + UIUtil.formatExpenditure(testEntry.getDescription(),
+            assertEquals(MessageConstants.MESSAGE_ENTRY_ADDED
+                            + UIUtil.formatEntry(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
                             testEntry.getDateTimeString())
@@ -116,13 +156,13 @@ public class UITest {
         }
 
         @Test
-        void testDeleteExpenditure() {
-            ui.printExpenditureDeleted(testEntry.getDescription(),
+        void testDeleteEntry() {
+            ui.printEntryDeleted(testEntry.getDescription(),
                     testEntry.getAmount(),
                     testEntry.getCategoryString(),
                     testEntry.getDateTimeString());
-            assertEquals(MessageConstants.MESSAGE_EXPENDITURE_DELETED
-                            + UIUtil.formatExpenditure(testEntry.getDescription(),
+            assertEquals(MessageConstants.MESSAGE_ENTRY_DELETED
+                            + UIUtil.formatEntry(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
                             testEntry.getDateTimeString())
@@ -131,10 +171,10 @@ public class UITest {
         }
 
         @Test
-        void testEditExpenditure() {
-            ui.printExpenditureEdited(testEntry);
-            assertEquals(MessageConstants.MESSAGE_EXPENDITURE_EDITED
-                            + UIUtil.formatExpenditure(testEntry.getDescription(),
+        void testEditEntry() {
+            ui.printEntryEdited(testEntry);
+            assertEquals(MessageConstants.MESSAGE_ENTRY_EDITED
+                            + UIUtil.formatEntry(testEntry.getDescription(),
                             testEntry.getAmount(),
                             testEntry.getCategoryString(),
                             testEntry.getDateTimeString())
@@ -143,7 +183,7 @@ public class UITest {
         }
 
         @Test
-        void testViewExpenditure() {
+        void testViewEntry() {
             testEntries.addEntry(testEntries1);
             testEntries.addEntry(testEntries2);
             testEntries.addEntry(testEntries3);

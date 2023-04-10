@@ -6,11 +6,13 @@ import pocketpal.frontend.constants.ParserConstants;
 import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.InvalidHelpCommandException;
 import pocketpal.frontend.exceptions.MissingArgumentsException;
 import pocketpal.frontend.exceptions.MissingDateException;
 import pocketpal.frontend.exceptions.UnknownArgumentException;
 import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
+import pocketpal.frontend.util.CommandUtil;
 import pocketpal.frontend.util.StringUtil;
 
 import java.util.logging.Logger;
@@ -19,14 +21,15 @@ import java.util.regex.Pattern;
 
 public abstract class ParseCommand {
     private Logger logger = Logger.getLogger(ParseCommand.class.getName());
+
     public abstract Command parseArguments(String input) throws InvalidArgumentsException,
             InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException,
-            UnknownOptionException, UnknownArgumentException;
+            UnknownOptionException, UnknownArgumentException, InvalidHelpCommandException;
 
     /**
      * Returns arguments matching the specified pattern.
      *
-     * @param input User input after the command.
+     * @param input   User input after the command.
      * @param pattern Pattern to be matched in input.
      * @return Arguments specified after a particular option.
      * @throws MissingArgumentsException If option is specified but no arguments were specified.
@@ -55,7 +58,7 @@ public abstract class ParseCommand {
      * Returns the arguments that were specified before an option.
      * This method helps to check if any unknown arguments were specified.
      *
-     * @param input User input after command.
+     * @param input   User input after command.
      * @param pattern Pattern to be matched by input.
      * @return Arguments specified before option.
      */
@@ -71,8 +74,9 @@ public abstract class ParseCommand {
     }
 
     /**
-     * Checks if specified expense ID is valid
-     * @param id Expense id
+     * Checks if specified entry ID is valid
+     *
+     * @param id Entry id
      * @throws InvalidArgumentsException if id is not an integer
      */
     public void checkIdValidity(String id) throws InvalidArgumentsException {
@@ -122,11 +126,7 @@ public abstract class ParseCommand {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
         double priceDouble;
-        try {
-            priceDouble = Double.parseDouble(price);
-        } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
-        }
+        priceDouble = Double.parseDouble(price);
         if (priceDouble > ParserConstants.MAX_VALUE || priceDouble < ParserConstants.MIN_VALUE) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
@@ -140,12 +140,8 @@ public abstract class ParseCommand {
      */
     public void checkDateValidity(String dateString) throws InvalidDateException {
         logger.entering(ParseCommand.class.getName(), "checkDateValidity()");
-        if (dateString == null) {
-            logger.exiting(ParseCommand.class.getName(), "checkDateValidity()");
-            return;
-        }
         Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
-        if (!matcher.find()) { //Date incorrect format
+        if (!matcher.matches()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
         }
     }
@@ -170,7 +166,7 @@ public abstract class ParseCommand {
     /**
      * Checks for existence of any unknown option being specified by user.
      *
-     * @param input User input after command.
+     * @param input            User input after command.
      * @param availableOptions Accepted options for the particular command.
      * @throws UnknownOptionException If unknown option is specified.
      */
@@ -190,4 +186,20 @@ public abstract class ParseCommand {
         }
     }
 
+    /**
+     * Checks if user specified help command is valid.
+     *
+     * @param helpCommand User specified help command.
+     * @throws InvalidHelpCommandException If help command specified is not supported.
+     */
+    public void checkHelpCommandValidity(String helpCommand) throws InvalidHelpCommandException {
+        String[] helpCommandArray = helpCommand.split(" ", 2);
+        if (helpCommandArray.length > 1){
+            throw new InvalidHelpCommandException(MessageConstants.MESSAGE_INVALID_HELP_COMMAND);
+        }
+        logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");
+        helpCommand = StringUtil.toTitleCase(helpCommand);
+        CommandUtil.convertStringToCommand(helpCommand);
+        logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");
+    }
 }

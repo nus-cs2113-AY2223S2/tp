@@ -7,6 +7,7 @@ import pocketpal.communication.Response;
 import pocketpal.communication.ResponseStatus;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.frontend.constants.MessageConstants;
+import pocketpal.frontend.constants.ParserConstants;
 import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.exceptions.InvalidDateException;
@@ -142,7 +143,7 @@ public class EntriesEndpoint extends Endpoint {
         if (isFilterBetweenDates) {
             String startDateString = request.getParam(RequestParams.FILTER_BY_TIME_START);
             String endDateString = request.getParam(RequestParams.FILTER_BY_TIME_END);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ParserConstants.DATE_FORMAT);
             LocalDateTime startDateTime = LocalDateTime.parse(startDateString, formatter);
             LocalDateTime endDateTime = LocalDateTime.parse(endDateString, formatter);
             logger.info(

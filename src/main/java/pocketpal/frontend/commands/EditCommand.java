@@ -15,13 +15,13 @@ import pocketpal.frontend.util.StringUtil;
 import pocketpal.frontend.ui.UI;
 
 public class EditCommand extends Command {
-    private final int expenseId;
+    private final int entryId;
     private final String newDescription;
     private final String newPrice;
     private final String newCategory;
 
-    public EditCommand(String expenseId, String description, String category, String price) {
-        this.expenseId = Integer.parseInt(expenseId);
+    public EditCommand(String entryId, String description, String category, String price) {
+        this.entryId = Integer.parseInt(entryId);
         this.newCategory = category;
         this.newDescription = description;
         this.newPrice = price;
@@ -33,12 +33,12 @@ public class EditCommand extends Command {
      *
      * @param ui      UI to output action result
      * @param backend Backend to process requests
-     * @throws InvalidArgumentsException If expenseId is invalid
+     * @throws InvalidArgumentsException If entryId is invalid
      * @throws InvalidCategoryException  If category is invalid
      */
     @Override
     public void execute(UI ui, Backend backend) throws InvalidArgumentsException, InvalidCategoryException {
-        final Request request = new Request(RequestMethod.PATCH, String.valueOf(expenseId));
+        final Request request = new Request(RequestMethod.PATCH, String.valueOf(entryId));
         if (newPrice != null) {
             request.addParam(RequestParams.EDIT_AMOUNT, newPrice);
         }
@@ -56,7 +56,7 @@ public class EditCommand extends Command {
         }
 
         Entry newEntry = EntryParser.deserialise(response.getData());
-        ui.printExpenditureEdited(newEntry);
+        ui.printEntryEdited(newEntry);
     }
 
     /**
@@ -66,7 +66,7 @@ public class EditCommand extends Command {
      */
     public String[] getAttributes() {
         return new String[]{
-            Integer.toString(this.expenseId),
+            Integer.toString(this.entryId),
             this.newCategory,
             this.newDescription,
             this.newPrice
