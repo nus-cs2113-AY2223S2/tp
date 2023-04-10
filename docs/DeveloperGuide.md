@@ -490,6 +490,74 @@ the user to keep track of their net calorie gain on a daily basis.
 
 ### User Stories
 
+<div style="display: grid; grid-template-columns: 100px 100px 420px 420px; grid-row-gap: 0px;">
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Version</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">As a ...</p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">I want to ... </p>
+  <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">So that I can ...</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">new user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">see usage instructions</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">refer to them when I forget how to use the application</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; vertical-align: middle; margin: 0px;">calculate my caloric needs based on my height and weight</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">lead a healthy lifestyle within my caloric needs</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">add a meal</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep track of the food I have eaten on a particular day</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">delete a meal</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">remove a meal if I entered it in wrongly</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">view my previous meals</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">track the calories of each meal</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">key in my weight on a daily basis</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep track of my weight loss/gain</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v1.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">see the amount of calories left I have in the day</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">not exceed my daily caloric limit</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search for a type of food and view its nutritional contents</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">make a more informed choice about what to eat</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search for meals within a specific calorie range</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">	decide which meal to consume</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.0</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">enter the type and duration of exercise I have completed</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">keep better track of my physical activies</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.1</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">be inspired to work out	</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">stay in shape</p>
+
+  <p style="border: thin solid; text-align: center; margin: 0px;">v2.1</p>
+  <p style="border: thin solid; text-align: center; margin: 0px;">user</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; margin: 0px;">search based on a filter</p>
+  <p style="border: thin solid; padding-left: 10px; padding-right: 10px; text-align: center; margin: 0px;">have results that better suit my needs</p>
+
+</div>
+
 | Version | As a ... | I want to ...                                            | So that I can ...                                           |
 |---------|----------|----------------------------------------------------------|-------------------------------------------------------------|
 | v1.0    | new user | see usage instructions                                   | refer to them when I forget how to use the application      |
