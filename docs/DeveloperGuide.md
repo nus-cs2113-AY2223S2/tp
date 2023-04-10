@@ -130,6 +130,8 @@ This component should be able to guide the user to inputting the correct format 
 It should be able to perform basic data validation checks to ensure that the user does not enter any invalid commands.
 This makes life easier to developers in the future if they wish to add new features that requires users to use new commands.
 
+Here we derive the time of each session of the classes and add them one by one instead of adding the classes as recurring event. The reason for this is that considering sometimes TA/prof will change the time temporary, we want user to be able to change a single session of classes. Therefore we have made individual classes editable. However, checking whether the time of the class is edited to a date that is not within the current semester is beyond the scope of this program and furthermore as mentioned in the UserGuide, we will not check for confliction if the edited time is beyond the confine of current semester.
+
 <br>
 
 [Back to contents page](#table-of-contents)
