@@ -4,6 +4,10 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
+/**
+ * This task represents a ScheduleCommand, which lists tasks
+ * in order of pertinence.
+ */
 public class ScheduleCommand extends Command{
     /**
      * Executes the given command

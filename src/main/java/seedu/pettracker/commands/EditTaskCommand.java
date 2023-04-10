@@ -8,7 +8,10 @@ import seedu.pettracker.data.TaskList;
 
 import java.time.LocalDate;
 
-
+/**
+ * This class represents an EditTaskcommand, which is when a user wants
+ * to edit the description or date of an existing class
+ */
 public class EditTaskCommand extends Command {
 
     protected int taskNumber;
@@ -16,11 +19,23 @@ public class EditTaskCommand extends Command {
     protected LocalDate deadline;
 
 
+    /**
+     * Constructor with only new description for EditTaskCommand
+     * @param taskNumber task number
+     * @param newDescription description to be changed to
+     */
     public EditTaskCommand(int taskNumber, String newDescription) {
         super();
         this.taskNumber = taskNumber;
         this.newDescription = newDescription;
     }
+
+    /**
+     * Constructor with date AND new description for EditTaskCommand
+     * @param taskNumber task number
+     * @param newDescription description to be changed to
+     * @param deadline new deadline
+     */
     public EditTaskCommand(int taskNumber, String newDescription, LocalDate deadline) {
         super();
         this.taskNumber = taskNumber;
