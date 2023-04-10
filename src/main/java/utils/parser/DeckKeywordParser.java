@@ -66,7 +66,9 @@ public class DeckKeywordParser extends KeywordParser {
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOptions, tokens);
 
-        if (cmd.hasOption("c")) {
+        if (cmd.hasOption("c") && cmd.hasOption("t")) {
+            throw InvalidSyntaxException.buildGenericMessage();
+        } else if (cmd.hasOption("c")) {
             String deckName = cmd.getOptionValue("c");
             return new ListCardsUnderDeckCommand(deckName);
         } else if (cmd.hasOption("t")) {
@@ -98,9 +100,9 @@ public class DeckKeywordParser extends KeywordParser {
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         // Combine all actions
         String[] syntaxList = {
-            EDIT_ACTION,
-            DELETE_ACTION,
-            LIST_ACTION
+            "deck edit -o OLD_DECK_NAME -n NEW_DECK_NAME",
+            "deck delete -d DECK_NAME [{-c CARD_UUID | -i CARD_INDEX} | {-t TAG_NAME | -x TAG_INDEX}]",
+            "deck list [-c DECK_NAME | -t DECK_NAME]"
         };
         String[] headerList = {
             "Edit existing decks",

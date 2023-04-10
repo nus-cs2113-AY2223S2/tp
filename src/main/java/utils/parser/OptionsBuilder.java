@@ -103,21 +103,21 @@ public class OptionsBuilder {
 
     public static Options buildTagOptions() {
         Options options = new Options();
-        options.addOptionGroup(buildCardSelectOption());
-        options.addOptionGroup(buildTagSelectOption());
+        options.addOptionGroup(buildCardSelectOption(true));
+        options.addOptionGroup(buildTagSelectOption(true));
         return options;
     }
 
     public static Options buildUntagOptions() {
         Options options = new Options();
-        options.addOptionGroup(buildCardSelectOption());
-        options.addOptionGroup(buildTagSelectOption());
+        options.addOptionGroup(buildCardSelectOption(true));
+        options.addOptionGroup(buildTagSelectOption(true));
         return options;
     }
 
     public static Options buildViewOptions() {
         Options options = new Options();
-        options.addOptionGroup(buildCardSelectOption());
+        options.addOptionGroup(buildCardSelectOption(true));
 
         return options;
     }
@@ -126,15 +126,15 @@ public class OptionsBuilder {
         Options options = new Options();
         switch (model) {
         case Parser.CARD_KEYWORD:
-            options.addOptionGroup(buildCardSelectOption());
+            options.addOptionGroup(buildCardSelectOption(true));
             break;
         case Parser.TAG_KEYWORD:
-            options.addOptionGroup(buildTagSelectOption());
+            options.addOptionGroup(buildTagSelectOption(true));
             break;
         case Parser.DECK_KEYWORD:
             options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK, true, "deck name");
-            options.addOption(FLAG_CARD, FLAG_LONG_CARD, true, "card name (optional)");
-            options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "tag name (optional)");
+            options.addOptionGroup(buildCardSelectOption(false));
+            options.addOptionGroup(buildTagSelectOption(false));
             break;
         default:
         }
@@ -145,10 +145,10 @@ public class OptionsBuilder {
         Options options = new Options();
         switch (model) {
         case Parser.CARD_KEYWORD:
-            options.addOptionGroup(buildCardSelectOption());
+            options.addOptionGroup(buildCardSelectOption(true));
             break;
         case Parser.TAG_KEYWORD:
-            options.addOptionGroup(buildTagSelectOption());
+            options.addOptionGroup(buildTagSelectOption(true));
             break;
         default:
         }
@@ -179,7 +179,7 @@ public class OptionsBuilder {
         Options options = new Options();
         switch (model) {
         case Parser.TAG_KEYWORD:
-            options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "tag UUID or name (optional)");
+            options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "tag name (optional)");
             options.addOption(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index (optional)");
             break;
         case Parser.DECK_KEYWORD:
@@ -203,30 +203,34 @@ public class OptionsBuilder {
      *
      * @return Configured OptionGroup
      */
-    protected static OptionGroup buildCardSelectOption() {
+    protected static OptionGroup buildCardSelectOption(boolean required) {
         // Mutually exclusive options
         OptionGroup optionGroup = new OptionGroup();
-        optionGroup.setRequired(true);
+        optionGroup.setRequired(required);
 
-        Option cardUuidOption = new Option(FLAG_CARD, FLAG_LONG_CARD, true, "card UUID");
+        Option cardUuidOption = new Option(FLAG_CARD, FLAG_LONG_CARD, true, "card UUID" +
+                (required ? "" : " (optional)"));
         optionGroup.addOption(cardUuidOption);
 
-        Option cardIndexOption = new Option(FLAG_CARD_INDEX, FLAG_LONG_CARD_INDEX, true, "card index");
+        Option cardIndexOption = new Option(FLAG_CARD_INDEX, FLAG_LONG_CARD_INDEX, true, "card index" +
+                (required ? "" : " (optional)"));
         cardIndexOption.setType(Number.class);
         optionGroup.addOption(cardIndexOption);
 
         return optionGroup;
     }
 
-    protected static OptionGroup buildTagSelectOption() {
+    protected static OptionGroup buildTagSelectOption(boolean required) {
         // Mutually exclusive options
         OptionGroup optionGroup = new OptionGroup();
-        optionGroup.setRequired(true);
+        optionGroup.setRequired(required);
 
-        Option tagStringOption = new Option(FLAG_TAG, FLAG_LONG_TAG, true, "tag UUID or name");
+        Option tagStringOption = new Option(FLAG_TAG, FLAG_LONG_TAG, true, "tag name" +
+                (required ? "" : " (optional)"));
         optionGroup.addOption(tagStringOption);
 
-        Option tagIndexOption = new Option(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index");
+        Option tagIndexOption = new Option(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index" +
+                (required ? "" : " (optional)"));
         tagIndexOption.setType(Number.class);
         optionGroup.addOption(tagIndexOption);
 
