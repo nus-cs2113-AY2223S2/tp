@@ -85,6 +85,7 @@ Adds a new expense to the list of expenses.
   * (Note: entering 3 instead of 03 still works for March. 
   Users can remove preceding 0s, where apt, for simplicity sake)
   * The oldest time that can be entered is 2000 01 01 00 00.
+  * The furthest time that can be entered is 9999 12 31 23 59.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -105,7 +106,7 @@ Example output:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of tags empty.
+**Note**: Please do not leave the description of flags empty.
 
 [back to Contents](#table-of-contents)
 
@@ -123,6 +124,7 @@ Adds a new income to the list of incomes.
   * (Note: entering 3 instead of 03 still works for March.
   Users can remove preceding 0s, where apt, for simplicity sake)
   * The oldest time that can be entered is 2000 01 01 00 00.
+  * The furthest time that can be entered is 9999 12 31 23 59.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -143,7 +145,7 @@ Example output:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of tags empty.
+**Note**: Please do not leave the description of flags empty.
 
 [back to Contents](#table-of-contents)
 
@@ -155,6 +157,7 @@ Shows a list of all expenses in the list of expense.
 
 - The `date` should follow `YYYY/MM` format.
   * The oldest date that can be entered is 2000/01.
+  * The furthest date that can be entered is 9999/12.
 - The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all the expenses incurred in the month specified. If the optional time parameter is not given,
 it will show a list of all expenses across the entire time period.
@@ -186,8 +189,9 @@ Shows a list of all income in the list of income.
 
 - The `date` should follow `YYYY/MM` format.
   * The oldest date that can be entered is 2000/01.
-- The time parameter is **optional**. If you add this optional parameter,
-it will show a list of all income made in the specified month. If the optional time parameter is not given,
+  * The furthest date that can be entered is 9999/12.
+- The date parameter is **optional**. If you add this optional parameter,
+it will show a list of all income made in the specified month. If the optional date parameter is not given,
 it will show a list of all income across the entire time period.
 
 Example of usage: `listIncome` Shows a list of all income made across the entire time period.
@@ -226,6 +230,7 @@ The index must be a positive integer 1, 2, 3, …​
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
     * The oldest time that can be entered is 2000 01 01 00 00.
+    * The furthest time that can be entered is 9999 12 31 23 59.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -246,7 +251,7 @@ Example output:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of tags empty.
+**Note**: Please do not leave the description of flags empty.
 
 [back to Contents](#table-of-contents)
 
@@ -265,6 +270,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. 
     * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
     * The oldest time that can be entered is 2000 01 01 00 00.
+    * The furthest time that can be entered is 9999 12 31 23 59.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -284,7 +290,7 @@ Example output:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of tags empty.
+**Note**: Please do not leave the description of flags empty.
 
 [back to Contents](#table-of-contents)
 
@@ -478,9 +484,10 @@ Format:  `setBudget <amount> [t/ date]`
   * The amount entered must be greater `0`.
 * The `date` should follow `YYYY/MM` format.
   * The oldest date that can be entered is 2000/01.
-* The time parameter is **optional**. 
+  * The furthest date that can be entered is 9999/12.
+* The date parameter is **optional**. 
 If you add this optional parameter, the budget will only take expenses within the indicated month into consideration.
-If the optional time parameter is not given, it will set the budget for the current month.
+If the optional date parameter is not given, it will set the budget for the current month.
 
 Example of usage:
 `setBudget 2000 t/ 2023/05` sets the budget of 2023/05 at 2000.
@@ -512,7 +519,7 @@ Example output without optional time flag:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of amount and / or description of optional time tag empty.
+**Note**: Please do not leave the description of amount and / or description of optional time flag empty.
 
 [back to Contents](#table-of-contents)
 
@@ -522,9 +529,10 @@ Example output without optional time flag:
 Format: `viewBudget [t/ date]`
 * The `date` should follow `YYYY/MM` format.
   * The oldest date that can be entered is 2000/01.
-* The time parameter is **optional**.
+  * The furthest date that can be entered is 9999/12.
+* The date parameter is **optional**.
 If you add this optional parameter, it shows the budget of the indicated month.
-If the optional time parameter is not given, it will show the budget for the current month.
+If the optional date parameter is not given, it will show the budget for the current month.
 
 Example of usage:
 `viewBudget t/ 2023/05` shows the budget in 2023/05.
@@ -558,7 +566,7 @@ Example output without optional time flag:
 |  Enter command:
 ```
 
-**Note**: Please do not leave the description of time tag empty.
+**Note**: Please do not leave the description of time flag empty.
 
 [back to Contents](#table-of-contents)
 
