@@ -268,6 +268,13 @@ public class Ui {
     }
 
     /**
+     * Prints our a warning message if an event clashes with deadline.
+     */
+    public void printClashingEventWithDeadlineMessage() {
+        System.out.println("This event clashes with some deadlines in your task list.");
+    }
+
+    /**
      * Prints out a message when there are clashing deadlines and lessons.
      * @param clashTasks    Tasks that clashes with deadline.
      * @param clashLessons  Lessons that clashes with deadline.
