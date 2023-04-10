@@ -82,7 +82,7 @@ apps.
       [#122](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/122),
       [#130](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/130),
       [#133](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/133),
-      [#139](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/139),
+      [#139](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/139)
 
 * __Tools__:
     * Integrated third party library (GSON) to save and load data from
