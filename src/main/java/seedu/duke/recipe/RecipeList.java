@@ -100,7 +100,11 @@ public class RecipeList {
         if (matches.isEmpty()) {
             System.out.println(NO_MATCHES);
         } else {
-            System.out.println(MATCHING_ITEMS);
+            if (matches.size() == 1) {
+                System.out.println(StringLib.MATCHING_ITEM_SINGLE);
+            } else {
+                System.out.println(MATCHING_ITEMS);
+            }
             for (String match : matches) {
                 System.out.println("  " + match);
             }
@@ -169,7 +173,11 @@ public class RecipeList {
             if (matches.isEmpty()) {
                 System.out.println(NO_MATCHES);
             } else {
-                System.out.println(MATCHING_ITEMS);
+                if (matches.size() == 1) {
+                    System.out.println(StringLib.MATCHING_ITEM_SINGLE);
+                } else {
+                    System.out.println(MATCHING_ITEMS);
+                }
                 for (String match : matches) {
                     System.out.println("  " + match);
                 }

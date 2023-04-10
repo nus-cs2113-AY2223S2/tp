@@ -40,12 +40,22 @@ public class UI {
     public void showRecipeAdded(Recipe recipe, int recipeListSize) {
         System.out.println('\n' + "Got it. I've added this recipe:");
         System.out.println("  " + recipe.toString());
-        System.out.println("Now you have " + recipeListSize + " recipes in the list." + '\n');
+        if (recipeListSize == 1) {
+            System.out.println("Now you have " + recipeListSize + " recipe in the list." + '\n');
+        } else {
+            System.out.println("Now you have " + recipeListSize + " recipes in the list." + '\n');
+        }
     }
     public void showRecipeDeleted(Recipe recipe, int recipeListSize) {
         System.out.println('\n' + "Noted. I've removed this recipe:");
         System.out.println("  " + recipe.toString());
-        System.out.println("Now you have " + recipeListSize + " recipes in the list." + '\n');
+        if (recipeListSize == 0) {
+            System.out.println(StringLib.DELETED_TO_EMPTY);
+        } else if (recipeListSize == 1) {
+            System.out.println("Now you have " + recipeListSize + " recipe in the list." + '\n');
+        } else {
+            System.out.println("Now you have " + recipeListSize + " recipes in the list." + '\n');
+        }
     }
     public void showRecipeListCleared() {
         System.out.println(StringLib.RECIPE_CLEARED_MESSAGE);
