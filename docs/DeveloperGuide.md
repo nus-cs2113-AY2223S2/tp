@@ -3,7 +3,7 @@
 <!-- TOC -->
 * [Developer Guide](#developer-guide)
   * [Acknowledgements](#acknowledgements)
-  * [Design & implementation](#design--implementation)
+  * [Design & implementation](#design-implementation)
   * [Design](#design)
   * [Account Implementation](#account-implementation)
     * ['Login' Feature](#login-feature)
