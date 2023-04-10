@@ -4,55 +4,55 @@
 
 
 activate ":Duke"
-create ":Storage"
-":Duke" -> ":Storage" : Storage()
-activate ":Storage"
-":Storage" -> ":Storage" : initialiseDatabase()
-activate ":Storage"
+create ":ModuleStorage"
+":Duke" -> ":ModuleStorage" : ModuleStorage()
+activate ":ModuleStorage"
+":ModuleStorage" -> ":ModuleStorage" : initialiseDatabase()
+activate ":ModuleStorage"
 create ":ArrayList<Module>"
-":Storage" -> ":ArrayList<Module>" : new ArrayList<>()
+":ModuleStorage" -> ":ArrayList<Module>" : new ArrayList<>()
 activate ":ArrayList<Module>"
-":Storage" <-- ":ArrayList<Module>" : modules:ArrayList<Module>
+":ModuleStorage" <-- ":ArrayList<Module>" : modules:ArrayList<Module>
 deactivate ":ArrayList<Module>"
 create ":File"
-":Storage" -> ":File" : File(SAVED_MODULES_FILE_PATH)
+":ModuleStorage" -> ":File" : File(SAVED_MODULES_FILE_PATH)
 activate ":File"
-":Storage" <-- ":File" : savedModulesFile
+":ModuleStorage" <-- ":File" : savedModulesFile
 deactivate ":File"
 
 opt !savedModulesFile.exists()
 create ":File"
-":Storage" -> ":File" : File("data")
+":ModuleStorage" -> ":File" : File("data")
 activate ":File"
-":Storage" <-- ":File" : directory
+":ModuleStorage" <-- ":File" : directory
 deactivate ":File"
-":Storage" -> ":File" : directory.mkdirs()
+":ModuleStorage" -> ":File" : directory.mkdirs()
 activate ":File"
 deactivate ":File"
 end
-":Storage" -> ":Storage" : readModData(SAVED_MODULES_FILE_PATH, modules)
-activate ":Storage"
-ref over ":Storage" : [[readModData{diagrams%2FStorage%2FreadModData.png}]]
-":Storage" --> ":Storage"
-deactivate ":Storage"
-":Storage" -> ":Storage" : checkDatabaseCorrupted()
-activate ":Storage"
-":Storage" --> ":Storage" : isStorageCorrupted:boolean
-deactivate ":Storage"
-opt isStorageCorrupted == true
-":Storage" -> "<<class>>\n:UI" : UI.printStorageCorruptedMessage()
+":ModuleStorage" -> ":ModuleStorage" : readModData(SAVED_MODULES_FILE_PATH, modules)
+activate ":ModuleStorage"
+ref over ":ModuleStorage" : [[readModData{diagrams%2FStorage%2FreadModData.png}]]
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" -> ":ModuleStorage" : checkDatabaseCorrupted()
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage" : isStorageCorrupted:boolean
+deactivate ":ModuleStorage"
+opt isModuleStorageCorrupted == true
+":ModuleStorage" -> "<<class>>\n:UI" : UI.printStorageCorruptedMessage()
 activate "<<class>>\n:UI"
-":Storage" <-- "<<class>>\n:UI"
+":ModuleStorage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 end
-":Storage" -> ":Storage" : writeModListToFile(modules)
-activate ":Storage"
-":Storage" --> ":Storage"
-deactivate ":Storage"
-":Storage" --> ":Storage"
-deactivate ":Storage"
-":Storage" --> ":Duke"
-deactivate ":Storage"
+":ModuleStorage" -> ":ModuleStorage" : writeModListToFile(modules)
+activate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" --> ":ModuleStorage"
+deactivate ":ModuleStorage"
+":ModuleStorage" --> ":Duke"
+deactivate ":ModuleStorage"
 
 
 @enduml

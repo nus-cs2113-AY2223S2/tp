@@ -7,14 +7,14 @@ writeTaskPreparation(String saveString):String
 checkDatabaseCorrupted():boolean
 }
 
-class Storage implements DatabaseInterface {
+class ModuleStorage implements DatabaseInterface {
 initialiseDatabase():void
 writeTaskPreparation(String saveString):String
 checkDatabaseCorrupted():boolean
-- {static}instance: Storage
+- {static}instance: ModuleStorage
 - {static}SAVED_MODULES_FILE_PATH: String
-+ getInstance(): Storage
-- Storage()
++ getInstance(): ModuleStorage
+- ModuleStorage()
 + initialiseDatabase(): void
 + checkDatabaseCorrupted(): boolean
 - checkIsValidModule(moduleToCheck: Module, allModules: ArrayList<Module>): boolean
@@ -22,13 +22,13 @@ checkDatabaseCorrupted():boolean
 + addModuleToModuleList(moduleToAdd: Module): boolean
 + doesModuleExist(moduleToAdd: Module): boolean
 - saveModuleToStorage(saveModuleString: String): void
-+ {static}deleteModule(indexToDeletePuSpecificList: int, modules: ArrayList<Module>, database: Storage, uniID: int): boolean
++ {static}deleteModule(indexToDeletePuSpecificList: int, modules: ArrayList<Module>, database: ModuleStorage, uniID: int): boolean
 + writeModListToFile(modules: ArrayList<Module>): void
 + getModules(): ArrayList<Module>
 + {static}sortModulesAccordingToPrintingLength(modules: ArrayList<Module>): void
 }
 
-Storage "modules: ArrayList<Module>"--> "*"Module
+ModuleStorage "modules: ArrayList<Module>"--> "*"Module
 
 class Module {
 -univId: int
