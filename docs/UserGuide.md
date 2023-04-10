@@ -293,7 +293,7 @@ Note:
 1) Fields within square brackets are variable and are to be changed according to user needs.
 2) Fields with a comma inside the square brackets indicate that any of the multiple options can be input according to user needs.
 
-<div style="display: grid; grid-template-columns: 130px 700px; grid-row-gap: 0px;">
+<div style="display: grid; grid-template-columns: 130px 850px; grid-row-gap: 0px;">
   <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Action</p>
   <p style="border: thin solid; text-align: center; font-weight: bold; margin: 0px;">Format, Examples</p>
 
@@ -328,7 +328,7 @@ Note:
   <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>examples [meal, exercise]</code></div>
 
   <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Help</p>
-  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>ehelp</code></div>
+  <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>help</code></div>
 
   <p style="border: thin solid; margin: 0px; padding: 5px 15px;">Exit</p>
   <div style="border: thin solid; margin: 0px; padding: 5px 15px;"><code>bye</code></div>
