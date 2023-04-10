@@ -50,6 +50,7 @@ operation through the Command-Line Interface(CLI).
 #### Contributions to team-based tasks
 - Created milestones for each release: [v1.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/1), [v2.0](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/2), [v2.1](https://github.com/AY2223S2-CS2113-W12-2/tp/milestone/3)
 - Reviewed PRs (with non-trivial comments): [#17](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/17), [#20](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/20), [#35](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/35)
+- Maintained Issue tracker by closing resolved issues that were not marked as resolved by assignee: [#113](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/113), [#105](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/105), [#91](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/91), [#83](https://github.com/AY2223S2-CS2113-W12-2/tp/issues/83) etc.
 
 ### Diagrams contributed to DG
 - Class diagram for `Ui` class
