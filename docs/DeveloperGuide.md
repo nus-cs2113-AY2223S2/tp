@@ -827,19 +827,11 @@ __________________________________________________________________________
 __________________________________________________________________________
 ````
 
-  * **Negative** Test Case Input: `filter f/price p/lt one` (String as a price input)
-    * Expected Output: An error message informing the user to change the price input to a numerical input will be 
-      printed.
-    * Output Example:
-
-````
-Please enter a number for the price!
-````
-
 * **Positive** Test Case Input: `filter f/category fruit`
     * Expected Output: Generates a table containing a list of items that are in the specified category. If there is
       no such item, print a string to inform the user that no results can be found.
     * Output Example (Assuming there are items in this category):
+
 ````
 __________________________________________________________________________
 +-------+-----------------+--------------+----------+----------+-----------------+
@@ -852,6 +844,15 @@ __________________________________________________________________________
 +-------+-----------------+--------------+----------+----------+-----------------+
 
 __________________________________________________________________________
+````
+
+* **Negative** Test Case Input: `filter f/price p/lt one` (String as a price input)
+    * Expected Output: An error message informing the user to change the price input to a numerical input will be
+      printed.
+    * Output Example:
+
+````
+Please enter a number for the price!
 ````
 
 * **Negative** Test Case Input: `filter f/category ` (with no keywords)
@@ -924,6 +925,7 @@ attempting to test this feature.
   * **Positive** Test Case Input: `alert add upc/1234 min/3`
     * Expected Output: Prints a message informing the user that an alert has been successfully added.
     * Output Example:
+
 ````
 __________________________________________________________________________
 Successfully added a new alert.
