@@ -624,7 +624,7 @@ Format: **`bye`**
 
 **A**: The value of transactions has a maximum of $21,474,836.47 and will also be rounded down to 2 decimal places.
 
-**Q**: Does rainyDay support the use of non-alphanumeric characters (link to glossary) such as emojis and non-english
+**Q**: Does rainyDay support the use of [non-alphanumeric characters](#glossary) such as emojis and non-english
 characters?
 
 **A**: Using these characters may lead to unexpected behaviours. Hence, users are encouraged to use alphanumeric
