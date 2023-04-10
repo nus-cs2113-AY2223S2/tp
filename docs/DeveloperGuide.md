@@ -177,6 +177,10 @@ When the application starts up, the storage loadEvents() function will be called
 
 The save file can be edited and modified, however, if certain field is changed in a manner that may cause the application to fail 
 when running at a later stage, the storage will discard all the data in the EventList and provide the user with an empty Event List. 
+One such example would be the deletion of a certain field's key.
+
+In the case of multiple where there are duplicate names within a JSON object, lexically preceding values for the same key shall be overwritten,
+and the last value for the key will be taken as the accurate value. 
 
 <br>
 
@@ -187,7 +191,8 @@ When any component requires reading the NUS module files, the loadModules() meth
 is correct as of March 17, 2023. 
 
 It should be noted that Modules that are **Mini Projects** or **Workshops** are not supported by this application as they
-do not have any semester data. As such they cannot be added as an event. 
+do not have any semester data. As such they cannot be added as an event through the hashMap. Instead, they should be added
+as individual/recurring invents by the user through the add events functionality.
 
 <p style="page-break-after: always;">&nbsp;</p>
 
