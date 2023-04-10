@@ -11,7 +11,7 @@ Code Contribution
 RepoSense [Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=sszewen&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17
 )
 
-#### Enhancements implemented:
+### Enhancements implemented:
 
 **DatabaseInterface**
 
@@ -38,20 +38,28 @@ RepoSense [Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=ssze
   EditEntertainmentCommand, EditFoodCommand, ViewBudgetCommand.
 - This allows users to plan their budget well for their upcoming SEP trip.
 
-#### Contributions to the UG:
+**Formatting Files**
 
-Added documentation for all budget commands and add module command.
+* Cleaned data from modules.txt file which is the central module database.
 
-#### Contributions to the DG:
+### Contributions to the UG:
 
-Added class and sequence diagrams for budget commands, Storage class, BudgetStorage class and Add Module Command
-with explanation.
+* Added documentation for all budget commands and add module command.
 
-#### Contributions to team-based tasks:
+### Contributions to the DG:
 
-- Helped maintained Issue Tracker by labeling pull requests and closing resoled Issues.
+* Added class and sequence diagrams for budget commands, Storage class, BudgetStorage class and Add Module Command
+  with explanation.
+* Added High Level Sequence Diagram for Duke.
+* Added Non-Functional Requirements and Glossary.
+
+### Contributions to team-based tasks:
+
+- Helped maintained Issue Tracker by labeling pull requests and closing resolved Issues.
 - Maintained deadlines for Milestones on Github for v2.0 and v2.1.
+- Removed old unreadable theme for User Guide, Developer Guide and PPP.
+- Resolved critical issue on software not being able to read from txt file in .jar format.
 
-#### Review/mentoring contributions:
+### Review/mentoring contributions:
 
 - Helped with code reviews and gave suggestions through Github comments and telegram.
