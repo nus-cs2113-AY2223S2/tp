@@ -34,7 +34,11 @@ various features for note-taking.
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+[Files.createTempFile/Files.delete](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/io/PrintWriter.html)
+[Redirecting System.in/System.Out](https://www.baeldung.com/java-testing-system-out-println)
+[JUnit testing with simulated user input](https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input/6416142)
+[Add resources files to JAR with gradle](https://stackoverflow.com/questions/24724383/add-resources-and-config-files-to-your-jar-using-gradle)
+[Exit Java program after a certain time](https://stackoverflow.com/questions/15747277/how-to-make-java-program-exit-after-a-couple-of-seconds)
 
 ## Design & implementation
 
@@ -44,7 +48,7 @@ The Architecture Diagram below showcases the high level design of BadMaths:
 <summary>Architecture Diagram</summary>
 <div markdown="1">
 
-![img.png](Architecture_diagram.png)
+![img.png](ArchitectureDiagram/Architecture_diagram.png)
 
 </div>
 </details>
@@ -120,7 +124,7 @@ to the user.
 <summary>Sequence Diagram for solving Quadratic Equations</summary>
 <div markdown="1">
 
-![img_3.png](SequenceDiagrams/img_3.png)
+![img.png](SequenceDiagrams/Quadratic.png)
 
 </div>
 </details>
@@ -206,32 +210,66 @@ Step 1. The method starts by creating a new `ArrayList` of `Note` objects named 
 Step 2. The `loadFile()` method then opens the file specified by the path parameter using a `Scanner` object and reads each 
 line of the file in a loop using the `hasNextLine` and `nextLine` methods of the `Scanner` object.
 
-Step 3. For each line of the file, the method splits the line into four parts using the `split` method with a tab `\t` as the separator. 
-This creates an array of four elements, each containing one part of the line. If the length of the resulting array is not `4`, 
+Step 3. For each line, the method calls the `parseNoteString` method of the `NoteParser` class to convert the `String` representation of the note into a `Note` object.
+
+Step 4. The `Note` object is then added to the `ArrayList` of `Note` objects.
+
+Step 5. If the file is not found, the method catches the `FileNotFoundException` and prints the exception message.
+
+Step 6. If the file format is invalid, the method catches the `InvalidFormatException` and calls the `responseHandler` method of the `InvalidNotesFileHandler` class 
+to prompt the user to reset the file or exit the program.
+
+Step 7. The method returns the `ArrayList` of `Note` objects.
+
+#### NoteParser Class
+
+The `NoteParser` class is responsible for parsing a string representation of a note into a `Note` object. It contains a single public static method `parseNoteString()` which takes a `String` object as a parameter and returns a `Note` object.
+
+Step 1. The method starts by splitting the `noteString` into four parts using the `split` method with a tab `\t` as the separator. 
+This creates an array of four elements, each containing one part of the note string. If the length of the resulting array is not `4`, 
 the method throws an `InvalidFormatException`.
 
-Step 4. If the length of the resulting array is `4`, the method continues to parse the four parts of the line.
+Step 2. If the length of the resulting array is `4`, the method continues to parse the four parts of the note string.
 
-a. The first part represents the `priority` of the note, and it is read as a string. The method checks if the string is one of the valid priority values (`LOW`, `MEDIUM`, `HIGH`), 
+a. The first part represents the `priority` of the note, and it is read as a string. The method checks if the string is one of the valid priority values (`LOW`, `MEDIUM`, `HIGH`),
 and if not, it throws an `InvalidFormatException`. If the string is valid, the method converts it to a `NotePriority.Priority` enum value.
 
-b. The second part represents the `status` of the note (whether it is done or not), and it is read as a string. The method checks if the string is one of the valid status values (`Y`, `N`), 
+b. The second part represents the `status` of the note (whether it is done or not), and it is read as a string. The method checks if the string is one of the valid status values (`Y`, `N`),
 and if not, it throws an `InvalidFormatException`. If the string is valid, the method converts it to a `boolean` value (true if the string is `Y`, false otherwise).
 
-c. The third part represents the `review count` of the note, and it is read as a string. The method tries to parse the string as an integer using the `Integer.parseInt` method. 
+c. The third part represents the `review count` of the note, and it is read as a string. The method tries to parse the string as an integer using the `Integer.parseInt` method.
 If the string cannot be parsed as an integer, the method throws an `InvalidFormatException`. If the string is valid, the method stores the integer value in a variable named `reviewCount`.
 
 d. The fourth part represents the `text` of the note, and it is read as a string.
 
-Step 5. If the four parts of the line are valid, the method creates a new `Note` object with `text` and `priority`, 
-updates its `status` and `review count` respectively with parsed values, and adds the `notes` ArrayList.
+Step 3. If the four parts of the note string are valid, the method creates a new `Note` object with `text` and `priority`, 
+updates its `status` and `review count` respectively with parsed values, and returns the `Note` object.
 
-Step 6. After all lines of the file have been processed successfully, the method returns the `notes` ArrayList containing all the notes read from the specific file.
+Step 4. If `InvalidFormatException` is caught during the parsing process, the method throws the exception to the calling method to handle it.
 
-Step 7. If `InvalidFormatException` is caught during the reading and parsing process, the method handles it by enquiring the user whether to reset the file or not (`y` or `n`). 
-If the user chooses to reset the file (`y`), the method clears the file contents using a `PrintWriter` object and prints a success message. 
-If the user chooses not to reset the file (`n`), the method prints a message informing the user that the program will exit in 10 seconds and schedules a timer task to exit the program after the timeout. 
-If the user enters an invalid input, the method prompts the user again until a valid input is entered.
+#### InvalidNotesFileHandler
+
+The `InvalidNotesFileHandler` contains a single public static method called `responseHandler`, 
+which takes in two arguments: a `String` representing the path to the file with invalid format and an `ArrayList` of `Note` objects that will be cleared if the user confirms the file reset.
+
+Step 1. The method starts by creating a `Scanner` object to read user input from the console.
+
+Step 2. The method prints a message to notify the user that the notes file seems to be corrupted and prompts the user to confirm to reset the file.
+
+Step 3. The method reads the user's input and trims it to remove any leading or trailing white spaces. 
+It also converts the input to lowercase to simplify the input comparison.
+
+Step 4. If the user confirms to reset the file by typing `y`, the method clears the file contents by creating a `PrintWriter` object and passing the file path to it. 
+The `print` method of the PrintWriter object is then called with an empty string to clear the contents of the file. The `close` method is called to close the `PrintWriter` object.
+
+Step 5. The method also clears the `ArrayList` of `Note` objects.
+
+Step 6. The method prints a message to notify the user that the file contents have been reset successfully and prompt the user to continue using the application.
+
+Step 7. If the user types `n` to not reset the file, the method prints a message to notify the user to ensure the file status before using the application. 
+The program will exit in `10` seconds using the `Timer` class and `TimerTask` class if there is no user response in `10` seconds.
+
+Step 8. If the user types any input other than `y` or `n`, the method prints a message to notify the user of invalid input and recursively calls the `loadFile` method with the same file path argument to ask the user again.
 
 <details>
 <summary>Sequence Diagram for File Loading</summary>
@@ -302,7 +340,7 @@ Step 3. The `storeNotes` public method will then store the note item input by us
 <summary>Sequence Diagram for Store</summary>
 <div markdown="1">
 
-![img_4.png](img_4.png)
+![img_4.png](SequenceDiagrams/img_4.png)
 
 </div>
 </details>
