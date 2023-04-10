@@ -49,29 +49,29 @@ is responsible for:
 
 1. When MyLedger is launched, it will initialize the ```Storage``` to load the saved expenditures from the textfile and  ```Ui``` to print
    the welcome message.
-2. When MyLedger is executing, it receives input for the user and sends it to ```Storage``` then ```Command``` which carries out the various
+2. When corrupted entries are encountered when initializing ```Storage```, the respective entries will be deleted.
+3. When MyLedger is executing, it receives input for the user and sends it to ```Storage``` then ```Command``` which carries out the various
    commands. 
-3. After the command has been carried out ```Command``` sends the result back to ```MyLedger.main()``` which would print the message back to the user.
+4. After the command has been carried out ```Command``` sends the result back to ```MyLedger.main()``` which would print the message back to the user.
 
 The other components of MyLedger include:
 
 * ```Ui```: The user interface that prints the welcome and help message.
 * ```Parser```: Parser which process the user's command and calls the specific command.
-* ```Command```: Executes the command given.
-* ```Expenditure```: Constructs an expenditure and is added to ```ExpenditureList```.
-* ```ExpenditureList```: An ArrayList of the current expenditures.
+* ```Command```: Executes the command input by the user.
+* ```Expenditure```: Constructs a corresponding expenditure category and is added to ```ExpenditureList```.
+* ```ExpenditureList```: An ArrayList containing all records of expenditures.
 * ```Storage```: Uses ```MyLedger_inputs.txt``` to initialize ```ExpenditureList```, updates ```MyLedger_inputs.txt``` whenever ```ExpenditureList```
   changed.
 
 ### Main Components of MyLedger
 `Parser:` Processes the inputs made by the user and converts into a sensible form for further processing.
 
-`Commands:` Matches the input command with the respective commands created and executes the command result.
+`Commands:` Matches the input command with the respective commands created and executes the command that produces a command result.
 
-`Expenditure Type:` Expenditure information that allows the users to access their input data from the respective 
-command classes.
+`Expenditures:` Expenditure information that allows the users to create expenditure records from their respective command classes, and access them from an expenditure list. 
 
-`Storage:` Stores, reads and updates the user input into their hard disk.
+`Storage:` Stores, reads and updates the user input into their local storage.
 
 The following section describes the implementation of certain features.
 
@@ -105,45 +105,24 @@ parseLendBorrow. The only difference is the condition, with the loop happening o
 
 
 ### 3.3. Expenditure Categories
-The **[API](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/Expenditure.java)** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. After which, the expenditure is added to the expenditure list.
+The list of **[methods](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/Expenditure.java)** of this component is specified in the super abstract class `Expenditure.java` and its sub-classes in the `expenditure` package. Its sub-classes represent the different expenditure categories. When users create a new expenditure record, one of these different expenditure categories are instantiated. After which, the expenditure is added to the expenditure list.
 
-The **[API](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/ExpenditureList.java)** of the expenditure list is specified in the `ExpenditureList.java` class.
+The list of **[methods](https://github.com/AY2223S2-CS2113-T14-3/tp/blob/master/src/main/java/seedu/expenditure/ExpenditureList.java)** of the expenditure list is specified in the `ExpenditureList.java` class.
+
+The `Expenditure` class the following attributes:
+- Fields: `date`, `amount`, `description`
 
 The `ExpenditureList` class description is as follows:
 - A representation of a list of expenditures. It is an `ArrayList<Expenditure>` container
 - The list is instantiated at the start of the program and stores expenditures of type `Expenditure`.
 
-As for the expenditure types, their fields are as shown below.
+The following table describes each and every expenditure category in detail and their utility towards the user.
 
-`Expenditure`:
-- Fields: `date`, `amount`, `description`
-
-`AcademicExpenditure`: 
-- Fields: `date`, `amount`, `description`
-
-`AccommodationExpenditure`:
-- Fields: `date`, `amount`, `description`, `isPaid`
-
-`BorrowExpenditure`:
-- Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
-
-`EntertainmentExpenditure`:
-- Fields: `date`, `amount`, `description`
-
-`FoodExpenditure`: 
-- Fields: `date`, `amount`, `description`
-
-`LendExpenditure`:
-- Fields: `date`, `borrowerName`, `amount`, `deadline`, `description`
-
-`OtherExpenditure`:
-- Fields: `date`, `amount`, `description`
-
-`TransportExpenditure`:
-- Fields: `date`, `amount`, `description`
-
-`TuitionExpenditure`:
-- Fields: `date`, `amount`, `description`, `isPaid`
+| Expenditure Category     | Description                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| Regular Expenditure Categories       | The regular expenditure categories consists of simple daily one-time expenditures. They are `AcademicExpenditure`, `EntertainmentExpenditure`, `FoodExpenditure`, `OtherExpenditure`, `TransportExpenditure`.      |
+| Lump Sum Expenditure Categories   | The The `AccommodationExpenditure` and `TuitionExpenditure` are lump sum expenditure categories as they are paid over a period of time. These expenditures can be marked as complete for the year, and will be automatically unmarked by MyLedger annually on the same day to indicate that it is time for payment again. MyLedger will perform annual checks for the expenditures as shown [here].                  |
+| Borrow Lend Expenditure Categories   | The `BorrowExpenditure` and `LendExpenditure` categories form the record of money being borrowed as loan, or lent out to be kept as a record.                    |
 
 The following shows the UML diagram used for the Expenditure Categories component implemented in MyLedger.
 
@@ -156,6 +135,8 @@ The following shows the UML diagram used for the Expenditure Categories componen
 In the diagram, the aforementioned expenditure categories inherit from the `Expenditure` class. The `ExpenditureList` class is a composition of expenditures of `Expenditure` type. 
 
 `Expenditure` has a multiplicity of `*` to `ExpenditureList` as an empty expenditure list is instantiated at the beginning of the program, and any number of expenditures can be added to the expenditure list. Thus, it is also observed that the `ExpenditureList` class is an *composition* of `Expenditure`.
+
+#### 3.3.1 Repeat dates for Accommodation and Tuition Expenditures
 
 ### 3.4. Command Component
 
@@ -176,20 +157,26 @@ The `Command` component is represented by the `command` package. The `command` p
 | `SetBudgetCommand`                                                                                                                                                                                                                                                                                  |                                                                               Class contains the operations in setting an amount of money users would like to budget.                                                                               |
 | `ShowRatesCommand`                                                                                                                                                                                                                                                                                  |                                                                                Contains the fixed conversion rates used when toggling between different currencies.                                                                                 |
 | `SortCommand`                                                                                                                                                                                                                                                                                       |                                                                         Class contains the operations pertaining to sorting the list of expenditures by amount or by date.                                                                          |
-| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                         Classes contain the operations pertaining to displaying a filtered expenditure list by the expenditure date and type respectively.                                                          |
+| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`   
 
-Below shows the UML diagram representing the `command` package.
+Below represents the UML class diagram representing all the command classes that instantiates an expenditure record:
+
 <p align="center">
-    <img src="team/images/umlCommandClassDiagram.png" width="100%">
+    <img src="team/images/simplifiedCommandClassDiagram.png" width="100%">
     <br/>
-    <i>Figure 4: UML diagram for the command package</i>
+    <i>Figure 4: UML diagram for the expenditure command classes</i>
 </p>
+
+Next follows the command classes that interact with pre-existing expenditure records stored in the expenditure list. The table below describes the commands.
 
 A more detailed coverage is explored in [Command List](#4-command-list).
 
 ### 3.5. Storage
+
+#### 3.5.1 Saving expenditures after each input
+
 The class `TxtFileStatus` and `ExpenditureList` are involved in storing the expenditure list.
-After every user input is completed, saveExpenditureList is called, and the text file will be
+After every user input is completed, the `saveExpenditureList` method is called, and the text file will be
 updated with all the current expenditures in the expenditure array list.
 
 <p align="center">
@@ -200,11 +187,32 @@ updated with all the current expenditures in the expenditure array list.
 
 The following sequence diagram shows the details of the process for saveExpenditureList.
 
-Likewise when MyLedger first runs, it instantiates ExpenditureList and stores a reference to it.
-MyLedger then checks if the text file exists, else it gets created. Recorded expenditure stored 
-as a string in the text file is then added to the array list in ExpenditureList by iterating through
-the strings in the text file, instantiating an expenditure using the string received, and adding
-the expenditure into the array list.
+#### 3.5.2 Loading the expenditure list from the save file on application launch
+
+Likewise when MyLedger launches, it instantiates an expenditure list from `ExpenditureList`, and stores a reference to it.
+
+MyLedger then checks if the text save file exists, else it gets created. All the recorded expenditure stored 
+as a string in the text file is then added to the array list in ExpenditureList. This is done by iterating through all the saved and valid strings in the text file, taking the saved expenditures and instantiating them as expenditures into the expenditure list. 
+
+Subsequently, all `AccommodationExpenditure` and `TuitionExpenditure` are queried to check if the next repeat date has passed. Should the day current date of application launch be on the repeat date, or if it has passed, MyLedger will ensure that the expenditures are unmarked to serve as a reminder for next payment.
+
+However, should a saved expenditure in the text file be corrupted, it will be isolated and deleted upon launch. Conditions for file corruption are explained in the [here](#353-corruption-of-saved-expenditures).
+
+#### 3.5.3 Corruption of saved expenditures
+
+Expenditures in the saved file are deemed as corrupted when one of the following conditions are met:
+
+| Condition     | Justification                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| i. Missing delimiters       | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.      |
+| ii. Amounts less than $0.01 SGD   | As MyLedger supports a minimum amount of $0.01 SGD, changes that violate the amount will be deemed as corrupted and removed.                  |
+| iii. Amounts that exceed the `double` data size   | As this will result in an overflow regardless, it will be removed to prevent inaccurate information to be displayed.                    |
+| iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates  | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed.                   |
+
+**Note of iv:**
+- `repeatDate`, as all other dates, is stored in `yyyy-MM-DD` format.
+- Corruption for the year segment is **not** deemed as a corruption, as MyLedger's repeating date feature   will automatically set it forward to the correct year it is supposed to repeat on. 
+- Corruption for the day and month implies the difference between the first user-initialised date and repeat dates. Thus, **is** deemed as a corruption.
 
 <p align="center">
     <img src="team/images/initializeList.png">

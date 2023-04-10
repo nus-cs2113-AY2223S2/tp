@@ -50,12 +50,14 @@ public class EditCommand extends Command {
                 String name = fetchName();
                 LocalDate deadline = fetchDeadline();
                 ((LendExpenditure) editedExpenditure).setLenderNameAndDeadline(name, deadline);
+
             } else if (editedExpenditure instanceof BorrowExpenditure) {
                 String name = fetchName();
                 LocalDate deadline = fetchDeadline();
                 ((BorrowExpenditure) editedExpenditure).setBorrowerNameAndDeadline(name, deadline);
             }
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
+
         } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException | NumberFormatException s) {
             return new CommandResult("Failed to edit! Please check the format and try again!");
         } catch (WrongPrecisionException e) {
@@ -103,5 +105,4 @@ public class EditCommand extends Command {
         String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
         return LocalDate.parse(deadline);
     }
-
 }
