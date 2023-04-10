@@ -161,6 +161,11 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Retrieve a HashSet of  Nus modules available by looping through the all the Partner Universities modules
+     * @param allModules ArrayList containing all the Partner Universities modules
+     * @return nusModulesCodeList HashSet of string containing available Nus modules
+     */
     public HashSet<String> removeDupeNusMods(ArrayList<Module> allModules) {
         HashSet<String> nusModulesCodeList = new HashSet<>();
         for (Module m : allModules) {
@@ -170,6 +175,11 @@ public class UI {
         return nusModulesCodeList;
     }
 
+    /**
+     * Prints out the list of available Nus Module details that can be used to search for
+     * mappable Partner Universities modules
+     * @param allModules ArrayList containing all the Partner Universities modules
+     */
     public void printNusMods(ArrayList<Module> allModules) {
         HashSet<String> nusModuleCodeList = removeDupeNusMods(allModules);
         System.out.println(LINE);
@@ -192,6 +202,15 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out a list of mappable Partner Universities modules from the specific nusModCode inputted by the user. It
+     * will loop through foundNusModList arraylist and print out the Partner University module if it can be mapped from
+     * the specific nusModCode. The lists of mappable modules will be print out accordingly under their
+     * respective Partner University.
+     * @param foundNusModList Arraylist containing all the mappable Partner Universities modules
+     * @param nusModCode String containing the specific Nus Module Code to search by inputted by user
+     * @param universities ArrayList containing all the Partner Universities details
+     */
     public void printFoundNusModules(ArrayList<Module> foundNusModList, String nusModCode,
                                      ArrayList<University> universities) {
         foundNusModList.sort(Comparator.comparingInt(Module::getUnivId));
@@ -385,6 +404,9 @@ public class UI {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out the list of commands available in the program and explain how and what each commands can do.
+     */
     public static void printHelpCommandMessage() {
         System.out.println("Here are the list of commands:\n"
                 + "/LIST PU                                              : Provides the list of Partner Universities "
