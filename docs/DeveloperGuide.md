@@ -678,12 +678,12 @@ have to search for different tools online.
 
 ## User Stories
 
-| Version | As a ...                                | I want to ...                         | So that I can ...                                                                      |
-|---------|-----------------------------------------|---------------------------------------|----------------------------------------------------------------------------------------|
-| v1.0    | student studying Linear Algebra         | be able to check my answers for Matrix multiplications | ensure that the method I am using for manual calculations is correct                   |
-| v1.0    | student overwhelmed by math information | be able to store custom notes         | refer to them whenever I want to refresh my memory                                     |
+| Version | As a ...                                | I want to ...                                              | So that I can ...                                                                      |
+|---------|-----------------------------------------|------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | student studying Linear Algebra         | be able to check my answers for Matrix multiplications     | ensure that the method I am using for manual calculations is correct                   |
+| v1.0    | student overwhelmed by math information | be able to store custom notes                              | refer to them whenever I want to refresh my memory                                     |
 | v1.0    | student studying Signals and Systems    | be able to find the characteristics of trigo graphs easily | save time when doing my tutorials and not have to worry about the tedious calculations |
-| v2.0    | secondary school maths student          | be able to solve quadratic equations  | complete my homework as fast as possible and as correcetly as possible                 |
+| v2.0    | secondary school maths student          | be able to solve quadratic equations                       | complete my homework as fast as possible and as correcetly as possible                 |
 ## Non-Functional Requirements
 
 * Notes can be ported when program starts on a new device.
