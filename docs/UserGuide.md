@@ -1,16 +1,42 @@
 # BankWithUs User Guide
 
 --------------------------------------------------------------------------------------------------------------------
+## <span style="color:#CC0000">Table of contents:</span>
+* [Quick-start guide](#quick-start)
+* [Features](#features)
+    * [Help Message](#help-message)
+    * [Add New Account](#add-account)
+    * [Switch Account](#switch-account)
+    * [Delete Account](#delete-account)
+    * [View Account](#view-account)
+    * [Deposit](#deposit)
+    * [Withdraw](#withdraw)
+    * [Transaction History](#view-transaction)
+    * [Set Save Goal](#set-save-goal)
+    * [Show Save Goal](#show-save-goal)
+    * [Withdraw Limit](#set-wl)
+    * [Check Withdraw Limit](#check-wl)
+    * [Delete Transaction History](#delete-transaction)
+    * [Exiting Program](#exit)
+* [Frequently Asked Questions (FAQ)](#FAQ)
+* [Command Summary](#command-summary)
 
-## Quick start guide
+--------------------------------------------------------------------------------------------------------------------
+
+<a id="quick-start"></a>
+## Quick-start guide
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
+
 2. Download the latest `BankWithUs.jar` from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases).
+
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BankWithUs app.
 
+
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar BankWithUs.jar` command to run the application.<br>
+
 
 5. Follow the instruction as per the CLI and create your new account. e.g. typing **`help`** and pressing Enter will open the help option.<br>
    Some example commands you can try:
@@ -25,11 +51,16 @@
 
        * `exit` : Exits the application.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. For first-time user the program will ask you to create one account when launched.
+
+
+7. Refer to the [Features](#features) below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+
+## Features<a id="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -38,17 +69,25 @@
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `deposit AMOUNT`, `AMOUNT` is a parameter. `deposit 300` is an example of a valid command syntax.
 
+
+* All `AMOUNT` parameter has to be less than three decimal places or it would not be taken in.<br>
+  e.g. `deposit 100.111` will be treated as an input error
+
+
 * Parameters MUST be in the specified order for the command to take appropriate effect.<br>
 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `view-transactions-all`, `exit`, `add-account`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
+
+
 * We use `>>` to indicate the user input. <br>
   e.g. `>>help` means the user input "help" and press enter.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help`<a id="help-message"></a>
+
 
 Shows a list of all the commands available and what they do.
 
@@ -75,7 +114,9 @@ view-current: shows the relevant details of the current account
 exit: quits program and saves
 ```
 
-### Add an account: `add-account`
+
+### Adding an account: `add-account` <a id="add-account"></a>
+
 
 Initiates the process of adding a new account. The user is not required to input any parameters when calling the command.
 However, once the command starts, it will prompt the user for their name and initial balance.
@@ -85,7 +126,6 @@ CLI prompts: "Whats your name?" <br />
 your input: `NAME` <br />
 CLI prompts: "How much would you like to add as Balance?" <br />
 your input: `BALANCE` Note: Balance has to be a valid number. <br />
-
 
 
 
@@ -103,7 +143,9 @@ Balance: $1000
 ----------------------------
 ```
 
-### Switch to another account: `switch-to`
+
+### Switch to another account: `switch-to` <a id="switch-account"></a>
+
 
 Switches from the *current account* to the new requested account, if it exists.
 
@@ -128,7 +170,8 @@ Balance: $90.00
 ```
 
 
-### Delete an account: `delete`
+
+### Delete an account: `delete` <a id="delete-account"></a>
 
 
 Format: `delete ACCOUNT_NAME`
@@ -146,7 +189,9 @@ Account: jameson deleted
 ```
 Deletes the jameson account.
 
-### View the details of all the accounts: `view-account`
+
+### View the details of all the accounts: `view-account` <a id="view-account"></a>
+
 
 Shows a list of all the available accounts with their account name and balance.
 
@@ -164,7 +209,10 @@ Balance: $300.00
 ----------------------------
 ```
 
-### View the details of the current account: `view-current`
+
+### View the details of the current account: `view-current` <a id="view-current"></a>
+
+
 Shows the details of the current account.
 Format: `view-current`
 Example:
@@ -175,7 +223,9 @@ Balance: $300.00
 ----------------------------
 ```
 
-### Deposit: `deposit`
+
+### Deposit: `deposit` <a id="deposit"></a>
+
 
 Deposits AMOUNT into the *current account*.
 
@@ -194,7 +244,9 @@ You have $190.00 remaining!
 Attempting to do the above cause the program to show error messages.
 
 
-### Withdraw: `withdraw`
+
+### Withdraw: `withdraw` <a id="withdraw"></a>
+
 
 Withdraws AMOUNT from the users balance.
 
@@ -215,7 +267,7 @@ You have $140.00 remaining!
 Attempting to do so will show error messages.
 
 
-### List all transactions: `view-transactions-all`
+### List all transactions: `view-transactions-all` <a id="view-transaction"></a>
 
 Shows a list of all the transactions processed by all the accounts of the user.
 
@@ -228,7 +280,7 @@ Example:
 2. Account Name: jenson Transaction Type: withdraw Amount: 10 Date: 26/03/2023
 ```
 
-### Add a savings goal to the current account: `set-save-goal` 
+### Add a savings goal to the current account: `set-save-goal` <a id="set-save-goal"></a>
 
 Adds a savings goal to the *current account*. <br />
 Will raise an alert when user attempting to `withdraw` more than the savings goal, if attempt is before deadline
@@ -248,7 +300,11 @@ Try saving a minimum of $300 until 11-11-2023
 Save Goal has been created, Have fun staying frugal!
 ```
 
-### Check the current savings goal: `show-save-goal`
+
+
+### Check the current savings goal: `show-save-goal` <a id="show-save-goal"></a>
+
+
 Shows the current savings goal and the deadline of the current account.
 ```
 >>show-save-goal
@@ -256,7 +312,10 @@ Min amount to save: $300
 Deadline: 11-11-2023
 ----------------------------
 ```
-### Set a withdrawal limit: `set-wl`
+
+
+### Set a withdrawal limit: `set-wl` <a id="set-wl"></a>
+
 
 Adds a withdrawal limit to the *current account*. <br />
 Will prevent the user from making the withdrawal if it will result in them exceeding the withdrawal limit in the current month. The amount of withdrawals will reset at the beginning of every month.
@@ -277,7 +336,7 @@ You have withdrawn $0 this month.
 ----------------------------
 ```
 
-### Check the current withdrawal limit: `check-wl`
+### Check the current withdrawal limit: `check-wl` <a id="check-wl"></a>
 
 Shows the current withdrawal limit and the total amount of money withdrawn in the current month.
 
@@ -301,7 +360,7 @@ Withdrawal limit is currently $100.
 You have withdrawn $50 this month.
 ```
 
-### Delete a transaction record: `delete-transaction`
+### Delete a transaction record: `delete-transaction`<a id="delete-transaction"></a>
 
 Delete the transaction record with the given transaction index. <br />
 The index is the number shown in the list of transactions when `view-transactions-all` is called. <br />
@@ -322,13 +381,15 @@ view-transactions-all
 1. Account Name: xixi Transaction Type: withdraw Amount: 234 Date: 04/04/2023
 ```
 
-### Exit the program : `exit`
+
+### Exit the program : `exit` <a id="exit"></a>
+
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the data <a id="save"></a>
 
 BankWithUs data is automatically stored when user exits the program. No manual inteference is required.
 
@@ -349,14 +410,17 @@ Please keep in mind that this will result in irreversible data loss.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ <a id="FAQ"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
+
+**Q**: Why was my recurring transactions not updated in the text file? <br>
+**A**: The text file is updated every time when user exit the program.
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary <a id="command-summary"></a>
 
 | Action                           | Format, Examples           |
 |----------------------------------|----------------------------|

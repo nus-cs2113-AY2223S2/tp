@@ -30,6 +30,10 @@ Users can create accounts, deposit money, withdraw money, set save goal, set wit
 
 * Reviewed and approved many PRs not authored by myself.
 
+* Helped in adding contents in User Guide
+
+* Add table of contents in User Guide
+
 #### Contributions beyond the project team
 
 * [reported 10 bugs during the PE-D](https://github.com/Sherlock-YH/ped/issues)
