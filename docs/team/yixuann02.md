@@ -56,4 +56,4 @@ It is written in Java, and has about 5kLoC.
 - Assisted in maintaining the issue tracker
 - Created Powerpoint slides for Demo Video
 - Most instances of helping team members were done offline during our weekly meetings
-- [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Ayixuann02)
+- [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ayixuann02)
