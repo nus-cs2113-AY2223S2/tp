@@ -127,7 +127,7 @@ associated with.
 inherit from the `InkaUUID` class.
 
 The following describes the class diagram for CardList Component :
-![CardList Class Diagram](img/CardListClass.svg)
+![CardList Class Diagram](img/CardListClass.png)
 
 ### TagList Component
 
@@ -140,7 +140,7 @@ from `InkaUUID` as they all
 share the same methods and implementations.
 
 The following describes the class diagram for TagList Component :
-![TagList Class Diagram](img/TagListClass.svg)
+![TagList Class Diagram](img/TagListClass.png)
 
 ### DeckList Component
 
