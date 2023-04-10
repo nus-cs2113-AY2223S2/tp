@@ -21,7 +21,7 @@ public class PrintUserExerciseData {
                                                 int overallCount, int uniqueCount) {
         assert userExerciseHistory != null : "user exercise history should not be null!";
         if (userExerciseHistory.isEmpty()) {
-            System.out.println("You have not completed any exercises ☹");
+            System.out.println("You have not completed any exercises :(");
             System.out.println("Add on to this list by completing a workout session!");
         } else {
             String message = "Here is a list of all the exercises you have completed:" +
