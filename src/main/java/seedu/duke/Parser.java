@@ -44,8 +44,10 @@ public class Parser {
     private static final String VENUE_F = "v";
     private static final String RECURRING_TIME_F = "r";
     private static final String INDEX_OF_EVENT_F = "i";
+    
 
     // exceptions
+    private static final String NOT_INTEGER_E = "input should be a integer!";
     private static final String DUPLICATE_FLAGS_E = "Cannot have duplicate flags a command!";
     private static final String INVALID_FLAG_E = "Please input a valid flag!";
     private static final String NO_FLAG_E = "Need a flag to specify your action!";
@@ -59,7 +61,7 @@ public class Parser {
         "Please use correct command format!";
     private static final String INVALID_EVENT_INDEX_E = "Event index is in valid!";
     private static final String EVENT_INDEX_OUT_OF_BOUND_E = "Event index out of bound!";
-    private static final String WEEK_NUMBER_NOT_POSITIVE_E = "Please use positive value for your week number!";
+    private static final String WEEK_NUMBER_NOT_POSITIVE_E = "too many flags or negative value detectedd!";
 
     private final Ui ui;
 
@@ -109,6 +111,18 @@ public class Parser {
         }
     }
 
+    private static boolean checkIsInt(String recur) {
+        String[] details = recur.split(" ");
+
+        if (details[0].trim().matches("^[0-9]*$")) {
+            if (Integer.parseInt(details[0].trim()) <= 0) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     private static void parseListCommand(String remainder, EventList eventList) throws NPExceptions {
         String[] details = remainder.split("-");
 
@@ -116,17 +130,19 @@ public class Parser {
             Ui.listTask(eventList.getFullList());
             return;
         }
-
-        String information = details[1].substring(2).trim();
-        int weekNumber = Integer.parseInt(information);
-
         // Exception: week number is not a positive value
-        if(weekNumber <= 0) {
+        if(details.length > 2) {
             throw new NPExceptions(WEEK_NUMBER_NOT_POSITIVE_E);
         }
 
-        Ui.printScheduleTable(eventList.getFullList(), weekNumber);
+        String information = details[1].substring(2).trim();
+        
+        if(!checkIsInt(information)) {
+            throw new NPExceptions(NOT_INTEGER_E);
+        }
 
+        int weekNumber = Integer.parseInt(information);
+        Ui.printScheduleTable(eventList.getFullList(), weekNumber);
     }
 
     private static void parseDeleteCommand(String remainder, EventList eventList) throws NPExceptions {
