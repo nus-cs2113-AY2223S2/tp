@@ -439,6 +439,9 @@ public class Parser {
                     throw new SniffException("The vaccination description is invalid!");
                 }
             }
+            else {
+                throw new SniffException("The uid/ is invalid!");
+            }
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException("The edit uid/ is invalid!");
         }
