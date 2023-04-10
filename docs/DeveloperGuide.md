@@ -45,11 +45,10 @@
 
 ## Acknowledgements
 
-1. GSON Library for JSON parsing ([https://github.com/google/gson](https://github.com/google/gson))
-2. Retrofit Library for HTTP requests ([https://github.com/square/retrofit](https://github.com/square/retrofit))
-3. AB-3 Developer
-   Guide ([https://se-education.org/addressbook-level3/DeveloperGuide.html](https://se-education.org/addressbook-level3/DeveloperGuide.html))
-4. app.diagrams.net for creating diagrams ([https://app.diagrams.net/](https://app.diagrams.net/))
+1. [GSON Library for JSON parsing](https://github.com/google/gson)
+2. [Retrofit Library for HTTP requests](https://github.com/square/retrofit)
+3. [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
+4. [app.diagrams.net for creating diagrams](https://app.diagrams.net/)
 
 ## Setting up
 
@@ -277,11 +276,11 @@ account balance.
 
 ![AddWithdrawCommandObjectDiagram3](images/AddWithdrawCommandObjectDiagram3.png)
 
-The following sequence diagram shows how the add money operation works.
+The following sequence diagram shows how the **add money** operation works.
 
 ![](images/AddCommandSeqDiagram.png)
 
-The following sequence diagram shows how the money withdrawal operation works.
+The following sequence diagram shows how the **money withdrawal** operation works.
 
 ![](images/WithdrawCommandSeqDiagram.png)
 
@@ -311,7 +310,7 @@ The show-rate command executes as follows
 - The Ui prints the exchanged amount if an amount was provided by the user for both rates
 - The Ui will print the unit rate both ways if no amount was provided
 
-The following sequence diagram shows how the Show Rate command works
+The following sequence diagram shows how the **Show Rate command** works
 
 ![ShowRateSeqDiagram](images/ShowRateSeqDiagram.png)
 
@@ -341,7 +340,7 @@ The exchange command executes as follows:
 - The value of the target `Account` is updated
 - The new balances are printed
 
-The following sequence diagram shows how the Exchange command works
+The following sequence diagram shows how the **Exchange command** works
 
 ![ExchangeSeqDiagram](images/ExchangeSeqDiagram.png)
 
@@ -356,7 +355,7 @@ The Transaction command executes as follows:
 - Interaction with the `TransactionManager` to retrieve relevant accounts
 - The relevant transactions are printed
 
-The following sequence diagram shows how the Transaction command works
+The following sequence diagram shows how the **Transaction command** works
 
 ![TransactionSeqDiagram](images/ShowTransactionsSeqDiagram.png)
 
