@@ -271,7 +271,7 @@ public class Ui {
      * Prints our a warning message if an event clashes with deadline.
      */
     public void printClashingEventWithDeadlineMessage() {
-        System.out.println("This event clashes with some deadlines in your task list.");
+        System.out.println("This event clashes with another deadline in your task list.");
     }
 
     /**
