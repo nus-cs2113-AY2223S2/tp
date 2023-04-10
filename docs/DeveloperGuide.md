@@ -129,6 +129,11 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 2. If the inputs are valid, an `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
 3. The `Snifftasks` class then adds the appointment to the list of current appointments.
 
+#### Editing Appointments
+1. The `UI` class reads in the input from the user and then parses them depending on the starting initial of UID in the `Parser` for each appointment.
+2. If the inputs are valid, and the UID exists (it is an existing appointment), the appointment is removed by `Remove Command` and then `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
+3. The `Snifftasks` class then edits the appointment to the list of current appointments.
+
 ##### UID Generation
 
 The UID is generated to produce a 10 character string representing the Appointment ID tagged to each appointment.
@@ -339,7 +344,7 @@ ______________________________________________________________________
 
 1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
 2. Test case: `list`<br>
-   Expected output: A list of all previously added appointments.
+   Expected output: A list of all unmarked appointments.
    Example:
 ```
 ______________________________________________________________________
@@ -370,6 +375,40 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
+#### Archiving appointments
+
+1. Prerequisites: Shift an appointment using any of the add commands. At least one appointment in the archive.
+2. Test case: `archive`<br>
+   Expected output: A list of all marked appointments.
+   Example:
+```
+______________________________________________________________________
+ 1.  Consultation   [X]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C28216660A
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+
+ 2.  Vaccination   [X]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V57416751U
+ Vaccine: Covid
+ Animal Name: Russ | Animal Type: Dog
+ Owner Name: Abel | Contact Number: 92929292
+
+ 3.  Surgery  [X] | Priority: HIGH
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S82358005U
+ Animal Name: Polly | Animal Type: Hamster
+ Owner Name: Sam | Contact Number: 93939393
+
+______________________________________________________________________
+```
 #### Finding appointments
 
 1. Prerequisites: Add an appointment using any of the add commands. At least one appointment in the list.
