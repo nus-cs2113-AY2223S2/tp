@@ -7,6 +7,8 @@
     - [3.0 Features](#30-features)
     - [FAQ](#faq)
     - [Command Summary](#command-summary)
+
+
 ## 1.0 Introduction
 🗓️ NUSPlanner is a desktop app that allows for an *easy* and *straightforward* way for NUS students to manage their schedule ranging from person, school or external related activities. This application makes use of a desktop Command Line Interface (CLI), enabling a quick and sleek method of getting your schedule in check.
 
