@@ -35,7 +35,7 @@ return budgetAction: BudgetAction
 deactivate "BudgetAction"
 
 
-alt actions is add
+alt action is add
 "BudgetCommand" -> "BudgetCommand": executeAddBudget(budgetAction, requiredParams)
 activate "BudgetCommand"
 "BudgetCommand" -> "BudgetAction" : addBudget(budgetName, budgetLimit)
@@ -48,7 +48,7 @@ return
 
 deactivate "BudgetCommand"
 
-else actions is set
+else action is set
 "BudgetCommand" -> "BudgetCommand": executeSetBudget(budgetAction, requiredParams)
 activate "BudgetCommand"
 "BudgetCommand" -> "BudgetAction" : setBudget(budgetName, budgetLimit)
@@ -61,7 +61,7 @@ return
 
 deactivate "BudgetCommand"
 
-else actions is del
+else action is del
 "BudgetCommand" -> "BudgetCommand": executeDelBudget(budgetAction, requiredParams, expenses)
 activate "BudgetCommand"
 "BudgetCommand" -> "BudgetAction" : deleteBudget(budgetName, expenses)
@@ -74,7 +74,7 @@ return
 
 deactivate "BudgetCommand"
 
-else actions is list
+else action is list
 "BudgetCommand" -> "BudgetCommand": executeListBudget(budgetAction, optionalParams, expenses)
 activate "BudgetCommand"
 "BudgetCommand" -> "BudgetAction" : printBudgets(month, year, expenses)
@@ -87,7 +87,7 @@ return
 
 deactivate "BudgetCommand"
 
-else actions is help
+else action is help
 "BudgetCommand" -> "BudgetCommand": executeHelpBudget(budgetAction)
 activate "BudgetCommand"
 "BudgetCommand" -> "BudgetAction" : budgetHelp()
@@ -106,7 +106,7 @@ activate "Data"
 return
 deactivate "Data"
 
-destroy "BudgetCommand"
 deactivate "BudgetCommand"
-
+ <-- "BudgetCommand":
+deactivate "BudgetCommand"
 @enduml

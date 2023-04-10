@@ -34,7 +34,7 @@ return ExpenseAction: ExpenseAction
 deactivate "ExpenseAction"
 
 
-alt actions is add
+alt action is add
 "ExpenseCommand" -> "ExpenseCommand": executeAddExpense(expenseAction, requiredParams, optionalParams, budgets)
 activate "ExpenseCommand"
 "ExpenseCommand" -> "ExpenseAction" : addExpense(expenseCategory, expenseName, expenseAmount, expenseDate, budgets)
@@ -47,7 +47,7 @@ return
 
 deactivate "ExpenseCommand"
 
-else actions is del
+else action is del
 "ExpenseCommand" -> "ExpenseCommand": executeDelExpense(expenseAction, requiredParams)
 activate "ExpenseCommand"
 "ExpenseCommand" -> "ExpenseAction" : deleteExpense(expenseId)
@@ -60,7 +60,7 @@ return
 
 deactivate "ExpenseCommand"
 
-else actions is find
+else action is find
 "ExpenseCommand" -> "ExpenseCommand": executeFindExpense(expenseAction, requiredParams)
 activate "ExpenseCommand"
 "ExpenseCommand" -> "ExpenseAction" : findExpenses(expenseName)
@@ -73,7 +73,7 @@ return
 
 deactivate "ExpenseCommand"
 
-else actions is clear
+else action is clear
 "ExpenseCommand" -> "ExpenseCommand": executeClearExpense(expenseAction, optionalParams)
 activate "ExpenseCommand"
 "ExpenseCommand" -> "ExpenseAction" : clearExpenses(expenseFrom, expenseTo, expenseCategory)
@@ -86,33 +86,31 @@ return
 
 deactivate "ExpenseCommand"
 
-else actions is list
+else action is list
 "ExpenseCommand" -> "ExpenseCommand": executeListExpense(expenseAction, optionalParams)
 activate "ExpenseCommand"
 
-opt expenseFromString is null && expenseToString is null
+alt expenseFromString is null && expenseToString is null
 "ExpenseCommand" -> "ExpenseAction" : listExpenses(expenseCategory)
 activate "ExpenseAction"
 "ExpenseAction" -> "ExpenseUIResponse" : printListExpenses(previousExpenses, currentExpenses, category)
 activate "ExpenseUIResponse"
 "ExpenseUIResponse" -> User
 return
-end
+return
 
-
+else else
 "ExpenseCommand" -> "ExpenseAction" : listExpensesRange(expenseFrom, expenseTo, expenseCategory)
 activate "ExpenseAction"
-"ExpenseAction" -> "ExpenseUIResponse" : printListExpenses(sortedExpenses, from, to, category)
+"ExpenseAction" -> "ExpenseUIResponse" : printListExpensesRange(sortedExpenses, from, to, category)
 activate "ExpenseUIResponse"
-
-
 "ExpenseUIResponse" -> User
 return
 return
-
 deactivate "ExpenseCommand"
+end
 
-else actions is help
+else action is help
 "ExpenseCommand" -> "ExpenseCommand": executeHelpExpense(expenseAction)
 activate "ExpenseCommand"
 "ExpenseCommand" -> "ExpenseAction" : expenseHelp()
@@ -131,7 +129,7 @@ activate "Data"
 return
 deactivate "Data"
 
-destroy "ExpenseCommand"
 deactivate "ExpenseCommand"
-
+ <-- "ExpenseCommand":
+deactivate "ExpenseCommand"
 @enduml

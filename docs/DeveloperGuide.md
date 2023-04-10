@@ -18,10 +18,7 @@ Below is an architectural diagram that describes the overview of how BudgetBuddy
 
 ![ArchitectureDiagram.png](images/ArchitectureDiagram.png)
 
-When the user initialises Budget Buddy, the logic of Budget Buddy will check if there is any pre-existing stored data.
-This persistence is done by using Gson read stored data into classes that will be used in
-Budget Buddy. As the user interacts with the UI, the logic will change the data of Budget Buddy, which is then written
-in Json format to update the storage. This process continues until the user exits Budget Buddy.
+When the user initialises Budget Buddy, the logic of Budget Buddy will check if there is any pre-existing stored data. This persistence is done by using Gson. It reads stored Json data into classes that will be used in Budget Buddy. As the user interacts with the UI, the logic will change the data of Budget Buddy, which is then written in Json format to update the storage. This process continues until the user exits Budget Buddy.
 
 ### Main Component
 
@@ -48,7 +45,7 @@ plays a role in retrieving the commands input by the user and redirecting to the
 For every command that the user wants to execute, the input of the command must be in this format as follows:
 > `(command) (action) (parameters) [optional parameters]`
 
-**Command and action names are not case sensitive, but values are.**
+**Command and action names are not case-sensitive, but values are.**
 **Also, it is possible to rearrange the order of parameters.**
 
 An example of a command can be seen in the user guide.
@@ -97,6 +94,8 @@ The main 4 classes of BudgetBuddy are the `budget` , `deposit`, `expense` and `s
 
 ![Item.png](images/Item.png)
 
+**There are some variables and methods that are not shown in the class diagram for easier readability.**
+
 ### Budget Component
 
 #### BudgetCommand Class
@@ -121,6 +120,14 @@ update the `data` stored in the `Budget` and `Expense` array lists, as shown in 
 
 ![BudgetCommandSequence.png](images/BudgetCommandSequence.png)
 
+1. The BudgetCommand object retrieves the existing Budget and Exepnse data stored in the Data class. This is retrieved using the getBudgets() and getExpenses() methods, which return the existing budgets and expenses as an array list. 
+2. The BudgetAction object is then created, which then creates a BudgetUIResponse object. 
+3. Depending on the action of the BudgetCommand, different methods will be called to carry out the related task. The possible actions are add, set, del (delete), list and help. 
+4. If the action is add, the BudgetCommand object will self invoke its own executeAddBudget() method, which calls the addBudget() method in the BudgetAction object. This then calls the printBudgetAddSuccessful() in the BudgetUIResponse object, which prints out a message on the command line interface for the user. The sequence will be similar for other BudgetCommand actions. 
+5. Following this, the BudgetAction and BudgetUiResponse will reach the end of its lifeline.
+6. After calling the related methods based on the action, the BudgetCommand object will call the exportData() method in the Data object, to update the existing data. 
+7. The BudgetCommand object then reaches the end of its lifeline, and returns to the CommandParser object that called it.
+
 ### Deposit Component
 
 ### DepositCommand Class
@@ -142,24 +149,21 @@ and the abstract
 
 ![DepositCommand.png](images/DepositCommand.png)
 
+**There are some variables and methods that are not shown in the class diagram for easier readability.**
+
 ### DepositCommand Sequence
 
 ![img.png](images/DepositCommandSequence.png)
 
-### Design & Implementation of the Deposit Feature
-
-Like all other functionalities of BudgetBuddy, the deposit feature is heavily modularized and designed with an OOP lens.
-Because of this,
-the parsing of user input, the parsers for each feature, and each feature's actions are all in separate classes.
-
-On a high level, the deposit feature starts with `CommandParser` taking in the input and choosing which `Command` class
-to execute from.
-This happens with all user input in BudgetBuddy. Then if the first word is "deposit," the `execute` function of
-the `DepositCommand` class
-will run, creating a new `DepositAction` class. The `execute` function will run a method corresponding to what the user
-inputs. The design
-of this three class system is meant to modularize the different aspects of the internal logic so future problems would
-be encapsulated in a specific location.
+Flow of the DepositCommand:
+1. DepositCommand calls execute(), which tries and find which command will be parsed.
+2. getDeposits() is called to find the Deposit[] from the Data class.
+3. DepositCommand then calls the method in DepositAction that matches the actions parsed
+4. Within DepositAction, the action is done manipulating the DepositList, if necessary
+5. Within Deposit Action, the class DepositUIResponse is called to show an output depending 
+   on the action to the user
+6. After DepositList is sucessfully manipulated (if necessary) and a text reponse is given, 
+   DepositCommand exits.
 
 ### Expense Component
 
@@ -182,6 +186,8 @@ and the abstract
 
 ![ExpenseCommand.png](images/ExpenseCommand.png)
 
+**There are some variables and methods that are not shown in the class diagram for easier readability.**
+
 ### ExpenseCommand Sequence
 
 Once a string `input` from the user has been deemed as an `Expense` command, the `input` will be passed into the
@@ -190,21 +196,15 @@ Once a string `input` from the user has been deemed as an `Expense` command, the
 
 ![img.png](images/ExpenseCommandSequence.png)
 
-### Design & Implementation of the Expense Feature
-
-The expense feature is similarly modularized and designed with an OOP lens. As such, its functionalities have been
-separated into different
-classes such as the parsing of user input, and the parsing and execution of each of its features.
-
-On a high level, the expense feature starts with `CommandParser` taking in the input and choosing which `Command` class
-to execute from.
-This happens with all user input in BudgetBuddy. Then, if the first word is "expense", the `execute` function of
-the `ExpenseCommand` class
-will run, creating a new `ExpenseAction` class. The `execute` function will run a method corresponding to what the user
-inputs. The design
-of this three class system is meant to modularize the different aspects of the internal logic so future problems would
-be encapsulated in
-a specific location.
+Flow of ExpenseCommand:
+1. ExpenseCommand calls execute(), which will find the command to be parsed.
+2. getExpenses() is called to find the Expense[] from the Data class.
+3. ExpenseCommand then calls the method in ExpenseAction that matches the parsed actions.
+4. If required, the action is done manipulating the ExpenseList in ExpenseAction.
+5. Within ExpenseAction, the class ExpenseUIResponse is called to output a response to the user
+depending on the action.
+6. After ExpenseList is successfully manipulated (if necessary) and a text response is given,
+   ExpenseCommand exits.
 
 ### Stats Component
 
@@ -218,11 +218,9 @@ their current progress and if their expenses have exceeded their budget.
 
 ![StatsCommand.png](images/StatsCommand.png)
 
-### Design & Implementation of the Stats Feature
+**There are some variables and methods that are not shown in the class diagram for easier readability.**
 
-The stats feature, just like all other features, also is designed and implemented to incorporate good OOP. Therefore,
-there are
-separate classes for each part of the Stats Feature, which includes StatsAction, StatsUIResponse and StatsCommand.
+### StatsCommand Sequence
 
 ![img.png](images/StatsCommandSequence.png)
 The StatsCommand class is responsible for displaying the stats based on the inputs by the user.
@@ -289,7 +287,7 @@ The input and output of a file is handled using Gson, a third-party plugin that 
 
 ## Appendix B: Non-Functional Requirements
 
-1. Works on any common operating systems (Windows, Mac OS, Linux) with Java 11 installed.
+1. Works on any common operating systems (Windows, macOS, Linux) with Java 11 installed.
 2. A user with average typing speed should take up to 7 seconds for the longest command (expense add).
 3. Data of the application is still preserved when migrating from one computer to another.
 

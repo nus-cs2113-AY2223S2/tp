@@ -19,7 +19,7 @@ public enum ErrorMessages {
     ERROR_BUDGET_LIST_INVALID_MONTHYEAR("Please input a valid month or month & year (in YYYY format) " +
         "that is before today."),
 
-    ERROR_DEPOSIT_INVALID_ACTION("Invalid action for deposit. Use these actions: add, del, list, clear, help"),
+    ERROR_DEPOSIT_INVALID_ACTION("Invalid action for deposit. Use these actions: add, del, list, find, clear, help"),
     ERROR_DEPOSIT_ADD_INVALID_PARAM("Invalid parameters. Example: deposit add /n lottery /a 3000.00 [/d] 23-03-2023"),
     ERROR_DEPOSIT_DEL_INVALID_PARAM("Invalid parameters. Example: deposit del /n 1"),
     ERROR_DEPOSIT_FIND_INVALID_PARAM("Invalid parameters. Example: deposit find /n lottery"),
@@ -27,7 +27,7 @@ public enum ErrorMessages {
     ERROR_DEPOSIT_CLEAR_INVALID_PARAM("Invalid parameters. Example: deposit" +
         " clear /f 23-01-2000 /t 23-03-2023"),
     
-    ERROR_EXPENSE_INVALID_ACTION("Invalid action for expense. Use these actions: add, del, list"),
+    ERROR_EXPENSE_INVALID_ACTION("Invalid action for expense. Use these actions: add, del, list, find, clear, help"),
     ERROR_EXPENSE_ADD_INVALID_PARAM("Invalid parameters. Example: expense add /c transport /n mrt /a 1.00" +
         " [/d] 23-03-2023"),
     ERROR_EXPENSE_DEL_INVALID_PARAM("Invalid parameters. Example: expense del /n mrt"),
@@ -38,10 +38,9 @@ public enum ErrorMessages {
             "clear /c transport /f 23-01-2000 /t 05-23-2023"),
     ERROR_EXPENSE_BUDGET_NOT_FOUND("Could not find a budget with the same category name."),
 
-    ERROR_STATS_INVALID_ACTION("Invalid action for stats. Use these actions: show, help"),
-    ERROR_STATS_SHOW_INVALID_PARAM("Invalid parameters. Example: stats show [/m] 3 [/y] 2022 [/v] de"),
+    ERROR_STATS_INVALID_ACTION("Invalid action for stats. Use these actions: show"),
+    ERROR_STATS_SHOW_INVALID_PARAM("Invalid parameters. Example: stats show </m 3> </y 2022> </v de>"),
     ERROR_STATS_INVALID_OPTIONS("Please indicate the correct verbose options."),
-    ERROR_STATS_PARAM_MONTH("Parameter %s: Input must be a valid number within the range of months 1 to 12"),
 
     ERROR_GLOBAL_INVALID_NUMBER("Please input a valid number."),
     ERROR_GLOBAL_DATE_AFTER_TO("The from date cannot be after the to date."),

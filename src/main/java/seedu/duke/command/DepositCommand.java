@@ -88,7 +88,7 @@ public class DepositCommand extends Command {
      * which will be used to execute add deposit in the action class.
      * If date is not specified, use today's date.
      * 
-     * @param depositAction action selected will be execute through action class
+     * @param depositAction action selected will be executed through action class
      * @param requiredParams parameters containing the required attributes
      * @param optionalParams parameters containing the optional attributes
      * @throws BBException for any error thrown in the action class
@@ -114,20 +114,20 @@ public class DepositCommand extends Command {
      * Parses the required attributes such as deposit no,
      * which will be used to execute del deposit in the action class.
      * 
-     * @param depositAction action selected will be execute through action class
+     * @param depositAction action selected will be executed through action class
      * @param requiredParams parameters containing the required attributes
      * @throws BBException for any error thrown in the action class
      */
     private void executeDelDeposit(DepositAction depositAction, String[] requiredParams) throws BBException {
-        int depositNo = Integer.parseInt(requiredParams[0]);
-        depositAction.deleteDeposit(depositNo);
+        int depositId = Integer.parseInt(requiredParams[0]);
+        depositAction.deleteDeposit(depositId);
     }
 
     /**
      * Parses the required attributes such as deposit name
      * which will be used to execute find deposit in the action class.
      * 
-     * @param depositAction action selected will be execute through action class
+     * @param depositAction action selected will be executed through action class
      * @param requiredParams parameters containing the required attributes
      * @throws BBException for any error thrown in the action class
      */

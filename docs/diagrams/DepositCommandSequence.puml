@@ -30,7 +30,7 @@ return DepositAction: DepositAction
 deactivate "DepositAction"
 
 
-alt actions is add
+alt action is add
 "DepositCommand" -> "DepositCommand": executeAddDeposit(depositAction, requiredParams, optionalParams)
 activate "DepositCommand"
 "DepositCommand" -> "DepositAction" : addDeposit(depositName, depositAmount, depositDate)
@@ -43,7 +43,7 @@ return
 
 deactivate "DepositCommand"
 
-else actions is del
+else action is del
 "DepositCommand" -> "DepositCommand": executeDelDeposit(depositAction, requiredParams)
 activate "DepositCommand"
 "DepositCommand" -> "DepositAction" : deleteDeposit(depositId)
@@ -56,7 +56,7 @@ return
 
 deactivate "DepositCommand"
 
-else actions is find
+else action is find
 "DepositCommand" -> "DepositCommand": executeFindDeposit(depositAction, requiredParams)
 activate "DepositCommand"
 "DepositCommand" -> "DepositAction" : findDeposits(depositName)
@@ -69,10 +69,10 @@ return
 
 deactivate "DepositCommand"
 
-else actions is clear
+else action is clear
 "DepositCommand" -> "DepositCommand": executeClearDeposit(depositAction, optionalParams)
 activate "DepositCommand"
-"DepositCommand" -> "DepositAction" : clearDeposits(from, to)
+"DepositCommand" -> "DepositAction" : clearDeposits(depositFrom, depositTo)
 activate "DepositAction"
 "DepositAction" -> "DepositUIResponse" : printClearDeposits(depositList)
 activate "DepositUIResponse"
@@ -82,9 +82,11 @@ return
 
 deactivate "DepositCommand"
 
-else actions is list
+else action is list
 "DepositCommand" -> "DepositCommand": executeListDeposit(depositAction, optionalParams)
 activate "DepositCommand"
+
+alt depositFromString is null && depositToString is null
 "DepositCommand" -> "DepositAction" : listDeposits()
 activate "DepositAction"
 "DepositAction" -> "DepositUIResponse" : printListDeposits(previousDeposits, currentDeposits)
@@ -93,9 +95,18 @@ activate "DepositUIResponse"
 return
 return
 
+else else
+"DepositCommand" -> "DepositAction" : listDepositsRange(depositFromString, depositToString)
+activate "DepositAction"
+"DepositAction" -> "DepositUIResponse" : printListDepositsRange(sortedDeposits, from, to)
+activate "DepositUIResponse"
+"DepositUIResponse" -> User
+return
+return
 deactivate "DepositCommand"
+end
 
-else actions is help
+else action is help
 "DepositCommand" -> "DepositCommand": executeHelpDeposit(depositAction)
 activate "DepositCommand"
 "DepositCommand" -> "DepositAction" : depositHelp()
@@ -114,7 +125,7 @@ activate "Data"
 return
 deactivate "Data"
 
-destroy "DepositCommand"
 deactivate "DepositCommand"
-
+ <-- "DepositCommand":
+deactivate "DepositCommand"
 @enduml
