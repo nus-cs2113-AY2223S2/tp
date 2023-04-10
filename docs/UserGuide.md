@@ -31,7 +31,7 @@ Their net calorie gain/loss can then be viewed.
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
 3. Copy the file to the folder you want ot use as the home folder for your LifeTracker.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar lifetracker.jar` command to run the application.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
