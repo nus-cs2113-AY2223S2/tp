@@ -355,6 +355,8 @@ what are they and how many of them. Then return to Duke.
 Step 3. If neither the above two conditions, it will call `CommandCategory#displayAllCategory` with mechanism mentioned above, and then it will call
 `CommandCategory#displayCorrespondingCategory`, which traverse the expense list and display all expenses with corresponding categories no matter the case sensitivity.
 
+<div style="page-break-after: always;"></div>
+
 ### 'Total' Feature
 
 This mechanism is facilitated by `CommandTotal`.
