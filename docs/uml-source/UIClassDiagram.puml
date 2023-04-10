@@ -1,0 +1,47 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class "UI" as UI
+class "PCBuilderMenu" as PCBuilderMenu
+class "PCViewerMenu" as PCViewerMenu
+class "UIState" as UIState
+
+class UI <<abstract>> {
+    -uiState: UIState
+    -LOGO: String
+    -DIVIDER: String
+    +pcViewerMenu: PCViewerMenu
+    +pcBuilderMenu: PCBuilderMenu
+
+    +getUIState(): UIState
+    +getInput(): String
+    +showWelcome(): void
+    +updateUI(): void
+    +clearTerminal(): void
+    +showResult(): void
+    +setPCViewerMode(): void
+    +setPCBuilderMode(): void
+}
+
+class PCBuilderMenu {
+    -pcIndex: int
+    +getPCIndex(): int
+    +printMenu(): void
+}
+
+class PCViewerMenu {
+    +printMenu(): void
+}
+
+class UIState <<enumeration>> {
+    PCViewer
+    PCBuilder
+}
+
+UI --> "0..1" PCBuilderMenu
+UI --> "0..1" PCViewerMenu 
+UI --> UIState
+
+hide class circle
+
+@enduml

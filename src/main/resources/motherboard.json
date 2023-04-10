@@ -1,0 +1,170 @@
+{
+	"Asus Prime Z590-P WiFi": {
+		"price": 121.99,
+		"brand": "Asus",
+		"formfactor": "atx",
+		"socket": "LGA1200",
+		"power": 45
+	},
+	"MSI MAG Z690 TOMAHAWK WIFI DDR4": {
+		"price": 239.99,
+		"brand": "MSI",
+		"formfactor": "atx",
+		"socket": "LGA1700",
+		"power": 47
+	},
+	"Asus TUF GAMING X570-PLUS (WI-FI)": {
+		"price": 209.99,
+		"brand": "Asus",
+		"formfactor": "atx",
+		"socket": "AM4",
+		"power": 48
+	},
+	"Gigabyte B650 AORUS ELITE AX": {
+		"price": 219.99,
+		"brand": "Gigabyte",
+		"formfactor": "atx",
+		"socket": "AM5",
+		"power": 42
+	},
+	"Asus TUF GAMING B560M-PLUS WIFI": {
+		"price": 149.99,
+		"brand": "Asus",
+		"formfactor": "micro",
+		"socket": "LGA1200",
+		"power": 45
+	},
+	"ASRock B760M Steel Legend WiFi": {
+		"price": 139.99,
+		"brand": "ASRock",
+		"formfactor": "micro",
+		"socket": "LGA1700",
+		"power": 46
+	},
+	"MSI B550M PRO-VDH WIFI": {
+		"price": 119.99,
+		"brand": "MSI",
+		"formfactor": "micro",
+		"socket": "AM4",
+		"power": 43
+	},
+	"Gigabyte B650M DS3H": {
+		"price": 149.99,
+		"brand": "Gigabyte",
+		"formfactor": "micro",
+		"socket": "AM5",
+		"power": 47
+	},
+	"MSI MPG B560I GAMING EDGE WIFI": {
+		"price": 149.99,
+		"brand": "MSI",
+		"formfactor": "mini",
+		"socket": "LGA1200",
+		"power": 46
+	},
+	"Asus ROG STRIX B760-I GAMING WIFI": {
+		"price": 219.99,
+		"brand": "Asus",
+		"formfactor": "mini",
+		"socket": "LGA1700",
+		"power": 42
+	},
+	"ASRock B550M-ITX/ac": {
+		"price": 119.99,
+		"brand": "ASRock",
+		"formfactor": "mini",
+		"socket": "AM4",
+		"power": 45
+	},
+	"Gigabyte B650I AORUS ULTRA": {
+		"price": 159.99,
+		"brand": "Gigabyte",
+		"formfactor": "mini",
+		"socket": "AM5",
+		"power": 49
+	},
+	"EVGA X590 PRO WiFi": {
+		"price": 129.99,
+		"brand": "EVGA",
+		"formfactor": "atx",
+		"socket": "LGA1200",
+		"power": 50
+	},
+	"Zotac Z790 XTREME": {
+		"price": 249.99,
+		"brand": "Zotac",
+		"formfactor": "atx",
+		"socket": "LGA1700",
+		"power": 55
+	},
+	"Biostar X580GT8": {
+		"price": 199.99,
+		"brand": "Biostar",
+		"formfactor": "atx",
+		"socket": "AM4",
+		"power": 54
+	},
+	"Colorful CVN B660 GAMING": {
+		"price": 229.99,
+		"brand": "Colorful",
+		"formfactor": "atx",
+		"socket": "AM5",
+		"power": 52
+	},
+	"EVGA X590 Micro WiFi": {
+		"price": 169.99,
+		"brand": "EVGA",
+		"formfactor": "micro",
+		"socket": "LGA1200",
+		"power": 53
+	},
+	"Zotac Z790M XTREME": {
+		"price": 179.99,
+		"brand": "Zotac",
+		"formfactor": "micro",
+		"socket": "LGA1700",
+		"power": 51
+	},
+	"Biostar X580MGT8": {
+		"price": 159.99,
+		"brand": "Biostar",
+		"formfactor": "micro",
+		"socket": "AM4",
+		"power": 57
+	},
+	"Colorful CVN B660M GAMING": {
+		"price": 179.99,
+		"brand": "Colorful",
+		"formfactor": "micro",
+		"socket": "AM5",
+		"power": 56
+	},
+	"EVGA X590 Stinger WiFi": {
+		"price": 199.99,
+		"brand": "EVGA",
+		"formfactor": "mini",
+		"socket": "LGA1200",
+		"power": 58
+	},
+	"Zotac Z790ITX XTREME": {
+		"price": 269.99,
+		"brand": "Zotac",
+		"formfactor": "mini",
+		"socket": "LGA1700",
+		"power": 59
+	},
+	"Biostar X580ITX GT8": {
+		"price": 219.99,
+		"brand": "Biostar",
+		"formfactor": "mini",
+		"socket": "AM4",
+		"power": 61
+	},
+	"Colorful CVN B660I GAMING": {
+		"price": 199.99,
+		"brand": "Colorful",
+		"formfactor": "mini",
+		"socket": "AM5",
+		"power": 60
+	}
+}

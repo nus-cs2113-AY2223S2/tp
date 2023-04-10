@@ -1,0 +1,93 @@
+{
+	"SeaSonic FOCUS PLUS 850 Gold": {
+		"brand": "SeaSonic",
+		"efficiency": "Gold",
+		"formfactor": "atx",
+		"power": 850,
+		"price": 159.94
+	},
+	"NovaTech PowerMaster 500 Bronze": {
+		"brand": "NovaTech",
+		"efficiency": "bronze",
+		"formfactor": "atx",
+		"power": 500,
+		"price": 49.99
+	},
+	"HyperDrive Storm 600 Silver": {
+		"brand": "HyperDrive",
+		"efficiency": "silver",
+		"formfactor": "atx",
+		"power": 600,
+		"price": 69.99
+	},
+	"WhisperWind Pro 750 Gold": {
+		"brand": "WhisperWind",
+		"efficiency": "gold",
+		"formfactor": "atx",
+		"power": 750,
+		"price": 129.99
+	},
+	"NovaTech PowerMaster 700 Bronze": {
+		"brand": "NovaTech",
+		"efficiency": "bronze",
+		"formfactor": "atx",
+		"power": 700,
+		"price": 69.99
+	},
+	"HyperDrive Storm 800 Silver": {
+		"brand": "HyperDrive",
+		"efficiency": "silver",
+		"formfactor": "atx",
+		"power": 800,
+		"price": 99.99
+	},
+	"WhisperWind Pro 1000 Gold": {
+		"brand": "WhisperWind",
+		"efficiency": "gold",
+		"formfactor": "atx",
+		"power": 1000,
+		"price": 179.99
+	},
+	"NovaTech PowerMaster 550 Bronze": {
+		"brand": "NovaTech",
+		"efficiency": "bronze",
+		"formfactor": "atx",
+		"power": 550,
+		"price": 59.99
+	},
+	"HyperDrive Storm 650 Silver": {
+		"brand": "HyperDrive",
+		"efficiency": "silver",
+		"formfactor": "atx",
+		"power": 650,
+		"price": 79.99
+	},
+	"WhisperWind Pro 850 Gold": {
+		"brand": "WhisperWind",
+		"efficiency": "gold",
+		"formfactor": "atx",
+		"power": 850,
+		"price": 149.99
+	},
+	"NovaTech PowerMaster 450 Bronze": {
+		"brand": "NovaTech",
+		"efficiency": "bronze",
+		"formfactor": "atx",
+		"power": 450,
+		"price": 39.99
+	},
+	"HyperDrive Storm 500 Silver": {
+		"brand": "HyperDrive",
+		"efficiency": "silver",
+		"formfactor": "atx",
+		"power": 500,
+		"price": 59.99
+	},
+	"WhisperWind Pro 650 Gold": {
+		"brand": "WhisperWind",
+		"efficiency": "gold",
+		"formfactor": "atx",
+		"power": 650,
+		"price": 109.99
+	}
+}

@@ -1,0 +1,30 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class "Parser" as Parser
+class "Command" as Command
+
+class Parser {
+    -parseViewerCommand(commandWord: String, arguments: String): Command
+    -parseBuilderCommand(commandWord: String, arguments: String): Command
+    -parseCustomCommand(arguments: String): Command
+    -parseCompareCommand(arguments: String): Command
+    +parseCommand(userInput: String): Command
+}
+
+class Command <<abstract>>{
+    - arguments: String
+    {abstract} + executeCommand(dataStorage: DataStorage): String
+    + setArguments(arguments: String): void
+    + getArguments(): String
+}
+
+
+Parser --> Command
+
+hide Parser circle
+hide Command circle
+
+
+
+@enduml

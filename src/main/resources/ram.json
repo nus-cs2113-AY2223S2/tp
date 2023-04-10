@@ -1,0 +1,122 @@
+{
+	"Kingston FURY Beast 16 GB": {
+		"price": 43.98,
+		"memory": 8,
+		"sticks": 2,
+		"speed": 3200,
+		"brand": "Kingston",
+		"power": 5
+	},
+	"G.Skill Ripjaws X 8 GB": {
+		"price": 22.99,
+		"memory": 8,
+		"sticks": 1,
+		"speed": 1600,
+		"brand": "G.Skill",
+		"power": 3
+	},
+	"Corsair Vengeance RGB Pro 32 GB": {
+		"price": 104.99,
+		"memory": 16,
+		"sticks": 2,
+		"speed": 3600,
+		"brand": "Corsair",
+		"power": 8
+	},
+	"G.Skill Trident Z RGB 64 GB": {
+		"price": 164.99,
+		"memory": 32,
+		"sticks": 2,
+		"speed": 3200,
+		"brand": "G.Skill",
+		"power": 10
+	},
+	"NovaTech Fury 4 GB": {
+		"price": 15.99,
+		"memory": 4,
+		"sticks": 1,
+		"speed": 1600,
+		"brand": "NovaTech",
+		"power": 2
+	},
+	"HyperDrive SpeedBlaze 8 GB": {
+		"price": 29.99,
+		"memory": 8,
+		"sticks": 1,
+		"speed": 2000,
+		"brand": "HyperDrive",
+		"power": 3
+	},
+	"WhisperWind Pro 16 GB": {
+		"price": 59.99,
+		"memory": 8,
+		"sticks": 2,
+		"speed": 2666,
+		"brand": "WhisperWind",
+		"power": 5
+	},
+	"NovaTech Fury 8 GB": {
+		"price": 31.99,
+		"memory": 8,
+		"sticks": 1,
+		"speed": 1600,
+		"brand": "NovaTech",
+		"power": 3
+	},
+	"HyperDrive SpeedBlaze 16 GB": {
+		"price": 61.99,
+		"memory": 8,
+		"sticks": 2,
+		"speed": 2000,
+		"brand": "HyperDrive",
+		"power": 5
+	},
+	"WhisperWind Pro 32 GB": {
+		"price": 119.99,
+		"memory": 16,
+		"sticks": 2,
+		"speed": 2666,
+		"brand": "WhisperWind",
+		"power": 8
+	},
+	"NovaTech Fury 16 GB": {
+		"price": 63.99,
+		"memory": 16,
+		"sticks": 1,
+		"speed": 1600,
+		"brand": "NovaTech",
+		"power": 4
+	},
+	"HyperDrive SpeedBlaze 32 GB": {
+		"price": 123.99,
+		"memory": 16,
+		"sticks": 2,
+		"speed": 2000,
+		"brand": "HyperDrive",
+		"power": 7
+	},
+	"WhisperWind Pro 64 GB": {
+		"price": 239.99,
+		"memory": 32,
+		"sticks": 2,
+		"speed": 2666,
+		"brand": "WhisperWind",
+		"power": 11
+	},
+	"NovaTech Fury 32 GB": {
+		"price": 127.99,
+		"memory": 32,
+		"sticks": 1,
+		"speed": 1600,
+		"brand": "NovaTech",
+		"power": 6
+	},
+	"HyperDrive SpeedBlaze 64 GB": {
+		"price": 247.99,
+		"memory": 32,
+		"sticks": 2,
+		"speed": 2000,
+		"brand": "HyperDrive",
+		"power": 10
+	}
+}

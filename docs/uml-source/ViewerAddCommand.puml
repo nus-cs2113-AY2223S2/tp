@@ -1,0 +1,55 @@
+@startuml
+title ViewerAddCommand.executeCommand() Sequence Diagram
+
+participant ":BigPP" as BigPP
+participant ":Parser" as Parser
+participant ":ViewerAddCommand" as ViewerAddCommand
+participant ":PC" as PC
+participant "DataStorage.pcList:PCList" as DataStorage.pcList
+
+activate BigPP
+-> BigPP: add [String]
+
+create Parser
+BigPP -> Parser: Parser().parseCommand(String userinput)
+activate Parser
+Parser -> Parser: parseViewerCommand(String userinput)
+activate Parser
+opt "add <name>"
+
+create ViewerAddCommand
+Parser -> ViewerAddCommand: ViewerAddCommand(String arguments)
+activate ViewerAddCommand
+ViewerAddCommand --> Parser
+deactivate ViewerAddCommand
+
+deactivate Parser
+Parser --> BigPP: ViewerAddCommand
+deactivate Parser
+
+BigPP -> ViewerAddCommand: executeCommand()
+activate ViewerAddCommand
+
+ViewerAddCommand -> ViewerAddCommand: getArguments()
+activate ViewerAddCommand
+alt != ""
+    ViewerAddCommand -> PC: PC(name, false)
+    activate PC
+    PC -> DataStorage.pcList: add(PC)
+    activate DataStorage.pcList
+    DataStorage.pcList --> PC
+    deactivate DataStorage.pcList
+    PC --> ViewerAddCommand
+    deactivate PC
+    deactivate ViewerAddCommand
+    ViewerAddCommand --> BigPP: return success message
+    <-- BigPP: return success message
+
+else else
+    ViewerAddCommand --> BigPP: throw PPException with error message
+    <-- BigPP: return error message
+end
+
+deactivate ViewerAddCommand
+end
+@enduml

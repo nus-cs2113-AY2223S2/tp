@@ -1,0 +1,54 @@
+<!-- @@author superkaiba -->
+
+@startuml
+!pragma teoz true
+hide footbox
+
+participant ":BigPP" as BigPP
+participant ":Parser" as Parser
+participant ":BuilderListComponentCommand" as BuilderListComponentCommand
+participant "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>" as DataStorage.stringToComponentListMap
+participant ":[COMPONENT_TYPE]List" as ComponentList
+
+
+-> BigPP : list [COMPONENT]
+
+activate BigPP
+
+create Parser
+BigPP -> Parser: Parser().parseCommand(String userinput)
+activate Parser
+Parser -> Parser : parseBuilderCommand(String userInput)
+activate Parser
+create BuilderListComponentCommand
+
+Parser -> BuilderListComponentCommand : BuilderListComponentCommand(String arguments)
+activate BuilderListComponentCommand
+BuilderListComponentCommand --> Parser
+deactivate BuilderListComponentCommand
+
+deactivate Parser
+Parser --> BigPP: BuilderListComponentCommand
+deactivate Parser
+
+BigPP -> BuilderListComponentCommand : executeCommand()
+activate BuilderListComponentCommand
+BuilderListComponentCommand -> DataStorage.stringToComponentListMap : get(String componentType)
+activate DataStorage.stringToComponentListMap
+DataStorage.stringToComponentListMap --> BuilderListComponentCommand : ComponentList
+deactivate DataStorage.stringToComponentListMap
+
+BuilderListComponentCommand -> ComponentList : getListString()
+activate ComponentList
+ComponentList --> BuilderListComponentCommand : formatted/filtered list of desired components
+deactivate ComponentList
+
+BuilderListComponentCommand --> BigPP : formatted list
+deactivate BuilderListComponentCommand
+
+<-- BigPP : formatted list
+
+deactivate BigPP
+
+
+@enduml

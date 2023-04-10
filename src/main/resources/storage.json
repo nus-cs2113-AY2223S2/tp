@@ -1,0 +1,114 @@
+{
+	"ADATA XPG SPECTRIX S40G RGB": {
+		"type": "ssd",
+		"size": 512,
+		"price": 54.99,
+		"brand": "ADATA",
+		"power": 4.5
+	},
+	"Seagate BarraCuda": {
+		"type": "hdd",
+		"size": 1024,
+		"price": 95.0,
+		"brand": "Seagate",
+		"power": 6.8
+	},
+	"Samsung 980 Pro": {
+		"type": "ssd",
+		"size": 2048,
+		"price": 159.99,
+		"brand": "Samsung",
+		"power": 5.2
+	},
+	"Western Digital Blue": {
+		"type": "ssd",
+		"size": 4096,
+		"price": 229.96,
+		"brand": "Western Digital",
+		"power": 2.8
+	},
+	"BlazeDrive Firestorm 512": {
+		"type": "ssd",
+		"size": 512,
+		"price": 49.99,
+		"brand": "BlazeDrive",
+		"power": 4
+	},
+	"OceanTech TidalWave 1024": {
+		"type": "hdd",
+		"size": 1024,
+		"price": 89.99,
+		"brand": "OceanTech",
+		"power": 6.5
+	},
+	"LightSpeed HyperFusion 2048": {
+		"type": "ssd",
+		"size": 2048,
+		"price": 139.99,
+		"brand": "LightSpeed",
+		"power": 5
+	},
+	"TitanDrive Colossus 4096": {
+		"type": "ssd",
+		"size": 4096,
+		"price": 219.99,
+		"brand": "TitanDrive",
+		"power": 2.5
+	},
+	"BlazeDrive Firestorm 1024": {
+		"type": "ssd",
+		"size": 1024,
+		"price": 89.99,
+		"brand": "BlazeDrive",
+		"power": 5.5
+	},
+	"OceanTech TidalWave 2048": {
+		"type": "hdd",
+		"size": 2048,
+		"price": 169.99,
+		"brand": "OceanTech",
+		"power": 8.5
+	},
+	"LightSpeed HyperFusion 4096": {
+		"type": "ssd",
+		"size": 4096,
+		"price": 269.99,
+		"brand": "LightSpeed",
+		"power": 6.5
+	},
+	"TitanDrive Colossus 512": {
+		"type": "ssd",
+		"size": 512,
+		"price": 59.99,
+		"brand": "TitanDrive",
+		"power": 2
+	},
+	"BlazeDrive Firestorm 2048": {
+		"type": "ssd",
+		"size": 2048,
+		"price": 169.99,
+		"brand": "BlazeDrive",
+		"power": 6
+	},
+	"OceanTech TidalWave 4096": {
+		"type": "hdd",
+		"size": 4096,
+		"price": 319.99,
+		"brand": "OceanTech",
+		"power": 10.5
+	},
+	"LightSpeed HyperFusion 512": {
+		"type": "ssd",
+		"size": 512,
+		"price": 69.99,
+		"brand": "LightSpeed",
+		"power": 3.5
+	},
+	"TitanDrive Colossus 1024": {
+		"type": "ssd",
+		"size": 1024,
+		"price": 99.99,
+		"brand": "TitanDrive",
+		"power": 2.2
+	}
+}

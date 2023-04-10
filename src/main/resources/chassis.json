@@ -1,0 +1,87 @@
+{
+	"Fractal Design Pop XL Air": {
+		"brand": "Fractal Design",
+		"price": 124.98,
+		"formfactor": "atx"
+	},
+	"Corsair iCUE 4000X RGB": {
+		"brand": "Corsair",
+		"price": 144.99,
+		"formfactor": "atx"
+	},
+	"Cooler Master MasterBox MB311L ARGB": {
+		"brand": "Cooler Master",
+		"price": 74.98,
+		"formfactor": "micro"
+	},
+	"Silverstone SUGO 14": {
+		"brand": "Silverstone",
+		"price": 139.36,
+		"formfactor": "mini"
+	},
+	"Thermaltake Vibe C40": {
+		"brand": "Thermaltake",
+		"price": 109.99,
+		"formfactor": "atx"
+	},
+	"NZXT Phantom P12": {
+		"brand": "NZXT",
+		"price": 179.99,
+		"formfactor": "atx"
+	},
+	"Phanteks Eclipse P500A": {
+		"brand": "Phanteks",
+		"price": 134.99,
+		"formfactor": "atx"
+	},
+	"be quiet! Dark Base Pro 905": {
+		"brand": "be quiet!",
+		"price": 199.98,
+		"formfactor": "atx"
+	},
+	"InWin A1": {
+		"brand": "InWin",
+		"price": 89.99,
+		"formfactor": "mini"
+	},
+	"Lian Li PC-O11 Dynamic Mini": {
+		"brand": "Lian Li",
+		"price": 149.99,
+		"formfactor": "micro"
+	},
+	"MSI MPG Sekira 100R": {
+		"brand": "MSI",
+		"price": 114.99,
+		"formfactor": "atx"
+	},
+	"Asus ROG Strix Helios GX601": {
+		"brand": "Asus",
+		"price": 269.99,
+		"formfactor": "atx"
+	},
+	"Deepcool Macube 110": {
+		"brand": "Deepcool",
+		"price": 79.99,
+		"formfactor": "micro"
+	},
+	"Rosewill Prism T-500": {
+		"brand": "Rosewill",
+		"price": 104.99,
+		"formfactor": "atx"
+	},
+	"EVGA DG-76 Alpine": {
+		"brand": "EVGA",
+		"price": 99.99,
+		"formfactor": "atx"
+	},
+	"Raijintek Metis": {
+		"brand": "Raijintek",
+		"price": 64.99,
+		"formfactor": "mini"
+	},
+	"Aerocool Cylon 3": {
+		"brand": "Aerocool",
+		"price": 59.99,
+		"formfactor": "micro"
+	}
+}

@@ -1,0 +1,124 @@
+@startuml
+skinparam ClassAttributeIconSize 0
+
+class "PC" as PC
+class "Component" as Component
+class "CPU" as CPU
+class "GPU" as GPU
+class "Chassis" as Chassis
+class "Component" as Component
+class "CPUCooler" as CPUCooler
+class "Motherboard" as Motherboard
+class "RAM" as RAM
+class "Storage" as Storage
+class "PSU" as PSU
+
+class PC {
+    - name: String
+    - isPrebuilt: Boolean
+    - budget: int
+    + PC(name: String, isPrebuilt: Boolean)
+    + PC(pcCopy: PC)
+    + getComponent(componentName: String): Component
+    + getBudgetString(): String
+}
+
+class Component {
+    -name: String
+    -brand: String
+    -price: float
+    +toString(): String
+}
+
+class CPU {
+    -cores: int
+    -threads: int
+    -baseClock: float
+    -boostClock: float
+    -power: float
+    -socket: String
+    +COMPONENT_STRING: String = "CPU_TYPE"
+    +toString(): String
+}
+class Chassis {
+    -size: String
+    +COMPONENT_STRING: String = "CHASSIS_TYPE"
+    +Chassis(name: String, brand: String, 
+    price: float, size: String)
+    +toString(): String
+}
+class CPUCooler {
+    -rpm: int
+    -noise: float
+    -power: float
+    +COMPONENT_STRING: String = "CPU_COOLER_TYPE"
+    +CPUCooler(name: String, brand: String, 
+    price: float, rpm: int, noise: float, power: float)
+    +toString(): String
+}
+class GPU {
+    - power: float
+    - size: String
+    +COMPONENT_STRING: String = "GPU_TYPE"
+    + GPU(name: String, brand: String, 
+    price: float, power: float, size: String)
+    + toString(): String
+}
+
+class Motherboard {
+    - size: String
+    - socket: String
+    - power: float
+    +COMPONENT_STRING: String = "MOTHERBOARD_TYPE"
+    + Motherboard(name: String, brand: String, 
+    price: float, size: String, socket: String, power: float)
+    + toString(): String
+}
+class RAM {
+  - memory: int
+  - sticks: int
+  - speed: int
+  - power: float
+  +COMPONENT_STRING: String = "RAM_TYPE"
+  + RAM(name: String, brand: String, 
+  price: float, memory: int, sticks: int, speed: int, power: float)
+  + toString(): String
+}
+class Storage {
+  - size: int
+  - type: String
+  - power: float
+  +COMPONENT_STRING: String = "STORAGE_TYPE"
+  + Storage(name: String, brand: String, 
+  price: float, size: int, type: String, power: float)
+  + toString(): String
+}
+class PSU {
+  - power: float
+  - size: String
+  +COMPONENT_STRING: String = "PSU_TYPE"
+  + PSU(name: String, brand: String, 
+  price: float, power: float, size: String)
+  + toString(): String
+}
+
+PC --> CPU
+PC --> CPUCooler
+PC --> GPU
+PC --> Motherboard
+PC --> RAM
+PC --> Storage
+PC --> PSU
+PC --> Chassis
+Component <|-up- CPU
+Component <|-up- RAM
+Component <|-up- Motherboard
+Component <|-up- CPUCooler
+Component <|-up- GPU
+Component <|-up- Storage
+Component <|-up- PSU
+Component <|-up- Chassis
+
+hide class circle
+
+@enduml

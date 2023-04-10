@@ -1,0 +1,20 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+object "<u>:BigPP</u>" as BigPP
+object "<u>:UI</u>" as UI
+object "<u>:Parser</u>" as Parser
+object "<u>:Command</u>" as Command
+object "<u>:BuilderEditNameCommand</u>" as BuilderEditNameCommand
+' object "<u>:ViewerAddCommand</u>" as ViewerAddCommand 
+
+UI : PCbuilderMenu
+
+BigPP -- UI
+BigPP -- Parser
+Parser -- BuilderEditNameCommand
+' Parser -- ViewerAddCommand
+Command <|-right- BuilderEditNameCommand
+' Command <|-right- ViewerAddCommand
+
+@enduml

@@ -1,0 +1,118 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class "ComponentList" as ComponentList
+class "ChassisList" as ChassisList
+class "CPUList" as CPUList
+class "CPUCoolerList" as CPUCoolerList
+class "GPUList" as GPUList
+class "MotherboardList" as MotherboardList
+class "PSUList" as PSUList
+class "RAMList" as RAMList
+class "StorageList" as StorageList
+class "PCList" as PCList
+class "DataStorage" as DataStorage
+
+class ComponentList<T> {
+    +getListString(componentIndexes: ArrayList<Integer>, getDetails: Boolean): String
+    +filterByEfficiencyPsu(...)
+    +filterByPowerPsu(...)
+    +filterByPowerStorage(...)
+    +filterBySizeStorage(...)
+    +filterByTypeStorage(...)
+    +filterByPowerRam(...)
+    +filterBySpeed(...)
+    +filterBySticks(...)
+    +filterByMemory(...)
+    +filterByPowerMotherboard(...)
+    +filterBySocketMotherboard(...)
+    +filterByFormFactorMotherboard(...)
+    +filterByPowerGpu(...)
+    +filterByFormFactorGpu(...)
+    +filterByPowerCpuCooler(...)
+    +filterByNoise(...)
+    + filterByRpm(...)               
+    + filterBySocketCpu(...)             
+    + filterByPowerCpu(...)          
+    + filterByBoostClock(...)    
+    + filterByBaseClock(...)    
+    + filterByThread(...)                  
+    + filterByCore(...)                     
+    + filterByFormFactorChassis(...) 
+    + filterByName(...)                  
+    + filterByBrand(...)                 
+    + filterByPrice(...)
+}
+
+ChassisList --|> ComponentList
+CPUList --|> ComponentList
+CPUCoolerList --|> ComponentList
+GPUList --|> ComponentList
+MotherboardList --|> ComponentList
+PSUList --|> ComponentList
+RAMList --|> ComponentList
+StorageList --|> ComponentList
+
+
+class PCList {
+    -isFilter: Boolean
+    -priceFrom: String
+    -priceTo: String
+    -name: String
+    -built: String
+    +printPcList()
+    +printAltPcList()
+    +getIsFiltered(): Boolean
+    +getIsBuilt(): String
+    +getName(): String
+    +getPriceFrom(): String
+    +getPriceTo(): String
+    +setFilterTrue()
+    +setFilterFalse()
+    +setBuilt(String)
+    +setName(String)
+    +setPriceFrom(String)
+    +setPriceTo(String)
+    +filterByPrice(...)
+    +filterByName(...)
+    +filterByBuilt(...)
+}
+
+
+              
+             
+
+
+class DataStorage {
+    - GSON: Gson
+    - stringToComponentListMap: Map<String, ComponentList<?>>
+    - pcList: PCList
+    + saveUserPcs(): void
+    + loadAll(): void
+    + initStringToComponentListMap(): void
+    + loadChassis(path: String): void
+    + loadCPU(path: String): void
+    + loadCPUCooler(path: String): void
+    + loadGPU(path: String): void
+    + loadMotherboard(path: String): void
+    + loadPSU(path: String): void
+    + loadRAM(path: String): void
+    + loadStorage(path: String): void
+    + loadUserPcs(path: String): void
+    + loadPrebuiltPcs(path: String): void
+}
+
+
+DataStorage --> "0..1" ChassisList
+DataStorage --> "0..1" CPUList
+DataStorage --> "0..1" CPUCoolerList
+DataStorage --> "0..1" GPUList
+DataStorage --> "0..1" MotherboardList
+DataStorage --> "0..1" PSUList
+DataStorage --> "0..1" RAMList
+DataStorage --> "0..1" StorageList
+DataStorage --> "1" PCList
+
+hide class circle
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+skinparam  classAttributeIconSize 0
+
+object ":ViewerFilterCommand"  as ViewerFilterCommand
+
+object ViewerFilterCommand {
+}
+
+hide circle
+@enduml

@@ -1,0 +1,86 @@
+{
+	"Thermalright AXP90-X36": {
+		"rpm": 2700,
+		"noise": 22.4,
+		"price": 22.9,
+		"brand": "Thermalright",
+		"power": 2
+	},
+	"Noctua NH-L9i": {
+		"rpm": 2500,
+		"noise": 23.6,
+		"price": 44.95,
+		"brand": "Noctua",
+		"power": 2
+	},
+	"NZXT T120 RGB": {
+		"rpm": 1800,
+		"noise": 27.5,
+		"price": 59.9,
+		"brand": "NZXT",
+		"power": 2
+	},
+	"Cooler Master MASTERLIQUID ML120L RGB V2": {
+		"rpm": 1800,
+		"noise": 27,
+		"price": 86.78,
+		"brand": "Cooler Master",
+		"power": 2
+	},
+	"Cryorig H5 Universal": {
+		"rpm": 1600,
+		"noise": 25,
+		"price": 46.99,
+		"brand": "Cryorig",
+		"power": 2
+	},
+	"be quiet! Shadow Rock 3": {
+		"rpm": 2400,
+		"noise": 21.4,
+		"price": 65.99,
+		"brand": "be quiet!",
+		"power": 2
+	},
+	"Arctic Freezer 34 eSports DUO": {
+		"rpm": 2100,
+		"noise": 26.8,
+		"price": 49.99,
+		"brand": "Arctic",
+		"power": 2
+	},
+	"Phanteks PH-TC14PE": {
+		"rpm": 1300,
+		"noise": 19.6,
+		"price": 74.99,
+		"brand": "Phanteks",
+		"power": 2
+	},
+	"Deepcool GAMMAXX 400 V2": {
+		"rpm": 1500,
+		"noise": 26.1,
+		"price": 29.99,
+		"brand": "Deepcool",
+		"power": 2
+	},
+	"Thermaltake UX200 ARGB": {
+		"rpm": 2200,
+		"noise": 28.3,
+		"price": 39.99,
+		"brand": "Thermaltake",
+		"power": 2
+	},
+	"Fractal Design Celsius+ S24": {
+		"rpm": 2000,
+		"noise": 20,
+		"price": 119.99,
+		"brand": "Fractal Design",
+		"power": 2
+	},
+	"Corsair H100i RGB Platinum SE": {
+		"rpm": 2400,
+		"noise": 30.5,
+		"price": 169.99,
+		"brand": "Corsair",
+		"power": 2
+	}
+}

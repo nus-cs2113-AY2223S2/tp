@@ -10,8 +10,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
 }
 
 test {
@@ -29,11 +30,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.bigpp.BigPP"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "bigpp"
     archiveClassifier = null
 }
 
@@ -43,4 +44,24 @@ checkstyle {
 
 run{
     standardInput = System.in
+    enableAssertions = true
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "seedu.bigpp.BigPP"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+tasks.withType(Copy).all { duplicatesStrategy 'exclude' }
+
+sourceSets {
+    main.java.srcDirs 'src/main/java'
+    main.resources.srcDirs 'src/main/resources'
+    test.java.srcDirs 'src/test/java'
+    test.resources.srcDirs 'src/test/resources'
 }

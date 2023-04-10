@@ -1,0 +1,47 @@
+@startuml
+hide footbox
+
+activate ":BigPP"
+create ":DataStorage"
+":BigPP" -> ":DataStorage" : DataStorage(String path)
+
+create ":Gson"
+":DataStorage" -> ":Gson" : new Gson()
+create "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>"
+":DataStorage" -> "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>" : new HashMap<String, ComponentList<?>>()
+
+
+":DataStorage" --> ":BigPP"
+
+
+":BigPP" -> ":DataStorage" : loadAll()
+activate ":DataStorage"
+":DataStorage" -> ":DataStorage" : loadChassis(String path)
+activate ":DataStorage"
+
+":DataStorage" -> ":Gson" : fromJson(String json, Type type)
+activate ":Gson"
+":Gson" --> ":DataStorage" : Map<String, Chassis>
+deactivate ":Gson"
+
+loop for each entry in chassisMap
+  ":DataStorage" -> ":Chassis" : setName(String name)
+  activate ":Chassis"
+  ":Chassis" --> ":DataStorage"
+  deactivate ":Chassis"
+end
+
+loop for each entry in chassisMap
+  ":DataStorage" -> "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>" : get(String componentType)
+  activate "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>"
+  "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>" --> ":DataStorage" : :ChassisList
+  deactivate "DataStorage.stringToComponentListMap:Map<String, ComponentList<?>>"
+  
+  ":DataStorage" -> ":ChassisList" : add(Chassis chassis)
+  activate ":ChassisList"
+  ":ChassisList" --> ":DataStorage"
+  deactivate ":ChassisList"
+end
+
+deactivate ":DataStorage"
+@enduml
