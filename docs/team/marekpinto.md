@@ -62,4 +62,4 @@ Here is your schedule:
 
 ### DG Extracts
 
-[RemoveStatSeqDiagram](../images/RemoveStatCommand.png)
+![RemoveStatSeqDiagram](../images/RemoveStatCommand.png)
