@@ -160,7 +160,7 @@ The UI class is used mainly for user-related functions, including the reading of
 It is used to print to the user welcome and goodbye messages. On first startup, it is also used to get the name of
 the user.
 
-The UI class is also used when a shortcut-command is being executed by the user.
+The UI class is also used when printing various outputs to the user after a command is executed
 
 ### Data package
 
