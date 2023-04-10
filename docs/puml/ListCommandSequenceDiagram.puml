@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Participant ":FoodSupplyTracker"
+Participant ":ListCommand"
+Participant ":FoodList"
+
+":FoodSupplyTracker" -> ":ListCommand": execute(foodList)
+activate ":ListCommand"
+":ListCommand" -> ":FoodList": getNumberOfFood()
+activate ":FoodList"
+":ListCommand" <-- ":FoodList": numberOfFood
+deactivate ":FoodList"
+destroy ":FoodList"
+
+":ListCommand" --> ":FoodSupplyTracker": new CommandResult(printToUser)
+deactivate ":ListCommand"
+destroy ":ListCommand"
+
+@enduml

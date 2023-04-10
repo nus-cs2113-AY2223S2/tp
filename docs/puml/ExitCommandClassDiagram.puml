@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Command <|-- ExitCommand: exits program
+Command -> CommandResult
+ExitCommand -> CommandResult
+ExitCommand --> FoodList
+
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class Command{
+    +execute(): CommandResult
+}
+
+class ExitCommand {
+    +execute(foodList: FoodList): CommandResult
+    +isExit(): boolean
+}
+
+class CommandResult {
+    -feedbackToUser: String
+    +printResult(): void
+}
+
+class FoodList {
+}
+
+@enduml

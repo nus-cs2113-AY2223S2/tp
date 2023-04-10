@@ -1,0 +1,29 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+":Command" <|-- ":FindCommand"
+class ":Command" {
+    +execute(): CommandResult
+}
+
+class ":CommandResult" {
+    String feedbackToUser
+    +printResult()
+}
+class ":FindCommand" {
+    term: String
+    flags: String[]
+    +execute(foodList: FoodList): CommandResult
+}
+
+
+":FindCommand" "1" --> "1" ":FoodList": adds matched item
+":Command"  --> ":CommandResult"
+":FindCommand"  --> ":CommandResult"
+
+class ":FoodList" {
+    +addFood(Food food)
+    foodList: ArrayList<Food>
+}
+@enduml

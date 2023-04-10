@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Participant ":FoodSupplyTracker"
+Participant ":ClearCommand"
+Participant ":FoodList"
+
+":FoodSupplyTracker" -> ":ClearCommand": execute(foodList)
+activate ":ClearCommand"
+
+":ClearCommand" -> ":FoodList": clearFoodList()
+activate ":FoodList"
+
+loop foodList
+":FoodList" -> ":FoodList": remove(0)
+activate ":FoodList"
+":FoodList" --> ":FoodList"
+deactivate ":FoodList"
+end
+
+":ClearCommand" <-- ":FoodList"
+
+deactivate ":FoodList"
+destroy ":FoodList"
+
+":ClearCommand" --> ":FoodSupplyTracker": new CommandResult(printToUser)
+deactivate ":ClearCommand"
+destroy ":ClearCommand"
+@enduml

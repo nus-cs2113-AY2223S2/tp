@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+":FoodSupplyTracker" -> ":Parser": parse(fullCommand)
+activate ":Parser"
+
+create ":ExitCommand"
+":ExitCommand" <- ":Parser" : ":ExitCommand"(arguments)
+activate ":ExitCommand"
+":ExitCommand" --> ":Parser"
+deactivate ":ExitCommand"
+deactivate ":Parser"
+
+":FoodSupplyTracker" -> ":ExitCommand" : execute(foodList)
+activate ":ExitCommand"
+
+
+
+create "CommandResult"
+":ExitCommand" -> "CommandResult" : "CommandResult"(printToUser)
+activate "CommandResult"
+deactivate ":ExitCommand"
+destroy ":ExitCommand"
+
+":FoodSupplyTracker" -> "CommandResult": printResult()
+"CommandResult"->System: out.println(feedbackToUser)
+
+System --> "CommandResult"
+"CommandResult" --> ":FoodSupplyTracker"
+deactivate "CommandResult"
+destroy "CommandResult"
+
+":FoodSupplyTracker" -> ":ExitCommand": isExit()
+activate ":ExitCommand"
+":ExitCommand" --> ":FoodSupplyTracker"
+deactivate ":ExitCommand"
+destroy ":ExitCommand"
+
+destroy ":FoodSupplyTracker"
+
+@enduml

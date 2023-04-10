@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.fst.FoodSupplyTracker"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "fst"
     archiveClassifier = null
 }
 
@@ -41,6 +41,8 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-run{
+run {
     standardInput = System.in
+    enableAssertions = true
+
 }

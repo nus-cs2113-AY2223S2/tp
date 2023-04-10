@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Command <|-- ListCommand
+Command -> CommandResult
+ListCommand -> CommandResult
+ListCommand --> FoodList : lists out
+FoodList -> Food
+
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class Command{
+    +execute(): CommandResult
+}
+
+class ListCommand {
+    +execute(foodList: FoodList): CommandResult
+    +outputToUser(foodList: FoodList): String
+}
+
+class CommandResult {
+    -feedbackToUser: String
+    +printResult(): void
+}
+
+class FoodList {
+    -foodList: ArrayList<Food>
+    +getNumberOfFood(): int
+}
+
+
+class Food{
+    - name: String
+    - expiryDate: String
+    - quantity: Double
+
+    + toString(): String
+}
+
+@enduml

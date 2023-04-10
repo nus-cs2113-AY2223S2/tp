@@ -1,0 +1,45 @@
+@startuml
+":FoodSupplyTracker" -> ":Parser": parse(command)
+activate ":Parser"
+
+create ":UpdateCommand"
+":UpdateCommand" <- ":Parser" : UpdateCommand(arguments)
+activate ":UpdateCommand"
+":UpdateCommand" --> ":Parser"
+deactivate ":UpdateCommand"
+deactivate ":Parser"
+
+":FoodSupplyTracker" -> ":UpdateCommand" : execute(foodList)
+activate ":UpdateCommand"
+
+create ":FoodList"
+":UpdateCommand" -> ":FoodList": getFood(index);
+":FoodList" -> ":UpdateCommand": return foodItem
+
+loop for every flag
+    alt flagName == "n"
+        ":UpdateCommand" -> ":Food": setName(flagValue)
+    else flagName == "c"
+            ":UpdateCommand" -> ":Food": setCategory(flagValue)
+    else flagName == "u"
+            ":UpdateCommand" -> ":Food": setUnit(flagValue)
+    else flagName == "q"
+            ":UpdateCommand" -> ":Food": setQuantity(flagValue)
+    else flagName == "e"
+            ":UpdateCommand" -> ":Food": setExpiryDate(flagValue)
+    end
+end
+
+create ":CommandResult"
+":UpdateCommand" -> ":CommandResult" : CommandResult(updatedFood)
+activate ":CommandResult"
+deactivate ":UpdateCommand"
+destroy ":UpdateCommand"
+
+":FoodSupplyTracker" -> ":CommandResult": printResult()
+":CommandResult"->System: System.out.println(feedbackToUser)
+deactivate ":CommandResult"
+destroy ":CommandResult"
+
+System --> ":FoodSupplyTracker"
+@enduml

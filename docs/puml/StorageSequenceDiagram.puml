@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant ":FoodSupplyTracker"
+
+create ":StorageFile" as sf
+":FoodSupplyTracker" -> sf: load()
+activate sf
+
+
+sf -> ":FoodListDecoder": decodeFoodList(Files.readAllLines(path))
+activate ":FoodListDecoder"
+
+loop while still has next line
+":FoodListDecoder" -> ":FoodListDecoder": decodeFoodFromString(encodedFood)
+activate ":FoodListDecoder"
+":FoodListDecoder" --> ":FoodListDecoder"
+deactivate ":FoodListDecoder"
+end
+
+participant ":FoodListEncoder"
+create ":FoodList" as fl
+":FoodListDecoder" --> fl
+deactivate ":FoodListDecoder"
+destroy ":FoodListDecoder"
+activate fl
+
+":FoodSupplyTracker" -> sf: save(foodList)
+sf -> ":FoodListEncoder": encodeFoodList(toSave)
+activate ":FoodListEncoder"
+loop end of list is not reached
+":FoodListEncoder" -> ":FoodListEncoder": encodedFoodToString(food)
+":FoodListEncoder" --> ":FoodListEncoder"
+end
+
+":FoodListEncoder" --> sf
+deactivate ":FoodListEncoder"
+destroy ":FoodListEncoder"
+destroy sf
+destroy fl
+
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+hide circle
+skinparam classAttributeIconSize 0
+
+class StorageFile {
+    +load(): void
+    +save(FoodList: foodList): void
+
+}
+class FoodListEncoder {
+    -encodeFoodToString(Food: food): String
+    +encodeFoodList(FoodList: toSave): ArrayList<String>
+}
+class FoodListDecoder {
+ -decodedFoodFromString(String: encodedFood): Food
+ +decodeFoodList(List<String>: encodedFoodList): FoodList
+}
+
+
+StorageFile --> FoodListDecoder
+StorageFile --> FoodListEncoder
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+title Food Supply Tracker
+
+actor User
+participant ":FoodSupplyTracker"
+participant ":Ui"
+participant ":Parser"
+participant ":Command"
+participant ":storageFile"
+
+alt not exit
+User -> ":FoodSupplyTracker": run()
+activate ":FoodSupplyTracker"
+":FoodSupplyTracker" -> ":Ui": showWelcomeMessage()
+activate ":Ui"
+":Ui" --> ":FoodSupplyTracker":
+deactivate ":Ui"
+User -> ":FoodSupplyTracker": user input
+":FoodSupplyTracker" -> ":Ui": readCommand()
+":Ui" --> ":FoodSupplyTracker":fullCommand
+
+":FoodSupplyTracker" -> ":FoodSupplyTracker": processCommand(fullCommand)
+activate ":FoodSupplyTracker" #DarkSalmon
+":FoodSupplyTracker" -> ":Parser" : parse(fullCommand)
+activate ":Parser"
+":Parser" --> ":Command": new Command()
+deactivate ":Parser"
+destroy ":Parser"
+":FoodSupplyTracker" -> ":Command": execute(userInput)
+activate ":Command"
+
+participant ":CommandResult"
+":Command" --> ":CommandResult": new CommandResult()
+deactivate ":Command"
+destroy ":Command"
+activate ":CommandResult"
+":FoodSupplyTracker"->":CommandResult": printResult()
+":CommandResult" --> ":FoodSupplyTracker"
+deactivate ":CommandResult"
+destroy  ":CommandResult"
+":FoodSupplyTracker" -> ":storageFile": save(foodList)
+":FoodSupplyTracker" --> ":FoodSupplyTracker": Command.isExit()
+deactivate ":FoodSupplyTracker"
+end
+@enduml

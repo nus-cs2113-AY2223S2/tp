@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+":FoodSupplyTracker" -> ":Parser": parse(fullCommand)
+activate ":Parser"
+
+create ":HelpCommand" as hc
+hc <- ":Parser" : ":HelpCommand"(arguments)
+activate hc
+hc --> ":Parser"
+deactivate hc
+deactivate ":Parser"
+
+
+
+":FoodSupplyTracker" -> hc : execute(foodList)
+activate hc
+
+alt filter size <= 1
+
+else
+loop all filters
+hc -> hc : appendMessage(printToUser, filter)
+activate hc
+hc --> hc
+deactivate hc
+end
+end
+
+create ":CommandResult" as cr
+hc -> cr : ":CommandResult"(printToUser)
+activate cr
+deactivate hc
+destroy hc
+
+":FoodSupplyTracker" -> cr: printResult()
+cr->System: out.println(feedbackToUser)
+
+
+System --> cr
+cr --> ":FoodSupplyTracker"
+deactivate cr
+destroy cr
+
+@enduml

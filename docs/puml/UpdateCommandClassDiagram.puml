@@ -1,0 +1,34 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+":Command" <|-- ":UpdateCommand"
+class ":Command" {
+    +execute(): CommandResult
+}
+
+class ":CommandResult" {
+    String feedbackToUser
+    +printResult()
+}
+class ":UpdateCommand" {
+    index: String
+    flags: String[]
+    -updateFoodAttribute(Food currentFood, String flagName, String flagValue, String[] allFlags)
+    +execute(foodList: FoodList): CommandResult
+}
+
+
+":UpdateCommand" "1" --> "1" ":FoodList": sets updated attributes
+":Command"  --> ":CommandResult"
+":UpdateCommand"  --> ":CommandResult"
+
+class ":FoodList" {
+    foodList: ArrayList<Food>
+    +setName(String name)
+    +setExpiryDate(String expiryDate)
+    +setQuantity(double quantity)
+    +setCategory(String category)
+    +setUnit(String unit)
+}
+@enduml

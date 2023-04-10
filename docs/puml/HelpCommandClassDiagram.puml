@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Parser --> HelpCommand
+Parser --> Command
+class Parser {
+    +parse(String: userInput): Command
+}
+
+CommandResult <-- Command
+abstract class Command {
+    +execute(FoodList: foodList): CommandResult
+}
+
+CommandResult <-- HelpCommand
+class CommandResult {
+    +feedbackToUser: String
+    +CommandResult(String: feedbackToUser)
+    +printResult(): void
+}
+
+Command <|-- HelpCommand
+class HelpCommand {
+    -filters: HashSet<String>
+    -appendMessage(String: printToUser, String: filter): String
+    +HelpCommand(String: userInput)
+    +execute(FoodList: foodList): CommandResult
+}
+
+@enduml
