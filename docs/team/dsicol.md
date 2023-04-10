@@ -17,22 +17,26 @@ MyLedger is a desktop app for managing finances, designed for university student
    - **Justification**: With the help of MyLedger's parsing unit, the user's input are broken down and fed into their respective command class. The execution of these command classes produces the user's desired outcome (i.e. adding an academic expenditure into the current expenditure list).
    - **Highlights**: The implementation of the command classes requires good coordination with the implementor of the parsing class as they would need information on how each expenditure command is instantiated; it was done well.
 
+<div style="page-break-after: always;"></div>
+
 3. **The Sort Command**
    - **What it does**: Sorts the expenditure list in ascending or descending amount, or from the latest or earliest dates. 
    - **Justification**: This allows users to sort their expenditures to gain better insight to manage them; to rank the expenditures that spent the most/least money, or ones that have added the most recently/earliest.
    - **Highlights**: The feature will change the order of the expenditure list for future reference. This is done to improve user experience while navigating the sorted list after calling the command.
 
-   4. **The repeating date of the Accommodation and Tuition Expenditures**
+4. **The repeating date of the Accommodation and Tuition Expenditures**
    - **What it does**: The `AccommodationExpenditure` and `TuitionExpenditure` takes in a date of repeat. Whether or not the aforementioned expenditures have been marked beforehand, this feature ensures the the expenditures are unmarked after 1 full year.
    - **Justification**: The `AccommodationExpenditure` and `TuitionExpenditure` are lump sum payments and must be paid within a period of time. The nature of these expenditures are repeating and thus, users can trust MyLedger to unmark the aforementioned expenditures to serve as an annual reminder.
    - **Highlights**: This was a challenging feature as `LocalDate` is used extensively to compare the dates. Additionally, the method must be ran for the check to be ran, thus this is implemented in the main loop logic of the program. After a year has passed, the program will retain the day and month values of the repeat date, and increment the year. This will only run once every year and only ran after the specified date is reached or passed.
 
-   5. **Fix save file reading related bugs**
+5. **Fix save file reading related bugs**
    - **What it does**: The save file stores all expenditures from the most recent expenditure list.
    - **Justification**: Upon corruption of the save file, the program oringally crashes. With the fixes, only individual corrupted expenditures are deleted, uncorrupted expenditures can still be loaded.
    - **Highlights**: Considering all possible combinations for corruption was challenging. Now the save file reading complies with the input rules defined by the application.
 
 #### Code Contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=dsicol&tabRepo=AY2223S2-CS2113-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+<div style="page-break-after: always;"></div>
 
 #### Project Management:
 1. Milestones:
