@@ -47,5 +47,13 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details of the UID feature, and also the list feature.
         * Added documentation for product scope target users and value proposition.
+* **Community**:
+    * Reported bugs for MealCompanion. [#1](https://github.com/dendendenden04/ped/issues/1) 
+    [#2](https://github.com/dendendenden04/ped/issues/2) 
+    [#3](https://github.com/dendendenden04/ped/issues/3)
+    [#4](https://github.com/dendendenden04/ped/issues/4) 
+    [#5](https://github.com/dendendenden04/ped/issues/5) 
+    [#6](https://github.com/dendendenden04/ped/issues/6)
+
 
     

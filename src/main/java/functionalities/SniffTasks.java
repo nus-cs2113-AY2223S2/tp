@@ -332,6 +332,7 @@ public class SniffTasks {
             assert appointment.uid != null;
             if (uId.equalsIgnoreCase(appointment.uid)) {
                 Ui.formatPrintList(counter, appointment.toString());
+                Ui.printBlankLine();
                 counter++;
             }
         }
@@ -355,6 +356,7 @@ public class SniffTasks {
             assert appointment.animal.type != null;
             if (animal.equalsIgnoreCase(appointment.animal.type)) {
                 Ui.formatPrintList(counter, appointment.toString());
+                Ui.printBlankLine();
                 counter++;
             }
         }
@@ -375,6 +377,7 @@ public class SniffTasks {
             assert appointment != null;
             if (type.equalsIgnoreCase(appointment.getDescription())) {
                 Ui.formatPrintList(counter, appointment.toString());
+                Ui.printBlankLine();
                 counter++;
             }
         }
