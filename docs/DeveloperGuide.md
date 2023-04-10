@@ -519,8 +519,6 @@ For other types of expenses, they will be marked as paid right after they are ad
 
 <div style="page-break-after: always;"></div>
 
-<div style="page-break-after: always;"></div>
-
 ## Product scope
 ### Target user profile
 
