@@ -129,6 +129,13 @@ This section will focus on some of the key features of Meal Companion and explai
 ## Ingredients
 Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
 
+[Ingredients](#ingredients)  
+* [Add Ingredients](#add-ingredients)  
+* [Remove Ingredients](#remove-ingredients)  
+* [List Ingredients](#list-ingredients)  
+* [Search Ingredients](#search-ingredients)  
+* [Clear Ingredients](#clear-ingredients)  
+
 
 ### Add Ingredients
 To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
@@ -216,6 +223,11 @@ Once your allergies are added to Meal Companion, you may refer to the section on
 
 Due to certain design constraints, do note that your allergens are not saved within Meal Companion, so you will have to re-enter them each time you launch Meal Companion. We have plans to improve this feature in future iterations. We apologize for any inconvenience caused.
 
+[Allergens](#allergens)
+* [Add Allergens](#add-allergens)
+* [Remove Allergens](#remove-allergens)
+* [List Allergens](#list-allergens)
+
 
 ### Add Allergens
 You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. For example, if you have an allergy to eggs, you may use the command `allergen add egg`.
@@ -262,6 +274,18 @@ If you wish to take a look at how the allergens you have added will affect the r
 
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
+ 
+[Recipes](#recipes)
+* [Default Recipes](#default-recipes)
+* [All Recipes](#all-recipes)
+* [Recipe Details](#recipe-details)
+* [Possible Recipes](#possible-recipes)
+* [Random Recipe](#random-recipe)
+* [Find Recipe](#find-recipe)
+* [Check Ingredients for Recipe](#check-ingredients-for-recipe)
+* [Almost Completed Recipe](#almost-completed-recipe)
+* [Make Recipe](#make-recipe)
+* [Favourite/Unfavourite Recipe](#favouriteunfavourite-recipe)
  
 
 ### Default Recipes
