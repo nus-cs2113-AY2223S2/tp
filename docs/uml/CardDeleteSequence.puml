@@ -52,4 +52,6 @@ DeleteCardCommand -> UserInterface : print success message and number of cards l
 return
 
 return
+
+return
 @enduml
