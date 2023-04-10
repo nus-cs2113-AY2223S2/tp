@@ -36,6 +36,9 @@
 #### Editing Appointments
 1. The `UI` class reads in the input from the user and then parses them depending on the starting initial of UID in the `Parser` for each appointment.
 2. If the inputs are valid, and the UID exists (it is an existing appointment), the appointment is removed by `Remove Command` and then `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
+3. The `Snifftasks` class then edits the appointment to the list of current appointments.#### Editing Appointments
+1. The `UI` class reads in the input from the user and then parses them depending on the starting initial of UID in the `Parser` for each appointment.
+2. If the inputs are valid, and the UID exists (it is an existing appointment), the appointment is removed by `Remove Command` and then `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
 3. The `Snifftasks` class then edits the appointment to the list of current appointments.
 
 ### Parser - Class Implementation
@@ -271,7 +274,7 @@ ______________________________________________________________________
 
 ```
 
-    Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00` <br>
+Test case: `consultation at/an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00` <br>
    Expected output: A consultation appointment is not added due to invalid description. <br>
    Example: <br>
 ```
@@ -281,7 +284,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-    Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
+Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/2023-12-12 vt/19:00` <br>
    Expected output: A vaccination appointment has been added successfully, details show in the status message. <br>
    Example: <br>
 ```
@@ -298,7 +301,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-    Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00` <br>
+Test case: `vaccination at/Dog an/Russ on/Abel cn/92929292 v/Covid vd/12-12-2023 vt/19:00` <br>
    Expected output: A vaccination appointment is not added due to invalid date description. <br>
    Example: <br>
 ```
@@ -308,7 +311,7 @@ The date/time description is invalid.
 ______________________________________________________________________
 ```
 
-    Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
+Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/H` <br>
    Expected output: A surgery appointment has been added successfully, details shown in the status message. <br>
    Example: <br>
 ```
@@ -326,7 +329,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-    Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H` <br>
+Test case: `surgery at/Hamster an/Polly on/Sam cn/93939393 sd/2023-12-12 st/19:00 ed/2023-12-12 et/19:00 p/H` <br>
    Expected output: A surgery appointment is not added due to dates and times being the same. <br>
    Example: <br>
 ```
