@@ -58,6 +58,12 @@ public class TopoCommand extends Command {
      */
     private ArrayList<CS2040CFile> printTopoSortedCS2040CFiles(TopicManager topicManager, Ui ui) {
         topoSortedCS2040CFiles = topicManager.getAllCS2040CFilesBeforeTopic(name);
+
+        if (topoSortedCS2040CFiles.isEmpty()) {
+            ui.printFileDoesNotExist();
+            return new ArrayList<>();
+        }
+
         ui.printTopoSortSuccess();
         ArrayList<CS2040CFile> files = new ArrayList<>();
         int currentSerialNumber = 1;
