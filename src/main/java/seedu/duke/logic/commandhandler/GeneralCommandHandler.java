@@ -2,7 +2,6 @@ package seedu.duke.logic.commandhandler;
 
 import java.util.Scanner;
 
-import seedu.duke.Duke;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
