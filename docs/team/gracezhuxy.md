@@ -16,16 +16,16 @@ Below are my contributions to Pet Tracker:
   * What it does: Maintains a list of all pets a user wants to record
   * Justification: This feature is a critical part of the program as a core data structure
   * Highlights: This feature is the foundation of the program as a core data structure
-  * Related PR: [\#27] (https://github.com/AY2223S2-CS2113-T11-3/tp/pull/27)
+  * Related PR: [\#27](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/27)
 
 * **New Feature**: Reminders
   * What it does: Gives reminders for tasks previously recorded by the user due on the day the app is accessed
   * Justification: This feature reminds users of their tasks with incoming deadlines
   * Highlights: This feature makes use of the local time of the user's device
-  * Related PR: [\#82] (https://github.com/AY2223S2-CS2113-T11-3/tp/pull/82)
+  * Related PR: [\#82](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/82)
 
 * **Enhancements Implemented**:
-  * Added `edit-stat` function for ver 2.0 [\#67] (https://github.com/AY2223S2-CS2113-T11-3/tp/pull/67)
+  * Added `edit-stat` function for ver 2.0 [\#67](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/67)
   * Handled Exceptions & Errors for `list`, `add-task`, `remove-stat` for ver 2.1 [\#193](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/193)
   * Improved UI for greater readability [\#193](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/193)
 
