@@ -551,7 +551,7 @@ public class SniffTasks {
                 }
             }
             APPOINTMENTS.remove(index);
-            checkConsultationDuplicate(animal, owner, date, time);
+            checkSurgeryDuplicate(animal, owner, startDate, startTime, endDate, endTime);
             Appointment changeAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
                     endTime);
             assert Objects.equals(changeAppointment.uid, uid) : "surgery uid should be " + uid;
@@ -594,7 +594,7 @@ public class SniffTasks {
                 }
             }
             APPOINTMENTS.remove(index);
-            checkConsultationDuplicate(animal, owner, date, time);
+            checkVaccinationDuplicate(animal, owner, date, time, vaccine);
             Appointment changeAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
             assert Objects.equals(changeAppointment.uid, uid) : "vaccination uid should be " + uid;
             assert Objects.equals(changeAppointment.animal.type, animal.type) :
