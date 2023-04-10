@@ -10,11 +10,17 @@
   * [3.1. Architecture](#31-architecture)
   * [3.2. Parser Component](#32-parser)
   * [3.3. Expenditures Component](#33-expenditure-categories)
+    * [3.3.1. Repeat dates for Accommodation and Tuition Expenditures](#331-repeat-dates-for-accommodation-and-tuition-expenditures)
   * [3.4 Command Component](#34-command-component)
   * [3.5. Storage Component](#35-storage)
+    * [3.5.1 Saving expenditures after each command](#351-saving-expenditures-after-each-input)
+    * [Loading the expenditure list from the save file on application launch](#352-loading-the-expenditure-list-from-the-save-file-on-application-launch)
+    * [Corruption of saved expenditures](#353-corruption-of-saved-expenditures) 
   * [3.6. UI Component](#36-ui)
 - [4. Command List](#4-command-list)
   * [4.1. Add a transaction](#41-Add-Expenditure-Command)
+    * [Add regular and lump sum expenditure valud inputs](#411-add-regular-and-lump-sum-expenditure-valid-inputs)
+    * [Add lend borrow expenditure valid inputs](#412-add-lend-borrow-expenditure-valid-inputs)
   * [4.2. Edit a transaction](#42-Edit-Command)
   * [4.3. Delete a transaction](#43-Delete-Command)
   * [4.4. Find transactions](#44-Find-Command)
@@ -144,7 +150,7 @@ It must be noted that the date input field for `AccommodationExpenditure` and `T
 Below shows the sequence diagram of the `repeatDate` checking procedure.
 
 <p align="center">
-    <img src="team/images/repeatDate.png" width="80%">
+    <img src="team/images/repeatDate.png" width="50%">
     <br/>
     <i>Figure 4: Sequence diagram for the repeat date logic</i>
 </p>
@@ -188,7 +194,7 @@ Below represents the UML class diagram representing all the command classes that
 <p align="center">
     <img src="team/images/simplifiedCommandClassDiagram.png" width="100%">
     <br/>
-    <i>Figure 4: UML diagram for the expenditure command classes</i>
+    <i>Figure 5: UML diagram for the expenditure command classes</i>
 </p>
 
 Next follows the command classes that interact with pre-existing expenditure records stored in the expenditure list. The table below describes the commands.
@@ -206,7 +212,7 @@ updated with all the current expenditures in the expenditure array list.
 <p align="center">
     <img src="team/images/saveList.png">
     <br/>
-    <i>Figure 5: Sequence diagram for the process of saveExpenditureLists</i>
+    <i>Figure 6: Sequence diagram for the process of saveExpenditureLists</i>
 </p>
 
 The following sequence diagram shows the details of the process for saveExpenditureList.
@@ -227,7 +233,7 @@ Below shows the sequence diagram for the reading of the save file upon launch.
 <p align="center">
     <img src="team/images/newInitializeList.png">
     <br/>
-    <i>Figure 6: Sequence diagram for the reading feature of TxtFileStatus</i>
+    <i>Figure 7: Sequence diagram for the reading feature of TxtFileStatus</i>
 </p>
 
 #### 3.5.3 Corruption of saved expenditures
@@ -260,14 +266,9 @@ To instantiate the command classes, the full commands are the shown in the table
 
 | Field     | Valid inputs                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
-| Regular Expenditure Categories     | `AcademicExpenditureCommand`: `academic d/<date> a/<amount> p/<description>`<br/>,  
- `EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> p/<description>`<br/>  `FoodExpenditureCommand`: `food d/<date> a/<amount> p/<description>`<br/>  
- `OtherExpenditureCommand`: `other d/<date> a/<amount> p/<description>`<br/>  
- `TransportExpenditureCommand`: `transport d/<date> a/<amount> p/<description><br/>`.      |
-| Lump Sum Expenditure Categories  | `AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> p/<description>`<br/>  
-`TuitionExpenditureCommand`: `tuition d/<date> a/<amount> p/<description>`.             |
-| Lend Borrow Expenditure Categories  | `BorrowExpenditureCommand`: `borrow d/<date> n/<name of party borrowed from> a/<amount> b/<return date> p/<description>`<br/>  
-`LendExpenditureCommand`: `lend d/<date> n/<name of party lent to> a/<amount> b/<return date> p/<description>`.                    |
+| Regular Expenditure Categories     | `AcademicExpenditureCommand`: `academic d/<date> a/<amount> p/<description>`<br/>  `EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> p/<description>`<br/>  `FoodExpenditureCommand`: `food d/<date> a/<amount> p/<description>`<br/> `OtherExpenditureCommand`: `other d/<date> a/<amount> p/<description>`<br/> `TransportExpenditureCommand`: `transport d/<date> a/<amount> p/<description><br/>`.      |
+| Lump Sum Expenditure Categories  | `AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> p/<description>`<br/> `TuitionExpenditureCommand`: `tuition d/<date> a/<amount> p/<description>`.             |
+| Lend Borrow Expenditure Categories  | `BorrowExpenditureCommand`: `borrow d/<date> n/<name of party borrowed from> a/<amount> b/<return date> p/<description>`<br/>  `LendExpenditureCommand`: `lend d/<date> n/<name of party lent to> a/<amount> b/<return date> p/<description>`.                    |
 
 Running the `command` classes for the aforementioned expenditure categories are parsed through the `parser` package. As such, all inputs received are checked in the latter package, and once deemed valid instantiates the respective expenditures in the `expenditure` package. The following section describes the valid inputs for each of the fields.
 
@@ -291,13 +292,7 @@ Below depicts the table explaining the fields and their valid inputs:
 | Field     | Valid inputs                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `date`     | Parsed in `yyyy-MM-DD` format. Violating the format raises the `DateTimeParseException` and is not allowed.    |
-| `amount`  | Since this is parsed to a `double`, it raises the following exceptions when<br/>:  
-`InvalidCharacterInAmount`: When special characters such as `.d`, `.e` and `.f` are input<br/>  
-`NumberFormatException` : When numbers are not input<br/> 
-`SmallAmountException`: When amount input is less than the supported $0.01 SGD<br/>  
-`NotPositiveValueException`: When a negative value is input as the amount<br/>  
-`LargeValueException`: When a value larger than $10000000 SGD is input<br/>  
-`WrongPrecisionException`: When more than 2 decimal places is input   |
+| `amount`  | Since this is parsed to a `double`, it raises the following exceptions when:<br/> `InvalidCharacterInAmount`: When special characters such as `.d`, `.e` and `.f` are input<br/> `NumberFormatException` : When numbers are not input<br/>  `SmallAmountException`: When amount input is less than the supported $0.01 SGD<br/>  `NotPositiveValueException`: When a negative value is input as the amount<br/>  `LargeValueException`: When a value larger than $10000000 SGD is input<br/> `WrongPrecisionException`: When more than 2 decimal places is input   |
 | `description`  | There is no restriction on the description. Users are free to enter any description they like.                    |
 
 **Note for lump sum expenditures:**
@@ -309,7 +304,7 @@ Below shows the sequence diagram for the `AcademicExpenditure` for the aforement
 <p align="center">
     <img src="team/images/academicExpenditureCommand.png">
     <br />
-    <i>Figure 7: Sequence Diagram for edit Command</i>
+    <i>Figure 8: Sequence Diagram for edit Command</i>
 </p>
 
 This diagram is applicable to all **regular and lump sum** expenditure categories.
@@ -326,9 +321,7 @@ Below depicts the table explaining the valid inputs for the two aforementioned f
 | Field     | Valid inputs                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `borrowerName` or `lenderName`     | Parsed as a `String`. Since delimiters follow this field in the command interface, `/` are not encouraged to be entered together with the names.     |
-| `deadline`  | The following exceptions will be raised when:<br/>
-`DateTimeParseException`: When date provided is not in the correct format<br/>
-`InvalidDeadlineException`: When date provided is before the `date` added, and before the **current date**. |
+| `deadline`  | The following exceptions will be raised when:<br/> `DateTimeParseException`: When date provided is not in the correct format<br/> `InvalidDeadlineException`: When date provided is before the `date` added, and before the **current date**. |
 
 Justification for the `InvalidDeadlineException` after current date:
 
@@ -363,7 +356,7 @@ The sequence diagram below shows the interactions of a successful execution of t
 <p align="center">
     <img src="team/images/parserEdit.png">
     <br />
-    <i>Figure 8: Sequence Diagram for edit Command</i>
+    <i>Figure 9: Sequence Diagram for edit Command</i>
 </p>
 
 ### 4.3. Delete Command
@@ -423,7 +416,7 @@ The sequence diagram below shows the details of the process for viewdate.
 <p align="center">
     <img src="team/images/viewDate.png">
     <br />
-    <i>Figure 8: Sequence Diagram of the process for viewdate</i>
+    <i>Figure 10: Sequence Diagram of the process for viewdate</i>
 </p>
 
 With the addition of a currency feature, the specificDateString method in ExpenditureList also gets a value converted to the 
@@ -445,7 +438,7 @@ The sequence diagram for `check` without parameters can be observed as follows.
 <p align="center">
     <img src="team/images/checkCommand.png">
     <br/>
-    <i>Figure 9: UML diagram of check command </i>
+    <i>Figure 11: UML diagram of check command </i>
 </p>
 
 The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check d/03-04-2023`) are the same but with slightly different method name, thus the above can 
