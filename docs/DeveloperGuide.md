@@ -4,26 +4,57 @@
     <img src="team/images/MyLedger.jpeg" width="30%">
 </p>
 
-- [1. Preface](#1-preface)
-- [2. Acknowledgements](#2-acknowledgements)
-- [3. Design & implementation](#3-design--implementation)
-  * [3.1. Architecture](#31-architecture)
-  * [3.2. Parser Component](#32-parser)
-  * [3.3. Expenditures Component](#33-expenditure-categories)
-  * [3.4 Command Component](#34-command-component)
-  * [3.5. Storage Component](#35-storage)
-  * [3.6. UI Component](#36-ui)
-- [4. Command List](#4-command-list)
-  * [4.1. Add a transaction](#41-Add-Expenditure-Command)
-  * [4.2. Edit a transaction](#42-Edit-Command)
-  * [4.3. Delete a transaction](#43-Delete-Command)
-  * [4.4. Find transactions](#44-Find-Command)
-  * [4.5. Duplicate a transaction](#45-Duplicate-Command)
-  * [4.6. Sort transactions](#46-Sort-Command)
-  * [4.7. View Command](#47-View-Command)
-  * [4.8. Set a budget](#48-Set-Budget-Command)
-  * [4.9. Show Currency Rates](#49-Show-Rates-Command)
+<!-- TOC -->
+* [MyLedger - Developer Guide](#myledger---developer-guide)
+  * [1. Preface](#1-preface)
+  * [2. Acknowledgements](#2-acknowledgements)
+  * [3. Design & implementation](#3-design--implementation)
+    * [3.1. Architecture](#31-architecture)
+    * [Main Components of MyLedger](#main-components-of-myledger)
+    * [3.2. Parser](#32-parser)
+      * [Processing an input](#processing-an-input)
+    * [3.3. Expenditure Categories](#33-expenditure-categories)
+      * [3.3.1 Repeat dates for Accommodation and Tuition Expenditures](#331-repeat-dates-for-accommodation-and-tuition-expenditures)
+    * [3.4. Command Component](#34-command-component)
+    * [3.5. Storage](#35-storage)
+      * [3.5.1 Saving expenditures after each input](#351-saving-expenditures-after-each-input)
+      * [3.5.2 Loading the expenditure list from the save file on application launch](#352-loading-the-expenditure-list-from-the-save-file-on-application-launch)
+      * [3.5.3 Corruption of saved expenditures](#353-corruption-of-saved-expenditures)
+  * [4. Command List](#4-command-list)
+    * [4.1. Add Expenditure Command](#41-add-expenditure-command)
+      * [4.1.1 Add regular and lump sum expenditure valid inputs](#411-add-regular-and-lump-sum-expenditure-valid-inputs)
+      * [4.1.2 Add lend borrow expenditure valid inputs](#412-add-lend-borrow-expenditure-valid-inputs)
+    * [4.2. Edit Command](#42-edit-command)
+    * [4.3. Delete Command](#43-delete-command)
+    * [4.4. Find Command](#44-find-command)
+    * [4.5. Duplicate Command](#45-duplicate-command)
+    * [4.6. Sort Command](#46-sort-command)
+    * [4.7. View Command](#47-view-command)
+    * [4.8. Set Budget Command](#48-set-budget-command)
+    * [4.9. Check Command](#49-check-command)
+    * [4.10. Show Rates Command](#410-show-rates-command)
+    * [4.11. Mark/Unmark Command](#411-markunmark-command)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+      * [Initial Launch](#initial-launch)
+      * [Adding a record](#adding-a-record)
+      * [Displaying the list of inputs and conversion rates](#displaying-the-list-of-inputs-and-conversion-rates)
+      * [Deleting an expenditure](#deleting-an-expenditure)
+      * [Editing an expenditure](#editing-an-expenditure)
+      * [Duplicate an expenditure](#duplicate-an-expenditure)
+      * [Sorting the list](#sorting-the-list)
+      * [Set budget](#set-budget)
+      * [Check budget](#check-budget)
+      * [Mark/Unmark accommodation or tuition expenditures](#markunmark-accommodation-or-tuition-expenditures)
+      * [Find keyword](#find-keyword)
+<!-- TOC -->
 
+<div style="page-break-after: always;"></div>
 
 ## 1. Preface
 
@@ -100,9 +131,8 @@ will be displayed
     <i>Figure 2: UML diagram for the parser component</i>
 </p>
 
-It must be noted that not all the existing parser commands are included in this sequence diagram for parsing, namely
-the mark, unmark and edit commands. This is because they have a similar sequence diagram as the functions parseAdd and 
-parseLendBorrow. The only difference is the condition, with the loop happening one, one and four time(s) respectively. 
+It must be noted that not all the existing parser commands are included in this sequence diagram for parsing as other commands have a similar sequence diagram as the commands `exit` and 
+`parseLendBorrow`. The only difference is the condition and the number of times the loop occurs for each separate command. 
 
 
 ### 3.3. Expenditure Categories
@@ -141,13 +171,26 @@ In the diagram, the aforementioned expenditure categories inherit from the `Expe
 
 It must be noted that the date input field for `AccommodationExpenditure` and `TuitionExpenditure` is the `date` of repeat. This is due to the fact that they are lump sum expenditure types as explained in the section [before](#33-expenditure-categories).
 
+Below shows the sequence diagram of the `repeatDate` checking procedure.
+
+<p align="center">
+    <img src="team/images/repeatDate.png" width="50%">
+    <br/>
+    <i>Figure 4: Sequence diagram for the repeat date logic</i>
+</p>
+
 Upon instantiating the `AccommodationExpenditure` or `TuitionExpenditure`, the user input date is entered similarly via the `d/DATE` field. Subsequently, the input date will be incremented to the subsequent year, where the expenditure is expected to require payment again, **unmarking** itself. This is known as the `repeatDate`.
 
-After a full year has passed, and when the system date is **on**, or has **passed** `repeatDate`, the program enters the **optional path**, and expenditure will be unmarked. This is irregardless of whether the user has marked it previously. In the **optional path**, the `repeatDate` is incremented again to the subsequent year. This is so that the **optional path** will not be ran again until another full year has passed.
+MyLedger will constantly run `queryLumpSumDates()` in the main logic loop of the prorgam. As such, the instances of `AccommodationExpenditure` and `TuitionExpenditure` in the expenditure list are ran with `checkMark()`, which processes the main logic of the `repeatDate`.
 
-For example, taking the current date as `2023-04-10`, the user can instantiate the `TuitionExpenditure` with `tuition d/2023-04-20 a/5000 p/Semester 1 payment`. In this instance, the user has identified the `date` of repeat to be on 20th April. Thus, this input date once entered will be incremented to `2024-04-20`; the `repeatDate` is now `2024-04-20`, where the next *Semester 1* payment is expected to be due again. Launching MyLedger on 20th April 2024, or after that date will cause the expenditure to be unmarked. It will also set the next `repeatDate` to `2025-04-20`.
+The methods `checkNextRepeatDate()` and `handleNextRepeatDate()` will run continuously as aforementioned. Upon first instantiation, `checkNextRepeatDate()` runs in a loop as shown in figure 4. This loop increments the year of the `date` of repeat and updates it into the `repeatDate` attribute. The loop terminates when the year of repeat is subsequent to the current year. This ensures that the program will unmark the expenditures a full year from now.
 
-It must be noted that to be able to store the `repeatDate` separetely to trigger the aforementioned events, it is saved in the txtfile as part of the `AccommodationExpenditure` or `TuitionExpenditure` information. The `repeatDate` is given a delimiter of `r/` for the txtfile.
+Together with `checkNextRepeatDate()`. the `handleNextRepeatDate` method has an optional path that unmarks the expenditure as unpaid when `repeatDate` has been reached, or has been passed. After which, `repeatDate` is incremented to the next year and the optional path will not run again until a full year has passed. Unmarking of the expenditure is irregardless of whether the user has marked it previously.
+
+For example, taking the current date as `2023-04-10`, the user can instantiate the `AccommodationExpenditure` with `accommodation d/2023-04-20 a/5000 p/Semester 2 payment`. In this instance, the user has identified the `date` of repeat to be on 20th April. Thus, this input date once entered will be incremented to `2024-04-20`; the `repeatDate` is now `2024-04-20`, where the next *Semester 2* payment is expected to be due again. Launching MyLedger on 20th April 2024, or after that date will cause the expenditure to be unmarked. It will also set the next `repeatDate` to `2025-04-20`.
+
+It must be noted that to be able to store the `repeatDate` separetely to trigger the aforementioned events, it is saved in the txtfile as part of the `AccommodationExpenditure` or `TuitionExpenditure` information. The `repeatDate` is given a delimiter of `r/` for the txtfile. 
+
 
 ### 3.4. Command Component
 
@@ -168,14 +211,14 @@ The `Command` component is represented by the `command` package. The `command` p
 | `SetBudgetCommand`                                                                                                                                                                                                                                                                                  |                                                                               Class contains the operations in setting an amount of money users would like to budget.                                                                               |
 | `ShowRatesCommand`                                                                                                                                                                                                                                                                                  |                                                                                Contains the fixed conversion rates used when toggling between different currencies.                                                                                 |
 | `SortCommand`                                                                                                                                                                                                                                                                                       |                                                                         Class contains the operations pertaining to sorting the list of expenditures by amount or by date.                                                                          |
-| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                     |
+| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`                                                                                                                                                                                                                                     |                                                                            Class contains the operation pertaining to viewing the date and type of the expenditure list.                                                                            |
 
 Below represents the UML class diagram representing all the command classes that instantiates an expenditure record:
 
 <p align="center">
     <img src="team/images/simplifiedCommandClassDiagram.png" width="100%">
     <br/>
-    <i>Figure 4: UML diagram for the expenditure command classes</i>
+    <i>Figure 5: UML diagram for the expenditure command classes</i>
 </p>
 
 Next follows the command classes that interact with pre-existing expenditure records stored in the expenditure list. The table below describes the commands.
@@ -193,7 +236,7 @@ updated with all the current expenditures in the expenditure array list.
 <p align="center">
     <img src="team/images/saveList.png">
     <br/>
-    <i>Figure 5: Sequence diagram for TxtFileStatus</i>
+    <i>Figure 6: Sequence diagram for the process of saveExpenditureLists</i>
 </p>
 
 The following sequence diagram shows the details of the process for saveExpenditureList.
@@ -209,29 +252,29 @@ Subsequently, all `AccommodationExpenditure` and `TuitionExpenditure` are querie
 
 However, should a saved expenditure in the text file be corrupted, it will be isolated and deleted upon launch. Conditions for file corruption are explained in the [here](#353-corruption-of-saved-expenditures).
 
+Below shows the sequence diagram for the reading of the save file upon launch.
+
+<p align="center">
+    <img src="team/images/newInitializeList.png">
+    <br/>
+    <i>Figure 7: Sequence diagram for the reading feature of TxtFileStatus</i>
+</p>
+
 #### 3.5.3 Corruption of saved expenditures
 
 Expenditures in the saved file are deemed as corrupted when one of the following conditions are met:
 
-| Condition     | Justification                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| i. Missing delimiters or inputs that are not able to be parsed      | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.      |
-| ii. Invalid amounts  | As described in the next section [4.1](#41-add-expenditure-command), invalid amount inputs are deemed corrupted as MyLedger does not support them.             |
-| iii. Invalid dates for Lend and Borrow Expenditures  | As described in the next section [4.1](#41-add-expenditure-command), deadlines cannot occur before the date of expenditure and current date, and hence is abided when reading the save file.                    |
-| iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates  | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed.                   |
+| Condition                                                                                                        | Justification                                                                                                                                                                                         |
+|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| i. Missing delimiters or inputs that are not able to be parsed                                                   | This implies that the saved expenditure can no longer be parsed and is removed to prevent affecting inaccurate information to be displayed.                                                           |
+| ii. Invalid amounts                                                                                              | As described in the next section [4.1.1](#411-add-regular-and-lump-sum-expenditure-valid-inputs), invalid amount inputs are deemed corrupted as MyLedger does not support them.                       |
+| iii. Invalid dates for Lend and Borrow Expenditures                                                              | As described in the next section [4.1](#41-add-expenditure-command), deadlines cannot occur before the date of expenditure and current date, and hence is abided when reading the save file.          |
+| iv. `AccommodationExpenditure` and `TuitionExpenditure` repeat dates differing from first user-initialised dates | The aforementioned expenditure types are designed to repeat on the user specified dates annually. Any difference implies corruption and is removed to prevent inaccurate information to be displayed. |
 
 **Note of iv:**
 - `repeatDate`, as all other dates, is stored in `yyyy-MM-DD` format.
 - Corruption for the year segment is **not** deemed as a corruption, as MyLedger's repeating date feature   will automatically set it forward to the correct year it is supposed to repeat on. 
 - Corruption for the day and month implies the difference between the first user-initialised date and repeat dates. Thus, **is** deemed as a corruption.
-
-<p align="center">
-    <img src="team/images/initializeList.png">
-    <br/>
-    <i>Figure 6: Sequence diagram for the process of saveExpenditureList</i>
-</p>
-
-### 3.6. UI 
 
 ## 4. Command List
 
@@ -241,37 +284,70 @@ The `AcademicExpenditureCommand`, `AccommodationExpenditureCommand`, `Entertainm
 
 This is due to the fact that the 7 formerly stated commands all take in the same fields, and hence can be parsed in a similar fashion to instantiate the **Expenditure Command**, and later the **Expenditure** itself. In other words, the 7 stated commands are instantiated in the same way and will be explained altogether in this section.
 
-To instantiate the commands, the full commands are the following: 
-`AcademicExpenditureCommand`: `academic d/<date> a/<amount> p/<description>`
-- To create an academic expenditure.
+To instantiate the command classes, the full commands are the shown in the table below:
 
-`AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> p/<description>`
-- To create an accommodation expenditure.
+| Field     | Valid inputs                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| Regular Expenditure Categories     | `AcademicExpenditureCommand`: `academic d/<date> a/<amount> p/<description>`<br/>  `EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> p/<description>`<br/>  `FoodExpenditureCommand`: `food d/<date> a/<amount> p/<description>`<br/> `OtherExpenditureCommand`: `other d/<date> a/<amount> p/<description>`<br/> `TransportExpenditureCommand`: `transport d/<date> a/<amount> p/<description><br/>`.      |
+| Lump Sum Expenditure Categories  | `AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> p/<description>`<br/> `TuitionExpenditureCommand`: `tuition d/<date> a/<amount> p/<description>`.             |
+| Lend Borrow Expenditure Categories  | `BorrowExpenditureCommand`: `borrow d/<date> n/<name of party borrowed from> a/<amount> b/<return date> p/<description>`<br/>  `LendExpenditureCommand`: `lend d/<date> n/<name of party lent to> a/<amount> b/<return date> p/<description>`.                    |
 
-`EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> p/<description>`
-- To create an entertainment expenditure.
+Running the `command` classes for the aforementioned expenditure categories are parsed through the `parser` package. As such, all inputs received are checked in the latter package, and once deemed valid instantiates the respective expenditures in the `expenditure` package. The following section describes the valid inputs for each of the fields.
 
-`FoodExpenditureCommand`: `food d/<date> a/<amount> p/<description>`
-- To create a food expenditure.
+For both **regular expenditure categories** and **lump sum expenditure categories**, the explanation is as follows: 
 
-`OtherExpenditureCommand`: `other d/<date> a/<amount> p/<description>`
-- To create an expenditure with a category of "other".
+When the user inputs one of the 7 expenditure commands into the application, the `MainInputParser.java` takes in the input and determines the command's operations via switch statements. Next, the `ParseIndividualValue.java` class contains the operation to split the valid input given by the user. This splits the inputs into fields to instantiate the `command` classes belonging to their respective expenditure categories. After splitting, `MainInputParser.java` calls operations from `ParseAdd.java`. `ParseAdd.java` prepares the split inputs for the Expenditure categories in the `command` package as fields, and instantiates one of its seven command classes based on the user's specified expenditure category. 
 
-`TransportExpenditureCommand`: `transport d/<date> a/<amount> p/<description>`
-- To create a transport expenditure.
+Upon `execute()`, The command classes then instantiates the respective `expenditure` and adds it to the expenditure list. For example the execution of the `AcademicExpenditureCommand` instantiates the `AcademicExpenditure` and adds it to the expenditure list belonging to the `ExpenditureList` class.
 
-`TuitionExpenditureCommand`: `tuition d/<date> a/<amount> p/<description>`
-- To create a tuition expenditure.
 
-When the user inputs one of the 7 expenditure commands into the application, the `MainInputParser.java` takes in the input and determines the command's operations via switch statements. Next, the `ParseIndividualValue.java` class contains the operation to split the valid input given by the user. This splits the inputs into fields to instantiate the **Expenditure Commands**. In this instance, the 7 stated commands will be referred to `ExpenditureCommand`. After splitting, `MainInputParser.java` calls operations from `ParseAdd.java`. `ParseAdd.java` prepares the split inputs for the `ExpenditureCommand` as fields, and instantiates one of its seven commands based on the user's specified expenditure category. 
+#### 4.1.1 Add regular and lump sum expenditure valid inputs
 
-Below shows the sequence diagram for the aforementioned logic:
+The fields for the regular and lump sum expenditure categories are as follows:
+
+- `date`: Input as a `String`, parsed in `yyyy-MM-DD` format.
+- `amount`: Input as a `String`, parsed to `double`.
+- `description`: Input as a `String`, no restriction on input.
+
+Below depicts the table explaining the fields and their valid inputs:
+
+| Field     | Valid inputs                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| `date`     | Parsed in `yyyy-MM-DD` format. Violating the format raises the `DateTimeParseException` and is not allowed.    |
+| `amount`  | Since this is parsed to a `double`, it raises the following exceptions when:<br/> `InvalidCharacterInAmount`: When special characters such as `.d`, `.e` and `.f` are input<br/> `NumberFormatException` : When numbers are not input<br/>  `SmallAmountException`: When amount input is less than the supported $0.01 SGD<br/>  `NotPositiveValueException`: When a negative value is input as the amount<br/>  `LargeValueException`: When a value larger than $10000000 SGD is input<br/> `WrongPrecisionException`: When more than 2 decimal places is input   |
+| `description`  | There is no restriction on the description. Users are free to enter any description they like.                    |
+
+**Note for lump sum expenditures:**
+
+As per section [3.3.1](#331-repeat-dates-for-accommodation-and-tuition-expenditures), the date field for `AccommodationExpenditure` and `TuitionExpenditure` are indicators of the `date` of repeat. Thus, the aforementioned expenditures will be unmarked a full year from the `date` entered.
+
+Below shows the sequence diagram for the `AcademicExpenditure` for the aforementioned logic:
 
 <p align="center">
-    <img src="team/images/parseAddSequenceDiagram.png">
+    <img src="team/images/academicExpenditureCommand.png">
     <br />
-    <i>Figure 7: Sequence Diagram for edit Command</i>
+    <i>Figure 8: Sequence Diagram for edit Command</i>
 </p>
+
+This diagram is applicable to all **regular and lump sum** expenditure categories.
+
+#### 4.1.2 Add lend borrow expenditure valid inputs
+
+Following the valid inputs for the `date`, `amount` and `description`, the `BorrowExpenditureCommand` and `LendExpenditureCommand` has two additional fields:
+
+- `borrowerName` or `lenderName`: Input as a `String`, parsed as a `String`.
+- `deadline`: Input as a `String`, parsed in `yyyy-MM-DD` format.
+
+Below depicts the table explaining the valid inputs for the two aforementioned fields:
+
+| Field     | Valid inputs                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| `borrowerName` or `lenderName`     | Parsed as a `String`. Since delimiters follow this field in the command interface, `/` are not encouraged to be entered together with the names.     |
+| `deadline`  | The following exceptions will be raised when:<br/> `DateTimeParseException`: When date provided is not in the correct format<br/> `InvalidDeadlineException`: When date provided is before the `date` added, and before the **current date**. |
+
+Justification for the `InvalidDeadlineException` after current date:
+
+The `InvalidDeadlineException` is thrown when the `deadline` entered is before the current date. This is the Lend and Borrow expenditure categories help keep track of ongoing lent or borrowed amounts. Past records incur a net expenditure of 0 and thus is more meaningful to allow users to enter a `deadline` after the current date to help them keep track of ongoing lend and borrow expenditures.
 
 To instantiate the commands, the full commands for `lend` and `borrow` are the following:
 
@@ -302,7 +378,7 @@ The sequence diagram below shows the interactions of a successful execution of t
 <p align="center">
     <img src="team/images/parserEdit.png">
     <br />
-    <i>Figure 8: Sequence Diagram for edit Command</i>
+    <i>Figure 9: Sequence Diagram for edit Command</i>
 </p>
 
 ### 4.3. Delete Command
@@ -314,7 +390,7 @@ The format for delete is ```delete INDEX```
 Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseDelete` is called, which in turn calls `DeleteCommand` that calls `deleteExpenditure` in `ExpenditureList` and returns the string containing the string to print for delete. 
 
 ### 4.4. Find Command
-
+case insensitive
 
 
 ### 4.5. Duplicate Command
@@ -326,6 +402,29 @@ The format for duplicate is ```duplicate INDEX```
 Similar to the `delete` command, after `MainInputParser` has recognized the command, `ParseDuplicate` is called, which in turn calls `DuplicateCommand` which calls `duplicateExpenditure` in `ExpenditureList` and returns the string containing the string to print for duplicate.
 
 ### 4.6. Sort Command
+
+The `sort` command sorts the expenditure list by the `sortType` indicated by the user. 
+
+Format:  `sort <sortType>`
+
+The `sortType` is expressed in the table below:
+
+| `sortType`     | Description                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| `ascend`       | The sort type `ascend` sorts the list in ascending amount.       |
+| `descend`       | The sort type `descend` sorts the list in descending amount.       |
+| `earliest`       | The sort type `earliest` sorts the list from the earliest date.       |
+| `latest`       | The sort type `latest` sorts the list from the earliest date.       |
+
+The logic of the sort command is as follows:
+
+When the user inputs the command `sort`, the `MainInputParser` identifies it and calls `sortExpenditures` from `ParseSort`. It then checks if the given `sortType` follows the valid inputs as expressed in the table above. Should the input given be none of the aforementioned valid inputs, the `sortExpenditures` method throws an `InvalidSortInputException` and displays the error message to the user.
+
+On a valid `sortType` input, the `SortCommand` is instantiated from the `command` classes. This then sets the `sortType` attribute of this instance to be the valid input entered by the user. 
+
+Upon calling of the `execute` command, the `SortCommand` takes the set attribute of `sortType` and runs it through a switch statement. Based on the valid inputs mentioned in the table above, the execution of this method sorts the expenditure list by the given input. This subequently produced the `CommandResult` that displays the new sorted list to the user, and is **permanent** to provide a better user experience for users after sorting the list.
+
+After which, the instance of SortCommand is ready for Java's Garbage Collection.
 
 ### 4.7. View Command
 
@@ -339,7 +438,7 @@ The sequence diagram below shows the details of the process for viewdate.
 <p align="center">
     <img src="team/images/viewDate.png">
     <br />
-    <i>Figure 8: Sequence Diagram of the process for viewdate</i>
+    <i>Figure 10: Sequence Diagram of the process for viewdate</i>
 </p>
 
 With the addition of a currency feature, the specificDateString method in ExpenditureList also gets a value converted to the 
@@ -361,7 +460,7 @@ The sequence diagram for `check` without parameters can be observed as follows.
 <p align="center">
     <img src="team/images/checkCommand.png">
     <br/>
-    <i>Figure 9: UML diagram of check command </i>
+    <i>Figure 11: UML diagram of check command </i>
 </p>
 
 The UML diagrams for `check` with dates as the filter (eg. `check y/2023` or `check d/03-04-2023`) are the same but with slightly different method name, thus the above can 
@@ -376,9 +475,11 @@ accurately represent the check commands.
 
 ### 4.11. Mark/Unmark Command
 
-The `mark` and `unmark` functions in the system are applicable only to the accommodation and tuition expenses. These functions serve to indicate that the user has paid for the respective expense and it is considered as paid in the system. This enables accurate tracking of the expenditure amount when check function is called. If an expense is not marked as paid, it will not be considered as a paid expenditure.
+The `mark` and `unmark` functions in the system are applicable only to the `AccommodationExpenditure` and `TuitionExpenditure`. These functions serve to indicate that the user has paid for the respective expense and it is considered as paid in the system. This enables accurate tracking of the expenditure amount when check function is called. If an expense is not marked as paid, it will not be considered as a paid expenditure.
 
 For other types of expenses, they will be marked as paid right after they are added by the user, and cannot be modified thereafter.
+
+<div style="page-break-after: always;"></div>
 
 ## Product scope
 ### Target user profile
@@ -417,6 +518,8 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 | v2.1    | user             | compare my budget with expenses made under a category          | have a clearer insight on my spending in that expenditure category |
 | v2.1    | user             | have my repeated expenses auto-check on its own                | reduce the hassle of having to input repeated expenditures         |
 
+
+<div style="page-break-after: always;"></div>
 
 ## Non-Functional Requirements
 
@@ -835,7 +938,65 @@ Expected :
 ```
 Failed to check! Please check the format and try again!
 ```
+#### Mark/Unmark accommodation or tuition expenditures
+- Prerequisite: An accommodation or tuition expenditure must already exist in the list for the user to mark. 
+The list can be checked in SGD using the `list SGD` command. A user may add an accommodation or tuition expenditure by
+following the `Adding a record` documentation.
 
+1. Marking an expenditure
+- Mark indicates that the expenditure has been paid, otherwise the expenditure will be interpreted as unpaid.
+- Prerequisite: Accommodation expenditure of such is stored at the first index of the list:
+```
+1. [Accommodation] || [ ] || Date: 3 Feb 2023 || Value: 200.00 || Description: NUS
+```
+
+Test case 1:
+```
+mark 1
+```
+Expected : 
+```
+Marked your expenditure!
+```
+
+Test case 2 (Attempt to mark other expenditures that are not accommodation or tuition):
+```
+mark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+
+Test case 3:
+```
+mark 1
+```
+Expected :
+```
+Sorry! This expenditure is already marked!
+```
+
+2. Unmarking an expenditure
+- Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances.
+
+Test Case 1:
+```
+unmark 1
+```
+Expected :
+```
+Unmarked your expenditure!
+```
+Test case 2 (Attempt to unmark other expenditures that are not accommodation or tuition):
+```
+unmark 2
+```
+Expected :
+```
+No paid field for this expenditure!
+```
+2. 
 #### Find keyword
 1. Finding keywords under the descriptions column in their list of expenditures
 
