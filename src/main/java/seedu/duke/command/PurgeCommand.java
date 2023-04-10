@@ -4,10 +4,13 @@ import seedu.duke.company.CompanyList;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.storage.CompanyListEncoder;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
 public class PurgeCommand extends Command{
+
+    Ui ui = new Ui();
 
     public PurgeCommand(String commandType) {
         super(commandType);
@@ -27,9 +30,13 @@ public class PurgeCommand extends Command{
             companyList.purgeData();
             CompanyListEncoder.write(companyList);
         } catch (EmptyListException err){
+            ui.showLine();
             System.out.println("Nothing inside company list");
+            ui.showLine();
         } catch (InvalidIndexException | IOException e) {
+            ui.showLine();
             System.out.println("Unsuccessful in saving your file :/");
+            ui.showLine();
         }
     }
 }

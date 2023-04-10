@@ -24,6 +24,10 @@ public class Venue {
         return venueIndex;
     }
 
+    public int getVenueCapacity() {
+        return venueCapacity;
+    }
+
     @Override
     public String toString() {
         return venueIndex + ". " +venueName + " " + venueLocation + " " + venueCapacity;
