@@ -870,19 +870,40 @@ Sample Format:
 #### History Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input: `history 12345678910`
-    * Expected Output: Prints the historical information of the item of specified UPC. If the UPC code is not found in 
-      the inventory, prints a string to inform user that item is not found.  
-    * Output Example: (Assuming the UPC is valid)
+  * **Positive** Test Case Input: `history 1234`
+    * Expected Output: Prints a message showing the history of the item with UPC code `1234`, which shows its initial
+      attributes when it was first added, the changes made to it over its lifetime, and its current attributes.
+    * Output Example (Assuming item with UPC `1234` exists in the inventory):
 
 ````
 __________________________________________________________________________
-Item added at: 6:49 PM, SUNDAY, APRIL 9, 2023
-Name: apples
-UPC: 12345678910
-Price: 1.0
-Quantity: 1
-Category: fruit
+Item added at: 4:48 AM, MONDAY, APRIL 10, 2023
+Name: Oreo
+UPC: 1234
+Price: 2.0
+Quantity: 5
+Category: Snacks
+__________________________________________________________________________
+__________________________________________________________________________
+At: 12:30 PM, MONDAY, APRIL 10, 2023
+Sold 1 items
+__________________________________________________________________________
+__________________________________________________________________________
+Name: Oreo
+UPC: 1234
+Price: 2.0
+Quantity: 4
+Category: Snacks
+__________________________________________________________________________
+````
+
+  * **Negative** Test Case Input: `history -1` (Item with such UPC does not exist)
+    * Expected Output: Returns an error message informing the user that the item does not exist.
+    * Output Example (Assuming item with UPC `1234` exists in the inventory):
+
+````
+__________________________________________________________________________
+Command failed! Reason: Item not found in database. Please add item first!
 __________________________________________________________________________
 ````
 
@@ -899,6 +920,16 @@ Sample Format: "history [UPC]"
 #### Alert Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
+
+  * **Positive** Test Case Input: `alert add upc/1234 min/3`
+    * Expected Output: Prints a message informing the user that an alert has been successfully added.
+    * Output Example:
+````
+__________________________________________________________________________
+Successfully added a new alert.
+__________________________________________________________________________
+````
+
   * **Positive** Test Case Input: `alert add upc/12345678910 min/20`
     * Expected Output: Prints message on successful addition of new alert, as well as notify user if current quantity is 
       above or below threshold (for max and min alerts respectively). If item UPC is not found in inventory, prints message
@@ -912,8 +943,18 @@ __________________________________________________________________________
 ALERT: The quantity of apples is below the minimum level of 20.
 __________________________________________________________________________
 ````
+  * **Negative** Test Case Input: `alert` (Incomplete format)
+    * Expected Output: Prints an error message that tells the user to refer to the User Guide for the appropriate
+      format for the `alert` command.
+    * Output Example:
 
-  * **Negative** Test Case Input: `alert add upc/`
+````
+____________________________________________________________
+Wrong/Incomplete Entry For Alert! Please refer to UG for more information
+____________________________________________________________
+````
+
+* **Negative** Test Case Input: `alert add upc/`
     * Expected Output: Prints error message for wrong or incomplete entry, and sample format
     * Output Example:
 

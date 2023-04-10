@@ -20,6 +20,9 @@ public abstract class Parser {
     protected static final Integer STOCK_INDEX = 4;
     protected static final String ALERT_REMOVE_REGEX = "upc/(\\d+) (level\\/)(min|max)$";
     protected static final Integer REMOVE_MINMAX_INDEX = 3;
+
+    protected static final int EMPTY = 0;
+
     protected String rawInput;
     protected Inventory inventory;
     protected SessionManager session;
