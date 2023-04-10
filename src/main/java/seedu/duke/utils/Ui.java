@@ -1136,8 +1136,8 @@ public class Ui {
         } else {
             System.out.println("AutoSave Mode: " + "FALSE");
         }
-        System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
-        System.out.println("Alerts Data File Status: " + SessionManager.alertDataFileExist());
+        System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist(inventory));
+        System.out.println("Alerts Data File Status: " + SessionManager.alertDataFileExist(inventory));
         printLine();
         System.out.println("List of active alerts:");
 

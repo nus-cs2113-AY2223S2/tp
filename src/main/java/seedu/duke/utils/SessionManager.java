@@ -34,12 +34,12 @@ public class SessionManager {
         SessionManager.isAutoSaveActive = isAutoSaveActive;
     }
 
-    public static String inventoryDataFileExist() {
-        return Storage.checkDataFileExist(true);
+    public static String inventoryDataFileExist(Inventory inventory) {
+        return Storage.checkDataFileExist(inventory, true);
     }
 
-    public static String alertDataFileExist() {
-        return Storage.checkDataFileExist(false);
+    public static String alertDataFileExist(Inventory inventory) {
+        return Storage.checkDataFileExist(inventory, false);
     }
 
 
