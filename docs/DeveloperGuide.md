@@ -28,6 +28,15 @@
 ![img_13.png](img_13.png) <br>
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the Surgery Command**
 
+![img_27.png](img_27.png) <br>
+**Figure 3: Sequence Diagram showing the logical implementation of executeCommand() for the EditConsultation Command**
+
+![img_26.png](img_26.png) <br>
+**Figure 4: Sequence Diagram showing the logical implementation of executeCommand() for the EditVaccination Command**
+
+![img_13.png](img_13.png) <br>
+**Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the EditSurgery Command**
+
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user removes an appointment.
 
 ![img_10.png](img_10.png) <br>
@@ -186,6 +195,7 @@ and helps improve efficiency in running a Vet clinic, while reducing human error
 | v2.0    |user| track appointment dates                     | prioritize the upcoming appointments                     |
 | v2.0    |user| track locations                             | inform the doctor                                        |
 | v2.1    |user| view all appointments by date               | look at upcoming appointments for the clinic             |
+| v2.1    |user| edit the existing appointment               | to make edits to the existing appointment                |
 
 
 ## Non-Functional Requirements
