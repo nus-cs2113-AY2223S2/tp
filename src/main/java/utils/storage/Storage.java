@@ -1,7 +1,6 @@
 package utils.storage;
 
 import java.io.File;
-import java.io.IOException;
 
 public abstract class Storage implements IDataStorage {
 
@@ -15,7 +14,4 @@ public abstract class Storage implements IDataStorage {
         return saveFile.exists() && saveFile.isFile();
     }
 
-    public void createSaveFile() throws IOException {
-        saveFile.createNewFile();
-    }
 }

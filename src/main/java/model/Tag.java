@@ -53,6 +53,9 @@ public class Tag {
         }
         return false;
     }
+    public boolean isDeckEmpty() {
+        return decks.isEmpty();
+    }
 
     public ArrayList<CardUUID> getCardsUUID() {
         return this.cards;
@@ -60,6 +63,16 @@ public class Tag {
 
     public void addCard(CardUUID cardUUID) {
         cards.add(cardUUID);
+    }
+
+    public void addCardIntoDeckHashSet(DeckList deckList, CardUUID cardUUID) {
+        for(DeckUUID deckUUID: this.decks) {
+            Deck deck = deckList.findDeckFromUUID(deckUUID);
+            if(!deck.cardIsInList(cardUUID) && !deck.cardIsInMap(cardUUID)) {
+                deck.addCardToMap(cardUUID);
+            }
+            deck.addCardToSet(cardUUID);
+        }
     }
 
     public void removeCard(CardUUID cardUUID) {

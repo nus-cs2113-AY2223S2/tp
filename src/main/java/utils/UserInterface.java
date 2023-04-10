@@ -95,7 +95,7 @@ public class UserInterface {
 
     public void printCardList(CardList cardList) {
         if (cardList.isEmpty()) {
-            System.out.println("Your current list is empty.");
+            System.out.println("Your current list of cards is empty.");
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
@@ -199,7 +199,7 @@ public class UserInterface {
 
     public void printEditTagName(String oldTagName, Tag tag) {
         System.out.println(
-                "Tag " + tag.getUUID() + "tag name has been changed from " + oldTagName + " to " + tag.getTagName());
+                "Tag " + tag.getUUID() + " name has been changed from " + oldTagName + " to " + tag.getTagName());
     }
 
     public void printEditDeckNameSuccess(String oldDeckName, Deck deck) {

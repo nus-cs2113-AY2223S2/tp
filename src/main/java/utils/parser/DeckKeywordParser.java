@@ -8,9 +8,8 @@ import org.apache.commons.cli.ParseException;
 import utils.command.Command;
 import utils.command.DeleteDeckCommand;
 import utils.command.EditDeckNameCommand;
-import utils.command.ListCardsUnderDeckCommand;
 import utils.command.ListDecksCommand;
-import utils.command.ListTagsUnderDeckCommand;
+import utils.command.ListItemsDeckCommand;
 import utils.command.PrintHelpCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -66,15 +65,10 @@ public class DeckKeywordParser extends KeywordParser {
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOptions, tokens);
 
-        if (cmd.hasOption("c") && cmd.hasOption("t")) {
-            throw InvalidSyntaxException.buildGenericMessage();
-        } else if (cmd.hasOption("c")) {
-            String deckName = cmd.getOptionValue("c");
-            return new ListCardsUnderDeckCommand(deckName);
-        } else if (cmd.hasOption("t")) {
-            String deckName = cmd.getOptionValue("t");
-            return new ListTagsUnderDeckCommand(deckName);
-        } else {
+        if (cmd.hasOption("d")) {
+            String deckName = cmd.getOptionValue("d");
+            return new ListItemsDeckCommand(deckName);
+        }  else {
             return new ListDecksCommand();
         }
     }
@@ -98,18 +92,21 @@ public class DeckKeywordParser extends KeywordParser {
         Options editOptions = new OptionsBuilder(Parser.DECK_KEYWORD, EDIT_ACTION).buildOptions();
         Options deleteOptions = new OptionsBuilder(Parser.DECK_KEYWORD, DELETE_ACTION).buildOptions();
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
+        Options runOptions = new OptionsBuilder(Parser.DECK_KEYWORD, RUN_ACTION).buildOptions();
         // Combine all actions
         String[] syntaxList = {
             "deck edit -o OLD_DECK_NAME -n NEW_DECK_NAME",
             "deck delete -d DECK_NAME [{-c CARD_UUID | -i CARD_INDEX} | {-t TAG_NAME | -x TAG_INDEX}]",
-            "deck list [-c DECK_NAME | -t DECK_NAME]"
+            "deck list [-d DECK_NAME]",
+            "deck run"
         };
         String[] headerList = {
             "Edit existing decks",
             "Delete decks",
-            "List decks"
+            "List decks",
+            "Run a deck"
         };
-        Options[] optionsList = {editOptions, deleteOptions, listOptions};
+        Options[] optionsList = {editOptions, deleteOptions, listOptions, runOptions};
 
         String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);

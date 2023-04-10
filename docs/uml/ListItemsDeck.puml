@@ -1,0 +1,53 @@
+@startuml
+autoactivate on
+
+participant ":ListItemsDeckCommand" as ListItemsDeckCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Deck" as Deck
+
+participant ":UserInterface" as UserInterface
+participant ":DeckKeywordParser" as DeckKeywordParser
+
+
+Create ListItemsDeckCommand
+DeckKeywordParser -> ListItemsDeckCommand : ListItemsDeckCommand()
+activate ListItemsDeckCommand
+
+ListItemsDeckCommand -> ListItemsDeckCommand : execute()
+ListItemsDeckCommand -> ListItemsDeckCommand : findCardsUnderDeck()
+ListItemsDeckCommand -> DeckList : findDeckFromName(String)
+return foundDeck
+
+ListItemsDeckCommand -> Deck : getCardsUUID()
+return cardsUUID
+
+ref over ListItemsDeckCommand, CardList
+Add all the Cards with cardsUUID to the foundCardList
+end ref
+return foundCardList
+ListItemsDeckCommand -> UserInterface : printCardList(foundCardList)
+return
+
+'start of listing the tags'
+
+ListItemsDeckCommand -> ListItemsDeckCommand : findTagsUnderDeck()
+
+ListItemsDeckCommand -> Deck : getTagsUUID()
+return tagsUUID
+
+ref over ListItemsDeckCommand, CardList
+Add all the Tags with tagsUUID to the foundTagList
+end ref
+
+return foundTagList
+ListItemsDeckCommand -> UserInterface : printTagList(foundTagList)
+return
+
+
+@enduml
