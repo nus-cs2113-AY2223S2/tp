@@ -33,12 +33,16 @@ Enhancements to existing features
 Documentation
 * User Guide
   * Formatted the User Guide
-  * Added the tables of contents, links to different sections within the User Guide, and colours to the headers
+  * Added the table of contents, links to different sections within the User Guide, and colours to the headers
   * Added description of command, format, example usage and important notes to some commands
     * `add`, `delete`, `pack`, `unpack`, `editquantity`, `list`, `deletelist` and `find`
-  * Added the command summary
+  * Added the command summary 
+  * PR [#166](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/166), [#174](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/174), [#177](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/177), [#178](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/178)
 * Developer Guide
   * Formatted the Developer Guide
+  * Formatted the table of contents and links to different sections within the Developer Guide
+  * Added the section on `EditQuantityCommand`
+  * PR [#181](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/181), [#186](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/186), [PR #190](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/190)
 
 Community
 * Reported bugs and gave suggestions to other teams in the class during [PE-D](https://github.com/shannentan/ped/issues)
