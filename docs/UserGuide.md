@@ -619,14 +619,20 @@ Format: **`bye`**
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer?
-
-**A**: Copy the txt file named "rainyDay" that is in the same directory as "rainyDay.jar", to the new device's directory
-that "rainyDay.jar" is going to be stored in.
-
 **Q**: I tried to input a value, but it is not showing up as what I typed!
 
 **A**: The value of transactions has a maximum of $21,474,836.47 and will also be rounded down to 2 decimal places.
+
+**Q**: Does rainyDay support the use of non-alphanumeric characters (link to glossary) such as emojis and non-english
+characters?
+
+**A**: Using these characters may lead to unexpected behaviours. Hence, users are encouraged to use alphanumeric
+characters only when using rainyDay
+
+**Q**: How do I transfer my data to another computer?
+
+**A**: Transfer the entire folder containing the "rainyDay.jar" file from one device to the other device. You can now use 
+rainyDay in your new device with the same data you previously saved.
 
 **Q**: I remember having saved data, but why is it that when I start rainyDay, it says that the report is empty?
 
