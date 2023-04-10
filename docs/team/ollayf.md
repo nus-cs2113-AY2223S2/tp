@@ -1,4 +1,4 @@
-# Hosea - Project Portfolio Page
+# Ng Yu Fei - Project Portfolio Page
 
 ## Overview
 **SecureNUS**, a Command Line Interface (CLI) based password manager for students in National University of
@@ -21,7 +21,7 @@ or they did not want to save this password anymore
   - Highlights: This was challenging as I had to make sure it worked for all operations that require multi line input.
  However, this idea actually came up from User Acceptance Testing when I asked a friend to review the application.
  Among many other suggestions, this was chosen as it was critical to them yet somethings that could be adapted quickly. 
-- Code Contributed: [Reposense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=t15&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=ollayf&tabRepo=AY2223S2-CS2113-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+- Code Contributed: [Reposense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=t15-2&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=ollayf&tabRepo=AY2223S2-CS2113-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 - Project Management: 
   - Managed releases v1.0 and v2.1
   - Tested and made ready for release
