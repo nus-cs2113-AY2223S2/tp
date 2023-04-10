@@ -781,8 +781,7 @@ The following are instructions for testers to manual test:
      expenditures, input names should not have slashes.
   
      - Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
-     expenditures cannot to edit lend/borrow expenditures 
-    <br></br>
+     expenditures cannot to edit lend/borrow expenditures <br></br>
     
     Test Case 1 (Editing `food` expenditure):
     ```
@@ -848,7 +847,7 @@ The following are instructions for testers to manual test:
 #### Duplicate an expenditure
 1. Duplicating an expenditure from the list of inputs.
      - Prerequisite: There should be at least one expenditure in the list for `duplicate` to work. The list can be checked
-     in SGD using the `list SGD` command <br> </br>
+     in SGD using the `list SGD` command <br></br>
     
     Test Case 1:
     ```
@@ -947,20 +946,18 @@ The following are instructions for testers to manual test:
     displayed in the message. <br><br/>
 
 2. Checking the expenditure on a certain day/year with the intended budget
-     - `check` compares the budget with the spending of a certain time period that the user wants to check with <br></br>
+     - `check` compares the budget with the spending of a certain time period that the user wants to check with <br>
     
     Test case 1 (Check with year):
     ```
     check y/2023
     ```
-    Expected : Returns the comparison result with the expenditures made in 2023.
-   <br></br>
+    Expected : Returns the comparison result with the expenditures made in 2023.<br></br>
     Test case 2 (Check with day):
     ```
     check d/2023-01-12
     ```
-    Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.
-   <br></br>
+    Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.<br></br>
     Test case 3:
     ```
     check m/2023-01-12
@@ -969,24 +966,20 @@ The following are instructions for testers to manual test:
     ```
     Failed to check! Please check the format and try again!
     ```
-    Error occurs due to wrong format for parameter. <br></br>
-
+    Error occurs due to wrong format for parameter.<br></br>
 3. Checking the expenditure classified under a certain expenditure type and comparing with set budget
      - `check [expenditure type]` compares all the unmarked expenditures classified under that expenditure type with the set
-     budget so that the user can compare spending with budget. This command does not include borrow and lend expenditures. <br> </br>
-  
+     budget so that the user can compare spending with budget. This command does not include borrow and lend expenditures. <br></br>
     Test case 1:
     ```
     check t/transport
     ```
-    Expected : Returns the comparison result with all unmarked transport expenditures.
-    <br> </br>
+    Expected : Returns the comparison result with all unmarked transport expenditures.<br>
     Test case 2:
     ```
     check t/academic
     ```
-    Expected : Returns the comparison result with all unmarked academic expenditures.
-    <br> </br>
+    Expected : Returns the comparison result with all unmarked academic expenditures.<br>
     Test case 3:
     ```
     check academic
@@ -1036,8 +1029,7 @@ The following are instructions for testers to manual test:
     ```
 
 2. Unmarking an expenditure
-     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br></br>
-    
+     - Unmark indicates that the previously paid expenditure is now unpaid due to certain circumstances. <br></br>    
     Test Case 1:
     ```
     unmark 1
@@ -1065,14 +1057,14 @@ The following are instructions for testers to manual test:
     ```
     Prerequisite : There are existing expenditures with the description : `bus`
     
-    Expected : List of items corresponding to the keyword will be displayed. <br></br>
+    Expected : List of items corresponding to the keyword will be displayed.
     Test case 2:
     ```
     find taxi
     ```
     Prerequisite : There are no existing expenditures with the description : `taxi`
 
-    Expected : Message showing that no matching records are found in the list.<br></br>
+    Expected : Message showing that no matching records are found in the list.
 2. View specific date expenditures under the date column
 
     Test case 1:
@@ -1082,7 +1074,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are current expenditures dated 20 Feb 2023.
     
     Expected : List of all expenditures with the corresponding date value, as well as the total amount spent
-    on that specific date <br></br>
+    on that specific date
     Test case 2:
     ```
     viewdate 2023-02-20
@@ -1090,7 +1082,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are no current expenditures dated 20 Feb 2023.
     
     Expected : Similar to previous, but there will not be any items shown in the list. The total amount will
-    be shown as 0. <br></br>
+    be shown as 0. 
     Test case 3:
     ```
     viewdate 12 Jan 2021
@@ -1103,8 +1095,8 @@ The following are instructions for testers to manual test:
     ```
     viewdate
     ```
-    Expected : Similar to previous, an invalid message with the error will be displayed for the user. <br></br>
-3. View specific type of expenditure under the expenditure column <br></br>
+    Expected : Similar to previous, an invalid message with the error will be displayed for the user. <br>
+3. View specific type of expenditure under the expenditure column <br>
     Test case 1:
     ```
     viewtype transport
@@ -1112,7 +1104,7 @@ The following are instructions for testers to manual test:
     Prerequisite : There are current expenditures with the `transport` type.
     
     Expected : List of all expenditures under transport expenditure, as well as the total amount spent
-      for that type of expenditure <br></br>
+      for that type of expenditure.
     Test case 2:
     ```
     viewtype transport
