@@ -128,18 +128,17 @@ txt file will be updated immediately after the successful adding/deletion of sav
 - For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
   ArrayList of saved modules
 
-
 ### Parser
 
-The parser class is responsible for parsing the user's input commands and returning the appropriate command object.
-The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules),
-prepareListPuModulesCommand(userCommandSecondKeyword, universities), ExitCommand(),
-prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities),
-DeleteModuleCommand(storage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
-throwing InvalidCommandException if the user's input command does not match the specified format.
+The Parser class is responsible for parsing the user's input commands and returning the appropriate command object.
+The `parseUserCommand()` is the main function of the Parser class where it first tokenizes the user input string and 
+extracts the first two keywords of the input. The first keyword is used to determine the type of command that the user
+is executing, while the second keyword (if it exists) is used as an argument for the command. Afterwards, it uses a
+switch-case statement to execute the command corresponding to the first keyword in the user's input. if the user's input command does not
+match the specified command format., it will throw `InvalidCommandException` and `ExceptionHandleCommand` is returned
+instead.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
-- (TODO: finish up the rest of the command cases)
 ![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
 ### UserInterface (UI)
