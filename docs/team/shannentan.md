@@ -42,7 +42,7 @@ Documentation
   * Formatted the Developer Guide
   * Formatted the table of contents and links to different sections within the Developer Guide
   * Added the section on `EditQuantityCommand`
-  * PR [#181](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/181), [#186](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/186), [PR #190](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/190)
+  * PR [#181](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/181), [#186](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/186), [#190](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/190)
 
 Community
 * Reported bugs and gave suggestions to other teams in the class during [PE-D](https://github.com/shannentan/ped/issues)
