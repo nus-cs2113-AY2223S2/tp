@@ -1,7 +1,6 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.DuplicateRecipeNameException;
-import seedu.duke.exceptions.ListEmptyException;
 import seedu.duke.exceptions.NoMatchingRecipeFound;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.EditFormatException;
