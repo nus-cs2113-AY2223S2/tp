@@ -10,6 +10,7 @@ import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.NotPositiveValueException;
+import seedu.exceptions.DateLimitException;
 import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.InvalidDeadlineException;
 import seedu.exceptions.InvalidDateException;
@@ -40,8 +41,9 @@ public class ParseLendBorrow {
 
     /**
      * @author itszhixuan
+     * @throws DateLimitException
      */
-    public Command addItem(String command) throws NotPositiveValueException, InvalidDateException {
+    public Command addItem(String command) throws NotPositiveValueException, InvalidDateException, DateLimitException {
         try {
             // Format: category d/date, n/name, a/amount, b/deadline, s/description
 
@@ -51,15 +53,16 @@ public class ParseLendBorrow {
             LocalDate deadline = fetchDeadline();
             String descriptionVal = fetchDescription();
             ExceptionChecker.checkDate(date, deadline);
+            ExceptionChecker.checkDateLimit(date);
 
             // Differentiates between lend and borrow
             switch (command) {
-            case LendExpenditureCommand.COMMAND_WORD:
-                return new LendExpenditureCommand(descriptionVal, name, amount, date, deadline);
-            case BorrowExpenditureCommand.COMMAND_WORD:
-                return new BorrowExpenditureCommand(descriptionVal, name, amount, date, deadline);
-            default:
-                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
+                case LendExpenditureCommand.COMMAND_WORD:
+                    return new LendExpenditureCommand(descriptionVal, name, amount, date, deadline);
+                case BorrowExpenditureCommand.COMMAND_WORD:
+                    return new BorrowExpenditureCommand(descriptionVal, name, amount, date, deadline);
+                default:
+                    return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }
 
         } catch (DateTimeParseException d) {

@@ -2,6 +2,8 @@ package seedu.commands;
 
 import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.InvalidCharacterInAmount;
+import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.InvalidDeadlineException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.SmallAmountException;
 import seedu.exceptions.WrongPrecisionException;
@@ -52,6 +54,7 @@ public class EditCommand extends Command {
             editExpenditure(editedExpenditure, isLendOrBorrowExpenditure);
             handleLumpSumExpenditure(editedExpenditure, isLendOrBorrowExpenditure);
             handleLendBorrowExpenditure(editedExpenditure);
+            ExceptionChecker.checkDate(fetchDate(isLendOrBorrowExpenditure), fetchDeadline());
             return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
         } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException | NumberFormatException s) {
             return new CommandResult(ERROR_LACK_OF_PARAMETERS_MESSAGE.toString());
@@ -59,10 +62,9 @@ public class EditCommand extends Command {
             return new CommandResult(ERROR_INVALID_AMOUNT_PRECISION.toString());
         } catch (NotPositiveValueException p) {
             return new CommandResult(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
-        } catch (SmallAmountException | InvalidCharacterInAmount e) {
+        } catch (InvalidDeadlineException | InvalidDateException | SmallAmountException | InvalidCharacterInAmount
+                | DateLimitException e) {
             return new CommandResult(e.getMessage());
-        } catch (DateLimitException l) {
-            return new CommandResult(l.getMessage());
         }
     }
 
