@@ -155,18 +155,17 @@ txt file will be updated immediately after the successful adding/deletion of sav
 - For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
   ArrayList of saved modules
 
-
 ### Parser
 
-The parser class is responsible for parsing the user's input commands and returning the appropriate command object.
-The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules),
-prepareListPuModulesCommand(userCommandSecondKeyword, universities), ExitCommand(),
-prepareAddModuleCommand(moduleStorage, userCommandSecondKeyword, puModules, universities),
-DeleteModuleCommand(moduleStorage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
-throwing InvalidCommandException if the user's input command does not match the specified format.
+The Parser class is responsible for parsing the user's input commands and returning the appropriate command object.
+The `parseUserCommand()` is the main function of the Parser class where it first tokenizes the user input string and 
+extracts the first two keywords of the input. The first keyword is used to determine the type of command that the user
+is executing, while the second keyword (if it exists) is used as an argument for the command. Afterwards, it uses a
+switch-case statement to execute the command corresponding to the first keyword in the user's input. if the user's input command does not
+match the specified command format., it will throw `InvalidCommandException` and `ExceptionHandleCommand` is returned
+instead.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
-- (TODO: finish up the rest of the command cases)
 ![ParserSequenceDiagram.png](diagrams%2FParserSequenceDiagram.png)
 
 ### UserInterface (UI)
@@ -334,9 +333,9 @@ The following sequence diagram shows the relationship between the classes involv
 to the indexToDeletePuSpecificListToZeroBased.
 5. indexToDelete is then set to the current Module iteration index, and it will remove the module from the list of 
 modules.
-6. The list is the sorted according to the string length of each module in the list of modules to be printed out in a
+6. The list is then sorted according to the string length of each module in the list of modules to be printed out in a
 readable format.
-7. The list is saved in the modules txt file by overwriting it via writeModListToFile(module) function.
+7. The list is saved in the saved_modules.txt file by overwriting it via writeModListToFile(module) function.
 8. deleteModule function then returns true and DeleteModuleCommand calls UI class to print the successful deletion of
 module message in the User Console.
 
@@ -559,6 +558,42 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 5. If entertainment cost has changed, EditEntertainmentCommand would call UI class to print a
    EditCostMessage and return.
 
+### List Found Nus Mods Command
+
+Allows the user to search for mappable PU's modules from the specific NUS module code inputted.
+> Syntax: /search [Specific Nus Module Code]
+
+Sequence Diagram of List Found Nus Mods Command.
+![ListFoundNusModsCommand.png](diagrams%2FCommands%2FListFoundNusModsCommand.png)
+
+**Explanation**
+1. ListFoundNusModsCommand object is initialized with ArrayList<Modules> foundNusModList containing all 
+mappable PU's modules, nusModCode containing the specific NUS module code inputted and the Arrayist universities.
+2. ListFoundNusModsCommand calls printFoundNusModules() of UI Class passing these three objects as arguments.
+3. printFoundNusModules() first filters out modules of the specific Partner University using uniID from the
+   ArrayList<Module> modules.
+4. printFoundNusModules() loops through the ArrayList<Modules> foundNusModList to get the corresponding PU's moduleCode,
+moduleName, moduleMCs and currPuAbbr.
+5. In the loop, it will print out to the User Control the list of mappable PU's module according to the user's specific
+Nus module code and the lists will be shown accordingly to their PU university.
+
+### List Mappable Nus Mods Command
+
+Shows the user the list of available Nus Module Code that they can use to search for mappable PU's module
+> Syntax: /search /mods
+
+Sequence Diagram of List Mappable Nus Mods Command.
+![ListMappableNusModsCommand.png](diagrams%2FCommands%2FListMappableNusModsCommand.png)
+
+**Explanation**
+1. ListMappableNusModsCommand object calls printNusMods() from the UI class
+2. To remove the duplicated Nus Module Codes in the ArrayList<Module> allModule, removeDupeNusMods() was called and
+return the HashSet<String> nusModuleCodeList.
+3. printNusMods() will then loop through for each String nusModCode in the nusModuleCodeList.
+4. At each nusModCode string, it will loop through all the PU modules in the allModules ArrayList<Module> to retrieve
+Nus module details such as nusModuleCode string, nusModuleName string and int nusModuleMc.
+5. Once a match is found for the nusModuleCode and nusModCode, it will print out the available Nus module details and
+break from the loop to print the next Nus module details.
 
 ## Product scope
 

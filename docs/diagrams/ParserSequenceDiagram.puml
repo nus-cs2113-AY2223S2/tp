@@ -13,44 +13,98 @@ activate "userInputWords: ArrayList<String>"
 ":Parser" <-- "userInputWords: ArrayList<String>"
 deactivate "userInputWords: ArrayList<String>"
 
-alt list
+alt /list
     ":Parser" -> ":Parser": prepareListCommands(userInputWords, universities, modules)
     activate ":Parser"
     return handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
     ":Parser" -> ":Parser": handleListCommands(userInputWords, userCommandSecondKeyword, universities, modules)
     activate ":Parser"
     alt pu
-        ":Parser" -> "ListPuCommand:Command" : ListPuCommand()
-        activate "ListPuCommand:Command"
-        "ListPuCommand:Command" -->
+        ":Parser" -> ":ListPuCommand" : ListPuCommand()
+        activate ":ListPuCommand"
     else current
         ":Parser" -> ":Parser":prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules)
         activate ":Parser"
         return handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
         ":Parser" -> ":Parser": handleListCurrentPuModulesCommand(universities, universityAbbName, univIndex, modules)
         activate ":Parser"
-        ":Parser" -> "ListCurrentPuCommand:Command" : ListCurrentPuCommand(modules, univID)
-        activate "ListCurrentPuCommand:Command"
-        "ListCurrentPuCommand:Command" -->
+        ":Parser" -> ":ListCurrentPuCommand" : ListCurrentPuCommand(modules, univID)
+        activate ":ListCurrentPuCommand"
     else
         ":Parser" -> ":Parser":prepareListPuModulesCommand(userCommandSecondKeyword, universities)
         activate ":Parser"
         return handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
         ":Parser" -> ":Parser":handleListPuModulesCommand(universities, universityAbbName, univIndex, isUnivAbbr)
         activate ":Parser"
-        ":Parser" -> "ListPuModulesCommand:Command":ListPuModulesCommand(univID, universityName)
-        activate "ListPuModulesCommand:Command"
-        "ListPuModulesCommand:Command" -->
-
+        ":Parser" -> ":ListPuModulesCommand":ListPuModulesCommand(univID, universityName)
+        activate ":ListPuModulesCommand"
     end
-else search
-else exit
-else add
-else remove
+else /search
+    ":Parser" -> ":Parser":prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities)
+    activate ":Parser"
+    return handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities)
+    ":Parser" -> ":Parser": handleSearchByNusModCode(foundModulesToPrint, searchModCode, allModules, universities)
+    activate ":Parser"
+    alt Specific NUS Module Code
+        ":Parser" -> ":ListFoundNusModsCommand": ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities)
+        activate ":ListFoundNusModsCommand"
+    else /mods
+        ":Parser" -> ":ListMappableNusModsCommand": ListMappableNusModsCommand(allModules)
+        activate ":ListMappableNusModsCommand"
+    end
+else /exit
+    ":Parser" -> ":ExitCommand": ExitCommand()
+    activate ":ExitCommand"
+else /add
+    ":Parser" -> ":Parser":prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities)
+    activate ":Parser"
+    return handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities)
+    ":Parser" -> ":Parser":handleAddModuleCommand(storage, abbreviationAndCode, allModules, universities)
+    activate ":Parser"
+    ":Parser" -> ":AddModuleCommand": AddModuleCommand(moduleToAdd, storage)
+    activate ":AddModuleCommand"
+else /remove
+    ":Parser" -> ":Parser":prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities)
+    activate ":Parser"
+    return handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
+    ":Parser" -> ":Parser":handleRemoveModuleCommand(storage, abbreviationAndIndex, universities)
+    activate ":Parser"
+    ":Parser" -> ":DeleteModuleCommand": DeleteModuleCommand(storage, indexToDelete, univID)
+    activate ":DeleteModuleCommand"
 else /help
+    ":Parser" -> ":HelpCommand": HelpCommand()
+    activate ":HelpCommand"
 else /budget
+    ":Parser" -> ":Parser":prepareBudgetCommand(userInput, budgetPlanner)
+    activate ":Parser"
+    ":Parser" -> ":BudgetCommand"
+    activate ":BudgetCommand"
 else /deadline/list
+    ":Parser" -> ":ListDeadlinesCommand": ListDeadlinesCommand(deadlines)
+    activate ":ListDeadlinesCommand"
 else /deadline/add
+    ":Parser" -> ":Parser":prepareAddDeadlineCommand(deadlineStorage, userInputWords)
+    activate ":Parser"
+    return handleAddDeadlineCommand(deadlineStorage, userInputWords)
+    ":Parser" -> ":Parser":handleAddDeadlineCommand(deadlineStorage, userInputWords)
+    activate ":Parser"
+    ":Parser" -> ":AddDeadlineCommand": AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage)
+    activate ":AddDeadlineCommand"
 else /deadline/remove
-end
+    ":Parser" -> ":DeleteDeadlineCommand": DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines)
+    activate ":DeleteDeadlineCommand"
+
+deactivate ":ListPuCommand"
+deactivate ":DeleteDeadlineCommand"
+deactivate ":AddDeadlineCommand"
+deactivate ":ListDeadlinesCommand"
+deactivate ":BudgetCommand"
+deactivate ":HelpCommand"
+deactivate ":DeleteModuleCommand"
+deactivate ":AddModuleCommand"
+deactivate ":ExitCommand"
+deactivate ":ListMappableNusModsCommand"
+deactivate ":ListFoundNusModsCommand"
+deactivate ":ListCurrentPuCommand"
+deactivate ":ListPuModulesCommand"
 @enduml

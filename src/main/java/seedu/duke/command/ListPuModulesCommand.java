@@ -17,6 +17,10 @@ public class ListPuModulesCommand extends Command {
         this.filter = filter;
     }
 
+    /**
+     * Executes ListPuModulesCommand where it calls UI class to print out list of specified
+     * Partner University mappable modules, filtered if any filter is inputted.
+     */
     @Override
     public void execute() {
         ui.printPUModListMessage(universityName);
