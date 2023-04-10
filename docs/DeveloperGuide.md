@@ -204,6 +204,17 @@ The `Transactions` component
 - `Transactions` are only accessed through the `TransactionManager`
 - `Transactions` associated to an account are deleted if and only if the account is deleted
 
+### Storage Component
+
+The following is a class diagram of the `Storage` component
+![StoreClassDiagram](images/StoreClassDiagram.png)
+
+- The `Storage` component is responsible for saving and loading data from disk.
+- It stores the account and transaction data in JSON format using the Gson library.
+- The `Storage` component makes use of dependency injection with the `StoreInterface` so that a stub (`TestStore`) can
+  be injected when running automated tests. This prevents the automated tests from modifying the actual data stored on
+  disk or having to consider potential side effects from previous tests.
+
 ## Implementation
 
 ### Create/Delete account feature

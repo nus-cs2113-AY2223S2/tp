@@ -51,27 +51,28 @@ I implemented most of the read logic for the Store class, allowing the program t
 ### Community
 
 * PRs reviewed
-  [#39](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/39)
-  [#98](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/98)
-  [#104](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/104)
+    * [#39](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/39)
+    * [#98](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/98)
+    * [#104](https://github.com/AY2223S2-CS2113-T13-1/tp/pull/104)
 
 * Suggestions for other teams
-  [Food Supply Tracker](https://github.com/nus-cs2113-AY2223S2/tp/pull/9),
-  [WellNUS++](https://github.com/bawfen/ped/issues)
+    * [Food Supply Tracker](https://github.com/nus-cs2113-AY2223S2/tp/pull/9)
+    * [WellNUS++](https://github.com/bawfen/ped/issues)
 
 <div style="page-break-after: always;"></div>
 
 ### Documentation
 
 * User Guide
-    * Added section on Storage Related, Currency Related and Date Related inputs under Notes.
+    * Added section on Storage Related, Currency Related and Date Related inputs under Notes
 * Developer Guide
-    * Added Architecture section and architecture diagram.
-    * Added General Sequence section, providing a high-level overview of how the program processes a single command.
+    * Added Architecture section and architecture diagram
+    * Added General Sequence section
     * Added Parser section
-    * Added Appendix: Requirements
-    * Added Appendix: Instructions for Manual Testing
-    * Added Appendix: Instructions for updating the API Key
+    * Added Storage section
+    * Added Appendix - Requirements
+    * Added Appendix - Instructions for Manual Testing
+    * Added Appendix - Instructions for updating the API Key
 
 ##### Architecture
 
@@ -103,3 +104,14 @@ The `Parser` Component
 
 - Parses the user input and creates the relevant `Command` object
 - Makes use of the `CommandType` enum to determine the type of command to create
+
+### Storage Component
+
+The following is a class diagram of the `Storage` component
+![StoreClassDiagram](../images/StoreClassDiagram.png)
+
+- The `Storage` component is responsible for saving and loading data from disk.
+- It stores the account and transaction data in JSON format using the Gson library.
+- The `Storage` component makes use of dependency injection with the `StoreInterface` so that a stub (`TestStore`) can
+  be injected when running automated tests. This prevents the automated tests from modifying the actual data stored on
+  disk or having to consider potential side effects from previous tests.
