@@ -48,8 +48,9 @@ critical to the app's function. We hope that this document will serve you well i
 ## 1.2 Getting started
 
 Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/master/docs/UserGuide.md).
-
+<br>
 [Back to contents page](#table-of-contents)
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 # 2. Design and Implementation
 ## 2.1 Architecture
 ![Architecture Diagram](UML/Images/ArchitectureDesign.png)
@@ -68,8 +69,9 @@ The rest of the app consists of four components:
 * `Parser`: The command executor
 *  `EventList`: Holds the data of the app in memory
 * `Storage`: Reads data from and writes data to the hard disk
-
+<br>
 [Back to contents page](#table-of-contents)
+
 ### 2.2 Parser Component
 The component will return the correct command based on what the user inputs into the application.
 
