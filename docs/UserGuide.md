@@ -465,8 +465,6 @@ Displays list of the other currency available in MyLedger and their value agains
 
 - Check budget with expenditures made in specific year: `check y/YEAR`
 
-- Check budget with expenditures made in specific month: `check m/YEAR-MONTH`
-
 - Check budget with expenditures made in specific day: `check d/YEAR-MONTH-DAY`
 
 - Check budget with expenditures made under specific expenditure type: `check t/EXPENDITURE TYPE`

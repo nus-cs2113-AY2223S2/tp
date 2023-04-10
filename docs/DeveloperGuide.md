@@ -927,7 +927,7 @@ check
 Expected : Similar to previous test case, amount of money exceeded by and other information will be
 displayed in the message.
 
-2. Checking the expenditure on a certain day/month/year with the intended budget
+2. Checking the expenditure on a certain day/year with the intended budget
 - `check` compares the budget with the spending of a certain time period that the user wants to check with
 
 Test case 1 (Check with year):
@@ -936,19 +936,13 @@ check y/2023
 ```
 Expected : Returns the comparison result with the expenditures made in 2023.
 
-Test case 2 (Check with month):
-```
-check m/2023-01
-```
-Expected : Returns the comparison result with the expenditures made in Jan 2023. 
-
-Test case 3 (Check with day):
+Test case 2 (Check with day):
 ```
 check d/2023-01-12
 ```
 Expected : Returns the comparison result with the expenditures made on 12 Jan 2023.
 
-Test case 4:
+Test case 3:
 ```
 check m/2023-01-12
 ```
