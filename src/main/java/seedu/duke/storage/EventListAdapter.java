@@ -206,7 +206,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
             }
         }
         if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
-            throw new NPExceptions("Event Corrupted");
+            throw new NPExceptions("Event Corrupted from modifications to JSON file!");
         }
         reader.endObject();
         String combination = date + " " + time;
@@ -233,50 +233,62 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         if (hasEndTime && isRecurring && hasLocation){
             if ((timeInterval == null) || (endTime == null) || (location == null) || (description == null) ||
                     (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
+            }
+            if (startTime.isAfter(endTime)){
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
             temp.changeLocation(location);
             return temp;
         } else if (hasEndTime && isRecurring){
             if ((timeInterval == null) || (endTime == null)  || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
+            }
+            if (startTime.isAfter(endTime)){
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             return new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
         } else if (hasEndTime && hasLocation){
             if ( (endTime == null) || (location == null) || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
+            }
+            if (startTime.isAfter(endTime)){
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime);
             temp.changeLocation(location);
             return temp;
         } else if (isRecurring && hasLocation){
             if ((timeInterval == null) || (location == null) || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             Event temp = new Event(description, startTime,hasStartTime);
             temp.changeLocation(location);
             return temp;
         } else if (hasEndTime){
             if ( (endTime == null) || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
+            }
+            if (startTime.isAfter(endTime)){
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             return new Event(description, startTime, endTime, hasStartTime, hasEndTime);
         } else if (hasLocation){
             if ( (location == null) || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             Event temp = new Event(description, startTime, hasStartTime);
             temp.changeLocation(location);
             return temp;
         } else if (isRecurring){
             if ((timeInterval == null) || (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             return new Event(description, startTime, hasStartTime, timeInterval);
         } else{
             if ( (description == null) || (startTime == null)){
-                throw new NPExceptions("Event Corrupted!");
+                throw new NPExceptions("Event Corrupted from modifications to JSON file!");
             }
             return new Event(description, startTime, hasStartTime);
         }
