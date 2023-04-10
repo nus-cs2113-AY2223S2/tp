@@ -8,7 +8,7 @@
     * [Create Account: `signup`](#create-account-signup)
     * [Log In To Your Account: `login`](#log-in-to-your-account-login)
     * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense-logout)
-    * [Exiting the program (outside the account): `exit`](#exiting-the-program--outside-the-account---exit)
+    * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
   * [Features](#features)
     * [Get helpful instruction: `help`](#get-helpful-instruction-help)
     * [Adding an expense: `add`](#adding-an-expense-add)
