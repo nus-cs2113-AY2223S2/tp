@@ -58,12 +58,12 @@ Parser involves dealing with parsing user input to understand what the user want
 Command classes are executed after the parser class has processed the user input. The figure below shows a typical class 
 diagram, AddCommand, which inherits from Command.
 
-![CommandClassDiagram.png](UML%2FCommandClassDiagram.png)
+![AddCommand_Class.png](UML%2FImage%2FAddCommand_Class.png)
 
 
 We also have an example of a sequence diagram for the AddCommand as shown in the figure below.
 
-![img.png](img.png)!
+![AddCommand.png](UML%2FImage%2FAddCommand.png)
 
 The following <code>Command</code> classes inherits from the main <code>Command</code> class and 
 executes different code.
