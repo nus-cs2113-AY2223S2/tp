@@ -16,6 +16,7 @@ It is written in Java, and has about 5kLoC.
 - Added the ability to show class information for a module
 - Added the ability to list the module list from timetable
 - Added the ability to list specific module and classes from module list
+- Added clash warnings for Event-Deadlines clashes
 - JUnit tests with full branch coverage for Module, ModuleList and SemesterUtils classes
 - Junit tests for Parser, Ui, and ListModuleWithLessonCommand classes
 - Patches, bug fixes
