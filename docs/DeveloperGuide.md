@@ -392,8 +392,13 @@ The format for delete is ```delete INDEX```
 Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseDelete` is called, which in turn calls `DeleteCommand` that calls `deleteExpenditure` in `ExpenditureList` and returns the string containing the string to print for delete. 
 
 ### 4.4. Find Command
-case insensitive
 
+The ```FindCommand``` provides the search functionality for finding a specific or few transactions from the list of transactions by their respective descriptions. 
+
+The command is able to search for all characters matching the keyword in the expenditure descriptions and the keyword is case-sensitive.
+
+Similar to the process for `edit`, `MainInputParser` has recognized the command, `ParseFind` is called, which in turn calls `FindCommand` which loops through the Expenditure
+list and compares the keyword provided with the the descriptions. 
 
 ### 4.5. Duplicate Command
 
