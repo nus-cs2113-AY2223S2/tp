@@ -179,7 +179,7 @@ The save file can be edited and modified, however, if certain field is changed i
 when running at a later stage, the storage will discard all the data in the EventList and provide the user with an empty Event List. 
 One such example would be the deletion of a certain field's key.
 
-In the case of multiple where there are duplicate names within a JSON object, lexically preceding values for the same key shall be overwritten,
+In the case where there are duplicate names within a JSON object, lexically preceding values for the same key shall be overwritten,
 and the last value for the key will be taken as the accurate value. 
 
 <br>
@@ -201,7 +201,7 @@ as individual/recurring invents by the user through the add events functionality
 ![Save To File Sequence Diagram](UML/Images/SaveToFile.png)
 
 Similarly, the state of the user's event list is saved when the user exits the application by calling the saveToFile() 
-method.
+method. 
 
 <br>
 
