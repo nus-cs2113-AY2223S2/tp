@@ -263,4 +263,4 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 1. To load sample company data, run <code>load samples</code> to load some companies into company list
 2. Type <code>help</code> for more information on the commands
-2. To reset the company list and purge all company list data, run <code>purge</code>
+3. To reset the company list and purge all company list data, run <code>purge</code>
