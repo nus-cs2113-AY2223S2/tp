@@ -65,7 +65,8 @@ a normal Java project <br />
 * Run the `seedu/bankwithus/BankWithUs.java` and try a few commands. 
 You may want to refer to our User Guide for the list of commands <br />
 * Run the tests to ensure they all pass
----
+
+<div style="page-break-after: always;"></div>
 
 ## Design and Implementation
 
@@ -76,6 +77,8 @@ The  Architecture Diagram given above explains the high-level design of the App.
 Given below is a quick overview of main components and how they interact with each other.
 
 For a quick link to a summary refer to: [Summary of overall architecture](#summary-of-overall-architecture)
+
+<div style="page-break-after: always;"></div>
 
 **Interactions**
 
@@ -91,6 +94,8 @@ Note: The lifeline of the Transaction class does not end after the cross due to 
 Class: `Ui.java`
 
 *  Contains all code that interfaces directly with the CLI
+
+<div style="page-break-after: always;"></div>
 
 ### Parser-Component
 Class: `Parser.java`
@@ -233,13 +238,20 @@ General sequence diagram
 
 *Note: Many details especially from the SaveGoal and WithdrawalChecker classes have been omitted for brevity.*
 
+<div style="page-break-after: always;"></div>
+
 Exceed withdrawal limit case
 
 <img src="images/ExceedWLCase.png" width="700" />
 
+<div style="page-break-after: always;"></div>
+
 Fail save goal case
 
 <img src="images/FailSaveGoalCase.png" width="800" />
+
+<div style="page-break-after: always;"></div>
+
 
 ## Command: `add-account`:
 
@@ -367,6 +379,7 @@ list of accounts, and the Account class represents the individual accounts and t
 
 ---
 
+<div style="page-break-after: always;"></div>
 
 ## Appendix
 
@@ -428,8 +441,8 @@ Windows: Command Prompt <br />
 ## Instructions for manual testing
 ### Launch
 1. Ensure you have Java 11 installed in your Computer
-2. Download the latest release `BankWithUs.jar` from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases)
-3. Copy the file to the folder you want to use as the home folder for BankWithUs
+2. Download the latest release from [here](https://github.com/AY2223S2-CS2113-T13-3/tp/releases)
+3. Copy the file to the folder you want to use as the home folder for BankWithUs, and rename the file to `BankWithUs.jar`
 4. Open a command terminal, cd into the folder you put the `BankWithUs.jar` file in, and use `java -jar BankWithUs.jar` 
 command to run the application. A CLI should appear in a few seconds
 
