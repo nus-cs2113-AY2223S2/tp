@@ -494,7 +494,20 @@ Successfully added tag physics to deck midterm
 
 Rename an existing deck
 
-Sample output:
+***Lists of flags (in any order)*** :
+
+- `-o` the old name of the deck,  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+- `-n` the new name of the deck,  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+
+***Example of usage:***
+
+```
+deck edit -o old-deck-name -n new-deck-name
+```
+
+***Sample output:***
 
 ```
 Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
@@ -518,9 +531,18 @@ Successfully removed deck deck1 from the deck list.
 
 ### Delete a card/tag from deck:
 
-`deck delete -d DECK_NAME {-c CARD_UUID | -t TAG_NAME}`
+`deck delete -d DECK_NAME [-c CARD_UUID | -t TAG_NAME]`
 
-Delete a card from an existing deck either by specifying the cardUUID or tagUUID to delete.
+***Lists of flags (in any order)*** :
+
+- `-d` the name of the deck to be deleted (the entire deck and its content will be deleted),
+  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+- [OPTIONAL] `-t` the tag name to be removed from the deck,  ***(no whitespaces allowed)***, ***must not*** exceed 50
+  characters
+- [OPTIONAL] `-c` the uuid of the card to be removed from the deck
+
+Delete a card from an existing deck either by specifying the card UUID or tag name to delete.
 
 To delete a card from an existing deck
 
@@ -538,12 +560,12 @@ Alternatively, delete a tag from an existing deck
 
 ***Example of usage:***
 
-`deck delete -t 833249f3-a090-474c-a3de-c1b5f25609d4 -d my-deck`
+`deck delete -t physics -d my-deck`
 
 ***Sample output:***
 
 ```
-Successfully removed tag 833249f3-a090-474c-a3de-c1b5f25609d4 from deck my-deck
+Successfully removed tag physics from deck my-deck
 ```
 
 The entire deck can also be deleted (cards and tags that were in the deck are not deleted)
