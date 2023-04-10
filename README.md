@@ -12,6 +12,7 @@ $$$$$$__ $$____ _$$$$__ $$__$$_ _$$$$$_ $$___$$_ _$$$$$_ $$__$$_
 Welcome to BrokeMan!
 
 Your personal budget manager to prevent you to become broke like me...
+
 If you are a fast typer, this CLI based program will help you track your financial status much faster than the traditional UI based apps!
 
 ---
