@@ -1,0 +1,38 @@
+@startuml
+!include ../style.puml
+
+'review1, class diagram'
+actor User
+
+participant ":Review" as Review COLOR_MOVIE
+User -> Review
+activate Review
+
+create ":Scanner" as Scanner
+Review -> Scanner : setReview()
+activate Scanner
+
+loop COLOR_BLOCK input not empty
+
+    Scanner -> User
+    User --> Scanner : Input
+end
+
+Scanner --> Review : return input
+Review -> Review : set reviewText
+
+Review -> Scanner : get numerical input
+
+loop input not between 0 to 5
+    Scanner -> User
+    User --> Scanner : input
+end
+
+Scanner --> Review : return input
+deactivate Scanner
+
+Review -> Review : set reviewStars
+destroy Scanner
+
+Review --> User : feedback
+@enduml

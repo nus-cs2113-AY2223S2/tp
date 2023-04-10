@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+Package "Movie Component" <<Rectangle>>{
+Class Movie COLOR_MOVIE
+Class MovieList COLOR_MOVIE_LIST
+Class WatchedList COLOR_MOVIE_LIST
+Class ToWatchList COLOR_MOVIE_LIST
+Class MovieEntry COLOR_MOVIE
+}
+
+'idk how to get the "Outside thing to work"
+class ":Command" as cmd COLOR_COMMAND
+
+cmd ..> MovieList
+
+MovieList : +add(Movie)
+MovieList : +list()
+
+'lists extends movielist
+WatchedList -up-|> MovieList
+ToWatchList -up-|> MovieList
+
+WatchedList *-right- "*" MovieEntry : lists >
+ToWatchList *-right- "*" Movie : lists >
+WatchedList : + setReview()
+
+'movieEntry extends movie
+MovieEntry -up-|> Movie
+Movie : + getMovieDetail() : String
+MovieEntry : + setReview()
+@enduml

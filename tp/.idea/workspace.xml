@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="79b135cc-0c08-4be8-b823-1a2a280965f4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/further_filter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/imdb.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/moviemate_data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../data/movies_trimmed.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/main/java/MovieDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/main/java/Storage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../src/test/java/WatchedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/parsedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/../data/parsedata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../data/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/UserGuide.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/UserGuide.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/MovieEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/MovieEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/MovieList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/MovieList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/MovieMate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/MovieMate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ReadCSVFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/ReadCSVFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/ToWatchList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/ToWatchList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/Ui.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main/java/WatchedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main/java/WatchedList.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2NDyXkwNTESAy1HDH1hw2W4vXh7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79b135cc-0c08-4be8-b823-1a2a280965f4" name="Changes" comment="" />
+      <created>1679212988286</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679212988286</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+exit 0
 
 # change to script directory
 cd "${0%/*}"

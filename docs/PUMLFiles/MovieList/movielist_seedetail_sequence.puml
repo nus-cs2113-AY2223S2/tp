@@ -1,0 +1,19 @@
+@startuml
+
+'movielist4, sequence diagram'
+actor User
+
+User -> seedetail
+seedetail -> Ui : showListMessage(MovieList movieList)
+Ui --> User: list
+seedetail -> Parser : parseInt(String inputNumber)
+Parser --> seedetail : return index
+
+seedetail -> MovieList: getMovieDetail(int index)
+MovieList --> seedetail: return detail
+
+seedetail --> User : detail
+seedetail -> Ui: showDetailMessage()
+Ui --> User : feedback
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+'movieList, class diagram'
+skinparam classAttributeIconSize 0
+
+MovieList <|-- ToWatchList
+MovieList <|-- WatchedList
+MovieList : + movieList()
+MovieList : + add()
+MovieList : + remove()
+MovieList : + filter()
+WatchedList : + watchList()
+ToWatchList : + toWatchList()
+
+newpage
+
+
+@enduml

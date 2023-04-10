@@ -1,4 +1,6 @@
-# Duke project template
+# CS2113-W12-4 Team Project tP
+
+## Please check out our [Home Page](https://ay2223s2-cs2113-w12-4.github.io/tp/).
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 

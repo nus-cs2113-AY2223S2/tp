@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+allowmixing
+
+Package " "<<Rectangle>>{
+    Class UI COLOR_UI
+    Class Parser COLOR_PARSER
+    Class MovieMate COLOR_MAIN
+    Class Movie COLOR_MOVIE
+    Class Storage COLOR_STORAGE
+    Class Command COLOR_COMMAND
+}
+
+Class "Local Files" COLOR_STORAGE
+Database "Movie List" COLOR_MOVIE
+Actor User
+
+'MovieMate handles all of this!'
+MovieMate -down-> UI
+MovieMate -down-> Movie
+MovieMate -down-> Storage
+
+UI ..> Parser
+Movie --> Storage
+Storage ..> Movie
+Parser ..> Command
+Command ..> MovieMate
+
+Storage ..> "Local Files" :save/read
+Storage ..> "Movie List"
+
+User .right.> UI
+
+
+@enduml

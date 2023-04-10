@@ -1,0 +1,8 @@
+@startuml
+!include style.puml
+allowmixing
+
+Class UI COLOR_UI
+Class Parser COLOR_PARSER
+
+@enduml

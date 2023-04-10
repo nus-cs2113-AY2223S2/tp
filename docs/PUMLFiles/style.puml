@@ -1,0 +1,27 @@
+!define COLOR_MAIN #d5d5d3
+!define COLOR_PARSER #5E807F
+!define COLOR_UI #EAF2D7
+!define COLOR_MOVIE_LIST #de5b00
+!define COLOR_MOVIE #4FBEDE
+!define COLOR_BLOCK #ffeeff
+!define COLOR_STORAGE #EDAF97
+!define COLOR_COMMAND #1e6ab3
+
+
+'Taken from https://github.com/se-edu/addressbook-level3/blob/master/docs/diagrams/style.puml'
+'This is to ensure we fully comply with style requirements'
+'Removing non-standard stuff.'
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+
+hide footbox
+hide circle
+
+'change to standard UML icons'
+skinparam classAttributeIconSize 0
+

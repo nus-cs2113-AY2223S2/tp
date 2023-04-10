@@ -1,0 +1,21 @@
+@startuml
+
+'movielist2, sequence diagram'
+actor User
+
+User -> watched
+watched -> MovieList : add(String inputTitle)
+MovieList -> MovieDatabase : find(inputTitle)
+MovieDataBast --> MovieList : return releventMovies
+
+
+MovieList -> Scanner : get numerical input
+Scanner -> User
+User --> Scanner : input index
+Scanner --> MovieList : return index
+
+MovieList -> MovieList : createMovie()
+MovieList -> MovieList : add()
+
+MovieList --> User : feedback
+@enduml

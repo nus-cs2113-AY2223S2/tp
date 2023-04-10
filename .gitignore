@@ -13,5 +13,11 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# DO NOT upload on GitHub! big file!
+*.tsv
+
+# user-specific toWatchList not updated.
+*.txt
+
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT

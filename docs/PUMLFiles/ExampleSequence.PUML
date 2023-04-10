@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+skinparam maxMessageSize 100
+actor User
+participant ":Ui" as ui COLOR_UI
+participant ":MovieMate" as main COLOR_MAIN
+participant ":Parser" as parser COLOR_PARSER
+participant ":Command" as cmd COLOR_COMMAND
+participant ":WatchedList" as list COLOR_MOVIE
+participant ":Storage" as db COLOR_STORAGE
+participant ":Movie" as movie COLOR_MOVIE
+
+User -> ui : "watched la la"
+activate ui COLOR_UI
+
+ui -> main
+
+activate main COLOR_MAIN
+
+main -> parser : parseCommand("watched la la")
+
+activate parser COLOR_PARSER
+
+create cmd
+parser -> cmd
+activate cmd COLOR_COMMAND
+
+cmd --> parser : new AddWatchedListCommand
+
+
+parser --> main
+deactivate parser
+
+main -> cmd : execute()
+
+cmd -> list
+activate list COLOR_MOVIE
+
+list -> db : find()
+activate db COLOR_STORAGE
+
+create movie
+db -> movie
+activate movie COLOR_MOVIE
+movie --> db : new Movie
+deactivate movie
+
+db --> list
+deactivate db
+destroy movie
+list -> ui : prompt index, print found movies
+
+ui --> User : print found movies
+
+User -> ui : "1""
+ui --> list
+
+
+list --> cmd
+deactivate list
+
+cmd --> main
+deactivate cmd
+
+main -> ui : next input
+
+ui --> User
+deactivate ui
+
+@enduml
