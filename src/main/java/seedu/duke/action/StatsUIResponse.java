@@ -128,7 +128,7 @@ public class StatsUIResponse {
         ArrayList<String> msgs = new ArrayList<String>();
         String comment = Messages.STATS_PRINT_RIGHT_TRACK.toString();
 
-        if (totalExpenses > totalBudgets) {
+        if (totalExpenses > totalBudgets + totalDeposits) {
             comment = Messages.STATS_PRINT_OVERSPEND.toString();
         }
 
