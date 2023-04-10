@@ -224,16 +224,14 @@ public abstract class KeywordParser {
     /**
      * Combines help messages for all actions into a single message
      *
-     * @param keyword     Associated keyword
-     * @param actionList  Actions
+     * @param syntaxList  Command syntaxes
      * @param headerList  Descriptions of actions
      * @param optionsList All action Options for this keyword
      * @return Formatted help string
      */
-    protected String formatHelpMessage(String keyword, String[] actionList, String[] headerList,
-            Options[] optionsList) {
+    protected String formatHelpMessage(String[] syntaxList, String[] headerList, Options[] optionsList) {
         assert optionsList.length == headerList.length;
-        assert optionsList.length == actionList.length;
+        assert optionsList.length == syntaxList.length;
 
         HelpFormatter formatter = new HelpFormatter();
 
@@ -241,8 +239,7 @@ public abstract class KeywordParser {
         PrintWriter printWriter = new PrintWriter(stringWriter);
 
         for (int i = 0; i < optionsList.length; i++) {
-            String syntax = "`" + keyword + " " + actionList[i] + "`";
-            formatter.printHelp(printWriter, FORMAT_HELP_WIDTH, syntax, headerList[i], optionsList[i],
+            formatter.printHelp(printWriter, FORMAT_HELP_WIDTH, syntaxList[i], headerList[i], optionsList[i],
                     FORMAT_HELP_LEFT_PAD, FORMAT_HELP_DESC_PAD, "\n",
                     false);
         }

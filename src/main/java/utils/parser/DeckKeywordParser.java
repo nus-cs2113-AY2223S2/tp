@@ -8,8 +8,8 @@ import org.apache.commons.cli.ParseException;
 import utils.command.Command;
 import utils.command.DeleteDeckCommand;
 import utils.command.EditDeckNameCommand;
-import utils.command.ListItemsDeckCommand;
 import utils.command.ListDecksCommand;
+import utils.command.ListItemsDeckCommand;
 import utils.command.PrintHelpCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -94,11 +94,21 @@ public class DeckKeywordParser extends KeywordParser {
         Options listOptions = new OptionsBuilder(Parser.DECK_KEYWORD, LIST_ACTION).buildOptions();
         Options runOptions = new OptionsBuilder(Parser.DECK_KEYWORD, RUN_ACTION).buildOptions();
         // Combine all actions
-        String[] actionList = {EDIT_ACTION, DELETE_ACTION, LIST_ACTION, RUN_ACTION};
-        String[] headerList = {"Edit existing decks", "Delete decks", "List decks", "Run the deck"};
+        String[] syntaxList = {
+            "deck edit -o OLD_DECK_NAME -n NEW_DECK_NAME",
+            "deck delete -d DECK_NAME [{-c CARD_UUID | -i CARD_INDEX} | {-t TAG_NAME | -x TAG_INDEX}]",
+            "deck list [-d DECK_NAME]",
+            "deck run"
+        };
+        String[] headerList = {
+            "Edit existing decks",
+            "Delete decks",
+            "List decks",
+            "Run a deck"
+        };
         Options[] optionsList = {editOptions, deleteOptions, listOptions, runOptions};
 
-        String helpMessage = formatHelpMessage("deck", actionList, headerList, optionsList);
+        String helpMessage = formatHelpMessage(syntaxList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
     }
 
