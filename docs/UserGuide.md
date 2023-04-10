@@ -216,7 +216,7 @@ Edits an existing lend or borrow in the record. After a successful edit, the upd
 
 **Examples:**
 
-- `edit d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
+- `edit 17 d/2022-02-02 n/Akshay Narayan a/25.10 b/2024-07-14 p/CS2113`
 
 **Expected Output:**
 
