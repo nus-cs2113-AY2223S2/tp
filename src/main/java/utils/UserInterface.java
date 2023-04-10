@@ -99,7 +99,8 @@ public class UserInterface {
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + ".\t" + cardList.get(i).toTruncatedString()); // 1. question  answer
+                System.out.println(
+                        "\t" + (i + 1) + ".\t\t" + cardList.get(i).toTruncatedString()); // 1. question  answer
             }
         }
     }
@@ -228,6 +229,7 @@ public class UserInterface {
     public void printLoadBackup() {
         System.out.println("The original file seems to be corrupted... loading the backup file!");
     }
+
     public void printLoadBackupSuccess() {
         System.out.println("Backup Loaded!");
     }
