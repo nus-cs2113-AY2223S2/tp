@@ -481,6 +481,7 @@ _LifeTracker_ can also keep track of the exercises that users have done and fact
 the user to keep track of their net calorie gain on a daily basis.
 
 ### User Stories
+
 | Version | As a ... | I want to ...                                               | So that I can ...                                           |
 |---------|----------|-------------------------------------------------------------|-------------------------------------------------------------|
 | v1.0    | new user | see usage instructions                                      | refer to them when I forget how to use the application      |
