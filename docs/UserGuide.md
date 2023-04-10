@@ -161,6 +161,8 @@ Display the list of exercises done for a specific workout date.
 Format: `/wview INDEX`
 
 * `INDEX` is the number that is displayed when using the `/wlist` function
+*  `INDEX` must be on the list.
+* 
 Example of usage:
 
 `/wview 3`
@@ -177,6 +179,7 @@ Delete a specified workout based on `INDEX`.
 Format: `/wdelete INDEX`
 
 * `INDEX` is the number that is displayed when using the `/wlist` function
+* `INDEX` must be on the list.
 
 Example of usage:
 
@@ -189,7 +192,9 @@ Deleted chest day on 09/04/23.
 ### Count sets and reps over a week: `/wcount`
 Displays the list of distinct exercises over a week and the associated total number of sets and reps for each one
 
-Format: `/wcount <DD/MM/YY>`
+Format: `/wcount DD/MM/YY`
+
+* `DD/MM/YY` must be a current or past date, it cannot be a future date.
 
 Example of usage:
 

@@ -1,26 +1,20 @@
 @startuml
+!include Style.puml
 'https://plantuml.com/sequence-diagram
-
-autonumber
-
 actor User
-participant ":Duke" as Duke
+participant DeleteCalorieCommand
+participant calorieTracker
+participant DailyFoodConsumption
+participant Food
+participant DateFormatter
 
-Duke -> Ui: getUserInput()
-activate Duke
-activate Ui
-User -> Ui: User input
-return User input
-Duke -> Parser : processCommand(userInput)
-activate Parser
-Parser-> CalorieParser: CalorieParser(arguments)
-activate CalorieParser
-CalorieParser-> parseDeleteCalorieCommand : parseDeleteCalorieCommand(arguments)
-activate parseDeleteCalorieCommand
-parseDeleteCalorieCommand -> DeleteCalorieCommand:DeleteCalorieCommand(date, index)
-activate ViewCalorieCommand
-return "Deleted Calories"
-return StringBuilder
-return StringBuilder
-return StringBuilder
+User -> DeleteCalorieCommand: deleteCalorie(date)
+DeleteCalorieCommand -> calorieTracker: getDailyFoodConsumption()
+calorieTracker -> DailyFoodConsumption: get(date)
+DeleteCalorieCommand -> DailyFoodConsumption: deleteFood(index)
+DailyFoodConsumption -> Food: getFood(index)
+Food -> DeleteCalorieCommand: deletedFood
+DeleteCalorieCommand -> DateFormatter: dateToString(date)
+DeleteCalorieCommand -> User: "Deleted (foodName) (calories) from (date)"
+
 @enduml

@@ -44,7 +44,8 @@ public class Ui {
                     + "- [Add food and calories: /cadd DD/MM/YY]" + System.lineSeparator()
                     + "- [Display total calories consumption: /clist]" + System.lineSeparator()
                     + "- [Display calories consumed on a specific date : /cview DD/MM/YY]" + System.lineSeparator()
-                    + "- [Delete calories record for one food: /cdelete DD/MM/YY]" + System.lineSeparator() + LINE + System.lineSeparator();
+                    + "- [Delete calories record for one food: /cdelete DD/MM/YY]"
+                    + System.lineSeparator() + LINE + System.lineSeparator();
     private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);

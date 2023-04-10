@@ -1,5 +1,5 @@
 @startuml
-title ListCaloriesCommand Sequence Diagram
+!include Style.puml
 
 actor User
 

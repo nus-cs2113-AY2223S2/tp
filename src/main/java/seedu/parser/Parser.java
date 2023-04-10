@@ -32,36 +32,36 @@ public class Parser {
 
         //@@author ZIZI-czh
         switch (commandName.toLowerCase()) {
-            case "/wstart":
-                return WorkoutParser.parseStartWorkoutCommand(arguments);
-            case "/wadd":
-                return WorkoutParser.parseAddExerciseCommand(arguments);
-            case "/wdelete":
-                return WorkoutParser.parseDeleteWorkoutCommand(arguments);
-            case "/wlist":
-                return WorkoutParser.parseListWorkoutCommand(arguments);
-            case "/wview":
-                return WorkoutParser.parseViewWorkoutCommand(arguments);
-            case "/wcount":
-                return WorkoutParser.parseSetsRepsCountCommand(arguments);
-            case "/wend":
-                return WorkoutParser.parseEndWorkoutCommand(arguments);
-            case "/whelp":
-                return new HelpWorkoutCommand();
-            case "/cadd":
-                return CalorieParser.parseAddCalorieCommand(arguments);
-            case "/clist":
-                return CalorieParser.parseListCalorieCommand(arguments);
-            case "/cview":
-                return CalorieParser.parseViewCaloriesCommand(arguments);
-            case "/cdelete":
-                return CalorieParser.parseDeleteCalorieCommand(arguments);
-            case "/chelp":
-                return new HelpCaloriesCommand();
-            case "/exit":
-                return new ExitCommand();
-            default:
-                return new InvalidCommand(commandName);
+        case "/wstart":
+            return WorkoutParser.parseStartWorkoutCommand(arguments);
+        case "/wadd":
+            return WorkoutParser.parseAddExerciseCommand(arguments);
+        case "/wdelete":
+            return WorkoutParser.parseDeleteWorkoutCommand(arguments);
+        case "/wlist":
+            return WorkoutParser.parseListWorkoutCommand(arguments);
+        case "/wview":
+            return WorkoutParser.parseViewWorkoutCommand(arguments);
+        case "/wcount":
+            return WorkoutParser.parseSetsRepsCountCommand(arguments);
+        case "/wend":
+            return WorkoutParser.parseEndWorkoutCommand(arguments);
+        case "/whelp":
+            return new HelpWorkoutCommand();
+        case "/cadd":
+            return CalorieParser.parseAddCalorieCommand(arguments);
+        case "/clist":
+            return CalorieParser.parseListCalorieCommand(arguments);
+        case "/cview":
+            return CalorieParser.parseViewCaloriesCommand(arguments);
+        case "/cdelete":
+            return CalorieParser.parseDeleteCalorieCommand(arguments);
+        case "/chelp":
+            return new HelpCaloriesCommand();
+        case "/exit":
+            return new ExitCommand();
+        default:
+            return new InvalidCommand(commandName);
         }
     }
 

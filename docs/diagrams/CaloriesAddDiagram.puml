@@ -1,4 +1,7 @@
 @startuml
+
+!include Style.puml
+
 actor User
 participant AddCalorieCommand
 participant CalorieTracker
