@@ -10,18 +10,18 @@ various features for note-taking.
 * [Developer Guide](#developer-guide)
   * [Table of Contents](#table-of-contents)
   * [Acknowledgements](#acknowledgements)
-  * [Design & implementation](#design--implementation)
+  * [Design & implementation](#design-implementation)
     * [Handling Of User Input](#handling-of-user-input)
     * [Solving Quadratic Equations](#solving-quadratic-equations)
     * [Notes](#notes)
     * [Storage](#storage)
-    * [Store class:](#store-class-)
-    * [List class:](#list-class-)
-    * [Delete class:](#delete-class-)
-    * [CommandHistory class:](#commandhistory-class-)
-    * [Command class:](#command-class-)
-    * [Ui class:](#ui-class-)
-    * [NotePriority class:](#notepriority-class-)
+    * [Store class:](#store-class)
+    * [List class:](#list-class)
+    * [Delete class:](#delete-class)
+    * [CommandHistory class:](#commandhistory-class)
+    * [Command class:](#command-class)
+    * [Ui class:](#ui-class)
+    * [NotePriority class:](#notepriority-class)
     * [Help](#help)
     * [Graph](#graph)
     * [Matrix](#matrix)
@@ -232,6 +232,17 @@ Step 7. If `InvalidFormatException` is caught during the reading and parsing pro
 If the user chooses to reset the file (`y`), the method clears the file contents using a `PrintWriter` object and prints a success message. 
 If the user chooses not to reset the file (`n`), the method prints a message informing the user that the program will exit in 10 seconds and schedules a timer task to exit the program after the timeout. 
 If the user enters an invalid input, the method prompts the user again until a valid input is entered.
+
+<details>
+<summary>Sequence Diagram for File Loading</summary>
+<div markdown="1">
+
+![load_sequence_diagram.png](SequenceDiagrams%2Fload_sequence_diagram.png)
+![note_parser_sequence_diagram.png](SequenceDiagrams%2Fnote_parser_sequence_diagram.png)
+![invalid_file_handler_sequence_diagram.png](SequenceDiagrams%2Finvalid_file_handler_sequence_diagram.png)
+
+</div>
+</details>
 
 #### NotesFileWriter Class
 
@@ -537,9 +548,6 @@ Step 20. Using the switch-case statements. `drawSinCurve()` will be executed and
 The for loop will run from `xMin` to `xMax`, which are the negative frequency and positive frequency for one period respectively.
 After getting the y value from the output of the sin equation, both *x* and *y* are scaled to *xPixel* and *yPixel* respectively. A horizontal line is drawn at every pixel, which
 eventually forms the sine graph.
-
-//{Describe the design and implementation of the product. 
-//Use UML diagrams and short code snippets where applicable.}
 
 ### Matrix
 

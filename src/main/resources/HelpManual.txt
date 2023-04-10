@@ -14,12 +14,13 @@ Hello! Welcome to the Help Manual for BadMaths!
 11. Type -> FindUnmark <- to display a list of all notes marked as incomplete
 12. Type -> FindInfo <- to find items stored in Notes through searching for a keyword
 13. Type -> [Priority] [index] <- to change the priority of a note
-14. Type -> Rank [Priority] <- to display all notes of all priority rankings
-15. Type -> FindPrior [Priority] <- to display all notes of a certain priority
-16. Type -> Quadratic [equation] <- to perform quadratic calculations
-17. Type -> History <- to display a list of command history
-18. Type -> Help <- to display content of Help Manual
-19. Type -> Bye <- to exit program
+14. Type -> Rank Priority <- to display all notes of all priority rankings
+15. Type -> Rank Review Count <- to display all notes ranked by review count
+16. Type -> FindPrior [Priority] <- to display all notes of a certain priority
+17. Type -> Quadratic [equation] <- to perform quadratic calculations
+18. Type -> History <- to display a list of command history
+19. Type -> Help <- to display content of Help Manual
+20. Type -> Bye <- to exit program
 
 -------------------------------------------------------------------
 Thank you for using BadMaths. We hope that BadMaths will be a useful study tool

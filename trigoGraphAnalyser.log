@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2023-04-10T04:51:24.737923200Z</date>
+  <millis>1681102284737</millis>
+  <nanos>923200</nanos>
+  <sequence>0</sequence>
+  <logger>seedu.badmaths.trigograph.TrigoGraphAnalyser</logger>
+  <level>SEVERE</level>
+  <class>seedu.badmaths.trigograph.TrigoGraphAnalyser</class>
+  <method>canStartAnalyser</method>
+  <thread>1</thread>
+  <message>ArrayIndexOutOfBounds</message>
+  <exception>
+    <message>java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1</message>
+    <frame>
+      <class>seedu.badmaths.trigograph.TrigoGraphAnalyser</class>
+      <method>findVerticalShift</method>
+      <line>192</line>
+    </frame>
+    <frame>
+      <class>seedu.badmaths.trigograph.TrigoGraphAnalyser</class>
+      <method>canStartAnalyser</method>
+      <line>90</line>
+    </frame>
+    <frame>
+      <class>seedu.badmaths.trigograph.TrigoGraph</class>
+      <method>startGraphAnalysis</method>
+      <line>27</line>
+    </frame>
+    <frame>
+      <class>seedu.badmaths.Command</class>
+      <method>executeCommand</method>
+      <line>84</line>
+    </frame>
+    <frame>
+      <class>seedu.badmaths.BadMaths</class>
+      <method>main</method>
+      <line>79</line>
+    </frame>
+  </exception>
+</record>
+</log>
