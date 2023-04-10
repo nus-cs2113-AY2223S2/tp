@@ -1,6 +1,6 @@
 package seedu.duke.budget;
 
-public class GoodsAndServices {
+public abstract class GoodsAndServices {
     private int price;
 
     public GoodsAndServices(int price) {
