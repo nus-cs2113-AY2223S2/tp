@@ -63,7 +63,7 @@ public class FilterCommand extends Command {
         }
         ArrayList<Item> tempFilteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
-            if (item.getCategory().toLowerCase().equals(category)) {
+            if (item.getCategory().toLowerCase().equals(category.toLowerCase())) {
                 tempFilteredItems.add(item);
             }
         }
