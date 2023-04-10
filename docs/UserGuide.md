@@ -331,6 +331,10 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 > when Editing the event, User need to rewrite the complete time information including the parts that they do not what to change
 >
 > the format is the same as it in add command
+> 
+> Modification of specific module slots (tutorial, lecture, etc) are allowed in the event of public holidays/NUS Well Being day. This ensures that users have full control over their tiemtable and can make easy edits if their professor or teaching assistance decides to change the day/time slot.
+> 
+> Modifications can also be made to move slots (tutorial, lecture, etc) to after semester boundaries. This is normal behaviour as we give users full control over their timetable
 
 * sd and ed must be of the format YYYY/MM/DD
 * e, sd and st are compulsory fields
