@@ -14,11 +14,13 @@ import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.PurgeCommand;
 import seedu.duke.command.UpdateEventNameCommand;
+import seedu.duke.command.FilterVenueCommand;
 
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.exception.RepeatedFieldsException;
 import seedu.duke.exception.WrongFormatException;
 import seedu.duke.exception.EmptyFieldException;
+import seedu.duke.exception.NegativeNumberException;
 import seedu.duke.ui.Ui;
 
 import java.math.BigInteger;
@@ -37,10 +39,11 @@ public interface Parser {
      * @throws IntegerSizeExceededException if error occurs due to number size exceeded supposed value
      * @throws RepeatedFieldsException if error occurs due to user input having repeated fields
      * @throws EmptyFieldException if error occurs due to user input having empty fields
+     * @throws NegativeNumberException if error occurs due to the user inputting a negative number
      */
     static Command parse(String input) throws WrongFormatException, NumberFormatException,
             NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException,
-            RepeatedFieldsException, EmptyFieldException {
+            RepeatedFieldsException, EmptyFieldException, NegativeNumberException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -207,6 +210,25 @@ public interface Parser {
             }
             UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, eventName);
             return updateEventNameCommand;
+        case "filter":
+            if (inputWords.length > 3) {
+                throw new WrongFormatException();
+            }
+            if (!(inputWords[1].equals("venues"))) {
+                throw new WrongFormatException();
+            } else if (inputWords.length == 2) {
+                throw new EmptyFieldException("venue size field");
+            } else {
+                BigInteger currVenueNum = new BigInteger(inputWords[2]);
+                checkInputLimit(currVenueNum);
+                int venueNum = Integer.parseInt(inputWords[2]);
+                if (venueNum < 0) {
+                    throw new NegativeNumberException();
+                }
+                String commandVenueType = command + " " + inputWords[1];
+                FilterVenueCommand filterVenueCommand = new FilterVenueCommand(commandVenueType, venueNum);
+                return filterVenueCommand;
+            }
         case "help":
             if (inputWords.length > 1) {
                 throw new WrongFormatException();
