@@ -3,7 +3,11 @@
 ## Contents
 - [Acknowledgements](#acknowledgements)
 - [Design](#_1-design)
+  - [Architecture Design Diagram](#_11-architecture-design-diagram)
+  - [UML Sequence Diagram](#_12-uml-sequence-diagram)
 - [Implementation](#_2-implementation)
+  - [Command Component](#_22-command-component)
+  - [Parser Component](#_21-parser-component)
   - [List](#_23-list)
   - [Add](#_24-add)
   - [Edit](#_25-edit)
@@ -55,6 +59,17 @@ Overall, the architecture diagram shows how the different components of the Magu
 ### 1.2. UML Sequence Diagram
 
 ![Sequence Diagram](SequenceDiagram.png)
+
+The sequence diagram above illustrates the overall flow of Magus Stock. When the application is initialised by the User,
+it will invoke `run()` of the MagusStock class to start the application. During the startup phase, a welcome message
+will be printed on the terminal by invoking `greetUser()` of the `Ui` class. Following that, previous session inventory
+and alert data of the application will be retrieved by invoking `getSession()` and `getSessionAlerts()` of the 
+`SessionManager` class.
+
+After the startup phase, Magustock will instantiate a `ParserHandler` object which will be responsible for handling user
+input and determining which parser to execute based on the input. This is followed by a self-invocation of the `run()` 
+method which will execute a loop that will continuously prompt the user for input and execute the corresponding command
+until the user exits the application with `bye` or `exit` command.
 
 ## 2. Implementation
 
