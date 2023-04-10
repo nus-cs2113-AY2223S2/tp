@@ -10,7 +10,6 @@ import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
 import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
-import pocketpal.frontend.exceptions.InvalidDateException;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
@@ -77,10 +76,7 @@ public class EntriesEndpoint extends Endpoint {
         } catch (InvalidCategoryException e) {
             logger.warning("/entries [GET]: unknown filter category" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_CATEGORY);
-        } catch (InvalidDateException e) {
-            logger.warning("/entries [GET]: invalid date");
-            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_MIXED_DATE);
-        } catch (NumberFormatException e) {
+        }  catch (NumberFormatException e) {
             logger.warning("/entries [GET]: invalid number of entries requested");
             return new Response(
                     ResponseStatus.UNPROCESSABLE_CONTENT,
@@ -106,7 +102,7 @@ public class EntriesEndpoint extends Endpoint {
      * @throws InvalidCategoryException If category parameter is invalid
      */
     private EntryLog handleGetEntriesFilter(Request request, EntryLog entries) throws InvalidCategoryException,
-            InvalidDateException, InvalidArgumentsException {
+            InvalidArgumentsException {
         logger.info("/entries [GET]: filtering entries");
         EntryLog filteredEntries = entries;
         final String category = request.getParam(RequestParams.FILTER_BY_CATEGORY);
