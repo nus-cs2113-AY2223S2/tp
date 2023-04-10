@@ -36,14 +36,14 @@ challenge of managing multiple passwords for various sites and applications.
 3. Open a Command Prompt in your system which contains the JAR File.
                                                                           
 4. Verify if the Java Version you are using is *Java 11* (recommended and tested version) by using `java -version`
-   <img src="./UGImages/QuickStart/CheckJavaVersion.jpg" width="60%" />                                                                      
+   <p style="text-align:center;"><img src="./UGImages/QuickStart/CheckJavaVersion.jpg" width="60%" /> </p>                                                                      
 
 5. Using `cd`, navigate to the folder where `[CS2113-T15-2][SecureNUS].jar` is stored in your system. 
 
 6. Launch the application in the terminal after running `java -jar [CS2113-T15-2][SecureNUS].jar` in the terminal. 
 
-    If the program is launched correctly, you can see the following.\
-   <img src="./UGImages/QuickStart/UI.jpg" width="60%" /> <br>
+    If the program is launched correctly, you can see the following.<br>
+   <p style="text-align:center;"><img src="./UGImages/QuickStart/UI.jpg" width="60%" ></p> <br>
 
 7. Type the command when prompted and press enter to execute it. e.g. typing `menu` and pressing menu will give an
 overview of all the user commands.<br>
@@ -61,7 +61,9 @@ Some example commands:
 [//]: # (@@author DeepanjaliDhawan)
 <table>
     <tr>
-        <td> <a href="#table-of-contents">Click here for Table of Contents </a> </td>
+        <td> 
+            <a href="#table-of-contents">Click here for Table of Contents </a> 
+        </td>
     </tr>
 </table>
 
@@ -170,9 +172,15 @@ for more details on the `save` command.
 
 <table>
     <tr>
-        <td> Secret Option</td>
-        <td> Format </td>
-        <td> Details asked</td>
+        <td> 
+            Secret Option
+        </td>
+        <td> 
+            Format 
+        </td>
+        <td> 
+            Details asked
+        </td>
     </tr>
     <tr>
         <td> Basic Password </td>
@@ -240,8 +248,8 @@ for more details on the `save` command.
 </table>
 
 ##### Examples and Outputs:
-<img src="./UGImages/AddPassword/Addbasicpassword.jpg" width="65%" /> <br>
-<img src="./UGImages/AddPassword/Addccpassword.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/AddPassword/Addbasicpassword.jpg" width="65%" /></p>.<br>
+<p style="text-align:center;"><img src="./UGImages/AddPassword/Addccpassword.jpg" width="65%" /></p>
 
 <table>                                                               
     <tr>                                                           
@@ -268,7 +276,7 @@ for more details on the `save` command.
 ##### General Format: `delete SECRET_NAME1 [SECRET_NAME2] […]`
 
 ##### Examples and Outputs:
-<img src="./UGImages/DeletePassword/deletepassword.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/DeletePassword/deletepassword.jpg" width="65%" /></p>
 
 <table>                                                               
     <tr>                                                           
@@ -294,8 +302,8 @@ for more details on the `save` command.
 ##### General Format: `list [f/FOLDER_NAME]`
 
 Examples and Outputs:<br>
-<img src="./UGImages/ListPassword/ListwithoutFolder.jpg" width="65%" />  <br>
-<img src="./UGImages/ListPassword/ListwithFolder.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/ListPassword/ListwithoutFolder.jpg" width="65%" /></p>  <br>
+<p style="text-align:center;"><img src="./UGImages/ListPassword/ListwithFolder.jpg" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -328,7 +336,7 @@ prevent unauthorized access to the application.
 ##### General Format: `view SECRET_NAME`
 
 ##### Examples and Outputs: 
-<img src="./UGImages/ViewPassword/viewpassword.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/ViewPassword/viewpassword.jpg" width="65%" /></p>
 
 
 <table>                                                               
@@ -358,8 +366,10 @@ locate a specific one quickly.
 ##### General Format: `search SECRET_NAME_LIKE [f/FOLDER_NAME]`
 
 ##### Examples and Outputs: 
-<img src="./UGImages/SearchPassword/SearchPasswordWithoutFolder.jpg" width="80%" /> <br>
-<img src="./UGImages/SearchPassword/SearchPasswordwithFolder.jpg" width="80%" /> <br>
+<p style="text-align:center;"><img src="./UGImages/SearchPassword/SearchPasswordWithoutFolder.jpg" width="80%" /></p>
+<br>
+<p style="text-align:center;"><img src="./UGImages/SearchPassword/SearchPasswordwithFolder.jpg" width="80%" /> </p>
+<br>
 <br>
 
 <table>                                                               
@@ -436,7 +446,7 @@ previous data on next load.
 ##### General Format: `save`
 
 ##### Examples and Outputs: <br>
-<img src="./UGImages/SavePassword/Savecommand.jpg" width="80%"/>
+<p style="text-align:center;"><img src="./UGImages/SavePassword/Savecommand.jpg" width="80%"/></p>
 
 <br>
 
@@ -463,7 +473,7 @@ associated secret.
 ##### General Format: `edit SECRET_NAME`
 
 ##### Examples and Outputs: 
-<img src="./UGImages/EditPassword/edit.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/EditPassword/edit.jpg" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -490,7 +500,7 @@ without having to remember their syntax or name.
 ##### General Format: `menu`
 
 Examples and Outputs: <br>
-<img src="./UGImages/Menu.png" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/Menu.png" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -515,7 +525,7 @@ the entire command prompt or terminal.
 ##### General Format: `exit`
 
 ##### Examples and Outputs: <br>
-<img src="./UGImages/exitcommand.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/exitcommand.jpg" width="65%" /></p>
 <br>
 
 <table>                                                               
@@ -546,7 +556,7 @@ they save their data frequently to avoid losing any unsaved changes.
 ##### General Format: `c/`
 
 ##### Examples and Outputs: <br>
-<img src="./UGImages/Cancelop.jpg" width="65%" />
+<p style="text-align:center;"><img src="./UGImages/Cancelop.jpg" width="65%" /></p>
 <br>
 <table>                                                               
     <tr>                                                           
@@ -593,7 +603,7 @@ sensitive information using asterisks when the user creates a new secret using `
 **Q:** Can I export my secrets stored in SecureNUS to another device?<br>
 **A:** Yes, you can export your secrets to another device by opening the same JAR file in another machine. 
 Do ensure to save `database.txt` in the root directory's `assets/database.txt`
-As a user, you ou can ensure the security of your secrets in SecureNUS by using strong and unique secrets, 
+As a user, you can ensure the security of your secrets in SecureNUS by using strong and unique secrets, 
 keeping your secrets private and secure, and regularly updating your secrets.
 <br>
 
