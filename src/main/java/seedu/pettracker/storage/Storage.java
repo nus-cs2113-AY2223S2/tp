@@ -236,29 +236,29 @@ public class Storage {
         setTaskStatus(taskStatus);
     }
 
-    private String getPetName(String line) {
-        String[] words = line.split("\\|", 2);
-        String petName = words[0];
 
-        return petName;
-    }
+    private String getPetDetail(String line, String petStat) {
+        String[] words = line.split("\\|", EXPECTED_PET_SEP_COUNT + 1);
+        String petDetail = null;
 
-    private String getPetType(String line) {
-        String[] words = line.split("\\|", 3);
-        String petType = words[1];
-        return petType;
-    }
+        switch (petStat) {
+        case "petName":
+            petDetail = words[0];
+            break;
+        case "petType":
+            petDetail = words[1];
+            break;
+        case "petAge":
+            petDetail = words[2];
+            break;
+        case "petWeight":
+            petDetail = words[3];
+            break;
+        default:
+            break;
+        }
 
-    private String getAge(String line) {
-        String[] words = line.split("\\|", 4);
-        String age = words[2];
-        return age;
-    }
-
-    private String getWeight(String line) {
-        String[] words = line.split("\\|", 5);
-        String weight = words[3];
-        return weight;
+        return petDetail;
     }
 
     private String getTaskName(String line) throws EmptyTaskNameException {
