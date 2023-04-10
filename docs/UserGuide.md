@@ -44,7 +44,10 @@ Adds an event to the schedule. Assuming x is an switch. Use –x to specify the 
 Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIME`
 * `sd` and `ed` must be of the format `YYYY/MM/DD`
 * `e`, `sd` and `st` are **compulsory** fields
-* `ed` and `et` are **optional**, but they must be written **together** if you use them
+* `ed` and `et` are **optional**: 
+  * if user input **ed without et**, ed value will be ignored
+  * if user input **et without ed**, ed value will be set to the same as sd by default. 
+
 * `v` is **optional**
 * `r` is optional, the format is `x D/ x W`, which means the event will happen in every x day(s)/x week(s).
 
@@ -65,7 +68,7 @@ Expected outcome:
 
 1. ~~~
 	____________________________________________________________
-	Event successfully added: 00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11
+	Event successfully added:
 	
     	> [E] Career Fair (2023/02/10 14:00 to 2023/02/11 16:00 not recurring)
 	____________________________________________________________
@@ -73,7 +76,7 @@ Expected outcome:
 
 2. ~~~
    ____________________________________________________________
-   Event successfully added: 8:00 -sd 2023/02/10 -et 08:10 -ed 2023/02/10 -r 1 W
+   Event successfully added:
    
        > [E] collect mails (2023/02/10 08:00 to 2023/02/10 08:10 | recurring, time interval: 1 Week(s))
    ____________________________________________________________
@@ -191,7 +194,7 @@ Expected outcome:
    ~~~
 
 <p style="page-break-after: always;">&nbsp;</p>	
-	
+
 ### List an event: `list`
 Displays a list of all events that have been added to the schedule.
 
@@ -355,7 +358,10 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 
 * `sd` and `ed` must be of the format `YYYY/MM/DD`
 * `e`, `sd` and `st` are **compulsory** fields
-* `ed` and `et` are **optional**, but they must be written _**together**_ if you use them
+* `ed` and `et` are **optional**,
+  * if user input **ed without et**, ed value will be ignored
+  * if user input **et without ed**, ed value will be set to the same as sd by default. 
+
 * other fields are **optional**.
 
 #### Examples of usage
@@ -369,7 +375,7 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 >
 > The app will also only check confliction within the current semester. 
 >
-> **User cannot change recurring time using edit command once they add it.**
+> **User cannot change recurring time and venue using edit command once they have added it.**
 
 Expected outcome:
 1. ~~~

@@ -470,9 +470,14 @@ public class Parser {
             throw new NPExceptions(EVENT_INDEX_OUT_OF_BOUND_E);
         }
 
-        if (!information[4].equals("")) {
-            eventList.reviseTimeInfo(eventIndex, information[1], information[2], information[3],
+        if (!information[3].equals("")) {
+            if (!information[4].equals("")) {
+                eventList.reviseTimeInfo(eventIndex, information[1], information[2], information[3],
                     information[4]);
+            } else {
+                eventList.reviseTimeInfo(eventIndex, information[1], information[2], information[3],
+                    information[2]);
+            }
         } else {
             eventList.reviseTimeInfo(eventIndex, information[1], information[2]);
         }
