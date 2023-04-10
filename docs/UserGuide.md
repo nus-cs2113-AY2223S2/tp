@@ -884,6 +884,29 @@ week.
 </td>
     <td>Shows the available filters  </td>
     </tr>
+<tr>
+      <td><strong>start</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">start</code></td>
+      <td>Starts a workout session.  </td>
+    </tr>
+   <tr>
+      <td><strong>current (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">current</code></td>
+      <td>Displays a list of the user's current workout exercises. Do note that this feature is only available upon 
+      the starting of a workout session by the user. </td>
+    </tr>
+   <tr>
+      <td><strong>cancel (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">cancel</code></td>
+      <td>Cancels the user's current workout session. Do note that this feature is only available upon 
+      the starting of a workout session by the user. </td>
+    </tr>
+   <tr>
+      <td><strong>finish (workout feature)</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">finish</code></td>
+      <td>Finishes the current workout session. The workout session is recognised as completed. Do note that this 
+      feature is only available upon the starting of a workout session by the user. </td>
+    </tr>
     <tr>
       <td><strong>find</strong></td>
       <td>
@@ -937,29 +960,6 @@ available while using the planner feature of Fitness Duke</td>
       <td><code class="language-plaintext highlighter-rouge">data</code></td>
       <td>Shows a count of all the user's completed exercises as well as the total number of unique and non-unique 
       exercises completed</td>
-    </tr>
-    <tr>
-      <td><strong>start</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">start</code></td>
-      <td>Starts a workout session.  </td>
-    </tr>
-   <tr>
-      <td><strong>current (workout feature)</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">current</code></td>
-      <td>Displays a list of the user's current workout exercises. Do note that this feature is only available upon 
-      the starting of a workout session by the user. </td>
-    </tr>
-   <tr>
-      <td><strong>cancel (workout feature)</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">cancel</code></td>
-      <td>Cancels the user's current workout session. Do note that this feature is only available upon 
-      the starting of a workout session by the user. </td>
-    </tr>
-   <tr>
-      <td><strong>finish (workout feature)</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">finish</code></td>
-      <td>Finishes the current workout session. The workout session is recognised as completed. Do note that this 
-      feature is only available upon the starting of a workout session by the user. </td>
     </tr>
     <tr>
       <td><strong>quick</strong></td>
