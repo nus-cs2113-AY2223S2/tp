@@ -14,7 +14,7 @@ public class HelpCommand extends Command {
             "| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |\n" +
             "| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|\n" +
             "| Set monthly budget | setbudget | [VALUE]                                                           |\n" +
-            "| Create shortcuts   | shortcut  | [SHORTCUT COMMAND -maps VALID COMMAND]                            |\n" +
+            "| Create shortcuts   | shortcut  | [SHORTCUT -maps COMMAND]                                          |\n" +
             "| Ignore entry       | ignore    | [INDEX]                                                           |\n" +
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
             "| Export to .csv     | export    |                                                                   |\n" +
@@ -178,7 +178,7 @@ public class HelpCommand extends Command {
             "|    <Adding a Shortcut>      |                                                                      |\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "| SHORTCUT   | Mandatory      | Used to denote the shortcut the user wants to use                    |\n" +
+            "| SHORTCUT   | Mandatory      | Used to denote the name of the shortcut the user wants to use        |\n" +
             "| -maps      | Mandatory      | Used to separate the shortcut from the actual command                |\n" +
             "| COMMAND    | Mandatory      | Used to denote the actual command                                    |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
