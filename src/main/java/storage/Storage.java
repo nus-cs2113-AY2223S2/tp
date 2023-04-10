@@ -34,7 +34,7 @@ public class Storage {
     private static final String INITIAL_WELCOME_MESSAGE = "Welcome to ET!";
     private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
     private static final String DATA_CORRUPTED_ERROR = "Data file corrupted. " +
-            "Save the remaining data to another location before deleting the current data file. " +
+            "Save the remaining data to another location before deleting the current data file under your username. " +
             "Restart the programme after deleting the corrupted data file to proceed.";
     private static final String CREATE_FILE_ERROR = "Error creating file.";
     private static final String MORE_DP_ERROR = "More than 2 decimal places detected for Expense ";
@@ -153,7 +153,7 @@ public class Storage {
                 }
             } catch (NullPointerException e) {
                 System.out.println("Expense " + index + " corrupted.");
-                System.out.println("Edit Expense " + index + " in data file to fix this error. " +
+                System.out.println("Edit Expense " + index + " in data file under your username to fix this error. " +
                         "If problem persists, delete the current data file and restart the programme.");
                 System.exit(0);
             }
