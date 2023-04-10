@@ -42,11 +42,11 @@ Read this section to find out how NUSPlanner can make your life easier!
 Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIME`
-* sd and ed must be of the format YYYY/MM/DD
-* e, sd and st are compulsory fields
-* ed and et are optional, but they must be written together if you use them
-* v is optional
-* r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.
+* `sd` and `ed` must be of the format `YYYY/MM/DD`
+* `e`, `sd` and `st` are **compulsory** fields
+* `ed` and `et` are **optional**, but they must be written **together** if you use them
+* `v` is **optional**
+* `r` is optional, the format is `x D/ x W`, which means the event will happen in every x day(s)/x week(s).
 
 #### Examples of usage
 1. Add event that starts and ends on different days: `add -e Career Fair -st 14:00 -sd 2023/02/10 -et 16:00 -ed 2023/02/11`
@@ -353,10 +353,10 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 > 
 > Modifications can also be made to move slots (tutorial, lecture, etc) to after semester boundaries. This is normal behaviour as we give users full control over their timetable
 
-* sd and ed must be of the format YYYY/MM/DD
-* e, sd and st are compulsory fields
-* ed and et are optional, but they must be written together if you use them
-* other fields are optional.
+* `sd` and `ed` must be of the format `YYYY/MM/DD`
+* `e`, `sd` and `st` are **compulsory** fields
+* `ed` and `et` are **optional**, but they must be written _**together**_ if you use them
+* other fields are **optional**.
 
 #### Examples of usage
 1. Edit the start time of an event: `edit –i 1 -sd 2023/04/01 –st 16:00` 
