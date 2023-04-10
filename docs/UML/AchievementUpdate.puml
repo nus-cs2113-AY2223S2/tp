@@ -9,7 +9,7 @@ participant ":AchievementListHandler"
     activate ExerciseStateHandler STORAGE_FADED_COLOUR
   loop achievements of achievementList
         activate ":AchievementListHandler" LAPIS
-            loop num of exercises from Session
+            loop num of exercise from Session
                 ExerciseStateHandler -> ":AchievementListHandler" : updateIndex(exerciseData)
                 alt exerciseCompleted
                     ":AchievementListHandler" --> ExerciseStateHandler : completedAchievements.add
