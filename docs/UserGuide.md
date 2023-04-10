@@ -469,7 +469,7 @@ ____________________________________________________________
 
 
 ### Filter Venues
-Filter the venues based on the capacity specified by the user.
+Filters and returns venues that have a capacity greater than or equal to the size specified by the user.
 
 * Format: `filter venues [SIZE]`
     * `[SIZE]` must be an integer greater than or equal to zero.
