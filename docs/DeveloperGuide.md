@@ -108,8 +108,8 @@ Following that, it will go through another process to check if the event is set 
 
 ##### 2.2.3 Add Modules Diagram
 The diagram below illustrates the flow of how the application adds modules:
-![Add Event Class Diagram](UML/Images/addModules.png)
-<img src="UML/Images/addModules.png" width = "500" height = "600">
+![Add Event Class Diagram](UML/Images/addModules.png = 373x789)
+
 When the user adds an event, the application checks if the format of the command is correct before proceeding further.
 
 Modules are then loaded and the application uses getLesson() to access modules from a Hash Map. 
