@@ -60,7 +60,7 @@ public class ParseFilter extends Parser {
 
         if (matcher.find()) {
             if (matcher.group(6).trim().indexOf("-date") != 0 && !matcher.group(6).equals("")) {
-                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
             for (int i = 1; i <= 5; i += 1) {
                 if (matcher.group(i) == null) {
@@ -75,18 +75,23 @@ public class ParseFilter extends Parser {
 
                     if (matcherTwoDate.find()) {
                         sizeOfFilterFlagAndField += 1;
-                        LocalDate date = setDate(matcherTwoDate.group(1));
+                        LocalDate dateOne = setDate(matcherTwoDate.group(1));
                         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        String dateString = date.format(formatters);
+                        String dateString = dateOne.format(formatters);
                         filterFlagAndField.add("-date");
                         filterFlagAndField.add(dateString);
 
                         String secondDate = matcherTwoDate.group(2);
                         secondDate = "-date " + secondDate;
-                        date = setDate(secondDate);
+                        LocalDate dateTwo = setDate(secondDate);
                         formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                        dateString = date.format(formatters);
+                        dateString = dateTwo.format(formatters);
                         filterFlagAndField.add(dateString);
+
+                        if (dateOne.isAfter(dateTwo)) {
+                            logger.warning("first date is after second date");
+                            throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+                        }
                     } else {
                         LocalDate date = setDate(matcher.group(6));
                         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -95,7 +100,7 @@ public class ParseFilter extends Parser {
                         filterFlagAndField.add(dateString);
                     }
                 } catch (RainyDayException e) {
-                    throw new RainyDayException(e.getMessage() + ErrorMessage.FILTER_FORMAT);
+                    throw new RainyDayException(e.getMessage());
                 }
             }
             if (filterFlagAndField.size() != sizeOfFilterFlagAndField) {
