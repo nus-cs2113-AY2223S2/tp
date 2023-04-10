@@ -413,7 +413,9 @@ Successfully removed tag physics from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
 Successfully removed tag physics from the tag list.
 ```
 
-### List all tags : `tag list [-t TAG_NAME | -x TAG_INDEX]`
+### List all tags or cards under a tag :
+
+`tag list [-t TAG_NAME | -x TAG_INDEX]`
 
 List all current tags in Inka ***(with no flags)***. Users can also list all the cards that fall under this tag by
 specifying the
@@ -501,6 +503,8 @@ Rename an existing deck
 - `-n` the new name of the deck,  ***(no whitespaces allowed)***, ***must not*** exceed 50
   characters
 
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
 ***Example of usage:***
 
 ```
@@ -513,23 +517,7 @@ deck edit -o old-deck-name -n new-deck-name
 Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
 ```
 
-### Delete a Deck :
-
-`deck delete -d DECK_NAME`
-
-This feature will also remove all existing cards and tags from the Deck.
-
-Delete a deck using this syntax, example:
-
-```
-> deck delete -d deck1
-Successfully removed deck deck1 from card 1ddd9a67-f56c-4914-99c0-2f90c580f0e9
-Successfully removed deck deck1 from tag physics
-Successfully removed deck deck1 from tag Test
-Successfully removed deck deck1 from the deck list.
-```
-
-### Delete a card/tag from deck:
+### Delete a Deck or a Card/Tag from a Deck:
 
 `deck delete -d DECK_NAME [-c CARD_UUID | -t TAG_NAME]`
 
@@ -542,7 +530,13 @@ Successfully removed deck deck1 from the deck list.
   characters
 - [OPTIONAL] `-c` the uuid of the card to be removed from the deck
 
-Delete a card from an existing deck either by specifying the card UUID or tag name to delete.
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
+Users are given the following options depending on the flags specified above:
+
+- Remove a Card from an existing deck
+- Remove a Tag and all the Cards under the Tag from an existing deck
+- Remove the whole deck and all its content
 
 To delete a card from an existing deck
 
@@ -581,11 +575,23 @@ Successfully removed deck my-deck from card c2c61475-df53-4656-94c4-c2e36933d359
 Successfully removed deck my-deck from the deck list.
 ```
 
-### List all decks:
+### List all decks :
 
-`deck list`
+`deck list [-d DECK_NAME]`
 
-List all decks that have been created
+List all current decks in Inka ***(with no flags)***. Users can also list all the cards and tags that fall under this
+deck by
+specifying the deck name
+
+***Lists of flags (in any order)*** :
+
+- [OPTIONAL] `-d` the content of the name of the deck to be displayed,  ***(no whitespaces allowed)***, ***must not***
+  exceed 50
+  characters
+
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
+To list all decks that have been created :
 
 ***Example usage:***
 
@@ -599,19 +605,22 @@ Here is your current list of decks:
 2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
 ```
 
-### List all cards and tags under deck :
+To list all the Cards and Tags under the deck :
 
-`deck list -d DECK_NAME`
-
-Here is an example of this being used:
+***Example of usage:***
 
 ```
-> deck list -d physicsdeck
+deck list -d physicsdeck
+```
+
+***Sample output:***
+
+```
 Here is a list of your cards :
 
-	1.		[924119c1-a807-4df2-b311-080be9ee8522]
-	Qn:		this might work
-	Ans:	finally
+	1.	[924119c1-a807-4df2-b311-080be9ee8522]
+	Qn:	What is the formula of GPE?
+	Ans:	E = mgh
 
 Here is your current list of tags:
 1.Tag name : physics, tag uuid : c8259fee-125d-4700-829c-0da79eba1e91
@@ -635,9 +644,9 @@ Here are some examples:
 
 ```
 > deck run -d physicsdeck
-	Q: this might work
+	Q: What is the formula of GPE?
 
-	A: finally
+	A: E = mgh
 
 	Q: How efficient is binary search?
 
@@ -653,9 +662,9 @@ Here are some examples:
 
 ```
 > deck run -d physicsdeck
-	Q: this might work
+	Q: What is the formula of GPE?
 
-	A: finally
+	A: E =mgh
 
 	Q: How efficient is binary search?
 exit
@@ -667,12 +676,12 @@ Exiting run mode!
 
 ```
 > deck run -d physicsdeck
-	Q: this might work
+	Q: What is the formula of GPE?
 asgsdfgsfdgsdfg
 There is no need to input any characters!
 Just hitting enter is sufficient to show the answer! Anyway, here is the answer!
 
-	A: finally
+	A: E =  mgh
 
 	Q: How efficient is binary search?
 sfgsdfgsdfgsdfg
