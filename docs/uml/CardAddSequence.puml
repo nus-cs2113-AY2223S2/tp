@@ -1,0 +1,28 @@
+@startuml CardListSequence
+
+autoactivate on
+
+participant ":AddCardCommand" as AddCardCommand
+participant ":Card" as Card
+participant ":CardList" as CardList
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+Create Card
+CardKeywordParser -> Card : create card to add
+return cardToAdd
+
+Create AddCardCommand
+CardKeywordParser -> AddCardCommand : AddCardCommand(cardToAdd)
+
+AddCardCommand -> AddCardCommand : execute()
+AddCardCommand -> CardList : addCard(cardToAdd)
+return
+
+AddCardCommand -> UserInterface : print success message and number of cards
+return
+
+return
+
+return
+@enduml

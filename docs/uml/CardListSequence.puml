@@ -10,7 +10,6 @@ participant ":CardKeywordParser" as CardKeywordParser
 
 Create ListCardCommand
 CardKeywordParser -> ListCardCommand : ListCardCommand()
-activate ListCardCommand
 
 ListCardCommand -> ListCardCommand : execute()
 ListCardCommand -> UserInterface : printCardList()
@@ -23,4 +22,7 @@ end loop
 return
 
 return
+
+return
+
 @enduml
