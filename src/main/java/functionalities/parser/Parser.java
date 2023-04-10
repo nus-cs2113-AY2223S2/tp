@@ -337,7 +337,7 @@ public class Parser {
                 throw new SniffException(" The command cannot contain repeated descriptions!");
             }
             String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vn/|v/|" +
-                    "sd/|st/|ed/|et/|p/)", -1);
+                    "sd/|st/|ed/|et/|p/|vt/)", -1);
             return secondSplit[0].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The " + splitter + " description is invalid!");
