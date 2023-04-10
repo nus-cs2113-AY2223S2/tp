@@ -27,7 +27,7 @@ public class AddTaskParser implements ArgParser<AddTaskCommand>{
                 throw new EmptyArgException(EMPTY_ARG_MESSAGE);
             }
             LocalDate deadline;
-            if (commandArgs.contains(DATE_SEPARATOR)) {
+            if (commandArgs.contains("/by")) {
                 deadline = LocalDate.parse(args[1].trim());
                 return new AddTaskCommand(description, deadline);
             }
