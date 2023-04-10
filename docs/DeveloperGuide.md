@@ -1217,7 +1217,7 @@ Given below are instructions to test the app manually.
 > testers are expected to do more *exploratory* testing.
 
 ### Launch
-* Download the .jar file from the latest release here and copy it into an empty folder. 
+* Download the Apollo.jar file from the *latest* release [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases) and copy it into an empty folder.
 * Open a terminal in the folder and run the command `java -jar Apollo.jar`. The CLI should appear in a few seconds.
 * Expected: The CLI should appear with a welcome message and a prompt to enter a command. Resize the CLI window size
     for optimal text wrapping.
@@ -1371,6 +1371,23 @@ Note: moduleList *should not* contain CS1010 -st 5, i.e. `addmod cs1010 -st 5` s
 |  1  |    Positive     | `delmod cs1010 -st 1` | Deletes SECTIONAL TEACHING - 1 of CS1010. Confirmation message is shown. |
 |  2  |    Negative     | `delmod cs1010 -st 5` | Exception thrown for lesson not in moduleList.                           |
 
+
+### Week Command
+> *VERY IMPORTANT SITUATIONAL PREREQUISITE*:
+> 
+> If testing were to take place after week 13 of AY22/23 Semester 2, i.e. after 16 April 2023, 
+> we recommend that testers set the system DateTime 
+> on the computer Apollo is installed in to anywhere between 09 January 2023 and 09 April 2023,
+> 
+>This is because the `week` command is date-sensitive and will only show the timetable for the current week.
+> According to NUSMods, lessons will end after week 13 of AY22/23 Semester 2, i.e. after 16 April 2023 and the `week` 
+> command will not show any lessons after that date.
+
+| No. | Type of Testing | Test Command | Expected Outcome                 |
+|:---:|:---------------:|:-------------|:---------------------------------|
+|  1  |    Positive     | `week`       | Timetable for the week is shown. |
+
+Note: Not all modules have lessons weekly. 
 
 <!--@@T-Wan-Lin -->
 ### Saving Data

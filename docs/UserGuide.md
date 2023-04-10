@@ -167,6 +167,7 @@ You could consider using the deadline command instead.
 Got it. I've added this todo:
 [T][ ] submit TP by 3rd May
 ```
+Note: The message will appear when words such as `by` and `due` are encountered in the task description.
 
 ### `deadline` - Adding a Deadline
 
@@ -541,7 +542,8 @@ If the command is invalid, Apollo will display an error message.
 
 ```
 >> help me
-Sorry, but I don't know what that means :(
+Sorry, but the command "me" does not exist in Apollo!
+Input `help` to see all available commands.
 ```
 
 ### `week` - Viewing weekly schedule
@@ -626,6 +628,8 @@ If the date is during exam week, Apollo will display the following message as th
 ```
 Examination week
 ```
+*IMPORTANT NOTE*: `week` is a date sensitive command. Apollo will display the current week of the semester you are on
+with respect to the date on your system.
 
 ### `bye` - Exiting the program
 
