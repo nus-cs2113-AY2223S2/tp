@@ -1,0 +1,55 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide empty members
+
+class "{abstract}\nEntry" as entry
+
+class entry {
+    #info: String
+    #amount: double
+    #time: LocalDateTime
+    #category: Category
+
+    #convertTimeToString(): String
+    #isSameMonth(year: int, month: Month): boolean
+    +Entry(amount: double, info: String, time: LocalDateTime, category: Category)
+    +editAmount(newAmount: double): void
+    +editDescription(newInfo: String): void
+    +editTime(newTime: LocalDateTime): void
+    +editCategory(newCategory: Category): void
+    +getAmount(): double
+    +getTime(): String
+    +getCategory(): Category
+    +getInfo(): String
+    {abstract} +toString(): String
+}
+
+class Expense {
+    +Expense(amount: double, info: String, time: LocalDateTime, category: Category)
+    +toString(): String
+}
+
+class Income {
+    +Income(amount: double, info: String, time: LocalDateTime, category: Category)
+    +toString(): String
+}
+
+class Category <<enumeration>> {
+    FOOD
+    SHOPPING
+    GROCERIES
+    TRANSPORTATION
+    ENTERTAINMENT
+    TRAVEL
+    SALARY
+    INVESTMENT
+    OTHERS
+}
+
+entry <|-- Expense
+entry <|-- Income
+
+entry .> Category
+
+@enduml

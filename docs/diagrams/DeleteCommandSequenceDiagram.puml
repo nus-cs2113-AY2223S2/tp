@@ -8,6 +8,7 @@ Participant "delete:Command" as deleteCommand
 Participant "exit:Command" as exitCommand
 Participant ":EntryList" as entryList
 Participant ":Save" as save
+Participant ":Budget" as budget
 Participant ":Data" as data
 end box
 
@@ -79,12 +80,12 @@ activate exitCommand
 exitCommand -> save : writeFile(expenseList)
 activate save
 
-save -> data : Save to file
-activate data
 save -> entryList : expenseList
 activate entryList
 entryList --> save
 deactivate entryList
+save -> data : Save to file
+activate data
 data --> save
 deactivate data
 
@@ -94,12 +95,14 @@ deactivate save
 exitCommand -> save : writeFile(incomeList)
 activate save
 
-save -> data : Save to file
-activate data
+
 save -> entryList : incomeList
 activate entryList
 entryList --> save
 deactivate entryList
+destroy entryList
+save -> data : Save to file
+activate data
 data --> save
 deactivate data
 
@@ -109,13 +112,14 @@ deactivate save
 exitCommand -> save : writeFile(budgetEachMonth)
 activate save
 
+
+save -> budget : budgetEachMonth
+activate budget
+budget --> save
+deactivate budget
+destroy budget
 save -> data : Save to file
 activate data
-save -> entryList : budgetList
-activate entryList
-entryList --> save
-deactivate entryList
-destroy entryList
 data --> save
 deactivate data
 

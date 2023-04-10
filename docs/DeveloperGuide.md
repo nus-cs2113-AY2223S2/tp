@@ -9,15 +9,18 @@
    - [Parser component](#parser-component)
    - [Command component](#command-component)
    - [Save component](#save-component)
+   - [EntryList Component](#entrylist-component)
+   - [Budget Component](#budget-component)
    - [Common class](#common-class)
+   - [Exception classes](#exception-classes)
 3. [Implementation](#implementation)
    - [Entry](#entry)
    - [EntryList](#entrylist)
    - [ExpenseList, IncomeList](#expenselist-incomelist)
    - [Budget](#budget)
    - [SaveExpense, SaveIncome, SaveBudget](#saveexpense-saveincome-savebudget)
-   - [Wishlist (To be implemented)](#wishlist-to-be-implemented)
-   - [Spending Advisor (To be implemented)](#spending-advisor-to-be-implemented)
+   - [Wishlist (COMING SOON)](#wishlist-coming-soon)
+   - [Spending Advisor (COMING SOON)](#spending-advisor-coming-soon)
 4. [Appendix: Requirements](#appendix-requirements)
 5. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
@@ -25,8 +28,7 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
+Below are links to the codes that this program has partly referenced and adapted from.
 
 - [addressbook-level2](https://github.com/se-edu/addressbook-level2)
 - [addressbook-level3](https://github.com/se-edu/addressbook-level3)
@@ -39,7 +41,7 @@ original source as well}
 
 ### Architecture
 
-![Architecture Diagram](images/ArchitectureDiagram.png)
+![Architecture Diagram](./images/ArchitectureDiagram.png)
 
 The ***architecture diagram*** given above explains the high level design of the program.
 
@@ -52,13 +54,17 @@ Given below is a quick overview of the main components and how they interact wit
 - At program termination: Shuts down the components and invokes cleanup methods where necessary.
 
 [`Common`](#common-class) represents a collection of messages used by multiple other components.
+[`Exception`](#exception-classes) represents a collection of custom exceptions used by multiple other components.
 
 The rest of the program consists of mainly 5 main components.
 - [`Ui`](#ui-component): The Ui of the program.
 - [`Parser`](#parser-component): The user input parser.
 - [`Command`](#command-component): The command executor.
 - [`Save`](#save-component): Reads data from, and writes data to hard disk.
-- [`EntryList`](#entrylist-component): Stores the list of entries when program is running.
+- [`EntryList`](#entrylist-component): The abstract class (with subclasses `IncomeList` and `ExpenseList`) that contains
+an `Entry` of linkedList which stores 
+the list of entries (incomes / expenses) and its method when program is running.
+- [`Budget`](#budget-component) : Stores the list of budget amounts in `budgetEachMonth` and its methods when program is running.
 
 **How the architecture components interact with each other**
 
@@ -66,7 +72,7 @@ The program will first load the content of the .txt files in the `Data` folder i
 and populate the `incomeList`, `expenseList`, and `budgetEachMonth`. The `user`'s interactions with
 the `Ui` will be parsed to the `Command` using the `Parser`, and the `parser` will then return the `Command` object
 specified, which the `Ui` can execute and format the output to the `user`. When the `user` exits the program, the `Save`
-command will be executed and the content in `incomeList`, `expenseList`, and `budgetEachMonth` will then be
+command will be executed and the content in the `entryList` (more specifically `incomeList`, `expenseList`) from `EntryList`, and `budgetEachMonth` from `Budget` will then be
 stored into their respective .txt files in the `Data` folder.
 
 [back to contents](#table-of-contents)
@@ -79,7 +85,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 Below is the UML diagram for Ui class:
 
-![UiClassDiagram](images/UiClassDiagram.png)
+![UiClassDiagram](./images/UiClassDiagram.png)
 
 The Ui consists of methods to read inputs from user and to format the outputs to be displayed to the user.
 
@@ -105,7 +111,10 @@ How the `Parser` component works:
 
 ### Command component
 
-The sequence diagram shows how the components interact with each other for the scenarios where the user
+The `Command` component consists of many `Command` classes that executes different commands of the program
+when called. It is stored in the `seedu.brokeMan.command` package.
+
+The sequence diagram below shows how the components interact with each other for the scenarios where the user
 issues the commands `deleteExpense 1` and `exit`.
 
 ![DeleteCommandSequenceDiagram](./images/DeleteCommandSequenceDiagram.png)
@@ -123,7 +132,7 @@ When the `Ui` reads "exit" from the `User`, it similarly calls the `parseCommand
 The `Parser` class will return a newly constructed `ExitCommand()` object back to the `Ui`.
 The `Ui` executes the `execute()` method of the `ExitCommand` which will call writeFile method in the `SaveBudget`,
 `SaveExpense`, and `SaveIncome` classes, in the `Save` folder, and write the content to its respective `.txt`
-files in the `Data` folder. Upon completion of the save command, the `Ui` will print the good bye messages to the
+files in the `Data` folder. Upon completion of the save command, the `Ui` will print the goodbye messages to the
 `User` and terminate the program.
 
 [back to contents](#table-of-contents)
@@ -154,7 +163,7 @@ The `EntryList` component,
 
 Here is the (partial) UML diagram of the `EntryList` component:
 
-![EntryListClassDiagram](images/EntryListClassDiagram.png)
+![EntryListClassDiagram](./images/EntryListClassDiagram.png)
 
 [back to contents](#table-of-contents)
 
@@ -174,15 +183,7 @@ Here is a UML diagram of the `Budget` component:
 
 ### Common class
 
-Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
-
-[back to contents](#table-of-contents)
-
----
-
-### Command classes
-
-The execution behaviors of possible commands are in the `seedu.brokeMan.command` package.
+Messages used by multiple components are in the [`seedu.brokeMan.commmon`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/common) package.
 
 [back to contents](#table-of-contents)
 
@@ -190,7 +191,7 @@ The execution behaviors of possible commands are in the `seedu.brokeMan.command`
 
 ### Exception classes
 
-Possible exceptions in multiple components are defined in the `seedu.brokeMan.exception` package.
+Possible exceptions in multiple components are defined in the [`seedu.brokeMan.exception`](https://github.com/AY2223S2-CS2113-F13-2/tp/tree/master/src/main/java/seedu/brokeMan/exception) package.
 
 [back to contents](#table-of-contents)
 
@@ -199,6 +200,10 @@ Possible exceptions in multiple components are defined in the `seedu.brokeMan.ex
 ## Implementation
 
 ### Entry
+
+Below is the UML class diagram for Entry:
+
+![EntryClassDiagram](./images/EntryClassDiagram.png)
 
 Entry class is the underlying superclass for Expense and Income classes. It establishes the common attributes and
 methods that are necessary to represent Expenses and Incomes. Abstract class is used to represent their common features
@@ -222,6 +227,10 @@ isSameMonth()
 ---
 
 ### EntryList
+
+Below is the UML class diagram for EntryList:
+
+![EntryListFullClassDiagram](./images/EntryListFulllClassDiagram.png)
 
 The EntryList class represents a collection of Entry instances. It is an abstract class that serves as a superclass for
 ExpenseList and IncomeList classes, providing common functionalities to minimize repetitive code and easing code
