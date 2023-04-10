@@ -230,6 +230,9 @@ public class Storage {
             if (key.isEmpty() || value.isEmpty() || key.charAt(0) == ' ' || value.charAt(0) == ' ') {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
             }
+            if (key.contains(" ")) {
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
+            }
 
             ShortcutCommand.checkShortcutValidity(shortcutCommandsHashMap, key, value);
             shortcutCommandsHashMap.put(key, value);
