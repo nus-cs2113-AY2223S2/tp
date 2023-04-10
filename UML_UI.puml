@@ -1,0 +1,23 @@
+@startuml
+class functionalities.ui.Ui {
+- {static} String DOT_THEN_SPACE
+- {static} String LINE
+- {static} String BLANK
++ {static} void showUserMessage(String)
++ {static} void printBlankLine()
++ {static} void printFileCreated(boolean)
++ {static} void printArchiveFileCreated(boolean)
++ String readUserCommand()
++ void showErrorMessage()
++ void showWelcomeMessage()
++ {static} void showLine()
++ {static} void formatPrintList(int,String)
++ {static} void printAppointmentAddedMessage(Appointment)
++ {static} void printAppointmentRemovedMessage(Appointment)
++ {static} void printAppointmentMarkMessage()
++ {static} void printAppointmentAlreadyMarkedMessage(String)
++ {static} void printAppointmentUnMarkMessage()
++ {static} void printAppointmentAlreadyUnMarkedMessage(String)
++ {static} void showHelpMessage()
+}
+@enduml

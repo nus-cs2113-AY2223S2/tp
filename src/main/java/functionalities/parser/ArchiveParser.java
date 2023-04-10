@@ -40,6 +40,7 @@ public class ArchiveParser {
         try {
             String[] consultationAppointment = content.split(" \\| ");
             uID = consultationAppointment[0];
+            assert uID != null: "uID cannot be empty";
             date = LocalDate.parse(consultationAppointment[1]);
             time = LocalTime.parse(consultationAppointment[2]);
             animal = new Animal(consultationAppointment[4], consultationAppointment[3]);
@@ -63,6 +64,7 @@ public class ArchiveParser {
         try {
             String[] vaccinationAppointment = content.split(" \\| ");
             uID = vaccinationAppointment[0];
+            assert uID != null: "uID cannot be empty";
             date = LocalDate.parse(vaccinationAppointment[2]);
             time = LocalTime.parse(vaccinationAppointment[3]);
             animal = new Animal(vaccinationAppointment[5], vaccinationAppointment[4]);
@@ -87,6 +89,7 @@ public class ArchiveParser {
         try {
             String[] surgeryAppointment = content.split(" \\| ");
             uID = surgeryAppointment[0];
+            assert uID != null: "uID cannot be empty";
             startDate = LocalDate.parse(surgeryAppointment[6]);
             endDate = LocalDate.parse(surgeryAppointment[8]);
             startTime = LocalTime.parse(surgeryAppointment[7]);

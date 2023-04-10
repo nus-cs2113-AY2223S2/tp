@@ -66,10 +66,10 @@ public class Archive {
     public static void extractArchiveData(File archiveFile) throws SniffException, FileNotFoundException {
         try {
             Scanner s = new Scanner(archiveFile);
-            int lineNo = 0;
+            int line_No = 0;
             while (s.hasNext()) {
                 String content = s.nextLine();
-                lineNo++;
+                line_No++;
                 char type = content.charAt(0);
                 if (type == 'C') {
                     ArchiveParser.addConsult(content);
@@ -78,7 +78,7 @@ public class Archive {
                 } else if (type == 'S') {
                     ArchiveParser.addSurgery(content);
                 } else {
-                    throw new SniffException(" Incorrect appointment format found in line " + lineNo +
+                    throw new SniffException(" Incorrect appointment format found in line " + line_No +
                             " of the archive file!");
                 }
             }
