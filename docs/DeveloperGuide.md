@@ -33,6 +33,11 @@
 ![img_37.png](img_37.png)<br>
 **Figure 5: Sequence Diagram showing the logical implementation of executeCommand() for the EditSurgery Command**
 
+#### Editing Appointments
+1. The `UI` class reads in the input from the user and then parses them depending on the starting initial of UID in the `Parser` for each appointment.
+2. If the inputs are valid, and the UID exists (it is an existing appointment), the appointment is removed by `Remove Command` and then `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
+3. The `Snifftasks` class then edits the appointment to the list of current appointments.
+
 ### Parser - Class Implementation
 1. The Parser class takes in a user command and generates a corresponding Command object for veterinary management system tasks such as **add consultation, vaccination or surgery, find, remove, list, and exit**. This implementation makes use of the Command design pattern to encapsulate the behavior of different types of commands, and the parser serves as a factory for creating these commands based on the user input.
 2. The Parser class contains several static methods that parse different types of commands, such as **`ConsultationCommand`**, **`VaccinationCommand`**, **`SurgeryCommand`**, **`FindCommand`**, **`RemoveCommand`**, **`ListCommand`**, and **`ExitCommand`**.
@@ -117,11 +122,6 @@
 1. The `UI` class reads in the input from the user and then parses all the inputs in the `Parser` for each appointment. 
 2. If the inputs are valid, an `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
 3. The `Snifftasks` class then adds the appointment to the list of current appointments.
-
-#### Editing Appointments
-1. The `UI` class reads in the input from the user and then parses them depending on the starting initial of UID in the `Parser` for each appointment.
-2. If the inputs are valid, and the UID exists (it is an existing appointment), the appointment is removed by `Remove Command` and then `AppointmentCommand` is created and then executed, otherwise an exception is thrown.
-3. The `Snifftasks` class then edits the appointment to the list of current appointments.
 
 ##### UID Generation
 
