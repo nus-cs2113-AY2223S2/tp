@@ -3,10 +3,13 @@ package seedu.mealcompanion.command.misc;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ingredients.AddCommand;
 import seedu.mealcompanion.command.recipe.RecipeNeedCommand;
+import seedu.mealcompanion.exception.CommandRunException;
+import seedu.mealcompanion.exception.InvalidIngredientNameException;
+import seedu.mealcompanion.exception.MealCompanionException;
+import seedu.mealcompanion.recipe.IngredientDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -24,10 +27,10 @@ class RecipeNeedCommandTest {
     }
 
     @Test
-    void execute() throws MealCompanionException {
+    void execute() throws MealCompanionException, CommandRunException, InvalidIngredientNameException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
 
-        RecipeNeedCommand command = new RecipeNeedCommand("2");
+        RecipeNeedCommand command = new RecipeNeedCommand(mealCompanionSession.getRecipes().getRecipe(1));
         command.execute(mealCompanionSession);
         String expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
@@ -35,7 +38,7 @@ class RecipeNeedCommandTest {
                 + System.lineSeparator();
         assertEquals(expectedOutput, newOutStream.toString());
 
-        AddCommand addCommand = new AddCommand("water", "150");
+        AddCommand addCommand = new AddCommand(IngredientDatabase.getDbInstance().getKnownIngredient("water"), 150);
         addCommand.execute(mealCompanionSession);
         newOutStream.reset();
         command.execute(mealCompanionSession);

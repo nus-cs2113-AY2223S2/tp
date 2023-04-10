@@ -13,4 +13,8 @@ public class HelloPSLECommandFactory extends ExecutableCommandFactory {
     public HelloPSLECommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new HelloPSLECommand();
     }
+
+    public String getCommandFormat() {
+        return "hello psle";
+    }
 }

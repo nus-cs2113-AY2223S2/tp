@@ -7,6 +7,7 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author jingyaaa
+
 /**
  * Represents the "recipe almost" command.
  */
@@ -15,7 +16,8 @@ public class RecipeAlmostCommand extends RecipeCommand {
 
     /**
      * Check the number of missing ingredients to make a recipe in the ingredient list.
-     * @param recipe target recipe to check
+     *
+     * @param recipe      target recipe to check
      * @param ingredients ingredient list containing
      * @return return number of missing ingredients to make a recipe
      */
@@ -33,6 +35,7 @@ public class RecipeAlmostCommand extends RecipeCommand {
 
     /**
      * List all recipes that almost can be made using the ingredients available.
+     *
      * @param mealCompanionSession the MealCompanionSession containing the list of recipes and ingredients
      */
 

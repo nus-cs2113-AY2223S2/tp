@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> ":ClearCommand": new ClearCommand()
+
+activate ":ClearCommand"
+
+":ClearCommand" -> ":IngredientList": getIngredients()
+activate ":IngredientList"
+":ClearCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
+deactivate ":IngredientList"
+
+":ClearCommand" -> ":IngredientList": clear()
+activate ":IngredientList"
+":ClearCommand" <-- ":IngredientList":
+deactivate ":IngredientList"
+
+[<-- ":ClearCommand": Done
+destroy ":ClearCommand"
+deactivate ":ClearCommand"
+
+@enduml

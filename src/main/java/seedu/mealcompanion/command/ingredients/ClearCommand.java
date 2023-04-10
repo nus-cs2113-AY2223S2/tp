@@ -5,6 +5,7 @@ import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.IngredientList;
 
 //@@author TJW0911
+
 /**
  * Represents the "Clear" command.
  */

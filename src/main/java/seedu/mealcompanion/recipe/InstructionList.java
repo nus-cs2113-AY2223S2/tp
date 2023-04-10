@@ -12,6 +12,7 @@ public class InstructionList {
 
     /**
      * Get the ArrayList of Instructions.
+     *
      * @return ArrayList of Instructions
      */
     public ArrayList<Instruction> getInstructions() {
@@ -20,6 +21,7 @@ public class InstructionList {
 
     /**
      * Add an instruction to InstructionList
+     *
      * @param instruction the instruction to be added
      */
     public void add(Instruction instruction) {
@@ -28,6 +30,7 @@ public class InstructionList {
 
     /**
      * Return the number of instructions in InstructionList.
+     *
      * @return the number of instructions
      */
     public int size() {
@@ -36,6 +39,7 @@ public class InstructionList {
 
     /**
      * Get the instruction specified by index.
+     *
      * @param index the index of the instruction to be retrieved
      * @return
      */
@@ -45,6 +49,7 @@ public class InstructionList {
 
     /**
      * Set the instructions in InstructionList.
+     *
      * @param instructions the instructions to set to
      */
     public void setInstructions(ArrayList<Instruction> instructions) {
@@ -53,6 +58,7 @@ public class InstructionList {
 
     /**
      * Get a formatted string of instructions with based-1 indexes.
+     *
      * @return string of instructions
      */
     @Override
@@ -61,7 +67,7 @@ public class InstructionList {
         for (int i = 0; i < instructions.size(); i++) {
             Instruction instruction = instructions.get(i);
             String instructionDetail = instruction.getInstruction();
-            instructionListDetails.append((i+1) + ". " + instructionDetail + System.lineSeparator());
+            instructionListDetails.append((i + 1) + ". " + instructionDetail + System.lineSeparator());
         }
         return String.valueOf(instructionListDetails);
     }

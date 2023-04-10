@@ -1,10 +1,9 @@
 package seedu.mealcompanion.command.recipe;
 
-import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
+import seedu.mealcompanion.exception.CommandRunException;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.Recipe;
-import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author TJW0911
 
@@ -13,10 +12,10 @@ import seedu.mealcompanion.recipe.RecipeList;
  */
 public class MakeCommand extends RecipeCommand {
 
-    String recipeNumber;
+    Recipe recipe;
 
-    public MakeCommand(String argument) {
-        this.recipeNumber = argument;
+    public MakeCommand(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     /**
@@ -65,25 +64,13 @@ public class MakeCommand extends RecipeCommand {
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients and recipes
      */
 
-    public void execute(MealCompanionSession mealCompanionSession) {
-        try {
-            RecipeList recipes = mealCompanionSession.getRecipes();
-            if (recipeNumber == null || recipeNumber.trim().isEmpty()) {
-                throw new MealCompanionException("OOPS, recipe number cannot be empty");
-            }
-            int recipeIndex = Integer.parseInt(recipeNumber) - 1;
-            Recipe recipe = recipes.getRecipe(recipeIndex);
-            IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-            if (canMakeRecipe(recipe, fridgeIngredients)
-                    && !hasAllergen(recipe, mealCompanionSession.getAllergens())) {
-                makeRecipe(mealCompanionSession, recipe);
-            } else {
-                throw new MealCompanionException("Current ingredients is insufficient or recipe contains allergens");
-            }
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");
-        } catch (Exception e) {
-            mealCompanionSession.getUi().printMessage(e.getMessage());
+    public void execute(MealCompanionSession mealCompanionSession) throws CommandRunException {
+        IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
+        if (canMakeRecipe(recipe, fridgeIngredients)
+                && !hasAllergen(recipe, mealCompanionSession.getAllergens())) {
+            makeRecipe(mealCompanionSession, recipe);
+        } else {
+            throw new CommandRunException("Current ingredients is insufficient or recipe contains allergens");
         }
     }
 }

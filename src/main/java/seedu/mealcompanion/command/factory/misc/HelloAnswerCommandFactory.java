@@ -13,4 +13,8 @@ public class HelloAnswerCommandFactory extends ExecutableCommandFactory {
     public HelloAnswerCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new HelloAnswerCommand();
     }
+
+    public String getCommandFormat() {
+        return "hello <answer>";
+    }
 }
