@@ -1,13 +1,9 @@
 <!-- omit in toc -->
-
 # Developer Guide
 
 <!-- omit in toc -->
-
 ## Table of Contents
 
-- [Developer Guide](#developer-guide)
-  - [Table of Contents](#table-of-contents)
 - [Design](#design)
   - [Architecture](#architecture)
   - [Frontend](#frontend)
@@ -43,8 +39,10 @@
         - [Modify an entry](#modify-an-entry)
   - [Data Structure](#data-structure)
   - [Communication](#communication)
-- [Implementation](#implementation-3)
 - [Testing](#testing)
+  - [Running Tests](#running-tests)
+  - [Types of Tests](#types-of-tests)
+  - [Unit Test Strategy](#unit-test-strategy)
 - [Appendix A: Product scope](#appendix-a-product-scope)
   - [Target user profile](#target-user-profile)
   - [Value proposition](#value-proposition)
@@ -708,12 +706,19 @@ operations. The backend returns a `Response`, which is then processed by the fro
 </div>
 <!-- @@author -->
 
-# Implementation
-
-<!-- ## [Proposed] Undo/Redo feature -->
-
 <!-- @@author jinxuan-owyong -->
 # Testing
+
+## Running Tests
+
+We recommend using Gradle to run tests and coding style checks using `./gradlew clean check`
+
+## Types of Tests
+
+1. Unit testing which targets lower level units, such as `pocketpal.data.*`, `pocketpal.communication.*`.
+2. Integration testing is performed in classes which use multiple units, such as `pocketpal.backend.*Endpoint`, `pocketpal.frontend.*Command`, with the assumption that the base units are working.
+
+## Unit Test Strategy
 
 We adopt the Arrange, Act, Assert pattern for unit tests in this project.
 This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a
