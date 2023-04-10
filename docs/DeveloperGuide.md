@@ -395,6 +395,7 @@ The constructor of this class, which is called in `BagPacker`, will set the `fil
 `save()` calls the method `writeToFile`, which loops through the `packingList` to write every `item` to a file in the `file_path` using a `FileWriter`.
 
 Each `item` is written on a newline with a format using `.toString()`, which is `[PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`. 
+
 Example:
 ```text
 [0/4] jackets
@@ -405,13 +406,20 @@ Example:
 `load()` is called at the start of `main()` in `BagPacker`.
 This method reads in the file in `file_path` and translates each line to construct an `item`. 
 
-This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses the overloaded constructor method in `Item` class to form an item. 
+This is done by the method `readItem()`, which marks out the relevant variables for `packedQuantity`, `totalQuantity` and `itemName` in a line, then uses a constructor method in `Item` class to form an item. 
 
 Each `item` is returned to `load()` and added to the packingList.
 
 ---
 #### Ui
+The `Ui` class is the main component of `BagPacker`'s Command Line Interface (CLI) interface. 
+It is responsible for handling most of start-up and farewell messages, the CLI output, including error messages, information messages, and confirmation prompts after every `command.execute()`.
 
+Some important methods are:
+
+`printToUser()` - takes variable arity parameter of type `String` to print to the user
+`helpMessage()` - prints out the list of available commands and the respective formats
+`errorMessage()` - shows the error type and help message to the user in the case an error occurs
 
 
 ---
@@ -420,6 +428,7 @@ Each `item` is returned to `load()` and added to the packingList.
 
 
 ### Appendix: Requirements
+
 #### Product scope
 
 **Target user profile**
@@ -428,15 +437,12 @@ Each `item` is returned to `load()` and added to the packingList.
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-
-
 **Value proposition**
 
 BagPacker aims to help busy students simplify their packing process by allowing easy adding of items to pack and record of the items they have already packed so that they can be organised and aboard their travels with ease.
 
 
-
-##### User Stories
+#### User Stories
 
 | Version | As a ... | I want to ...                                  | So that I can ...                                                            |
 |---------|----------|------------------------------------------------|------------------------------------------------------------------------------|
@@ -469,5 +475,65 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 ---
 
 ### Instructions for manual testing
+
+Download the jar file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases/tag/v2.1) and run `BagPacker` in a terminal with the command 
+```
+java -jar bagpacker.jar
+```
+
+You will see a greeting screen: 
+```text
+________________________________________________________________________________________________________________________
+Hi this is,
+ ____              _____           _
+|  _ \            |  __ \         | |
+| |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __
+|  _ < / _` |/ _` |  ___/ _` |/ __| |/ / _ \ '__|
+| |_) | (_| | (_| | |  | (_| | (__|   <  __/ |
+|____/ \__,_|\__, |_|   \__,_|\___|_|\_\___|_|
+              __/ |
+             |___/
+
+Enter "help" to find out how to use BagPacker
+________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________
+No save files detected. Hello new user!
+________________________________________________________________________________________________________________________
+
+```
+You can run a few commands; refer to the [User Guide]() for the full list of commands and the relevant formats, or you can type `help` to see what commands are available.
+
+* Try adding a few items using the `add` command 
+  * Example:  `add 4 /of jackets`
+  * Expected:
+    ```text
+    ________________________________________________________________________________________________________________________
+    New item added: [0/4] jackets
+    ________________________________________________________________________________________________________________________
+    ```
+  * You may add in as many items you want to test with varying quantity and item names
+  
+* Try packing the items added using the `pack` command
+  * Example: `pack 2 /of 1`
+  * Expected: A message showing that the first item pas been packed with quantity of 2.
+  * You may pack other items with different quantities.
+
+* Try to see your current packing list with the `list` command
+    * Example: `list`
+    * Expected: A message showing every item in the packing list with the respective item index, packed quantity, total quantity and item name.
+    * You may use this command everytime you wish to see your packing list.
+
+* Try deleting some items using the `delete` command
+    * Example: `delete 1`
+    * Expected: A message showing the removal of the item with its packed quantity and total quantity.
+    * You may delete any item added to the list at any time.
+
+* Try  using the `` command
+    * Example: ``
+    * Expected: A message showing 
+
+
+
+
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
