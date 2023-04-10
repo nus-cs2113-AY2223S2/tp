@@ -86,7 +86,7 @@ public class ParseAdd extends Parser {
     }
 
     private void checkDescription() throws RainyDayException {
-        if (description.contains("$")) {
+        if (description.contains("-c ") && description.contains("$")) {
             logger.warning("unsupported description name");
             throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
         }
