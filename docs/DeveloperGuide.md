@@ -1,5 +1,7 @@
 # Developer Guide
 
+<!-- @@author kishore-a00 -->
+
 ## Table of Contents
 1. [Acknowledgements](#acknowledgements) 
 
@@ -26,6 +28,8 @@
 6. [Non-Functional Requirements](#non-functional-requirements)
 7. [Glossary](#glossary)
 8. [Instructions for manual testing](#instructions-for-manual-testing)
+
+<!-- @@author wuzhzn -->
 
 ## Acknowledgements
 
@@ -60,6 +64,7 @@ Fig 2: Shows the class Event that holds event details and the company list.
 The Event class holds the information regarding the event details and company list, and this is the class that the Storage 
 loads/save the information to/from. 
 
+<!-- @@author Manoj364 -->
 
 ### Ui 
 
@@ -71,7 +76,9 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
+
 ![Ui_class.png](UML%2FImage%2FUi_class.png)
+
 
 Fig 3: Shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
 
@@ -79,6 +86,7 @@ Fig 3: Shows the class diagram of the `Ui` class. There are no attributes for th
 
 Fig 4: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` during the startup of the application.
 
+<!-- @@author wuzhzn -->
 
 ### Storage
 
@@ -93,8 +101,10 @@ The detailed implementation is explained in the features section. [Storage expla
 Parser involves dealing with parsing user input to understand what the user wants to do. It returns a 
 <code>Command</code> class that it executed during the run-time. The possible commands are listed below. 
 
+<!-- @@author AkmalHanis -->
+
 ### Command
-Command classes are executed after the parser class has processed the user input. 
+Command classes are executed after the parser class has processed the user input.   
 
 The following Command classes inherits from the main <code>Command</code> class and
 executes different code.
@@ -115,6 +125,8 @@ the related method in the <code>Ui</code> class.
 
 Fig 7: Shows an high level overview of the <code>addCommand</code> execute method.
 
+<!-- @@author Manoj364 -->
+
 #### Duplication checker feature
 
 The duplicationChecker is facilitated by <code>CompanyList</code>. It will check against the existing
@@ -128,10 +140,14 @@ standardized to remove any potential duplicated addition issues.
 
 Fig 8: Shows the sequence diagram for the Duplication Checker feature when the user adds a new company to the list
 
+<!-- @@author kishore-a00 -->
+
 ####  Delete feature
 The deleting company feature  is facilitated by <code>DeleteCommand</code>. It will delete the company at the specified 
 index in the list of companies. After successfully executing the command,
 it will show successful deletion message using the related method in the <code>Ui</code>.
+
+<!-- @@author wuzhzn -->
 
 #### List companies feature
 The listing company feature  is facilitated by <code>ListCompanyCommand</code>. It will print out the companies
@@ -139,6 +155,8 @@ in the list of companies.
 The Company object is then printed out with
 an integer denoting its index, and four parameters, <code>companyName</code>, <code>industry</code>,
 <code>contactNumber</code>, and <code>contactEmail </code>, and its confirmation status.
+
+<!-- @@author kishore-a00 -->
 
 ####  Store/Load Company information to/from text file feature
 The Storing company list feature will allow the user to save the information of companies to disk. A text file will be
@@ -157,6 +175,8 @@ Fig 9: Shows how the <code>CompanyListEncoder</code> deals with saving the data 
 
 Fig 10: Shows how the <code>CompanyListDecoder</code> deals with copying the data from the text file.
 
+<!-- @@author wuzhzn -->
+
 ####  Storing event details feature
 The eventDetailStorage feature will allow users to save the event details of the current session to hard disk.
 A text file will be created to store information such as event name and venue information. This text file will be
@@ -170,6 +190,8 @@ details. If there is no text file, a text file will be created.
 Fig 11: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
 the text file through <code>EventDetailsStorage</code>
 
+<!-- @@author kishore-a00 -->
+
 ### Custom Exceptions
 Custom exceptions are created to catch erroneous user inputs that might otherwise cause EveNtUS to crash. When these 
 exceptions are caught, specific error messages are displayed to the user to indicate why their input was unsuccessful.
@@ -178,6 +200,8 @@ These custom exceptions inherit from the Exception Class.
 ![Exceptions.png](UML%2FImage%2FExceptions.png)
 
 Fig 12: Shows the class diagram of custom Exceptions used in EveNtUS
+
+<!-- @@author wuzhzn -->
 
 ## Product scope
 ### Target user profile
@@ -188,6 +212,7 @@ EveNtUS targets career fair event managers who are looking to better manage the 
 
 EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
 
+<!-- @@author de-yi -->
 
 ## User Stories
 
@@ -207,6 +232,8 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 | v2.0 | basic user | tag the companies attendance status as confirmed/unconfirmed | ensure there are sufficient companies and any further follow-up action can be taken accordingly |
 | v2.1 | basic user | update the name of the event                                 | customise the event name                                                                        |
 | v2.1 | basic user | filter by venue size                                         | choose the correct venue                                                                        |
+
+<!-- @@author wuzhzn -->
 
 ## Future/Possible implementations
 1. Having more venues
