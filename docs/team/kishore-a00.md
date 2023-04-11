@@ -12,7 +12,7 @@ operation through the Command-Line Interface(CLI)
 - Information is saved to a text file that is stored on the user's device
 
 #### Decoding saved data from text file
-- Allows for the data stored in the text file to be parsed and loaded into the programme when the user restarts the
+- Allows for the data stored in the text file to be parsed and loaded into the program when the user restarts the
   program
 - Complements the data encoding feature
 - Implemented error catching methods to prevent the program from crashing even if the text file has been modified
@@ -54,7 +54,7 @@ operation through the Command-Line Interface(CLI)
 - UML diagrams (displayed below)
   - [Sequence diagram for Encoder feature](#sequence-diagram-for-encoder-feature)
   - [Sequence diagram for Decoder feature](#sequence-diagram-for-decoder-feature)
-  - [Class diagram of custom Exceptions](#class-diagram-for-exceptions)
+  - [Class diagram of custom Exceptions used](#class-diagram-of-custom-exceptions-used)
 
 ### Contributions to Team tasks
 - PRs reviewed (with non-trivial comments regarding syntax and coding standards):
@@ -64,7 +64,7 @@ operation through the Command-Line Interface(CLI)
   [#118](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/118),
   [#126](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/126)
 - Actively contributed ideas for features to implement and solutions for bugs faced
-- Contributed JUnit tests for methods authored by my teammates [#138](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/138)
+- Contributed JUnit tests for methods authored by my teammates: [#138](https://github.com/AY2223S2-CS2113-W12-2/tp/pull/138)
 
 <div style="page-break-after: always;"></div>
 
@@ -78,6 +78,6 @@ operation through the Command-Line Interface(CLI)
 #### Sequence diagram for Decoder feature
 ![Decoder.png](..%2FUML%2FImage%2FDecoder.png)
 
-#### Class diagram for Exceptions
+#### Class diagram of custom Exceptions used
 ![Exceptions.png](..%2FUML%2FImage%2FExceptions.png)
 
