@@ -1,5 +1,7 @@
 # User Guide
 
+<!-- @@author de-yi -->
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -25,11 +27,13 @@
 
 4. [Summary of the Commands](#summary-of-the-commands)
 
+<!-- @@author wuzhzn -->
 
 ## Introduction
 
 EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
 
+<!-- @@author kishore-a00 -->
 
 ## Quick Start
 
@@ -38,6 +42,8 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 3. Copy the jar file to a folder.
 4. Open Command Prompt in the folder and enter the command <code>java -jar tp.jar</code>
 5. You can now use EveNtUS!
+
+<!-- @@author Manoj364 -->
 
 ## Features
 
@@ -109,6 +115,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
+<!-- @@author de-yi -->
 
 ### Load Samples
 Populate the company list with sample companies, and updates the company list text file
@@ -150,6 +157,7 @@ Sample data has been loaded into the list!
 ____________________________________________________________
 ```
 
+<!-- @@author de-yi -->
 
 ### Add
 Add the company to the list of companies, and updates the company list text file.
@@ -173,6 +181,8 @@ TESLA added successfully!
 ____________________________________________________________
 ```
 
+<!-- @@author Manoj364 -->
+
 * The same company cannot be added twice. If a company with existing name or contact detail is added, a warning will be displayed to the user
   instead.
 
@@ -183,6 +193,7 @@ Company already exists in the list!
 ____________________________________________________________
 ```
 
+<!-- @@author wuzhzn -->
 
 ### Choose Venue
 Updates the venue of the event from a list of venues, and updates the event details file.
@@ -229,6 +240,8 @@ ____________________________________________________________
 CDE fair is your event name!
 ____________________________________________________________
 ```
+
+<!-- @@author AkmalHanis -->
 
 ### Confirm
 Mark the status of a specific company's attendance as confirmed, and
@@ -318,6 +331,7 @@ Company industry: BANKING AND FINANCE
 ____________________________________________________________
 ```
 
+<!-- @@author wuzhzn -->
 
 ### List Venues
 Shows all venues available for the user to choose
@@ -337,6 +351,8 @@ ____________________________________________________________
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
+
+<!-- @@author AkmalHanis -->
 
 ### List Unconfirmed
 Shows all the unconfirmed companies that are stored in the company list.
@@ -364,6 +380,7 @@ Company industry: BANKING AND FINANCE
 ____________________________________________________________
 ```
 
+<!-- @@author Kishore-a00 -->
 
 ### Delete
 Delete a company from the company list, and updates the company list text file.
@@ -391,6 +408,7 @@ ____________________________________________________________
 
 ```
 
+<!-- @@author wuzhzn -->
 
 ### Purge
 Delete the company list data, and updates the company list text file
@@ -417,6 +435,7 @@ ____________________________________________________________
 
 ```
 
+<!-- @@author de-yi -->
 
 ### Find Companies
 Find the companies based on a company name, or any of the alphabets in keyword provided by the user.
@@ -446,6 +465,7 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
+<!-- @@author de-yi -->
 
 ### Find Industry
 Find the companies within an industry based on the keyword provided by the user.
@@ -485,7 +505,7 @@ ____________________________________________________________
 
 ```
 
-
+<!-- @@author Kishore-a00 -->
 
 ### Filter Venues
 Filters and returns venues that have a capacity greater than or equal to the size specified by the user.
@@ -507,6 +527,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
+<!-- @@author wuzhzn -->
 
 ### Exit
 Exit the application
@@ -522,6 +543,8 @@ ____________________________________________________________
 Bye!
 ____________________________________________________________
 ```
+
+<!-- @@author Manoj364 -->
 
 ## Summary of the Commands
 
