@@ -15,3 +15,12 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+
+/src/main/java/seedu/duke/*.class
+log.txt
+.gitignore
+
+log.txt.lck
+.gitignore
+save.json
+.vscode

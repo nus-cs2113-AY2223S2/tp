@@ -1,0 +1,67 @@
+@startuml
+hide circle
+skinparam packageStyle Rectangle
+skinparam classAttributeIconSize 0
+
+package Storage{
+    class "<<interface>>\nStorage"{
+        +saveToFile(EventList):void
+        +loadEvents():ArrayList<Schedule>
+        +loadModules():HashMap<String, NusModule>
+    }
+
+        class "<<interface>>\nEventListStorage"{
+            +saveToFile(EventList):void
+            +loadEvents():ArrayList<Schedule>
+        }
+        class JsonEventListStorage {
+        }
+        class EventListAdapter{
+        }
+
+
+
+        class "<<interface>>\nNusModuleLoader"{
+            +loadModules():HashMap<String, NusModule>
+        }
+
+        class JsonNusModuleLoader{
+        }
+
+        class ModuleAdapter{
+        }
+
+
+    class StorageManager{
+
+    }
+
+
+
+
+
+
+    "<<interface>>\nStorage" --|> "<<interface>>\nNusModuleLoader"
+    "<<interface>>\nStorage" --|>"<<interface>>\nEventListStorage"
+
+    StorageManager --> "1""<<interface>>\nNusModuleLoader"
+    StorageManager --> "1""<<interface>>\nEventListStorage"
+    StorageManager .down.> "<<interface>>\nStorage"
+
+    JsonEventListStorage .up.|> "<<interface>>\nEventListStorage"
+    JsonEventListStorage -down-> "1" EventListAdapter
+
+    JsonNusModuleLoader .up.|> "<<interface>>\nNusModuleLoader"
+    JsonNusModuleLoader -down-> "1" ModuleAdapter
+
+}
+package gson{
+    class TypeAdapter{
+    }
+}
+
+
+    EventListAdapter --|> TypeAdapter
+    ModuleAdapter --|> TypeAdapter
+
+@enduml
