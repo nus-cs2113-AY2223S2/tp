@@ -64,6 +64,10 @@ The following are my contributions to the project:
 
 ### Contribution to Team-based Task
 
+1. Came up with the user stories.
+2. Managed releases v2.1 on GitHub.
+3. Managed issue tracker on GitHub. (e.g. adding labels, assigning issues to team members, closing issues, etc)
+4. Solving issues on Github: [#4](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/4) , [#7](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/7) , [#47](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/47) , [#48](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/48) , [#49](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/49) , [#65](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/65) , [#68](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/68) , [#72](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/72) , [#75](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/75) , [#76](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/76), [#84](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/84) , [#87](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/87) , [#91](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/91), [#126](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/126)
 
 ### Documentation
 * **Contributions to User Guide**
@@ -83,7 +87,7 @@ The following are my contributions to the project:
 
 ### Review/Mentoring Contributions
 * PRs reviewed (with non-trivial comments) : [#116](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/116) , [#115](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/115) , [#6](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/6)
-* PRs reviewed (all others) :  [#1](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/1) ,  [#2](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/2) ,  [#27](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/27) ,  [#45](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/45) ,  [#107](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/107) ,  [#115](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/115)
+* PRs reviewed (all others) : [#1](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/1) , [#2](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/2) , [#27](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/27) , [#30](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/30) , [#38](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/38) , [#40](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/40) , [#45](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/45) , [#55](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/55) , [#57](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/57) , [#59](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/59) , [#107](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/107) , [#108](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/108) , [#114](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/114) , [#123](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/123) , [#131](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/131), [#133](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/133) , [#135](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/135) , [#142](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/142) , [#143](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/143) , [#148](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/148) , [#152](https://github.com/AY2223S2-CS2113-F13-1/tp/pull/152)
 
 ### Contributions beyond the Project Team
 * [WELLNUS++](https://github.com/Aung-Phone-Naing/ped/issues)
