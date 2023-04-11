@@ -11,6 +11,8 @@ repositories {
 
 dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.testng:testng:7.1.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
 
@@ -25,15 +27,18 @@ test {
         showCauses true
         showStackTraces true
         showStandardStreams = false
+        options {
+            jvmArgs '-Djava.awt.headless=true'
+        }
     }
 }
 
 application {
-    mainClass = "seedu.duke.Duke"
+    mainClass = "seedu.badmaths.BadMaths"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "badmaths"
     archiveClassifier = null
 }
 
@@ -43,4 +48,19 @@ checkstyle {
 
 run{
     standardInput = System.in
+}
+
+run {
+    enableAssertions = true
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'seedu.badmaths.BadMaths'
+    }
+    duplicatesStrategy = 'exclude' // or 'fail', 'warn', 'preserve'
+    from sourceSets.main.output
+    from(sourceSets.main.resources) {
+        include '**/*.txt'
+    }
 }

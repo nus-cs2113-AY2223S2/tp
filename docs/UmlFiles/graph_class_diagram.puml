@@ -1,0 +1,51 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class TrigoGraph {
+    - trigoEqn: String
+    - amplitude: double
+    - frequency: double
+    - phase: double
+    - verticalShift: double
+    - trig: String
+    + TrigoGraph: void(trigoEqn)
+    + startGraphAnalysis: void()
+    + getGraphDetails: void(analyser)
+    + printGraphDetails: void()
+}
+class TrigoGraphAnalyser {
+    - trigoEqn: String
+    - amplitude: double
+    - freq: double
+    - phase: double
+    - verticalShift: double
+    - trig: String
+    + canStartAnalyser: boolean()
+}
+class TrigoGraphVisualiser {
+    - amplitude: double
+    - freqInHz: double
+    - phase: double
+    - verticalShift: double
+    - trig: String
+    + startVisualiser: void()
+    # paintComponent: void(g)
+}
+class Ui {
+    + printIncorrectFormatEntered: void()
+    + printAmplitude: void(amplitude: double)
+    + printFrequency: void(frequency: double)
+}
+class JFrame
+abstract Graphics
+
+
+
+
+TrigoGraph ..> Ui
+TrigoGraph --> "visualiser 0..1"TrigoGraphVisualiser
+TrigoGraph --> "analyser 0..1"TrigoGraphAnalyser
+TrigoGraphVisualiser --> JFrame
+TrigoGraphVisualiser ..> Graphics
+
+@enduml

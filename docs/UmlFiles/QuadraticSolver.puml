@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+-> ":Command"
+activate ":Command"
+":Command" -> ":Quadratic": quadratic.solveQuadratic()
+activate ":Quadratic"
+":Quadratic" -> ":QuadraticParser"
+activate ":QuadraticParser"
+activate ":Ui"
+":QuadraticParser" -> ":QuadraticParser" : findA()
+activate ":QuadraticParser" #FFBBBB
+deactivate ":QuadraticParser"
+":QuadraticParser" -> ":QuadraticParser" : findB()
+activate ":QuadraticParser" #FFBBBB
+deactivate ":QuadraticParser"
+":QuadraticParser" -> ":QuadraticParser" : findC()
+activate ":QuadraticParser" #FFBBBB
+deactivate ":QuadraticParser"
+":QuadraticParser" --> ":Quadratic"
+deactivate ":QuadraticParser"
+":Quadratic" -> ":Quadratic": quadraticFormula()
+activate ":Quadratic" #FFBBBB
+deactivate ":Quadratic"
+":Quadratic" -> ":Quadratic": minMaxPointFinder()
+activate ":Quadratic" #FFBBBB
+deactivate ":Quadratic"
+":Quadratic" -> ":Quadratic": printAnswer()
+activate ":Quadratic" #FFBBBB
+":Quadratic" -> ":Ui": Ui.printQuadraticAnswer()
+activate ":Ui" #FFBBBB
+":Ui" --> ":Quadratic"
+deactivate ":Ui"
+deactivate ":Quadratic"
+opt Exceptions
+":Quadratic" -> ":Ui": printQuadraticFormatError()
+activate ":Ui" #FFBBBB
+":Ui" --> ":Quadratic"
+deactivate ":Ui"
+end opt
+":Quadratic" --> ":Command"
+deactivate ":Quadratic"
+deactivate ":Command"
+deactivate ":Ui"
+@enduml

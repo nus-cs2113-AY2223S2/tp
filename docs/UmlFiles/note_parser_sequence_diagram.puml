@@ -1,0 +1,59 @@
+@startuml
+    --> ":NoteParser": parseNoteString(noteScanner)
+    activate ":NoteParser"
+    ":NoteParser" -> ":String": split()
+    activate ":String"
+    ":String" --> ":NoteParser"
+    deactivate ":String"
+    alt noteInfo.length == 4
+        alt priorityStr is valid
+            ":NoteParser" -> ":NotePriority": Priority.valueOf(priorityStr)
+            activate ":NotePriority"
+            ":NotePriority" --> ":NoteParser"
+            deactivate ":NotePriority"
+        else priorityStr is invalid
+            ":NoteParser" -> ":InvalidFormatException": throw exception
+            activate ":InvalidFormatException"
+            ":InvalidFormatException" --> ":NoteParser"
+            deactivate ":InvalidFormatException"
+        end
+        alt isDoneStr is valid
+            ":NoteParser" -> ":String": equals()
+            activate ":String"
+            ":String" --> ":NoteParser"
+            deactivate ":String"
+        else isDoneStr is invalid
+            ":NoteParser" -> ":InvalidFormatException": throw exception
+            activate ":InvalidFormatException"
+            ":InvalidFormatException" --> ":NoteParser"
+            deactivate ":InvalidFormatException"
+        end
+        alt reviewCountStr is valid
+            ":NoteParser" -> ":Integer": parseInt(reviewCountStr)
+            activate ":Integer"
+            ":Integer" --> ":NoteParser"
+            deactivate ":Integer"
+        else reviewCountStr is invalid
+            ":NoteParser" -> ":InvalidFormatException": throw exception
+            activate ":InvalidFormatException"
+            ":InvalidFormatException" --> ":NoteParser"
+            deactivate ":InvalidFormatException"
+        end
+        ":NoteParser" -> ":Note": Note(noteStr, priority)
+        activate ":Note"
+        ":Note" -> ":Note": setReviewCount(reviewCount)
+        alt isDone = true
+            ":Note" -> ":Note": markAsDone()
+        else isDone = false
+            ":Note" -> ":Note": markAsNotDone()
+        end
+        ":Note" --> ":NoteParser"
+        deactivate ":Note"
+        <-- ":NoteParser": note
+    else noteInfo.length != 4
+            ":NoteParser" -> ":InvalidFormatException": throw exception
+            activate ":InvalidFormatException"
+            ":InvalidFormatException" --> ":NoteParser"
+            deactivate ":InvalidFormatException"
+    end
+@enduml

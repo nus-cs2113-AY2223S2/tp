@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Quadratic {
+    + toDo: String
+    + quadraticFormula(): ArrayList<double>
+    + minMaxPointFinder(): String
+    + printAnswer()
+    + solveQuadratic()
+}
+class QuadraticParser {
+    + findA(): double
+    + findSignOfB(): String
+    + findStringOfB(): String
+    + findB(): double
+    + findSignOfC(): String
+    + findStringOfC(): String
+    + findC(): double
+}
+class Ui {
+    + printQuadraticFormatError()
+    + printQuadraticAnswer()
+}
+
+Quadratic <|-- QuadraticParser
+Ui <-- Quadratic
+
+
+@enduml
