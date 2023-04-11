@@ -1,5 +1,7 @@
 # Developer Guide
+
 <!-- @@author kishore-a00 -->
+
 ## Table of Contents
 1. [Acknowledgements](#acknowledgements) 
 
@@ -102,7 +104,7 @@ Parser involves dealing with parsing user input to understand what the user want
 <!-- @@author AkmalHanis -->
 
 ### Command
-Command classes are executed after the parser class has processed the user input. 
+Command classes are executed after the parser class has processed the user input.   
 
 The following Command classes inherits from the main <code>Command</code> class and
 executes different code.

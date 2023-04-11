@@ -380,7 +380,7 @@ Company industry: BANKING AND FINANCE
 ____________________________________________________________
 ```
 
-<!-- @@author Kishore-a00 -->
+<!-- @@author kishore-a00 -->
 
 ### Delete
 Delete a company from the company list, and updates the company list text file.
@@ -505,7 +505,7 @@ ____________________________________________________________
 
 ```
 
-<!-- @@author Kishore-a00 -->
+<!-- @@author kishore-a00 -->
 
 ### Filter Venues
 Filters and returns venues that have a capacity greater than or equal to the size specified by the user.
