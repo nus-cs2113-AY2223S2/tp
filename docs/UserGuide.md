@@ -12,20 +12,18 @@
 
 Thank you for your interest in MoneyGoWhere!
 
-You have just made the first step in making even more money from your business, nice!
+Our team would like to express our heartfelt gratitude in giving our application a chance. Allow us to bring you many steps closer towards increasing your productivity, making more money from your business, and the dream of preserving hawker culture in Singapore!
+
 
 This is the user guide for MoneyGoWhere.
 **It is designed to help you, a hawker at NUS, learn how to use our system easily**.
 
 The purpose of this guide is to **show easy-to-understand instructions on how to use the program**.
 
-There may be new words in the guide that you have never heard of or seen before, but do not worry! We have made sure all
-the harder words are linked to our glossary at the bottom of the guide. All you have to do is click on the difficult
-word, and your computer will lead you to what the word means. Easy!
 
 <h1> What is MoneyGoWhere? </h1>
 
-MoneyGoWhere is a **computer program** that **helps you keep track of your sales**.
+MoneyGoWhere is a [**computer program**](#glossary) that **helps you keep track of your sales**.
 
 It works like the _cashier machine_ that you have been using, but is even better! With MoneyGoWhere, **you can see how
 much money you make each day** and **what items you sell the most**.
@@ -39,12 +37,13 @@ We understand that using a new system can be confusing and frustrating. That is 
 We understand that you may be referencing this guide when business is booming - **you can already barely cope, but you
 are unsure of how to use a feature**.
 
-Don't worry! The guide is written in such a way that you can find what you are looking for easily. Click
-on [*hyperlinks*](#glossary) listed in the Table of Contents to jump to the particular section that you want to know
-more about.
+Don't worry! The guide is written in such a way that you can find what you are looking for easily.
 
-Additionally, all words listed in our [glossary](#glossary) will [*look like this*](), so you are able to easily
-identify between the various hyperlinks.
+There may be new words and phrases used in the guide that you may have never seen or heard of before, but do not worry! Our team has made sure all the harder words and phrases will be in blue, [like this]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it!
+
+Click
+on the [*hyperlinks*](#glossary) listed in the [Table of Contents](#table-of-contents) below to jump to the particular section that you want to know
+more about.
 
 If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as
 possible.
@@ -79,16 +78,15 @@ This guide uses **three different colored blocks** and **associated icons** to i
 
 # Table of Contents
 
-<!---* [Tutorial on CLI](#Tutorial-on-CLI)--->
-
+* [Tutorial on Command Line Interface](#tutorial-on-command-line-interface)
 * [Setting up MoneyGoWhere](#setting-up-moneygowhere)
 * [MoneyGoWhere Commands](#moneygowhere-commands)
 * [Style Features](#style-features)
 * [Summary of Features](#summary-of-features)
-    * [Help](#help)
-    * [Item Features](#item-features)
-    * [Order Features](#order-features)
-    * [Statistics and Report](#statistics-and-report)
+   * [Help](#help)
+   * [Item Features](#item-features)
+   * [Order Features](#order-features)
+   * [Statistics and Report](#statistics-and-report)
 * [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
@@ -110,59 +108,134 @@ MoneyGoWhere will prompt you to enter your instructions, such as:
 [Back to table of contents](#table-of-contents)
 --->
 
+## Tutorial on Command Line Interface
+
+
+
+If you're already familiar with a [Command Line Interface](#glossary), otherwise known as a [CLI](#glossary), that's great! Feel free to [move on to the next section](#setting-up-moneygowhere) about setting up
+MoneyGoWhere.
+
+Otherwise, you are new to the [CLI](#glossary), please continue reading this section for a simple introduction. The [CLI](#glossary) is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
+
+Without further ado, let us begin exploring the [CLI](#glossary)! You may choose to follow the steps listed in the tutorial as we go along, so that you may get a better understanding.
+
+### Opening a [Terminal](#glossary)
+
+To begin, let us open a [terminal](#glossary) to view your [CLI](#glossary). You may enter `cmd` in your start menu and select the first [*option*](#glossary) that appears.
+![](https://i.imgur.com/Ezt3rky.png)
+
+### What is on a [CLI](#glossary)?
+
+After opening the [terminal](#glossary), you should see a window similar to the one shown in the picture below.
+
+![](https://imgur.com/FitjoRf.png)
+
+For the sake of simplicity, going forward, we will be calling this window the [CLI](#glossary).
+
+Now, let us break down the different parts of the [CLI](#glossary) for you!
+
+From the very top, we can see the text `Microsoft Windows [Version 10.0.22621.1413]`, followed by a [Copyright](#glossary) text. This may be different for every machine, so do not worry if what you see in your own [CLI](#glossary) is different.
+
+![](https://imgur.com/IUTmjGe.png)
+
+Next, we have the current directory. If you followed the [previous instruction](#opening-a-terminal) to open your [CLI](#glossary), you should see `C:\Users\ `, followed by your name on the screen, just like in this next screenshot. In this case, the name in the screenshot is `sean_`. This will look different in your own [CLI](#glossary), so do take note and do not panic if you see something different!
+
+![](https://imgur.com/cRpNden.png)
+
+A "current directory" is like a special folder that you are looking at right now on your computer. It is like a magic box that you can put things in or take things out of, but only if you're looking at that box right now. So if you want to find something or put something away, you need to make sure you're looking at the right magic box, or "current directory."
+
+### What can I do on a [CLI](#glossary)?
+
+You can type and run [commands](#glossary), one example of which is the command to launch MoneyGoWhere!
+
+The following screenshot shows where you are able to type on a [CLI](#glossary).
+
+![](https://imgur.com/q6WTOE4.png)
+
+To run the [command](#glossary) that you have just typed into the [CLI](#glossary), you can press the `Enter` button on your keyboard.
+
+However, if you entered `Hello Hawker, I can type here!` as shown in the previous screenshot, you will see an error message, stating that it is an invalid [command](#glossary) as shown in the next screenshot. This is because the sentence `Hello Hawker, I can type here!` is not a valid [command](#glossary).
+
+![](https://imgur.com/zNtdks0.png)
+
+One example of a valid [command](#glossary) is the [command](#glossary) to change the name of the [CLI](#glossary) window. This can be done by using the `title` [command](#glossary).
+
+We will show you how to use it soon, but first, notice how the `CLI` looks like now. In the screenshot below, the window is named `Command Prompt`.
+
+![](https://imgur.com/WBuFLtU.png)
+
+To change the name of the [CLI](#glossary) window from `Command Prompt` to `My favoruite application`, you can enter and run the [command](#glossary) `title My favourite application`.
+
+If you have done it right, you should notice a change in the name of the window, like this!
+
+![](https://imgur.com/RubluYJ.png)
+
+You can also do things like delete or list the files in the current directory.
+
+However, this guide will not be covering these topics as they are not relevant to MoneyGoWhere. If you want to know more about [CLI](#glossary) and what other things you can do with them, [you may read up more about it from this article](https://blog.testproject.io/2021/03/30/a-beginners-guide-to-command-line-interface-cli/).
+
+### Congratulations, you have completed the [CLI](#glossary) tutorial!
+
+Now that you are familiar with how the [CLI](#glossary) works, you are now able to use MoneyGoWhere to its maximum potential! Let us now proceed to the next section, where we will guide you on how to set up MoneyGoWhere.
+
+[Back to table of contents](#table-of-contents)
+
+
 ## Setting up MoneyGoWhere
 
 1. Before installing and using MoneyGoWhere, do note that Java 11 is required. If you do not already have it installed,
    you can do so [here](https://www.oracle.com/sg/java/technologies/downloads/#java11).
-    * For Windows users, download the x64 Installer. Ensure you are on the "Windows" page and download the correct
+   * Please download the x64 Installer. Ensure you are on the "Windows" page and download the correct
+     version as shown in the red boxes. Click `jdk-11.10.18_windows-x64_bin.exe` to begin your download.
+
+     ![](https://i.imgur.com/ibRX7fQ.png)
+
+<!--     * For Mac users, download the ARM 64 DMG Installer.Ensure you are on the "macOS" page and download the correct
       version, in the red box.
 
-      ![](https://i.imgur.com/ibRX7fQ.png)
+      ![](https://i.imgur.com/DGn8lrt.png) -->
 
-    * For Mac users, download the ARM 64 DMG Installer.Ensure you are on the "macOS" page and download the correct
-      version, in the red box.
+2. Next, open the downloaded installer and follow the instructions on the installer to install Java 11.
 
-      ![](https://i.imgur.com/DGn8lrt.png)
-
-2. After installing Java
+3. After installing Java
    11, [please download the latest release of the `MoneyGoWhere.jar` file](https://github.com/AY2223S2-CS2113T-T09-2/tp/releases).
    Click on `MoneyGoWhere.jar` to automatically download the file. Ensure that it is the latest version (the one with
    the biggest number).
 
    ![](https://i.imgur.com/9qXdll7.png)
 
-3. Find `MoneyGoWhere` in your Downloads folder.
+4. Find `MoneyGoWhere` in your Downloads folder.
 
-4. Open `cmd` and navigate to the folder where the `MoneyGoWhere.jar` file is. If you are unsure of how to do so, follow
-   steps 5 to 7. Otherwise, you may skip ahead to step 8.
+5. Open `cmd` and navigate to the folder where the `MoneyGoWhere.jar` file is. If you are unsure of how to do so, follow
+   steps 6 to 8. Otherwise, you may skip ahead to step 8.
 
-5. Open a command [*terminal*](#glossary) by entering `cmd` in your start menu and select the first [*option*](#glossary)
+6. Open a [*command*](#glossary) [*terminal*](#glossary) by entering `cmd` in your start menu and select the first [*option*](#glossary)
    that appears.
    ![](https://i.imgur.com/Ezt3rky.png)
 
-6. Get the file path of `MoneyGoWhere.jar` in your computer. To easily do so, you can do the following:
+7. Get the file path of `MoneyGoWhere.jar` in your computer. To easily do so, you can do the following:
 
-    * For Windows users, right-click the file and select the "Properties" [*option*](#glossary). Then, copy the text
-      under "Location".
-      ![](https://i.imgur.com/bc72Izn.png)
+   * For Windows users, right-click the file and select the "Properties" [*option*](#glossary). Then, copy the text
+     under "Location".
+     ![](https://i.imgur.com/bc72Izn.png)
 
-    * For Mac users, right-click the file and select "Copy".
-      ![](https://i.imgur.com/mKfwVrc.png)
+   * For Mac users, right-click the file and select "Copy".
+     ![](https://i.imgur.com/mKfwVrc.png)
 
-7. In the CLI, navigate to the location of the folder by typing `cd `, type or paste the file path that you found from
+8. In the CLI, navigate to the location of the folder by typing `cd `, type or paste the file path that you found from
    the previous step by pressing CTRL and V at the same time on your keyboard, then press enter.
 
-    * For example, if the file path that you have is `C:\Users\natas\Downloads\Folder`, then you should
-      enter `cd C:\Users\natas\Downloads\Folder` into the CLI.
+   * For example, if the file path that you have is `C:\Users\natas\Downloads\Folder`, then you should
+     enter `cd C:\Users\natas\Downloads\Folder` into the CLI.
 
     <!--* This step is important as it ensures that the saved tasks file will be saved in the same directory. Otherwise, the file will be stored in the current working directory.-->
 
-8. Use the [*command*](#glossary) `java -jar MoneyGoWhere.jar` to launch MoneyGoWhere.
+9. Use the [*command*](#glossary) `java -jar MoneyGoWhere.jar` to launch MoneyGoWhere.
    If done correctly, you will see this on your first start up:
    ![](https://i.imgur.com/xZ24DTM.png)
 
-9. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
-   the `X` on the top right hand corner of the CLI.
+10. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
+    the `X` on the top right hand corner of the CLI.
 
 [Back to table of contents](#table-of-contents)
 
@@ -535,7 +608,7 @@ Realised you entered the wrong name or price? You can update your items with thi
 <img src="https://i.imgur.com/6Q3hSNz.png"> 
 
 He wants to change two things. First, the word <strong>"Vegebatles"</strong>  at <a href="#glossary"><i>index</i></a>) number 6 is spelt
-wrongly. Also, he wants to <strong>increase the price of "Vegetables" to $2.00</strong>. 
+wrongly. Also, he wants to <strong>increase the price of "Vegetables" to $2.00</strong>.
 
 Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can update these items with the <code> updateitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
@@ -704,7 +777,7 @@ how much the customer gives you into the program, and MoneyGoWhere will calculat
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  A few days later, John's Chicken Rice stall is finally open! John is so happy that he has MoneyGoWhere as it is very easy and intuitive to use. After familiarizing himself with the system, John is ready to take an order from his hungry customers. 
 
-His menu currently looks like this:  
+His menu currently looks like this:
 
 <img src="https://i.imgur.com/GXwOhpJ.png"> 
 
@@ -893,7 +966,7 @@ refunded.
 
 Not wanting to receive bad reviews about his newly opened stall, John decides to give in to his demands for a refund.
 
-John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>. 
+John checked his list of orders using the <code>listorder</code> <a href="#glossary"><i>command</i></a>, and found out that the order ID is <strong>9a382d0f-81ee-4855-b29e-547e8e164f9a</strong>.
 
 John needs to refund the order, and can do so with the <code>refundorder</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
@@ -1013,16 +1086,16 @@ Don't worry if you find yourself still confused by the format. We admit, it is p
 Of the two, only one can be present in your [*command*](#glossary).
 
 * When generating your report, you can choose between the [*options*](#glossary) `rank` or `sale`.
-    * Rank orders the items on your menu based on either `sales` (monetary income) or `popular` (quantity ordered).
-    * Meanwhile, Sale shows your income, either on a `daily` basis or `monthly` basis.
+   * Rank orders the items on your menu based on either `sales` (monetary income) or `popular` (quantity ordered).
+   * Meanwhile, Sale shows your income, either on a `daily` basis or `monthly` basis.
 
 **Year vs From/To**
 
 Of the two, only one can be present in your [*command*](#glossary).
 
 * You can choose which dates to generate the report.
-    * Year takes the format `YYYY`
-    * From/To takes the format `DD/MM/YYYY`
+   * Year takes the format `YYYY`
+   * From/To takes the format `DD/MM/YYYY`
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖  Now, we will show you how John was able to use this <a href="#glossary"><i>command</i></a> to achieve his goals. 
@@ -1088,19 +1161,23 @@ laptop, simply copy the entire folder! This way, the application and all your da
 
 **A:** Your menu and transaction list are stored in a folder called `datastore`. Inside it, you should see two
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
-as we are not liable for any data loss as a result of tampering with those files.
+as we are not liable for any data loss as a result of [*tampering*](#glossary) with those files.
 
 ## Glossary
 
 | Term                   | Explanation                                                                                                                                                |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Computer Program| An application or app that you run on computers.
 | Hyperlink              | A phrase or text that you can click.                                                                                                                       |
+| CLI | An abbreviation for Command Line Interface.
 | Command Line Interface | A text-based interface. This means there are no icons to click and everything has to be typed.                                                             |
 | Command                | An instruction given to the program.                                                                                                                       |
-| Terminal               | A tool used for CLI programmes to be run. It accepts text input and outputs text.                                                                          |
+| Terminal               | A tool used to run CLI commands and other tools. It accepts text input and outputs text.                                                                          |
+| Copyright | A type of intellectual property that gives its owner the exclusive right to copy, distribute, adapt, display, and perform a creative work. |
 | Decimal Places         | The number of digits behind a decimal point. For example `2.123` has 3 decimal places, while `4.20` has 2 decimal places.                                  |
-| Index                  | A set of ordered whole numbers used to indicate elements. For example, you can think about the different levels in a building.                             |
-| Option                 | Used to specify instructions and change the behaviour of a command. In this application, options have a short-form and a long-form, ie. `-n` and `--name`. |
+| Index                  | A set of ordered numbers used to uniquely indicate items in a list. For example, index numbers are used to uniquely identify the different levels of a building.                  |
+| Option                 | Used to specify instructions and change the behaviour of a command. In this application, options have a short-form and a long-form, for example, in the case of `-n` and `--name`. |
+| Tampering | The act of intentionally changing an object, in this case, a file, that is not intended to be changed. |
 
 [Back to table of contents](#table-of-contents)
   
