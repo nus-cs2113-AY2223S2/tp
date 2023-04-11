@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+class Storage  {
+-dirPath: String
++checkFileAccess(filePath: String) : void
++writeToFile(textToAdd: String, filePath: String): void
++appendToFile(textToAppend: String, filePath: String): void
+}
+
+class EventDetailsStorage  {
+}
+
+class CompanyListEncoder  {
+
+}
+
+class CompanyListDecoder {
+}
+
+Storage <|-- EventDetailsStorage
+Storage <|-- CompanyListEncoder
+Storage <|-- CompanyListDecoder
+
+
+
+@enduml

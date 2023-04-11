@@ -1,0 +1,37 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+left to right direction
+
+class EveNtUS {
+- storage: Storage
+- companyList: CompanyList
+- venueList: VenueList
+- event: Event
+- ui : Ui
++ run() : void
+}
+
+interface Parser <<interface>> {
+}
+
+class Storage{}
+
+class Event{
+}
+
+class Ui{
+}
+
+class CompanyList{}
+class VenueList{}
+
+Parser <|.. EveNtUS
+
+EveNtUS --> "1" Storage
+EveNtUS --> "1" CompanyList
+EveNtUS --> "1" VenueList
+EveNtUS --> "1" Event
+EveNtUS --> "1" Ui
+
+@enduml

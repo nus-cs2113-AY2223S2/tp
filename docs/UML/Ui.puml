@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+
+
+activate ":Eventus"
+":Eventus" -> ":Eventus" : run()
+activate ":Eventus"
+
+":Eventus" -> "ui: Ui" : showWelcome()
+
+activate "ui: Ui"
+
+    "ui: Ui" -> "ui: Ui": showLine()
+    activate "ui: Ui"
+
+    "ui: Ui" --> "ui: Ui":
+    deactivate "ui: Ui"
+
+    ":Eventus" <-- "ui: Ui"
+
+deactivate "ui: Ui"
+
+":Eventus" --> ":Eventus"
+
+deactivate ":Eventus"
+
+
+@enduml

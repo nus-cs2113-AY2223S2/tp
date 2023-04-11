@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+
+class Ui {
++showLine() :void
++showWelcome() :void
++showGuide() :void
++showExitMessage() :void
++showHelpText() :void
++showSuccessfulDeletionMessage() :void
++showSuccessfulAdditionMessage(company :String) :void
++showSuccessfulPurgingMessage() :void
++showSampleDataLoadedMessage() :void
++showSuccessfulConfirmedMessage() :void
++showSuccessfulUnconfirmedMessage() :void
++showExistingConfirmationMessage() :void
++showExistingUnconfirmationMessage() :void
++showSortedCompanyList(industry :String, sortedCompanyList :ArrayList) :void
++showCompanyFoundMessage(company :Company, idx :int) : void
++showCompanyNotFoundMessage(targetCompany :String) :void
++showVenueSelectionMessage(venue: String) :void
++showEventNameSelectionMessage(eventName :String  :void
++invalidInputFormatErrorMessage(invalidPart :String) :void
++invalidInputFormatErrorMessage(invalidPart :String, expectedInput :String) :void
+}
+
+
+@enduml

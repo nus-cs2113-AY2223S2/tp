@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+-> "chooseVenueCommand: ChooseVenueCommand": execute(event, venueList)
+
+activate "chooseVenueCommand: ChooseVenueCommand"
+
+"chooseVenueCommand: ChooseVenueCommand" -> "event: Event": updateVenue(venueList, venueNum)
+activate "event: Event"
+"event: Event" -> "venueList: VenueList": getVenue(venueNum)
+activate "venueList: VenueList"
+"venueList: VenueList" --> "event: Event": venue
+deactivate "venueList: VenueList"
+"event: Event" -> "ui: Ui": showVenueSelectionMessage(venueName)
+activate "ui: Ui"
+"ui: Ui" --> "event: Event":
+deactivate "ui: Ui"
+"event: Event" --> "chooseVenueCommand: ChooseVenueCommand":
+deactivate "event: Event"
+
+"chooseVenueCommand: ChooseVenueCommand" -> "<<class>>\nEventDetailsStorage": updateFile(event, venueNum)
+activate "<<class>>\nEventDetailsStorage"
+"<<class>>\nEventDetailsStorage" --> "chooseVenueCommand: ChooseVenueCommand":
+
+deactivate "<<class>>\nEventDetailsStorage"
+<-- "chooseVenueCommand: ChooseVenueCommand"
+
+deactivate "chooseVenueCommand: ChooseVenueCommand"
+
+destroy "chooseVenueCommand: ChooseVenueCommand"
+@enduml

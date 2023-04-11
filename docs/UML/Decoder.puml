@@ -1,0 +1,30 @@
+@startuml
+
+hide footbox
+
+ -> "<<class>>\nCompanyListDecoder": read(companyList)
+     activate "<<class>>\nCompanyListDecoder"
+
+        "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" :checkFileAccess(filePath)
+        activate "<<class>>\nCompanyListDecoder"
+        "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder"
+        deactivate "<<class>>\nCompanyListDecoder"
+
+            loop next line exists
+                "<<class>>\nCompanyListDecoder" -> : nextLine()
+                "<<class>>\nCompanyListDecoder" <--: line
+
+                "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" : parseInput(line)
+                activate "<<class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder" : parsedInput
+                deactivate "<<class>>\nCompanyListDecoder"
+
+                "<<class>>\nCompanyListDecoder" -> "<<class>>\nCompanyListDecoder" : writeToCompanyList(companyList, parsedInput)
+                activate "<<class>>\nCompanyListDecoder"
+                "<<class>>\nCompanyListDecoder" --> "<<class>>\nCompanyListDecoder"
+                deactivate "<<class>>\nCompanyListDecoder"
+            end
+        <-- "<<class>>\nCompanyListDecoder"
+        deactivate "<<class>>\nCompanyListDecoder"
+
+@enduml
