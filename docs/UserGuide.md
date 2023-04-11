@@ -12,7 +12,11 @@
 
 Thank you for your interest in MoneyGoWhere!
 
-Our team would like to express our heartfelt gratitude in giving our application a chance. Allow us to bring you many steps closer towards increasing your productivity, making more money from your business, and the dream of preserving hawker culture in Singapore!
+Our team would like to express our heartfelt gratitude in giving our application a chance. 
+We understand that you may not like change, and are used to doing what you are comfortable with on a daily basis.
+Don't worry, we have designed our application with these concerns in mind! 
+
+Allow us to bring you many steps closer towards increasing your productivity, making more money from your business, and the dream of preserving hawker culture in Singapore!
 
 
 This is the user guide for MoneyGoWhere.
