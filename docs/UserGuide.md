@@ -24,6 +24,9 @@ Online recipe websites have a leg up on traditional recipe books because they ar
 
 With the rise of shortform content such as TikToks, YouTube Shorts, and Instagram Reels, the trendiest recipes are always just a swipe away. However, those recipes can be hard to follow. Even if a text version is provided in the description of these videos, they still fall into the same issues as other online recipes. Plus, searching for them is a nightmare as the platforms they are on were not purpose-built for cooking. Not only does Meal Companion help you easily find recipes that you'd actually be interested in, it can also help you with using up the rest of your ingredients.
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 # Table of Contents
 1. [Using this Guide](#using-this-guide)
 1. [Getting Started](#getting-started)
@@ -200,7 +203,8 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 ##### [Back to Ingredients](#ingredients)
 
 <div style="page-break-before:always">&nbsp;</div>
-<p></p>
+<p></p>  
+
 
 ### Search Ingredients
 If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`. For example, `ingredients search ground chicken`.
