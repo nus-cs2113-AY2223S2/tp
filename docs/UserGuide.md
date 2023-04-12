@@ -61,6 +61,8 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
    2. [New Ingredient](#new-ingredient)
 6. [Conclusion](#conclusion)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 # Using this Guide
 
@@ -71,6 +73,9 @@ The purpose of this guide is to introduce you to the basics of using Meal Compan
 Within the `code block` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this text is meant to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
 #### [Back to table of contents](#table-of-contents)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 # Getting Started
 
@@ -98,6 +103,8 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 
 #### [Back to table of contents](#table-of-contents)  
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 # Critical Warnings
 Due to the nature of Meal Companion as a CLI-based application, please take care to avoid malformed commands so as to avoid undesirable performance of Meal Companion. Some examples are shown below.
@@ -108,7 +115,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > 
 > For example:<br>
 > ![whitespace.png](images/whitespace.png)<br>
-> <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`</sub> comamnds.</sub><br>
+> <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`<sub> comamnds.</sub><br>
 > 
 > The above-mentioned warnings apply to all commands or ingredient names with whitespaces in between words. We cannot guarantee Meal Companion will function as expected if the warning is not adhered to. 
 
@@ -122,9 +129,21 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 
 #### [Back to table of contents](#table-of-contents)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 # Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
+- [Ingredients](#ingredients)
+- [Allergens](#allergens)
+- [Recipes](#recipes)
+- [Saving Data](#saving-data)
+- [Help](#help)
+- [Command List](#command-list)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Ingredients
 Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
@@ -212,7 +231,8 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
  
 #### [Back to table of contents](#table-of-contents)
 
-
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Allergens
 Meal Companion recognizes that you may have certain dietary restrictions. As such, we have provided a feature that allows you to track your allergens and block Meal Companion from showing you recipes that contain said allergens. We will go into more detail on the Allergens function below.
@@ -270,7 +290,8 @@ If you wish to take a look at how the allergens you have added will affect the r
 
 #### [Back to table of contents](#table-of-contents)
  
- 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
@@ -418,7 +439,8 @@ If you would like to unmark a recipe as your favourite, you may use the command 
 
 #### [Back to table of contents](#table-of-contents)
 
-
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Saving Data
 Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
@@ -440,7 +462,8 @@ If you would like to access your saved ingredients list on a new instance of Mea
 
 #### [Back to table of contents](#table-of-contents)
 
-
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
@@ -452,7 +475,8 @@ For a comprehensive list of commands available to you, please refer to the [Comm
 
 #### [Back to table of contents](#table-of-contents)
 
-
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ## Command List
 Please see the below table for the list of available commands.
@@ -483,6 +507,9 @@ Please see the below table for the list of available commands.
 
 #### [Back to table of contents](#table-of-contents)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 # Upcoming Features
 This section will give you a glimpse to some of the upcoming features that you can look forward to!
 
@@ -493,6 +520,9 @@ Do you have delicious recipes that are not in our list of default recipes? With 
 Does your customized recipes require ingredients that are not recognized to be valid ingredients in Meal Companion? Add them to our list of valid ingredients using the `new ingredient` command!
 
 #### [Back to table of contents](#table-of-contents)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
