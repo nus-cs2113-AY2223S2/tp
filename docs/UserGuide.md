@@ -179,6 +179,8 @@ For example, `add ground chicken /qty 300`.
 
 ##### [Back to Ingredients](#ingredients)
 
+<br>
+
 ### Remove Ingredients
 To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
 For example, `remove ground chicken /qty 100`.
