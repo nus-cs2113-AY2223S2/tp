@@ -63,6 +63,7 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
    1. [Add Recipe](#add-recipe)
    2. [New Ingredient](#new-ingredient)
 6. [Conclusion](#conclusion)
+7. [Appendix](#appendix)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -93,8 +94,11 @@ Within the `code block` you may see segments of text wrapped in `<chevrons>`. Th
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
-5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
-6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
+5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.  
+> **Tip** 
+> If you are new to using the Command Line Interface, you may refer to the [Command Line Interface Guide](#command-line-interface-guide) in the [Appendix](#appendix) for further assistance.
+
+7. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
     ![startup2.png](images/startup2.png)  
     <sub>Fig 2: Command to start using Meal Companion.</sub>
@@ -543,5 +547,17 @@ Does your customized recipes require ingredients that are not recognized to be v
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
+
+#### [Back to table of contents](#table-of-contents)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
+# Appendix
+Here you may find additional information that may be helpful to you.
+
+## Command Line Interface guide
+
+
 
 #### [Back to top](#user-guide)
