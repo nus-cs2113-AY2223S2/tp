@@ -108,7 +108,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > 
 > For example:<br>
 > ![whitespace.png](images/whitespace.png)<br>
-> <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`</sub> comamnds.</sub><br>
+> <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`<sub> comamnds.</sub><br>
 > 
 > The above-mentioned warnings apply to all commands or ingredient names with whitespaces in between words. We cannot guarantee Meal Companion will function as expected if the warning is not adhered to. 
 
