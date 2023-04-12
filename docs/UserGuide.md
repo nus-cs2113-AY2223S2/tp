@@ -147,8 +147,7 @@ This section will focus on some of the key features of Meal Companion and explai
 
 ## Ingredients
 Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
-
-[Ingredients](#ingredients)  
+  
 * [Add Ingredients](#add-ingredients)  
 * [Remove Ingredients](#remove-ingredients)  
 * [List Ingredients](#list-ingredients)  
@@ -200,6 +199,9 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 
 ##### [Back to Ingredients](#ingredients)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### Search Ingredients
 If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`. For example, `ingredients search ground chicken`.
 
@@ -218,6 +220,9 @@ Omitting the keyword will return a list of all valid ingredients.
 <sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted.</sub>
 
 ##### [Back to Ingredients](#ingredients)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Clear Ingredients
 To remove all ingredients from Meal Companion's storage, use the `clear` command.
@@ -243,7 +248,6 @@ Once your allergies are added to Meal Companion, you may refer to the section on
 
 Due to certain design constraints, do note that your allergens are not saved within Meal Companion, so you will have to re-enter them each time you launch Meal Companion. We have plans to improve this feature in future iterations. We apologize for any inconvenience caused.
 
-[Allergens](#allergens)
 * [Add Allergens](#add-allergens)
 * [Remove Allergens](#remove-allergens)
 * [List Allergens](#list-allergens)
@@ -263,6 +267,8 @@ You may inform Meal Companion of any allergens you have by using the command `al
 
 ##### [Back to Allergens](#allergens)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Remove Allergens
 If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command `allergen remove water`.
@@ -295,8 +301,7 @@ If you wish to take a look at how the allergens you have added will affect the r
 
 ## Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
- 
-[Recipes](#recipes)
+
 * [Default Recipes](#default-recipes)
 * [All Recipes](#all-recipes)
 * [Recipe Details](#recipe-details)
@@ -320,6 +325,9 @@ This segment will go into detail about the recipe features that Meal Companion c
  7. Mee Goreng
 
 > **Note**: Look out for the new [`add recipe`](#add-recipe) feature coming out soon!
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### All Recipes
 To display all stored recipes, you may use the command `recipe all` to list them.
@@ -403,6 +411,9 @@ If you would like to find out which recipes you are almost able to make with the
 <sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 ##### [Back to Recipes](#recipes)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Make Recipe
 If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. For example, `make 1` (Recipe for Beef Burger).
