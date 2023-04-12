@@ -29,22 +29,22 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
 
 # Table of Contents
 1. [Using this Guide](#using-this-guide)
-1. [Getting Started](#getting-started)
-2. [Critical Warnings](#critical-warnings)  
+2. [Getting Started](#getting-started)
+3. [Critical Warnings](#critical-warnings)  
     1. [Unnecessary Whitespaces](#unnecessary-whitespaces)  
     2. [Duplicated Flags](#duplicated-flags)
 4. [Features](#features)
-   1. [Ingredients](#ingredients)
+   1. [Ingredients](#1-ingredients)
       - [Add Ingredients](#add-ingredients)
       - [Remove Ingredients](#remove-ingredients)
       - [List Ingredients](#list-ingredients)
       - [Search Ingredients](#search-ingredients)
       - [Clear Ingredients](#clear-ingredients)
-   2. [Allergens](#allergens)
+   2. [Allergens](#2-allergens)
        - [Add Allergens](#add-allergens)
        - [Remove Allergens](#remove-allergens)
        - [List Allergens](#list-allergens)
-   4. [Recipes](#recipes)
+   3. [Recipes](#3-recipes)
        - [Default Recipes](#default-recipes)
        - [All Recipes](#all-recipes)
        - [Recipe Details](#recipe-details)
@@ -55,10 +55,10 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
        - [Almost Completed Recipe](#almost-completed-recipe)
        - [Make Recipe](#make-recipe)
        - [Favourite/Unfavourite Recipe](#favouriteunfavourite-recipe)
-   5. [Saving Data](#saving-data)
+   4. [Saving Data](#4-saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
-   6. [Help](#help)
-   7. [Command List](#command-list)
+   5. [Help](#5-help)
+   6. [Command List](#6-command-list)
 5. [Upcoming Features](#upcoming-features)
    1. [Add Recipe](#add-recipe)
    2. [New Ingredient](#new-ingredient)
@@ -94,15 +94,17 @@ Within the `code block` you may see segments of text wrapped in `<chevrons>`. Th
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
-5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.  
+5. Use the command:  
+     `java -jar mealcompanion.jar`   
+     
+   to launch Meal Companion. You may refer to Fig. 2 for an example.
 > **Tip** 
 > If you are new to using the Command Line Interface, you may refer to the [Command Line Interface Guide](#command-line-interface-guide) in the [Appendix](#appendix) for further assistance.
-
-7. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
     ![startup2.png](images/startup2.png)  
     <sub>Fig 2: Command to start using Meal Companion.</sub>
 
+6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
 8. Alternatively, if you don't have any ingredients on hand but are interested in learning a new recipe, you can use the [`recipe all`](#all-recipes) command to browse through our recipe book and find a recipe you're interested in making, then use the [`recipe details`](#recipe-details) command to view how to make it.
 
@@ -142,7 +144,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 # Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
-- [Ingredients](#ingredients)
+- [Ingredients](#1-ingredients)
 - [Allergens](#allergens)
 - [Recipes](#recipes)
 - [Saving Data](#saving-data)
@@ -152,7 +154,7 @@ This section will focus on some of the key features of Meal Companion and explai
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Ingredients
+## 1. Ingredients
 Meal Companion will assist you in tracking the items in your refrigerator, and is capable of adding new ingredients, removing used ingredients, as well as listing the available ingredients in your refrigerator. This guide will detail these features below.
   
 * [Add Ingredients](#add-ingredients)  
@@ -164,8 +166,10 @@ Meal Companion will assist you in tracking the items in your refrigerator, and i
 
 ### Add Ingredients
 To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
-The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
-For example, `add ground chicken /qty 300`.
+The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. You may refer to Fig. 3 for an example and the expected output.
+
+For example:  
+`add ground chicken /qty 300`  
 
 ![add2.png](images/add2.png)  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
@@ -186,8 +190,10 @@ For example, `add ground chicken /qty 300`.
 <br>
 
 ### Remove Ingredients
-To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command.
-For example, `remove ground chicken /qty 100`.
+To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. You may refer to Fig. 4 for an example and the expected output.
+
+For example:  
+`remove ground chicken /qty 100`.
 
 ![remove2.png](images/remove2.png)  
 <sub>Fig 4: Sample of Remove Ingredients command with user input highlighted.</sub>
@@ -201,7 +207,8 @@ For example, `remove ground chicken /qty 100`.
 ##### [Back to Ingredients](#ingredients)
 
 ### List Ingredients
-In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list`.
+In order to show a list of all ingredients currently stored in Meal Companion, use the command:  
+`ingredients list` 
 
 ![ingredientlist2.png](images/ingredientlist2.png)  
 <sub>Fig 5: Sample of Ingredients List command with user input highlighted.</sub>
@@ -213,7 +220,10 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 
 
 ### Search Ingredients
-If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`. For example, `ingredients search ground chicken`.
+If you would like to search for a specific ingredient that Meal Companion recognizes as valid, use the command `ingredients search <keyword>`. You may refer to Fig. 6 for an example and the expected output.
+
+For example:  
+`ingredients search ground chicken`
 
 ![search11.png](images/search11.png)  
 <sub>Fig 6: Sample of Ingredients Search command with user input highlighted.</sub>
@@ -224,7 +234,10 @@ If you would like to search for a specific ingredient that Meal Companion recogn
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `ingredients search` command.
 <br>
 
-Omitting the keyword will return a list of all valid ingredients.
+Omitting the keyword will return a list of all valid ingredients. You may refer to Fig. 7 for an example of the expected output.
+
+For example:  
+`ingredients search`
 
 ![search22.png](images/search22.png)  
 <sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted.</sub>
@@ -235,7 +248,9 @@ Omitting the keyword will return a list of all valid ingredients.
 <p></p>
 
 ### Clear Ingredients
-To remove all ingredients from Meal Companion's storage, use the `clear` command.
+To remove all ingredients from Meal Companion's storage, you may use this command:  
+
+`clear`
 
 ![clear2.png](images/clear2.png)  
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
@@ -249,7 +264,7 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Allergens
+## 2. Allergens
 Meal Companion recognizes that you may have certain dietary restrictions. As such, we have provided a feature that allows you to track your allergens and block Meal Companion from showing you recipes that contain said allergens. We will go into more detail on the Allergens function below.
 
 Note that all allergens must be known ingredient names, similar to the `add` command.
@@ -264,7 +279,8 @@ Due to certain design constraints, do note that your allergens are not saved wit
 
 
 ### Add Allergens
-You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. For example, if you have an allergy to eggs, you may use the command `allergen add egg`.
+You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. For example, if you have an allergy to eggs, you may use the command:   
+`allergen add egg`
 
 ![allergenadd.png](images/allergenadd.png)  
 <sub>Fig 9: Sample of Allergen Add command with user input highlighted.</sub>
@@ -281,7 +297,9 @@ You may inform Meal Companion of any allergens you have by using the command `al
 <p></p>
 
 ### Remove Allergens
-If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command `allergen remove water`.
+If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command:  
+
+`allergen remove water`
 
 ![allergenremove.png](images/allergenremove.png)  
 <sub>Fig 10: Sample of Allergen Remove command with user input highlighted.</sub>
@@ -295,7 +313,8 @@ If you have erroneously entered an allergen, you may simply instruct Meal Compan
 ##### [Back to Allergens](#allergens)
 
 ### List Allergens
-If you wish to see the entire list of ingredients you are allergic to, you may simply use the command `allergen list`.
+If you wish to see the entire list of ingredients you are allergic to, you may simply use the command:  
+`allergen list`
 
 ![allergenlist.png](images/allergenlist.png)  
 <sub>Fig 11: Sample of Allergen List command with user input highlighted.</sub>
@@ -309,7 +328,7 @@ If you wish to take a look at how the allergens you have added will affect the r
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Recipes
+## 3. Recipes
 This segment will go into detail about the recipe features that Meal Companion contains, and the usage of these features.
 
 * [Default Recipes](#default-recipes)
@@ -340,12 +359,13 @@ This segment will go into detail about the recipe features that Meal Companion c
 <p></p>
 
 ### All Recipes
-To display all stored recipes, you may use the command `recipe all` to list them.
-
-> **Important Note**: Each recipe is tagged to an index number shown in the list generated by `recipe all`.
+To display all stored recipes, you may use the command:  
+`recipe all`
 
 ![recipeall1.png](images/recipeall1.png)  
 <sub>Fig 12: Sample of Recipe All command with user input highlighted.</sub>
+
+> **Important Note**: Each recipe is tagged to an index number shown in the list generated by `recipe all`.
 
 ##### [Back to Recipes](#recipes)
 
@@ -354,7 +374,8 @@ To go into details about a certain recipe, use the command `recipe <index_number
 
 > **Note**: `<index_number>` is the index number of a recipe as listed by the `recipe all` command! 
 
-For example, to view the recipe for Hainanese Chicken Rice, use the command `recipe 6`. The recipe displayed will also include the calorie count, to aid in your calorie tracking if necessary.
+For example, to view the recipe for Hainanese Chicken Rice, use the command:  
+`recipe 6`
 
 ![recipedetails3.png](images/recipedetails3.png)  
 <sub>Fig 13: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
@@ -362,11 +383,8 @@ For example, to view the recipe for Hainanese Chicken Rice, use the command `rec
 ##### [Back to Recipes](#recipes)
 
 ### Possible Recipes
-To get the list of possible recipes that can be made based on the available ingredients, simply use the command `recipe possible`.
-
-> **Note**: Recipes are listed along with their corresponding index number specified in the `recipe all` command.
-
-> **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
+To get the list of possible recipes that can be made based on the available ingredients, simply use the command:  
+`recipe possible`
 
 ![recipepossible2.png](images/recipepossible2.png)  
 <sub>Fig 14: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
@@ -378,22 +396,30 @@ To get the list of possible recipes that can be made based on the available ingr
 ![recipepossibleallergen2.png](images/recipepossibleallergen2.png)  
 <sub>Fig 15: Sample of Recipe Possible command after adding an allergy to ground beef, which is an ingredient in Recipe 1 (Beef Burger), showing that the recipe containing the allergen is no longer shown to the user. User input is highlighted.</sub>
 
+> **Note**: Recipes are listed along with their corresponding index number specified in the `recipe all` command.
+
+> **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
+
 ##### [Back to Recipes](#recipes)
 
 ### Random Recipe
-Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature, you may simply use the command `recipe random` to generate a random recipe.
+Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature to generate a random recipe, you may simply use the command:  
+`recipe random` 
+
+![reciperandom2.png](images/reciperandom2.png)  
+<sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
 
 > **Warning**: `recipe random` may generate a recipe containing your allergens. A warning will be displayed in the recipe should it contains your allergen.
 
 > **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
-![reciperandom2.png](images/reciperandom2.png)  
-<sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
-
 ##### [Back to Recipes](#recipes)
 
 ### Find Recipe
-If you would like to search for recipes by keywords, you may use the command `recipe find <keyword>`. For example, `recipe find chicken`.
+If you would like to search for recipes by keywords, you may use the command `recipe find <keyword>`. You may refer to Fig. 17 for an example with the expected output.
+
+For example:  
+`recipe find chicken`
 
 ![recipefind.png](images/recipefind.png)  
 <sub>Fig 17: Sample of Recipe Find command searching for recipes containing "chicken" in the name.</sub>
@@ -407,18 +433,21 @@ If you would like to search for recipes by keywords, you may use the command `re
 ##### [Back to Recipes](#recipes)
 
 ### Check Ingredients for Recipe
-If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. For example, `recipe need 2`.
+If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. You may refer to Fig. 18 for an example with the expected output.
+
+For example:  
+`recipe need 2`
 
 ![recipeneed2.png](images/recipeneed2.png)  
-<sub>Fig 17: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
+<sub>Fig 18: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 ##### [Back to Recipes](#recipes)
 
 ### Almost Completed Recipe
-If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients.
+If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients. You may refer to Fig. 19 for an example with the expected output.
 
 ![recipealmost2.png](images/recipealmost2.png)  
-<sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
+<sub>Fig 19: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 ##### [Back to Recipes](#recipes)
 
@@ -426,32 +455,39 @@ If you would like to find out which recipes you are almost able to make with the
 <p></p>
 
 ### Make Recipe
-If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. For example, `make 1` (Recipe for Beef Burger).
+If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. You may refer to Fig. 20 for an example with expeted output.
+
+For example:   
+`make 1` (Recipe for Beef Burger)
 
 ![make2.png](images/make2.png)  
-<sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
+<sub>Fig 20: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 ##### [Back to Recipes](#recipes)
 
 ### Favourite/Unfavourite Recipe  
-If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. For example, `recipe favourite 1` (recipe for beef burger). 
+If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. You may refer to Fig. 21 and Fig. 22 for an example with expected output.
+
+For example:  
+`recipe favourite 1` (recipe for beef burger)
 
 ![fav11.png](images/fav11.png)  
-<sub>Fig 20: Sample of Recipe Favourite Command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
+<sub>Fig 21: Sample of Recipe Favourite Command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 ![fav2.png](images/fav2.png)  
-<sub>Fig 21: Sample of Recipe list after Recipe 1 (Beef Burger) is added to favourites with the modified list highlighted.</sub>
+<sub>Fig 22: Sample of Recipe list after Recipe 1 (Beef Burger) is added to favourites with the modified list highlighted.</sub>
 
 <br>
-<br>
 
-If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. For example, `recipe unfavourite 1` (recipe for beef burger).  
+If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. You may refer to Fig. 23 and Fig. 24 for an example with expected output.
+For example:  
+`recipe unfavourite 1` (recipe for beef burger)
 
 ![unfav1.png](images/unfav1.png)  
-<sub>Fig 22: Sample of Recipe Unfavourite command with Recipe 6 (Hainanese Chicken Rice) used, with user input highlighted.</sub>
+<sub>Fig 23: Sample of Recipe Unfavourite command with Recipe 6 (Hainanese Chicken Rice) used, with user input highlighted.</sub>
 
 ![unfav2.png](images/unfav2.png)  
-<sub>Fig 23: Sample of Recipe list after Recipe 6 (Hainanese Chicken Rice) is removed from favourites with the modified list highlighted.</sub>
+<sub>Fig 24: Sample of Recipe list after Recipe 6 (Hainanese Chicken Rice) is removed from favourites with the modified list highlighted.</sub>
 
 > **Warning**
 > Please note that the current iteration of favourites does not preserve your preferences after closing the app. This functionality will be added in future iterations.
@@ -463,11 +499,11 @@ If you would like to unmark a recipe as your favourite, you may use the command 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Saving Data
-Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
+## 4. Saving Data
+Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. You may refer to Fig. 25. 
 
 ![save1.png](images/save1.png)  
-<sub>Fig 24: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
+<sub>Fig 25: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
 > **Warning**:
 > Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
@@ -486,20 +522,20 @@ If you would like to access your saved ingredients list on a new instance of Mea
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Help
+## 5. Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
 
 For a comprehensive list of commands available to you, please refer to the [Command List](#command-list) section.
 
 ![help1.png](images/help1.png)  
-<sub>Fig 25: Sample of Help command with listed output of in-built commands.</sub>
+<sub>Fig 26: Sample of Help command with listed output of in-built commands.</sub>
 
 #### [Back to table of contents](#table-of-contents)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-## Command List
+## 6. Command List
 Please see the below table for the list of available commands.
 
 | Feature | Command | Examples |
