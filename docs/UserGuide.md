@@ -296,7 +296,7 @@ You may inform Meal Companion of any allergens you have by using the command `al
 <br>
 
 > **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
-> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergen add` command.
 <br>
 
 #### [Back to Allergens](#2-allergens)
@@ -315,7 +315,7 @@ If you have erroneously entered an allergen, you may simply instruct Meal Compan
 <br>
 
 > **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
-> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
+> Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergen remove` command.
 <br>
 
 #### [Back to Allergens](#2-allergens)
