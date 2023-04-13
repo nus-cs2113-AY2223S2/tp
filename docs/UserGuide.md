@@ -50,6 +50,8 @@ much money you make each day** and **what items you sell the most**.
 
 **Now, you can make smarter business decisions, save time, and money**. _Steady_!
 
+###### [Back to table of contents](#table-of-contents)
+
 <hr style="width:90%;margin:25px auto;">
 
 # Why we created MoneyGoWhere
@@ -88,6 +90,8 @@ Additionally, *[these italicized hyperlinks](#glossary)* will bring you to our g
 
 If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as possible.
 
+###### [Back to table of contents](#table-of-contents)
+
 <hr style="width:90%;margin:25px auto;">
 
 <div style="page-break-after: always;"></div>
@@ -117,11 +121,13 @@ Before we begin, we want to let you know that this guide uses **three different 
     ❗ These are warning blocks. They are used to show that the next part will feature some errors that you may encounter. 
 </blockquote>
 
+###### [Back to table of contents](#table-of-contents)
+
 <hr style="width:90%;margin:25px auto;">
 
 # Tutorial on Command Line Interface
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-    💡  If you're already familiar with a <a href="glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="glossary"><i>CLI</i></a>, that's great! Feel free to <a href="setting-up-moneygowhere"><i>move on to the next section</i></a> about setting up
+    💡  If you're already familiar with a <a href="#glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="#glossary"><i>CLI</i></a>, that's great! Feel free to <a href="setting-up-moneygowhere"><i>move on to the next section</i></a> about setting up
 MoneyGoWhere.
 
 <br>
@@ -269,7 +275,7 @@ In other words, there is nothing that the <strong>Experienced User</strong> <a h
 
 ## Style Features
 
-For the following sections, all examples on how to run [*commands*](#glossary) are shown in images. There are four
+For the following sections, all examples on how to run [*commands*](#glossary) are shown through pictures. There are four
 things
 to take note of:
 
@@ -342,15 +348,18 @@ Currently, all he knows is that he can do <code>help</code>, or <code>/help</cod
 📖 As someone who is unfamiliar with the application, John wants to be guided step-by-step to use MoneyGoWhere. To view the <a href="#glossary"><i>commands</i></a> available to him, he can use the <code>help</code> command.
 </blockquote>
 
+1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide! 
 ![](https://i.imgur.com/OlmWorh.png)
 
+<hr style="width:60%;margin:25px auto;"/>
 
 <h3> For Experienced Users </h3>
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖 In the future, John develops a love for typing and now prefers to use just one line to complete a <a href="#glossary"><i>command</i></a>. He can use the <code>/help</code> <a href="#glossary"><i>command</i></a> to view how to use these single-line <a href="#glossary"><i>commands</i></a>.
 </blockquote>
 
-![](https://i.imgur.com/FBxnCgC.png)
+1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide!
+   ![](https://i.imgur.com/FBxnCgC.png)
 
 <h3> Error Messages </h3>
 
@@ -466,6 +475,8 @@ This example below will show you how to add an item in a single [*command*](#glo
 
    ![](https://i.imgur.com/pYNA0uT.png)
 
+<hr style="width:60%;margin:25px auto;"/>
+
 <h3>Error Messages</h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -492,8 +503,9 @@ are no such denominations in real life.
 
 **Solution:** Limit the price to 2 decimal points.
 
-
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;"/>
 
 ## List all Items
 
@@ -507,8 +519,7 @@ To see all the items you have entered in your menu, use this [*command*](#glossa
 💡 This <a href="#glossary"><i>command</i></a> uses only one word. Adding anything else after the <a href="#glossary"><i>command</i></a> will cause MoneyGoWhere to not recognize the <a href="#glossary"><i>command</i></a>. 
 </blockquote>
 
-1. John has added 10 items to the menu, and he wants to check that they are all correct. He uses the [
-   *command*](#glossary) `listitem`
+1. John has added 10 items to the menu, and he wants to check that they are all correct. He uses the [*command*](#glossary) `listitem`
    or `/listitem` to do so.
 
    ![](https://i.imgur.com/4TZqeA7.png)
@@ -532,6 +543,8 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;"/>
 
 ## Delete an Item
 
@@ -605,6 +618,8 @@ In other words, you cannot remove something that does not exist!
 **Solution:** Use a valid [*index*](#glossary).
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;"/>
 
 ## Update an Item
 
@@ -693,8 +708,9 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 **Solution:** Include the [*index*](#glossary).
 
-
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;"/>
 
 ## Find an Item
 
@@ -757,6 +773,8 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 **Solution:** Include the word or letters you want to look for.
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:25px auto;"/>
 
 ## Order Features
 
@@ -926,6 +944,8 @@ When your customers pay with their card, entering an amount different from the s
 
 [Back to table of contents](#table-of-contents)
 
+<hr style="width:80%;margin:25px auto;"/>
+
 ## List all Orders
 
 After a long, busy, and profitable day, you can use this [*command*](#glossary) to review all the orders you have entered.
@@ -959,8 +979,9 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ![](https://i.imgur.com/taGiKBr.png)
 
-
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;"/>
 
 ## Refund an Order
 
@@ -1035,6 +1056,8 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 </br>
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:25px auto;"/>
 
 ## Statistics and Report
 
@@ -1158,6 +1181,8 @@ This happens if you enter the wrong format for the date, such as using `-` inste
 
 The list of items and orders and stored as individual `json` files. While can edit these files, the team behind MoneyGoWhere advises against doing so as you may corrupt your file. Should any changes need to be made directly on the file, you may reach out to us, and we'll be happy to help.  -->
 
+<hr style="width:90%;margin:25px auto;"/>
+
 ## Frequently Asked Questions
 
 **Q:** I'm switching to a new laptop. Do I need to re-enter all the items on my menu? And what about my transactions?
@@ -1170,6 +1195,8 @@ laptop, simply copy the entire folder! This way, the application and all your da
 **A:** Your menu and transaction list are stored in a folder called `datastore`. Inside it, you should see two
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
 as we are not liable for any data loss as a result of [*tampering*](#glossary) with those files.
+
+<hr style="width:90%;margin:25px auto;"/>
 
 ## Glossary
 
