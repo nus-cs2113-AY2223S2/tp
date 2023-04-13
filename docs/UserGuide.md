@@ -82,7 +82,7 @@ We understand that you may be referencing this guide when business is booming - 
 
 Don't worry! The guide is written in such a way that you can easily find what you are looking for.
 
-There may be new words and phrases used in the guide that you may have never seen or heard of before. To make this guide easier to understand, our team has made sure all the "technical" words and phrases will be in blue, [*like this*]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [*glossary*](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it.
+There may be new words and phrases used in the guide that you may have never seen or heard of before. To make this guide easier to understand, our team has made sure all the "technical" words and phrases will be in blue, [*like this*]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it.
 
 Additionally, *[these italicized hyperlinks](#glossary)* will bring you to our glossary at the bottom of the guide, while [non-italicized hyperlinks]() like these will bring you to the relevant sections of the guide.
 
@@ -96,7 +96,7 @@ If you cannot find what you are looking for, you may **call us at 9123 4567** so
 
 This guide will bring you through:
 
-1. How to use a [*Command Line Interface (CLI)*](#glossary),
+1. How to use a [*Command Line Interface*](#glossary),
 2. How to set up MoneyGoWhere, and
 3. How to use our various [*commands*](#glossary) to track items, add orders, and generate statistic reports!
 
@@ -121,10 +121,12 @@ Before we begin, we want to let you know that this guide uses **three different 
 
 # Tutorial on Command Line Interface
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-    💡  If you're already familiar with a <a href="glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="glossary"><i>CLI</i></a>, that's great! Feel free to [move on to the next section](#setting-up-moneygowhere) about setting up
+    💡  If you're already familiar with a <a href="glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="glossary"><i>CLI</i></a>, that's great! Feel free to <a href="setting-up-moneygowhere"><i>move on to the next section</i></a> about setting up
 MoneyGoWhere.
+
 <br>
-Otherwise, if you are new to the <a href="glossary"><i>CLI</i></a>, please continue reading this section for a simple introduction. The [CLI](#glossary) is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
+
+Otherwise, if you are new to the <a href="glossary"><i>CLI</i></a>, please continue reading this section for a simple introduction. The <a href="glossary"><i>CLI</i></a> is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
 </blockquote>
 
 Without further ado, let us begin exploring the [CLI](#glossary)! You may choose to follow the steps listed in the tutorial as we go along, so that you may get a better understanding.
@@ -248,7 +250,7 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
 ## MoneyGoWhere [Commands](#glossary)
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖 Meet John! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>commands</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
+📖 Meet <strong>John</strong>! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>commands</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
