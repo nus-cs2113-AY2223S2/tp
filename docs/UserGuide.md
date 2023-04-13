@@ -135,7 +135,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > Meal Companion will ignore duplicated flags in the `add` and `remove` commands, taking only the last valid `/qty` flag as the validated input. <br>
 > 
 > For example:<br>
-> <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/dupflags.png" width="900"><br>
+> <img src="images/dupflags.png" width="900"><br>
 > <sub>Example of duplicated flags being ignored, only the last flag is acknowledged by Meal Companion.</sub>
 
 #### [Back to table of contents](#table-of-contents)
