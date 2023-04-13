@@ -210,6 +210,9 @@ For example:
 
 #### [Back to Ingredients](#1-ingredients)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### List Ingredients
 In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list` . You may refer to Fig. 5 for an example and the expected output.
 
@@ -289,7 +292,9 @@ Due to certain design constraints, do note that your allergens are not saved wit
 
 
 ### Add Allergens
-You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. For example, if you have an allergy to eggs, you may use the command:   
+You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. 
+
+For example, if you have an allergy to eggs, you may use the command:   
 `allergen add egg`
 
 <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/allergenadd.png" width="900">  
@@ -307,7 +312,9 @@ You may inform Meal Companion of any allergens you have by using the command `al
 <p></p>
 
 ### Remove Allergens
-If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. For example, if you mistakenly entered an allergy to water, you may use the command:  
+If you have erroneously entered an allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. 
+
+For example, if you mistakenly entered an allergy to water, you may use the command:  
 
 `allergen remove water`
 
@@ -321,6 +328,9 @@ If you have erroneously entered an allergen, you may simply instruct Meal Compan
 <br>
 
 #### [Back to Allergens](#2-allergens)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### List Allergens
 If you wish to see the entire list of ingredients you are allergic to, you may simply use the command:  
@@ -380,6 +390,9 @@ To display all stored recipes, you may use the command:
 
 #### [Back to Recipes](#3-recipes)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`.
 
@@ -392,6 +405,9 @@ For example, to view the recipe for Hainanese Chicken Rice, use the command:
 <sub>Fig 13: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
 #### [Back to Recipes](#3-recipes)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Possible Recipes
 To get the list of possible recipes that can be made based on the available ingredients, simply use the command:  
@@ -413,8 +429,11 @@ To get the list of possible recipes that can be made based on the available ingr
 
 #### [Back to Recipes](#3-recipes)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### Random Recipe
-Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature to generate a random recipe, you may simply use the command:  
+Should you ever feel bored with cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature to generate a random recipe, you may simply use the command:  
 `recipe random` 
 
 !<img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/reciperandom2.png" width="900">  
@@ -425,6 +444,9 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 > **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
 #### [Back to Recipes](#3-recipes)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Find Recipe
 If you would like to search for recipes with the use of keywords, you may use the command `recipe find <keyword>`. You may refer to Fig. 17 for an example with the expected output.
@@ -440,6 +462,9 @@ For example:
 
 #### [Back to Recipes](#3-recipes)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### Check Ingredients for Recipe
 If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. You may refer to Fig. 18 for an example with the expected output.
 
@@ -450,6 +475,9 @@ For example:
 <sub>Fig 18: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 #### [Back to Recipes](#3-recipes)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Almost Completed Recipe
 If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients. You may refer to Fig. 19 for an example with the expected output.
@@ -462,6 +490,9 @@ For example:
 
 #### [Back to Recipes](#3-recipes)
 
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
+
 ### Make Recipe
 If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. You may refer to Fig. 20 for an example with the expected output.
 
@@ -472,6 +503,9 @@ For example:
 <sub>Fig 20: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 #### [Back to Recipes](#3-recipes)
+
+<div style="page-break-before:always">&nbsp;</div>
+<p></p>
 
 ### Favourite/Unfavourite Recipe  
 If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. You may refer to Fig. 21 and Fig. 22 for an example with the expected output.
