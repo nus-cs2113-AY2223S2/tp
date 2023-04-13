@@ -102,8 +102,8 @@ Within the `code block` you may see segments of text wrapped in `<chevrons>`. Th
     ![startup2.png](images/startup2.png)  
     <sub>Fig 2: Command to start using Meal Companion.</sub>
     
-> **Tip** 
-> If you are new to using the Command Line Interface, you may refer to the [Command Line Interface Guide](#command-line-interface-guide) in the [Appendix](#appendix) for further assistance.
+    > **Tip** 
+    > If you are new to using the Command Line Interface, you may refer to the [Command Line Interface Guide](#command-line-interface-guide) in the [Appendix](#appendix) for further assistance.
 
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
@@ -146,11 +146,11 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
 - [Ingredients](#1-ingredients)
-- [Allergens](#allergens)
-- [Recipes](#recipes)
-- [Saving Data](#saving-data)
-- [Help](#help)
-- [Command List](#command-list)
+- [Allergens](#2-allergens)
+- [Recipes](#3-recipes)
+- [Saving Data](#4-saving-data)
+- [Help](#5-help)
+- [Command List](#6-command-list)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -186,7 +186,7 @@ For example:
 > **Note**: Look out for the new [`new ingredient`](#new-ingredient) feature coming out soon!
 
 
-##### [Back to Ingredients](#ingredients)
+##### [Back to Ingredients](#1-ingredients)
 
 <br>
 
@@ -205,7 +205,7 @@ For example:
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) and [Duplicated Flags](#duplicated-flags) for examples specific to the `remove` command.
 <br>
 
-##### [Back to Ingredients](#ingredients)
+##### [Back to Ingredients](#1-ingredients)
 
 ### List Ingredients
 In order to show a list of all ingredients currently stored in Meal Companion, use the command:  
@@ -214,7 +214,7 @@ In order to show a list of all ingredients currently stored in Meal Companion, u
 ![ingredientlist2.png](images/ingredientlist2.png)  
 <sub>Fig 5: Sample of Ingredients List command with user input highlighted.</sub>
 
-##### [Back to Ingredients](#ingredients)
+##### [Back to Ingredients](#1-ingredients)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>  
@@ -243,7 +243,7 @@ For example:
 ![search22.png](images/search22.png)  
 <sub>Fig 7: Sample of Ingredients Search command with keyword omitted and user input highlighted.</sub>
 
-##### [Back to Ingredients](#ingredients)
+##### [Back to Ingredients](#1-ingredients)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -258,7 +258,7 @@ To remove all ingredients from Meal Companion's storage, you may use this comman
 
 > **Warning**: This move cannot be undone.
 
-##### [Back to Ingredients](#ingredients)
+##### [Back to Ingredients](#1-ingredients)
  
 #### [Back to table of contents](#table-of-contents)
 
@@ -292,7 +292,7 @@ You may inform Meal Companion of any allergens you have by using the command `al
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
 <br>
 
-##### [Back to Allergens](#allergens)
+##### [Back to Allergens](#2-allergens)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -311,7 +311,7 @@ If you have erroneously entered an allergen, you may simply instruct Meal Compan
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergens add` command.
 <br>
 
-##### [Back to Allergens](#allergens)
+##### [Back to Allergens](#2-allergens)
 
 ### List Allergens
 If you wish to see the entire list of ingredients you are allergic to, you may simply use the command:  
@@ -322,7 +322,7 @@ If you wish to see the entire list of ingredients you are allergic to, you may s
 
 If you wish to take a look at how the allergens you have added will affect the recipes available to you, please see the section on [Possible Recipes](#possible-recipes).
 
-##### [Back to Allergens](#allergens)
+##### [Back to Allergens](#2-allergens)
 
 #### [Back to table of contents](#table-of-contents)
  
@@ -368,7 +368,7 @@ To display all stored recipes, you may use the command:
 
 > **Important Note**: Each recipe is tagged to an index number shown in the list generated by `recipe all`.
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`.
@@ -381,7 +381,7 @@ For example, to view the recipe for Hainanese Chicken Rice, use the command:
 ![recipedetails3.png](images/recipedetails3.png)  
 <sub>Fig 13: Sample of Recipe Details command showing the output of</sub> `recipe 6` <sub>, the recipe for Hainanese Chicken Rice, with user input highlighted.</sub>
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Possible Recipes
 To get the list of possible recipes that can be made based on the available ingredients, simply use the command:  
@@ -392,7 +392,7 @@ To get the list of possible recipes that can be made based on the available ingr
 
 > **Warning**: Recipes that contain your allergens are deemed not possible. 
 > 
->Please refer to the [Allergens](#allergens) section for more information. Below is an example of the random recipe and allergen function in use.
+>Please refer to the [Allergens](#2-allergens) section for more information. Below is an example of the random recipe and allergen function in use.
 
 ![recipepossibleallergen2.png](images/recipepossibleallergen2.png)  
 <sub>Fig 15: Sample of Recipe Possible command after adding an allergy to ground beef, which is an ingredient in Recipe 1 (Beef Burger), showing that the recipe containing the allergen is no longer shown to the user. User input is highlighted.</sub>
@@ -401,7 +401,7 @@ To get the list of possible recipes that can be made based on the available ingr
 
 > **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Random Recipe
 Should you ever feel bored of cooking the same recipe over and over, Meal Companion provides you with the capability to choose a recipe at random. To make use of this feature to generate a random recipe, you may simply use the command:  
@@ -414,7 +414,7 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 
 > **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Find Recipe
 If you would like to search for recipes by keywords, you may use the command `recipe find <keyword>`. You may refer to Fig. 17 for an example with the expected output.
@@ -442,7 +442,7 @@ For example:
 ![recipeneed2.png](images/recipeneed2.png)  
 <sub>Fig 18: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Almost Completed Recipe
 If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients. You may refer to Fig. 19 for an example with the expected output.
@@ -450,7 +450,7 @@ If you would like to find out which recipes you are almost able to make with the
 ![recipealmost2.png](images/recipealmost2.png)  
 <sub>Fig 19: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -464,7 +464,7 @@ For example:
 ![make2.png](images/make2.png)  
 <sub>Fig 20: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 ### Favourite/Unfavourite Recipe  
 If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. You may refer to Fig. 21 and Fig. 22 for an example with expected output.
@@ -493,7 +493,7 @@ For example:
 > **Warning**
 > Please note that the current iteration of favourites does not preserve your preferences after closing the app. This functionality will be added in future iterations.
 
-##### [Back to Recipes](#recipes)
+##### [Back to Recipes](#3-recipes)
 
 #### [Back to table of contents](#table-of-contents)
 
@@ -526,7 +526,7 @@ If you would like to access your saved ingredients list on a new instance of Mea
 ## 5. Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
 
-For a comprehensive list of commands available to you, please refer to the [Command List](#command-list) section.
+For a comprehensive list of commands available to you, please refer to the [Command List](#6-command-list) section.
 
 ![help1.png](images/help1.png)  
 <sub>Fig 26: Sample of Help command with listed output of in-built commands.</sub>
@@ -592,8 +592,6 @@ Congratulations! You have reached the end of this user guide, which means you ar
 
 # Appendix
 Here you may find additional information that may be helpful to you.
-
-## Command Line Interface guide
 
 
 
