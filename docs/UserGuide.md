@@ -119,9 +119,9 @@ Before we begin, we want to let you know that this guide uses **three different 
 
 <hr style="width:90%;margin:25px auto;">
 
-# Tutorial on Command Line Interface (CLI)
+# Tutorial on Command Line Interface
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-    💡  If you're already familiar with a <a href="glossary"><i>CLI</i></a>, otherwise known as a <a href="glossary"><i>CLI</i></a>, that's great! Feel free to [move on to the next section](#setting-up-moneygowhere) about setting up
+    💡  If you're already familiar with a <a href="glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="glossary"><i>CLI</i></a>, that's great! Feel free to [move on to the next section](#setting-up-moneygowhere) about setting up
 MoneyGoWhere.
 <br>
 Otherwise, if you are new to the <a href="glossary"><i>CLI</i></a>, please continue reading this section for a simple introduction. The [CLI](#glossary) is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
