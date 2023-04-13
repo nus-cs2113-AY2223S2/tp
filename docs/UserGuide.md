@@ -138,6 +138,8 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 
 #### [Back to table of contents](#table-of-contents)
 
+So now that you have everything you need to get started with us, let us now dive straight into the main features of MealCompanion!
+
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
@@ -193,7 +195,7 @@ For example:
 To remove an ingredient of a certain quantity from Meal Companion's storage, use the command `remove <ingredient> /qty <quantity>`. The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. You may refer to Fig. 4 for an example and the expected output.
 
 For example:  
-`remove ground chicken /qty 100`.
+`remove ground chicken /qty 100`
 
 ![remove2.png](images/remove2.png)  
 <sub>Fig 4: Sample of Remove Ingredients command with user input highlighted.</sub>
@@ -207,8 +209,11 @@ For example:
 #### [Back to Ingredients](#1-ingredients)
 
 ### List Ingredients
-In order to show a list of all ingredients currently stored in Meal Companion, use the command:  
-`ingredients list` 
+In order to show a list of all ingredients currently stored in Meal Companion, use the command `ingredients list` . You may refer to Fig. 5 for an example and the expected output.
+
+For example:  
+`ingredients list`
+
 
 ![ingredientlist2.png](images/ingredientlist2.png)  
 <sub>Fig 5: Sample of Ingredients List command with user input highlighted.</sub>
@@ -248,8 +253,9 @@ For example:
 <p></p>
 
 ### Clear Ingredients
-To remove all ingredients from Meal Companion's storage, you may use this command:  
+To remove all ingredients from Meal Companion's storage, you may use the command `clear`.  You may refer to Fig. 8 for an example of the expected output.
 
+For example:  
 `clear`
 
 ![clear2.png](images/clear2.png)  
@@ -260,6 +266,8 @@ To remove all ingredients from Meal Companion's storage, you may use this comman
 #### [Back to Ingredients](#1-ingredients)
  
 #### [Back to table of contents](#table-of-contents)
+
+So now that we have learnt how to add and remove ingredients, let us also learn how we could add and remove allergens to specific ingredients in the next section! 
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -325,6 +333,8 @@ If you wish to take a look at how the allergens you have added will affect the r
 
 #### [Back to table of contents](#table-of-contents)
  
+So now that you   have learnt how to add and remove both ingredients and allergens, let us see the cool things we could do with this in the next section on recipe commands! 
+
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
@@ -495,6 +505,8 @@ For example:
 
 #### [Back to table of contents](#table-of-contents)
 
+So with all these cool features in MealCompanion, it would be a shame to lose all the information you have added. So let's move on to the next section on how MealCompanion saves your data locally so that you will never have to fear losing your data!
+
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
@@ -518,6 +530,8 @@ If you would like to access your saved ingredients list on a new instance of Mea
 
 #### [Back to table of contents](#table-of-contents)
 
+If you find constantly referring to our User Guide too troublesome, the next section on the `help` command will surely interest you!
+
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
@@ -530,6 +544,8 @@ For a comprehensive list of commands available to you, please refer to the [Comm
 <sub>Fig 26: Sample of Help command with listed output of in-built commands.</sub>
 
 #### [Back to table of contents](#table-of-contents)
+
+Should you ever need a quick refresher on our commands, you can refer to the next section which shows a table of our command list!
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
