@@ -12,11 +12,7 @@
 
 Thank you for your interest in MoneyGoWhere!
 
-Our team would like to express our heartfelt gratitude in giving our application a chance. 
-We understand that you may not like change, and are used to doing what you are comfortable with on a daily basis.
-Don't worry, we have designed our application with these concerns in mind! 
-
-Allow us to bring you many steps closer towards increasing your productivity, making more money from your business, and the dream of preserving hawker culture in Singapore!
+Our team would like to express our heartfelt gratitude in giving our application a chance. Allow us to bring you many steps closer towards making more money from your business, and the dream of preserving hawker culture in Singapore!
 
 
 This is the user guide for MoneyGoWhere.
@@ -24,17 +20,41 @@ This is the user guide for MoneyGoWhere.
 
 The purpose of this guide is to **show easy-to-understand instructions on how to use the program**.
 
-
 <h1> What is MoneyGoWhere? </h1>
 
-MoneyGoWhere is a [**computer program**](#glossary) that **helps you keep track of your sales**.
+MoneyGoWhere is a [*computer program*](#glossary) made by computing students from the National University of Singapore (NUS) that **helps you keep track of your sales**.
 
 It works like the _cashier machine_ that you have been using, but is even better! With MoneyGoWhere, **you can see how
 much money you make each day** and **what items you sell the most**.
 
 **Now, you can make smarter business decisions, save time, and money**. _Steady_!
 
-<h1><i> "I have problems now, that's why I am reading the guide!" </i></h1>
+<h1>Why was MoneyGoWhere created? </h1>
+
+MoneyGoWhere was created as we noticed most hawkers in the National University of Singapore (NUS) already had an existing [*Point-of-Sale*](#glossary) (POS) System, but most of them were not using them. After conducting interviews with the hawkers, we identified three main reasons why they were not using the system:
+
+1. **The system is too slow** and becomes unresponsive too frequently.
+2. **An internet connection is required** to use the POS system, but the Internet connection system in NUS frequently fails.
+3. There is **no real incentive to use a system** that does not work, even if they have to **pay $200 a month** to use it.
+
+After identifying these problems, our team of computing students has taken on the responsibility of creating an effective solution that addresses these issues. We aim to improve the lives of hawkers and enhance their businesses using technology.
+
+In creating MoneyGoWhere, we had four goals in mind:
+1. **To improve the business processes of hawkers**, so that they only need to focus on making food and pay little attention to handling finances and order tracking.
+2. **To create a cheap solution that does not require an internet connection**, so as to provide around-the-clock service availibility.
+3. **To create a solution that allows hawkers to streamline their business processes**, and to make their workflow become more effective.
+4. **To help support the digitalization efforts of the Government**, so that the older generation of citizens may become more tech-savvy, within the comfort and familarity of their hawker stalls.
+
+
+Upon completing the first version of our program, we have trialed our system with the family members of one of our teammates, whose parents are hawkers. They gave us honest feedback on how they feel about the program, and we have made adjustments to it according to their feedback.
+
+When the second version of MoneyGoWhere was presented to them, they were more comfortable with using the application, and could more confidently say that the goals of MoneyGoWhere could be met.
+
+We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
+
+
+
+<h1><i> "I have problems right now, that's why I am reading the guide!" </i></h1>
 <h3><i> "But I cannot find what I am looking for, how now?"</i></h3>
 We understand that using a new system can be confusing and frustrating. That is why we used simple words and show examples in this guide.
 
@@ -43,11 +63,9 @@ are unsure of how to use a feature**.
 
 Don't worry! The guide is written in such a way that you can find what you are looking for easily.
 
-There may be new words and phrases used in the guide that you may have never seen or heard of before, but do not worry! Our team has made sure all the harder words and phrases will be in blue, [like this]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it!
+There may be new words and phrases used in the guide that you may have never seen or heard of before. To alleviate your concerns, our team has made sure all the harder words and phrases will be in blue, [like this]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it.
 
-Click
-on the [*hyperlinks*](#glossary) listed in the [Table of Contents](#table-of-contents) below to jump to the particular section that you want to know
-more about.
+Additionally, *[these italicized hyperlinks](#glossary)* will bring you to the glossary at the bottom of the guide, while [non-italicized hyperlinks]() like these will bring you to the relevant sections of the guide.
 
 If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as
 possible.
@@ -142,7 +160,7 @@ From the very top, we can see the text `Microsoft Windows [Version 10.0.22621.14
 
 ![](https://imgur.com/IUTmjGe.png)
 
-Next, we have the current directory. If you followed the [previous instruction](#opening-a-terminal) to open your [CLI](#glossary), you should see `C:\Users\ `, followed by your name on the screen, just like in this next screenshot. In this case, the name in the screenshot is `sean_`. This will look different in your own [CLI](#glossary), so do take note and do not panic if you see something different!
+Next, we have the current directory. If you followed the [previous instruction](#opening-a-terminal) to open your [CLI](#glossary), you should see `C:\Users\`, followed by your name on the screen, just like in this next screenshot. In this case, the name in the screenshot is `sean_`. This will look different in your own [CLI](#glossary), so do take note and do not panic if you see something different!
 
 ![](https://imgur.com/cRpNden.png)
 
@@ -1172,6 +1190,7 @@ as we are not liable for any data loss as a result of [*tampering*](#glossary) w
 | Term                   | Explanation                                                                                                                                                |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Computer Program| An application or app that you run on computers.
+| Point-of-Sale System|  A set of devices, software and payment services merchants use to make and track sales in person.
 | Hyperlink              | A phrase or text that you can click.                                                                                                                       |
 | CLI | An abbreviation for Command Line Interface.
 | Command Line Interface | A text-based interface. This means there are no icons to click and everything has to be typed.                                                             |
