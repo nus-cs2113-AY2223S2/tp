@@ -425,7 +425,7 @@ Should you ever feel bored of cooking the same recipe over and over, Meal Compan
 #### [Back to Recipes](#3-recipes)
 
 ### Find Recipe
-If you would like to search for recipes by keywords, you may use the command `recipe find <keyword>`. You may refer to Fig. 17 for an example with the expected output.
+If you would like to search for recipes with the use of keywords, you may use the command `recipe find <keyword>`. You may refer to Fig. 17 for an example with the expected output.
 
 For example:  
 `recipe find chicken`
@@ -433,11 +433,8 @@ For example:
 ![recipefind.png](images/recipefind.png)  
 <sub>Fig 17: Sample of Recipe Find command searching for recipes containing "chicken" in the name.</sub>
 
-<br>
-
 > **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `recipe find` command.
-<br>
 
 #### [Back to Recipes](#3-recipes)
 
@@ -445,7 +442,7 @@ For example:
 If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. You may refer to Fig. 18 for an example with the expected output.
 
 For example:  
-`recipe need 2`
+`recipe need 2` (Recipe for Cup of Water)
 
 ![recipeneed2.png](images/recipeneed2.png)  
 <sub>Fig 18: Sample of Recipe Need command showing missing ingredients required make Recipe 2 (Cup of Water), with user input highlighted.</sub>
@@ -455,16 +452,16 @@ For example:
 ### Almost Completed Recipe
 If you would like to find out which recipes you are almost able to make with the ingredients you have on hand, you may run the command `recipe almost`. This will give you a list of recipes that are lacking at most 3 ingredients. You may refer to Fig. 19 for an example with the expected output.
 
+For example:  
+`recipe almost`
+
 ![recipealmost2.png](images/recipealmost2.png)  
 <sub>Fig 19: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 #### [Back to Recipes](#3-recipes)
 
-<div style="page-break-before:always">&nbsp;</div>
-<p></p>
-
 ### Make Recipe
-If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. You may refer to Fig. 20 for an example with expeted output.
+If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. You may refer to Fig. 20 for an example with the expected output.
 
 For example:   
 `make 1` (Recipe for Beef Burger)
@@ -475,10 +472,10 @@ For example:
 #### [Back to Recipes](#3-recipes)
 
 ### Favourite/Unfavourite Recipe  
-If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. You may refer to Fig. 21 and Fig. 22 for an example with expected output.
+If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. You may refer to Fig. 21 and Fig. 22 for an example with the expected output.
 
 For example:  
-`recipe favourite 1` (recipe for beef burger)
+`recipe favourite 1` (Recipe for Beef Burger)
 
 ![fav11.png](images/fav11.png)  
 <sub>Fig 21: Sample of Recipe Favourite Command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
@@ -488,9 +485,10 @@ For example:
 
 <br>
 
-If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. You may refer to Fig. 23 and Fig. 24 for an example with expected output.
+If you would like to unmark a recipe which you have previously marked as your favourite, you may use the command `recipe unfavourite <index_number>`. You may refer to Fig. 23 and Fig. 24 for an example with the expected output.
+
 For example:  
-`recipe unfavourite 1` (recipe for beef burger)
+`recipe unfavourite 6` (Recipe for Hainanese Chicken Rice)
 
 ![unfav1.png](images/unfav1.png)  
 <sub>Fig 23: Sample of Recipe Unfavourite command with Recipe 6 (Hainanese Chicken Rice) used, with user input highlighted.</sub>
@@ -536,9 +534,12 @@ If you find constantly referring to our User Guide too troublesome, the next sec
 <p></p>
 
 ## 5. Help
-If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
+If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use. You may refer to Fig. 26 for an example with the expected output.
 
 For a comprehensive list of commands available to you, please refer to the [Command List](#6-command-list) section.
+
+For example:  
+`help`
 
 ![help1.png](images/help1.png)  
 <sub>Fig 26: Sample of Help command with listed output of in-built commands.</sub>
