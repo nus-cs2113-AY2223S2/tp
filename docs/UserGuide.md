@@ -430,7 +430,7 @@ For example:
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `recipe find` command.
 <br>
 
-#### [Back to Recipes](#recipes)
+#### [Back to Recipes](#3-recipes)
 
 ### Check Ingredients for Recipe
 If you wish to check if your current list of ingredients is sufficient to cook any recipe, you may use the command `recipe need <index_number>`. Ingredients that you are missing will be listed along with the quantity required. You may refer to Fig. 18 for an example with the expected output.
