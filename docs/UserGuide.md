@@ -125,7 +125,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > Meal Companion will not recognize ingredient names if there is an unexpected number (more than 1) of whitespaces between each word in the ingredient name.<br>
 > 
 > For example:<br>
-> <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/whitespace.png" width="600"><br>
+> <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/whitespace.png" width="900"><br>
 > <sub>Example of invalid command. This also applies to the </sub>`remove`<sub> command, the</sub> `ingredients search` <sub>command and the </sub>`allergens`<sub> comamnds.</sub><br>
 > 
 > The above-mentioned warnings apply to all commands or ingredient names with whitespaces in between words. We cannot guarantee Meal Companion will function as expected if the warning is not adhered to. 
@@ -135,7 +135,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > Meal Companion will ignore duplicated flags in the `add` and `remove` commands, taking only the last valid `/qty` flag as the validated input. <br>
 > 
 > For example:<br>
-> <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/dupflags.png" width="600"><br>
+> <img src="https://github.com/AY2223S2-CS2113T-T09-3/tp/blob/master/docs/images/dupflags.png" width="900"><br>
 > <sub>Example of duplicated flags being ignored, only the last flag is acknowledged by Meal Companion.</sub>
 
 #### [Back to table of contents](#table-of-contents)
