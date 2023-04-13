@@ -253,6 +253,8 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
 
 [Back to table of contents](#table-of-contents)
 
+<hr style="width:90%;margin:25px auto;">
+
 ## MoneyGoWhere [Commands](#glossary)
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
@@ -272,6 +274,8 @@ In other words, there is nothing that the <strong>Experienced User</strong> <a h
 </blockquote>
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:25px auto;">
 
 ## Style Features
 
@@ -306,6 +310,8 @@ For those reading the **Experienced User** sections, do also note the following:
 
 [Back to table of contents](#table-of-contents)
 
+<hr style="width:90%;margin:25px auto;">
+
 ## Summary of Features
 
 There are 10 features built into MoneyGoWhere, as described in the table below.
@@ -328,6 +334,8 @@ More details are provided in their individual sections.
 | [Statistics and Reports](#statistics-and-report) | Generates a report based on various [*options*](#glossary)             |
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:80%;margin:25px auto;">
 
 ## Help
 
@@ -372,6 +380,8 @@ MoneyGoWhere does not allow for additional letters or words after the `help` [*c
 **Solution:** Only enter the [*command*](#glossary) word, `help` or `/help`.
 
 [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:25px auto;">
 
 ## Item Features
 
@@ -774,7 +784,7 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;"/>
+<hr style="width:90%;margin:25px auto;">
 
 ## Order Features
 
@@ -789,8 +799,6 @@ Therefore, it is a good idea to give this section a read if you want to familiar
 * [Add an Order](#add-an-order)
 * [List all Orders](#list-all-orders)
 * [Refund an Order](#refund-an-order)
-
-<div style="page-break-after: always;"></div>
 
 ## Add an Order
 
