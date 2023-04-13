@@ -75,6 +75,8 @@ The purpose of this guide is to introduce you to the basics of using Meal Compan
 
 Within the `code block` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this text is meant to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
+If you still need assistance, you may refer to the [Appendix](#appendix) where you may find our Tutorial Video.
+
 #### [Back to table of contents](#table-of-contents)
 
 <div style="page-break-before:always">&nbsp;</div>
@@ -593,7 +595,9 @@ Congratulations! You have reached the end of this user guide, which means you ar
 <p></p>
 
 # Appendix
-Here you may find additional information that may be helpful to you.
+Here you may find the Video Tutorial for the use of Meal Companion below. You may click on the image to watch the video. Alternatively, you may use [this link](https://www.youtube.com/watch?v=iVSQVu-yahc).
+
+[![Video Tutorial for Meal Companion](https://img.youtube.com/vi/iVSQVu-yahc/maxresdefault.jpg)](https://www.youtube.com/watch?v=iVSQVu-yahc)
 
 
 
