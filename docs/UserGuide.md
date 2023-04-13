@@ -526,7 +526,13 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 > **Warning**: This will remove all your stored ingredients and this action is not reversible.
 
 ### Transferring Saved Data to Other Devices
-If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
+If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. You may refer to Fig. 26 and Fig. 27 for an example.
+
+![copy.png](images/copy.png)  
+<sub>Fig 26: Copying the file with the copy button highlighted.</sub>
+
+![paste.png](images/paste.png)  
+<sub>Fig 27: Pasting the file in a new folder with the paste button highlighted.</sub>
 
 #### [Back to table of contents](#table-of-contents)
 
@@ -536,7 +542,7 @@ If you find constantly referring to our User Guide too troublesome, the next sec
 <p></p>
 
 ## 5. Help
-If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use. You may refer to Fig. 26 for an example with the expected output.
+If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use. You may refer to Fig. 28 for an example with the expected output.
 
 For a comprehensive list of commands available to you, please refer to the [Command List](#6-command-list) section.
 
@@ -544,7 +550,7 @@ For example:
 `help`
 
 ![help1.png](images/help1.png)  
-<sub>Fig 26: Sample of Help command with listed output of in-built commands.</sub>
+<sub>Fig 28: Sample of Help command with listed output of in-built commands.</sub>
 
 #### [Back to table of contents](#table-of-contents)
 
