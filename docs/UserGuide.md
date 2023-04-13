@@ -20,7 +20,7 @@ This is the user guide for MoneyGoWhere.
 
 The purpose of this guide is to **show you easy-to-understand instructions on how to use our product**.
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 # Table of Contents
 
@@ -39,7 +39,7 @@ The purpose of this guide is to **show you easy-to-understand instructions on ho
 * [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 # What is MoneyGoWhere?
 
@@ -50,7 +50,7 @@ much money you make each day** and **what items you sell the most**.
 
 **Now, you can make smarter business decisions, save time, and money**. _Steady_!
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 # Why we created MoneyGoWhere
 
@@ -88,7 +88,7 @@ Additionally, *[these italicized hyperlinks](#glossary)* will bring you to our g
 
 If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as possible.
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 <div style="page-break-after: always;"></div>
 
@@ -117,7 +117,7 @@ Before we begin, we want to let you know that this guide uses **three different 
     ❗ These are warning blocks. They are used to show that the next part will feature some errors that you may encounter. 
 </blockquote>
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 # Tutorial on Command Line Interface (CLI)
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -188,7 +188,7 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;">
+<hr style="width:90%;margin:25px auto;">
 
 # Setting up MoneyGoWhere
 
