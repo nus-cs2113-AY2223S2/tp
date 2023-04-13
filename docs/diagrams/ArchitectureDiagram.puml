@@ -1,0 +1,38 @@
+@startuml
+hide footbox
+hide circle
+skinparam classAttributeIconSize 0
+!include Style.puml
+
+Package "FITZ"<<Rectangle>>{
+    class Ui
+    class Storage
+    class Parser
+    class Exception
+    class Command
+    class Duke
+    class Calories
+    class Workout
+}
+
+User .right.> Ui
+
+
+Duke -left-> Storage
+Duke --> Parser
+Duke -up-> Ui
+Duke -up-> Exception
+
+Parser --> Command
+
+Command -left-> Ui
+Exception -up> Ui
+
+Storage -up-> Calories
+Storage -right-> Workout
+
+Storage --> Ui
+
+Storage .left.> File
+
+@enduml

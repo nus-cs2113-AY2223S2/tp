@@ -1,0 +1,26 @@
+@startuml
+!include Style.puml
+actor User
+participant "ViewCaloriesCommand" as VCC
+participant "calorieTracker" as CT
+database "Daily Food Consumption" as DFC
+participant "Food" as F
+participant "DateFormatter" as DF
+participant "Ui" as UI
+
+User -> VCC : Requests to view calories for a specific date
+VCC -> CT : Checks if date exists in daily food consumption
+CT -> DFC : Retrieves daily food consumption for the date
+DFC -> VCC : Returns daily food consumption
+alt Date exists in daily food consumption
+    VCC -> DF : Formats the date
+    VCC -> F : Retrieves food list from daily food consumption
+    loop for each food in the list
+        VCC -> F : Retrieves food name and calories
+        VCC -> UI : Formats and displays the food name and calories
+    end
+else Date does not exist in daily food consumption
+    VCC -> DF : Formats the date
+    VCC -> UI : Returns a message that the date does not exist in the list
+end
+@enduml

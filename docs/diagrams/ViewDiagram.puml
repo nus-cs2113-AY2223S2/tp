@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+autonumber
+actor User
+participant ":Duke" as Duke
+
+User -> Duke: Userinput
+activate Duke
+Duke -> Parser : parseViewWorkoutCommand(arguments)
+activate Parser
+Parser-> WorkoutParser: processView(arguments)
+activate WorkoutParser
+WorkoutParser->ViewWorkoutCommand : ViewWorkoutCommand(index)
+activate ViewWorkoutCommand
+return toView.toString()
+return toView.toString()
+@enduml

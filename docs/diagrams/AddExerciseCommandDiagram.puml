@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+
+participant ":AddExerciseCommand" as add
+participant ":WorkoutList" as list
+participant ":Workout" as workout
+
+activate add
+activate list
+activate workout
+-> add: execute()
+add -> list: getCurrentWorkoutIndex()
+list -> add: currentWorkoutIndex
+alt no current workout
+<- add: no current workout message
+else
+add -> list: getCurrentWorkout()
+list -> workout: addExercise(toAdd)
+<- add: add exercise message
+end
+@enduml

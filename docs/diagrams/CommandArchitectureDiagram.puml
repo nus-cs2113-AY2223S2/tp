@@ -1,0 +1,36 @@
+@startuml
+!include Style.puml
+
+Package "commands"<<Rectangle>>{
+    class Command
+    class ExitCommand
+
+Package "workoutcommands"<<Rectangle>>{
+    class AddExerciseCommand
+    class CountSetsRepsCommand
+    class DeleteWorkoutCommand
+    class EndWorkoutCommand
+    class HelpWorkoutCommand
+    class ListWorkoutCommand
+    class StartWorkoutCommand
+    class ViewWorkoutCommand
+}
+Package "caloriescommands"<<Rectangle>>{
+    class AddCaloriesCommand
+    class DeleteCaloriesCommand
+    class HelpCaloriesCommand
+    class ListCaloriesCommand
+    class ViewCaloriesCommand
+}
+Package "errorcommands"<<Rectangle>>{
+    class IncorrectSyntaxCommand
+    class InvalidCommand
+}
+
+}
+
+Command <|-up- "errorcommands"
+Command <|-down- "workoutcommands"
+Command <|-up- "caloriescommands"
+Command <|-down- "ExitCommand"
+@enduml

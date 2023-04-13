@@ -1,0 +1,35 @@
+@startuml
+!include Style.puml
+
+autonumber
+actor User
+participant Duke
+participant Ui
+participant Parser
+participant WorkoutParser
+participant DeleteWorkoutCommand
+participant WorkoutList
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser -> WorkoutParser : parseDeleteWorkoutCommand(arguments)
+activate WorkoutParser
+WorkoutParser -> DeleteWorkoutCommand : DeleteWorkoutCommand(index)
+activate DeleteWorkoutCommand
+DeleteWorkoutCommand -> WorkoutList : remove(index)
+activate WorkoutList
+return "Workout deleted"
+deactivate WorkoutList
+DeleteWorkoutCommand --> WorkoutParser : "Workout deleted"
+deactivate DeleteWorkoutCommand
+WorkoutParser --> Parser : "Workout deleted"
+deactivate WorkoutParser
+Parser --> Duke : "Workout deleted"
+deactivate Parser
+Duke -> Duke : display("Workout deleted")
+@enduml
