@@ -353,7 +353,6 @@ This segment will go into detail about the recipe features that Meal Companion c
  6. Hainanese Chicken Rice
  7. Mee Goreng
 
-> **Note**: Look out for the new [`add recipe`](#add-recipe) feature coming out soon!
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
