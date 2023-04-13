@@ -534,7 +534,7 @@ If you find constantly referring to our User Guide too troublesome, the next sec
 <p></p>
 
 ## 5. Help
-If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use. You may refer to Fig. 26 for the expected output.
+If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use. You may refer to Fig. 26 for an example with the expected output.
 
 For a comprehensive list of commands available to you, please refer to the [Command List](#6-command-list) section.
 
