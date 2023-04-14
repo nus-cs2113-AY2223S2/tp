@@ -100,7 +100,7 @@ If you still need assistance, you may refer to the [Appendix](#appendix) where y
 
     Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary. 
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary. If you're unsure how to do so, check this [appendix](#terminal-guide) to learn how! We also have a handy [CLI Guide](#how-to-use-the-cli) to aid you in your pursuit of delicious home-cooked meals!
 4. Ensure the terminal is within the correct folder.
 5. Use the command:  
      `java -jar mealcompanion.jar`   
