@@ -114,8 +114,6 @@ If you still need assistance, you may refer to the [Appendix](#appendix) where y
 7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
 8. Alternatively, if you don't have any ingredients on hand but are interested in learning a new recipe, you can use the [`recipe all`](#all-recipes) command to browse through our recipe book and find a recipe you're interested in making, then use the [`recipe details`](#recipe-details) command to view how to make it.
 
-Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
-
 #### [Back to table of contents](#table-of-contents)  
 
 <div style="page-break-before:always">&nbsp;</div>
@@ -197,7 +195,7 @@ For example:
 <img alt="add2.png" src="images/add2.png" width="900">  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
 
-> **Note**: Ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredients search`](#search-ingredients) command to figure it out.
+> <img alt="note.png" src="images/note.png" width="20"> **Note**: Ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredients search`](#search-ingredients) command to figure it out.
 
 <br>
 
@@ -414,7 +412,7 @@ For example:
 ### Recipe Details
 To go into details about a certain recipe, use the command `recipe <index_number>`. You may refer to Fig. 13 for an example with the expected output.
 
-> **Note**: `<index_number>` is the index number of a recipe as listed by the `recipe all` command! 
+> <img alt="note.png" src="images/note.png" width="20"> **Note**: `<index_number>` is the index number of a recipe as listed by the `recipe all` command! 
 
 For example:  
 `recipe 6`
@@ -435,16 +433,16 @@ For example: `recipe possible`
 <img alt="recipepossible2.png" src="images/recipepossible2.png" width="900">  
 <sub>Fig 14: Sample of Recipe Possible command showing the list of ingredients and the recipes that can be made with those ingredients, with user input highlighted.</sub>
 
-> **Note**: Recipes that contain your allergens are deemed not possible. 
+> <img alt="note.png" src="images/note.png" width="20"> **Note**: Recipes that contain your allergens are deemed not possible. 
 > 
 >Please refer to the [Allergens](#2-allergens) section for more information. Below is an example of the random recipe and allergen function in use.
 
 <img alt="recipepossibleallergen2.png" src="images/recipepossibleallergen2.png" width="900">  
 <sub>Fig 15: Sample of Recipe Possible command after adding an allergy to ground beef, which is an ingredient in Recipe 1 (Beef Burger). The recipe containing the allergen is no longer shown to the user. User input is highlighted.</sub>
 
-> **Note**: Recipes are listed along with their corresponding index number specified in the `recipe all` command.
+> <img alt="note.png" src="images/note.png" width="20"> **Note**: Recipes are listed along with their corresponding index number specified in the `recipe all` command.
 
-> **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
+> <img alt="tip.png" src="images/tip.png" width="20"> **Tip**: You can use the recipe index number in the `recipe <index_number>` command to view the recipe!
 
 #### [Back to Recipes](#3-recipes)
 
@@ -461,7 +459,7 @@ For exmaple: `recipe random`
 
 > <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: `recipe random` may generate a recipe containing your allergens. A warning will be displayed in the recipe should it contains your allergen.
 
-> **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
+> <img alt="tip.png" src="images/tip.png" width="20"> **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
 #### [Back to Recipes](#3-recipes)
 
@@ -575,7 +573,7 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 > We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
 
 
-> **Tip**: If your file is corrupted or you edited it incorrectly, you may start afresh by deleting the `ingredients.txt` file and relaunching Meal Companion.<br>
+> <img alt="tip.png" src="images/tip.png" width="20"> **Tip**: If your file is corrupted or you edited it incorrectly, you may start afresh by deleting the `ingredients.txt` file and relaunching Meal Companion.<br>
 
 > <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: This will remove all your stored ingredients and this action is not reversible.
 
