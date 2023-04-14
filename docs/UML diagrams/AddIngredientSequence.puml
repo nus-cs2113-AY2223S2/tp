@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+[-> ":AddCommand": new AddCommand("egg", 5)
+
+activate ":AddCommand"
+
+":AddCommand" -> ":IngredientList": getIngredients()
+activate ":IngredientList"
+":AddCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
+deactivate ":IngredientList"
+
+":AddCommand" -> ":IngredientList": findIndex("egg")
+activate ":IngredientList"
+":AddCommand" <-- ":IngredientList": -1
+deactivate ":IngredientList"
+
+":AddCommand" -> ":Ingredient": new Ingredient("egg", 5)
+activate ":Ingredient"
+":AddCommand" <-- ":Ingredient": ingredient
+deactivate ":Ingredient"
+
+":AddCommand" -> ":IngredientDatabase": getDbInstance
+activate ":IngredientDatabase"
+":AddCommand" <-- ":IngredientDatabase": IngredientDatabase
+deactivate ":IngredientDatabase"
+
+":AddCommand" -> ":IngredientList": add(ingredient)
+activate ":IngredientList"
+":AddCommand" <-- ":IngredientList":
+deactivate ":IngredientList"
+
+[<-- ":AddCommand": Done
+destroy ":AddCommand"
+deactivate ":AddCommand"
+
+@enduml

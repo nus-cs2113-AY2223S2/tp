@@ -1,0 +1,35 @@
+@startuml
+!include Style.puml
+
+interface Routable {
++ {abstract} ExecutableCommandFactory resolve(CommandTokens commandTokens)
+}
+class CommandRouterNode {
++ CommandRouterNode route()
++ ExecutableCommandFactory resolve(CommandTokens commandTokens)
+}
+class RouteDescription {
+- String routeName
++ String getRouteName()
++ Routable getRoutable()
+}
+
+class CommandTokens {
+... skipped for brevity, mentioned below
+}
+abstract class ExecutableCommandFactory {
+... skipped for brevity
++ {abstract} ExecutableCommand buildCommand()
++ {abstract} String getCommandFormat()
++ ExecutableCommandFactory resolve(CommandTokens commandTokens)
++ List<Extractor> getExtractors()
++ void runExtractors()
+}
+
+Routable .up. CommandTokens
+CommandRouterNode "1" --> "1.." RouteDescription : has children >
+Routable <|-- CommandRouterNode
+Routable <|-- ExecutableCommandFactory
+RouteDescription "1" --> "1" Routable : describes >
+CommandRouterNode .. ExecutableCommandFactory
+@enduml

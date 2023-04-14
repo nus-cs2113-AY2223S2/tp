@@ -1,1 +1,4 @@
-James Gosling
+hello world
+hello psle
+hello 40$1.80
+bye

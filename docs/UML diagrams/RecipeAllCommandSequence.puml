@@ -1,0 +1,33 @@
+@startuml
+!include Style.puml
+participant ":RecipeAllCommand" as RecipeAllCommand
+participant "mealCompanionSession:MealCompanionSession" as mealCompanionSession
+participant "recipes:RecipeList" as recipes
+participant "ui:MealCompanionUI" as ui
+
+-> RecipeAllCommand: execute(mealCompanionSession)
+activate RecipeAllCommand
+RecipeAllCommand -> mealCompanionSession: getRecipes()
+activate mealCompanionSession
+RecipeAllCommand <-- mealCompanionSession: recipes
+deactivate mealCompanionSession
+
+RecipeAllCommand -> RecipeAllCommand: getAllRecipeNameList(recipes)
+activate RecipeAllCommand
+RecipeAllCommand -> recipes: getRecipeNameList()
+activate recipes
+RecipeAllCommand <-- recipes: recipeNameList
+deactivate recipes
+RecipeAllCommand -> mealCompanionSession: getUi()
+activate mealCompanionSession
+mealCompanionSession -> ui: printMessage(recipeNameList)
+activate ui
+mealCompanionSession <-- ui
+deactivate ui
+
+RecipeAllCommand <-- mealCompanionSession
+deactivate mealCompanionSession
+
+deactivate RecipeAllCommand
+
+@enduml
