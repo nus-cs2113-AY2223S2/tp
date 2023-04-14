@@ -36,6 +36,7 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
 # Table of Contents
 1. [Using this Guide](#using-this-guide)
 2. [Getting Started](#getting-started)
+    1. [How to Use the CLI](#how-to-use-the-cli) 
 3. [Critical Warnings](#critical-warnings)  
     1. [Unnecessary Whitespaces](#unnecessary-whitespaces)  
     2. [Duplicated Flags](#duplicated-flags)
@@ -97,7 +98,7 @@ If you still need assistance, you may refer to the [Appendix](#appendix) where y
 
     Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary. If you're unsure how to do so, check this [appendix](#how-to-open-the-terminal) to learn how!
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary. 
 4. Ensure the terminal is within the correct folder.
 5. Use the command:  
      `java -jar mealcompanion.jar`   
@@ -118,7 +119,7 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-# How to use the CLI
+## How to use the CLI
 
 Meal Companion is a CLI, which stands for "Command Line Interface". Unlike a normal application that you might be used
 to, which have a GUI (Graphical User Interface), all interactions are done with the keyboard and no mouse.
