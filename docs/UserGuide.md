@@ -3,7 +3,7 @@
 # User Guide
 
 ## Introduction
-Meal Companion is your one-stop solution to handling meal prep, ingredient tracking and cookbook! Read on to take control of your own meal planning!
+Hey there, thanks for choosing Meal Companion to be your companion in your journey of self-discovery in the kitchen! Meal Companion is your one-stop solution to handling meal prep, ingredient tracking and cookbook! Read on to take control of your own meal planning!
 
 [Click here to skip ahead to the Table of Contents](#table-of-contents)
 
@@ -14,9 +14,9 @@ The purpose of this guide is to show you how to get started on using Meal Compan
 Meal Companion is designed for NUS students staying in hostels on campus. 
 It caters to the various needs of these busy students, including healthier meal options, easier meal planning and faster meal preparation. Read on to find out the features that will help you to achieve a more sustainable and healthy lifestyle!
 
-## Why Meal Companion?
+## Product Information and Feature Overview
 
-Cooking is a commitment. It's hard to buy exactly the right amount of ingredients especially when you're cooking for one, and even if you can stomach eating the same recipe every day for a week, the ingredients run out at different times! Most people, when faced with this problem, will simply throw out whatever goes bad and go back to their daily trips to canteens, hawkers, or resturaunts. And, that's where Meal Companion comes in! Here's how we improve upon the experience of commonly used recipe sources.
+Cooking is a commitment. It's hard to buy exactly the right amount of ingredients especially when you're cooking for one, and even if you can stomach eating the same recipe every day for a week, the ingredients run out at different times! Most people, when faced with this problem, will simply throw out whatever goes bad and go back to their daily trips to canteens, hawkers, or resturaunts. And, that's where Meal Companion comes in! Here's how we improve upon the experience of commonly used recipe sources. In fact, if you are excited to find out more, jump straight to [Features](#features) to find out more!
 
 ### Versus Traditional Recipe Books
 
@@ -662,6 +662,9 @@ Congratulations! You have reached the end of this user guide, which means you ar
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
+
+And remember, its not magic. It's Meal Companion!
+
 
 # Appendix  
 Here you may find additional information that will assist you in your use of Meal Companion, including a video guide and detailed instructions on using terminals.
