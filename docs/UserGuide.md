@@ -8,98 +8,25 @@
 
 </div>
 
-<h1> Hello Hawker! </h1>
+## Hello Hawker!
 
 Thank you for your interest in MoneyGoWhere!
 
-Our team would like to express our heartfelt gratitude in giving our application a chance. Allow us to bring you many steps closer towards making more money from your business, and the dream of preserving hawker culture in Singapore!
+Our team would like to express our heartfelt gratitude in giving our application a chance. Allow us to bring you many steps closer towards making more money from your business, and to help with the dream of preserving hawker culture in Singapore!
 
 
 This is the user guide for MoneyGoWhere.
-**It is designed to help you, a hawker at NUS, learn how to use our system easily**.
+**It is designed to help you, a hawker at NUS, learn how to use our product easily**.
 
-The purpose of this guide is to **show easy-to-understand instructions on how to use the program**.
+The purpose of this guide is to **show you easy-to-understand instructions on how to use our product**.
 
-<h1> What is MoneyGoWhere? </h1>
+<hr style="width:90%;margin:50px auto;">
 
-MoneyGoWhere is a [*computer program*](#glossary) made by computing students from the National University of Singapore (NUS) that **helps you keep track of your sales**.
+## Table of Contents
 
-It works like the _cashier machine_ that you have been using, but is even better! With MoneyGoWhere, **you can see how
-much money you make each day** and **what items you sell the most**.
-
-**Now, you can make smarter business decisions, save time, and money**. _Steady_!
-
-<h1>Why was MoneyGoWhere created? </h1>
-
-MoneyGoWhere was created as we noticed most hawkers in the National University of Singapore (NUS) already had an existing [*Point-of-Sale*](#glossary) (POS) System, but most of them were not using them. After conducting interviews with the hawkers, we identified three main reasons why they were not using the system:
-
-1. **The system is too slow** and becomes unresponsive too frequently.
-2. **An internet connection is required** to use the POS system, but the Internet connection system in NUS frequently fails.
-3. There is **no real incentive to use a system** that does not work, even if they have to **pay $200 a month** to use it.
-
-After identifying these problems, our team of computing students has taken on the responsibility of creating an effective solution that addresses these issues. We aim to improve the lives of hawkers and enhance their businesses using technology.
-
-In creating MoneyGoWhere, we had four goals in mind:
-1. **To improve the business processes of hawkers**, so that they only need to focus on making food and pay little attention to handling finances and order tracking.
-2. **To create a cheap solution that does not require an internet connection**, so as to provide around-the-clock service availibility.
-3. **To create a solution that allows hawkers to streamline their business processes**, and to make their workflow become more effective.
-4. **To help support the digitalization efforts of the Government**, so that the older generation of citizens may become more tech-savvy, within the comfort and familarity of their hawker stalls.
-
-
-Upon completing the first version of our program, we have trialed our system with the family members of one of our teammates, whose parents are hawkers. They gave us honest feedback on how they feel about the program, and we have made adjustments to it according to their feedback.
-
-When the second version of MoneyGoWhere was presented to them, they were more comfortable with using the application, and could more confidently say that the goals of MoneyGoWhere could be met.
-
-We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
-
-
-
-<h1><i> "I have problems right now, that's why I am reading the guide!" </i></h1>
-<h3><i> "But I cannot find what I am looking for, how now?"</i></h3>
-We understand that using a new system can be confusing and frustrating. That is why we used simple words and show examples in this guide.
-
-We understand that you may be referencing this guide when business is booming - **you can already barely cope, but you
-are unsure of how to use a feature**.
-
-Don't worry! The guide is written in such a way that you can find what you are looking for easily.
-
-There may be new words and phrases used in the guide that you may have never seen or heard of before. To alleviate your concerns, our team has made sure all the harder words and phrases will be in blue, [like this]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it.
-
-Additionally, *[these italicized hyperlinks](#glossary)* will bring you to the glossary at the bottom of the guide, while [non-italicized hyperlinks]() like these will bring you to the relevant sections of the guide.
-
-If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as
-possible.
-
-<div style="page-break-after: always;"></div>
-
-<h1> How to use the Guide </h1>
-
-This guide will bring you through:
-
-1. How to use a [*Command Line Interface (CLI)*](#glossary)
-2. How to set up MoneyGoWhere
-3. How to use our various [*commands*](#glossary) to track items, add orders, and generate statistic reports
-
-We will also provide some information on how your data is saved.
-<!-- ^^ We can potentially omit this section -->
-
-Before we begin, take note of the following information:
-This guide uses **three different colored blocks** and **associated icons** to indicate different things.
-
-<blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-    📖 This is a story block! Story blocks provide an example on how to use the many features of MoneyGoWhere. 
-</blockquote>
-
-<blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
-    💡 These blocks contain information that you should take note of, or additional details that you might be interested in.
-</blockquote>
-
-<blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
-    ❗ These are warning blocks. They are used to show you errors that you may encounter.
-</blockquote>
-
-# Table of Contents
-
+* [What is MoneyGoWhere](#what-is-moneygowhere)
+* [Why we created MoneyGoWhere](#why-we-created-moneygowhere)
+* [How to use this Guide](#how-to-use-the-guide)
 * [Tutorial on Command Line Interface](#tutorial-on-command-line-interface)
 * [Setting up MoneyGoWhere](#setting-up-moneygowhere)
 * [MoneyGoWhere Commands](#moneygowhere-commands)
@@ -112,75 +39,144 @@ This guide uses **three different colored blocks** and **associated icons** to i
 * [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
-<!---
-## Tutorial on CLI
+<hr style="width:90%;margin:50px auto;">
 
-If you're already familiar with CLI, that's great! Feel free to move on to the next section about setting up
-MoneyGoWhere.
+## What is MoneyGoWhere?
 
-For those who are new to CLI, this section will give you a simple introduction.
+MoneyGoWhere is a [*computer program*](#glossary) made by computing students from the National University of Singapore (NUS) that **helps you keep track of your sales**.
 
-So, what is CLI? Well, the device you are using needs to get instructions from you, and you might be familiar with
-clicking on icons and images to send these instructions. However, with CLI, you type these instructions.
+It works like the "cashier machine" that you have been using, but is even better! With MoneyGoWhere, **you can also see how
+much money you make each day** and **what items you sell the most**.
 
-MoneyGoWhere will prompt you to enter your instructions, such as:
+**Now, you can make smarter business decisions, save time, and money**. _Steady_!
 
-![](https://i.imgur.com/xZ24DTM.png)
+###### [Back to table of contents](#table-of-contents)
 
-[Back to table of contents](#table-of-contents)
---->
+<hr style="width:90%;margin:50px auto;">
+
+## Why we created MoneyGoWhere
+
+MoneyGoWhere was created as we noticed most hawkers in the National University of Singapore (NUS) already had an existing [*Point-of-Sale*](#glossary) (POS) System, but most of them were not using them. After conducting interviews with the hawkers, we identified three main reasons why they were not using the system:
+
+1. **The system is too slow** and becomes **unresponsive** too frequently.
+2. **An internet connection is required** to use the POS system, but the Internet connection system in NUS frequently fails.
+3. There is **no real incentive to use a system** that does not work, even if they have to **pay $200 a month** to use it.
+
+After identifying these problems, our team of computing students has taken on the responsibility of creating an effective solution that addresses these issues. We aim to improve the lives of hawkers and enhance their businesses using technology.
+
+In creating MoneyGoWhere, we had four goals in mind:
+1. **To improve the business processes of hawkers**, so that they only need to focus on making food and can pay little attention to handling finances and order tracking, making their workflow more efficient. 
+2. **To create a cheap solution**, increasing the profit of hawkers.
+3. **To create a solution that does not require an internet connection,** providing around-the-clock availability and preventing downtime, especially when it matters most.
+4. **To help support the digitalization efforts of the Government**, so that the older generation of hawkers may become more tech-savvy, within the comfort and familarity of their hawker stalls.
+
+Upon completing the first version of our program, we have tested our system with one of our team member's parents, who are hawkers. They gave us honest feedback about MoneyGoWhere, and we have made adjustments according to their feedback.
+
+When the second version of MoneyGoWhere was presented to them, they were more comfortable with our solution, and could confidently say that the goals of MoneyGoWhere were met.
+
+We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
+
+### "I have problems right now, that's why I am reading the guide!" 
+#### "But I cannot find what I am looking for, how now?"
+We understand that using a new system can be confusing and frustrating. That is why we reduced our usage of technical words, and included examples in this guide.
+
+We understand that you may be referencing this guide when business is booming - **you can already barely cope, and you don't have the time to search for instructions on how to use a feature.**
+
+Don't worry! The guide is written in such a way that you can easily find what you are looking for.
+
+There may be new words and phrases used in the guide that you may have never seen or heard of before. To make this guide easier to understand, our team has made sure all the "technical" words and phrases will be in blue, [*like this*]()! What this means is that if you click on them, it will lead you to a mini-dictionary of words at the bottom of the guide, called a [glossary](#glossary). These blue phrases are also known as [*hyperlinks*](#glossary). You can check out what it means in the glossary by clicking on it.
+
+Additionally, *[these italicized hyperlinks](#glossary)* will bring you to our glossary at the bottom of the guide, while [non-italicized hyperlinks]() like these will bring you to the relevant sections of the guide.
+
+If you cannot find what you are looking for, you may **call us at 9123 4567** so that we can help you as soon as possible.
+
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
+
+<div style="page-break-after: always;"></div>
+
+## How to use the Guide 
+
+This guide will bring you through:
+
+1. How to use a [*Command Line Interface*](#glossary),
+2. How to set up MoneyGoWhere, and
+3. How to use our various [*commands*](#glossary) to track items, add orders, and generate statistic reports!
+
+We will also provide some information on how [your data is saved](#frequently-asked-questions).
+<!-- ^^ We can potentially omit this section -->
+
+Before we begin, we want to let you know that this guide uses **three different colored blocks** and **icons** to indicate different things.
+
+<blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
+    📖 This is a story block! Story blocks provide an example on when and how to use the many features of MoneyGoWhere. 
+</blockquote>
+
+<blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
+    💡 These blocks contain information that you should take note of, or additional details that you might be interested in. Each block refers to a different point, so you may encounter two blocks right next to each other. 
+</blockquote>
+
+<blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
+    ❗ These are warning blocks. They are used to show that the next part will feature some errors that you may encounter. 
+</blockquote>
+
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
 
 ## Tutorial on Command Line Interface
-
-
-
-If you're already familiar with a [Command Line Interface](#glossary), otherwise known as a [CLI](#glossary), that's great! Feel free to [move on to the next section](#setting-up-moneygowhere) about setting up
+<blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
+    💡  If you're already familiar with a <a href="#glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="#glossary"><i>CLI</i></a>, that's great! Feel free to <a href="setting-up-moneygowhere"><i>move on to the next section</i></a> about setting up
 MoneyGoWhere.
 
-Otherwise, you are new to the [CLI](#glossary), please continue reading this section for a simple introduction. The [CLI](#glossary) is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
+<br>
+
+Otherwise, if you are new to the <a href="glossary"><i>CLI</i></a>, please continue reading this section for a simple introduction. The <a href="glossary"><i>CLI</i></a> is important in using MoneyGoWhere, so it is a good idea to know what you are looking at.
+</blockquote>
 
 Without further ado, let us begin exploring the [CLI](#glossary)! You may choose to follow the steps listed in the tutorial as we go along, so that you may get a better understanding.
 
-### Opening a [Terminal](#glossary)
+### Opening a [*Terminal*](#glossary)
 
-To begin, let us open a [terminal](#glossary) to view your [CLI](#glossary). You may enter `cmd` in your start menu and select the first [*option*](#glossary) that appears.
+To begin, let us open a [*terminal*](#glossary) to view your [*CLI*](#glossary). You may enter `cmd` in your start menu and select the first [*option*](#glossary) that appears.
 ![](https://i.imgur.com/Ezt3rky.png)
 
-### What is on a [CLI](#glossary)?
+### What's on a [*CLI*](#glossary)?
 
-After opening the [terminal](#glossary), you should see a window similar to the one shown in the picture below.
+After opening the [*terminal*](#glossary), you should see a window similar to the one shown in the picture below.
 
 ![](https://imgur.com/FitjoRf.png)
 
-For the sake of simplicity, going forward, we will be calling this window the [CLI](#glossary).
+For the sake of simplicity, going forward, we will be calling this window the [*CLI*](#glossary).
 
-Now, let us break down the different parts of the [CLI](#glossary) for you!
+Now, let us break down the different parts of the [*CLI*](#glossary) for you!
 
-From the very top, we can see the text `Microsoft Windows [Version 10.0.22621.1413]`, followed by a [Copyright](#glossary) text. This may be different for every machine, so do not worry if what you see in your own [CLI](#glossary) is different.
+From the very top, we can see the text `Microsoft Windows [Version 10.0.22621.1413]`, followed by a [*Copyright*](#glossary) text. This may be different for every machine, so do not worry if what you see in your own [*CLI*](#glossary) is different.
 
 ![](https://imgur.com/IUTmjGe.png)
 
-Next, we have the current directory. If you followed the [previous instruction](#opening-a-terminal) to open your [CLI](#glossary), you should see `C:\Users\`, followed by your name on the screen, just like in this next screenshot. In this case, the name in the screenshot is `sean_`. This will look different in your own [CLI](#glossary), so do take note and do not panic if you see something different!
+Next, we have the current directory. If you followed the [previous instruction](#opening-a-terminal), you should see `C:\Users\`, followed by your name on the screen, just like in this next screenshot. In this case, the name in the screenshot is `sean_`. This will look different in your own [*CLI*](#glossary), so do not panic if you see something different!
 
 ![](https://imgur.com/cRpNden.png)
 
-A "current directory" is like a special folder that you are looking at right now on your computer. It is like a magic box that you can put things in or take things out of, but only if you're looking at that box right now. So if you want to find something or put something away, you need to make sure you're looking at the right magic box, or "current directory."
+A "current directory" is like a special folder that you are looking at right now on your computer. It is like a magic box that you can put things in or take things out of, but only if you're looking at that box right now. So if you want to find something or put something away, you need to make sure you're looking at the right magic box, or "current directory".
 
-### What can I do on a [CLI](#glossary)?
+### What can I do on this?
 
-You can type and run [commands](#glossary), one example of which is the command to launch MoneyGoWhere!
+You can type and run [*commands*](#glossary), one example of which is the command to launch MoneyGoWhere!
 
-The following screenshot shows where you are able to type on a [CLI](#glossary).
+The following screenshot shows where you are able to type.
 
 ![](https://imgur.com/q6WTOE4.png)
 
-To run the [command](#glossary) that you have just typed into the [CLI](#glossary), you can press the `Enter` button on your keyboard.
+To run the [*command*](#glossary) that you have just typed, you can press the `Enter` button on your keyboard.
 
 However, if you entered `Hello Hawker, I can type here!` as shown in the previous screenshot, you will see an error message, stating that it is an invalid [command](#glossary) as shown in the next screenshot. This is because the sentence `Hello Hawker, I can type here!` is not a valid [command](#glossary).
 
 ![](https://imgur.com/zNtdks0.png)
 
-One example of a valid [command](#glossary) is the [command](#glossary) to change the name of the [CLI](#glossary) window. This can be done by using the `title` [command](#glossary).
+One example of a valid [command](#glossary) is to change the name of the [CLI](#glossary) window. This can be done by using the `title` [command](#glossary).
 
 We will show you how to use it soon, but first, notice how the `CLI` looks like now. In the screenshot below, the window is named `Command Prompt`.
 
@@ -192,47 +188,43 @@ If you have done it right, you should notice a change in the name of the window,
 
 ![](https://imgur.com/RubluYJ.png)
 
-You can also do things like delete or list the files in the current directory.
-
-However, this guide will not be covering these topics as they are not relevant to MoneyGoWhere. If you want to know more about [CLI](#glossary) and what other things you can do with them, [you may read up more about it from this article](https://blog.testproject.io/2021/03/30/a-beginners-guide-to-command-line-interface-cli/).
+You can also do things like delete or list the files in the current directory. However, this guide will not be covering these topics as they are not relevant to MoneyGoWhere. If you want to know more about [CLI](#glossary) and what other things you can do with them, [you may read up more about it from this article](https://blog.testproject.io/2021/03/30/a-beginners-guide-to-command-line-interface-cli/).
 
 ### Congratulations, you have completed the [CLI](#glossary) tutorial!
 
 Now that you are familiar with how the [CLI](#glossary) works, you are now able to use MoneyGoWhere to its maximum potential! Let us now proceed to the next section, where we will guide you on how to set up MoneyGoWhere.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
+<hr style="width:90%;margin:50px auto;">
 
 ## Setting up MoneyGoWhere
 
 1. Before installing and using MoneyGoWhere, do note that Java 11 is required. If you do not already have it installed,
    you can do so [here](https://www.oracle.com/sg/java/technologies/downloads/#java11).
-   * Please download the x64 Installer. Ensure you are on the "Windows" page and download the correct
+   * For Windows users, download the x64 Installer. Ensure you are on the "Windows" page and download the correct
      version as shown in the red boxes. Click `jdk-11.10.18_windows-x64_bin.exe` to begin your download.
 
      ![](https://i.imgur.com/ibRX7fQ.png)
 
-<!--     * For Mac users, download the ARM 64 DMG Installer.Ensure you are on the "macOS" page and download the correct
-      version, in the red box.
+     * For Mac users, download the ARM 64 DMG Installer. Ensure you are on the "macOS" page and download the correct
+      version, in the red box. Click `jdk-11.0.18_macos-aarch64_bin.dmg` to begin your download
 
-      ![](https://i.imgur.com/DGn8lrt.png) -->
+      ![](https://i.imgur.com/DGn8lrt.png)
 
 2. Next, open the downloaded installer and follow the instructions on the installer to install Java 11.
 
-3. After installing Java
-   11, [please download the latest release of the `MoneyGoWhere.jar` file](https://github.com/AY2223S2-CS2113T-T09-2/tp/releases).
-   Click on `MoneyGoWhere.jar` to automatically download the file. Ensure that it is the latest version (the one with
-   the biggest number).
+3. After installing Java 11, [please download the latest release of the `MoneyGoWhere.jar` file](https://github.com/AY2223S2-CS2113T-T09-2/tp/releases).
+   Click on `MoneyGoWhere.jar` to automatically download the file. Ensure that it is the latest version (the one with the biggest number).
 
    ![](https://i.imgur.com/9qXdll7.png)
 
-4. Find `MoneyGoWhere` in your Downloads folder.
+4. Find `MoneyGoWhere.jar` in your Downloads folder.
 
 5. Open `cmd` and navigate to the folder where the `MoneyGoWhere.jar` file is. If you are unsure of how to do so, follow
    steps 6 to 8. Otherwise, you may skip ahead to step 8.
 
-6. Open a [*command*](#glossary) [*terminal*](#glossary) by entering `cmd` in your start menu and select the first [*option*](#glossary)
-   that appears.
+6. Open a [*terminal*](#glossary) by entering `cmd` in your start menu and select the first option that appears.
    ![](https://i.imgur.com/Ezt3rky.png)
 
 7. Get the file path of `MoneyGoWhere.jar` in your computer. To easily do so, you can do the following:
@@ -245,26 +237,28 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
      ![](https://i.imgur.com/mKfwVrc.png)
 
 8. In the CLI, navigate to the location of the folder by typing `cd `, type or paste the file path that you found from
-   the previous step by pressing CTRL and V at the same time on your keyboard, then press enter.
+   the previous step by pressing `CTRL` and `V` keys at the same time on your keyboard, then press enter.
 
    * For example, if the file path that you have is `C:\Users\natas\Downloads\Folder`, then you should
      enter `cd C:\Users\natas\Downloads\Folder` into the CLI.
-
-    <!--* This step is important as it ensures that the saved tasks file will be saved in the same directory. Otherwise, the file will be stored in the current working directory.-->
-
+    
 9. Use the [*command*](#glossary) `java -jar MoneyGoWhere.jar` to launch MoneyGoWhere.
    If done correctly, you will see this on your first start up:
-   ![](https://i.imgur.com/xZ24DTM.png)
+   ![](https://i.imgur.com/4K6rkQi.png)
+
+   Note that returning users will not see the first two lines. Instead, they will see our logo and the remaining text.
 
 10. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
     the `X` on the top right hand corner of the CLI.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
 
 ## MoneyGoWhere [Commands](#glossary)
 
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
-📖 Meet John! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>commands</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
+📖 Meet <strong>John</strong>! He will be a character that is constantly referenced throughout the next few sections to better explain how the <a href="#glossary"><i>commands</i></a> work. John is an aspiring hawker, and plans on running a new stall at The Deck in NUS. 
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -279,11 +273,13 @@ As you become more familiar with MoneyGoWhere and want to speed up using the app
 In other words, there is nothing that the <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> can do that the <strong>New User</strong> <a href="#glossary"><i>command</i></a> cannot.
 </blockquote>
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
 
 ## Style Features
 
-For the following sections, all examples on how to run [*commands*](#glossary) are shown in images. There are four
+For the following sections, all examples on how to run [*commands*](#glossary) are shown through pictures. There are four
 things
 to take note of:
 
@@ -312,7 +308,9 @@ For those reading the **Experienced User** sections, do also note the following:
 3. All values have to be accompanied by [*options*](#glossary) (begins with `-`, such as `-n` or `--price`). [*Commands*](#glossary) such
    as `/deleteitem delete -i 10` will be an invalid [*command*](#glossary).
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
 
 ## Summary of Features
 
@@ -335,7 +333,9 @@ More details are provided in their individual sections.
 | [**Statistics**](#statistics-and-report)         |                                                                        |
 | [Statistics and Reports](#statistics-and-report) | Generates a report based on various [*options*](#glossary)             |
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;">
 
 ## Help
 
@@ -356,15 +356,18 @@ Currently, all he knows is that he can do <code>help</code>, or <code>/help</cod
 📖 As someone who is unfamiliar with the application, John wants to be guided step-by-step to use MoneyGoWhere. To view the <a href="#glossary"><i>commands</i></a> available to him, he can use the <code>help</code> command.
 </blockquote>
 
+1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide! 
 ![](https://i.imgur.com/OlmWorh.png)
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
 📖 In the future, John develops a love for typing and now prefers to use just one line to complete a <a href="#glossary"><i>command</i></a>. He can use the <code>/help</code> <a href="#glossary"><i>command</i></a> to view how to use these single-line <a href="#glossary"><i>commands</i></a>.
 </blockquote>
 
-![](https://i.imgur.com/FBxnCgC.png)
+1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide!
+   ![](https://i.imgur.com/FBxnCgC.png)
 
 <h3> Error Messages </h3>
 
@@ -376,7 +379,9 @@ MoneyGoWhere does not allow for additional letters or words after the `help` [*c
 
 **Solution:** Only enter the [*command*](#glossary) word, `help` or `/help`.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;">
 
 ## Item Features
 
@@ -436,7 +441,7 @@ This example will show you how to add an item step-by-step.
 
    ![](https://i.imgur.com/yiScNE0.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> <strong>For Experienced Users </strong></h3>
 
@@ -480,6 +485,8 @@ This example below will show you how to add an item in a single [*command*](#glo
 
    ![](https://i.imgur.com/pYNA0uT.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3>Error Messages</h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -506,8 +513,9 @@ are no such denominations in real life.
 
 **Solution:** Limit the price to 2 decimal points.
 
+###### [Back to table of contents](#table-of-contents)
 
-[Back to table of contents](#table-of-contents)
+<hr style="width:70%;margin:50px auto;"/>
 
 ## List all Items
 
@@ -521,8 +529,7 @@ To see all the items you have entered in your menu, use this [*command*](#glossa
 💡 This <a href="#glossary"><i>command</i></a> uses only one word. Adding anything else after the <a href="#glossary"><i>command</i></a> will cause MoneyGoWhere to not recognize the <a href="#glossary"><i>command</i></a>. 
 </blockquote>
 
-1. John has added 10 items to the menu, and he wants to check that they are all correct. He uses the [
-   *command*](#glossary) `listitem`
+1. John has added 10 items to the menu, and he wants to check that they are all correct. He uses the [*command*](#glossary) `listitem`
    or `/listitem` to do so.
 
    ![](https://i.imgur.com/4TZqeA7.png)
@@ -531,6 +538,7 @@ To see all the items you have entered in your menu, use this [*command*](#glossa
 💡 Notice typos? Don't worry, it's intentional! These typos will be used in later sections. 
 </blockquote>
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3>Error Messages</h3>
 
@@ -544,8 +552,9 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 
 ![](https://i.imgur.com/oPwXAGW.png)
 
+###### [Back to table of contents](#table-of-contents)
 
-[Back to table of contents](#table-of-contents)
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Delete an Item
 
@@ -582,7 +591,7 @@ the <code>deleteitem</code> <a href="#glossary"><i>command</i></a>.
 ![](https://i.imgur.com/M2twWZL.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -618,7 +627,9 @@ In other words, you cannot remove something that does not exist!
 
 **Solution:** Use a valid [*index*](#glossary).
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Update an Item
 
@@ -629,10 +640,10 @@ Realised you entered the wrong name or price? You can update your items with thi
 
 <img src="https://i.imgur.com/6Q3hSNz.png"> 
 
-He wants to change two things. First, the word <strong>"Vegebatles"</strong>  at <a href="#glossary"><i>index</i></a>) number 6 is spelt
+He wants to change two things. First, the word <strong>"Vegebatles"</strong>, at <a href="#glossary"><i>index</i></a> number 6, is spelt
 wrongly. Also, he wants to <strong>increase the price of "Vegetables" to $2.00</strong>.
 
-Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can update these items with the <code> updateitem</code> <a href="#glossary"><i>command</i></a>.
+Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can update these items with the <code>updateitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -664,7 +675,7 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 
    ![](https://i.imgur.com/w4JXXNl.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -677,6 +688,13 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 ```text
 /additem -i <index> {-n "<name>"} {-p <price>}
 ```
+
+**Name and Price**
+* Do note that of the two, at least one must be present in the [command](#glossary). This means that you can have one of the following combinations in it:
+  * Name,
+  * Price, or
+  * Name and Price
+
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
 💡 To use the <a href="#glossary"><i>command</i></a> in this manner, remember to add a <code>/</code> before the <a href="#glossary"><i>command</i></a>, such as <code>/updateitem</code>. 
@@ -694,6 +712,8 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 
    ![](https://i.imgur.com/2gHDVK3.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
 ❗ The next example is an invalid input, designed to show off the error messages we have in place. This is not the full list of error messages. Additionally, these error messages will be shown for both <strong>New User</strong> and <strong>Experienced User</strong> commands if the mistake is made. 
@@ -707,8 +727,9 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 **Solution:** Include the [*index*](#glossary).
 
+###### [Back to table of contents](#table-of-contents)
 
-[Back to table of contents](#table-of-contents)
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Find an Item
 
@@ -736,7 +757,7 @@ this [*command*](#glossary).
 ![](https://i.imgur.com/0F1hPZK.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -755,6 +776,7 @@ this [*command*](#glossary).
 
 ![](https://i.imgur.com/g18iIZL.png)
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> Error Messages </h3>
 
@@ -770,7 +792,9 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 **Solution:** Include the word or letters you want to look for.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;">
 
 ## Order Features
 
@@ -785,8 +809,6 @@ Therefore, it is a good idea to give this section a read if you want to familiar
 * [Add an Order](#add-an-order)
 * [List all Orders](#list-all-orders)
 * [Refund an Order](#refund-an-order)
-
-<div style="page-break-after: always;"></div>
 
 ## Add an Order
 
@@ -853,7 +875,7 @@ To add their orders, he will use the <code>addorder</code> <a href="#glossary"><
 
    ![](https://i.imgur.com/AoK5cUD.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -916,6 +938,8 @@ Here is an example of how the `/addorder` [*command*](#glossary) may be used to 
 
    ![](https://i.imgur.com/8cjkkOK.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -938,7 +962,9 @@ When your customers pay with their card, entering an amount different from the s
 
 **Solution:** Enter the exact price of the order into the program.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;"/>
 
 ## List all Orders
 
@@ -961,6 +987,8 @@ were made.
 
    ![](https://i.imgur.com/HPkJTvq.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -973,8 +1001,9 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ![](https://i.imgur.com/taGiKBr.png)
 
+###### [Back to table of contents](#table-of-contents)
 
-[Back to table of contents](#table-of-contents)
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Refund an Order
 
@@ -998,8 +1027,8 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 
 </blockquote>
 
-| Option     | Description                    | Restrictions                                                                                                       |
-|------------|--------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Option     | Description                    | Restrictions                                                                                                                       |
+|------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | `Order ID` | A randomly generated order ID. | The entered ID must be a valid entered as shown exactly from the output of the `listorder` <a href="#glossary"><i>command</i></a>. |
 
 <h3> For New Users </h3>
@@ -1012,7 +1041,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 ![](https://i.imgur.com/mEdseoT.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -1032,6 +1061,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 
 ![](https://i.imgur.com/HYRlOwu.png)
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> Error Messages </h3>
 
@@ -1048,7 +1078,9 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 **Solution:** Copy the order ID directly from `listorder` and paste it to ensure there are no errors.
 </br>
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Statistics and Report
 
@@ -1145,6 +1177,8 @@ Of the two, only one can be present in your [*command*](#glossary).
 
    ![](https://i.imgur.com/RCFs2KN.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
 ❗ The next example is an invalid input, designed to show off the error messages we have in place. This is not the full list of error messages.
@@ -1160,47 +1194,49 @@ This happens when you try to generate a montly sale report without using the `ye
 
 **2. Wrong Date Format**
 
-This happens if you enter the wrong format for the date, such as using `-` instead of `/`.
+This happens if you enter the wrong format for the date, such as swapping the month and day.
 
 ![](https://i.imgur.com/BWY4U4X.png)
 
 **Solution:** Use the correct format of `DD/MM/YYYY`.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
-<!-- <h1> Save Files </h1>
-
-The list of items and orders and stored as individual `json` files. While can edit these files, the team behind MoneyGoWhere advises against doing so as you may corrupt your file. Should any changes need to be made directly on the file, you may reach out to us, and we'll be happy to help.  -->
+<hr style="width:90%;margin:50px auto;"/>
 
 ## Frequently Asked Questions
 
-**Q:** I'm switching to a new laptop. Do I need to re-enter all the items on my menu? And what about my transactions?
+**Q: I'm switching to a new laptop. Do I need to re-enter all the items on my menu? And what about my transactions?**
 
 **A:** Don't worry! At MoneyGoWhere, we understand that you may change the laptop you use. When changing to a new
 laptop, simply copy the entire folder! This way, the application and all your data will stay the same across devices.
 
-**Q:** Where is my save file?
+**Q: Where is my save file?**
 
 **A:** Your menu and transaction list are stored in a folder called `datastore`. Inside it, you should see two
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
 as we are not liable for any data loss as a result of [*tampering*](#glossary) with those files.
 
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;"/>
+
 ## Glossary
 
-| Term                   | Explanation                                                                                                                                                |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Computer Program| An application or app that you run on computers.
-| Point-of-Sale System|  A set of devices, software and payment services merchants use to make and track sales in person.
-| Hyperlink              | A phrase or text that you can click.                                                                                                                       |
-| CLI | An abbreviation for Command Line Interface.
-| Command Line Interface | A text-based interface. This means there are no icons to click and everything has to be typed.                                                             |
-| Command                | An instruction given to the program.                                                                                                                       |
-| Terminal               | A tool used to run CLI commands and other tools. It accepts text input and outputs text.                                                                          |
-| Copyright | A type of intellectual property that gives its owner the exclusive right to copy, distribute, adapt, display, and perform a creative work. |
-| Decimal Places         | The number of digits behind a decimal point. For example `2.123` has 3 decimal places, while `4.20` has 2 decimal places.                                  |
-| Index                  | A set of ordered numbers used to uniquely indicate items in a list. For example, index numbers are used to uniquely identify the different levels of a building.                  |
+| Term                   | Explanation                                                                                                                                                                        |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Computer Program       | An application or app that you run on computers.                                                                                                                                   |
+| Point-of-Sale System   | A set of devices, software and payment services merchants use to make and track sales in person.                                                                                   |
+| Hyperlink              | A phrase or text that you can click.                                                                                                                                               |
+| CLI                    | An abbreviation for Command Line Interface.                                                                                                                                        |
+| Command Line Interface | A text-based interface. This means there are no icons to click and everything has to be typed.                                                                                     |
+| Command                | An instruction given to the program.                                                                                                                                               |
+| Terminal               | A tool used to run CLI commands and other tools. It accepts text input and outputs text.                                                                                           |
+| Copyright              | A type of intellectual property that gives its owner the exclusive right to copy, distribute, adapt, display, and perform a creative work.                                         |
+| Decimal Places         | The number of digits behind a decimal point. For example `2.123` has 3 decimal places, while `4.20` has 2 decimal places.                                                          |
+| Index                  | A set of ordered numbers used to uniquely indicate items in a list. For example, index numbers are used to uniquely identify the different levels of a building.                   |
 | Option                 | Used to specify instructions and change the behaviour of a command. In this application, options have a short-form and a long-form, for example, in the case of `-n` and `--name`. |
-| Tampering | The act of intentionally changing an object, in this case, a file, that is not intended to be changed. |
+| Tampering              | The act of intentionally changing an object, in this case, a file, that is not intended to be changed.                                                                             |
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
   
