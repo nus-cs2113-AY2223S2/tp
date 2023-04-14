@@ -26,6 +26,7 @@ The purpose of this guide is to **show you easy-to-understand instructions on ho
 
 * [What is MoneyGoWhere](#what-is-moneygowhere)
 * [Why we created MoneyGoWhere](#why-we-created-moneygowhere)
+* [Urgent Help](#problems)
 * [How to use this Guide](#how-to-use-the-guide)
 * [Tutorial on Command Line Interface](#tutorial-on-command-line-interface)
 * [Setting up MoneyGoWhere](#setting-up-moneygowhere)
@@ -76,8 +77,10 @@ When the second version of MoneyGoWhere was presented to them, they were more co
 
 We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
 
-### "I have problems right now, that's why I am reading the guide!" 
-#### "But I cannot find what I am looking for, how now?"
+<hr style="width:90%;margin:50px auto;">
+
+## "I have problems right now, that's why I am reading the guide!" <a name="problems"></a>
+### "But I cannot find what I am looking for, how now?"
 We understand that using a new system can be confusing and frustrating. That is why we reduced our usage of technical words, and included examples in this guide.
 
 We understand that you may be referencing this guide when business is booming - **you can already barely cope, and you don't have the time to search for instructions on how to use a feature.**
