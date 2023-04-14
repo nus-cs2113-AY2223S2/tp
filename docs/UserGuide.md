@@ -6,6 +6,8 @@ BudgetBuddy is a one-stop Command Line Interface application that helps you to k
 You can keep track of your expenses better by creating and editing custom budgets, and also taking note of what deposits
 you have to have a better understanding of your overall spending and saving.
 
+Overspending and the lack of savings is a significant problem found in most fresh graduates. We want to create tools necessary for them so that they can realize their actual spending and achieve financial freedom in the future.
+
 ## Features
 
 Here are some features that Budget Buddy offers:
