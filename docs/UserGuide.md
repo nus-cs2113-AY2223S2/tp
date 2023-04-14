@@ -640,10 +640,10 @@ Realised you entered the wrong name or price? You can update your items with thi
 
 <img src="https://i.imgur.com/6Q3hSNz.png"> 
 
-He wants to change two things. First, the word <strong>"Vegebatles"</strong>  at <a href="#glossary"><i>index</i></a>) number 6 is spelt
+He wants to change two things. First, the word <strong>"Vegebatles"</strong>, at <a href="#glossary"><i>index</i></a> number 6, is spelt
 wrongly. Also, he wants to <strong>increase the price of "Vegetables" to $2.00</strong>.
 
-Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can update these items with the <code> updateitem</code> <a href="#glossary"><i>command</i></a>.
+Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can update these items with the <code>updateitem</code> <a href="#glossary"><i>command</i></a>.
 </blockquote>
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
@@ -688,6 +688,13 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 ```text
 /additem -i <index> {-n "<name>"} {-p <price>}
 ```
+
+**Name and Price**
+* Do note that of the two, at least one must be present in the [command](#glossary). This means that you can have one of the following combinations in it:
+  * Name,
+  * Price, or
+  * Name and Price
+
 
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
 💡 To use the <a href="#glossary"><i>command</i></a> in this manner, remember to add a <code>/</code> before the <a href="#glossary"><i>command</i></a>, such as <code>/updateitem</code>. 
@@ -1187,7 +1194,7 @@ This happens when you try to generate a montly sale report without using the `ye
 
 **2. Wrong Date Format**
 
-This happens if you enter the wrong format for the date, such as using `-` instead of `/`.
+This happens if you enter the wrong format for the date, such as swapping the month and day.
 
 ![](https://i.imgur.com/BWY4U4X.png)
 
@@ -1199,12 +1206,12 @@ This happens if you enter the wrong format for the date, such as using `-` inste
 
 ## Frequently Asked Questions
 
-**Q:** I'm switching to a new laptop. Do I need to re-enter all the items on my menu? And what about my transactions?
+**Q: I'm switching to a new laptop. Do I need to re-enter all the items on my menu? And what about my transactions?**
 
 **A:** Don't worry! At MoneyGoWhere, we understand that you may change the laptop you use. When changing to a new
 laptop, simply copy the entire folder! This way, the application and all your data will stay the same across devices.
 
-**Q:** Where is my save file?
+**Q: Where is my save file?**
 
 **A:** Your menu and transaction list are stored in a folder called `datastore`. Inside it, you should see two
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
