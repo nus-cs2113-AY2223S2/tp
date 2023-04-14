@@ -663,8 +663,8 @@ Congratulations! You have reached the end of this user guide, which means you ar
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-And remember, its not magic. It's Meal Companion!
-
+# And remember, its not magic. It's Meal Companion!
+{: style="text-align: center;"}
 
 # Appendix  
 Here you may find additional information that will assist you in your use of Meal Companion, including a video guide and detailed instructions on using terminals.
