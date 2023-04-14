@@ -8,7 +8,7 @@
 
 </div>
 
-# Hello Hawker!
+## Hello Hawker!
 
 Thank you for your interest in MoneyGoWhere!
 
@@ -20,9 +20,9 @@ This is the user guide for MoneyGoWhere.
 
 The purpose of this guide is to **show you easy-to-understand instructions on how to use our product**.
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
-# Table of Contents
+## Table of Contents
 
 * [What is MoneyGoWhere](#what-is-moneygowhere)
 * [Why we created MoneyGoWhere](#why-we-created-moneygowhere)
@@ -39,9 +39,9 @@ The purpose of this guide is to **show you easy-to-understand instructions on ho
 * [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
-# What is MoneyGoWhere?
+## What is MoneyGoWhere?
 
 MoneyGoWhere is a [*computer program*](#glossary) made by computing students from the National University of Singapore (NUS) that **helps you keep track of your sales**.
 
@@ -52,9 +52,9 @@ much money you make each day** and **what items you sell the most**.
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
-# Why we created MoneyGoWhere
+## Why we created MoneyGoWhere
 
 MoneyGoWhere was created as we noticed most hawkers in the National University of Singapore (NUS) already had an existing [*Point-of-Sale*](#glossary) (POS) System, but most of them were not using them. After conducting interviews with the hawkers, we identified three main reasons why they were not using the system:
 
@@ -76,8 +76,8 @@ When the second version of MoneyGoWhere was presented to them, they were more co
 
 We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
 
-## "I have problems right now, that's why I am reading the guide!" 
-### "But I cannot find what I am looking for, how now?"
+### "I have problems right now, that's why I am reading the guide!" 
+#### "But I cannot find what I am looking for, how now?"
 We understand that using a new system can be confusing and frustrating. That is why we reduced our usage of technical words, and included examples in this guide.
 
 We understand that you may be referencing this guide when business is booming - **you can already barely cope, and you don't have the time to search for instructions on how to use a feature.**
@@ -92,11 +92,11 @@ If you cannot find what you are looking for, you may **call us at 9123 4567** so
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 <div style="page-break-after: always;"></div>
 
-# How to use the Guide 
+## How to use the Guide 
 
 This guide will bring you through:
 
@@ -123,9 +123,9 @@ Before we begin, we want to let you know that this guide uses **three different 
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
-# Tutorial on Command Line Interface
+## Tutorial on Command Line Interface
 <blockquote style="background-color:#FEEFD0; color:#364253; border-color:#877039; padding: 2% 3%">
     💡  If you're already familiar with a <a href="#glossary"><i>Command Line Interface (CLI)</i></a>, otherwise known as a <a href="#glossary"><i>CLI</i></a>, that's great! Feel free to <a href="setting-up-moneygowhere"><i>move on to the next section</i></a> about setting up
 MoneyGoWhere.
@@ -137,12 +137,12 @@ Otherwise, if you are new to the <a href="glossary"><i>CLI</i></a>, please conti
 
 Without further ado, let us begin exploring the [CLI](#glossary)! You may choose to follow the steps listed in the tutorial as we go along, so that you may get a better understanding.
 
-## Opening a [*Terminal*](#glossary)
+### Opening a [*Terminal*](#glossary)
 
 To begin, let us open a [*terminal*](#glossary) to view your [*CLI*](#glossary). You may enter `cmd` in your start menu and select the first [*option*](#glossary) that appears.
 ![](https://i.imgur.com/Ezt3rky.png)
 
-## What's on a [*CLI*](#glossary)?
+### What's on a [*CLI*](#glossary)?
 
 After opening the [*terminal*](#glossary), you should see a window similar to the one shown in the picture below.
 
@@ -162,7 +162,7 @@ Next, we have the current directory. If you followed the [previous instruction](
 
 A "current directory" is like a special folder that you are looking at right now on your computer. It is like a magic box that you can put things in or take things out of, but only if you're looking at that box right now. So if you want to find something or put something away, you need to make sure you're looking at the right magic box, or "current directory".
 
-## What can I do on this?
+### What can I do on this?
 
 You can type and run [*commands*](#glossary), one example of which is the command to launch MoneyGoWhere!
 
@@ -190,15 +190,15 @@ If you have done it right, you should notice a change in the name of the window,
 
 You can also do things like delete or list the files in the current directory. However, this guide will not be covering these topics as they are not relevant to MoneyGoWhere. If you want to know more about [CLI](#glossary) and what other things you can do with them, [you may read up more about it from this article](https://blog.testproject.io/2021/03/30/a-beginners-guide-to-command-line-interface-cli/).
 
-## Congratulations, you have completed the [CLI](#glossary) tutorial!
+### Congratulations, you have completed the [CLI](#glossary) tutorial!
 
 Now that you are familiar with how the [CLI](#glossary) works, you are now able to use MoneyGoWhere to its maximum potential! Let us now proceed to the next section, where we will guide you on how to set up MoneyGoWhere.
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
-# Setting up MoneyGoWhere
+## Setting up MoneyGoWhere
 
 1. Before installing and using MoneyGoWhere, do note that Java 11 is required. If you do not already have it installed,
    you can do so [here](https://www.oracle.com/sg/java/technologies/downloads/#java11).
@@ -253,7 +253,7 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 ## MoneyGoWhere [Commands](#glossary)
 
@@ -275,7 +275,7 @@ In other words, there is nothing that the <strong>Experienced User</strong> <a h
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 ## Style Features
 
@@ -310,7 +310,7 @@ For those reading the **Experienced User** sections, do also note the following:
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 ## Summary of Features
 
@@ -335,7 +335,7 @@ More details are provided in their individual sections.
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;">
+<hr style="width:80%;margin:50px auto;">
 
 ## Help
 
@@ -359,7 +359,7 @@ Currently, all he knows is that he can do <code>help</code>, or <code>/help</cod
 1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide! 
 ![](https://i.imgur.com/OlmWorh.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
@@ -381,7 +381,7 @@ MoneyGoWhere does not allow for additional letters or words after the `help` [*c
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 ## Item Features
 
@@ -441,7 +441,7 @@ This example will show you how to add an item step-by-step.
 
    ![](https://i.imgur.com/yiScNE0.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> <strong>For Experienced Users </strong></h3>
 
@@ -485,7 +485,7 @@ This example below will show you how to add an item in a single [*command*](#glo
 
    ![](https://i.imgur.com/pYNA0uT.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3>Error Messages</h3>
 
@@ -515,7 +515,7 @@ are no such denominations in real life.
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## List all Items
 
@@ -554,7 +554,7 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## Delete an Item
 
@@ -591,7 +591,7 @@ the <code>deleteitem</code> <a href="#glossary"><i>command</i></a>.
 ![](https://i.imgur.com/M2twWZL.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -629,7 +629,7 @@ In other words, you cannot remove something that does not exist!
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## Update an Item
 
@@ -675,7 +675,7 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 
    ![](https://i.imgur.com/w4JXXNl.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -720,7 +720,7 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## Find an Item
 
@@ -748,7 +748,7 @@ this [*command*](#glossary).
 ![](https://i.imgur.com/0F1hPZK.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -784,7 +784,7 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;">
+<hr style="width:90%;margin:50px auto;">
 
 ## Order Features
 
@@ -865,7 +865,7 @@ To add their orders, he will use the <code>addorder</code> <a href="#glossary"><
 
    ![](https://i.imgur.com/AoK5cUD.png)
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -952,7 +952,7 @@ When your customers pay with their card, entering an amount different from the s
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## List all Orders
 
@@ -989,7 +989,7 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:25px auto;"/>
+<hr style="width:80%;margin:50px auto;"/>
 
 ## Refund an Order
 
@@ -1027,7 +1027,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 ![](https://i.imgur.com/mEdseoT.png)
 
 
-<hr style="width:60%;margin:25px auto;"/>
+<hr style="width:60%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -1065,7 +1065,7 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 
 [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:25px auto;"/>
+<hr style="width:90%;margin:50px auto;"/>
 
 ## Statistics and Report
 
@@ -1189,7 +1189,7 @@ This happens if you enter the wrong format for the date, such as using `-` inste
 
 The list of items and orders and stored as individual `json` files. While can edit these files, the team behind MoneyGoWhere advises against doing so as you may corrupt your file. Should any changes need to be made directly on the file, you may reach out to us, and we'll be happy to help.  -->
 
-<hr style="width:90%;margin:25px auto;"/>
+<hr style="width:90%;margin:50px auto;"/>
 
 ## Frequently Asked Questions
 
@@ -1204,7 +1204,7 @@ laptop, simply copy the entire folder! This way, the application and all your da
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
 as we are not liable for any data loss as a result of [*tampering*](#glossary) with those files.
 
-<hr style="width:90%;margin:25px auto;"/>
+<hr style="width:90%;margin:50px auto;"/>
 
 ## Glossary
 
