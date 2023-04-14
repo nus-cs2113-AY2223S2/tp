@@ -129,7 +129,7 @@ to, which have a GUI (Graphical User Interface), all interactions are done with 
 When this guide tells you to "enter a command", it means to type the desired text into the terminal, and press the
 "Enter" or "Return" key on your keyboard to submit the command to the Meal Companion application.
 
-> **Warning**:
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**:
 > While you are in the midst of typing a command, you cannot use the arrow keys to navigate through the text like you
 > would in a normal word processor. Instead, if you make a typo, you will have to delete the entered text to go back and
 > fix it.
@@ -140,7 +140,7 @@ When this guide tells you to "enter a command", it means to type the desired tex
 Due to the nature of Meal Companion as a CLI-based application, please take care to avoid malformed commands so as to avoid undesirable performance of Meal Companion. Some examples are shown below.
 
 ## Unnecessary Whitespaces
-> **Warning**:
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**:
 > Meal Companion will not recognize ingredient names if there is an unexpected number (more than 1) of whitespaces between each word in the ingredient name.<br>
 > 
 > For example:<br>
@@ -150,7 +150,7 @@ Due to the nature of Meal Companion as a CLI-based application, please take care
 > The above-mentioned warnings apply to all commands or ingredient names with whitespaces in between words. We cannot guarantee Meal Companion will function as expected if the warning is not adhered to. 
 
 ## Duplicated Flags
-> **Warning**: 
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: 
 > Meal Companion will ignore duplicated flags in the `add` and `remove` commands, taking only the last valid `/qty` flag as the validated input. <br>
 > 
 > For example:<br>
@@ -201,7 +201,7 @@ For example:
 
 <br>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) and [Duplicated Flags](#duplicated-flags) for examples specific to the `add` command.
 <br>
 
@@ -221,7 +221,7 @@ For example:
 
 <br>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) and [Duplicated Flags](#duplicated-flags) for examples specific to the `remove` command.
 <br>
 
@@ -257,7 +257,7 @@ For example:
 
 <br>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `ingredients search` command.
 <br>
 
@@ -283,7 +283,7 @@ For example:
 <img alt="clear2.png" src="images/clear2.png" width="900"> 
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
 
-> **Warning**: This move cannot be undone.
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: This move cannot be undone.
 
 #### [Back to Ingredients](#1-ingredients)
  
@@ -319,7 +319,7 @@ For example, if you have an allergy to eggs, you may use the command:
 
 <br>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergen add` command.
 <br>
 
@@ -339,7 +339,7 @@ For example, if you mistakenly entered an allergy to water, you may use the comm
 
 <br>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `allergen remove` command.
 <br>
 
@@ -459,7 +459,7 @@ For exmaple: `recipe random`
 <img alt="reciperandom2.png" src="images/reciperandom2.png" width="900">  
 <sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
 
-> **Warning**: `recipe random` may generate a recipe containing your allergens. A warning will be displayed in the recipe should it contains your allergen.
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: `recipe random` may generate a recipe containing your allergens. A warning will be displayed in the recipe should it contains your allergen.
 
 > **Tip**: Simply run `recipe random` again to get a different recipe that might not contain your allergen!
 
@@ -477,7 +477,7 @@ For example:
 <img alt="recipefind.png" src="images/recipefind.png" width="900">  
 <sub>Fig 17: Sample of Recipe Find command searching for recipes containing "chicken" in the name.</sub>
 
-> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: Please avoid malformed commands so as to prevent undesirable behaviour of Meal Companion.<br>
 > Examples of malformed commands can be found in the [Critical Warnings](#critical-warnings) section. Please refer to [Unnecessary Whitespaces](#unnecessary-whitespaces) for examples specific to the `recipe find` command.
 
 #### [Back to Recipes](#3-recipes)
@@ -552,7 +552,7 @@ For example:
 <img alt="unfav2.png" src="images/unfav2.png" width="900">  
 <sub>Fig 24: Sample of Recipe list after Recipe 6 (Hainanese Chicken Rice) is removed from favourites with the modified list highlighted.</sub>
 
-> **Warning**
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**
 > Please note that the current iteration of favourites does not preserve your preferences after closing the app. This functionality will be added in future iterations.
 
 #### [Back to Recipes](#3-recipes)
@@ -570,14 +570,14 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 <img alt="save1.png" src="images/save1.png" width="900">  
 <sub>Fig 25: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
-> **Warning**:
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**:
 > Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
 > We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
 
 
 > **Tip**: If your file is corrupted or you edited it incorrectly, you may start afresh by deleting the `ingredients.txt` file and relaunching Meal Companion.<br>
 
-> **Warning**: This will remove all your stored ingredients and this action is not reversible.
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning**: This will remove all your stored ingredients and this action is not reversible.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. You may refer to Fig. 26 and Fig. 27 for an example.
