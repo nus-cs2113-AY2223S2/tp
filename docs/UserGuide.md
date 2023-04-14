@@ -16,7 +16,7 @@ It caters to the various needs of these busy students, including healthier meal 
 
 ## Product Information and Feature Overview
 
-Cooking is a commitment. It's hard to buy exactly the right amount of ingredients especially when you're cooking for one, and even if you can stomach eating the same recipe every day for a week, the ingredients run out at different times! Most people, when faced with this problem, will simply throw out whatever goes bad and go back to their daily trips to canteens, hawkers, or resturaunts. And, that's where Meal Companion comes in! Here's how we improve upon the experience of commonly used recipe sources. In fact, if you are excited to find out more, jump straight to [Features](#4-features) to find out more!
+Cooking is a commitment. It's hard to buy exactly the right amount of ingredients especially when you're cooking for one, and even if you can stomach eating the same recipe every day for a week, the ingredients run out at different times! Most people, when faced with this problem, will simply throw out whatever goes bad and go back to their daily trips to canteens, hawkers, or resturaunts. And, that's where Meal Companion comes in! Here's how we improve upon the experience of commonly used recipe sources. In fact, if you are excited to find out more, jump straight to [Features](#main-features) to find out more!
 
 ### Versus Traditional Recipe Books
 
@@ -40,7 +40,7 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
 3. [Critical Warnings](#critical-warnings)  
     1. [Unnecessary Whitespaces](#unnecessary-whitespaces)  
     2. [Duplicated Flags](#duplicated-flags)
-4. [Features](#features)
+4. [Features](#main-features)
    1. [Ingredients](#1-ingredients)
       - [Add Ingredients](#add-ingredients)
       - [Remove Ingredients](#remove-ingredients)
