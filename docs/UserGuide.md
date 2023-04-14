@@ -251,7 +251,7 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
 10. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
     the `X` on the top right hand corner of the CLI.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;">
 
@@ -273,7 +273,7 @@ As you become more familiar with MoneyGoWhere and want to speed up using the app
 In other words, there is nothing that the <strong>Experienced User</strong> <a href="#glossary"><i>command</i></a> can do that the <strong>New User</strong> <a href="#glossary"><i>command</i></a> cannot.
 </blockquote>
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;">
 
@@ -308,7 +308,7 @@ For those reading the **Experienced User** sections, do also note the following:
 3. All values have to be accompanied by [*options*](#glossary) (begins with `-`, such as `-n` or `--price`). [*Commands*](#glossary) such
    as `/deleteitem delete -i 10` will be an invalid [*command*](#glossary).
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;">
 
@@ -333,7 +333,7 @@ More details are provided in their individual sections.
 | [**Statistics**](#statistics-and-report)         |                                                                        |
 | [Statistics and Reports](#statistics-and-report) | Generates a report based on various [*options*](#glossary)             |
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;">
 
@@ -379,7 +379,7 @@ MoneyGoWhere does not allow for additional letters or words after the `help` [*c
 
 **Solution:** Only enter the [*command*](#glossary) word, `help` or `/help`.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;">
 
@@ -513,7 +513,7 @@ are no such denominations in real life.
 
 **Solution:** Limit the price to 2 decimal points.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -552,7 +552,7 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 ![](https://i.imgur.com/oPwXAGW.png)
 
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -627,7 +627,7 @@ In other words, you cannot remove something that does not exist!
 
 **Solution:** Use a valid [*index*](#glossary).
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -718,7 +718,7 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 **Solution:** Include the [*index*](#glossary).
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -782,7 +782,7 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 **Solution:** Include the word or letters you want to look for.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;">
 
@@ -950,7 +950,7 @@ When your customers pay with their card, entering an amount different from the s
 
 **Solution:** Enter the exact price of the order into the program.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -987,7 +987,7 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ![](https://i.imgur.com/taGiKBr.png)
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:80%;margin:50px auto;"/>
 
@@ -1063,7 +1063,7 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 **Solution:** Copy the order ID directly from `listorder` and paste it to ensure there are no errors.
 </br>
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <hr style="width:90%;margin:50px auto;"/>
 
@@ -1183,7 +1183,7 @@ This happens if you enter the wrong format for the date, such as using `-` inste
 
 **Solution:** Use the correct format of `DD/MM/YYYY`.
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
 
 <!-- <h1> Save Files </h1>
 
@@ -1204,6 +1204,8 @@ laptop, simply copy the entire folder! This way, the application and all your da
 files: `menu.json` and `orders.json`. However, all changes to your data should be made through the application itself,
 as we are not liable for any data loss as a result of [*tampering*](#glossary) with those files.
 
+###### [Back to table of contents](#table-of-contents)
+
 <hr style="width:90%;margin:50px auto;"/>
 
 ## Glossary
@@ -1223,5 +1225,5 @@ as we are not liable for any data loss as a result of [*tampering*](#glossary) w
 | Option                 | Used to specify instructions and change the behaviour of a command. In this application, options have a short-form and a long-form, for example, in the case of `-n` and `--name`. |
 | Tampering              | The act of intentionally changing an object, in this case, a file, that is not intended to be changed.                                                                             |
 
-[Back to table of contents](#table-of-contents)
+###### [Back to table of contents](#table-of-contents)
   
