@@ -1,0 +1,34 @@
+@startuml
+hide footbox
+hide circle
+skinparam groupInheritance 2
+skinparam classAttributeIconSize 0
+
+class Data {
+}
+
+class StatsCommand {
+  -executeShowStats(): void
+  -executeHelpStats(): void
+}
+
+class StatsAction {
+  +showStats(): void
+  +statsHelp(): void
+  -showBudget(): String[]
+}
+
+class StatsUIResponse {
+  +printStats(): void
+  +printStatsCommands(): void
+  -printBudgetStats(): String[]
+  -printDepositStats(): String[]
+  -printExpenseStats(): String[]
+  -printSummary(): String[]
+}
+
+Data --> StatsCommand
+StatsCommand-> StatsAction
+StatsAction-> StatsUIResponse
+
+@enduml

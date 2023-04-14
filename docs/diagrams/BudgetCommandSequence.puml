@@ -1,0 +1,112 @@
+@startuml
+
+hide footbox
+
+participant BudgetCommand
+participant Data
+participant BudgetAction
+participant BudgetUIResponse
+actor User
+
+ -> "BudgetCommand":
+
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetCommand": execute(data, ui)
+activate  "BudgetCommand"
+"BudgetCommand" -> "Data": getBudgets()
+activate "Data"
+return budgetList: Budget[]
+deactivate "Data"
+
+
+"BudgetCommand" -> "Data": getExpenses()
+activate "Data"
+return expenses: Expense[]
+
+"BudgetCommand" -> "BudgetAction" ** : (budgetList,ui)
+activate "BudgetAction"
+
+"BudgetAction" -> "BudgetUIResponse" ** : (ui)
+activate "BudgetUIResponse"
+"BudgetUIResponse" --> "BudgetAction"
+deactivate "BudgetUIResponse"
+
+return budgetAction: BudgetAction
+deactivate "BudgetAction"
+
+
+alt action is add
+"BudgetCommand" -> "BudgetCommand": executeAddBudget(budgetAction, requiredParams)
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetAction" : addBudget(budgetName, budgetLimit)
+activate "BudgetAction"
+"BudgetAction" -> "BudgetUIResponse" : printBudgetAddSuccessful(budget, budgets.size())
+activate "BudgetUIResponse"
+"BudgetUIResponse" -> User
+return
+return
+
+deactivate "BudgetCommand"
+
+else action is set
+"BudgetCommand" -> "BudgetCommand": executeSetBudget(budgetAction, requiredParams)
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetAction" : setBudget(budgetName, budgetLimit)
+activate "BudgetAction"
+"BudgetAction" -> "BudgetUIResponse" : printBudgetSetSuccessful(budget, budgets.size())
+activate "BudgetUIResponse"
+"BudgetUIResponse" -> User
+return
+return
+
+deactivate "BudgetCommand"
+
+else action is del
+"BudgetCommand" -> "BudgetCommand": executeDelBudget(budgetAction, requiredParams, expenses)
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetAction" : deleteBudget(budgetName, expenses)
+activate "BudgetAction"
+"BudgetAction" -> "BudgetUIResponse" : printBudgetDelSuccessful(budget, budgets.size(), noOfDeletedExpenses)
+activate "BudgetUIResponse"
+"BudgetUIResponse" -> User
+return
+return
+
+deactivate "BudgetCommand"
+
+else action is list
+"BudgetCommand" -> "BudgetCommand": executeListBudget(budgetAction, optionalParams, expenses)
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetAction" : printBudgets(month, year, expenses)
+activate "BudgetAction"
+"BudgetAction" -> "BudgetUIResponse" : printListBudgets(budgets, budgetsExpenseTotal, month, year, longestBudgetName)
+activate "BudgetUIResponse"
+"BudgetUIResponse" -> User
+return
+return
+
+deactivate "BudgetCommand"
+
+else action is help
+"BudgetCommand" -> "BudgetCommand": executeHelpBudget(budgetAction)
+activate "BudgetCommand"
+"BudgetCommand" -> "BudgetAction" : budgetHelp()
+activate "BudgetAction"
+"BudgetAction" -> "BudgetUIResponse" : printBudgetCommands()
+activate "BudgetUIResponse"
+"BudgetUIResponse" -> User
+return
+return
+
+deactivate "BudgetCommand"
+end
+
+"BudgetCommand" -> "Data": exportData()
+activate "Data"
+return
+deactivate "Data"
+
+deactivate "BudgetCommand"
+ <-- "BudgetCommand":
+deactivate "BudgetCommand"
+@enduml

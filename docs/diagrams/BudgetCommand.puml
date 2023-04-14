@@ -1,0 +1,50 @@
+@startuml
+hide footbox
+hide circle
+skinparam groupInheritance 2
+skinparam classAttributeIconSize 0
+
+class Budget {
+}
+
+class Expense {
+}
+
+class BudgetCommand {
+  -executeAddBudget(): void
+  -executeSetBudget(): void
+  -executeDelBudget(expenses: Expense[]): void
+  -executeListBudget(expenses: Expense[]): void
+  -executeHelpBudget(): void
+}
+
+class BudgetAction {
+  +addBudget(): void
+  +deleteBudget(expenses: Expense[]): void
+  +setBudget(): void
+  +printBudgets(): void
+  +budgetHelp(): void
+  +getLongestBudgetName(): int
+  +getBudgetsExpenseTotal(): double[]
+  +getTotalBudgets(): double
+  #isDuplicateBudgetName(): boolean
+  -getBudget(): Budget
+}
+
+class BudgetUIResponse {
+  +printBudgetAddSuccessful(): void
+  +printBudgetDelSuccessful(): void
+  +printBudgetSetSuccessful(): void
+  +printListBudgets(): void
+  +printBudgetCommands(): void
+  +getListBudgetsMsg(): String[]
+  +printBudgets(): String[]
+  +getSummaryBudget(): String[]
+}
+
+Budget --> BudgetCommand
+Expense --> BudgetCommand
+BudgetCommand -> BudgetAction
+BudgetAction -> BudgetUIResponse
+
+@enduml

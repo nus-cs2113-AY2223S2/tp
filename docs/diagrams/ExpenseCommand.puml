@@ -1,0 +1,55 @@
+@startuml
+hide footbox
+hide circle
+skinparam groupInheritance 2
+skinparam classAttributeIconSize 0
+
+class Expense {
+}
+
+class Budget {
+}
+
+class ExpenseCommand {
+  -executeAddExpense(budgets: Budget[]): void
+  -executeDelExpense(): void
+  -executeFindExpense(): void
+  -executeClearExpense(): void
+  -executeListExpense(): void
+  -executeHelpExpense(): void
+}
+
+class ExpenseAction {
+  +addExpense(budgets: Budget[]): void
+  +deleteExpense(): void
+  +findExpenses(): void
+  +clearExpenses(): void
+  +listExpenses(): void
+  +listExpensesRange(): void
+  +expenseHelp(): void
+  +clearExpensesByCategory(): int
+  +sortExpensesByDate(): Expense[]
+  +filterExpensesByDate(): Expense[]
+  +filterExpensesByCategory(): Expense[]
+  +getTotalExpenses(): double
+  -validateExpense(): Integer
+  -deleteExpenses(): void
+}
+
+class ExpenseUIResponse {
+  +printExpenseAddSuccessful(): void
+  +printExpenseDelSuccessful(): void
+  +printFindExpenses(): void
+  +printClearExpenses(): void
+  +printListExpenses(): void
+  +printListExpensesRange(): void
+  +printExpenseCommands(): void
+  +printExpenses(): String[]
+}
+
+Expense --> ExpenseCommand
+Budget --> ExpenseCommand
+ExpenseCommand -> ExpenseAction
+ExpenseAction -> ExpenseUIResponse
+
+@enduml

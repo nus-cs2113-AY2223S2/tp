@@ -1,0 +1,59 @@
+@startuml
+hide footbox
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract class "{abstract} \n Command" {
+    #name : CommandEnum
+    #action : String
+    #requiredParams : String[]
+    #optionalParams : String[]
+
+    +execute(Data, Ui) : void &#123;abstract&#125;
+    +isExit() : boolean &#123;abstract&#125;
+}
+
+enum CommandEnum {
+    BUDGET
+    DEPOSIT
+    EXPENSE
+    STATS
+    HELP
+    EXIT
+}
+
+class CommandParser {
+    +parse(String) : Command
+    -getCommandName(String) : CommandEnum
+    -getAction(Command, String) : String
+    -getRequiredParams(Command, String, String) : String[]
+    -getOptionalParams(Command, String, String) : String[]
+}
+
+CommandParser --> "{abstract} \n Command"
+
+class BudgetCommand {
+}
+
+class DepositCommand {
+}
+
+class ExpenseCommand {
+}
+
+class StatsCommand {
+}
+
+class HelpCommand {
+}
+
+class ExitCommand {
+}
+
+"{abstract} \n Command" <|-- BudgetCommand
+"{abstract} \n Command" <|-- DepositCommand
+"{abstract} \n Command" <|-- ExpenseCommand
+"{abstract} \n Command" <|-- StatsCommand
+"{abstract} \n Command" <|-- ExitCommand
+"{abstract} \n Command" <|-- HelpCommand
+@enduml

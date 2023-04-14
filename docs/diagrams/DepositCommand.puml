@@ -1,0 +1,47 @@
+@startuml
+hide footbox
+hide circle
+skinparam groupInheritance 2
+skinparam classAttributeIconSize 0
+
+class Deposit {
+}
+
+class DepositCommand {
+  -executeAddDeposit(): void
+  -executeDelDeposit(): void
+  -executeFindDeposit(): void
+  -executeClearDeposit(): void
+  -executeListDeposit(): void
+  -executeHelpDeposit(): void
+}
+
+class DepositAction {
+  +addDeposit(): void
+  +deleteDeposit(): void
+  +findDeposits(): void
+  +clearDeposits(): void
+  +listDeposits(): void
+  +listDepositsRange(): void
+  +sortDepositsByDate(): Deposit[]
+  +filterDepositsByDate(): Deposit[]
+  +getTotalDeposits(): double
+  -validateDeposit(): Integer
+  -deleteDeposits(): void
+}
+
+class DepositUIResponse {
+  +printDepositAddSuccessful(): void
+  +printDepositDelSuccessful(): void
+  +printFindDeposits(): void
+  +printClearDeposits(): void
+  +printListDeposits(): void
+  +printListDepositsRange(): void
+  +printDeposits(): String[]
+}
+
+Deposit --> DepositCommand
+DepositCommand -> DepositAction
+DepositAction -> DepositUIResponse
+
+@enduml

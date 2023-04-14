@@ -1,0 +1,86 @@
+@startuml
+
+hide footbox
+
+participant StatsCommand
+participant StatsAction
+participant Data
+participant DepositUIResponse
+participant ExpenseUIResponse
+participant StatsUIResponse
+actor User
+
+ -> "StatsCommand":
+
+activate "StatsCommand"
+"StatsCommand" -> "StatsCommand": execute(data, ui)
+activate  "StatsCommand"
+deactivate "Data"
+
+"StatsCommand" -> "StatsAction" ** : (data,ui)
+activate "StatsAction"
+
+"StatsAction" -> "Data": getBudgets()
+activate "Data"
+return expenses: Budget[]
+"StatsAction" -> "Data": getDeposits()
+activate "Data"
+return expenses: Deposit[]
+"StatsAction" -> "Data": getExpenses()
+activate "Data"
+return expenses: Expense[]
+
+"StatsAction" -> "StatsUIResponse" ** : (ui)
+activate "StatsUIResponse"
+"StatsUIResponse" --> "StatsAction"
+deactivate "StatsUIResponse"
+
+return StatsAction: StatsAction
+deactivate "StatsAction"
+
+
+alt actions is show
+"StatsCommand" -> "StatsCommand": executeShowStats(statsAction, optionalParams)
+activate "StatsCommand"
+"StatsCommand" -> "StatsAction" : showStats(month, year, showDeposit, showExpense)
+activate "StatsAction"
+
+opt showDeposit
+"StatsAction" -> "DepositUIResponse": printDeposits(filteredDeposits)
+activate "DepositUIResponse"
+return depositMsg
+end
+
+opt showExpense
+"StatsAction" -> "ExpenseUIResponse": printExpenses(filteredExpenses)
+activate "ExpenseUIResponse"
+return expenseMsg
+end
+
+"StatsAction" -> "StatsUIResponse" : printStats(month, year, totalBudgets, totalDeposits, totalExpenses, budgetMsg, depositMsg, expenseMsg)
+activate "StatsUIResponse"
+"StatsUIResponse" -> User
+return
+return
+
+deactivate "StatsCommand"
+
+else action is help
+"StatsCommand" -> "StatsCommand": executeHelpStats(statsAction)
+activate "StatsCommand"
+"StatsCommand" -> "StatsAction" : statsHelp()
+activate "StatsAction"
+"StatsAction" -> "StatsUIResponse" : printStatsCommands()
+activate "StatsUIResponse"
+"StatsUIResponse" -> User
+return
+return
+
+deactivate "StatsCommand"
+end
+"StatsCommand" --> "StatsCommand"
+
+deactivate "StatsCommand"
+<-- "StatsCommand"
+deactivate "StatsCommand"
+@enduml
