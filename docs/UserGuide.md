@@ -97,7 +97,7 @@ If you still need assistance, you may refer to the [Appendix](#appendix) where y
 
     Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
-3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary.
+3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary. If you're unsure how to do so, check this [appendix](#how-to-open-the-terminal) to learn how!
 4. Ensure the terminal is within the correct folder.
 5. Use the command:  
      `java -jar mealcompanion.jar`   
@@ -117,6 +117,21 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
+
+# How to use the CLI
+
+Meal Companion is a CLI, which stands for "Command Line Interface". Unlike a normal application that you might be used
+to, which have a GUI (Graphical User Interface), all interactions are done with the keyboard and no mouse.
+
+When this guide tells you to "enter a command", it means to type the desired text into the terminal, and press the
+"Enter" or "Return" key on your keyboard to submit the command to the Meal Companion application.
+
+> **Warning**:
+> While you are in the midst of typing a command, you cannot use the arrow keys to navigate through the text like you
+> would in a normal word processor. Instead, if you make a typo, you will have to delete the entered text to go back and
+> fix it.
+
+#### [Back to table of contents](#table-of-contents)
 
 # Critical Warnings
 Due to the nature of Meal Companion as a CLI-based application, please take care to avoid malformed commands so as to avoid undesirable performance of Meal Companion. Some examples are shown below.
@@ -641,6 +656,32 @@ Here you may find the Video Tutorial for the use of Meal Companion below. You ma
 
 [![Video Tutorial for Meal Companion](https://img.youtube.com/vi/iVSQVu-yahc/maxresdefault.jpg)](https://www.youtube.com/watch?v=iVSQVu-yahc)
 
+## How To Use the Terminal
 
+### Opening the Terminal
+
+#### On MacOS Computers
+
+Open the Applications folder in Finder. Scroll to locate the "Utilities" folder (as shown in figure A1) and open it.
+<img alt="macutilities.png" src="images/macutilities.png" width="900">
+<sub>Fig A1: The Utilities Folder on a Mac</sub>
+
+Inside the folder, you should have an application called "Terminal" (as shown in figure A2). Double click to open it.
+<img alt="macterminal.png" src="images/macterminal.png" width="900">
+<sub>Fig A2: The Terminal Application on a Mac</sub>
+
+Finally, you should see something like Figure A3 screen. This is your terminal!
+<img alt="macterminalwin.png" src="images/macterminalwin.png" width="900">
+<sub>Fig A3: An Opened Terminal on a Mac</sub>
+
+### Locating Meal Companion in the Terminal
+
+#### On MacOS and Linux Computers
+
+To find Meal Companion, you can use the `cd` command, which stands for "change directory".
+
+If you've just downloaded it, MealCompanion.jar is most likely in the default Downloads folder.
+You can type the command `cd ~/Downloads` to navigate to the correct location, then you can continue by running the 
+commands as specified in [Getting Started](#getting-started).
 
 #### [Back to top](#user-guide)
