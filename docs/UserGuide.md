@@ -82,6 +82,17 @@ Here we will briefly explain the types of icons and text you can expect to see, 
 
 Within the `code block` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this text is meant to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
+> <img alt="warning.png" src="images/warning.png" width="20"> **Warning** 
+> This icon indicates a warning that you should heed to prevent undesirable performance of Meal Companion
+
+
+> <img alt="note.png" src="images/note.png" width="20"> **Note** 
+> This icon indicates something you should take note of to optimize performance of Meal Companion
+
+
+> <img alt="tip.png" src="images/tip.png" width="20"> **Tip** 
+> This icon indicates a helpful tip that you may follow to further improve the performance of Meal Companion
+
 If you still need assistance, you may refer to the [Appendix](#appendix) where you may find our Tutorial Video.
 
 #### [Back to table of contents](#table-of-contents)
