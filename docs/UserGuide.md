@@ -675,15 +675,15 @@ Here you may find the Video Tutorial for the use of Meal Companion below. You ma
 #### On MacOS Computers
 
 Open the Applications folder in Finder. Scroll to locate the "Utilities" folder (as shown in figure A1) and open it.
-<img alt="macutilities.png" src="images/macutilities.png" width="900">
-<sub>Fig A1: The Utilities Folder on a Mac</sub>
+<img alt="macutilities.png" src="images/macutilities.png" width="900"><br>  
+<sub>Fig A1: The Utilities Folder on a Mac</sub>  
 
 Inside the folder, you should have an application called "Terminal" (as shown in figure A2). Double click to open it.
-<img alt="macterminal.png" src="images/macterminal.png" width="900">
-<sub>Fig A2: The Terminal Application on a Mac</sub>
+<img alt="macterminal.png" src="images/macterminal.png" width="900"><br>  
+<sub>Fig A2: The Terminal Application on a Mac</sub>  
 
 Finally, you should see something like Figure A3 screen. This is your terminal!
-<img alt="macterminalwin.png" src="images/macterminalwin.png" width="900">
+<img alt="macterminalwin.png" src="images/macterminalwin.png" width="900"><br>  
 <sub>Fig A3: An Opened Terminal on a Mac</sub>
 
 ### Locating Meal Companion in the Terminal
