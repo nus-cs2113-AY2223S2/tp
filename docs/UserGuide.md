@@ -26,6 +26,7 @@ The purpose of this guide is to **show you easy-to-understand instructions on ho
 
 * [What is MoneyGoWhere](#what-is-moneygowhere)
 * [Why we created MoneyGoWhere](#why-we-created-moneygowhere)
+* [Urgent Help](#problems)
 * [How to use this Guide](#how-to-use-the-guide)
 * [Tutorial on Command Line Interface](#tutorial-on-command-line-interface)
 * [Setting up MoneyGoWhere](#setting-up-moneygowhere)
@@ -76,8 +77,12 @@ When the second version of MoneyGoWhere was presented to them, they were more co
 
 We hope that you, as a hawker, can feel the same in using MoneyGoWhere!
 
-### "I have problems right now, that's why I am reading the guide!" 
-#### "But I cannot find what I am looking for, how now?"
+###### [Back to table of contents](#table-of-contents)
+
+<hr style="width:90%;margin:50px auto;">
+
+## "I have problems right now, that's why I am reading the guide!" <a name="problems"></a>
+### "But I cannot find what I am looking for, how now?"
 We understand that using a new system can be confusing and frustrating. That is why we reduced our usage of technical words, and included examples in this guide.
 
 We understand that you may be referencing this guide when business is booming - **you can already barely cope, and you don't have the time to search for instructions on how to use a feature.**
@@ -242,11 +247,13 @@ Now that you are familiar with how the [CLI](#glossary) works, you are now able 
    * For example, if the file path that you have is `C:\Users\natas\Downloads\Folder`, then you should
      enter `cd C:\Users\natas\Downloads\Folder` into the CLI.
     
+
 9. Use the [*command*](#glossary) `java -jar MoneyGoWhere.jar` to launch MoneyGoWhere.
    If done correctly, you will see this on your first start up:
    ![](https://i.imgur.com/4K6rkQi.png)
 
    Note that returning users will not see the first two lines. Instead, they will see our logo and the remaining text.
+
 
 10. When you are done using the app, enter `exit` to shut the application down or simply close the window by clicking on
     the `X` on the top right hand corner of the CLI.
