@@ -165,12 +165,12 @@ So now that you have everything you need to get started with us, let us now dive
 # Main Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
-- [Ingredients](#1-ingredients)
-- [Allergens](#2-allergens)
-- [Recipes](#3-recipes)
-- [Saving Data](#4-saving-data)
-- [Help](#5-help)
-- [Command List](#6-command-list)
+1. [Ingredients](#1-ingredients)
+2. [Allergens](#2-allergens)
+3. [Recipes](#3-recipes)
+4. [Saving Data](#4-saving-data)
+5. [Help](#5-help)
+6. [Command List](#6-command-list)
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -307,9 +307,9 @@ Due to certain design constraints, do note that your allergens are not saved wit
 
 
 ### Add Allergens
-You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. 
+You may inform Meal Companion of any allergens you have by using the command `allergen add <ingredient>`. You may refer to Fig. 9 for an example of allergy to eggs and the expected output.
 
-For example, if you have an allergy to eggs, you may use the command:   
+For example:   
 `allergen add egg`
 
 <img alt="allergenadd.png" src="images/allergenadd.png" width="900">  
@@ -327,9 +327,9 @@ For example, if you have an allergy to eggs, you may use the command:
 <p></p>
 
 ### Remove Allergens
-If you have accidentally entered a wrong allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. 
+If you have accidentally entered a wrong allergen, you may simply instruct Meal Companion to remove it from its list using the command `allergen remove <ingredient>`. You may refer to Fig. 10 for an example of removing a incorrectly entered allergen, in this case water, and the expected output.
 
-For example, if you mistakenly entered an allergy to water, you may use the command:  
+For example:  
 `allergen remove water`
 
 <img alt="allergenremove.png" src="images/allergenremove.png" width="900">  
