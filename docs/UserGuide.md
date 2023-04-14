@@ -335,7 +335,7 @@ More details are provided in their individual sections.
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;">
+<hr style="width:70%;margin:50px auto;">
 
 ## Help
 
@@ -359,7 +359,7 @@ Currently, all he knows is that he can do <code>help</code>, or <code>/help</cod
 1. When John enters `help`, MoneyGoWhere prints out all the various [*commands*](#glossary) he can use. With the information printed out, he also now knows that there is a user guide! 
 ![](https://i.imgur.com/OlmWorh.png)
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 <blockquote style="background-color:#EAF5FF; color:#364253; border-color:#3399FF; padding: 2% 3%">
@@ -381,7 +381,7 @@ MoneyGoWhere does not allow for additional letters or words after the `help` [*c
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:50px auto;">
+<hr style="width:70%;margin:50px auto;">
 
 ## Item Features
 
@@ -441,7 +441,7 @@ This example will show you how to add an item step-by-step.
 
    ![](https://i.imgur.com/yiScNE0.png)
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> <strong>For Experienced Users </strong></h3>
 
@@ -485,7 +485,7 @@ This example below will show you how to add an item in a single [*command*](#glo
 
    ![](https://i.imgur.com/pYNA0uT.png)
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3>Error Messages</h3>
 
@@ -515,7 +515,7 @@ are no such denominations in real life.
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## List all Items
 
@@ -538,6 +538,7 @@ To see all the items you have entered in your menu, use this [*command*](#glossa
 💡 Notice typos? Don't worry, it's intentional! These typos will be used in later sections. 
 </blockquote>
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3>Error Messages</h3>
 
@@ -551,10 +552,9 @@ Adding anything after `listitem` or `/listitem` will cause the [*command*](#glos
 
 ![](https://i.imgur.com/oPwXAGW.png)
 
-
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Delete an Item
 
@@ -591,7 +591,7 @@ the <code>deleteitem</code> <a href="#glossary"><i>command</i></a>.
 ![](https://i.imgur.com/M2twWZL.png)
 
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -629,7 +629,7 @@ In other words, you cannot remove something that does not exist!
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Update an Item
 
@@ -675,7 +675,7 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 
    ![](https://i.imgur.com/w4JXXNl.png)
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -705,6 +705,8 @@ Next, the item <strong>"Curry Chicken Rice" should cost $5.50</strong>. He can u
 
    ![](https://i.imgur.com/2gHDVK3.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
 ❗ The next example is an invalid input, designed to show off the error messages we have in place. This is not the full list of error messages. Additionally, these error messages will be shown for both <strong>New User</strong> and <strong>Experienced User</strong> commands if the mistake is made. 
@@ -720,7 +722,7 @@ Without indicating the [*index*](#glossary), MoneyGoWhere will not know what ite
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Find an Item
 
@@ -748,7 +750,7 @@ this [*command*](#glossary).
 ![](https://i.imgur.com/0F1hPZK.png)
 
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -767,6 +769,7 @@ this [*command*](#glossary).
 
 ![](https://i.imgur.com/g18iIZL.png)
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> Error Messages </h3>
 
@@ -784,7 +787,7 @@ Without a keyword, MoneyGoWhere will not know what to look for your menu.
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:50px auto;">
+<hr style="width:70%;margin:50px auto;">
 
 ## Order Features
 
@@ -865,7 +868,7 @@ To add their orders, he will use the <code>addorder</code> <a href="#glossary"><
 
    ![](https://i.imgur.com/AoK5cUD.png)
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -928,6 +931,8 @@ Here is an example of how the `/addorder` [*command*](#glossary) may be used to 
 
    ![](https://i.imgur.com/8cjkkOK.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -952,7 +957,7 @@ When your customers pay with their card, entering an amount different from the s
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## List all Orders
 
@@ -975,6 +980,8 @@ were made.
 
    ![](https://i.imgur.com/HPkJTvq.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
@@ -989,7 +996,7 @@ As mentioned, adding anything after `listorder` or `/listorder` will cause the [
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:80%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Refund an Order
 
@@ -1013,8 +1020,8 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 
 </blockquote>
 
-| Option     | Description                    | Restrictions                                                                                                       |
-|------------|--------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Option     | Description                    | Restrictions                                                                                                                       |
+|------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | `Order ID` | A randomly generated order ID. | The entered ID must be a valid entered as shown exactly from the output of the `listorder` <a href="#glossary"><i>command</i></a>. |
 
 <h3> For New Users </h3>
@@ -1027,7 +1034,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 ![](https://i.imgur.com/mEdseoT.png)
 
 
-<hr style="width:60%;margin:50px auto;"/>
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> For Experienced Users </h3>
 
@@ -1047,6 +1054,7 @@ John needs to refund the order, and can do so with the <code>refundorder</code> 
 
 ![](https://i.imgur.com/HYRlOwu.png)
 
+<hr style="width:50%;margin:50px auto;"/>
 
 <h3> Error Messages </h3>
 
@@ -1065,7 +1073,7 @@ If you entered an invalid or non-existent order ID, MoneyGoWhere will not recogn
 
 ###### [Back to table of contents](#table-of-contents)
 
-<hr style="width:90%;margin:50px auto;"/>
+<hr style="width:70%;margin:50px auto;"/>
 
 ## Statistics and Report
 
@@ -1162,6 +1170,8 @@ Of the two, only one can be present in your [*command*](#glossary).
 
    ![](https://i.imgur.com/RCFs2KN.png)
 
+<hr style="width:50%;margin:50px auto;"/>
+
 <h3> Error Messages </h3>
 <blockquote style="background-color:#FADDDD; color:#364253; border-color:#893232; padding: 2% 3%">
 ❗ The next example is an invalid input, designed to show off the error messages we have in place. This is not the full list of error messages.
@@ -1184,10 +1194,6 @@ This happens if you enter the wrong format for the date, such as using `-` inste
 **Solution:** Use the correct format of `DD/MM/YYYY`.
 
 ###### [Back to table of contents](#table-of-contents)
-
-<!-- <h1> Save Files </h1>
-
-The list of items and orders and stored as individual `json` files. While can edit these files, the team behind MoneyGoWhere advises against doing so as you may corrupt your file. Should any changes need to be made directly on the file, you may reach out to us, and we'll be happy to help.  -->
 
 <hr style="width:90%;margin:50px auto;"/>
 
