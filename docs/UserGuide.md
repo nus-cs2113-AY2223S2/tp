@@ -452,7 +452,7 @@ For example: `recipe possible`
 ### Random Recipe
 Should you ever feel bored of cooking the same recipe over and over, use the command `recipe random` to generate a random recipe. You may refer to Fig. 16 for an example with the expected output.  
 
-For exmaple: `recipe random` 
+For example: `recipe random` 
 
 <img alt="reciperandom2.png" src="images/reciperandom2.png" width="900">  
 <sub>Fig 16: Sample of Recipe Random command being run twice to generate two different outputs, with user input highlighted.</sub>
