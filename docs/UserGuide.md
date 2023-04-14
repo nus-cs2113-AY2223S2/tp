@@ -68,6 +68,8 @@ With the rise of shortform content such as TikToks, YouTube Shorts, and Instagra
    6. [Command List](#6-command-list)
 5. [Conclusion](#conclusion)
 6. [Appendix](#appendix)
+    1. [Video Tutorial](#video-tutorial)
+    2. [Terminal Guide](#terminal-guide) 
 
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
@@ -652,12 +654,21 @@ Congratulations! You have reached the end of this user guide, which means you ar
 <div style="page-break-before:always">&nbsp;</div>
 <p></p>
 
-# Appendix
+# Appendix  
+Here you may find additional information that will assist you in your use of Meal Companion, including a video guide and detailed instructions on using terminals.
+
+- [Video Tutorial](#video-tutorial)
+- [Terminal Guide](#terminal-guide)
+
+## Video Tutorial
+
 Here you may find the Video Tutorial for the use of Meal Companion below. You may click on the image to watch the video. Alternatively, you may use [this link](https://www.youtube.com/watch?v=iVSQVu-yahc).
 
 [![Video Tutorial for Meal Companion](https://img.youtube.com/vi/iVSQVu-yahc/maxresdefault.jpg)](https://www.youtube.com/watch?v=iVSQVu-yahc)
 
-## How To Use the Terminal
+#### [Back to Appendix](#appendix)
+
+## Terminal Guide
 
 ### Opening the Terminal
 
@@ -684,5 +695,9 @@ To find Meal Companion, you can use the `cd` command, which stands for "change d
 If you've just downloaded it, MealCompanion.jar is most likely in the default Downloads folder.
 You can type the command `cd ~/Downloads` to navigate to the correct location, then you can continue by running the 
 commands as specified in [Getting Started](#getting-started).
+
+#### [Back to Appendix](#appendix)
+
+#### [Back to table of contents](#table-of-contents)
 
 #### [Back to top](#user-guide)
