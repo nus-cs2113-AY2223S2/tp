@@ -29,7 +29,18 @@ public class ParseEdit {
             throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
         }
 
-        int index = Integer.parseInt(tokens[1]);
+        int index = 0;
+        try {
+            index = Integer.parseInt(tokens[1]);
+            if (index <= 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            logger.warning("edit index not a valid number");
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
+                    RainyDay.savedData.getFinancialReport().getStatementCount() + "!"));
+        }
+
         if (index > lengthOfReport || index <= 0) {
             logger.warning("invalid edit index from user");
             throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
