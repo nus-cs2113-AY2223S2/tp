@@ -72,4 +72,8 @@ public class Ui {
         UILogger.log(Level.INFO, userInput);
         return userInput.trim();
     }
+
+    public void printToUser(String toPrint) {
+        System.out.println(toPrint);
+    }
 }

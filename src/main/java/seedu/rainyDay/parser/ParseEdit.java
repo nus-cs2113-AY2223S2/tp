@@ -14,8 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 //@@author ChongQiRong
-public class ParseEdit {
-    private static final Logger logger = Logger.getLogger(Parser.class.getName());
+public class ParseEdit extends Parser {
+    private static final Logger logger = Logger.getLogger(ParseEdit.class.getName());
 
     public Command editStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+", 3);
@@ -98,7 +98,7 @@ public class ParseEdit {
 
             if (matcher.group(8).contains("-date")) {
                 try {
-                    LocalDate date = Parser.setDate(matcher.group(8));
+                    LocalDate date = setDate(matcher.group(8));
                     DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     String dateString = date.format(formatters);
                     editFlagAndField.add("-date");
