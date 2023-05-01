@@ -1,0 +1,33 @@
+@startuml
+!include Style.puml
+title High Level Architecture Diagram
+component Application {
+
+    rectangle SecureNUS
+    rectangle UI
+    rectangle Backend
+    rectangle SecretStorage
+    rectangle Logger
+    SecureNUS <- UI
+    SecureNUS <--> SecretStorage
+    SecretStorage <-> Backend
+    SecureNUS -> Backend
+}
+component InputCLI {
+    actor User
+}
+InputCLI.User -left-> UI
+
+component OutputFiles {
+    file logFiles
+    file database
+}
+
+UI -> Logger
+SecureNUS -> Logger
+SecretStorage -> Logger
+Backend -> Logger
+Logger --> logFiles
+Backend <-down-> database
+
+@enduml

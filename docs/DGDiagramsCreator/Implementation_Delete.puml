@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+circle "user"
+
+rectangle "SecureNUS Application" {
+    rectangle "<u>secureNUS:SecureNUS"
+    "user" -u-> "<u>secureNUS:SecureNUS"
+    rectangle "Parser"
+    "<u>secureNUS:SecureNUS" -r-> "Parser" : parse(command, usedNames, folders)
+    rectangle "<u>:DeleteCommand"
+    "Parser" -u-> "<u>:DeleteCommand"
+
+'    "<u>secureNUS:SecureNUS" -r-> "<u>:DeleteCommand":execute(command)
+'    rectangle "<u>basicPasswordData:BasicPassword"
+'    "<u>:DeleteCommand" -u-> "<u>basicPasswordData:BasicPassword"
+''
+'    rectangle "<u>secureNUSData:SecretMaster"
+'    "<u>:DeleteCommand" -d-> "<u>secureNUSData:SecretMaster": removeSecret(deleteData)
+'    rectangle "Backend"
+'    "<u>secureNUS:SecureNUS" -r-> "Backend": updateStorage(ArrayList<Secret>)
+}
+
+@enduml

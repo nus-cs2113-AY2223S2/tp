@@ -1,0 +1,29 @@
+@startuml
+component Ui {
+    package ui {
+        class Ui {
+            {static}+ DUPLICATE_WHITESPACE_FMT: String
+            {static}+ in: Scanner
+            {static}+ greetUser(): void
+            {static}+ printLine(): void
+            {static}+ inform(String): void
+            {static}+ removeBackSlashes(String): String
+            {static}+ removeExtraWhiteSpaces(String): String
+            {static}+ informUserToStartCommand(): void
+            {static}+ readCommand(): void
+            {static}+ readLine(): void
+            {static}+ printError(String): void
+            {static}+ informOperationCancel(): void
+            {static}+ close(): void
+        }
+        class Parser {
+            {static}+ parse(): Command
+            {static}+ parseAdd(): Command
+            {static}+ parseAddSpecial(): Command
+            {static}+ checkCommand(): void
+        }
+        Parser -[dotted]> Ui
+    }
+
+}
+@enduml
